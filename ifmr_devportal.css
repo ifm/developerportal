@@ -138,6 +138,10 @@ a.button:hover {
     background-color:#FFFFFF;
 }
 
+.ospicker a {
+    padding-right: 20px;
+}
+
 
 
 .softwarelinks {

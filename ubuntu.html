@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer's portal</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script>
+        $(function(){
+        // $("#header").load("header.html");
+        $("#footer").load("footer.html");
+        });
+    </script>
+    <link rel="stylesheet" href="ifmr_devportal.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="footerstyle.css">
+</head>
+<body>
+    <div class="container">
+
+        <div id="orangebar">&nbsp;</div>
+
+        <div class="ifmdevportal-banner-responsive-bg-image">
+            <div class="masthead"><img id="mastheadlogo" src="assets/ifm-white-circle.svg" alt="ifm logo"><br> O3 Developer's Portal</div>
+            <!-- <div><a class="button" href="https://www.ifm.com/us/en/us/robotics/ifm-robotics" target="_blank"> > LEARN MORE</a></div> -->
+        </div>
+
+
+<div class="section ospicker">
+    <a href="ubuntu.html">Ubuntu Linux</a><a class href="ubuntu.html">Linux for Tegra</a><a class href="ubuntu.html">Windows</a><a class href="ubuntu.html">ROS</a><a class href="ubuntu.html">Compile from source</a><a class href="ubuntu.html">Compatibility Matrix</a>
+
+    <iframe style="width:90%;" src="https://github.com/ifm/ifm3d#linux" scrolling="no"></iframe>
+
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+</div>
+
+
+        <div id="footer"></div>
+    </div>
+
+
+    <script>
+        $.getJSON("https://api.github.com/repos/ifm/ifm3d/releases", function(data) {
+            var myversion = data[0].name;
+            var mypubdate = data[0].published_at;
+            var filename = data[0].assets[0].name;
+            var cleandate = [];
+            var mydate = new Date(mypubdate) + '';
+            cleandate = mydate.split(" ");
+            var pubdate = cleandate[1] + " " + cleandate[2] + ", " + cleandate[3];
+
+            $(".title").html(filename);
+            $(".version").html(myversion);
+            $(".time").html(pubdate);
+        });
+    </script>
+
+</body>
+</html>
+
