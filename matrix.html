@@ -60,7 +60,7 @@
         $(function() {
             var options = {
                 owner: 'ifm',
-                repo: 'ifm3d'
+                repo: 'ifm3d/doc'
             };
             $('#hideme').readme(options);
 
@@ -72,7 +72,7 @@
 
             let mycode = parts.split('<h2');
 
-            let mypart = mycode[4].slice(50, 2042);
+            let mypart = mycode[4].slice(2042, 3613);
 
             $('#readme').html('<h2 ' + mypart);
         }
