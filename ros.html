@@ -64,15 +64,23 @@
             };
             $('#hideme').readme(options);
 
-            setTimeout(showtext, 1000);
+            setTimeout(showtext, 300);
         });
 
         function showtext() {
-            let parts = $('#hideme').html();
+            var parts, mycode, n, m, mypart;
 
-            let mycode = parts.split('<h2');
+            parts = $('#hideme').html();
 
-            let mypart = mycode[4].slice(3613, 4500);
+            mycode = parts.split('<h2');
+
+            m = mycode[4].indexOf("ros-ros2");
+
+            n = mycode[4].indexOf("windows");
+            console.log(m, n);
+
+
+            mypart = mycode[4].slice(m, n);
 
             $('#readme').html('<h2 ' + mypart);
         }

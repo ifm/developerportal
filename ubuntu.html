@@ -64,15 +64,21 @@
             };
             $('#hideme').readme(options);
 
-            setTimeout(showtext, 1000);
+            setTimeout(showtext, 300);
         });
 
         function showtext() {
-            let parts = $('#hideme').html();
+            var parts, mycode, n, m, mypart;
 
-            let mycode = parts.split('<h2');
+            parts = $('#hideme').html();
 
-            let mypart = mycode[4].slice(50, 2042);
+            mycode = parts.split('<h2');
+
+            m = mycode[4].indexOf("ubuntu-linux-via-apt-amd64-arm64-");
+
+            n = mycode[4].indexOf("linux-for-tegra");
+
+            mypart = mycode[4].slice(m, n);
 
             $('#readme').html('<h2 ' + mypart);
         }
