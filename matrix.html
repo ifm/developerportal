@@ -43,39 +43,23 @@
 
         <div class="section ospicker">
             <h1>Official Downloads of O3 software</h1>
-            <a href="ubuntu.html">Ubuntu Linux</a><a class href="tegra.html">Linux for Tegra</a><a class href="ubuntu.html">Windows</a><a class href="ros.html">ROS</a><a class href="ubuntu.html">Compile from source</a><a class href="matrix.html">Compatibility Matrix</a>
+            <a href="ubuntu.html">Ubuntu Linux</a><a class href="tegra.html">Linux for Tegra</a><a class href="windows.html">Windows</a><a class href="ros.html">ROS</a><a class href="source-install.html">Compile from source</a><a class href="matrix.html">Compatibility Matrix</a>
             <div style="height: 30px;">&nbsp;</div>
-            <div id="hideme" style="display: none;"></div>
-            <div id="readme"></div>
+
+            <div id="thepage"></div>
 
         </div>
 
 
         <div id="footer"></div>
     </div>
-
-
-    <script src="jquery/jquery.gh-readme.min.js"></script>
     <script>
-        $(function() {
-            var options = {
-                owner: 'ifm',
-                repo: 'ifm3d/doc'
-            };
-            $('#hideme').readme(options);
-
-            setTimeout(showtext, 1000);
+        $.ajax({
+            url: 'https://raw.githubusercontent.com/ifm/ifm3d/master/doc/swcompat.md',
+            success: function(data) {
+                $('#thepage').html(data);
+            }
         });
-
-        function showtext() {
-            let parts = $('#hideme').html();
-
-            let mycode = parts.split('<h2');
-
-            let mypart = mycode[4].slice(2042, 3613);
-
-            $('#readme').html('<h2 ' + mypart);
-        }
     </script>
 
 </body>
