@@ -45,6 +45,7 @@ div.solid {
 
 
 .container {
+    background-color: #fff;
     margin: 0 auto 100px;
     max-width: 1800px;
     -webkit-box-shadow: 0 0 120px 0 rgba(0,0,0,.06);
