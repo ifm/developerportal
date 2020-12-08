@@ -37,8 +37,8 @@ body {
 }
 
 div.solid {
-  border-top: 1.5px solid #bbb;
-  width: 30%;
+  border-top: 2px solid #f2f3f4;
+  width: 45%;
   text-align: center;
   margin: 0 auto;
 }
