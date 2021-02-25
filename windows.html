@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,6 +18,11 @@
     <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="readme.css">
     <link rel="stylesheet" href="footerstyle.css">
+    <style>
+        h3 {
+            font-size: 1.25em;
+        }
+    </style>
 </head>
 
 <body>
@@ -46,22 +52,449 @@
             <a href="ubuntu.html">Ubuntu Linux</a><a class href="tegra.html">Linux for Tegra</a><a class href="windows.html">Windows</a><a class href="ros.html">ROS</a><a class href="source-install.html">Compile from source</a><a class href="matrix.html">Compatibility Matrix</a>
             <div style="height: 30px;">&nbsp;</div>
 
-            <div id="thepage"></div>
+            <div id="thepage">
+
+
+                <div id="readme" class="Box-body readme blob js-code-block-container p-5 p-xl-6 gist-border-0">
+                    <article class="markdown-body entry-content container-lg" itemprop="text">
+                        <h1><a id="user-content-building-ifm3d-from-source-on-windows" class="anchor" aria-hidden="true" href="#building-ifm3d-from-source-on-windows"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Building
+                            ifm3d from source on Windows</h1>
+                        <p>This tutorial details how to compile the ifm3d library and its dependencies on a Windows platform using Visual Studio.</p>
+                        <h2><a id="user-content-dependencies" class="anchor" aria-hidden="true" href="#dependencies"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Dependencies</h2>
+                        <h3><a id="user-content-build-tools" class="anchor" aria-hidden="true" href="#build-tools"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Build
+                            tools
+                        </h3>
+                        <ul>
+                            <li><a href="http://www.cmake.org" rel="nofollow">CMake v3.5.0</a> or newer (also available through the Visual Studio installer)</li>
+                            <li><a href="https://gitforwindows.org" rel="nofollow">Git for Windows</a> (also available through the Visual Studio installer)</li>
+                            <li><a href="https://www.visualstudio.com" rel="nofollow">Microsoft Visual Studio</a> version 2015, 2017 or 2019. The free &#39;Community&#39; edition is sufficient. Be sure to select the &#39;Desktop development with C++&#39;
+                                workflow.
+                            </li>
+                        </ul>
+                        <h2><a id="user-content-binary-dependencies" class="anchor" aria-hidden="true" href="#binary-dependencies"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Binary
+                            Dependencies
+                        </h2>
+                        <h3><a id="user-content-pcl" class="anchor" aria-hidden="true" href="#pcl"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>
+                            <a href="http://www.pointclouds.org" rel="nofollow">PCL</a>
+                        </h3>
+                        <p>PCL is available in binary form for Windows platforms via the project&#39;s GitHub releases page. <code>ifm3d</code> is tested against version v1.8.1 which can be downloaded and installed via the following links.</p>
+                        <p>Choose ONE of the following based on your target version of Visual Studio.</p>
+                        <ul>
+                            <li>Visual Studio 2015: <a href="https://github.com/PointCloudLibrary/pcl/releases/download/pcl-1.8.1/PCL-1.8.1-AllInOne-msvc2015-win64.exe">PCL-1.8.1-AllInOne-msvc2015-win64.exe</a></li>
+                            <li>Visual Studio 2017/2019: <a href="https://github.com/PointCloudLibrary/pcl/releases/download/pcl-1.8.1/PCL-1.8.1-AllInOne-msvc2017-win64.exe">PCL-1.8.1-AllInOne-msvc2017-win64.exe</a></li>
+                        </ul>
+                        <p><strong>NOTE</strong>: Opt-in to installing the 3rd party dependencies of <code>PCL</code>. <code>ifm3d</code> also takes a dependency on the <code>boost</code> library. For simplicity/compatibility, this tutorial builds against
+                            the version of <code>boost</code> provided along with
+                            <code>PCL</code>.</p>
+                        <p><strong>NOTE</strong>: It is possible to build an ifm3d variant which does not depend on the
+                            <code>PCL</code> library. See <a href="#appendex-a">Appendix A</a> below for instructions.</p>
+                        <h3><a id="user-content-opencv-34" class="anchor" aria-hidden="true" href="#opencv-34"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>
+                            <a href="https://opencv.org/" rel="nofollow">OpenCV 3.4</a>
+                        </h3>
+                        <p>OpenCV 3.4 is available in binary form for Windows platforms from the <a href="https://opencv.org/releases/" rel="nofollow">OpenCV
+Releases</a> page. <code>ifm3d</code> is tested against v3.4.9, available from the following link:</p>
+                        <ul>
+                            <li><a href="https://sourceforge.net/projects/opencvlibrary/files/3.4.9/opencv-3.4.9-vc14_vc15.exe/download" rel="nofollow">OpenCV 3.4.9</a></li>
+                        </ul>
+                        <p>Download it and extract to a known location (this tutorial assumes a path of
+                            <code>C:\opencv</code>.</p>
+                        <h2><a id="user-content-source-dependencies" class="anchor" aria-hidden="true" href="#source-dependencies"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Source
+                            Dependencies
+                        </h2>
+                        <p><code>ifm3d</code> depends on several additional libraries (curl, xmlrpc-c, glog, and gtest) which are not available as binary packages on Windows. The following instructions detail how to compile them from source for your target.</p>
+                        <h3><a id="user-content-environment-configuration" class="anchor" aria-hidden="true" href="#environment-configuration"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Environment
+                            Configuration
+                        </h3>
+                        <p>The following environment variables are used by this tutorial to make customization simpler. Modify them as needed for your environment. You can obtain a list of valid cmake generator strings via <code>cmake -h</code>. Again, <code>ifm3d</code>                            supports version 2015 and newer.</p>
+                        <pre><code>set IFM3D_BOOST_ROOT=&quot;C:\Program Files\PCL 1.8.1\3rdParty\Boost&quot;
+set IFM3D_OPENCV_PATH=C:\opencv\build
+set IFM3D_CMAKE_GENERATOR=&quot;Visual Studio 15 2017 Win64&quot;
+set IFM3D_BUILD_DIR=C:\ifm3d
+set CONFIG=Release
+</code></pre>
+                        <p>Finally, create the working directory in which <code>ifm3d</code> and its dependencies will be built:</p>
+                        <pre><code>mkdir %IFM3D_BUILD_DIR%
+</code></pre>
+                        <h3><a id="user-content-curl" class="anchor" aria-hidden="true" href="#curl"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>
+                            <a href="https://curl.haxx.se/" rel="nofollow">curl</a>
+                        </h3>
+                        <pre><code>cd %IFM3D_BUILD_DIR%
+git clone --branch curl-7_47_1 <a href="https://github.com/curl/curl.git">https://github.com/curl/curl.git</a>
+cd %IFM3D_BUILD_DIR%\curl
+mkdir build
+cd build
+cmake -G %IFM3D_CMAKE_GENERATOR% -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=ON -DCMAKE_INSTALL_PREFIX=%IFM3D_BUILD_DIR%\install ..
+cmake --build . --clean-first --config %CONFIG% --target INSTALL
+</code></pre>
+                        <h3><a id="user-content-xmlrpc-c" class="anchor" aria-hidden="true" href="#xmlrpc-c"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>
+                            <a href="http://xmlrpc-c.sourceforge.net/" rel="nofollow">xmlrpc-c</a>
+                        </h3>
+                        <pre><code>cd %IFM3D_BUILD_DIR%
+git clone --branch 1.33.14-cmake <a href="https://github.com/ifm/xmlrpc-c.git">https://github.com/ifm/xmlrpc-c.git</a>
+cd %IFM3D_BUILD_DIR%\xmlrpc-c
+mkdir build
+cd build
+cmake -G %IFM3D_CMAKE_GENERATOR% -DCMAKE_INSTALL_PREFIX=%IFM3D_BUILD_DIR%\install ..
+cmake --build . --clean-first --config %CONFIG% --target INSTALL
+</code></pre>
+                        <h3><a id="user-content-glog" class="anchor" aria-hidden="true" href="#glog"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>
+                            <a href="https://github.com/google/glog">glog</a>
+                        </h3>
+                        <pre><code>cd %IFM3D_BUILD_DIR%
+git clone --branch v0.3.5 <a href="https://github.com/google/glog.git">https://github.com/google/glog.git</a>
+cd %IFM3D_BUILD_DIR%\glog
+mkdir build
+cd build
+cmake -G %IFM3D_CMAKE_GENERATOR% -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX=%IFM3D_BUILD_DIR%\install ..
+cmake --build . --clean-first --config %CONFIG% --target INSTALL
+</code></pre>
+                        <h3><a id="user-content-gtest" class="anchor" aria-hidden="true" href="#gtest"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>
+                            <a href="https://github.com/google/googletest.git">gtest</a>
+                        </h3>
+                        <pre><code>cd %IFM3D_BUILD_DIR%
+git clone --branch release-1.8.1 <a href="https://github.com/google/googletest.git">https://github.com/google/googletest.git</a>
+</code></pre>
+                        <p>NOTE: <code>gtest</code> is only needed to build and run unit tests. To skip, add
+                            <code>-DBUILD_TESTS=OFF</code> to the cmake configuration command line on the <code>ifm3d</code> library below.</p>
+                        <h1><a id="user-content-building-ifm3d" class="anchor" aria-hidden="true" href="#building-ifm3d"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Building
+                            ifm3d
+                        </h1>
+                        <pre><code># Clone the repository
+cd %IFM3D_BUILD_DIR%
+git clone <a href="https://github.com/ifm/ifm3d.git">https://github.com/ifm/ifm3d.git</a>
+cd %IFM3D_BUILD_DIR%\ifm3d
+
+# Configure
+mkdir build
+cd build
+cmake -G %IFM3D_CMAKE_GENERATOR% -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=ON -DBUILD_SDK_PKG=ON -DGTEST_CMAKE_DIR=%IFM3D_BUILD_DIR%\googletest\googletest -Dgtest_force_shared_crt=TRUE -DCMAKE_PREFIX_PATH=%IFM3D_BUILD_DIR%\install;%IFM3D_OPENCV_PATH% -DBOOST_ROOT=%IFM3D_BOOST_ROOT% -DBoost_USE_STATIC_LIBS=ON -DCMAKE_BUILD_TYPE=%CONFIG% -DCMAKE_INSTALL_PREFIX=%IFM3D_BUILD_DIR%\install ..
+
+# run tests
+cmake --build . --config %CONFIG% --target check
+
+#install
+cmake --build . --config %CONFIG% --target INSTALL
+</code></pre>
+                        <h1><a id="user-content-running-the-ifm3d-command-line-tool" class="anchor" aria-hidden="true" href="#running-the-ifm3d-command-line-tool"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Running
+                            the ifm3d command line tool</h1>
+                        <p>After Building <code>ifm3d</code>, the binary files will be installed at
+                            <code>%IFM3D_BUILD_DIR%\install\bin</code>. To run the ifm3d tool you need to add this directory to your path. You will also need to add the opencv directory to your path.</p>
+                        <p>If built targeting Visual Studio 2017/2019:</p>
+                        <pre><code>set PATH=%IFM3D_BUILD_DIR%\install\bin;%IFM3D_OPENCV_PATH%\x64\vc15\bin;%PATH%
+</code></pre>
+                        <p>If built targeting Visual Studio 2015:</p>
+                        <pre><code>set PATH=%IFM3D_BUILD_DIR%\install\bin;%IFM3D_OPENCV_PATH%\x64\vc14\bin;%PATH%
+</code></pre>
+                        <p>After that you should be able to run the ifm3d tool</p>
+                        <pre><code>ifm3d
+</code></pre>
+                        <h1><a id="user-content-appendix-a-building-without-pcl" class="anchor" aria-hidden="true" href="#appendix-a-building-without-pcl"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Appendix
+                            A: Building without PCL</h1>
+                        <p>The <code>ifm3d</code> library offers an alternative image buffer implementation which only depends on <code>OpenCV</code>, thus eliminating a dependency on <code>PCL</code>. In order to build <code>ifm3d</code> without a dependency
+                            on <code>PCL</code>, the following modifications to the instructions above are necessary.</p>
+                        <h2><a id="user-content-download-boost" class="anchor" aria-hidden="true" href="#download-boost"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Download
+                            Boost
+                        </h2>
+                        <p><code>ifm3d</code> takes a dependency on the <code>Boost</code> libraries which are also distributed by <code>the </code>PCL all-in-one installer. Since we will not be installing <code>PCL</code>, <code>Boost</code> must be downloaded
+                            individually. Binaries for the latest release are available here (choose the version which matches your target msvc version):</p>
+                        <ul>
+                            <li>Visual Studio 2015: <a href="https://sourceforge.net/projects/boost/files/boost-binaries/1.72.0/boost_1_72_0-msvc-14.0-64.exe/download" rel="nofollow">boost_1_72_0-msvc-14.0-64.exe</a></li>
+                            <li>Visual Studio 2017: <a href="https://sourceforge.net/projects/boost/files/boost-binaries/1.72.0/boost_1_72_0-msvc-14.1-64.exe/download" rel="nofollow">boost_1_72_0-msvc-14.1-64.exe</a></li>
+                            <li>Visual Studio 2019: <a href="https://sourceforge.net/projects/boost/files/boost-binaries/1.72.0/boost_1_72_0-msvc-14.2-64.exe/download" rel="nofollow">boost_1_72_0-msvc-14.2-64.exe</a></li>
+                        </ul>
+                        <h2><a id="user-content-set-the-proper-boost_root-path" class="anchor" aria-hidden="true" href="#set-the-proper-boost_root-path"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Set
+                            the proper BOOST_ROOT path</h2>
+                        <p>In the environment setup step, choose the proper path for BOOST_ROOT:</p>
+                        <pre><code>set IFM3D_BOOST_ROOT=&quot;C:\local\boost_1_72_0&quot;
+</code></pre>
+                        <h2><a id="user-content-select-the-opencv-image-container" class="anchor" aria-hidden="true" href="#select-the-opencv-image-container"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Select
+                            the OpenCV Image Container</h2>
+                        <p>The <code>ifm3d::ImageBuffer</code> module (has dependency on PCL) must be disabled with the flag <code>-DBUILD_MODULE_IMAGE=OFF</code> and the <code>ifm3d::OpenCV</code>Buffer module must be enabled with the flag <code>-DBUILD_MODULE_OPENCV=ON</code>.
+                            The full <code>cmake</code> configuration command is:</p>
+                        <pre><code>cmake -G %IFM3D_CMAKE_GENERATOR% -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=ON -DBUILD_SDK_PKG=ON -DGTEST_CMAKE_DIR=%IFM3D_BUILD_DIR%\googletest\googletest -Dgtest_force_shared_crt=TRUE -DCMAKE_PREFIX_PATH=%IFM3D_BUILD_DIR%\install;%IFM3D_OPENCV_PATH% -DBOOST_ROOT=%IFM3D_BOOST_ROOT% -DBoost_USE_STATIC_LIBS=ON -DCMAKE_BUILD_TYPE=%CONFIG% -DCMAKE_INSTALL_PREFIX=%IFM3D_BUILD_DIR%\install -DBUILD_MODULE_IMAGE=OFF -DBUILD_MODULE_OPENCV=ON ..
+</code></pre>
+                    </article>
+                </div>
+
+            </div>
+
+
 
         </div>
 
 
-        <div id="footer"></div>
+
     </div>
-    <script>
-        $.ajax({
-            url: 'https://raw.githubusercontent.com/ifm/ifm3d/master/doc/windows.md',
-            success: function(data) {
-                $('#thepage').html(data);
-            }
-        });
-    </script>
+    </div>
+
+    </main>
+    </div>
+
+    </div>
+
+
+
+    </template>
+
+    </div>
+
+    </div>
+
+
+    <div id="footer"></div>
+    </div>
+    </div>
 
 </body>
 
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer's portal</title>
+    <script src="jquery/jquery-3.4.1.min.js"></script>
+    <script>
+        $(function() {
+            // $("#header").load("header.html");
+            $("#footer").load("footer.html");
+        });
+    </script>
+    <link rel="stylesheet" href="ifmr_devportal.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="readme.css">
+    <link rel="stylesheet" href="footerstyle.css">
+    <style>
+        h3 {
+            font-size: 1.25em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div id="orangebar">&nbsp;</div>
+
+        <div class="ifmdevportal-banner-responsive-bg-image" style="padding-bottom: 30px;">
+            <div class="masthead">
+                <a href="index.html"><img id="mastheadlogo" src="assets/ifm-white-circle.svg" alt="ifm logo"></a><br> O3 Developer's Portal</div>
+
+            <nav>
+                <ul class="pagemenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Unboxing</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">Extension Tools</a></li>
+                    <li><a href="#">Docs</a></li>
+                </ul>
+            </nav>
+
+        </div>
+
+
+        <div class="section ospicker">
+            <h1>Official Downloads of O3 software</h1>
+            <a href="ubuntu.html">Ubuntu Linux</a><a class href="tegra.html">Linux for Tegra</a><a class href="windows.html">Windows</a><a class href="ros.html">ROS</a><a class href="source-install.html">Compile from source</a><a class href="matrix.html">Compatibility Matrix</a>
+            <div style="height: 30px;">&nbsp;</div>
+
+            <div id="thepage">
+
+
+                <div id="readme" class="Box-body readme blob js-code-block-container p-5 p-xl-6 gist-border-0">
+                    <article class="markdown-body entry-content container-lg" itemprop="text">
+                        <h1><a id="user-content-building-ifm3d-from-source-on-windows" class="anchor" aria-hidden="true" href="#building-ifm3d-from-source-on-windows"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Building
+                            ifm3d from source on Windows</h1>
+                        <p>This tutorial details how to compile the ifm3d library and its dependencies on a Windows platform using Visual Studio.</p>
+                        <h2><a id="user-content-dependencies" class="anchor" aria-hidden="true" href="#dependencies"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Dependencies</h2>
+                        <h3><a id="user-content-build-tools" class="anchor" aria-hidden="true" href="#build-tools"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Build
+                            tools
+                        </h3>
+                        <ul>
+                            <li><a href="http://www.cmake.org" rel="nofollow">CMake v3.5.0</a> or newer (also available through the Visual Studio installer)</li>
+                            <li><a href="https://gitforwindows.org" rel="nofollow">Git for Windows</a> (also available through the Visual Studio installer)</li>
+                            <li><a href="https://www.visualstudio.com" rel="nofollow">Microsoft Visual Studio</a> version 2015, 2017 or 2019. The free &#39;Community&#39; edition is sufficient. Be sure to select the &#39;Desktop development with C++&#39;
+                                workflow.
+                            </li>
+                        </ul>
+                        <h2><a id="user-content-binary-dependencies" class="anchor" aria-hidden="true" href="#binary-dependencies"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Binary
+                            Dependencies
+                        </h2>
+                        <h3><a id="user-content-pcl" class="anchor" aria-hidden="true" href="#pcl"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>
+                            <a href="http://www.pointclouds.org" rel="nofollow">PCL</a>
+                        </h3>
+                        <p>PCL is available in binary form for Windows platforms via the project&#39;s GitHub releases page. <code>ifm3d</code> is tested against version v1.8.1 which can be downloaded and installed via the following links.</p>
+                        <p>Choose ONE of the following based on your target version of Visual Studio.</p>
+                        <ul>
+                            <li>Visual Studio 2015: <a href="https://github.com/PointCloudLibrary/pcl/releases/download/pcl-1.8.1/PCL-1.8.1-AllInOne-msvc2015-win64.exe">PCL-1.8.1-AllInOne-msvc2015-win64.exe</a></li>
+                            <li>Visual Studio 2017/2019: <a href="https://github.com/PointCloudLibrary/pcl/releases/download/pcl-1.8.1/PCL-1.8.1-AllInOne-msvc2017-win64.exe">PCL-1.8.1-AllInOne-msvc2017-win64.exe</a></li>
+                        </ul>
+                        <p><strong>NOTE</strong>: Opt-in to installing the 3rd party dependencies of <code>PCL</code>. <code>ifm3d</code> also takes a dependency on the <code>boost</code> library. For simplicity/compatibility, this tutorial builds against
+                            the version of <code>boost</code> provided along with
+                            <code>PCL</code>.</p>
+                        <p><strong>NOTE</strong>: It is possible to build an ifm3d variant which does not depend on the
+                            <code>PCL</code> library. See <a href="#appendex-a">Appendix A</a> below for instructions.</p>
+                        <h3><a id="user-content-opencv-34" class="anchor" aria-hidden="true" href="#opencv-34"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>
+                            <a href="https://opencv.org/" rel="nofollow">OpenCV 3.4</a>
+                        </h3>
+                        <p>OpenCV 3.4 is available in binary form for Windows platforms from the <a href="https://opencv.org/releases/" rel="nofollow">OpenCV
+Releases</a> page. <code>ifm3d</code> is tested against v3.4.9, available from the following link:</p>
+                        <ul>
+                            <li><a href="https://sourceforge.net/projects/opencvlibrary/files/3.4.9/opencv-3.4.9-vc14_vc15.exe/download" rel="nofollow">OpenCV 3.4.9</a></li>
+                        </ul>
+                        <p>Download it and extract to a known location (this tutorial assumes a path of
+                            <code>C:\opencv</code>.</p>
+                        <h2><a id="user-content-source-dependencies" class="anchor" aria-hidden="true" href="#source-dependencies"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Source
+                            Dependencies
+                        </h2>
+                        <p><code>ifm3d</code> depends on several additional libraries (curl, xmlrpc-c, glog, and gtest) which are not available as binary packages on Windows. The following instructions detail how to compile them from source for your target.</p>
+                        <h3><a id="user-content-environment-configuration" class="anchor" aria-hidden="true" href="#environment-configuration"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Environment
+                            Configuration
+                        </h3>
+                        <p>The following environment variables are used by this tutorial to make customization simpler. Modify them as needed for your environment. You can obtain a list of valid cmake generator strings via <code>cmake -h</code>. Again, <code>ifm3d</code>                            supports version 2015 and newer.</p>
+                        <pre><code>set IFM3D_BOOST_ROOT=&quot;C:\Program Files\PCL 1.8.1\3rdParty\Boost&quot;
+set IFM3D_OPENCV_PATH=C:\opencv\build
+set IFM3D_CMAKE_GENERATOR=&quot;Visual Studio 15 2017 Win64&quot;
+set IFM3D_BUILD_DIR=C:\ifm3d
+set CONFIG=Release
+</code></pre>
+                        <p>Finally, create the working directory in which <code>ifm3d</code> and its dependencies will be built:</p>
+                        <pre><code>mkdir %IFM3D_BUILD_DIR%
+</code></pre>
+                        <h3><a id="user-content-curl" class="anchor" aria-hidden="true" href="#curl"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>
+                            <a href="https://curl.haxx.se/" rel="nofollow">curl</a>
+                        </h3>
+                        <pre><code>cd %IFM3D_BUILD_DIR%
+git clone --branch curl-7_47_1 <a href="https://github.com/curl/curl.git">https://github.com/curl/curl.git</a>
+cd %IFM3D_BUILD_DIR%\curl
+mkdir build
+cd build
+cmake -G %IFM3D_CMAKE_GENERATOR% -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=ON -DCMAKE_INSTALL_PREFIX=%IFM3D_BUILD_DIR%\install ..
+cmake --build . --clean-first --config %CONFIG% --target INSTALL
+</code></pre>
+                        <h3><a id="user-content-xmlrpc-c" class="anchor" aria-hidden="true" href="#xmlrpc-c"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>
+                            <a href="http://xmlrpc-c.sourceforge.net/" rel="nofollow">xmlrpc-c</a>
+                        </h3>
+                        <pre><code>cd %IFM3D_BUILD_DIR%
+git clone --branch 1.33.14-cmake <a href="https://github.com/ifm/xmlrpc-c.git">https://github.com/ifm/xmlrpc-c.git</a>
+cd %IFM3D_BUILD_DIR%\xmlrpc-c
+mkdir build
+cd build
+cmake -G %IFM3D_CMAKE_GENERATOR% -DCMAKE_INSTALL_PREFIX=%IFM3D_BUILD_DIR%\install ..
+cmake --build . --clean-first --config %CONFIG% --target INSTALL
+</code></pre>
+                        <h3><a id="user-content-glog" class="anchor" aria-hidden="true" href="#glog"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>
+                            <a href="https://github.com/google/glog">glog</a>
+                        </h3>
+                        <pre><code>cd %IFM3D_BUILD_DIR%
+git clone --branch v0.3.5 <a href="https://github.com/google/glog.git">https://github.com/google/glog.git</a>
+cd %IFM3D_BUILD_DIR%\glog
+mkdir build
+cd build
+cmake -G %IFM3D_CMAKE_GENERATOR% -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX=%IFM3D_BUILD_DIR%\install ..
+cmake --build . --clean-first --config %CONFIG% --target INSTALL
+</code></pre>
+                        <h3><a id="user-content-gtest" class="anchor" aria-hidden="true" href="#gtest"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>
+                            <a href="https://github.com/google/googletest.git">gtest</a>
+                        </h3>
+                        <pre><code>cd %IFM3D_BUILD_DIR%
+git clone --branch release-1.8.1 <a href="https://github.com/google/googletest.git">https://github.com/google/googletest.git</a>
+</code></pre>
+                        <p>NOTE: <code>gtest</code> is only needed to build and run unit tests. To skip, add
+                            <code>-DBUILD_TESTS=OFF</code> to the cmake configuration command line on the <code>ifm3d</code> library below.</p>
+                        <h1><a id="user-content-building-ifm3d" class="anchor" aria-hidden="true" href="#building-ifm3d"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Building
+                            ifm3d
+                        </h1>
+                        <pre><code># Clone the repository
+cd %IFM3D_BUILD_DIR%
+git clone <a href="https://github.com/ifm/ifm3d.git">https://github.com/ifm/ifm3d.git</a>
+cd %IFM3D_BUILD_DIR%\ifm3d
+
+# Configure
+mkdir build
+cd build
+cmake -G %IFM3D_CMAKE_GENERATOR% -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=ON -DBUILD_SDK_PKG=ON -DGTEST_CMAKE_DIR=%IFM3D_BUILD_DIR%\googletest\googletest -Dgtest_force_shared_crt=TRUE -DCMAKE_PREFIX_PATH=%IFM3D_BUILD_DIR%\install;%IFM3D_OPENCV_PATH% -DBOOST_ROOT=%IFM3D_BOOST_ROOT% -DBoost_USE_STATIC_LIBS=ON -DCMAKE_BUILD_TYPE=%CONFIG% -DCMAKE_INSTALL_PREFIX=%IFM3D_BUILD_DIR%\install ..
+
+# run tests
+cmake --build . --config %CONFIG% --target check
+
+#install
+cmake --build . --config %CONFIG% --target INSTALL
+</code></pre>
+                        <h1><a id="user-content-running-the-ifm3d-command-line-tool" class="anchor" aria-hidden="true" href="#running-the-ifm3d-command-line-tool"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Running
+                            the ifm3d command line tool</h1>
+                        <p>After Building <code>ifm3d</code>, the binary files will be installed at
+                            <code>%IFM3D_BUILD_DIR%\install\bin</code>. To run the ifm3d tool you need to add this directory to your path. You will also need to add the opencv directory to your path.</p>
+                        <p>If built targeting Visual Studio 2017/2019:</p>
+                        <pre><code>set PATH=%IFM3D_BUILD_DIR%\install\bin;%IFM3D_OPENCV_PATH%\x64\vc15\bin;%PATH%
+</code></pre>
+                        <p>If built targeting Visual Studio 2015:</p>
+                        <pre><code>set PATH=%IFM3D_BUILD_DIR%\install\bin;%IFM3D_OPENCV_PATH%\x64\vc14\bin;%PATH%
+</code></pre>
+                        <p>After that you should be able to run the ifm3d tool</p>
+                        <pre><code>ifm3d
+</code></pre>
+                        <h1><a id="user-content-appendix-a-building-without-pcl" class="anchor" aria-hidden="true" href="#appendix-a-building-without-pcl"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Appendix
+                            A: Building without PCL</h1>
+                        <p>The <code>ifm3d</code> library offers an alternative image buffer implementation which only depends on <code>OpenCV</code>, thus eliminating a dependency on <code>PCL</code>. In order to build <code>ifm3d</code> without a dependency
+                            on <code>PCL</code>, the following modifications to the instructions above are necessary.</p>
+                        <h2><a id="user-content-download-boost" class="anchor" aria-hidden="true" href="#download-boost"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Download
+                            Boost
+                        </h2>
+                        <p><code>ifm3d</code> takes a dependency on the <code>Boost</code> libraries which are also distributed by <code>the </code>PCL all-in-one installer. Since we will not be installing <code>PCL</code>, <code>Boost</code> must be downloaded
+                            individually. Binaries for the latest release are available here (choose the version which matches your target msvc version):</p>
+                        <ul>
+                            <li>Visual Studio 2015: <a href="https://sourceforge.net/projects/boost/files/boost-binaries/1.72.0/boost_1_72_0-msvc-14.0-64.exe/download" rel="nofollow">boost_1_72_0-msvc-14.0-64.exe</a></li>
+                            <li>Visual Studio 2017: <a href="https://sourceforge.net/projects/boost/files/boost-binaries/1.72.0/boost_1_72_0-msvc-14.1-64.exe/download" rel="nofollow">boost_1_72_0-msvc-14.1-64.exe</a></li>
+                            <li>Visual Studio 2019: <a href="https://sourceforge.net/projects/boost/files/boost-binaries/1.72.0/boost_1_72_0-msvc-14.2-64.exe/download" rel="nofollow">boost_1_72_0-msvc-14.2-64.exe</a></li>
+                        </ul>
+                        <h2><a id="user-content-set-the-proper-boost_root-path" class="anchor" aria-hidden="true" href="#set-the-proper-boost_root-path"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Set
+                            the proper BOOST_ROOT path</h2>
+                        <p>In the environment setup step, choose the proper path for BOOST_ROOT:</p>
+                        <pre><code>set IFM3D_BOOST_ROOT=&quot;C:\local\boost_1_72_0&quot;
+</code></pre>
+                        <h2><a id="user-content-select-the-opencv-image-container" class="anchor" aria-hidden="true" href="#select-the-opencv-image-container"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Select
+                            the OpenCV Image Container</h2>
+                        <p>The <code>ifm3d::ImageBuffer</code> module (has dependency on PCL) must be disabled with the flag <code>-DBUILD_MODULE_IMAGE=OFF</code> and the <code>ifm3d::OpenCV</code>Buffer module must be enabled with the flag <code>-DBUILD_MODULE_OPENCV=ON</code>.
+                            The full <code>cmake</code> configuration command is:</p>
+                        <pre><code>cmake -G %IFM3D_CMAKE_GENERATOR% -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=ON -DBUILD_SDK_PKG=ON -DGTEST_CMAKE_DIR=%IFM3D_BUILD_DIR%\googletest\googletest -Dgtest_force_shared_crt=TRUE -DCMAKE_PREFIX_PATH=%IFM3D_BUILD_DIR%\install;%IFM3D_OPENCV_PATH% -DBOOST_ROOT=%IFM3D_BOOST_ROOT% -DBoost_USE_STATIC_LIBS=ON -DCMAKE_BUILD_TYPE=%CONFIG% -DCMAKE_INSTALL_PREFIX=%IFM3D_BUILD_DIR%\install -DBUILD_MODULE_IMAGE=OFF -DBUILD_MODULE_OPENCV=ON ..
+</code></pre>
+                    </article>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+
+
+    </div>
+    </div>
+
+    </main>
+    </div>
+
+    </div>
+
+
+
+    </template>
+
+    </div>
+
+    </div>
+
+
+    <div id="footer"></div>
+    </div>
+    </div>
+
+</body>
+
+>>>>>>> 9baf87af4f20a680d6e15ff00147ea53862971cf
 </html>
