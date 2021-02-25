@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer's portal</title>
+    <script src="jquery/jquery-3.4.1.min.js"></script>
+    <script>
+        $(function() {
+            // $("#header").load("header.html");
+            $("#footer").load("footer.html");
+        });
+    </script>
+    <link rel="stylesheet" href="ifmr_devportal.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="readme.css">
+    <link rel="stylesheet" href="footerstyle.css">
+    <style>
+        h3 {
+            font-size: 1.25em;
+        }
+        
+        iframe {
+            border: none;
+            width: 90%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div id="orangebar">&nbsp;</div>
+
+        <div class="ifmdevportal-banner-responsive-bg-image" style="padding-bottom: 30px;">
+            <div class="masthead">
+                <a href="index.html"><img id="mastheadlogo" src="assets/ifm-white-circle.svg" alt="ifm logo"></a><br> O3 Developer's Portal</div>
+
+            <nav>
+                <ul class="pagemenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">C-Sample</a></li>
+                    <li><a href="parameters.html">Settings</a></li>
+                    <li><a href="#">Extension Tools</a></li>
+                    <li><a href="#">Docs</a></li>
+                </ul>
+            </nav>
+
+        </div>
+        <div class="section ospicker">
+            <h1>Programming reference</h1>
+            <a class href="unboxing.html">Unboxing</a><a class href="visualization.html" style="color: #ff6e00;">Visualization</a><a class href="set_parameters.html">Setting parameters</a><a href="c-sample.html">Getting data</a><a class href="logging2.html">Logging</a>
+
+            <div id="thepage">
+                <iframe src="Visualization_content.html" id="mainframe"></iframe>
+            </div>
+        </div>
+    </div>
+    <div id="footer"></div>
+    <script>
+        var frame = document.getElementById("mainframe");
+
+        frame.onload = function() {
+            frame.style.height = frame.contentWindow.document.body.scrollHeight + 'px';
+            frame.style.width = frame.contentWindow.document.body.scrollWidth + 'px';
+        }
+    </script>
+</body>
+
+</html>
