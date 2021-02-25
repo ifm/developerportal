@@ -13077,22 +13077,26 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="How-to:-Unboxing-O3R-&amp;-Software-installation">How to: Unboxing O3R &amp; Software installation<a class="anchor-link" href="#How-to:-Unboxing-O3R-&amp;-Software-installation">&#182;</a></h1><h2 id="Unboxing">Unboxing<a class="anchor-link" href="#Unboxing">&#182;</a></h2><p>You are one of the lucky ones who received the O3R during the field test phase. Great! The general idea of this field test is simple: showing you the capabilities  of the O3R. At the same time, we are eager to hear your feedback. Tell us everything: software features you would like, documentation, more coffee...? (Q: what do we expect from them?)</p>
+<h1 id="How-to:-Unboxing-O3R-&amp;-Software-installation">How to: Unboxing O3R &amp; Software installation<a class="anchor-link" href="#How-to:-Unboxing-O3R-&amp;-Software-installation">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Unboxing">Unboxing<a class="anchor-link" href="#Unboxing">&#182;</a></h2><p>You are one of the lucky ones who received the O3R during the field test phase. Great! The general idea of this field test is simple: showing you the capabilities of the O3R. At the same time, we are eager to hear your feedback. Tell us everything: software features you would like, documentation, more coffee...?</p>
 <p>If nobody tampered with your O3R package, you should have following hardware:</p>
 <ul>
-<li>Camera head 1</li>
+<li>Camera head 1<br>
+<img src="./img/head.jpg" alt="HEAD" title="O3R - HEAD"></li>
 <li>Camera head 2</li>
-<li>VPU </li>
+<li>VPU<br>
+<img src="./img/vpu.jpg" alt="VPU" title="O3R - VPU"></li>
 <li>FPD cables to connect the head(s) to the VPU</li>
-<li>Power cable (5 pin)</li>
+<li>Stand for mounting the heads<br>
+<img src="./img/stand.png" alt="stand" title="stand"></li>
 </ul>
 <p>You need a strong enough power source: 5A and 24V minimum.</p>
-<p>1) First, connect the head(s) to the VPU;<br>
-2) Connect power to the VPU;<br>
-3) Connect the ethernet cable (not included in the package);<br>
-4) Wait until you see the ethernet LED's flashing before Pinging/connecting to the VPU.<br>
-(ToDo: Image of what to plug where)</p>
-<p>That's it about the hardware. Next step: software isntallation</p>
 
 </div>
 </div>
@@ -13100,7 +13104,20 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Software-installation">Software installation<a class="anchor-link" href="#Software-installation">&#182;</a></h2><p><em>Note: We recommend for testing purposes, to install the ifmO3r package in an clean python environment first. You can use</em> <code>python -m venv "venv-name"</code> <em>to create a new virtual environment</em>.</p>
+<p>1) First, connect the head(s) to the VPU;<br>
+<img src="./img/connection_overview.png" alt="CONNECTION-OVERVIEW" title="Connections"><br>
+2) Connect power to the VPU - <font color=red>ATTENTION: PIN2 (white) is power!</font><br>
+3) Connect the ethernet cable (not included in the package)<br>
+4) Wait until you see the ethernet LED's flashing before pinging/connecting to the VPU.</p>
+<p>That's it, about the hardware. Next step: software isntallation</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Software-installation">Software installation<a class="anchor-link" href="#Software-installation">&#182;</a></h2><p><em>Note: We recommend for testing purposes, to install the ifmO3r package in an clean python environment first. You can use</em> <code>python -m venv "venv-name"</code> _to create a new virtual environment. If you are using windows and you do not have all the right to install python, you can download winpython with a little description on how to use it with this link: <a href="https://nexus.ifm.com/service/rest/repository/browse/ifm_raw_cso_download/ifmO3R-WinPython/">https://nexus.ifm.com/service/rest/repository/browse/ifm_raw_cso_download/ifmO3R-WinPython/</a></p>
 <p>The ifm3D is the go to library for ifm's 3D cameras. However, at the moment it does not yet support the fieldtest of the O3R. We developed a tiny version of this library, called ifm3dTiny, to help you use the O3R at this early stage. It gives the possibility to easily change parameter, get images and log them and even more. The following tutorial will cover the general usage of ifm3dTiny, and how to unlock the O3R capabilities.</p>
 
 </div>
@@ -13109,7 +13126,31 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="There-are-a-few-possible-ways-to-install-the-ifmO3R-project.">There are a few possible ways to install the ifmO3R project.<a class="anchor-link" href="#There-are-a-few-possible-ways-to-install-the-ifmO3R-project.">&#182;</a></h3><h4 id="Recommended:-installing-via-PyPi">Recommended: installing via PyPi<a class="anchor-link" href="#Recommended:-installing-via-PyPi">&#182;</a></h4><p>The typical way is the pip installation.</p>
+<h3 id="(Optional)-Using-the-winpython-tool">(Optional) Using the winpython tool<a class="anchor-link" href="#(Optional)-Using-the-winpython-tool">&#182;</a></h3><p>There are several ways to install and use python. You might however have the problem, that you do not have the rights to isntall python. This is the reason, why we provide the winpython (see linkt above) for you. This is fairly simple to use.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>1) After downloading the file, place it where you want (should be at a place, where you have the rights to create files)
+2) Unzip the folder<br>
+<img src="./img/unzip.jpg" alt="unzip" title="unziped winpython folder"></p>
+<p>3) Use the winpython python.exe and create a new virtual environment<br>
+<img src="./img/winpython_venv.jpg" alt="venv"></p>
+<p>4) Activate the created virtual environment with the activate file within <code>[venv]/Scripts/</code><br>
+<img src="./img/venv_activate.jpg" alt="venv-activate" title="activated venv"></p>
+<p>Your command prompt should have now the name of the virtual environment in front. If this is the case, you are good to go. There are several tutorials available, which are descriping python and virtual environments a lot more in detail. After this whole set up, you should be able to install the ifmO3r and ifmO3rViewer</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="There-are-a-few-possible-ways-to-install-the-ifmO3R-project.">There are a few possible ways to install the ifmO3R project.<a class="anchor-link" href="#There-are-a-few-possible-ways-to-install-the-ifmO3R-project.">&#182;</a></h2><h4 id="Recommended:-installing-via-PyPi">Recommended: installing via PyPi<a class="anchor-link" href="#Recommended:-installing-via-PyPi">&#182;</a></h4><p>The typical way is the pip installation. 
+<img src="./img/pip_install_o3r.jpg" alt="pip-install-o3r" title="pip install"></p>
 
 </div>
 </div>
@@ -13130,7 +13171,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Installing-using-the-python-wheel-[ADD-LINK]">Installing using the python wheel [ADD LINK]<a class="anchor-link" href="#Installing-using-the-python-wheel-[ADD-LINK]">&#182;</a></h4><p>You can also install the latest version using the python wheel available here: [link]</p>
+<h4 id="Installing-using-the-python-wheel">Installing using the python wheel<a class="anchor-link" href="#Installing-using-the-python-wheel">&#182;</a></h4><p>You can also install the latest version using the python wheel available here: [link]</p>
 
 </div>
 </div>
@@ -13174,17 +13215,18 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Viewer-installation">Viewer installation<a class="anchor-link" href="#Viewer-installation">&#182;</a></h2><p>We also provide a point cloud viewer for you to get the best experience out of the O3R. It is optional and you are welcome to use any other viewer like PCL, Rviz, ...<br>
-The viewer package is available from Pypi:</p>
+The viewer package is available from Pypi:
+<img src="./img/pip_install_viewer.jpg" alt="pip-install-viewer" title="pip install viwer"></p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> pip install ifmO3rViewer
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># ! pip install ifmO3rViewer</span>
 </pre></div>
 
     </div>
@@ -13229,7 +13271,7 @@ The viewer package is available from Pypi:</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="That's-it-for-this-step,-...">That's it for this step, ...<a class="anchor-link" href="#That's-it-for-this-step,-...">&#182;</a></h1><p>... if the import doesn't fail, you are good to go to the next step [ADD LINK]. If it does fail, and you have no idea what to do, don't hesistate to contact us!</p>
+<h1 id="That's-it-for-this-step,-...">That's it for this step, ...<a class="anchor-link" href="#That's-it-for-this-step,-...">&#182;</a></h1><p>... if the import doesn't fail, you are good to go to the next step. If it does fail, and you have no idea what to do, don't hesistate to contact us!</p>
 
 </div>
 </div>
