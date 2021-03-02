@@ -13077,7 +13077,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="How-to:-Change-the-parameters">How to: Change the parameters<a class="anchor-link" href="#How-to:-Change-the-parameters">&#182;</a></h1><p>The O3R has multiple parameters that have an influence on the point cloud. Some of them affect the measurement itself and others modify how the raw data is converted into x,y,z, etc values. These parameters can be changed to better fit your applications and we are going to see how here. You can refer to [ADD LINK] this page for a detailed description of each parameter.<br>
+<h1 id="How-to:-Change-the-parameters">How to: Change the parameters<a class="anchor-link" href="#How-to:-Change-the-parameters">&#182;</a></h1><p>The O3R has multiple parameters that have an influence on the point cloud. Some of them affect the measurement itself and others modify how the raw data is converted into x,y,z, etc values. These parameters can be changed to better fit your applications and we are going to see how here. You can refer to <a href="https://ifm3d.com/parameters.html">this page</a> for a detailed description of each parameter.<br>
 Let's import the device package, which holds the configuration of the device.</p>
 
 </div>
@@ -13128,7 +13128,7 @@ Let's import the device package, which holds the configuration of the device.</p
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">device</span><span class="o">.</span><span class="n">dump</span><span class="p">())</span>
@@ -13148,7 +13148,7 @@ Let's import the device package, which holds the configuration of the device.</p
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>{&#39;Port2&#39;: {&#39;mode&#39;: {&#39;value&#39;: &#39;experimental_high_4m&#39;, &#39;modeParam&#39;: {&#39;expLong&#39;: &#39;4999&#39;, &#39;expShort&#39;: &#39;400&#39;, &#39;framerate&#39;: 10.0, &#39;offset&#39;: 0.0}}, &#39;diParam&#39;: {&#39;diParam.anfFilterSizeDiv2&#39;: &#39;2&#39;, &#39;diParam.enableDynamicSymmetry&#39;: True, &#39;diParam.enableStraylight&#39;: True, &#39;diParam.enableTemporalFilter&#39;: True, &#39;diParam.maxDistNoise&#39;: 0.019999999552965164, &#39;diParam.maxSymmetry&#39;: 0.10000000149011612, &#39;diParam.medianSizeDiv2&#39;: &#39;0&#39;, &#39;diParam.minAmplitude&#39;: 20.0, &#39;diParam.minReflectivity&#39;: 0.0, &#39;diParam.mixedPixelFilterMode&#39;: &#39;1&#39;, &#39;diParam.mixedPixelThresholdRad&#39;: 0.15000000596046448, &#39;extrinsicHeadToUser.rotX&#39;: 0.0, &#39;extrinsicHeadToUser.rotY&#39;: 0.0, &#39;extrinsicHeadToUser.rotZ&#39;: 0.0, &#39;extrinsicHeadToUser.transX&#39;: 0.0, &#39;extrinsicHeadToUser.transY&#39;: 0.0, &#39;extrinsicHeadToUser.transZ&#39;: 0.0, &#39;version.major&#39;: &#39;0&#39;, &#39;version.minor&#39;: &#39;5&#39;, &#39;version.patch&#39;: &#39;5&#39;}}}
+<pre>{&#39;Port2&#39;: {&#39;mode&#39;: {&#39;value&#39;: &#39;experimental_high_2m&#39;, &#39;modeParam&#39;: {&#39;expLong&#39;: &#39;5000&#39;, &#39;expShort&#39;: &#39;400&#39;, &#39;framerate&#39;: 10.0, &#39;offset&#39;: 0.0}}, &#39;diParam&#39;: {&#39;diParam.anfFilterSizeDiv2&#39;: &#39;2&#39;, &#39;diParam.enableDynamicSymmetry&#39;: True, &#39;diParam.enableStraylight&#39;: True, &#39;diParam.enableTemporalFilter&#39;: True, &#39;diParam.maxDistNoise&#39;: 0.019999999552965164, &#39;diParam.maxSymmetry&#39;: 0.10000000149011612, &#39;diParam.medianSizeDiv2&#39;: &#39;0&#39;, &#39;diParam.minAmplitude&#39;: 20.0, &#39;diParam.minReflectivity&#39;: 0.0, &#39;diParam.mixedPixelFilterMode&#39;: &#39;1&#39;, &#39;diParam.mixedPixelThresholdRad&#39;: 0.15000000596046448, &#39;extrinsicHeadToUser.rotX&#39;: 0.0, &#39;extrinsicHeadToUser.rotY&#39;: 0.0, &#39;extrinsicHeadToUser.rotZ&#39;: 0.0, &#39;extrinsicHeadToUser.transX&#39;: 0.0, &#39;extrinsicHeadToUser.transY&#39;: 0.0, &#39;extrinsicHeadToUser.transZ&#39;: 0.0, &#39;version.major&#39;: &#39;0&#39;, &#39;version.minor&#39;: &#39;5&#39;, &#39;version.patch&#39;: &#39;5&#39;}}}
 </pre>
 </div>
 </div>
@@ -13161,14 +13161,14 @@ Let's import the device package, which holds the configuration of the device.</p
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We provide three main functions that you can use to set the parameters.
-The first one, config_to_default() sets all the parameters to their default values. For your information, you can find the default values definition in the parameters documentation [ADD LINK].</p>
+The first one, config_to_default() sets all the parameters to their default values. For your information, you can find the default values definition in the <a href="https://ifm3d.com/parameters.html">parameters documentation</a>.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">device</span><span class="o">.</span><span class="n">config_to_default</span><span class="p">()</span>
@@ -13189,13 +13189,31 @@ The first one, config_to_default() sets all the parameters to their default valu
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">device</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">save</span> <span class="o">=</span> <span class="kc">False</span><span class="p">))</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>{&#39;Port2&#39;: {&#39;mode&#39;: {&#39;value&#39;: &#39;experimental_high_2m&#39;, &#39;modeParam&#39;: {&#39;expLong&#39;: &#39;5000&#39;, &#39;expShort&#39;: &#39;400&#39;, &#39;framerate&#39;: 10.0, &#39;offset&#39;: 0.0}}, &#39;diParam&#39;: {&#39;diParam.anfFilterSizeDiv2&#39;: &#39;2&#39;, &#39;diParam.enableDynamicSymmetry&#39;: True, &#39;diParam.enableStraylight&#39;: True, &#39;diParam.enableTemporalFilter&#39;: True, &#39;diParam.maxDistNoise&#39;: 0.019999999552965164, &#39;diParam.maxSymmetry&#39;: 0.10000000149011612, &#39;diParam.medianSizeDiv2&#39;: &#39;0&#39;, &#39;diParam.minAmplitude&#39;: 20.0, &#39;diParam.minReflectivity&#39;: 0.0, &#39;diParam.mixedPixelFilterMode&#39;: &#39;1&#39;, &#39;diParam.mixedPixelThresholdRad&#39;: 0.15000000596046448, &#39;extrinsicHeadToUser.rotX&#39;: 0.0, &#39;extrinsicHeadToUser.rotY&#39;: 0.0, &#39;extrinsicHeadToUser.rotZ&#39;: 0.0, &#39;extrinsicHeadToUser.transX&#39;: 0.0, &#39;extrinsicHeadToUser.transY&#39;: 0.0, &#39;extrinsicHeadToUser.transZ&#39;: 0.0, &#39;version.major&#39;: &#39;0&#39;, &#39;version.minor&#39;: &#39;5&#39;, &#39;version.patch&#39;: &#39;5&#39;}}}
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -13210,7 +13228,7 @@ The first one, config_to_default() sets all the parameters to their default valu
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">device</span><span class="o">.</span><span class="n">config_from_json_str</span><span class="p">(</span><span class="s1">&#39;{&quot;Port2&quot;: {&quot;mode&quot;: {&quot;value&quot;: &quot;experimental_high_2m&quot;}}}&#39;</span><span class="p">)</span>
@@ -13218,6 +13236,24 @@ The first one, config_to_default() sets all the parameters to their default valu
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>{&#39;value&#39;: &#39;experimental_high_2m&#39;, &#39;modeParam&#39;: {&#39;expLong&#39;: &#39;5000&#39;, &#39;expShort&#39;: &#39;400&#39;, &#39;framerate&#39;: 10.0, &#39;offset&#39;: 0.0}}
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -13232,7 +13268,7 @@ The first one, config_to_default() sets all the parameters to their default valu
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dump_result</span> <span class="o">=</span> <span class="n">device</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">save</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -13275,7 +13311,7 @@ The first one, config_to_default() sets all the parameters to their default valu
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">device</span><span class="o">.</span><span class="n">config_from_json_file</span><span class="p">()</span>
@@ -13286,11 +13322,29 @@ The first one, config_to_default() sets all the parameters to their default valu
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>{&#39;Port2&#39;: {&#39;mode&#39;: {&#39;value&#39;: &#39;experimental_high_2m&#39;, &#39;modeParam&#39;: {&#39;expLong&#39;: &#39;5000&#39;, &#39;expShort&#39;: &#39;400&#39;, &#39;framerate&#39;: 10.0, &#39;offset&#39;: 0.0}}, &#39;diParam&#39;: {&#39;diParam.anfFilterSizeDiv2&#39;: &#39;2&#39;, &#39;diParam.enableDynamicSymmetry&#39;: True, &#39;diParam.enableStraylight&#39;: True, &#39;diParam.enableTemporalFilter&#39;: True, &#39;diParam.maxDistNoise&#39;: 0.019999999552965164, &#39;diParam.maxSymmetry&#39;: 0.10000000149011612, &#39;diParam.medianSizeDiv2&#39;: &#39;0&#39;, &#39;diParam.minAmplitude&#39;: 20.0, &#39;diParam.minReflectivity&#39;: 0.0, &#39;diParam.mixedPixelFilterMode&#39;: &#39;1&#39;, &#39;diParam.mixedPixelThresholdRad&#39;: 0.15000000596046448, &#39;extrinsicHeadToUser.rotX&#39;: 0.0, &#39;extrinsicHeadToUser.rotY&#39;: 0.0, &#39;extrinsicHeadToUser.rotZ&#39;: 0.0, &#39;extrinsicHeadToUser.transX&#39;: 0.0, &#39;extrinsicHeadToUser.transY&#39;: 0.0, &#39;extrinsicHeadToUser.transZ&#39;: 0.0, &#39;version.major&#39;: &#39;0&#39;, &#39;version.minor&#39;: &#39;5&#39;, &#39;version.patch&#39;: &#39;5&#39;}}}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This is pretty much all the magic there is to changing parameters. Keep in mind that some parameters are interdependent and all the combinations of values might not be possible to set. You can find more details on the parameters and their impact at [ADD LINK].</p>
+<p>This is pretty much all the magic there is to changing parameters. Keep in mind that some parameters are interdependent and all the combinations of values might not be possible to set. You can find more details on the parameters and their impact <a href="https://ifm3d.com/parameters.html">here</a>.</p>
 
 </div>
 </div>
