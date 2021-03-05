@@ -18,13 +18,32 @@
     <link rel="stylesheet" href="readme.css">
     <link rel="stylesheet" href="footerstyle.css">
     <style>
-        h3 {
-            font-size: 1.25em;
+        .tut_cat_picker {
+            padding-top: 5%;
         }
         
-        iframe {
-            border: none;
-            width: 90%;
+        .tut_cat_picker ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 200px;
+        }
+        
+        .tut_cat_picker li {
+            background-color: #eaeaea;
+        }
+        
+        .tut_cat_picker li a {
+            display: block;
+            color: #000;
+            padding: 8px 16px;
+            margin: 5px 0;
+            text-decoration: none;
+        }
+        
+        .tut_cat_picker li a:hover {
+            background-color: #ff6e00;
+            color: #fff;
         }
     </style>
 </head>
@@ -49,23 +68,27 @@
             </nav>
 
         </div>
-        <div class="section ospicker">
-            <h1>Set parameters</h1>
-            <a href="tutorial-welcome.html" style="color: #ff6e00;">&larr; Back to index</a>
-            <div id="thepage">
-                <iframe src="Setting_parameters.html" id="mainframe"></iframe>
-            </div>
-        </div>
-    </div>
-    <div id="footer"></div>
-    <script>
-        var frame = document.getElementById("mainframe");
 
-        frame.onload = function() {
-            frame.style.height = frame.contentWindow.document.body.scrollHeight + 'px';
-            frame.style.width = frame.contentWindow.document.body.scrollWidth + 'px';
-        }
-    </script>
+
+        <div class="section tut_cat_picker">
+            <h1>Tutorial categories menu</h1>
+            <ul>
+                <li><a href="unboxing.html">Unboxing</a></li>
+                <li><a href="visualization.html">Visualization</a></li>
+                <li><a href="set_parameters.html">Setting parameters</a></li>
+                <li><a href="get_data.html">Getting data</a></li>
+                <li><a href="logging2.html">Logging</a></li>
+                <li><a href="two-heads.html">Two heads viewer</a></ul>
+            <div style="height: 30px;">&nbsp;</div>
+
+            <div id="thepage"></div>
+
+        </div>
+
+
+        <div id="footer"></div>
+    </div>
+
 </body>
 
 </html>
