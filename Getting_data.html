@@ -16054,15 +16054,24 @@ Adapted from GitHub theme
     <div tabindex="-1" id="notebook" class="border-box-sizing">
         <div class="container" id="notebook-container">
 
-            <div class="cell border-box-sizing text_cell rendered">
-                <div class="prompt input_prompt">
-                </div>
-                <div class="inner_cell">
-                    <div class="text_cell_render border-box-sizing rendered_html">
-                        <h1 id="How-to:-Receive-an-image">How to: Receive an image<a class="anchor-link" href="#How-to:-Receive-an-image" target="_blank">&#182;</a></h1>
-                        <p>You successfully installed the ifmO3r codebase which contains all you need to use the O3R. This codebase sets you up with <code>ifm3dTiny</code>, which is a small library we developed to simplify the use of the O3R. It lets you
-                            easily access the image data, change parameter, logging data, etc. This library wraps around PCIC and XML-RPC communication protocols to facilitate the communication with the device.</p>
-                        <p>At the end of this 'how to', you should be able to receive images and know the basic usage of the Device(), FrameGrabber() and ImageBuffer()</p>
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>If you are using a virtual environment:</em><br>
+Make sure to activate the virtual environment in which the ifmO3r and ifmO3rViewer are installed.<br>
+Enter a python3 terminal.<br>
+Freely copy/paste the python snippets.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="How-to:-Receive-an-image">How to: Receive an image<a class="anchor-link" href="#How-to:-Receive-an-image">&#182;</a></h1><p>You successfully installed the ifmO3r codebase which contains all you need to use the O3R. This codebase sets you up with <code>ifm3dTiny</code>, which is a small library we developed to simplify the use of the O3R. It lets you easily access the image data, change parameter, logging data, etc. This library wraps around PCIC and XML-RPC communication protocols to facilitate the communication with the device.</p>
+<p>At the end of this 'how to', you should be able to receive images and know the basic usage of the Device(), FrameGrabber() and ImageBuffer()</p>
+
 
                     </div>
                 </div>
@@ -16201,10 +16210,13 @@ Adapted from GitHub theme
                             <div class="prompt"></div>
 
 
-                            <div class="output_subarea output_stream output_stdout output_text">
-                                <pre>[0.00432576 0.00455882 0.00450449 0.00427285 0.00472375 0.00481664
- 0.00523612 0.00549222 0.00577486 0.00581582] ... [0.05370506 0.04212634 0.04097488 0.04318189 0.03642583 0.03877277
- 0.04245826 0.02922374 0.04119297 0.03311618]
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[-1.0000000e+00 -1.0000000e+00  1.2347912e-03  1.2260494e-03
+  1.5406940e-03 -1.0000000e+00  1.4921713e-03  7.7215600e-04
+ -1.0000000e+00  1.0904031e-03] ... [0.03004343 0.02726008 0.02284635 0.01926929 0.01571416 0.01297143
+ 0.01132429 0.01016231 0.009278   0.0087574 ]
+
 </pre>
                             </div>
                         </div>
@@ -16248,8 +16260,13 @@ Adapted from GitHub theme
                             <div class="prompt"></div>
 
 
-                            <div class="output_subarea output_stream output_stdout output_text">
-                                <pre>all_images
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>config_from_json_file
+config_from_json_str
+config_to_default
+dump
+all_images
 amplitude_image
 confidence_image
 distance_image
@@ -16306,27 +16323,27 @@ wait_for_frame
                     <div class="text_cell_render border-box-sizing rendered_html">
                         <p>FrameGrabber() will now receive images as fast as possible and add them to an internal stack within ImageBuffer().</p>
 
-                    </div>
-                </div>
-            </div>
-            <div class="cell border-box-sizing text_cell rendered">
-                <div class="prompt input_prompt">
-                </div>
-                <div class="inner_cell">
-                    <div class="text_cell_render border-box-sizing rendered_html">
-                        <h2 id="Use-the-iterator-..-or-better-said-next()">Use the iterator .. or better said next()<a class="anchor-link" href="#Use-the-iterator-..-or-better-said-next()" target="_blank">&#182;</a></h2>
-                        <p><code>next()</code> is a keyword (dunder method - <a href="https://wiki.python.org/moin/Iterator" target="_blank">https://wiki.python.org/moin/Iterator</a>) within Python. In combination with <code>__iter__</code>, it makes your
-                            object iterable.<br> To get the newest frame, you only need to call <code>next()</code> on <code>ImageBuffer()</code> to get the last image from the stack.</p>
 
-                    </div>
-                </div>
-            </div>
-            <div class="cell border-box-sizing code_cell rendered">
-                <div class="input">
-                    <div class="prompt input_prompt">In&nbsp;[8]:</div>
-                    <div class="inner_cell">
-                        <div class="input_area">
-                            <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Use-the-iterator-..-or-better-said-next()">Use the iterator .. or better said next()<a class="anchor-link" href="#Use-the-iterator-..-or-better-said-next()">&#182;</a></h2><p><code>next()</code> is a keyword (dunder method - <a href="https://wiki.python.org/moin/Iterator">https://wiki.python.org/moin/Iterator</a>) within Python. In combination with <code>__iter__</code>, it makes your object iterable.<br>
+To get the newest frame, you only need to call <code>next()</code> on <code>ImageBuffer()</code> to get the last image from the stack.</p>
+<p>If we combinde the <code>stream_on()</code> and the <code>next()</code> we have to be aware of the network delay. Our python program is a lot faster, than receiving the first image. It might happen, that you call <code>next()</code> before an image has arrived. A simple solution is <code>time.sleep(1)</code>. This will lead to like 10-20 frames in the stack. So you can call <code>next()</code> without worries.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+
 <span class="n">amp</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">amplitude_image</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{amp[0][:1]}</span><span class="s2"> ... </span><span class="si">{amp[0][-1:]}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
