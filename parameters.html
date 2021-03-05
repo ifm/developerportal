@@ -28,6 +28,38 @@
             padding: 25px 0;
             margin: 25px 0;
         }
+        
+        .tut_cat_picker {
+            float: left;
+        }
+        
+        .tut_cat_picker ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 10px;
+            width: 265px;
+        }
+        
+        .tut_cat_picker li {
+            background-color: #eaeaea;
+        }
+        
+        .tut_cat_picker li a {
+            display: block;
+            color: #000;
+            padding: 8px 16px;
+            margin: 5px 0;
+            text-decoration: none;
+        }
+        
+        .tut_cat_picker li a:hover {
+            background-color: #ff6e00;
+            color: #fff;
+        }
+        
+        #flowbreak {
+            clear: both;
+        }
     </style>
 </head>
 
@@ -54,30 +86,36 @@
 
 
         <div class="section ospicker">
-
-            <div id="thepage">
+            <h2 id="setting-page-contents">Setting Page Contents</h2>
+            <div class="tut_cat_picker left">
                 <ul>
-                    <li><a href="#setting-page-contents">Setting Page Contents</a>
-                        <ul>
-                            <li><a href="#exposure-settings"><strong>Exposure Settings</strong></a></li>
-                            <li><a href="#modes"><strong>Modes</strong></a></li>
-                            <li><a href="#exposure-times"><strong>Exposure Times</strong></a></li>
-                            <li><a href="#offset"><strong>Offset</strong></a></li>
-                            <li><a href="#frame-rate"><strong>Frame rate</strong></a></li>
-                            <li><a href="#_-filters-_"><em> <strong>Filters</strong> </em></a></li>
-                            <li><a href="#maximum-distance-noise"><strong>Maximum Distance Noise</strong></a></li>
-                            <li><a href="#when-to-change-default"><strong>When to change default</strong> :</a></li>
-                            <li><a href="#minimum-amplitude"><strong>Minimum amplitude</strong></a></li>
-                            <li><a href="#when-to-change-the-default"><strong>When to change the default:</strong></a></li>
-                            <li><a href="#adaptive-noise-bilateral-filter"><strong>Adaptive Noise Bilateral Filter</strong></a></li>
-                            <li><a href="#temporal-filter"><strong>Temporal filter</strong></a></li>
-                            <li><a href="#mixed-pixel-filtering"><strong>Mixed Pixel Filtering</strong></a></li>
-                            <li><a href="#symmetry-threshold"><strong>Symmetry Threshold</strong></a></li>
-                            <li><a href="#stray-light"><strong>Stray Light</strong></a></li>
-                        </ul>
-                    </li>
+                    <li><a href="#exposure-settings"><strong>Exposure Settings</strong></a></li>
+                    <li><a href="#modes"><strong>Modes</strong></a></li>
+                    <li><a href="#exposure-times"><strong>Exposure Times</strong></a></li>
+                    <li><a href="#offset"><strong>Offset</strong></a></li>
+                    <li><a href="#frame-rate"><strong>Frame rate</strong></a></li>
                 </ul>
-                <h2 id="setting-page-contents">Setting Page Contents</h2>
+            </div>
+            <div class="tut_cat_picker mid">
+                <ul>
+                    <li><a href="#_-filters-_"><em> <strong>Filters</strong> </em></a></li>
+                    <li><a href="#maximum-distance-noise"><strong>Maximum Distance Noise</strong></a></li>
+                    <li><a href="#when-to-change-default"><strong>When to change default</strong></a></li>
+                    <li><a href="#minimum-amplitude"><strong>Minimum amplitude</strong></a></li>
+                    <li><a href="#when-to-change-the-default"><strong>When to change the default</strong></a></li>
+                </ul>
+            </div>
+            <div class="tut_cat_picker right">
+                <ul>
+                    <li><a href="#adaptive-noise-bilateral-filter"><strong>Adaptive Noise Bilateral Filter</strong></a></li>
+                    <li><a href="#temporal-filter"><strong>Temporal filter</strong></a></li>
+                    <li><a href="#mixed-pixel-filtering"><strong>Mixed Pixel Filtering</strong></a></li>
+                    <li><a href="#symmetry-threshold"><strong>Symmetry Threshold</strong></a></li>
+                    <li><a href="#stray-light"><strong>Stray Light</strong></a></li>
+                </ul>
+            </div>
+            <div id="flowbreak">&nbsp;</div>
+            <div id="thepage">
                 <h3 id="exposure-settings"><strong>Exposure Settings</strong></h3>
                 <p>Exposure settings are utilized to maximize the number of valid pixels in a scene. The use of multiple exposures permits the camera to operate in &quot;dynamic&quot; environments that require the detection of dark + light objects at both
                     the minimum and maximum ranges.</p>
@@ -233,7 +271,7 @@
                             <tr>
                                 <td>AnfFilterSizeDiv2(main parameter)</td>
                                 <td>Adaptive Noise Bilateral Filter mask size is (2*anfFilterSizeDiv2+1)^2.</td>
-                                <td>0 (disable filter) to 3<br>Default: 0 (will change to enabled by default)<br>1: 3x32: 5x53: 7x7</td>
+                                <td>0 (disable filter) to 3<br>Default: 0 (will change to enabled by default)1: 3x32: 5x53: 7x7</td>
                             </tr>
                             <tr>
                                 <td>medianSizeDiv2</td>
@@ -308,8 +346,7 @@
                     <tbody>
                         <tr>
                             <td>enableDynamicSymmetry</td>
-                        </tr>
-                        <tr>
+                            <td>&nbsp;</td>
                             <td>true/false</td>
                         </tr>
                         <tr>
@@ -342,7 +379,7 @@
                             <tr>
                                 <td>enableStraylight</td>
                                 <td>Turn straylight correction on/off</td>
-                                <td>True/false<br>Default: true</td>
+                                <td>True/falseDefault: true</td>
                             </tr>
                         </tbody>
                     </table>
