@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer's portal</title>
+    <script src="jquery/jquery-3.4.1.min.js"></script>
+    <script>
+        $(function() {
+            // $("#header").load("header.html");
+            $("#footer").load("footer.html");
+        });
+    </script>
+    <link rel="stylesheet" href="ifmr_devportal.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="readme.css">
+    <link rel="stylesheet" href="footerstyle.css">
+    <style>
+        .tut_cat_picker {
+            padding-top: 5%;
+        }
+        
+        .tut_cat_picker ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 200px;
+        }
+        
+        .tut_cat_picker li {
+            background-color: #eaeaea;
+        }
+        
+        .tut_cat_picker li a {
+            display: block;
+            color: #000;
+            padding: 8px 16px;
+            margin: 5px 0;
+            text-decoration: none;
+        }
+        
+        .tut_cat_picker li a:hover {
+            background-color: #ff6e00;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div id="orangebar">&nbsp;</div>
+
+        <div class="ifmdevportal-banner-responsive-bg-image" style="padding-bottom: 30px;">
+            <div class="masthead">
+                <a href="index.html"><img id="mastheadlogo" src="assets/ifm-white-circle.svg" alt="ifm logo"></a><br> O3 Developer's Portal</div>
+
+            <nav>
+                <ul class="pagemenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="tutorial-welcome.html">C-Sample</a></li>
+                    <li><a href="parameters.html">Settings</a></li>
+                    <li><a href="#">Extension Tools</a></li>
+                    <li><a href="#">Docs</a></li>
+                </ul>
+            </nav>
+
+        </div>
+
+
+        <div class="section tut_cat_picker">
+            <h1>Tutorial categories menu</h1>
+            <ul>
+                <li><a href="unboxing.html">Unboxing</a></li>
+                <li><a href="visualization.html">Visualization</a></li>
+                <li><a href="set_parameters.html">Setting parameters</a></li>
+                <li><a href="get_data.html">Getting data</a></li>
+                <li><a href="logging2.html">Logging</a></li>
+                <li><a href="two-heads.html">Two heads viewer</a></ul>
+            <div style="height: 30px;">&nbsp;</div>
+
+            <div id="thepage"></div>
+
+        </div>
+
+
+        <div id="footer"></div>
+    </div>
+
+</body>
+
+</html>
