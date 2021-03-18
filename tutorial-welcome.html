@@ -20,6 +20,7 @@
     <style>
         .tut_cat_picker {
             padding-top: 5%;
+            padding-left: 80px;
         }
         
         .tut_cat_picker ul {
@@ -27,6 +28,7 @@
             margin: 0;
             padding: 0;
             width: 200px;
+            float: left;
         }
         
         .tut_cat_picker li {
@@ -44,6 +46,22 @@
         .tut_cat_picker li a:hover {
             background-color: #ff6e00;
             color: #fff;
+        }
+        
+        #para {
+            line-height: 2.5;
+            padding-left: 350px;
+            width: auto;
+            max-width: 1050px;
+        }
+        
+        @media screen and (max-width: 750px) {
+            .tut_cat_picker ul {
+                float: none;
+            }
+            #para {
+                padding: 25px;
+            }
         }
     </style>
 </head>
@@ -70,26 +88,26 @@
         </div>
 
 
-        <div class="section tut_cat_picker">
+        <div class="tut_cat_picker">
             <h1>Tutorial categories menu</h1>
-            <table><tr><td style="vertical-align: top;"><ul>
+
+            <ul>
                 <li><a href="unboxing.html">Unboxing</a></li>
                 <li><a href="visualization.html">Visualization</a></li>
                 <li><a href="set_parameters.html">Setting parameters</a></li>
                 <li><a href="get_data.html">Getting data</a></li>
                 <li><a href="logging2.html">Logging</a></li>
                 <li><a href="two-heads.html">Two heads viewer</a></ul>
-                </td><td style="line-height: 2.5; padding-left: 50px;">Welcome to the O3R C-Sample Support center.  This page is designed to step through the evaluation process of the O3R C-Sample prototype.
-                <br><b>Unboxing</b> explains the hardware setup/SW installation and <b>Visualization</b> provides a first look at the O3R point cloud.  <b>Setting parameters</b> describes how to “turn the dials” on the available parameters while 
-                <b>Getting data</b> details how to stream the point cloud over the wire.  A logger is provided because all conversations should start with data.  Finally, if you have an ifm demo bracket, an example of combining two point clouds into one large scene is provided.  In total, these examples should provide all the tools necessary to perform robust testing of the O3R data.<br><br>  
-
-Check back here for updates throughout the development process.  </td></tr></table>
-            <div style="height: 30px;">&nbsp;</div>
-
-            <div id="thepage">
-</div>
-
         </div>
+        <div id="para">Welcome to the O3R C-Sample Support center. This page is designed to step through the evaluation process of the O3R C-Sample prototype.
+            <br><b>Unboxing</b> explains the hardware setup/SW installation and <b>Visualization</b> provides a first look at the O3R point cloud. <b>Setting parameters</b> describes how to “turn the dials” on the available parameters while
+            <b>Getting data</b> details how to stream the point cloud over the wire. A logger is provided because all conversations should start with data. Finally, if you have an ifm demo bracket, an example of combining two point clouds into one large
+            scene is provided. In total, these examples should provide all the tools necessary to perform robust testing of the O3R data.<br><br> Check back here for updates throughout the development process. </div>
+        <div style="height: 30px;">&nbsp;</div>
+
+        <div id="thepage">&nbsp;
+        </div>
+
 
 
         <div id="footer"></div>
