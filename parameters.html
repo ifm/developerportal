@@ -100,7 +100,6 @@
                 <ul>
                     <li><a href="#_-filters-_"><em> <strong>Filters</strong> </em></a></li>
                     <li><a href="#maximum-distance-noise"><strong>Maximum Distance Noise</strong></a></li>
-                    <li><a href="#when-to-change-default"><strong>When to change default</strong></a></li>
                     <li><a href="#minimum-amplitude"><strong>Minimum amplitude</strong></a></li>
                     <li><a href="#when-to-change-the-default"><strong>When to change the default</strong></a></li>
                 </ul>
@@ -227,7 +226,7 @@
                     <p>Typical filters tend to utilize &quot;broad strokes&quot; when making decisions on which pixel to keep and which to filter. These &quot;broad strokes&quot; may eliminate pixels that are critical to the Use Case. By utilizing the noise
                         value, we only eliminate pixels with the highest noise value (e.g ambient light) while preserving the maximum amount of usable data. Applying filters in conjunction with Maximum Distance Noise increases the potential for usable
                         pixels in the scene.</p>
-                    <h3 id="when-to-change-default"><strong>When to change default</strong> :</h3>
+                    <h3><strong>When to change default</strong> :</h3>
                     <p>Lower the distance noise value if you are attempting to measure an object with high precision (e.g box dimensioning).</p>
                     <p>Increase the distance noise value if it is more important to evaluate all pixels in the scene, regardless of their noise (e.g. obstacle detection).</p>
                     <p>Before/after image with chosen values.</p>
@@ -254,7 +253,7 @@
                     </tbody>
                 </table>
                 <p>A pixel is valid if the energy (amplitude) received is above the defined threshold. The measured amplitude is primarily impacted by both the reflectivity of the object and its distance to the camera.</p>
-                <h3 id="when-to-change-the-default"><strong>When to change the default:</strong></h3>
+                <h3><strong>When to change the default:</strong></h3>
                 <p>Lower the default value when the standard targets are known to have low reflectivity (e.g. \&lt;10% like matte black targets). A lower amplitude threshold is also valuable when attempting to detect negative obstacles (e.g. stairs).</p>
                 <p>It is recommended to enable a noise filter (temporal or adaptative filter) when lowering the default Minimum Amplitude.</p>
                 <div class="eoblock">
