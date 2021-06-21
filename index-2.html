@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer's portal</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script>
+        $(function() {
+            // $("#header").load("header.html");
+            $("#footer").load("footer.html");
+        });
+    </script>
+    <link rel="stylesheet" href="ifmr_devportal.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="footerstyle.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <div id="orangebar">&nbsp;</div>
+
+        <div class="ifmdevportal-banner-responsive-bg-image">
+            <div class="masthead"><img id="mastheadlogo" src="assets/ifm-white-circle.svg" alt="ifm logo"><br> O3 Developer's Portal</div>
+            <!-- <div><a class="button" href="https://www.ifm.com/us/en/us/robotics/ifm-robotics" target="_blank"> > LEARN MORE</a></div> -->
+        </div>
+
+        <div class="section">
+            <h2 class="center">Download O3 software</h2>
+            <div class="softwarelinks">
+                <div class="iconholder"><a class="icon linuxlogo" href="#">O3R for Linux</a>Coming soon
+                    <!--ubuntu.html<span class="version">0.00x</span><br><span class="time">release date</span>--></div>
+                <div class="iconholder"><a class="icon roslogo" href="#">O3R for ROS</a>Coming soon
+                    <!--ros.html<span class="version">0.00x</span><br><span class="time">release date</span>--></div>
+                <div class="iconholder"><a class="icon windowslogo" target="_blank" href="#">O3R for Windows</a>Coming soon
+                    <!--https://github.com/ifm/ifm3d/blob/master/doc/windows.md#building-ifm3d-from-source-on-windows<span class="version">0.00x</span><br><span class="time">release date</span>--></div>
+            </div>
+
+        </div>
+
+        <div class="solid"></div>
+
+        <div class="section">
+            <ul class="home-bullets">
+                <li>
+                    <h2 class="left">C-Sample</h2>
+                    <p>Check out the contents of our Evaluation kit and the next steps to take to <a href="tutorial-welcome.html">get started.</a>
+                    </p>
+                </li>
+
+                <li class="home-bullets settings">
+                    <h2 class="left">Settings</h2>
+                    <p>Learn more about the base imager settings and parameters at our ifm Github <a class="" href="parameters.html">config pages.</a></p>
+                </li>
+
+                <li class="home-bullets tools">
+                    <h2 class="left">Extension Tools</h2>
+                    <p>Get started with accessing our growing list of custom built
+                        <a class="" href="coming-soon.html" target="_blank">extension tools (coming soon).</a>&nbsp;
+                    </p>
+                </li>
+
+                <li class="home-bullets docs">
+                    <h2 class="left">Documents</h2>
+                    <p>Look here for more information related to O3R and <a class="" href="coming-soon.html" target="_blank">ifm robotics documentation (coming soon).</a></p>
+                </li>
+            </ul>
+
+
+        </div>
+
+        <div class="section ad">
+            <img id="robotchar" src="assets/robot.jpg" alt="robot">
+            <div>
+                <h2 class="left">Explore ifm robotics on Github</h2>
+                <p>The wire protocol document, code examples and ROS implementation can be download from <a class="" href="https://github.com/ifm" target="_blank">ifm Github.</a></p>
+            </div>
+            <div id="githublogo">
+                <img src="assets/github-logo.svg" alt="github logo" width="110px">
+            </div>
+        </div>
+
+        <div id="footer"></div>
+    </div>
+
+
+    <script>
+        $.getJSON("https://api.github.com/repos/ifm/ifm3d/releases", function(data) {
+            var myversion = data[0].name;
+            var mypubdate = data[0].published_at;
+            var filename = data[0].assets[0].name;
+            var cleandate = [];
+            var mydate = new Date(mypubdate) + '';
+            cleandate = mydate.split(" ");
+            var pubdate = cleandate[1] + " " + cleandate[2] + ", " + cleandate[3];
+
+            $(".title").html(filename);
+            $(".version").html(myversion);
+            $(".time").html(pubdate);
+        });
+    </script>
+
+</body>
+
+</html>
