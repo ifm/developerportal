@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Developer's portal</title>
+<link rel="stylesheet" href="ifmr_devportal.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="readme.css">
+<link rel="stylesheet" href="footerstyle.css">
+<link rel="stylesheet" href="swcompat.css">
+<style>
+.accordion {
+    font-size: 1rem;
+    width: 60vw;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+.accordion-header, .accordion-body {
+    background: white;
+}
+.accordion-header {
+    padding: 1.5em 1.5em;
+    background: #616268;
+    color: white;
+    cursor: pointer;
+    font-size: .7em;
+    letter-spacing: .1em;
+    transition: all .3s;
+    text-transform: uppercase;
+}
+.accordion__item {
+    border-bottom: 1px solid #616268;
+}
+.accordion__item .accordion__item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+.accordion-header:hover {
+    background: #ff6e00;
+    position: relative;
+    z-index: 5;
+    color: #616268;
+    font-weight: bold;
+}
+.accordion-body {
+    background: #eaeaea;
+    color: #353535;
+    display: none;
+}
+.accordion-body__contents {
+    padding: 1.5em 1.5em;
+    font-size: .85em;
+}
+.accordion-body__contents table {
+    width: 100%;
+}
+.accordion-body__contents table th {
+    font-weight: bold;
+}
+.accordion-body__contents table th, .accordion-body__contents table td {
+    background-color: #fff;
+    text-align: center;
+}
+.accordion__item.active:last-child .accordion-header {
+    border-radius: none;
+}
+.accordion:first-child > .accordion__item > .accordion-header {
+    border-bottom: 1px solid transparent;
+}
+.accordion__item > .accordion-header:after {
+    content: "\f3d0";
+    font-family: IonIcons;
+    font-size: 1.2em;
+    float: right;
+    position: relative;
+    top: -2px;
+    transition: .3s all;
+    transform: rotate(0deg);
+}
+.accordion__item.active > .accordion-header:after {
+    transform: rotate(-180deg);
+}
+.accordion__item.active .accordion-header {
+    background: #c4c8cd;
+}
+.accordion__item .accordion__item .accordion-header {
+    background: #f1f1f1;
+    color: #353535;
+}
+
+@media screen and (max-width: 1000px) {
+body {
+    padding: 1em;
+}
+.accordion {
+    width: 100%;
+}
+}
+h3 {
+    font-size: 1.25em;
+}
+.eoblock {
+    background-color: #eaeaea;
+    padding: 25px 0;
+    margin: 25px 0;
+}
+.tut_cat_picker {
+    float: left;
+}
+.tut_cat_picker ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+    width: 275px;
+}
+.tut_cat_picker li {
+    background-color: #eaeaea;
+}
+.tut_cat_picker li a {
+    display: block;
+    color: #000;
+    padding: 8px 16px;
+    margin: 5px 0;
+    text-decoration: none;
+}
+.tut_cat_picker li a:hover {
+    background-color: #ff6e00;
+    color: #fff;
+}
+.tut_cat_picker li.sub {
+    margin-left: 10px;
+}
+#flowbreak {
+    clear: both;
+}
+</style>
+<script>
+        $(function() {
+            $("#subheader").load("subheader.html");
+            $("#footer").load("footer.html");
+        });
+    </script>
+</head>
+
+<body>
+<div class="container">
+  <div id="subheader"></div>
+  <div class="section ospicker">
+    <h2 id="setting-page-contents">Setting Page Contents</h2>
+    <div class="accordion js-accordion">
+      <div class="accordion__item js-accordion-item active">
+        <div class="accordion-header js-accordion-header">Exposure settings</div>
+        <div class="accordion-body js-accordion-body">
+          <div class="accordion-body__contents">Exposure settings are utilized to maximize the number of valid pixels in a scene. The use of multiple exposures permits the camera to operate in "dynamic" environments that require the detection of dark + light objects at both the minimum and maximum ranges.</div>
+          <div class="accordion js-accordion">
+            <div class="accordion__item js-accordion-item">
+              <div class="accordion-header js-accordion-header">Modes</div>
+              <div class="accordion-body js-accordion-body">
+                <div class="accordion-body__contents">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Variable name</th>
+                        <th>Short description</th>
+                        <th>Min/max values</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Offset</td>
+                        <td>Shifts the start point of the measured range (see <em>mode</em>).</td>
+                        <td><strong>? meters</strong></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- end of sub accordion item body contents --> 
+              </div>
+              <!-- end of sub accordion item body --> 
+            </div>
+            <!-- end of sub accordion item -->
+            <div class="accordion__item js-accordion-item">
+              <div class="accordion-header js-accordion-header">Exposure times</div>
+              <div class="accordion-body js-accordion-body">
+                <div class="accordion-body__contents">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Variable name</th>
+                        <th>Short description</th>
+                        <th>Min/max values</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>expLong, expShort</td>
+                        <td>These parameters are used to set the exposure times.</td>
+                        <td>1 – 5000µs</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p>The proper exposure time depends on factors like the dynamics of the scene and whether the target is moving or stationary (plus others). For highly reflective targets or for motion, you might want to choose a short exposure time. For targets
+                    far away or with low reflectivity, you might want to choose a high exposure time.</p>
+                  <p>As such, it is common that all targets of a scene cannot be properly exposed with a single exposure time. In these cases, multiple exposures are used to reduce both noise and the number of over/under exposed pixels. The &quot;experimental_high&quot;
+                    provides 2 settable exposure times plus a third <em>static</em> exposure designed to help detect highly reflective targets in the very near range (\&lt;1m).</p>
+                </div>
+                <!-- end of sub accordion item body contents --> 
+              </div>
+              <!-- end of sub accordion item body --> 
+            </div>
+            <!-- end of sub accordion item -->
+            <div class="accordion__item js-accordion-item">
+              <div class="accordion-header js-accordion-header">Offset</div>
+              <div class="accordion-body js-accordion-body">
+                <div class="accordion-body__contents">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Variable name</th>
+                        <th>Short description</th>
+                        <th>Min/max values</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Offset</td>
+                        <td>Shifts the start point of the measured range (see <em>mode</em>).</td>
+                        <td><strong>? meters</strong></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p>Coded modulation dictates the base range of the camera. (e.g. 0.2 to 2m). Coded modulation also allows this range to be &quot;offset&quot; or shifted from its start point. In the example of 0.2 – 2m base range, and &quot;offset&quot;
+                    of 1 would lead to a 1.2-3m range. Continuing this example, an &quot;offset&quot; of 2 leads to a 2.2-4m range. The &quot;offset&quot; can be changed frame by frame.</p>
+                  <p>BEFORE/AFTER IMAGES</p>
+                </div>
+                <!-- end of sub accordion item body contents --> 
+              </div>
+              <!-- end of sub accordion item body --> 
+            </div>
+            <!-- end of sub accordion item -->
+            <div class="accordion__item js-accordion-item">
+              <div class="accordion-header js-accordion-header">Frame rate</div>
+              <div class="accordion-body js-accordion-body">
+                <div class="accordion-body__contents">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Variable name</th>
+                        <th>Short description</th>
+                        <th>Min/max values</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>framerate</td>
+                        <td>Defines the number of frames captured each second</td>
+                        <td>1 to 20 FPS (frames per second)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p>The FPS highly depends on the applied imager settings (exposure mode and times, filters, etc). Higher exposure times, for example, negatively impact the overall FPS. The O3R is designed to achieve 20 FPS in 0.2 to 4m mode <em>regardless</em> of applied settings. Higher FPS may be achievable by reducing the applied settings.</p>
+                </div>
+                <!-- end of sub accordion item body contents --> 
+              </div>
+              <!-- end of sub accordion item body --> 
+            </div>
+            <!-- end of sub accordion item --> 
+          </div>
+          <!-- end of sub accordion --> 
+        </div>
+        <!-- end of accordion body --> 
+      </div>
+      <!-- end of accordion item -->
+      <div class="accordion__item js-accordion-item">
+        <div class="accordion-header js-accordion-header">Filters</div>
+        <div class="accordion-body js-accordion-body">
+          <div class="accordion-body__contents"><!-- Fliters copy --></div>
+          <div class="accordion js-accordion">
+            <div class="accordion__item js-accordion-item">
+              <div class="accordion-header js-accordion-header">Maximum distance noise</div>
+              <div class="accordion-body js-accordion-body">
+                <div class="accordion-body__contents">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Variable name</th>
+                        <th>Short description</th>
+                        <th>Min/max values</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>maxDistNoise</td>
+                        <td>Defines the maximum allowable distance noise.<br>
+                          Its value represents the standard deviation of the distance value, in meters.</td>
+                        <td>0 to 10: no threshold<br>
+                          Default 0.05 -\&gt; 5cm noise</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p>Typical filters tend to utilize &quot;broad strokes&quot; when making decisions on which pixel to keep and which to filter. These &quot;broad strokes&quot; may eliminate pixels that are critical to the Use Case. By utilizing the noise value, we only eliminate pixels with the highest noise value (e.g ambient light) while preserving the maximum amount of usable data. Applying filters in conjunction with Maximum Distance Noise increases the potential for usable pixels in the scene.</p>
+                  <strong>When to change default</strong> :
+                  <ul>
+                    <li>Lower the distance noise value if you are attempting to measure an object with high precision (e.g box dimensioning).</li>
+                    <li>Increase the distance noise value if it is more important to evaluate all pixels in the scene, regardless of their noise (e.g. obstacle detection).</li>
+                    <li>Before/after image with chosen values.</li>
+                    <li>Low amplitude / high sunlight and see difference.</li>
+                  </ul>
+                </div>
+                <!-- end of sub accordion item body contents --> 
+              </div>
+              <!-- end of sub accordion item body --> 
+            </div>
+            <!-- end of sub accordion item -->
+            <div class="accordion__item js-accordion-item">
+              <div class="accordion-header js-accordion-header">Minimum amplitude</div>
+              <div class="accordion-body js-accordion-body">
+                <div class="accordion-body__contents">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Variable name</th>
+                        <th>Short description</th>
+                        <th>Min/max values</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>minAmplitude</td>
+                        <td>Defines the minimum amplitude value required for a pixel to be valid</td>
+                        <td>0 to 1000<br>
+                          Default: 20</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p>A pixel is valid if the energy (amplitude) received is above the defined threshold. The measured amplitude is primarily impacted by both the reflectivity of the object and its distance to the camera.</p>
+                  <h3><strong>When to change the default:</strong></h3>
+                  <p>Lower the default value when the standard targets are known to have low reflectivity (e.g. \&lt;10% like matte black targets). A lower amplitude threshold is also valuable when attempting to detect negative obstacles (e.g. stairs).</p>
+                  <p>It is recommended to enable a noise filter (temporal or adaptative filter) when lowering the default Minimum Amplitude.</p>
+                </div>
+                <!-- end of sub accordion item body contents --> 
+              </div>
+              <!-- end of sub accordion item body --> 
+            </div>
+            <!-- end of sub accordion item -->
+            <div class="accordion__item js-accordion-item">
+              <div class="accordion-header js-accordion-header">Adaptive noise bilateral filter</div>
+              <div class="accordion-body js-accordion-body">
+                <div class="accordion-body__contents">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Variable name</th>
+                        <th>Short description</th>
+                        <th>Min/max values</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>AnfFilterSizeDiv2(main parameter)</td>
+                        <td>Adaptive Noise Bilateral Filter<br>
+                          mask size is (2*anfFilterSizeDiv2+1)^2.</td>
+                        <td>0 (disable filter) to 3<br>
+                          Default: 0 (will change to enabled by default)1: 3x32: 5x53: 7x7</td>
+                      </tr>
+                      <tr>
+                        <td>medianSizeDiv2</td>
+                        <td>Size of the mask for spatial median<br>
+                          filtering (the size is (2*medianSizeDiv2+1)^2)</td>
+                        <td>0: disable the filter</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p>The adaptive bilateral noise filter reduces distance noise while also preserving object edges. Utilizing a larger number of pixels (e.g. 7x7) in the mask will, in most cases, result in a better image quality.</p>
+                  <p><strong>We recommend that you typically use the bilateral filter, as it is more efficient and has a better incorporation of the noise.</strong></p>
+                  <p>The median filter does not preserve edges as well but, being more computationally efficient, should be utilized with &quot;in-motion&quot; Use Cases (e.g. obstacle detection on mobile robots)</p>
+                </div>
+                <!-- end of sub accordion item body contents --> 
+              </div>
+              <!-- end of sub accordion item body --> 
+            </div>
+            <!-- end of sub accordion item -->
+            <div class="accordion__item js-accordion-item">
+              <div class="accordion-header js-accordion-header">Temporal filter</div>
+              <div class="accordion-body js-accordion-body">
+                <div class="accordion-body__contents">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Variable name</th>
+                        <th>Short description</th>
+                        <th>Min/max values</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>enableTemporalFilter</td>
+                        <td>Enables the filter</td>
+                        <td>true/false<br>
+                          Default: False (will change to true)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p>A temporal filter, in its simplest form, mitigates distance noise by averaging the per pixel results from multiple frames. The O3R temporal filter, however, also includes environmental &quot;noise&quot; estimation, the use of a Kalman
+                    filter and is calculated on the lower level imager data, making the entire temporal filter more robust.</p>
+                  <p>Although the O3R temporal filter can be used on &quot;in-motion&quot; Use Cases, it is best suited for static scenes.</p>
+                </div>
+                <!-- end of sub accordion item body contents --> 
+              </div>
+              <!-- end of sub accordion item body --> 
+            </div>
+            <!-- end of sub accordion item -->
+            <div class="accordion__item js-accordion-item">
+              <div class="accordion-header js-accordion-header">Mixed pixel filtering</div>
+              <div class="accordion-body js-accordion-body">
+                <div class="accordion-body__contents">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Variable name</th>
+                        <th>Short description</th>
+                        <th>Min/max values</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>mixedPixelFilterMode</td>
+                        <td>1st mode should be used typically. Uses the viewing angle to the pixel for filtering.2nd mode is legacy, doing pretty much the same thing with more parameters.</td>
+                        <td>0: mixed pixel filter is off, 1: mixed pixel filter uses an angle threshold, 2: mixed pixel filter with an adaptive delta dist thresholdDefault: 1</td>
+                      </tr>
+                      <tr>
+                        <td>mixedPixelThresholdRad</td>
+                        <td>Threshold given in [rad] for the minimum angle between the surface tangent and the view vector (used if mixedPixelFilterMode=1).</td>
+                        <td>0 to 1.57079<br>
+                          Default 0.15</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p>Mixed Pixels (or &quot;flying pixels&quot;) are pixels that partially fall partially on a foreground object and partially on an object on the background. Because the physics of indirect ToF do not allow the imager to distinguish partial
+                    pixel measurements, the full pixel result is an &quot;weighted average&quot; distance measurement between the two targets. When viewing the point cloud, these pixels appear &quot;floating&quot;, or not corresponding to any object.
+                    The Mixed Pixel filter removes the mixed pixels from the image.</p>
+                  <p>ADD BEFORE/AFTER</p>
+                  <p><strong>When to change the default:</strong></p>
+                  <p>Mixed pixels fall on the edges of targets. Use Cases, such as negative obstacle detection, could take advantage of the additional information provided by these mixed pixels, requiring the filter to be disabled.</p>
+                </div>
+                <!-- end of sub accordion item body contents --> 
+              </div>
+              <!-- end of sub accordion item body --> 
+            </div>
+            <!-- end of sub accordion item -->
+            <div class="accordion__item js-accordion-item">
+              <div class="accordion-header js-accordion-header">Symmetry threshold</div>
+              <div class="accordion-body js-accordion-body">
+                <div class="accordion-body__contents">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Variable name</th>
+                        <th>Short description</th>
+                        <th>Min/max values</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>enableDynamicSymmetry</td>
+                        <td>&nbsp;</td>
+                        <td>true/false</td>
+                      </tr>
+                      <tr>
+                        <td>maxSymmetry</td>
+                        <td>Defines the maximum allowed asymmetry for a measured pixel. A pixel with a higher symmetry is discarded.</td>
+                        <td>0 to 1<br>
+                          Default: 0.5</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p>The raw modulated signal used to perform the distance measurement is designed to be perfectly symmetrical (sent and received). This is true for static applications. If the object is in motion, however, the symmetry of the reflected signal
+                    may be altered, leading to &quot;motion blur&quot;. This artifact can be mitigated by allowing &quot;less&quot; symmetry in the measurements.</p>
+                  <p>Note: adjusting this filter for faster motion, or allowing less symmetry, will increase overall distance noise.</p>
+                  <p>BEFORE/AFTER IMAGES + SCHEMATIC EXPLANATION</p>
+                </div>
+                <!-- end of sub accordion item body contents --> 
+              </div>
+              <!-- end of sub accordion item body --> 
+            </div>
+            <!-- end of sub accordion item -->
+            <div class="accordion__item js-accordion-item">
+              <div class="accordion-header js-accordion-header">Stray light</div>
+              <div class="accordion-body js-accordion-body">
+                <div class="accordion-body__contents">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Variable name</th>
+                        <th>Short description</th>
+                        <th>Min/max values</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>enableStraylight</td>
+                        <td>Turn straylight correction on/off</td>
+                        <td>True/falseDefault: true</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p>Stray light is defined as &quot;unwanted light from the active illumination reaching the imager&quot;. This is typically experienced when there is a very bright object in the FoV. The resulting amplitude of pixels landing on the bright
+                    object impact the neighboring &quot;darker&quot; pixels. This is seen as a &quot;halo&quot; around the bright object. This &quot;halo&quot; can impact the measurement of neighboring pixels (even providing a value for pixels where
+                    none previously existed. The Stray Light filter mitigates this physics artifact.</p>
+                  <p>BEFORE/AFTER IMAGE</p>
+                </div>
+                <!-- end of sub accordion item body contents --> 
+              </div>
+              <!-- end of sub accordion item body --> 
+            </div>
+            <!-- end of sub accordion item --> 
+          </div>
+          <!-- end of sub accordion --> 
+        </div>
+        <!-- end of accordion body --> 
+      </div>
+      <!-- end of accordion item --> 
+    </div>
+    <!-- end of accordion --> 
+    
+  </div>
+  <div id="footer"></div>
+</div>
+	<script>
+        var accordion = (function(){
+			var $accordion = $('.js-accordion');
+			var $accordion_header = $accordion.find('.js-accordion-header');
+			var $accordion_item = $('.js-accordion-item');
+			// default settings 
+			var settings = {
+				// animation speed
+				speed: 400,
+				// close all other accordion items if true
+				oneOpen: false
+			};
+			
+			return {
+				// pass configurable object literal
+				init: function($settings) {
+					$accordion_header.on('click', function() {
+						accordion.toggle($(this));
+						setTimeout(() => {
+							$('body, html').animate({
+								scrollTop: $(this).offset().top
+							}, 500)
+						}, 400)
+					});
+					
+					$.extend(settings, $settings);
+					
+					// ensure only one accordion is active if oneOpen is true
+					if(settings.oneOpen && $('.js-accordion-item.active').length > 1) {
+						$('.js-accordion-item.active:not(:first)').removeClass('active');
+					}
+					
+					// reveal the active accordion bodies
+					$('.js-accordion-item.active').find('> .js-accordion-body').show();
+				},
+				toggle: function($this) {
+					
+					if(settings.oneOpen && $this[0] != $this.closest('.js-accordion').find('> .js-accordion-item.active > .js-accordion-header')[0]) {
+						$this.closest('.js-accordion').find('> .js-accordion-item').removeClass('active').find('.js-accordion-body').slideUp()
+					}
+					
+					// show/hide the clicked accordion item
+					$this.closest('.js-accordion-item').toggleClass('active');
+					$this.next().stop().slideToggle(settings.speed);
+				}
+			}
+		})();
+	
+	$(document).ready(function(){
+		accordion.init({ speed: 300, oneOpen: true });
+	});
+    </script>
+</body>
+</html>
