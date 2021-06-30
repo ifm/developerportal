@@ -14268,7 +14268,8 @@ Freely copy/paste the python snippets.</p>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="How-To:-log-images">How To: log images<a class="anchor-link" href="#How-To:-log-images">&#182;</a></h1><p>The logger class depends on the funtionality of the device and grabber classes to initiate a connection to the VPU or retrieve the data and handle parameter changing. Lets first import all these dependencies and some standard packages for later use.</p>
+<h1 id="How-To:-log-images">How To: log images<a class="anchor-link" href="#How-To:-log-images">&#182;</a></h1><p>In this tutorial, we present the logger class and its basic components. If you want to save streams of data right away, jump to <a href="TODO">this</a> tutorial.</p>
+<p>The logger class depends on the funtionality of the device and grabber classes to initiate a connection to the VPU or retrieve the data and handle parameter changing. Lets first import all these dependencies and some standard packages for later use.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -14334,7 +14335,7 @@ A frame grabber object and an image buffer object are needed. As you learned in 
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">imgLogger</span> <span class="o">=</span> <span class="n">ImageLogger</span><span class="p">(</span><span class="n">fg</span><span class="p">,</span> <span class="n">im</span><span class="p">,</span> <span class="n">data_path</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">imgLogger</span> <span class="o">=</span> <span class="n">ImageLogger</span><span class="p">(</span><span class="n">cam</span><span class="p">,</span> <span class="n">fg</span><span class="p">,</span> <span class="n">im</span><span class="p">,</span> <span class="n">data_path</span><span class="p">)</span>
 </pre></div>
 
      </div>
