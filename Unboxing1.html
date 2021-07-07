@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Unboxing</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Unboxing1</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -14302,7 +14302,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ping</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">0.69</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ping</span> <span class="mf">192.168.0.69</span>
 </pre></div>
 
      </div>
@@ -14319,8 +14319,9 @@ a.anchor-link {
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Software-installation">Software installation<a class="anchor-link" href="#Software-installation">&#182;</a></h2><p><em>Note: We recommend for testing purposes to install the ifmO3r package in an clean python environment first. You can use</em> <code>python -m venv "venv-name"</code> _to create a new virtual environment. If you are using Windows and you do not have all the rights to install python, you can download winpython with a little description on how to use it with this link: <a href="https://nexus.ifm.com/service/rest/repository/browse/ifm_raw_cso_download/ifmO3R-WinPython/">https://nexus.ifm.com/service/rest/repository/browse/ifm_raw_cso_download/ifmO3R-WinPython/</a></p>
-<p>The ifm3d is the go to library for ifm's 3D cameras. However, at the moment it does not yet support the fieldtest of the O3R. We developed a tiny version of this library, called ifm3dTiny, to help you use the O3R at this early stage. It gives the possibility to easily change parameters, get images and log them and even more. The following tutorials will cover the general usage of ifm3dTiny, and how to unlock the O3R capabilities.</p>
+<h2 id="Software-installation">Software installation<a class="anchor-link" href="#Software-installation">&#182;</a></h2><p><em>Requirements: The newest ifmO3r python package needs a python version of &gt;= 3.8 to work properly in all environments. We also recommend to use Ubuntu 20.04 LTS - which is already delivered with python 3.8.5 as default.</em></p>
+<p><em>Note: We recommend for testing purposes to install the ifmO3r package in an clean python environment first. You can use</em> <code>python -m venv "venv-name"</code> _to create a new virtual environment. If you are using Windows and you do not have all the rights to install python, you can download winpython with a little description on how to use it with this link: <a href="https://nexus.ifm.com/service/rest/repository/browse/ifm_raw_cso_download/ifmO3r_winpython/">https://nexus.ifm.com/service/rest/repository/browse/ifm_raw_cso_download/ifmO3r_winpython/</a> - containing a python version &gt;= 3.8</p>
+<p>The ifm3d is the go to library for ifm's 3D cameras. However, at the moment it does not yet support the fieldtest of the O3R. We developed a tiny version of this library, called ifm3dTiny, to help you use the O3R at this early stage. It provides the possibility to easily change parameters, get images and log them and even more. The following tutorials will cover the general usage of ifm3dTiny, and how to unlock the O3R capabilities.</p>
 
 </div>
 </div>
@@ -14457,7 +14458,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="err">!</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">wheel</span><span class="o">/</span><span class="n">ifmO3r</span><span class="o">-</span><span class="mf">0.0</span><span class="o">.</span><span class="mi">1</span><span class="o">-</span><span class="n">py3</span><span class="o">-</span><span class="n">none</span><span class="o">-</span><span class="nb">any</span><span class="o">.</span><span class="n">whl</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> pip install /path/to/python/wheel/ifmO3r-0.0.1-py3-none-any.whl
 </pre></div>
 
      </div>
@@ -14478,7 +14479,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="err">!</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="p">[</span><span class="n">path</span> <span class="n">to</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> pip install -e <span class="o">[</span>path to setup.py<span class="o">]</span>
 </pre></div>
 
      </div>
@@ -14573,16 +14574,56 @@ The viewer package is available from Pypi:
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="That's-it-for-this-step...">That's it for this step...<a class="anchor-link" href="#That's-it-for-this-step...">&#182;</a></h1><p>... if the import doesn't fail, you are good to go to the next step. If it does fail and you have no idea what to do, don't hesistate to contact us!</p>
+<h1 id="Useful-unboxing-tools">Useful unboxing tools<a class="anchor-link" href="#Useful-unboxing-tools">&#182;</a></h1><p>The <code>ifmO3r</code> package provides some useful tools for checking the status of your system.</p>
 
 </div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ifmO3r.ifm3dTiny.utils</span> <span class="kn">import</span> <span class="n">get_SW_version</span>
+<span class="n">get_SW_version</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[1]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>{&#39;IFM_Software&#39;: &#39;0.11.1-2&#39;,
+ &#39;Linux&#39;: &#39;Linux version 4.9.140-l4t-r32.4+g58e67a051b93 (oe-user@oe-host) &#39;,
+ &#39;Main_Application&#39;: &#39;0.13.1&#39;}</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span>
+<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
      </div>
