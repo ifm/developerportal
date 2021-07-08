@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>twoCameraExample</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Two_heads_viewer</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -14259,6 +14259,15 @@ a.anchor-link {
 
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><em>If you are using a virtual environment:</em><br>
+Make sure to activate the virtual environment in which the ifmO3r and ifmO3rViewer are installed.<br>
+Enter a python3 terminal.<br>
+Freely copy/paste the python snippets.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="How-to:-example-script-to-process-two-heads">How to: example script to process two heads<a class="anchor-link" href="#How-to:-example-script-to-process-two-heads">&#182;</a></h1>
 </div>
 </div>
@@ -14366,10 +14375,10 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-    <span class="c1"># get new data </span>
-    <span class="n">fg1</span><span class="o">.</span><span class="n">stream_on</span><span class="p">(</span><span class="n">im1</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span>
-    <span class="n">fg2</span><span class="o">.</span><span class="n">stream_on</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">timeout</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="c1"># get data </span>
+<span class="n">fg1</span><span class="o">.</span><span class="n">stream_on</span><span class="p">(</span><span class="n">im1</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span>
+<span class="n">fg2</span><span class="o">.</span><span class="n">stream_on</span><span class="p">(</span><span class="n">im2</span><span class="p">,</span> <span class="n">timeout</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14391,7 +14400,10 @@ Then, both heads have the same orientation of their pixel coordinate system, but
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Extract the images from frames</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="nb">next</span><span class="p">(</span><span class="n">im1</span><span class="p">)</span>
+    <span class="nb">next</span><span class="p">(</span><span class="n">im2</span><span class="p">)</span>    
+    <span class="c1"># Extract the images from frames</span>
     <span class="n">xyz1</span> <span class="o">=</span> <span class="n">im1</span><span class="o">.</span><span class="n">xyz_image</span><span class="p">()</span>
     <span class="n">amp1</span> <span class="o">=</span> <span class="n">im1</span><span class="o">.</span><span class="n">amplitude_image</span><span class="p">()</span>
     <span class="n">dist1</span> <span class="o">=</span> <span class="n">im1</span><span class="o">.</span><span class="n">distance_image</span><span class="p">()</span>
@@ -14401,8 +14413,8 @@ Then, both heads have the same orientation of their pixel coordinate system, but
     <span class="n">amp2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">im2</span><span class="o">.</span><span class="n">amplitude_image</span><span class="p">(),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
     <span class="n">dist2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">im2</span><span class="o">.</span><span class="n">distance_image</span><span class="p">(),(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
     <span class="n">conf2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">im2</span><span class="o">.</span><span class="n">confidence_image</span><span class="p">(),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
-    
-    
+
+
     <span class="c1"># Rotate the point cloud</span>
     <span class="n">beta</span> <span class="o">=</span> <span class="o">-</span><span class="mi">84</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">)</span>
     <span class="n">R_beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">beta</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">beta</span><span class="p">)],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">beta</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">beta</span><span class="p">)]])</span>
@@ -14412,7 +14424,7 @@ Then, both heads have the same orientation of their pixel coordinate system, but
 
     <span class="n">xyz2_rot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">R_gamme</span><span class="p">,</span> <span class="n">R_beta</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xyz2</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">172</span><span class="o">*</span><span class="mi">224</span><span class="p">)))</span> 
     <span class="n">xyz2_rot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xyz2_rot</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">172</span><span class="p">,</span><span class="mi">224</span><span class="p">))</span>
-    
+
     <span class="c1"># Translate the point cloud</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">xyz1</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,</span> <span class="p">:</span><span class="mi">215</span><span class="p">],</span>  <span class="n">xyz2_rot</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,</span><span class="mi">9</span><span class="p">:]),</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">xyz1</span><span class="p">[</span><span class="mi">1</span><span class="p">,:,</span> <span class="p">:</span><span class="mi">215</span><span class="p">],</span>  <span class="n">xyz2_rot</span><span class="p">[</span><span class="mi">1</span><span class="p">,:,</span><span class="mi">9</span><span class="p">:]</span><span class="o">+</span><span class="mf">0.1</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
@@ -14436,7 +14448,7 @@ Then, both heads have the same orientation of their pixel coordinate system, but
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">amp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">amp1</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">215</span><span class="p">],</span> <span class="n">amp2</span><span class="p">[:,</span> <span class="mi">9</span><span class="p">:]),</span> <span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span>    <span class="n">amp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">amp1</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">215</span><span class="p">],</span> <span class="n">amp2</span><span class="p">[:,</span> <span class="mi">9</span><span class="p">:]),</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">dist1</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">215</span><span class="p">],</span> <span class="n">dist2</span><span class="p">[:,</span> <span class="mi">9</span><span class="p">:]),</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">conf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">conf1</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">215</span><span class="p">],</span> <span class="n">conf2</span><span class="p">[:,</span> <span class="mi">9</span><span class="p">:]),</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
@@ -14461,7 +14473,7 @@ Now it's your responsibility to develope great new programs and tools.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span>
+<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
      </div>
