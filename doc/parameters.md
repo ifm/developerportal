@@ -79,7 +79,7 @@ The median filter does not preserve edges as well and tends to produce round cor
 |--|--|--|
 |`enableTemporalFilter`|Enables the filter|true (default) /false
 
-A temporal filter, in its simplest form, mitigates distance noise by averaging the per pixel results from multiple frames. The O3R temporal filter, however, also includes environmental noise estimation, the use of a Kalman filter and is calculated on the lower level imager data, making the entire temporal filter more robust.
+The temporal filter mitigates distance noise by integrating pixel information over multiple frames. There is no strict limit for the number of frames. Instead, an automatic resetting approach is applied to the pixels.
 
 Although the O3R temporal filter can be used on "in-motion" Use Cases, it is best suited for static scenes.
 

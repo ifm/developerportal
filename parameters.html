@@ -404,8 +404,7 @@ h3 {
                       </tr>
                     </tbody>
                   </table>
-                  <p>A temporal filter, in its simplest form, mitigates distance noise by averaging the per pixel results from multiple frames. The O3R temporal filter, however, also includes environmental &quot;noise&quot; estimation, the use of a Kalman
-                    filter and is calculated on the lower level imager data, making the entire temporal filter more robust.</p>
+                  <p>The temporal filter mitigates distance noise by integrating pixel information over multiple frames. There is no strict limit for the number of frames. Instead, an automatic resetting approach is applied to the pixels.
                   <p>Although the O3R temporal filter can be used on &quot;in-motion&quot; Use Cases, it is best suited for static scenes.</p>
                 </div>
                 <!-- end of sub accordion item body contents --> 
