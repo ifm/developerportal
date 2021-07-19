@@ -32,14 +32,14 @@
 <body>
     <div class="container">
 
-        
+
         <div id="subheader"></div>
         <div class="section ospicker">
-            
+
             <h1>Unboxing</h1>
             <a href="tutorial-welcome.html" style="color: #ff6e00;">&larr; Back to index</a>&nbsp;&nbsp;&nbsp;<a href="visualization.html" style="color: #ff6e00;">Next article &rarr;</a>
             <div id="thepage">
-                <iframe src="doc/Unboxing1.html" id="mainframe"></iframe>
+                <iframe src="doc/Unboxing1.html" id="mainframe" scrolling="no"></iframe>
             </div>
             <br>
             <a href="tutorial-welcome.html" style="color: #ff6e00;">&larr; Back to index</a>&nbsp;&nbsp;&nbsp;<a href="visualization.html" style="color: #ff6e00;">Next article &rarr;</a>
@@ -49,7 +49,7 @@
     <script>
         var frame = document.getElementById("mainframe");
 
-        frame.onload = function () {
+        frame.onload = function() {
             frame.style.height = frame.contentWindow.document.body.scrollHeight + 'px';
             frame.style.width = frame.contentWindow.document.body.scrollWidth + 'px';
         }
