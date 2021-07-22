@@ -28,6 +28,7 @@
             width: 90%;
         }
     </style>
+    <base target="mainframe">
 </head>
 
 <body>
@@ -57,12 +58,6 @@
             frame.style.height = frame.contentWindow.document.body.scrollHeight + 'px';
             frame.style.width = frame.contentWindow.document.body.scrollWidth + 'px';
         }
-        $(document).load(function() {
-            alert('running');
-            $(".markdown-body").find('a').click(function() {
-                $(this).attr("target", "contentframe");
-            });
-        });
     </script>
 
 </body>
