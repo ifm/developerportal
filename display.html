@@ -18,30 +18,45 @@
 </head>
 
 <body>
+    <!-- a div for each block of code to be displayed -->
     <div class="block" id="sec1"></div>
     <div class="block" id="sec2"></div>
     <div class="block" id="sec3"></div>
     <div class="block" id="sec4"></div>
     <script>
         $(document).ready(function() {
-            $.get("https://github.com/ifm/ifm3d-examples/blob/9df25c5863d42a00f021c72525b9b893bfc7d3c7/exposure_time/ex-exposure_times.cpp", function(data) {
+
+            var blocks = $(".block").length;
+            console.log(blocks);
+            var seg = [];
+            // there is a seg array variable for each block of code
+            // the numbers are the line numbers in the code to be displayed, first to last
+            seg[1] = [64, 68];
+            seg[2] = [72, 77];
+            seg[3] = [82, 89];
+            seg[4] = [102, 111];
+
+            $.get("/exposure-times.cpp", function(data) {
                 var test = data.split('\n');
 
-                var count = 65;
-                var tonum = 70;
-                tonum = tonum + 1;
-                var mytext = "<pre><code>";
+                for (i = 1; i <= blocks; i++) {
+                    var count = seg[i][0];
+                    var tonum = seg[i][1];
+                    var mytext = "<pre><code>";
 
-                while (count < tonum) {
+                    while (count < tonum) {
 
-                    mytext = mytext + test[count] + '\n';
+                        mytext = mytext + test[count] + '\n';
 
-                    count++;
+                        count++;
+
+                    }
+
+                    mytext += "</code></pre>";
+                    $("#sec" + i).html(mytext);
 
                 }
 
-                mytext += "</code></pre>";
-                $("#sec1").html(mytext);
             });
         });
     </script>
