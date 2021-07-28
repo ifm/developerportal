@@ -27,7 +27,6 @@
         $(document).ready(function() {
 
             var blocks = $(".block").length;
-            console.log(blocks);
             var seg = [];
             // there is a seg array variable for each block of code
             // the numbers are the line numbers in the code to be displayed, first to last
@@ -36,8 +35,8 @@
             seg[3] = [82, 89];
             seg[4] = [102, 111];
 
-            $.get("/exposure-times.cpp", function(data) {
-                var test = data.split('\n');
+            $.get("/exposure-times.cpp", function(data) { // Load the code file to be displayed
+                var test = data.split('\n'); // split up the code by lines
 
                 for (i = 1; i <= blocks; i++) {
                     var count = seg[i][0];
@@ -53,7 +52,7 @@
                     }
 
                     mytext += "</code></pre>";
-                    $("#sec" + i).html(mytext);
+                    $("#sec" + i).html(mytext); // display the code section in it's respective div
 
                 }
 
