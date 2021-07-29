@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Developer's portal</title>
     <script src="jquery/jquery-3.4.1.min.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@2/dist/zero-md.min.js"></script>
     <script>
         $(function() {
             $("#subheader").load("subheader.html");
@@ -32,19 +33,22 @@
 <body>
     <div class="container">
 
-
         <div id="subheader"></div>
-        <div class="section ospicker">
-            <h1>Two heads viewer</h1>
-            <a href="tutorial-welcome.html" style="color: #ff6e00;">&larr; Back to index</a>&nbsp;&nbsp;&nbsp;<a href="2d_images.html" style="color: #ff6e00;">Next article &rarr;</a>
-            <div id="thepage">
-                <iframe src="doc/Two_heads_viewer.html" id="mainframe" scrolling="no"></iframe>
-            </div>
-            <br>
-            <a href="tutorial-welcome.html" style="color: #ff6e00;">&larr; Back to index</a>&nbsp;&nbsp;&nbsp;<a href="2d_images.html" style="color: #ff6e00;">Next article &rarr;</a>
+
+        <div class="section ospicker" id="mainframe">
+
+            <zero-md src="documentation/O3R/README.md">
+                <!--  <template>
+                    <link rel="stylesheet" href="mdstyles.css">
+                </template> -->
+            </zero-md>
 
         </div>
+
     </div>
+
+    <iframe name="contentframe"></iframe>
+
     <div id="footer"></div>
     <script>
         var frame = document.getElementById("mainframe");
@@ -53,7 +57,14 @@
             frame.style.height = frame.contentWindow.document.body.scrollHeight + 'px';
             frame.style.width = frame.contentWindow.document.body.scrollWidth + 'px';
         }
+        $(document).load(function() {
+            alert('running');
+            $(".markdown-body").find('a').click(function() {
+                $(this).attr("target", "contentframe");
+            });
+        });
     </script>
+
 </body>
 
 </html>

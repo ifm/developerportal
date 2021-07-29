@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Getting_data</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Log_streams</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -14254,37 +14254,36 @@ a.anchor-link {
     }
     init_mathjax();
     </script>
-    <!-- End of mathjax configuration --></head>
+    <!-- End of mathjax configuration -->
+    <base target="_blank">
+    </head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><em>If you are using a virtual environment:</em><br>
-Make sure to activate the virtual environment in which the ifmO3r and ifmO3rViewer are installed.<br>
-Enter a python3 terminal.<br>
-Freely copy/paste the python snippets.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="How-to:-Receive-an-image">How to: Receive an image<a class="anchor-link" href="#How-to:-Receive-an-image">&#182;</a></h1><p>You successfully installed the ifmO3r library which contains all you need to use the O3R. This library sets you up with <code>ifm3dTiny</code>, which is a small library we developed to simplify the use of the O3R. It lets you easily access the image data, change parameter, log data, etc. This library wraps around PCIC and XML-RPC communication protocols to facilitate the communication with the device.</p>
-<p>At the end of this 'how to', you should be able to receive images and know the basic usage of the Device(), FrameGrabber() and ImageBuffer()</p>
+<h1 id="How-to:-save-3D-data-streams">How to: save 3D data streams<a class="anchor-link" href="#How-to:-save-3D-data-streams">&#182;</a></h1><p>We offer two ways to save stream of data with the <code>ifmO3r</code> package's <code>ImageLogger</code> class. The first one allows you to save frames in a .h5 format that you can then use for your application. The second one records raw data to be sent to the ifm team for analysis (what we call <code>algo debug</code>).</p>
+<p>For more convenience, we provide a script that you can simply use to save data streams. It takes care of properly initializing the objects, etc. Find it <a href="https://github.com/ifm/ifm3DTiny-examples/blob/main/save_data_stream/save_data_stream.py">here</a> and read the <a href="https://github.com/ifm/ifm3DTiny-examples/blob/main/save_data_stream/README.md">instructions</a>. Read through this page to understand in more details the saving functionalities and use them in your own code.</p>
+<p><strong>Warning:</strong> these functions are only available for 3D data streams. Saving 2D streams is not available at the moment but should be coming soon.</p>
 
 </div>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="First:-import-ifmO3r.ifm3dTiny">First: import ifmO3r.ifm3dTiny<a class="anchor-link" href="#First:-import-ifmO3r.ifm3dTiny">&#182;</a></h2><p>Let's start with importing ifm3dTiny:</p>
+<h2 id="Save-data-streams-for-analysis-and-replaying-with-the-viewer">Save data streams for analysis and replaying with the viewer<a class="anchor-link" href="#Save-data-streams-for-analysis-and-replaying-with-the-viewer">&#182;</a></h2><p>The function <code>save_data_stream</code> from the <code>ImageLogger</code> class is designed to save data from the VPU and a defined number of camera heads, for a number of seconds (don't forget to initialize the logger objects as specified <a href="https://ifm3d.com/logging2.html">here</a>):</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">ifmO3r.ifm3dTiny</span> <span class="kn">import</span> <span class="n">Device</span><span class="p">,</span> <span class="n">FrameGrabber</span><span class="p">,</span> <span class="n">ImageBuffer</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">imgLogger</span><span class="o">.</span><span class="n">save_data_stream</span><span class="p">(</span><span class="n">streams</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;o3r&#39;</span><span class="p">,],</span> <span class="n">num_sensors</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">write_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">numSeconds</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;example data set&quot;</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14295,26 +14294,29 @@ Freely copy/paste the python snippets.</p>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Device,-FrameGrabber-and-ImageBuffer">Device, FrameGrabber and ImageBuffer<a class="anchor-link" href="#Device,-FrameGrabber-and-ImageBuffer">&#182;</a></h2><p>ifm3dTiny provides three objects:</p>
 <ul>
-<li>Device holds the configuration of the camera head, handles the connection and sets the camera in the proper state (RUN or CONF);  </li>
-<li>FrameGrabber receives frames (images);  </li>
-<li>ImageBuffer stores the image data.  </li>
+<li>The <code>streams</code> variable anticipates the avilability of multiple types of camera heads and platforms. Do not worry about it since there is only one type of sensor available now.</li>
+<li>The <code>num_sensors</code> variable defines how many camera heads data are recorded. As this function does not <em>yet</em> provide the flexibility of defining the port number, we encourage leaving this number at <code>1</code>, which will save the port the <code>ImageLogger</code> object had been assigned.</li>
+<li>The <code>write_index</code> variable has to do with how the data is recorded internally. Don't worry about it.</li>
+<li><code>numSeconds</code> define the number of seconds that will be saved. <code>numSeconds=None</code> will save data until CTRL+C is pressed by the user.</li>
+<li><code>desc</code>: a description of the saved data.</li>
 </ul>
-<p>Instantiating these objects is as follows:</p>
+<p>This function returns the number of frames saved.</p>
+
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="Save-algo-debug-data-for-analysis-and-debugging-with-the-ifm-team">Save algo debug data for analysis and debugging with the ifm team<a class="anchor-link" href="#Save-algo-debug-data-for-analysis-and-debugging-with-the-ifm-team">&#182;</a></h2><p>The function <code>save_algo_debug_data</code> saves unprocessed data for a deeper use case analysis with the ifm team. You won't be able to replay algo debug data as the format is internal to ifm, but it allows our teams to check the point cloud construction and evaluate the O3R configuration and other algorithm settings. As before, remember to properly initialize the logger object as explained <a href="https://ifm3d.com/logging2.html">here</a>.</p>
 
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">IP</span> <span class="o">=</span> <span class="s1">&#39;192.168.0.69&#39;</span>
-<span class="n">PORT</span> <span class="o">=</span> <span class="mi">50012</span>
-<span class="n">cam</span> <span class="o">=</span> <span class="n">Device</span><span class="p">(</span><span class="n">IP</span><span class="p">,</span> <span class="n">PORT</span><span class="p">)</span>
-<span class="n">fg</span> <span class="o">=</span> <span class="n">FrameGrabber</span><span class="p">(</span><span class="n">cam</span><span class="p">)</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">ImageBuffer</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">imgLogger</span><span class="o">.</span><span class="n">save_algo_debug_data</span><span class="p">(</span><span class="n">cameraID</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">numSeconds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -14325,265 +14327,11 @@ Freely copy/paste the python snippets.</p>
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Receiving-an-image">Receiving an image<a class="anchor-link" href="#Receiving-an-image">&#182;</a></h2><p>You just need to call the function <code>wait_for_frame()</code> from the FrameGrabber, provided with an image buffer and a timeout (in seconds).</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fg</span><span class="o">.</span><span class="n">wait_for_frame</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
-
-
-
-
-<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>True</pre>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Afterwards - assuming you received an image - you can call functions from the 'ImageBuffer()' to retreive some of the data directly.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">amp</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">amplitude_image</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">amp</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">10</span><span class="p">]</span><span class="si">}</span><span class="s2"> ... </span><span class="si">{</span><span class="n">amp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">10</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>[0.01913638 0.02057617 0.02147972 0.02292802 0.02415165 0.02457962
- 0.02457962 0.02568596 0.02649112 0.02689835] ... [0.01735257 0.01657351 0.01525321 0.01404672 0.01334669 0.01308878
- 0.01191851 0.0113805  0.0108809  0.01054553]
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>By using the <code>print</code> function of python on the objects, you can get a list of the public methods of the class available for you to use:</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">cam</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">fg</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>config_from_json_file
-config_from_json_str
-config_to_default
-dump
-all_images
-amplitude_image
-confidence_image
-distance_image
-distance_noise_image
-timestamp
-xyz_image
-stream_on
-wait_for_frame
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Right now, the system does not provide NTP functionalities. This being said, the image data still gets a timestamp. It is an ever increasing number (in nanoseconds). You can easily get the timestamp from the <code>ImageBuffer</code>.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">im</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span>
-<span class="c1"># OR</span>
-<span class="n">im</span><span class="o">.</span><span class="n">time</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>123954000586000
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="How-to:-Continously-receive-images">How to: Continously receive images<a class="anchor-link" href="#How-to:-Continously-receive-images">&#182;</a></h1><p>After implementing a Device(), FrameGrabber() and ImageBuffer(), you might now want to receive more than a single image. Perhaps, you do not even want to call <code>wait_for_frame()</code> all the time. We implemented a small comfort function to help you with that: <code>stream_on()</code>. It uses an ImageBuffer() object to store the frames, and a timeout in seconds.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fg</span><span class="o">.</span><span class="n">stream_on</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p><code>FrameGrabber()</code> will now receive images as fast as possible and add them to an internal stack within <code>ImageBuffer()</code>.</p>
-
-</div>
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Use-the-iterator-..-or-better-said-next()">Use the iterator .. or better said next()<a class="anchor-link" href="#Use-the-iterator-..-or-better-said-next()">&#182;</a></h2><p><code>next()</code> is a keyword (dunder method - <a href="https://wiki.python.org/moin/Iterator">https://wiki.python.org/moin/Iterator</a>) within Python. In combination with <code>__iter__</code>, it makes your object iterable.<br>
-To get the newest frame, you only need to call <code>next()</code> on <code>ImageBuffer()</code> to get the last image from the stack.</p>
-<p>If we combinde the <code>stream_on()</code> and the <code>next()</code> we have to be aware of the network delay. Our python program is a lot faster than the reception of the first image. It might happen that you call <code>next()</code> before an image has arrived. A simple solution is <code>time.sleep(1)</code>. This will lead to like 10-20 frames in the stack. So you can call <code>next()</code> without worries.</p>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
-<span class="n">amp</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">amplitude_image</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">amp</span><span class="p">[</span><span class="mi">0</span><span class="p">][:</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> ... </span><span class="si">{</span><span class="n">amp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
-<div class="jp-Cell-outputWrapper">
-
-
-<div class="jp-OutputArea jp-Cell-outputArea">
-
-<div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
-
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>[0.01934382] ... [0.0108809]
-</pre>
-</div>
-</div>
-
-</div>
-
-</div>
-
-</div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>As long as you do not call next() again, the old frame will be held.</p>
+<ul>
+<li>The <code>cameraID</code> variable specifies the port ID that need to be recorded. Use <code>cameraID=[2, 3]</code> for PCIC ports <code>50012</code> and <code>50013</code>.</li>
+<li><code>numSeconds</code> is the number of seconds saved.</li>
+<li>Use <code>filename</code> to specify the name of the saved file. If nothing is specified, the file will be saved in the current working directory and called <code>O3R_AD_current_date.algodebug.h5</code></li>
+</ul>
 
 </div>
 </div>
