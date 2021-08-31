@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Developer's portal</title>
     <script src="jquery/jquery-3.4.1.min.js"></script>
-    <script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@2/dist/zero-md.min.js"></script>
     <script>
         $(function() {
             $("#subheader").load("subheader.html");
@@ -38,7 +37,10 @@
 
         <div class="section ospicker" id="mainframe">
 
-            <zero-md src="test-for-menu.md"></zero-md>
+            <div class="docapi" data-repo="Costellos/Ifm-documentation-test"  data-branch="master" data-subfolder="documentation" data-file="README.md">
+                <div class="docapi_menu"></div>
+                <div class="docapi_content"></div>
+            </div>
 
         </div>
 
@@ -55,7 +57,8 @@
             frame.style.width = frame.contentWindow.document.body.scrollWidth + 'px';
         }
     </script>
-
+    <script src="jquery/markdownit.min.js"></script>
+    <script src="jquery/docapi.js"></script>
 </body>
 
 </html>

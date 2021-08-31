@@ -1,4 +1,4 @@
-#readme h2 {
+/* #readme h2 {
     font-size: 1.5em;
 }
 
@@ -37,4 +37,65 @@
     line-height: 1.45;
     background-color: #f6f8fa;
     border-radius: 6px;
+} */
+
+.docapi{
+    display: flex;
+}
+
+.docapi_menu{
+    width: 300px;
+}
+
+.docapi_menu ul li{
+    margin: 0px;
+}
+
+.docapi_menu ul li a{
+    display: block;
+    color: #2f2f2f;
+    text-decoration: none;
+    position: relative;
+}
+
+.docapi_menu > ul{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.docapi_menu > ul li{
+    padding: 5px 10px;
+    background: #ededed;
+}
+
+.docapi_menu  ul li .sub_menu{
+    display: none;
+    list-style: none;
+    padding:5px 0px 0px 10px;
+}
+
+
+.docapi_menu ul li.has_children > a:after {
+    content: ' ';
+    height: 0;
+    position: absolute;
+    top:3px;
+    margin-left: 8px;
+    width: 0;
+    border-bottom: 7px solid transparent;
+    border-top: 7px solid transparent;
+    border-left: 7px solid #2f2f2f;
+}
+
+.docapi_menu ul li.has_children.open > a:after{
+    border-bottom: 0px solid transparent;
+    border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	border-top: 7px solid #2f2f2f;
+}
+
+.docapi_content{
+    margin-left: 5%;
+    width: calc(100% - (300px + 5%));
 }
