@@ -1,5 +1,4 @@
 (function($) {
-    
     //Set Default Vars
     var docapi_container = $('.docapi');
     var raw_url = 'https://raw.githubusercontent.com';
@@ -7,6 +6,13 @@
     var branch = docapi_container.attr('data-branch');
     var subfolder = docapi_container.attr('data-subfolder');
     var rd_file = docapi_container.attr('data-file');
+
+    var frame = document.getElementById("mainframe");
+
+    frame.onload = function() {
+        frame.style.height = frame.contentWindow.document.body.scrollHeight + 'px';
+        frame.style.width = frame.contentWindow.document.body.scrollWidth + 'px';
+    }
 
 
     //If Has hash, set vars and load has, else load default settings.
@@ -37,8 +43,6 @@
     //Get menu.json. loop through each item, and build the menu items out of that.(Might breakdown more for modulary and clarity in future).
     $.getJSON("jquery/menu.json", function(data){
 
-        var children_menu_class = '';
-
         var docapi_menu = $('.docapi_menu');
 
         
@@ -64,11 +68,9 @@
                 if(this.has_children){
                     var has_children = this.has_children;
                     var children = this.children
-                    var children_menu_class = 'sub_menu';
                 }else{
                     var has_children = false;
                     var children = '';
-                    var children_menu_class = '';
                 }
                 if(has_children){
                     html += '<li class="has_children">';
@@ -212,9 +214,17 @@
         var docapi_content = $('.docapi_content');
         docapi_content.empty();
 
+        console.log(window);
 
         var markDown = getMarkdown(url);
         var md = window.markdownit();
+        var mila = window.markdownitLinkAttributes;
+        md.use(mila, [{
+            pattern: /.md/,
+            attrs: {
+              class: 'inline_md_file'
+            }
+          }])
         var html = md.render(markDown);
         docapi_content.html(html);
 

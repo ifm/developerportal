@@ -17,17 +17,6 @@
     <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="readme.css">
     <link rel="stylesheet" href="footerstyle.css">
-    <style>
-        h3 {
-            font-size: 1.25em;
-        }
-        
-        iframe {
-            border: none;
-            width: 90%;
-        }
-    </style>
-    <base target="mainframe">
 </head>
 
 <body>
@@ -35,7 +24,7 @@
 
         <div id="subheader"></div>
 
-        <div class="section ospicker" id="mainframe">
+        <div class="section" id="mainframe">
 
             <div class="docapi" data-repo="Costellos/Ifm-documentation-test"  data-branch="master" data-subfolder="documentation" data-file="README.md">
                 <div class="docapi_menu"></div>
@@ -46,18 +35,9 @@
 
     </div>
 
-    <iframe name="contentframe"></iframe>
-
     <div id="footer"></div>
-    <script>
-        var frame = document.getElementById("mainframe");
-
-        frame.onload = function() {
-            frame.style.height = frame.contentWindow.document.body.scrollHeight + 'px';
-            frame.style.width = frame.contentWindow.document.body.scrollWidth + 'px';
-        }
-    </script>
     <script src="jquery/markdownit.min.js"></script>
+    <script src="jquery/markdown-it-link-attributes.min.js"></script>
     <script src="jquery/docapi.js"></script>
 </body>
 
