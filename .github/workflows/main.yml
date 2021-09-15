@@ -1,0 +1,28 @@
+
+
+name: Update Json Menu
+on:
+  push:
+  schedule:
+    - cron:  '*/15 * * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repo
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Run PHP and Update Menu
+      run: |
+        cd php
+        php index.php
+        cd ../
+    - name: Commit and push changes
+      run: |-
+        git diff
+        git config user.name "Automated"
+        git config user.email "actions@users.noreply.github.com"
+        git diff --quiet || (git add -A && git commit -m "Updated with latest")
+        git push
