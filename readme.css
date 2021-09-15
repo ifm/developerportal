@@ -99,3 +99,7 @@
     margin-left: 5%;
     width: calc(100% - (300px + 5%));
 }
+
+.docapi_content table:first-of-type{
+    display: none;
+}
