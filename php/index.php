@@ -4,7 +4,7 @@ include('Parsedown.php');
 $Parsedown = new Parsedown();
 
 //Get Provided URL, verify its a github url, and parse the url to markdown
-$contents_url = 'https://raw.githubusercontent.com/Costellos/Ifm-documentation-test/master/documentation/README.md';
+$contents_url = 'https://raw.githubusercontent.com//ifm/documentation/main/O3R/README.md';
 $parse_contents_url = parse_url($contents_url);
 $path_array = explode('/',$parse_contents_url['path']);
 
