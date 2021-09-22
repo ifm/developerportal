@@ -14,7 +14,6 @@
         frame.style.width = frame.contentWindow.document.body.scrollWidth + 'px';
     }
 
-
     //If Has hash, set vars and load has, else load default settings.
     if(window.location.hash) {
         
@@ -37,8 +36,6 @@
     }else{
         loadMarkdown(raw_url,repo,branch,subfolder,rd_file);
     }
-
-
     
     //Get menu.json. loop through each item, and build the menu items out of that.(Might breakdown more for modulary and clarity in future).
     $.getJSON("jquery/menu.json", function(data){
@@ -118,6 +115,20 @@
 
     });
 
+    $(document).on("click",".inline_md_file",function(e){
+        e.preventDefault();
+
+        var link = $(this);
+        
+        var link_repo = link.attr('data-repo');
+        var link_branch = link.attr('data-branch');
+        var link_subfolder = link.attr('data-subfolder');
+        var link_file = link.attr('data-file');
+        
+        loadMarkdown(raw_url,link_repo,link_branch,link_subfolder,link_file);
+
+    });
+
     $(document).on("click","li.has_children > a",function(e){
         var link_sub_menu =  $(this).siblings('.sub_menu');
 
@@ -125,7 +136,6 @@
 
         $(this).parent().toggleClass('open');
     });
-
 
     //Function to build readme items in the menu.
     function buildDocItem(name,repo,branch,subfolder,file,item_has_children,children){
@@ -195,7 +205,6 @@
         return html;
     }
 
-
     //Function to get markdown from url.
     function getMarkdown(url) {
         var result="";
@@ -209,21 +218,90 @@
         return result;
     }
 
-
     //Function to fetch and load markdown from url.
-    function loadMarkdown(url,repo,branch,subfolder,rd_file){
+    function loadMarkdown(base_url,base_repo,base_branch,base_subfolder,base_rd_file){
 
-        if(subfolder != ''){
-            url = [ url, repo, branch, subfolder, rd_file ].join('/');
+
+
+        if(base_subfolder != ''){
+            var md_url = [ base_url, base_repo, base_branch, base_subfolder, base_rd_file ].join('/');
+            var load_path = [ base_url, base_repo, base_branch, base_subfolder ].join('/');
+            var load_subfolder = base_subfolder;
         }else{
-            url = [ url, repo, branch, rd_file ].join('/');
+            var md_url = [ base_url, base_repo, base_branch, base_rd_file ].join('/');
+            var load_path = [ base_url, base_repo, base_branch ].join('/');
         }
+
+
 
         var docapi_content = $('.docapi_content');
         docapi_content.empty();
-
-        var markDown = getMarkdown(url);
+        var markDown = getMarkdown(md_url);
         var md = window.markdownit();
+
+        // Change Links to absolute paths, and add class 'inline_md_file';
+        var defaultRender = md.renderer.rules.link_open || function(tokens, idx, options, env, self) {
+            return self.renderToken(tokens, idx, options);
+        };
+        md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
+
+            //Get Href of each inline link
+            var aIndex = tokens[idx].attrIndex('href');
+            var current_href = tokens[idx].attrs[aIndex][1];
+
+            //If link contains .md add, full url, add class, and add data attributes
+            if (current_href.indexOf(".md") >= 0){
+
+
+                //if url is folder behind, change subfolder, and current href
+                if(current_href.indexOf("../") >= 0){
+                    var temp_subfolder_array = load_subfolder.split("/");
+                    var subfolder_array = temp_subfolder_array.slice(0,-1)
+                    load_subfolder = subfolder_array.join('/');
+                    current_href = current_href.replace("../", "");
+                }
+
+                //Define new_href
+                var new_href = load_path + '/' + tokens[idx].attrs[aIndex][1];
+                tokens[idx].attrs[aIndex][1] = new_href;    // replace value of existing attr
+                tokens[idx].attrPush(['class', 'inline_md_file']); // add new attribute
+
+                tokens[idx].attrPush(['data-repo', repo]); // add new attribute
+                tokens[idx].attrPush(['data-branch', branch]); // add new attribute
+                if(load_subfolder){
+                    tokens[idx].attrPush(['data-subfolder', load_subfolder]); // add new attribute
+                }else{
+                    tokens[idx].attrPush(['data-subfolder', '' ]); // add new attribute
+                }
+                
+                tokens[idx].attrPush(['data-file', current_href]); // add new attribute
+            }
+            // pass token to default renderer.
+            return defaultRender(tokens, idx, options, env, self);
+        };
+
+
+
+        var defaultRender2 = md.renderer.rules.image || function(tokens, idx, options, env, self) {
+            return self.renderToken(tokens, idx, options);
+        };
+
+        md.renderer.rules.image = function (tokens, idx, options, env, self) {
+
+            //Get Href of each inline link
+            var aIndex = tokens[idx].attrIndex('src');
+            var new_src = load_path + '/' + tokens[idx].attrs[aIndex][1];
+            tokens[idx].attrs[aIndex][1] = new_src;    // replace value of existing attr
+            tokens[idx].attrPush(['class', 'md_image']); // add new attribute
+
+
+
+            return defaultRender2(tokens, idx, options, env, self);
+        };
+
+
+
+
         var html = md.render(markDown);
         docapi_content.html(html);
 

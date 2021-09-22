@@ -46,7 +46,7 @@
 			"repo_sub_folder":"O3R",
 			"parent_folder":"Parameters",
 			"subfolder": "",
-			"file": "parameters_overview.md"
+			"file": "parameters.md"
 		},{
 			"name": "Acquisition Settings",
 			"type": "doc_readme",
