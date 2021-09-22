@@ -51,15 +51,12 @@
         var html = '<ul><li><a class="in_load" data-repo="'+repo+'" data-branch="'+branch+'" data data-subfolder="'+subfolder+'" data-file="'+rd_file+'" href="#">Overview</a></li>';
     
         $.each(data.items, function() {
-            
-
 
             var name = this.name;
 
             var type = this.type;
 
             var item_has_children = false;
-            
 
             if(type != 'ex'){
                 var file = this.file;
@@ -67,11 +64,14 @@
                 var branch = this.branch;
 
                 if(this.subfolder != ''){
-                    var subfolder = this.repo_sub_folder + '/' + this.subfolder;
+                    if(this.parent_folder != ''){
+                        var subfolder = this.repo_sub_folder + '/' + this.parent_folder + '/' + this.subfolder;
+                    }else{
+                        var subfolder = this.repo_sub_folder + '/' + this.subfolder;
+                    }
                 }else{
                     var subfolder = this.repo_sub_folder + '/' + this.parent_folder;
                 }
-                
 
                 if(this.has_children == true){
                     var item_has_children = this.has_children;
@@ -133,24 +133,24 @@
     //Function to build readme items in the menu.
     function buildDocItem(name,repo,branch,subfolder,file,item_has_children,children){
 
+        console.log(name);
+        console.log(item_has_children);
+
         var html = '';
 
-        var href = '#'+repo+'/'+branch+'/'+subfolder+'/'+file;
+        var href = '#'+repo+'/'+branch+'/'+subfolder+'/'+file;''
         
         html += '<a class="in_load" data-repo="'+repo+'" data-branch="'+branch+'" data data-subfolder="'+subfolder+'" data-file="'+file+'" href="'+href+'">'+name+'</a>';
-        
-
+    
         if(item_has_children){
             html += '<ul class="sub_menu">';
             
             $.each(children, function() {
                 
-    
-                var id = this.id;
                 var name = this.name;
-    
+                
                 var type = this.type;
-    
+
                 if(type != 'ex'){
                     if(this.subfolder != ''){
                         if(this.parent_folder != ''){
@@ -161,22 +161,22 @@
                     }else{
                         var subfolder = this.repo_sub_folder + '/' + this.parent_folder;
                     }
+
                     var file = this.file;
     
-                    if(this.has_children == false){
-                        var item_has_children = this.has_children;
-                        var children = this.children
-                    }else{
-                        var item_has_children = false;
-                        var children = [];
+                    if(this.has_children != false){
+                        item_has_children = this.has_children;
                     }
                     if(item_has_children){
                         html += '<li class="has_children">';
+                        var children = this.children;
+                        console.log('Item Has Children');
                     }else{
                         html += '<li>';
+                        var children = [];
                     }
                     
-                    html += buildDocItem(name,repo,branch,subfolder,file,type,item_has_children,children);
+                    html += buildDocItem(name,repo,branch,subfolder,file,item_has_children,children);
                     html += '</li>';
                 }else{
                     var url = this.url;
@@ -184,11 +184,12 @@
                     html += buildExItem(name,url);
                     html += '</li>';
                 }
-    
                 
             });
 
             html += '</ul>';
+        }else{
+            console.log('test' + name);
         }
 
         return html;
