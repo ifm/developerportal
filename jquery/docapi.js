@@ -45,6 +45,8 @@
 
         var docapi_menu = $('.docapi_menu');
 
+        console.log(data.items);
+
         
         var html = '<ul><li><a class="in_load" data-repo="'+repo+'" data-branch="'+branch+'" data data-subfolder="'+subfolder+'" data-file="'+rd_file+'" href="#">Overview</a></li>';
     
@@ -55,30 +57,36 @@
             var name = this.name;
 
             var type = this.type;
+
+            var item_has_children = false;
             
 
             if(type != 'ex'){
-                var subfolder = this.subfolder;
                 var file = this.file;
-                
                 var repo = this.repo;
                 var branch = this.branch;
-                var subfolder = this.subfolder;
 
-                if(this.has_children){
-                    var has_children = this.has_children;
+                if(this.subfolder != ''){
+                    var subfolder = this.repo_sub_folder + '/' + this.subfolder;
+                }else{
+                    var subfolder = this.repo_sub_folder + '/' + this.parent_folder;
+                }
+                
+
+                if(this.has_children == true){
+                    var item_has_children = this.has_children;
                     var children = this.children
                 }else{
-                    var has_children = false;
+                    var item_has_children = false;
                     var children = '';
                 }
-                if(has_children){
+                if(item_has_children){
                     html += '<li class="has_children">';
                 }else{
                     html += '<li>';
                 }
                 
-                html += buildDocItem(name,repo,branch,subfolder,file,has_children,children);
+                html += buildDocItem(name,repo,branch,subfolder,file,item_has_children,children);
                 html += '</li>';
 
             }else{
@@ -123,7 +131,7 @@
 
 
     //Function to build readme items in the menu.
-    function buildDocItem(name,repo,branch,subfolder,file,has_children,children){
+    function buildDocItem(name,repo,branch,subfolder,file,item_has_children,children){
 
         var html = '';
 
@@ -132,7 +140,7 @@
         html += '<a class="in_load" data-repo="'+repo+'" data-branch="'+branch+'" data data-subfolder="'+subfolder+'" data-file="'+file+'" href="'+href+'">'+name+'</a>';
         
 
-        if(has_children){
+        if(item_has_children){
             html += '<ul class="sub_menu">';
             
             $.each(children, function() {
@@ -144,23 +152,31 @@
                 var type = this.type;
     
                 if(type != 'ex'){
-                    var subfolder = this.subfolder;
+                    if(this.subfolder != ''){
+                        if(this.parent_folder != ''){
+                            var subfolder = this.repo_sub_folder + '/' + this.parent_folder + '/' + this.subfolder;
+                        }else{
+                            var subfolder = this.repo_sub_folder + '/' + this.subfolder;
+                        }
+                    }else{
+                        var subfolder = this.repo_sub_folder + '/' + this.parent_folder;
+                    }
                     var file = this.file;
     
-                    if(this.has_children){
-                        var has_children = this.has_children;
+                    if(this.has_children == false){
+                        var item_has_children = this.has_children;
                         var children = this.children
                     }else{
-                        var has_children = false;
-                        var children = '';
+                        var item_has_children = false;
+                        var children = [];
                     }
-                    if(has_children){
+                    if(item_has_children){
                         html += '<li class="has_children">';
                     }else{
                         html += '<li>';
                     }
                     
-                    html += buildDocItem(name,repo,branch,subfolder,file,type,has_children,children);
+                    html += buildDocItem(name,repo,branch,subfolder,file,type,item_has_children,children);
                     html += '</li>';
                 }else{
                     var url = this.url;
@@ -214,17 +230,8 @@
         var docapi_content = $('.docapi_content');
         docapi_content.empty();
 
-        console.log(window);
-
         var markDown = getMarkdown(url);
         var md = window.markdownit();
-        var mila = window.markdownitLinkAttributes;
-        md.use(mila, [{
-            pattern: /.md/,
-            attrs: {
-              class: 'inline_md_file'
-            }
-          }])
         var html = md.render(markDown);
         docapi_content.html(html);
 

@@ -1,5 +1,7 @@
 <?php 
 
+$debug = true;
+
 include('Parsedown.php');
 $Parsedown = new Parsedown();
 
@@ -34,9 +36,16 @@ $json_array['items'] = rec_md_get($md, $base_info,$Parsedown);
 // echo json_encode($json_array);
 
 $json = json_encode($json_array);
-$file = fopen('../jquery/menu.json','w+') or die("File not found");
-fwrite($file, $json);
-fclose($file);
+
+if($debug != true){
+    $file = fopen('../jquery/menu.json','w+') or die("File not found");
+    fwrite($file, $json);
+    fclose($file);
+}else{
+    echo($json);
+}
+
+
 
 //Gets the string between two other strings inside of a string.
 function get_string_between($string, $start, $end){
