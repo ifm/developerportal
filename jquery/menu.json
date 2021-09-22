@@ -1,1 +1,134 @@
-{"items":[]}
+{
+	"items": [{
+		"name": "Products Description",
+		"type": "doc_readme",
+		"repo": "ifm/documentation",
+		"branch": "lm_folder_structure",
+		"repo_sub_folder":"O3R",
+		"parent_folder":"",
+		"subfolder": "ProductsDescription",
+		"file": "README.md"
+	},{
+		"name": "Getting Started",
+		"type": "doc_readme",
+		"repo": "ifm/documentation",
+		"branch": "lm_folder_structure",
+		"repo_sub_folder":"O3R",
+		"parent_folder":"",
+		"subfolder": "GettingStarted",
+		"file": "README.md",
+		"has_children": true,
+		"children": [{
+			"name": "Getting Started",
+			"type": "doc_readme",
+			"repo": "ifm/documentation",
+			"branch": "lm_folder_structure",
+			"repo_sub_folder":"O3R",
+			"parent_folder":"GettingStarted",
+			"subfolder": "",
+			"file": "getting_started.md"
+		}]
+	},{
+		"name": "Parameters",
+		"type": "doc_readme",
+		"repo": "ifm/documentation",
+		"branch": "lm_folder_structure",
+		"repo_sub_folder":"O3R",
+		"parent_folder":"",
+		"subfolder": "Parameters",
+		"file": "README.md",
+		"has_children": true,
+		"children": [{
+			"name": "Parameters Overview",
+			"type": "doc_readme",
+			"repo": "ifm/documentation",
+			"branch": "lm_folder_structure",
+			"repo_sub_folder":"O3R",
+			"parent_folder":"Parameters",
+			"subfolder": "",
+			"file": "parameters_overview.md"
+		},{
+			"name": "Acquisition Settings",
+			"type": "doc_readme",
+			"repo": "ifm/documentation",
+			"branch": "lm_folder_structure",
+			"repo_sub_folder":"O3R",
+			"parent_folder":"Parameters",
+			"subfolder": "AcquisitionSettings",
+			"file": "README.md"
+		},{
+			"name": "Filters",
+			"type": "doc_readme",
+			"repo": "ifm/documentation",
+			"branch": "lm_folder_structure",
+			"repo_sub_folder":"O3R",
+			"parent_folder":"Parameters",
+			"subfolder": "Filters",
+			"file": "README.md",
+			"has_children": true,
+			"children": [{
+				"name": "Filter 1 - coming soon",
+				"type": "doc_readme",
+				"repo": "ifm/documentation",
+				"branch": "lm_folder_structure",
+				"repo_sub_folder":"O3R",
+				"parent_folder":"Parameters",
+				"subfolder": "Filters",
+				"file": "filter1.md"
+			}]
+		}]
+	},{
+		"name": "Datasheets",
+		"type": "doc_readme",
+		"repo": "ifm/documentation",
+		"branch": "lm_folder_structure",
+		"repo_sub_folder":"O3R",
+		"parent_folder":"",
+		"subfolder": "Datasheets",
+		"file": "README.md"
+	},{
+		"name": "Application Notes",
+		"type": "doc_readme",
+		"repo": "ifm/documentation",
+		"branch": "lm_folder_structure",
+		"repo_sub_folder":"O3R",
+		"parent_folder":"",
+		"subfolder": "ApplicationNotes",
+		"file": "README.md",
+		"has_children": true,
+		"children": [{
+			"name": "Multi Path Interference",
+			"type": "doc_readme",
+			"repo": "ifm/documentation",
+			"branch": "lm_folder_structure",
+			"repo_sub_folder":"O3R",
+			"parent_folder":"ApplicationNotes",
+			"subfolder": "",
+			"file": "mpi.md"
+		}]
+	},{
+		"name": "ROS",
+		"type": "ex",
+		"url": "INSERT-LINK"
+	},{
+		"name": "FAQ",
+		"type": "doc_readme",
+		"repo": "ifm/documentation",
+		"branch": "lm_folder_structure",
+		"repo_sub_folder":"O3R",
+		"parent_folder":"",
+		"subfolder": "FAQ",
+		"file": "README.md",
+		"has_children": true,
+		"children": [{
+			"name": "Multi Path Interference",
+			"type": "doc_readme",
+			"repo": "ifm/documentation",
+			"branch": "lm_folder_structure",
+			"repo_sub_folder":"O3R",
+			"parent_folder":"FAQ",
+			"subfolder": "",
+			"file": "faq.md"
+		}]
+	}]
+}
