@@ -118,17 +118,6 @@
 		"repo_sub_folder":"O3R",
 		"parent_folder":"",
 		"subfolder": "FAQ",
-		"file": "README.md",
-		"has_children": true,
-		"children": [{
-			"name": "Multi Path Interference",
-			"type": "doc_readme",
-			"repo": "ifm/documentation",
-			"branch": "lm_folder_structure",
-			"repo_sub_folder":"O3R",
-			"parent_folder":"FAQ",
-			"subfolder": "",
-			"file": "faq.md"
-		}]
+		"file": "README.md"
 	}]
 }
