@@ -45,9 +45,6 @@
 
         var docapi_menu = $('.docapi_menu');
 
-        console.log(data.items);
-
-        
         var html = '<ul><li><a class="in_load" data-repo="'+repo+'" data-branch="'+branch+'" data data-subfolder="'+subfolder+'" data-file="'+rd_file+'" href="#">Overview</a></li>';
     
         $.each(data.items, function() {
@@ -133,9 +130,6 @@
     //Function to build readme items in the menu.
     function buildDocItem(name,repo,branch,subfolder,file,item_has_children,children){
 
-        console.log(name);
-        console.log(item_has_children);
-
         var html = '';
 
         var href = '#'+repo+'/'+branch+'/'+subfolder+'/'+file;''
@@ -170,7 +164,6 @@
                     if(item_has_children){
                         html += '<li class="has_children">';
                         var children = this.children;
-                        console.log('Item Has Children');
                     }else{
                         html += '<li>';
                         var children = [];
@@ -188,8 +181,6 @@
             });
 
             html += '</ul>';
-        }else{
-            console.log('test' + name);
         }
 
         return html;
