@@ -18,31 +18,31 @@
     if(window.location.hash) {
         
         var hash = window.location.hash;
-        var hashObj = hash.split('/');
-        var hash_username = hashObj[0].replace('#','');
-        var hash_repo_name = hashObj[1];
-        var hash_repo = hash_username + '/' + hash_repo_name;
-        var hash_branch = hashObj[2];
-        var hash_file = hashObj.slice(-1).pop();
+        
+        var hashObj = getHashObj(hash);
 
-        var remove_first = hashObj.slice();
-        remove_first.splice(0,3);
-        var remove_last = remove_first.slice();
-        remove_last.splice(-1,1);
-        var hash_subfolder = remove_last.join("/");
-
-        loadMarkdown(raw_url,hash_repo,hash_branch,hash_subfolder,hash_file);
+        loadMarkdown(raw_url,hashObj.hash_repo,hashObj.hash_branch,hashObj.hash_subfolder,hashObj.hash_file);
 
     }else{
         loadMarkdown(raw_url,repo,branch,subfolder,rd_file);
     }
+
+    $(window).on('hashchange', function(){
+        console.log('Hash has changed');
+
+        var hash = window.location.hash;
+        
+        var hashObj = getHashObj(hash);
+
+        loadMarkdown(raw_url,hashObj.hash_repo,hashObj.hash_branch,hashObj.hash_subfolder,hashObj.hash_file);
+    });
     
     //Get menu.json. loop through each item, and build the menu items out of that.(Might breakdown more for modulary and clarity in future).
     $.getJSON("jquery/menu.json", function(data){
 
         var docapi_menu = $('.docapi_menu');
 
-        var html = '<ul><li><a class="in_load" data-repo="'+repo+'" data-branch="'+branch+'" data data-subfolder="'+subfolder+'" data-file="'+rd_file+'" href="#">Overview</a></li>';
+        var html = '<ul><li><a class="in_load" data-repo="'+repo+'" data-branch="'+branch+'" data data-subfolder="'+subfolder+'" data-file="'+rd_file+'" href="#'+repo+'/'+branch+'/'+subfolder+'/'+rd_file+'">Overview</a></li>';
     
         $.each(data.items, function() {
 
@@ -111,7 +111,6 @@
         var link_subfolder = link.attr('data-subfolder');
         var link_file = link.attr('data-file');
         
-        loadMarkdown(raw_url,link_repo,link_branch,link_subfolder,link_file);
 
     });
 
@@ -124,8 +123,8 @@
         var link_branch = link.attr('data-branch');
         var link_subfolder = link.attr('data-subfolder');
         var link_file = link.attr('data-file');
-        
-        loadMarkdown(raw_url,link_repo,link_branch,link_subfolder,link_file);
+
+        location.hash = [link_repo,link_branch,link_subfolder,link_file].join('/');
 
     });
 
@@ -214,8 +213,38 @@
         })
         .done(function(data){
             result = data;
+            console.log(data);
+        })
+        .fail(function(){
+            result = '### There was an error loading that file. Please try again later or contact the site administrator.';
         });
         return result;
+    }
+
+    function getHashObj(hash_str){
+
+        var hash_array = {};
+        
+        var hashObj = hash_str.split('/');
+        var hash_username = hashObj[0].replace('#','');
+        var hash_repo_name = hashObj[1];
+        var hash_repo = hash_username + '/' + hash_repo_name;
+        var hash_branch = hashObj[2];
+        var hash_file = hashObj.slice(-1).pop();
+
+        var remove_first = hashObj.slice();
+        remove_first.splice(0,3);
+        var remove_last = remove_first.slice();
+        remove_last.splice(-1,1);
+        var hash_subfolder = remove_last.join("/");
+
+        hash_array.hash_repo = hash_repo;
+        hash_array.hash_branch = hash_branch;
+        hash_array.hash_subfolder = hash_subfolder;
+        hash_array.hash_file = hash_file;
+
+        return hash_array;
+
     }
 
     //Function to fetch and load markdown from url.
