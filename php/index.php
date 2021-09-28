@@ -145,7 +145,7 @@ function get_string_between($string, $start, $end){
 //Gets the MD and returns it.
 function return_md($url,$Parsedown){
     
-    $contents = file_get_contents($url.'');
+    $contents = file_get_contents($url.'?flush_cache=True');
     $md = $Parsedown->text($contents);
 
     return $md;
