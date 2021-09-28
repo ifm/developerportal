@@ -112,8 +112,9 @@ function rec_build_array($base_info,$md,$Parsedown){
                 $item_array['type'] = $item_type;
                 $item_array['repo'] = $item_repo;
                 $item_array['branch'] = $item_branch;
-                $item_array['file'] = $item_file;
+                $item_array['file'] = $item_rd_file;
                 $item_array['parent_folder'] = $item_parent_folder;
+                $item_array['repo_sub_folder'] = $base_info['base_sub_folder'];
 
 
                 //get Md of the new file.

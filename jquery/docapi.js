@@ -36,9 +36,9 @@
 
                 if(this.subfolder != ''){
                     if(this.parent_folder != ''){
-                        var subfolder = this.repo_sub_folder + '/' + this.parent_folder + '/' + this.subfolder;
+                        var subfolder = this.repo_sub_folder + '/' + this.parent_folder;
                     }else{
-                        var subfolder = this.repo_sub_folder + '/' + this.subfolder;
+                        var subfolder = this.repo_sub_folder;
                     }
                 }else{
                     var subfolder = this.repo_sub_folder + '/' + this.parent_folder;
@@ -232,9 +232,9 @@
                 if(type != 'ex'){
                     if(this.subfolder != ''){
                         if(this.parent_folder != ''){
-                            var subfolder = this.repo_sub_folder + '/' + this.parent_folder + '/' + this.subfolder;
+                            var subfolder = this.repo_sub_folder + '/' + this.parent_folder;
                         }else{
-                            var subfolder = this.repo_sub_folder + '/' + this.subfolder;
+                            var subfolder = this.repo_sub_folder;
                         }
                     }else{
                         var subfolder = this.repo_sub_folder + '/' + this.parent_folder;
