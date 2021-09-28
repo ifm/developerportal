@@ -1,12 +1,12 @@
 <?php 
 
-$debug = true;
+$debug = false;
 
 include('Parsedown.php');
 $Parsedown = new Parsedown();
 
 //Get Provided URL, verify its a github url, and parse the url to markdown
-$base_md_file = 'https://raw.githubusercontent.com/Costellos/Ifm-documentation-test/master/documentation/README.md';
+$base_md_file = 'https://raw.githubusercontent.com/ifm/documentation/lm_table_of_content/O3R/README.md';
 $parse_contents_url = parse_url($base_md_file);
 $path_array = explode('/',$parse_contents_url['path']);
 
@@ -39,7 +39,7 @@ if($debug == true){
 }else{
     //write to file
     $json = json_encode($json_array);
-    $file = fopen('../menu.json','w+') or die("File not found");
+    $file = fopen('../jquery/menu.json','w+') or die("File not found");
     fwrite($file, $json);
     fclose($file);
 }
@@ -47,8 +47,6 @@ if($debug == true){
 
 function rec_build_array($base_info,$md,$Parsedown){
     $items_array = array();
-
-    echo($md);
 
     $table_check = check_for_table($md);
 
@@ -86,49 +84,33 @@ function rec_build_array($base_info,$md,$Parsedown){
                 $item_array['name'] = $item_name;
                 $item_type = 'doc_readme';
 
+                $list_item_url = str_replace('../','',$list_item_url);
                 $list_item_url_array = explode('/',$list_item_url);
                 $list_item_url_array_count = count($list_item_url_array);
 
+                $item_rd_file = array_pop($list_item_url_array);
+                $item_parent_folder = join('/', $list_item_url_array);
 
-                //Test count of link folder sturcure (3 is base root, 2, is sub folder Readme (i.e. Paramaters/README.md), 1 is sub folder file (i.e. Paramaters/modes.md))
-                // if($list_item_url_array_count >= 3){
-
-                //     $item_parent_folder = $list_item_url_array[0];
-
-                //     $item_file = $base_info['base_full_url'] . '/'. $list_item_url;
-
-                // }elseif($list_item_url_array_count == 2){
-
-                //     $item_parent_folder = $list_item_url_array[0];
-
-                //     $item_file = $base_info['base_full_url'] . '/'. $list_item_url;
-
-                // }elseif($list_item_url_array_count == 1){
-                //     $item_parent_folder = $base_info['temp_parent_folder'];
-                //     $item_file = $base_info['base_full_url'] . '/'. $item_parent_folder . '/'. $list_item_url;
-                // }
-
-                
-
-                echo($item_file);
+                $item_file = $base_info['base_full_url']. '/' .$item_parent_folder. '/'. $item_rd_file;
 
                 $item_repo = $base_info['base_repo'];
                 $item_branch = $base_info['base_branch'];
 
-                $item_array['has_children'] = $item_has_children;
-                $item_array['sub_folder'] = $item_sub_folder;
+                
+                //$item_array['sub_folder'] = $item_sub_folder;
                 $item_array['type'] = $item_type;
                 $item_array['repo'] = $item_repo;
                 $item_array['branch'] = $item_branch;
                 $item_array['file'] = $item_file;
                 $item_array['parent_folder'] = $item_parent_folder;
-                $base_info['temp_parent_folder'] = $item_parent_folder;
 
                 $md = return_md($item_file,$Parsedown);
 
                 $children = rec_build_array($base_info,$md,$Parsedown);
                 if($children){
                     $item_has_children = true;
+                    $item_array['has_children'] = $item_has_children;
+                    $item_array['children'] = $children;
                 }
                 
             }else{
