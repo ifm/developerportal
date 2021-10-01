@@ -3,6 +3,8 @@
 name: Update Json Menu
 on:
   push:
+    branches:
+      - '!main'
   schedule:
     - cron:  '*/15 * * * *'
 
