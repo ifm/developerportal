@@ -20,21 +20,24 @@
         var docapi_menu = $('.docapi_menu_con');
 
         var html = '<ul class="docapi_menu"><li class="docapi_menu_link" data-hash="#'+repo+'/'+branch+'/'+subfolder+'/'+rd_file+'"><a class="in_load active" data-repo="'+repo+'" data-branch="'+branch+'" data data-subfolder="'+subfolder+'" data-file="'+rd_file+'" href="#'+repo+'/'+branch+'/'+subfolder+'/'+rd_file+'">Overview</a></li>';
-    
+        
+        //Loop through data.items and for each onme, build the menu.
         $.each(data.items, function() {
 
+            //Set name, type and default all item_has_children to false, we set it to true later if it has children.
             var name = this.name;
-
             var type = this.type;
-
             var item_has_children = false;
 
+            //If type is not ex. Set file, repo, and branch to the data.
             if(type != 'ex'){
                 var file = this.file;
                 var repo = this.repo;
                 var branch = this.branch;
 
+                //This builds the folder structure starting at the repo subfolder, and adding parent folder if it has one.
                 if(this.subfolder != ''){
+                    //If item has partent 
                     if(this.parent_folder != ''){
                         var subfolder = this.repo_sub_folder + '/' + this.parent_folder;
                     }else{
@@ -44,6 +47,7 @@
                     var subfolder = this.repo_sub_folder + '/' + this.parent_folder;
                 }
 
+                //If it has_children, set vars for children and set item_has_children to true
                 if(this.has_children == true){
                     var item_has_children = this.has_children;
                     var children = this.children
@@ -51,15 +55,19 @@
                     var item_has_children = false;
                     var children = '';
                 }
+                
+                //If item_has_children then setup the sub folder items
                 if(item_has_children){
                     html += '<li class="docapi_menu_link has_children" data-hash="#'+repo+'/'+branch+'/'+subfolder+'/'+rd_file+'">';
                 }else{
                     html += '<li class="docapi_menu_link" data-hash="#'+repo+'/'+branch+'/'+subfolder+'/'+rd_file+'">';
                 }
                 
+                //Start recursive loop down.
                 html += buildDocItem(name,repo,branch,subfolder,file,item_has_children,children);
                 html += '</li>';
 
+            //If item type is ex, build the ex item menu.
             }else{
                 var url = this.url;
 
@@ -73,12 +81,15 @@
 
         html += '</ul>';
 
+        //Add html from above to the docapi menu.
         docapi_menu.html(html);
 
     }).fail(function(){
         console.log("An error has occurred.");
     });
 
+
+    //On document ready (needed to do this after the menu is build from above) to checks if it has a hash, if it does a the has, if it doesnt load the defalts set at top.
     $( document ).ready(function() {
         //If Has hash, set vars and load has, else load default settings.
         if(window.location.hash) {
@@ -91,7 +102,7 @@
 
             loadMarkdown(raw_url,hashObj.hash_repo,hashObj.hash_branch,hashObj.hash_subfolder,hashObj.hash_file);
 
-            testLoad(hashObj);
+            loadHash(hashObj);
 
         }else{
             loadMarkdown(raw_url,repo,branch,subfolder,rd_file);
@@ -146,11 +157,13 @@
             var link_sub_menu =  $(this).children('.sub_menu');
             var other_sub_menus = $(this).siblings('.docapi_menu_link');
             
+            //Close other sub menus
             other_sub_menus.each(function(){
                 var other_sub_menu =  $(this).children('.sub_menu');
                 closeMenu(other_sub_menu);
             });
 
+            //Open this sub menu
             openMenu(link_sub_menu);
         }else{
             var other_sub_menus = $(this).siblings('.docapi_menu_link');
@@ -163,7 +176,8 @@
 
     });
 
-    function testLoad(hashObj){
+    //Load hash and open the current menu that = the hash. (WIP)
+    function loadHash(hashObj){
 
         var current_hash = "#"+hashObj.hash_repo+"/"+hashObj.hash_branch+"/"+hashObj.hash_subfolder+"/"+hashObj.hash_file;
 
@@ -175,16 +189,17 @@
             var test = $(this).find(`[data-hash='${current_hash}']`);
             
             if(test.length > 0){
-                console.log("Hash Found");
+                //console.log("Hash Found");
                 $(this).click();
             }else{
-                console.log("Hash Not Found");
+                //console.log("Hash Not Found");
             } 
         });
 
-        console.log(items.length);
+        //console.log(items.length);
     }
 
+    //Function to close the menu on click
     function closeMenu(item){
         
         var parent_li = item.parent('.docapi_menu_link');
@@ -200,6 +215,7 @@
 
     }
 
+    //Function to open the menu on click
     function openMenu(item){
 
         if(item.hasClass('open')){
@@ -218,11 +234,14 @@
 
         var href = '#'+repo+'/'+branch+'/'+subfolder+'/'+file;''
         
+        //Create link, and fill with data provided
         html += '<a class="in_load" data-repo="'+repo+'" data-branch="'+branch+'" data data-subfolder="'+subfolder+'" data-file="'+file+'" href="'+href+'">'+name+'</a>';
-    
+        
+        //If item has children, loop through them, and build the sub items
         if(item_has_children){
             html += '<ul class="sub_menu">';
             
+            //Loop children, and set vars.
             $.each(children, function() {
                 
                 var name = this.name;
@@ -245,6 +264,8 @@
                     if(this.has_children != false){
                         item_has_children = this.has_children;
                     }
+                    
+                    //If item has children, set children = children, and build sub menu, else set children to blank array, aand setup for no more sub items.
                     if(item_has_children){
                         html += '<li class="docapi_menu_link has_children" data-hash="#'+repo+'/'+branch+'/'+subfolder+'/'+rd_file+'">';
                         var children = this.children;
@@ -252,9 +273,10 @@
                         html += '<li class="docapi_menu_link" data-hash="#'+repo+'/'+branch+'/'+subfolder+'/'+rd_file+'">';
                         var children = [];
                     }
-                    
+                    //Continue recursive
                     html += buildDocItem(name,repo,branch,subfolder,file,item_has_children,children);
                     html += '</li>';
+                //If type is ex, build ex item.
                 }else{
                     var url = this.url;
                     html += '<li>';
@@ -267,6 +289,7 @@
             html += '</ul>';
         }
 
+        //Return the html
         return html;
     }
 

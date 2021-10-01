@@ -173,52 +173,41 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <p>Lorem the It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                                <p>The DocApi is a system used to pull your documentation from github, and display it on the developorportal website. It uses Javascript, PHP and Json to make it work, as well as github actions to add some automation in to the mix.</p>
+                                
+                                <h4>How to get it to work</h4>
 
-                                <!-- <h4>Jquery Doc API Code</h4>
+                                <p>First add this inside the head. This is the css file that will style the docapi menu. You can also add any markdown/readme styles you need. Or create a new css file and link it.</p>
 
-                                <pre class="brush: html; highlight: [2,4]">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                YOUR CODES GOES HERE
-                                            </div>
+                                <pre class="brush: html">
+                                    <link rel="stylesheet" href="readme.css">
+                                </pre>
+
+                                <p>Second add this right before the &lt;/body&gt;. This is used to parse the markdown from the github repo. </p>
+
+                                <pre class="brush: html">
+                                    <script src="jquery/markdownit.min.js">
+                                    </script><script src="jquery/docapi.js"></script>
+                                </pre>
+
+                                <p>You will need to add this code below to your html page you want the docapi to show up. Be sure to change the "data-xxxxxx" info to match your repo.</p>
+                                <ul>
+                                    <li><strong>data-repo</strong>: This is the username and repo from github. https://github.com/<strong>ifm/documentation</strong>tree/main/O3R (required)</li>
+                                    <li><strong>data-branch</strong>: This is the branch the specific branch the documentation should be pulled from. https://github.com/ifm/documentation/tree/<strong>main</strong>/O3R (required/ Default: master)</li>
+                                    <li><strong>data-subfolder</strong>: This is the base subfolder the documentation resideds in. https://github.com/ifm/documentation/tree/main/<strong>O3R</strong> (required)</li>
+                                    <li><strong>data-file</strong>: This is the first table of contents README file that exisits. https://github.com/ifm/documentation/blob/main/O3R/<strong>README.md</strong> (required)</li>
+                                </ul>
+
+                                <pre class="brush: html">
+                                    <div class="docapi" data-repo="ifm/documentation/"  data-branch="main" data-subfolder="O3R" data-file="README.md">
+                                        <div class="docapi_sidebar">
+                                            <div class="docapi_menu_con"></div>
                                         </div>
+                                        <div class="docapi_content"></div>
                                     </div>
                                 </pre>
 
-                                <p>Our you can use the grid system with 2 columns like this;</p>
-
-                                <pre class="brush: html">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                YOUR CODES GOES HERE
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                YOUR CODES GOES HERE
-                                            </div>
-                                        </div>
-                                    </div>
-                                </pre>
-
-                                <p>Our you can use the grid system with 3 columns like this;</p>
-
-                                <pre class="brush: html">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                YOUR CODES GOES HERE
-                                            </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                YOUR CODES GOES HERE
-                                            </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                YOUR CODES GOES HERE
-                                            </div>
-                                        </div>
-                                    </div>
-                                </pre> -->
+                                <p>The only other thing you need to do is make sure the menu.json file the PHP created is in the correct spot. Default: /jquery/menu.json</p>
                             </div>
                             <!-- end col -->
                         </div>
@@ -237,8 +226,15 @@
                         </div>
                         <!-- end row -->
 
-                        <p>Lorem the It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                        <p>This section will explain the different parts to how this system works.</p>
 
+                        <h4>Html and Javascript</h4>
+
+                        <p>The html and javascript work together to give you the UI and the actual function of pulling the repo and display it on the page. The docapi.js file reads a menu.json file that is created by the php to get all the markdown files it needs to read, and displays them based on the order they were created in the Json file.</p>
+
+                        <h4>PHP and Github Action</h4>
+
+                        <p>The PHP works by parsing the markdown and looking for all of the table of contents documents in your documentation and building the menu.json file the docapi.js file needs to work. This menu.json file can be created manualy. But this is a way to partially automate the process. If you have the website hosted on github pages you will need to setup the github actions workflow to get this to work. See the "".github/workflows/main.yml" for more info.</p>
                     </section>
                     <!-- end section -->
 
@@ -252,7 +248,7 @@
                         </div>
                         <!-- end row -->
 
-                        <p>Lorem the It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                        <p>Below are the important parts of the Doc API and what they do. For more info, please see the docai.js file and read throug the comments.</p>
 
                     </section>
                     <!-- end section -->

@@ -305,3 +305,7 @@ html #mode .dark {
 .syntaxhighlighter .js.keyword {
     color: #b48ead !important;
 }
+
+.code .container:before{
+    display: none;
+}
