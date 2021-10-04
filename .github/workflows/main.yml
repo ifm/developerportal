@@ -21,6 +21,8 @@ jobs:
         php index.php
         cd ../
     - name: Commit and push changes
+      with:
+        token: ${{secrets.ifmCSRtest}}
       run: |-
         git diff
         git config user.name "Automated"
