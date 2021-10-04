@@ -5,15 +5,25 @@ on:
   push:
   schedule:
     - cron:  '*/15 * * * *'
-
+  workflow_dispatch:
+env:
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}  
+  
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - name: GH_TOKEN
+      if: env.GH_TOKEN == ''
+      env: 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: echo "GH_TOKEN=${GITHUB_TOKEN}" >> $GITHUB_ENV
     - name: Check out repo
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
+        ref: main
+        token: ${{ env.GH_TOKEN }}
     - name: Run PHP and Update Menu
       run: |
         cd php
@@ -22,7 +32,7 @@ jobs:
     - name: Commit and push changes
       run: |-
         git diff
-        git config user.name "Automated"
-        git config user.email "actions@users.noreply.github.com"
+        git config user.name "ifm-csr"
+        git config user.email "support.robotics@ifm.com"
         git diff --quiet || (git add -A && git commit -m "Updated with latest")
         git push
