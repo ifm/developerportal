@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="readme.css">
     <link rel="stylesheet" href="footerstyle.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
 </head>
 
 <body>
@@ -27,7 +28,12 @@
         <div class="section" id="mainframe">
 
             <div class="docapi" data-repo="ifm/documentation/"  data-branch="lm_table_of_content" data-subfolder="O3R" data-file="README.md">
-                <div class="docapi_menu"></div>
+                <div class="docapi_sidebar">
+                    <!-- <div class="docapi_search">
+                        <input type="text" name="docapi_search" id="docapi_search">
+                    </div> -->
+                    <div class="docapi_menu_con"></div>
+                </div>
                 <div class="docapi_content"></div>
             </div>
 
@@ -37,7 +43,14 @@
 
     <div id="footer"></div>
     <script src="jquery/markdownit.min.js"></script>
-    <script src="jquery/markdown-it-link-attributes.min.js"></script>
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    <script type="text/javascript"> docsearch({
+    apiKey: 'f2f30c76f9d3d9707510f452d6c8a5ab',
+    indexName: 'ifm3d',
+    inputSelector: '#docapi_search',
+    debug: false // Set debug to true if you want to inspect the dropdown
+    });
+    </script> -->
     <script src="jquery/docapi.js"></script>
 </body>
 
