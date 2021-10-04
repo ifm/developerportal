@@ -131,7 +131,9 @@ function rec_build_array($base_info,$md,$Parsedown){
             }else{//Sett external link vars, if not .md file
                 $item_array['name'] = $item_name;
                 $item_type = 'ex';
+                $item_array['type'] = $item_type;
                 $item_url = $list_item_url;
+                $item_array['url'] = $item_url;
             }
 
             //Push item array to all items array for json encoding
