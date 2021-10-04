@@ -13,11 +13,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: 🔍 GH_TOKEN
-        if: env.GH_TOKEN == ''
-        env: 
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: echo "GH_TOKEN=${GITHUB_TOKEN}" >> $GITHUB_ENV
+    - name: GH_TOKEN
+      if: env.GH_TOKEN == ''
+      env: 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: echo "GH_TOKEN=${GITHUB_TOKEN}" >> $GITHUB_ENV
     - name: Check out repo
       uses: actions/checkout@v2
       with:
