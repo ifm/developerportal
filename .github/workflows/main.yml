@@ -23,7 +23,7 @@ jobs:
     - name: Commit and push changes
       run: |-
         git diff
-        git config user.name "ifm-CSR"
+        git config user.name "ifm-csr"
         git config user.email "support.robotics@ifm.com"
         git diff --quiet || (git add -A && git commit -m "Updated with latest")
         git push
