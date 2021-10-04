@@ -6,15 +6,24 @@ on:
   schedule:
     - cron:  '*/15 * * * *'
   workflow_dispatch:
+env:
+  GH_TOKEN: ${{ secrets.IFMCSRTEST }}  
   
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - name: 🔍 GH_TOKEN
+        if: env.GH_TOKEN == ''
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: echo "GH_TOKEN=${GITHUB_TOKEN}" >> $GITHUB_ENV
     - name: Check out repo
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
+        ref: main
+        token: ${{ env.GH_TOKEN }}
     - name: Run PHP and Update Menu
       run: |
         cd php
