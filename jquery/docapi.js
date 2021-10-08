@@ -360,7 +360,9 @@
         var docapi_content = $('.docapi_content');
         docapi_content.empty();
         var markDown = getMarkdown(md_url);
-        var md = window.markdownit();
+        var md = window.markdownit({
+            html:true
+        });
 
         // Change Links to absolute paths, and add class 'inline_md_file';
         var defaultRender = md.renderer.rules.link_open || function(tokens, idx, options, env, self) {
