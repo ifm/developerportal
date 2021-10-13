@@ -1,3 +1,8 @@
+.md_image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
 
 body {
     margin: 0;
@@ -24,14 +29,14 @@ body {
 }
 
 #robotchar{
-    float: left; 
-    padding-right: 40px; 
+    float: left;
+    padding-right: 40px;
     margin-left: 10%;"
 }
 
 #githublogo{
-    float: right; 
-    padding-top: 60px; 
+    float: right;
+    padding-top: 60px;
     padding-left: 40px;
     padding-right: 15%;
 }
@@ -55,7 +60,7 @@ div.solid {
 
 .ifmdevportal-banner-responsive-bg-image {
     position: relative;
-    z-index: 0;   
+    z-index: 0;
     padding: 4% 4% 4% 6%;
     background-image: url(assets/Banner-o3r-1800x813.jpg);
     background-repeat: no-repeat;
@@ -72,8 +77,8 @@ div.solid {
     background-color: #f9f9f9;
     padding: 10px 40px 10px 30px;
     display: flex;
-    justify-content: left; 
-    align-items: center; 
+    justify-content: left;
+    align-items: center;
 }
 
 
@@ -153,11 +158,11 @@ a.button:hover {
 
 
 .softwarelinks {
-    max-width: fit-content; 
-    margin: 0 auto; 
-    display: flex;                   
-    flex-direction: row;             
-    flex-wrap: nowrap;               
+    max-width: fit-content;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     justify-content: space-between;
 }
 
@@ -231,15 +236,15 @@ a.icon.windowslogo{
 
 .home-bullets li.settings:before {
     background-position: 0 33.3%;
-} 
+}
 
 .home-bullets li.tools:before {
     background-position: 0 66.6%;
-} 
+}
 
 .home-bullets li.docs:before {
     background-position: 0 100%;
-} 
+}
 
 nav {
     width: 100%;
@@ -295,7 +300,7 @@ nav {
     .ifmdevportal-banner-responsive-bg-image {
         padding: 2% 0% 3% 4%;
         }
-    
+
         .masthead {
             width: 50%;
             font-size: 2.5em;
@@ -329,7 +334,7 @@ nav {
         }
 
     }
-    
+
 
 
 @media screen and (max-width: 1024px){
@@ -383,7 +388,7 @@ nav {
 
     .home-bullets li {
         margin-left: 2%;
-    }    
+    }
 
     .ad {
         padding: 0%;
@@ -400,7 +405,7 @@ nav {
         background-color: #342c37;
         padding: 5% 5% 5% 10%;
     }
-    
+
     .masthead {
         width: 50%;
         font-size: 2.5em;
@@ -410,13 +415,13 @@ nav {
         font-size: 1.7em;
         letter-spacing: -.25px;
         }
-    
+
     #mastheadlogo {
         width: 125px;
         }
 
     #orangebar{ height: 25px;}
-    
+
     a.button{
         font-size: 1rem;
         }
@@ -428,13 +433,13 @@ nav {
 
     .softwarelinks {
         flex-wrap: wrap;
-        justify-content: center;               
+        justify-content: center;
     }
 
     .section {
         padding: 40px 60px 40px 60px;
         overflow-y: hidden;
-    } 
+    }
 
     .ad {
         display: block;
@@ -450,9 +455,9 @@ nav {
 
 /* iphone X in portrait mode */
 
-@media only screen 
+@media only screen
 and (max-device-width : 414px)
-and (orientation : portrait) 
+and (orientation : portrait)
 and (-webkit-device-pixel-ratio : 3) {
 
     .ifmdevportal-banner-responsive-bg-image {
@@ -479,7 +484,7 @@ and (-webkit-device-pixel-ratio : 3) {
 
     .softwarelinks {
         flex-wrap: wrap;
-        justify-content: center;               
+        justify-content: center;
     }
 
     .section {
@@ -511,12 +516,12 @@ and (-webkit-device-pixel-ratio : 3) {
 
 
 /* iphone X in portrait mode */
-@media only screen 
-and (min-device-width : 375px) 
-and (max-device-width : 812px) 
+@media only screen
+and (min-device-width : 375px)
+and (max-device-width : 812px)
 and (-webkit-device-pixel-ratio : 3)
-and (orientation : landscape) { 
-    
+and (orientation : landscape) {
+
     .ifmdevportal-banner-responsive-bg-image {
         background-image: url(assets/Banner-o3r-1024x462.jpg);
         background-color: #342c37;
