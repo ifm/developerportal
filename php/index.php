@@ -6,7 +6,7 @@ include('Parsedown.php');
 $Parsedown = new Parsedown();
 
 //Get Provided URL, verify its a github url, and parse the url to markdown
-$base_md_file = 'https://raw.githubusercontent.com/ifm/documentation/lm_table_of_content/O3R/README.md';
+$base_md_file = 'https://raw.githubusercontent.com/ifm/documentation/main/O3R/README.md';
 $parse_contents_url = parse_url($base_md_file);
 $path_array = explode('/',$parse_contents_url['path']);
 
