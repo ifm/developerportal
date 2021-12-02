@@ -16,7 +16,7 @@ build documentation:
     - git submodule update --init --recursive
   script:
     - cd sphinx-doc 
-    - rm -r build
+    - rm -r -f build
     - cp source/ifm3d/README.md source/ifm3d/doc/sphinx/content
     - make html
     - cp -r etc/ifm3d-docs/cpp_api build/html/ifm3d/doc/sphinx/
