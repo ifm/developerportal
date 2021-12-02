@@ -1,0 +1,35 @@
+# Move the README.md of ifm3d to sphinx-doc/source/ifm3d/doc/sphinx/content
+# Move cp -r etc/ifm3d-docs/cpp_api/ build/html/ifm3d/doc/sphinx/
+image: python:3.9
+
+stages:
+  - build
+
+build documentation:
+  stage: build
+  tags:
+    - shared_docker
+  variables:
+    GIT_SUBMODULE_STRATEGY: recursive
+  before_script:
+    - pip install -r sphinx-doc/requirements.txt
+    - git submodule update --init --recursive
+  script:
+    - cd sphinx-doc
+    - cp source/ifm3d/README.md source/ifm3d/doc/sphinx/content
+    - make html
+    - cp -r etc/ifm3d-docs/cpp_api build/html/ifm3d/doc/sphinx/
+    # - git config --global user.email "support.robotics@ifm.com"
+    # - git config --global user.name "ifm-csr"
+    # - git clone -b gh_pages https://${DEVELOPERPORTAL}:x-oauth-basic@github.com/ifm/developerportal.git repo
+    # - cd repo
+    # - mkdir ./public
+    # - cp -r ${CI_PROJECT_DIR}/public/* ./public
+    # - git add -A
+    # - git commit -m "build sphinx docs" --allow-empty
+    # - git push
+  artifacts:
+    paths:
+      - sphinx-doc/build
+  # rules:
+  #   - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
