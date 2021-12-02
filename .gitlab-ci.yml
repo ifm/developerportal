@@ -15,8 +15,7 @@ build documentation:
     - pip install -r sphinx-doc/requirements.txt
     - git submodule update --init --recursive
   script:
-    - pwd
-    - cd sphinx-doc && cp source/ifm3d/README.md source/ifm3d/doc/sphinx/content
+    - pwd && ls sphinx-doc && ls sphinx-doc/source && cd sphinx-doc && cp source/ifm3d/README.md source/ifm3d/doc/sphinx/content
     - make html
     - cd sphinx-doc && cp -r etc/ifm3d-docs/cpp_api build/html/ifm3d/doc/sphinx/
     # - git config --global user.email "support.robotics@ifm.com"
