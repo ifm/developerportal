@@ -1,31 +1,46 @@
-# Move the README.md of ifm3d to sphinx-doc/source/ifm3d/doc/sphinx/content
-# Move cp -r etc/ifm3d-docs/cpp_api/ build/html/ifm3d/doc/sphinx/
-image: python:3.9
 
-stages:
-  - build
+name: Build docs
+on:
+  push:
+  schedule:
+    - cron:  '*/15 * * * *'
+  workflow_dispatch:
+env:
+  GH_TOKEN: ${{ secrets.GH_TOKEN }} 
 
-build documentation:
-  stage: build
-  tags:
-    - shared_docker
-  variables:
-    GIT_SUBMODULE_STRATEGY: recursive
-  before_script:
-    - pip install -r sphinx-doc/requirements.txt
-    - git submodule update --init --recursive
-  script:
-    - cd sphinx-doc 
-    - rm -r -f build
-    - cp source/ifm3d/README.md source/ifm3d/doc/sphinx/content
-    - make html
-    - cp -r etc/ifm3d-docs/cpp_api build/html/ifm3d/doc/sphinx/
-    - git config --global user.email "support.robotics@ifm.com"
-    - git config --global user.name "ifm-csr"
-    - git checkout -B pipeline
-    - git add build
-    - git commit -m "Updated built docs"
-    - git push --set-upstream origin pipeline
+jobs:
+  build:
+    runs-on: python:3.9
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        token: ${{ secrets.GH_TOKEN }}
+        submodules: true
+    # Update references
+    - name: Git Submodule Update
+      run: |
+        git pull --recurse-submodules
+        git submodule update --init --remote --recursive        
+    - name: Install reqs
+      run: |
+      pip install -r sphinx-doc/requirements.txt
+    - name: Build docs
+      run: |
+      cd sphinx-doc 
+      rm -r -f build
+      cp source/ifm3d/README.md source/ifm3d/doc/sphinx/content
+      make html
+      cp -r etc/ifm3d-docs/cpp_api build/html/ifm3d/doc/sphinx/
+    - name: Push built docs
+      run: |
+      git config --global user.email "support.robotics@ifm.com"
+      git config --global user.name "ifm-csr"
+      git checkout -B pipeline
+      git add build
+      git commit -m "Updated built docs"
+      git push --set-upstream origin pipeline
     # - git clone -b gh_pages https://${DEVELOPERPORTAL}:x-oauth-basic@github.com/ifm/developerportal.git repo
     # - cd repo
     # - mkdir ./public
@@ -33,8 +48,3 @@ build documentation:
     # - git add -A
     # - git commit -m "build sphinx docs" --allow-empty
     # - git push
-  artifacts:
-    paths:
-      - sphinx-doc/build
-  # rules:
-  #   - if: $CI_COMMIT_REF_NAME != $CI_DEFAULT_BRANCH
