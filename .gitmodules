@@ -1,6 +1,3 @@
-[submodule "sphinx-doc/source/documentation"]
-	path = sphinx-doc/source/documentation
-	url = https://github.com/ifm/documentation
 [submodule "sphinx-doc/source/ifm3d"]
 	path = sphinx-doc/source/ifm3d
 	url = https://github.com/ifm/ifm3d
@@ -8,3 +5,6 @@
 [submodule "sphinx-doc/etc/ifm3d-docs"]
 	path = sphinx-doc/etc/ifm3d-docs
 	url = https://github.com/ifm/ifm3d-docs
+[submodule "sphinx-doc/source/documentation"]
+	path = sphinx-doc/source/documentation
+	url = https://github.com/ifm/documentation.git
