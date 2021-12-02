@@ -9,9 +9,11 @@ env:
   GH_TOKEN: ${{ secrets.GH_TOKEN }} 
 
 jobs:
-  build:
-    runs-on: python:3.9
+  build: 
     steps:
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v2
