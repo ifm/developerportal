@@ -16,11 +16,16 @@ build documentation:
     - git submodule update --init --recursive
   script:
     - cd sphinx-doc 
+    - rm -r build
     - cp source/ifm3d/README.md source/ifm3d/doc/sphinx/content
     - make html
     - cp -r etc/ifm3d-docs/cpp_api build/html/ifm3d/doc/sphinx/
-    # - git config --global user.email "support.robotics@ifm.com"
-    # - git config --global user.name "ifm-csr"
+    - git config --global user.email "support.robotics@ifm.com"
+    - git config --global user.name "ifm-csr"
+    - git checkout -B pipeline
+    - git add build
+    - git commit -m "Updated built docs"
+    - git push
     # - git clone -b gh_pages https://${DEVELOPERPORTAL}:x-oauth-basic@github.com/ifm/developerportal.git repo
     # - cd repo
     # - mkdir ./public
