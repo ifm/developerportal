@@ -43,11 +43,11 @@ jobs:
         cp -r etc/ifm3d-docs/cpp_api build/html/ifm3d/doc/sphinx/
     - name: Push built docs
       run: |
-        pwd
         git config --global user.email "support.robotics@ifm.com"
         git config --global user.name "ifm-csr"
         git checkout -B pipeline
-        git add build
+        cd sphinx-doc
+        git add build/
         git commit -m "Updated built docs"
         git push --set-upstream origin pipeline
       # - git clone -b gh_pages https://${DEVELOPERPORTAL}:x-oauth-basic@github.com/ifm/developerportal.git repo
