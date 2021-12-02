@@ -17,6 +17,7 @@ build documentation:
   script:
     - pwd && ls sphinx-doc && ls sphinx-doc/source && cd sphinx-doc && cp source/ifm3d/README.md source/ifm3d/doc/sphinx/content
     - make html
+    - pwd
     - cd sphinx-doc && cp -r etc/ifm3d-docs/cpp_api build/html/ifm3d/doc/sphinx/
     # - git config --global user.email "support.robotics@ifm.com"
     # - git config --global user.name "ifm-csr"
