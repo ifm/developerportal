@@ -10,8 +10,9 @@ env:
 
 jobs:
   build: 
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/setup-python@v2
+    - uses:  actions/setup-python@v2
       with:
         python-version: '3.9'
     # Checkout the repository to the GitHub Actions runner
