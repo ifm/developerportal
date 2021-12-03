@@ -8,3 +8,4 @@
 [submodule "sphinx-doc/source/documentation"]
 	path = sphinx-doc/source/documentation
 	url = https://github.com/ifm/documentation.git
+	branch = sphinx_update
