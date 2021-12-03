@@ -2,6 +2,9 @@
 name: Build docs
 on:
   push:
+    branches:
+    - '**'        # matches every branch
+    - '!pipeline'
   schedule:
     - cron:  '*/15 * * * *'
   workflow_dispatch:
@@ -29,12 +32,14 @@ jobs:
     # Update references
     - name: Git Submodule Update
       run: |
+        rm -r .git/modules
         rm -rf sphinx-doc/source/ifm3d sphinx-doc/source/documentation sphinx-doc/etc/ifm3d-docs
-        cd sphinx-doc
+        cd sphinx-doc/source
         git submodule add --force https://github.com/ifm/ifm3d
-        git submodule add --force https://github.com/ifm/ifm3d-docs
         git submodule add --force https://github.com/ifm/documentation
-        git submodule update --init --remote
+        cd ../etc
+        git submodule add --force https://github.com/ifm/ifm3d-docs
+        git submodule update --init --remote --merge
     - name: Install reqs
       run: |
         pip install -r sphinx-doc/requirements.txt
@@ -51,14 +56,5 @@ jobs:
         git config --global user.name "ifm-csr"
         git checkout -B pipeline
         cd sphinx-doc
-        git add build/
-        git rm build/doctrees/environment.pickle
-        git commit -m "Updated built docs"
-        git push --set-upstream origin pipeline
-      # - git clone -b gh_pages https://${DEVELOPERPORTAL}:x-oauth-basic@github.com/ifm/developerportal.git repo
-      # - cd repo
-      # - mkdir ./public
-      # - cp -r ${CI_PROJECT_DIR}/public/* ./public
-      # - git add -A
-      # - git commit -m "build sphinx docs" --allow-empty
-      # - git push
+        git diff --quiet || (git add build/ && git rm --cached build/doctrees/environment.pickle && git commit -a -m'[bot] update built doc' --allow-empty && git push --force --set-upstream origin pipeline)
+#        git diff-index --quiet HEAD || (git commit -a -m'[bot] update built doc' --allow-empty && git push --force --set-upstream origin pipeline)
