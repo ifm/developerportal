@@ -3,6 +3,7 @@ name: Build docs
 on:
   push:
     branches:
+    - '**'        # matches every branch
     - '!pipeline'
   schedule:
     - cron:  '*/15 * * * *'
@@ -56,15 +57,3 @@ jobs:
         git checkout -B pipeline
         cd sphinx-doc
         git diff-index --quiet HEAD || (git commit -a -m'[bot] update built doc' --allow-empty && git push --force --set-upstream origin pipeline)
-
-#        git add build/
-#        git rm --cache build/doctrees/environment.pickle
-#        git commit -m "Updated built docs"
-#        git push --force --quiet --set-upstream origin pipeline
-      # - git clone -b gh_pages https://${DEVELOPERPORTAL}:x-oauth-basic@github.com/ifm/developerportal.git repo
-      # - cd repo
-      # - mkdir ./public
-      # - cp -r ${CI_PROJECT_DIR}/public/* ./public
-      # - git add -A
-      # - git commit -m "build sphinx docs" --allow-empty
-      # - git push
