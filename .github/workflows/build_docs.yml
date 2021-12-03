@@ -30,11 +30,12 @@ jobs:
     - name: Git Submodule Update
       run: |
         rm -rf sphinx-doc/source/ifm3d sphinx-doc/source/documentation sphinx-doc/etc/ifm3d-docs
-        cd sphinx-doc
+        cd sphinx-doc/source
         git submodule add --force https://github.com/ifm/ifm3d
-        git submodule add --force https://github.com/ifm/ifm3d-docs
         git submodule add --force https://github.com/ifm/documentation
-        git submodule update --init --remote
+        cd ../etc
+        git submodule add --force https://github.com/ifm/ifm3d-docs
+        git submodule update --init --remote --merge
     - name: Install reqs
       run: |
         pip install -r sphinx-doc/requirements.txt
