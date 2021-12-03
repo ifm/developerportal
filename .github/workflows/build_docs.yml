@@ -29,6 +29,7 @@ jobs:
     # Update references
     - name: Git Submodule Update
       run: |
+        git pull --recurse-submodules
         rm -rf sphinx-doc/source/ifm3d sphinx-doc/source/documentation sphinx-doc/etc/ifm3d-docs
         cd sphinx-doc/source
         git submodule add --force https://github.com/ifm/ifm3d
