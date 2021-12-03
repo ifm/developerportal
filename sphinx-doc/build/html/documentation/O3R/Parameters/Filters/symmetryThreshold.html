@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Symmetry Threshold &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">O3R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ifm3d/doc/sphinx/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ifm3d/doc/sphinx/content/installation_instructions.html">Installation instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ifm3d/doc/sphinx/cli_link.html">Command Line tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ifm3d/doc/sphinx/python_api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ifm3d/doc/sphinx/cpp_api/annotated.html">C++ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ifm3d/doc/sphinx/index.html">Indices and tables</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Symmetry Threshold</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/documentation/O3R/Parameters/Filters/symmetryThreshold.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="symmetry-threshold">
+<h1>Symmetry Threshold<a class="headerlink" href="#symmetry-threshold" title="Permalink to this headline"></a></h1>
+<section id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline"></a></h2>
+<p>The symmetry threshold <code class="docutils literal notranslate"><span class="pre">maxSymmetry</span></code> is used for filtering motion artifacts. Increasing the threshold value leads to more valid pixels around moving objects but also increases the chance of computing incorrect distance measurements for some pixels. Decreasing the threshold will result in invalidation of more pixels because of their estimated symmetry value.
+In cases with a high ambient noise level, the dynamic symmetry filter should be enabled (with the parameter <code class="docutils literal notranslate"><span class="pre">enableDynamicSymmetry</span></code>) to ensure pixels are not invalidated due to ambient noise.</p>
+</section>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline"></a></h2>
+<p>The O3R camera heads use the ifm ToF (Time of Flight) technology for measuring the distance to objects. To calculate one single point cloud image, the system takes several independent image frames. These images are correlated over time (see <span class="xref myst">basic concepts</span>). This correlation is represented as symmetry value. It can be thought of as the four modulated signals used for performing the <em>raw</em> measurement, being more or less symmetrical to one another.</p>
+<p>For low symmetry threshold values, only pixels for which the correlation images are highly symmetrical (i.e., with no or few motion artifacts) are valid. Because of inherent noise, a perfect symmetry is never possible even for static scenes. Increasing the symmetry threshold validates pixels with higher symmetry values, including noisy pixels and potential motion artifacts.</p>
+<p>In a high-noise environment, the sensor noise might be propagated to the symmetry image and most of the pixels invalidated because of the symmetry threshold. In these cases, the dynamic symmetry should be activated. The dynamic symmetry ensures that the symmetry threshold of a pixel is at least high enough to prevent invalidation due to sensor noise. It can be thought of as differentiating motion artifacts from ambient noise in the scene.</p>
+<p><em>If the dynamic symmetry is enabled, each pixel gets an individual symmetry value, which is either the <code class="docutils literal notranslate"><span class="pre">maxSymmetry</span></code> setting or the expected symmetry (computed internally) due to noise, whichever one is greater.</em></p>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
+<p><em>COMING SOON…</em></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Changelog &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/O3R/README.html">O3R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/sphinx/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/sphinx/content/installation_instructions.html">Installation instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/sphinx/cli_link.html">Command Line tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/sphinx/python_api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/sphinx/cpp_api/annotated.html">C++ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/sphinx/index.html">Indices and tables</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Changelog</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/ifm3d/third-party/cxxopts-2.2.0/cxxopts/CHANGELOG.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="changelog">
+<h1>Changelog<a class="headerlink" href="#changelog" title="Permalink to this headline"></a></h1>
+<p>This is the changelog for <code class="docutils literal notranslate"><span class="pre">cxxopts</span></code>, a C++11 library for parsing command line
+options. The project adheres to semantic versioning.</p>
+<section id="id1">
+<h2>2.2<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<section id="changed">
+<h3>Changed<a class="headerlink" href="#changed" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Allow integers to have leading zeroes.</p></li>
+<li><p>Build the tests by default.</p></li>
+<li><p>Don’t check for container when showing positional help.</p></li>
+</ul>
+</section>
+<section id="added">
+<h3>Added<a class="headerlink" href="#added" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Iterator inputs to <code class="docutils literal notranslate"><span class="pre">parse_positional</span></code>.</p></li>
+<li><p>Throw an exception if the option in <code class="docutils literal notranslate"><span class="pre">parse_positional</span></code> doesn’t exist.</p></li>
+<li><p>Parse a delimited list in a single argument for vector options.</p></li>
+<li><p>Add an option to disable implicit value on booleans.</p></li>
+</ul>
+</section>
+<section id="bug-fixes">
+<h3>Bug Fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Fix a warning about possible loss of data.</p></li>
+<li><p>Fix version numbering in CMakeLists.txt</p></li>
+<li><p>Remove unused declaration of the undefined <code class="docutils literal notranslate"><span class="pre">ParseResult::get_option</span></code>.</p></li>
+<li><p>Throw on invalid option syntax when beginning with a <code class="docutils literal notranslate"><span class="pre">-</span></code>.</p></li>
+<li><p>Throw in <code class="docutils literal notranslate"><span class="pre">as</span></code> when option wasn’t present.</p></li>
+<li><p>Fix catching exceptions by reference.</p></li>
+<li><p>Fix out of bounds errors parsing integers.</p></li>
+</ul>
+</section>
+</section>
+<section id="id2">
+<h2>2.1.1<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<section id="id3">
+<h3>Bug Fixes<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Revert the change adding <code class="docutils literal notranslate"><span class="pre">const</span></code> type for <code class="docutils literal notranslate"><span class="pre">argv</span></code>, because most users expect
+to pass a non-const <code class="docutils literal notranslate"><span class="pre">argv</span></code> from <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p></li>
+</ul>
+</section>
+</section>
+<section id="id4">
+<h2>2.1<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h2>
+<section id="id5">
+<h3>Changed<a class="headerlink" href="#id5" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Options with implicit arguments now require the <code class="docutils literal notranslate"><span class="pre">--option=value</span></code> form if
+they are to be specified with an option. This is to remove the ambiguity
+when a positional argument could follow an option with an implicit value.
+For example, <code class="docutils literal notranslate"><span class="pre">--foo</span> <span class="pre">value</span></code>, where <code class="docutils literal notranslate"><span class="pre">foo</span></code> has an implicit value, will be
+parsed as <code class="docutils literal notranslate"><span class="pre">--foo=implicit</span></code> and a positional argument <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p></li>
+<li><p>Boolean values are no longer special, but are just an option with a default
+and implicit value.</p></li>
+</ul>
+</section>
+<section id="id6">
+<h3>Added<a class="headerlink" href="#id6" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Added support for <code class="docutils literal notranslate"><span class="pre">std::optional</span></code> as a storage type.</p></li>
+<li><p>Allow the help string to be customised.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">const</span></code> for the type in the <code class="docutils literal notranslate"><span class="pre">argv</span></code> parameter, since the contents of the
+arguments is never modified.</p></li>
+</ul>
+</section>
+<section id="id7">
+<h3>Bug Fixes<a class="headerlink" href="#id7" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Building against GCC 4.9 was broken due to overly strict shadow warnings.</p></li>
+<li><p>Fixed an ambiguous overload in the <code class="docutils literal notranslate"><span class="pre">parse_positional</span></code> function when an
+<code class="docutils literal notranslate"><span class="pre">initializer_list</span></code> was directly passed.</p></li>
+<li><p>Fixed precedence in the Boolean value regex.</p></li>
+</ul>
+</section>
+</section>
+<section id="id8">
+<h2>2.0<a class="headerlink" href="#id8" title="Permalink to this headline"></a></h2>
+<section id="id9">
+<h3>Changed<a class="headerlink" href="#id9" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Options::parse</span></code> returns a ParseResult rather than storing the parse
+result internally.</p></li>
+<li><p>Options with default values now get counted as appearing once if they
+were not specified by the user.</p></li>
+</ul>
+</section>
+<section id="id10">
+<h3>Added<a class="headerlink" href="#id10" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>A new <code class="docutils literal notranslate"><span class="pre">ParseResult</span></code> object that is the immutable result of parsing. It
+responds to the same <code class="docutils literal notranslate"><span class="pre">count</span></code> and <code class="docutils literal notranslate"><span class="pre">operator[]</span></code> as <code class="docutils literal notranslate"><span class="pre">Options</span></code> of 1.x did.</p></li>
+<li><p>The function <code class="docutils literal notranslate"><span class="pre">ParseResult::arguments</span></code> returns a vector of the parsed
+arguments to iterate through in the order they were provided.</p></li>
+<li><p>The symbol <code class="docutils literal notranslate"><span class="pre">cxxopts::version</span></code> for the version of the library.</p></li>
+<li><p>Booleans can be specified with various strings and explicitly set false.</p></li>
+</ul>
+</section>
+</section>
+<section id="x">
+<h2>1.x<a class="headerlink" href="#x" title="Permalink to this headline"></a></h2>
+<p>The 1.x series was the first major version of the library, with release numbers
+starting to follow semantic versioning, after 0.x being unstable.  It never had
+a changelog maintained for it. Releases mostly contained bug fixes, with the
+occasional feature added.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+FrameGrabber
+============
+
+.. currentmodule:: ifm3dpy
+
+.. autoclass:: FrameGrabber
+   :show-inheritance:
+
+   .. rubric:: Methods Summary
+
+   .. autosummary::
+
+      ~FrameGrabber.reset
+      ~FrameGrabber.sw_trigger
+      ~FrameGrabber.wait_for_frame
+
+   .. rubric:: Methods Documentation
+
+   .. automethod:: reset
+   .. automethod:: sw_trigger
+   .. automethod:: wait_for_frame

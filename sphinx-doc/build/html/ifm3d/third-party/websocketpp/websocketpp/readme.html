@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WebSocket++ (0.8.2) &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/O3R/README.html">O3R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/sphinx/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/sphinx/content/installation_instructions.html">Installation instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/sphinx/cli_link.html">Command Line tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/sphinx/python_api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/sphinx/cpp_api/annotated.html">C++ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/sphinx/index.html">Indices and tables</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>WebSocket++ (0.8.2)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/ifm3d/third-party/websocketpp/websocketpp/readme.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="websocket-0-8-2">
+<h1>WebSocket++ (0.8.2)<a class="headerlink" href="#websocket-0-8-2" title="Permalink to this headline"></a></h1>
+<p>WebSocket++ is a header only C++ library that implements RFC6455 The WebSocket
+Protocol. It allows integrating WebSocket client and server functionality into
+C++ programs. It uses interchangeable network transport modules including one
+based on raw char buffers, one based on C++ iostreams, and one based on Asio
+(either via Boost or standalone). End users can write additional transport
+policies to support other networking or event libraries as needed.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="major-features">
+<h1>Major Features<a class="headerlink" href="#major-features" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p>Full support for RFC6455</p></li>
+<li><p>Partial support for Hixie 76 / Hybi 00, 07-17 draft specs (server only)</p></li>
+<li><p>Message/event based interface</p></li>
+<li><p>Supports secure WebSockets (TLS), IPv6, and explicit proxies.</p></li>
+<li><p>Flexible dependency management (C++11 Standard Library or Boost)</p></li>
+<li><p>Interchangeable network transport modules (raw, iostream, Asio, or custom)</p></li>
+<li><p>Portable/cross platform (Posix/Windows, 32/64bit, Intel/ARM/PPC)</p></li>
+<li><p>Thread-safe</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="get-involved">
+<h1>Get Involved<a class="headerlink" href="#get-involved" title="Permalink to this headline"></a></h1>
+<p><a class="reference external" href="https://travis-ci.org/zaphoyd/websocketpp"><img alt="Build Status" src="https://travis-ci.org/zaphoyd/websocketpp.png" /></a></p>
+<p><strong>Project Website</strong>
+http://www.zaphoyd.com/websocketpp/</p>
+<p><strong>User Manual</strong>
+http://docs.websocketpp.org/</p>
+<p><strong>GitHub Repository</strong>
+https://github.com/zaphoyd/websocketpp/</p>
+<p>GitHub pull requests should be submitted to the <code class="docutils literal notranslate"><span class="pre">develop</span></code> branch.</p>
+<p><strong>Announcements Mailing List</strong>
+http://groups.google.com/group/websocketpp-announcements/</p>
+<p><strong>IRC Channel</strong>
+#websocketpp (freenode)</p>
+<p><strong>Discussion / Development / Support Mailing List / Forum</strong>
+http://groups.google.com/group/websocketpp/</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="author">
+<h1>Author<a class="headerlink" href="#author" title="Permalink to this headline"></a></h1>
+<p>Peter Thorson - websocketpp&#64;zaphoyd.com</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

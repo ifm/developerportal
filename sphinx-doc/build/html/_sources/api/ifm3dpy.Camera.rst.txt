@@ -1,0 +1,63 @@
+Camera
+======
+
+.. currentmodule:: ifm3dpy
+
+.. autoclass:: Camera
+   :show-inheritance:
+
+   .. rubric:: Attributes Summary
+
+   .. autosummary::
+
+      ~Camera.password
+      ~Camera.session_id
+
+   .. rubric:: Methods Summary
+
+   .. autosummary::
+
+      ~Camera.active_application
+      ~Camera.application_list
+      ~Camera.application_types
+      ~Camera.cancel_session
+      ~Camera.copy_application
+      ~Camera.create_application
+      ~Camera.delete_application
+      ~Camera.export_ifm_app
+      ~Camera.export_ifm_config
+      ~Camera.factory_reset
+      ~Camera.heartbeat
+      ~Camera.imager_types
+      ~Camera.import_ifm_app
+      ~Camera.import_ifm_config
+      ~Camera.request_session
+      ~Camera.set_current_time
+      ~Camera.set_temporary_application_parameters
+      ~Camera.unit_vectors
+
+   .. rubric:: Attributes Documentation
+
+   .. autoattribute:: password
+   .. autoattribute:: session_id
+
+   .. rubric:: Methods Documentation
+
+   .. automethod:: active_application
+   .. automethod:: application_list
+   .. automethod:: application_types
+   .. automethod:: cancel_session
+   .. automethod:: copy_application
+   .. automethod:: create_application
+   .. automethod:: delete_application
+   .. automethod:: export_ifm_app
+   .. automethod:: export_ifm_config
+   .. automethod:: factory_reset
+   .. automethod:: heartbeat
+   .. automethod:: imager_types
+   .. automethod:: import_ifm_app
+   .. automethod:: import_ifm_config
+   .. automethod:: request_session
+   .. automethod:: set_current_time
+   .. automethod:: set_temporary_application_parameters
+   .. automethod:: unit_vectors

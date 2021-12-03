@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>O3RCamera &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="C++ API Reference" href="../ifm3d/doc/sphinx/cpp_api/annotated.html" />
+    <link rel="prev" title="ImageBuffer" href="ifm3dpy.ImageBuffer.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../documentation/O3R/README.html">O3R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ifm3d/doc/sphinx/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ifm3d/doc/sphinx/content/installation_instructions.html">Installation instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ifm3d/doc/sphinx/cli_link.html">Command Line tool</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../ifm3d/doc/sphinx/python_api.html">Python API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../ifm3d/doc/sphinx/python_api.html#module-ifm3dpy">ifm3dpy Module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../ifm3d/doc/sphinx/python_api.html#variables">Variables</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../ifm3d/doc/sphinx/python_api.html#classes">Classes</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="ifm3dpy.Camera.html">Camera</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ifm3dpy.CameraBase.html">CameraBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ifm3dpy.FrameGrabber.html">FrameGrabber</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ifm3dpy.ImageBuffer.html">ImageBuffer</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">O3RCamera</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ifm3d/doc/sphinx/cpp_api/annotated.html">C++ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ifm3d/doc/sphinx/index.html">Indices and tables</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../ifm3d/doc/sphinx/index.html">Indices and tables</a> &raquo;</li>
+          <li><a href="../ifm3d/doc/sphinx/python_api.html">Python API Reference</a> &raquo;</li>
+      <li>O3RCamera</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/ifm3dpy.O3RCamera.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="o3rcamera">
+<h1>O3RCamera<a class="headerlink" href="#o3rcamera" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="ifm3dpy.O3RCamera">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ifm3dpy.</span></span><span class="sig-name descname"><span class="pre">O3RCamera</span></span><a class="headerlink" href="#ifm3dpy.O3RCamera" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="ifm3dpy.CameraBase.html#ifm3dpy.CameraBase" title="ifm3dpy.CameraBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">ifm3dpy.CameraBase</span></code></a></p>
+<p>Class for managing an instance of an O3R Camera</p>
+<p class="rubric">Methods Summary</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ifm3dpy.O3RCamera.factory_reset" title="ifm3dpy.O3RCamera.factory_reset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">factory_reset</span></code></a>(self, keep_network_settings)</p></td>
+<td><p>Sets the camera configuration back to the state in which it shipped from the ifm factory.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ifm3dpy.O3RCamera.get" title="ifm3dpy.O3RCamera.get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get</span></code></a>(self[, path])</p></td>
+<td><p>Returns the configuration formatted as JSON based on a path.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ifm3dpy.O3RCamera.get_init" title="ifm3dpy.O3RCamera.get_init"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_init</span></code></a>(self)</p></td>
+<td><p>Return the initial JSON configuration.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ifm3dpy.O3RCamera.get_init_status" title="ifm3dpy.O3RCamera.get_init_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_init_status</span></code></a>(self)</p></td>
+<td><p>Returns the init status of the device</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ifm3dpy.O3RCamera.get_schema" title="ifm3dpy.O3RCamera.get_schema"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_schema</span></code></a>(self)</p></td>
+<td><p>Returns the current JSON schema configuration</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ifm3dpy.O3RCamera.lock" title="ifm3dpy.O3RCamera.lock"><code class="xref py py-obj docutils literal notranslate"><span class="pre">lock</span></code></a>(self, password)</p></td>
+<td><p>Release the lock from the Device</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ifm3dpy.O3RCamera.save_init" title="ifm3dpy.O3RCamera.save_init"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_init</span></code></a>(self)</p></td>
+<td><p>Save to current temporary JSON configuration as initial JSON configuration</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ifm3dpy.O3RCamera.set" title="ifm3dpy.O3RCamera.set"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set</span></code></a>(self, json)</p></td>
+<td><p>Overwrites parts of the temporary JSON configuration which is achieved by merging the provided JSON fragment with the current temporary JSON.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ifm3dpy.O3RCamera.unlock" title="ifm3dpy.O3RCamera.unlock"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unlock</span></code></a>(self, password)</p></td>
+<td><p>Locks the device until it is unlocked.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Documentation</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ifm3dpy.O3RCamera.factory_reset">
+<span class="sig-name descname"><span class="pre">factory_reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ifm3dpy.O3RCamera" title="ifm3dpy.O3RCamera"><span class="pre">ifm3dpy.O3RCamera</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_network_settings</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ifm3dpy.O3RCamera.factory_reset" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the camera configuration back to the state in which it shipped from
+the ifm factory.</p>
+<dl class="simple">
+<dt>keep_network_settings<span class="classifier">bool</span></dt><dd><p>A bool indicating wether to keep the current network settings</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ifm3dpy.O3RCamera.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ifm3dpy.O3RCamera" title="ifm3dpy.O3RCamera"><span class="pre">ifm3dpy.O3RCamera</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">object</span></span></span><a class="headerlink" href="#ifm3dpy.O3RCamera.get" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the configuration formatted as JSON based on a path.
+If the path is empty, returns the whole configuration.</p>
+<dl class="simple">
+<dt>dict</dt><dd><p>The JSON configuration for the list of object path fragments</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ifm3dpy.O3RCamera.get_init">
+<span class="sig-name descname"><span class="pre">get_init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ifm3dpy.O3RCamera" title="ifm3dpy.O3RCamera"><span class="pre">ifm3dpy.O3RCamera</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">object</span></span></span><a class="headerlink" href="#ifm3dpy.O3RCamera.get_init" title="Permalink to this definition"></a></dt>
+<dd><p>Return the initial JSON configuration.</p>
+<dl class="simple">
+<dt>dict</dt><dd><p>The initial JSON configuration</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ifm3dpy.O3RCamera.get_init_status">
+<span class="sig-name descname"><span class="pre">get_init_status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ifm3dpy.O3RCamera" title="ifm3dpy.O3RCamera"><span class="pre">ifm3dpy.O3RCamera</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#ifm3dpy.O3RCamera.get_init_status" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the init status of the device</p>
+<dl class="simple">
+<dt>dict</dt><dd><p>The init status of the device</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ifm3dpy.O3RCamera.get_schema">
+<span class="sig-name descname"><span class="pre">get_schema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ifm3dpy.O3RCamera" title="ifm3dpy.O3RCamera"><span class="pre">ifm3dpy.O3RCamera</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">object</span></span></span><a class="headerlink" href="#ifm3dpy.O3RCamera.get_schema" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the current JSON schema configuration</p>
+<dl class="simple">
+<dt>dict</dt><dd><p>The current json schema configuration</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ifm3dpy.O3RCamera.lock">
+<span class="sig-name descname"><span class="pre">lock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ifm3dpy.O3RCamera" title="ifm3dpy.O3RCamera"><span class="pre">ifm3dpy.O3RCamera</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ifm3dpy.O3RCamera.lock" title="Permalink to this definition"></a></dt>
+<dd><p>Release the lock from the Device</p>
+<dl class="simple">
+<dt>string</dt><dd><p>The password used to unlock the device</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ifm3dpy.O3RCamera.save_init">
+<span class="sig-name descname"><span class="pre">save_init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ifm3dpy.O3RCamera" title="ifm3dpy.O3RCamera"><span class="pre">ifm3dpy.O3RCamera</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ifm3dpy.O3RCamera.save_init" title="Permalink to this definition"></a></dt>
+<dd><p>Save to current temporary JSON configuration as initial JSON
+configuration</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ifm3dpy.O3RCamera.set">
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ifm3dpy.O3RCamera" title="ifm3dpy.O3RCamera"><span class="pre">ifm3dpy.O3RCamera</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">json</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ifm3dpy.O3RCamera.set" title="Permalink to this definition"></a></dt>
+<dd><p>Overwrites parts of the temporary JSON configuration which is achieved
+by merging the provided JSON fragment with the current temporary JSON.</p>
+<dl class="simple">
+<dt>json<span class="classifier">dict</span></dt><dd><p>The new temporay JSON configuration of the device.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ifm3dpy.O3RCamera.unlock">
+<span class="sig-name descname"><span class="pre">unlock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ifm3dpy.O3RCamera" title="ifm3dpy.O3RCamera"><span class="pre">ifm3dpy.O3RCamera</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ifm3dpy.O3RCamera.unlock" title="Permalink to this definition"></a></dt>
+<dd><p>Locks the device until it is unlocked.
+If the device is unlocked and an empty password is provided the password
+protection is removed.</p>
+<dl class="simple">
+<dt>string</dt><dd><p>The password used to lock the device</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ifm3dpy.ImageBuffer.html" class="btn btn-neutral float-left" title="ImageBuffer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../ifm3d/doc/sphinx/cpp_api/annotated.html" class="btn btn-neutral float-right" title="C++ API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
