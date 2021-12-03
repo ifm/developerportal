@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mixed Pixel Filter &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">O3R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ifm3d/doc/sphinx/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ifm3d/doc/sphinx/content/installation_instructions.html">Installation instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ifm3d/doc/sphinx/cli_link.html">Command Line tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ifm3d/doc/sphinx/python_api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ifm3d/doc/sphinx/cpp_api/annotated.html">C++ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ifm3d/doc/sphinx/index.html">Indices and tables</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Mixed Pixel Filter</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/documentation/O3R/Parameters/Filters/mixedPixelFilter.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="mixed-pixel-filter">
+<h1>Mixed Pixel Filter<a class="headerlink" href="#mixed-pixel-filter" title="Permalink to this headline"></a></h1>
+<section id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline"></a></h2>
+<p>We call mixed pixels pixels resulting from a mixed signal from foreground and background planes (typically, the pixel “lands” partially on an object and partially on its background). Such pixels don’t represent the distance measurement to either object and lie somewhere in between (they appear to be <em>flying</em>, and we sometimes refer to them as <em>flying pixels</em>). The mixed-pixel filter invalidates these pixels. The <code class="docutils literal notranslate"><span class="pre">mixedPixelFilterMode</span></code> setting defines whether this filter is activated and which validation methods is used. <code class="docutils literal notranslate"><span class="pre">mixedPixelFilterMode</span> <span class="pre">=</span> <span class="pre">1</span></code> switches to angle validation check (adjust it with <code class="docutils literal notranslate"><span class="pre">mixedPixelThresholdRad</span></code>). <code class="docutils literal notranslate"><span class="pre">mixedPixelFilterMode</span> <span class="pre">=</span> <span class="pre">2</span></code> switches to distance based validation check (this mode is inherited from previous algorithm versions and will most likely be deprecated in the future). <code class="docutils literal notranslate"><span class="pre">mixedPixelFilterMode</span> <span class="pre">=</span> <span class="pre">0</span></code> switches the filter off completely.</p>
+<p><strong>We recommend either disabling the filter (more precision on objects’ edges) or using the angle based validation method (<code class="docutils literal notranslate"><span class="pre">mixedPixelFilterMode</span> <span class="pre">=</span> <span class="pre">1</span></code>) to remove pixels between objects and their backgrounds.</strong></p>
+</section>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">mixedPixelFilterMode</span></code> controls two different methods for invalidation mixed pixels.</p>
+<section id="angle-based-validation-method">
+<h3>Angle based validation method<a class="headerlink" href="#angle-based-validation-method" title="Permalink to this headline"></a></h3>
+<p>The angle based mixed pixel filtering (<code class="docutils literal notranslate"><span class="pre">mixedPixelFilterMode</span> <span class="pre">=</span> <span class="pre">1</span></code>) is based on the idea of estimating, for each pixel, the angle between the optical and an approximate tangent plane on the object (at this exact pixel coordinate). If the angle difference is larger than the allowed angle threshold, the pixel is invalidated.<br />
+The angle threshold of this mode is controlled by the parameter <code class="docutils literal notranslate"><span class="pre">mixedPixelThresholdRad</span></code> (angle in radians).</p>
+</section>
+<section id="distance-based-validation-method-will-be-deprecated">
+<h3>Distance based validation method (will be deprecated)<a class="headerlink" href="#distance-based-validation-method-will-be-deprecated" title="Permalink to this headline"></a></h3>
+<p>The second version of the mixed pixel (<code class="docutils literal notranslate"><span class="pre">mixedPixelFilterMode</span> <span class="pre">=</span> <span class="pre">2</span></code>) filter is centered around the idea of comparing distances in the local neighborhood of a pixel. The distance of the pixel is compared in horizontal and vertical direction against its neighboring pixels’ distance values. If the distance differences are outside a threshold (set internally), the pixel is invalidated.</p>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h2>
+<section id="different-angle-threshold-values">
+<h3>Different angle threshold values<a class="headerlink" href="#different-angle-threshold-values" title="Permalink to this headline"></a></h3>
+<p>To show the impact of adjusting the mixed pixel filter with the <code class="docutils literal notranslate"><span class="pre">mixedPixelThresholdRad</span></code>, we show a scene where two boxes are placed in front of the camera, at around one and two meters. The table below shows the distance image and the point cloud with the filter inactive and filter in the angle mode with different angle thresholds:</p>
+<blockquote>
+<div><p>Note: settings <code class="docutils literal notranslate"><span class="pre">mixedPixelThresholdRad</span> <span class="pre">=</span> <span class="pre">0</span></code> is equivalent to turning the filter off.</p>
+</div></blockquote>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Value of <code class="docutils literal notranslate"><span class="pre">mixedPixelThresholdRad</span></code></p></th>
+<th class="head"><p>Distance image</p></th>
+<th class="head"><p>Point cloud</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0 (equivalent to <code class="docutils literal notranslate"><span class="pre">mixedPixelFilterMode</span> <span class="pre">=</span> <span class="pre">0</span></code>)</p></td>
+<td><p><img alt="Mixed pixels filter disabled - distance" src="../../../../_images/mixed_pixel_0_distance.png" /></p></td>
+<td><p><img alt="Mixed pixels filter disabled - view 1" src="../../../../_images/mixed_pixel_rad_0_view1.png" /></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p><img alt="Mixed pixels filter disabled - view " src="../../../../_images/mixed_pixel_rad_0_view2.png" /></p></td>
+</tr>
+<tr class="row-even"><td><p>0.15 (default)</p></td>
+<td><p><img alt="Mixed pixels filter  - distance" src="../../../../_images/mixed_pixel_rad_015_distance.png" /></p></td>
+<td><p><img alt="Mixed pixels filter  - view 1" src="../../../../_images/mixed_pixel_rad_015_view1.png" /></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p><img alt="Mixed pixels filter  - view 2" src="../../../../_images/mixed_pixel_rad_015_view2.png" /></p></td>
+</tr>
+<tr class="row-even"><td><p>0.3</p></td>
+<td><p><img alt="Mixed pixels filter  - distance" src="../../../../_images/mixed_pixel__rad_03_distance.png" /></p></td>
+<td><p><img alt="Mixed pixels filter  - view 1" src="../../../../_images/mixed_pixel_rad_03_view1.png" /></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p><img alt="Mixed pixels filter  - view " src="../../../../_images/mixed_pixel_rad_03_view2.png" /></p></td>
+</tr>
+<tr class="row-even"><td><p>0.5</p></td>
+<td><p><img alt="Mixed pixels filter  - distance" src="../../../../_images/mixed_pixel__rad_05_distance.png" /></p></td>
+<td><p><img alt="Mixed pixels filter  - view 1" src="../../../../_images/mixed_pixel_rad_05_view1.png" /></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p><img alt="Mixed pixels filter  - view 2" src="../../../../_images/mixed_pixel_rad_05_view2.png" /></p></td>
+</tr>
+</tbody>
+</table>
+<p>We can see that using higher values for the <code class="docutils literal notranslate"><span class="pre">mixedPixelThresholdRad</span></code> invalidates more pixels. We typically recommend deactivating the filter or using small values for the threshold.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

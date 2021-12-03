@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Confidence bits of the O3D explained &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/O3R/README.html">O3R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx/content/installation_instructions.html">Installation instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx/cli_link.html">Command Line tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx/python_api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx/cpp_api/annotated.html">C++ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx/index.html">Indices and tables</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Confidence bits of the O3D explained</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/ifm3d/doc/O3D_confidence.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="confidence-bits-of-the-o3d-explained">
+<h1>Confidence bits of the O3D explained<a class="headerlink" href="#confidence-bits-of-the-o3d-explained" title="Permalink to this headline"></a></h1>
+<p>The values in the confidence matrix contain information about the status of the corresponding ToF pixel. A confidence value has 8 bits.</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bit</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Meaning when bit is set</p></th>
+<th class="head"><p>Contributes to Pixel Validity</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p><strong>Pixel is invalid</strong></p></td>
+<td><p>To determine if a pixel is valid or not, only this bit needs to be checked. The distance values, as well as the Cartesian coordinates of invalid pixels are set to 0. The reason for invalidity is encoded in some of the other bits below.</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p><strong>Pixel is saturated</strong></p></td>
+<td><p>Pixel amplitude is saturated.</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p><strong>Bad A-B symmetry</strong></p></td>
+<td><p>The A-B symmetry vale of the four phase measurement is above threshold. Remark: This symmetry value is used to detect motion artifacts. Noise (e.g. due to strong ambient light or very short integration times) or PMD interference may also contribute.</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p><strong>Low amplitude</strong></p></td>
+<td><p>The amplitude value is below minimum amplitude threshold.</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-even"><td><p>[5, 4]</p></td>
+<td><p><strong>Exposure time indicator</strong></p></td>
+<td><p>The two bits indicate which exposure time was used in a multiple exposure measurement. 00 = unused. 01 = shortest exposure time (only used in 3 exposure mode). 10 = middle exposure time in 3 exposure mode, short exposure in double exposure mode. 11 = longest exposure time (always 1 in single exposure mode)</p></td>
+<td><p>no</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p><strong>Clipped Pixel</strong></p></td>
+<td><p>Clipping box on 3D data. If clipping is active this bit indicates that the pixel coordinates are outside the defined volume.</p></td>
+<td><p>yes</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p><strong>Suspect/defective Pixel</strong></p></td>
+<td><p>This pixel has been marked as “suspect” or “defective” and values have been replaced by interpolated values from the surroundings.</p></td>
+<td><p>no</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

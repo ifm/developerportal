@@ -1,0 +1,7 @@
+<map id="ifm3d::CameraBase" name="ifm3d::CameraBase">
+<area shape="rect" id="node1" title=" " alt="" coords="167,5,318,32"/>
+<area shape="rect" id="node2" href="$classifm3d_1_1Camera.html" title=" " alt="" coords="105,80,223,107"/>
+<area shape="rect" id="node5" href="$classifm3d_1_1O3RCamera.html" title=" " alt="" coords="248,80,395,107"/>
+<area shape="rect" id="node3" href="$classifm3d_1_1O3DCamera.html" title=" " alt="" coords="5,155,152,181"/>
+<area shape="rect" id="node4" href="$classifm3d_1_1O3XCamera.html" title=" " alt="" coords="177,155,322,181"/>
+</map>
