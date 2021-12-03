@@ -52,7 +52,6 @@ jobs:
         git config --global user.email "support.robotics@ifm.com"
         git config --global user.name "ifm-csr"
         git checkout -B pipeline
-        git fetch && git pull
         cd sphinx-doc
         git add build/
         git rm build/doctrees/environment.pickle
