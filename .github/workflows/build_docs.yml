@@ -54,7 +54,7 @@ jobs:
         git checkout -B pipeline
         cd sphinx-doc
         git add build/
-        git rm build/doctrees/environment.pickle
+        git rm -f build/doctrees/environment.pickle
         git commit -m "Updated built docs"
         git push --set-upstream origin pipeline
       # - git clone -b gh_pages https://${DEVELOPERPORTAL}:x-oauth-basic@github.com/ifm/developerportal.git repo
