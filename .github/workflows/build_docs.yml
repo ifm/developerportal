@@ -2,6 +2,8 @@
 name: Build docs
 on:
   push:
+    branches:
+    - '!pipeline'
   schedule:
     - cron:  '*/15 * * * *'
   workflow_dispatch:
