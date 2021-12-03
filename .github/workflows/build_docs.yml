@@ -56,5 +56,5 @@ jobs:
         git config --global user.name "ifm-csr"
         git checkout -B pipeline
         cd sphinx-doc
-        git diff --quiet || (git add /build && git rm sphinx-doc/build/doctrees/environment.pickle && git commit -a -m'[bot] update built doc' --allow-empty && git push --force --set-upstream origin pipeline)
+        git diff --quiet || (git add build/ && git rm sphinx-doc/build/doctrees/environment.pickle && git commit -a -m'[bot] update built doc' --allow-empty && git push --force --set-upstream origin pipeline)
 #        git diff-index --quiet HEAD || (git commit -a -m'[bot] update built doc' --allow-empty && git push --force --set-upstream origin pipeline)
