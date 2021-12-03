@@ -32,6 +32,7 @@ jobs:
         git pull --recurse-submodules
         rm -rf sphinx-doc/source/ifm3d sphinx-doc/source/documentation sphinx-doc/etc/ifm3d-docs
         cd sphinx-doc/source
+        git submodule update
         git submodule add --force https://github.com/ifm/ifm3d
         git submodule add --force https://github.com/ifm/documentation
         cd ../etc
