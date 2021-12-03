@@ -1,0 +1,47 @@
+ImageBuffer
+===========
+
+.. currentmodule:: ifm3dpy
+
+.. autoclass:: ImageBuffer
+   :show-inheritance:
+
+   .. rubric:: Methods Summary
+
+   .. autosummary::
+
+      ~ImageBuffer.amplitude_image
+      ~ImageBuffer.confidence_image
+      ~ImageBuffer.distance_image
+      ~ImageBuffer.exposure_times
+      ~ImageBuffer.extrinsics
+      ~ImageBuffer.gray_image
+      ~ImageBuffer.illu_temp
+      ~ImageBuffer.intrinsics
+      ~ImageBuffer.inverse_intrinsics
+      ~ImageBuffer.jpeg_image
+      ~ImageBuffer.json_model
+      ~ImageBuffer.organize
+      ~ImageBuffer.raw_amplitude_image
+      ~ImageBuffer.timestamp
+      ~ImageBuffer.unit_vectors
+      ~ImageBuffer.xyz_image
+
+   .. rubric:: Methods Documentation
+
+   .. automethod:: amplitude_image
+   .. automethod:: confidence_image
+   .. automethod:: distance_image
+   .. automethod:: exposure_times
+   .. automethod:: extrinsics
+   .. automethod:: gray_image
+   .. automethod:: illu_temp
+   .. automethod:: intrinsics
+   .. automethod:: inverse_intrinsics
+   .. automethod:: jpeg_image
+   .. automethod:: json_model
+   .. automethod:: organize
+   .. automethod:: raw_amplitude_image
+   .. automethod:: timestamp
+   .. automethod:: unit_vectors
+   .. automethod:: xyz_image

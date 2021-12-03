@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIRMWARE 0.13.13 RELEASE NOTES !!!!!PRELIMINARY!!!! &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../README.html">O3R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ifm3d/doc/sphinx/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ifm3d/doc/sphinx/content/installation_instructions.html">Installation instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ifm3d/doc/sphinx/cli_link.html">Command Line tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ifm3d/doc/sphinx/python_api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ifm3d/doc/sphinx/cpp_api/annotated.html">C++ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ifm3d/doc/sphinx/index.html">Indices and tables</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>FIRMWARE 0.13.13 RELEASE NOTES  !!!!!PRELIMINARY!!!!</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/documentation/O3R/ProductsDescription/Firmware_0.13.13-221_Release_Notes.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="firmware-0-13-13-release-notes-preliminary">
+<h1>FIRMWARE 0.13.13 RELEASE NOTES  !!!!!PRELIMINARY!!!!<a class="headerlink" href="#firmware-0-13-13-release-notes-preliminary" title="Permalink to this headline"></a></h1>
+<p>The following release note provides an overview of the features of the Firmware 0.13.13 Version.<br />
+Please refer to the ifm O3Rs website <a class="reference external" href="http://www.ifm3d.com">www.ifm3d.com</a> for further information.</p>
+<section id="previous-releases">
+<h2>1. Previous Releases<a class="headerlink" href="#previous-releases" title="Permalink to this headline"></a></h2>
+<p>There is no previous FW release for image processing platform M03975.
+The FW-release 0.13.13 does not operate with image processing platform M03903 and their heads.</p>
+</section>
+<section id="compatible-image-processing-platforms">
+<h2>2. Compatible Image Processing Platforms<a class="headerlink" href="#compatible-image-processing-platforms" title="Permalink to this headline"></a></h2>
+<p>This firmware release can be applied to the following ifm image processing platform:</p>
+<table border="1px solid black">
+  <tr>
+    <th>article</th>
+    <th>comment</th>   
+  </tr>
+  <tr>
+    <th>M03975</th>
+    <th>preseries sample</th>   
+  </tr>
+  <tr>
+    <th>M04239</th>
+    <th>preseries sample, housing change</th>   
+  </tr>  
+</table>
+</section>
+<section id="supported-heads">
+<h2>3. Supported Heads<a class="headerlink" href="#supported-heads" title="Permalink to this headline"></a></h2>
+<p>This firmware release supports the following ifm camera articles:</p>
+<table border="1px solid black">
+  <tr>
+    <th>article</th>
+    <th>description</th>
+    <th>available modes</th>   
+  </tr>
+  <tr>
+    <th> M03933 </th>
+    <th> 3D: 38k 224x172, 60°x45° IP50 <br>  2D: 1280x800, 127°x80° </th>   
+    <th> standard_range4m, standard_range2m, cyclic_4m_2m_4m_2m <br> autoexposure </th>
+  </tr>
+  <tr>
+    <th> M04237 </th>
+    <th> 3D: 38k 224x172, 60°x45° IP54 <br>  2D: 1280x800, 127°x80° </th>   
+    <th> standard_range4m, standard_range2m, cyclic_4m_2m_4m_2m <br> autoexposure </th>
+  </tr>  
+  <tr>
+    <th> M03969 </th>
+    <th> 3D: 38k 224x172, 105°x78° IP50 <br>  2D: 1280x800, 127°x80° </th>   
+    <th> standard_range4m, standard_range2m, cyclic_4m_2m_4m_2m <br> autoexposure </th>
+  </tr> 
+    <tr>
+    <th> M03970 </th>
+    <th> 3D: 38k 224x172, 105°x78° IP54 <br>  2D: 1280x800, 127°x80° </th>   
+    <th> standard_range4m, standard_range2m, cyclic_4m_2m_4m_2m <br> autoexposure </th>
+  </tr>    
+  <tr>
+    <th> M03976 </th>
+    <th> 3D: VGA 640x480, 60°x45° IP50 <br> 2D:1280x800, 127°x80° </th>   
+    <th> standard_range4m, standard_range2m, cyclic_4m_2m_4m_2m <br> autoexposure </th>
+  </tr>
+</table>
+</section>
+<section id="general-features">
+<h2>4. General Features<a class="headerlink" href="#general-features" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Connectivity:<br />
+The O3R image processing platform is a multi camera image processing platform.</p>
+<ul>
+<li><p>Ports: ifm camera articles can be connected to all six ports (Port0 .. Port5)</p></li>
+<li><p>Ethernet: 1x GB ethernet connection [eth0]</p></li>
+</ul>
+</li>
+<li><p>Data Interface:<br />
+The ifm3d library is recommended for interfacing with the O3R image processing platform (download <a class="reference external" href="https://github.com/ifm/ifm3d">here</a>)
+The idea of ifm3d is to let developers quickly ramp up and also deploy the image processing platform.
+Sample programs, that illustrate the various functions and good usage, are provided for the following applications frameworks:</p>
+<ul>
+<li><p>C++</p></li>
+<li><p>Python bindings: use <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">ifm3dpy</span></code>, (see <span class="xref myst">here</span>)</p></li>
+<li><p>ROS1 wrapper:</p></li>
+</ul>
+</li>
+<li><p>SSH access:<br />
+Access to the embedded Linux operating system is enabled through the <code class="docutils literal notranslate"><span class="pre">oem</span></code> user.</p></li>
+<li><p>Docker containers:<br />
+Docker containers can be used to deploy code embedded on the image processing platform.
+Management of docker containers, like upload, download, autostart, delete is handled through SSH access by the oem user.</p></li>
+</ul>
+</section>
+<section id="ifm-camera-usage">
+<h2>ifm Camera Usage<a class="headerlink" href="#ifm-camera-usage" title="Permalink to this headline"></a></h2>
+<p>The ifm camera heads are in one of the following states:</p>
+<ul class="simple">
+<li><p>CONF: Configuration state, no data acquisition</p></li>
+<li><p>IDLE: pause data acquisition</p></li>
+<li><p>RUN:  periodic data acquisition &#64;framerate</p></li>
+</ul>
+</section>
+<section id="d-camera-features">
+<h2>5. 3D-Camera Features<a class="headerlink" href="#d-camera-features" title="Permalink to this headline"></a></h2>
+<p><mark><strong>NEW</strong></mark><br />
+In contrast to other TOF-systems the ifm cameras have no ambiguity problem. Objects are measured only within the measurement range, which starts at an offset distance and for the length of the range. Objects before the offset and beyond the measurement range are not detected and more importantly can not disturb the measurement. The range and the offset can be adjusted to the current application.
+All data acquisitions are carried out in high dynamic mode with multiple exposure times.</p>
+<ul class="simple">
+<li><p>Modes:</p>
+<ul>
+<li><p>standard_range2m: measurement range [0..2] with offset=0 or [0.5..2.5] with offset=0.5 etc.</p></li>
+<li><p>standard_range4m: measurement range [0..4] with offset=0 or [1..5] with offset=1 etc.</p></li>
+<li><p>cyclic_4m_2m_4m_2m: periodic change between 4m and 2m measurement range</p></li>
+</ul>
+</li>
+<li><p>Acquisition Parameters:</p>
+<ul>
+<li><p>framerate: periodic image acquisition at 1/framerate-intervals</p></li>
+<li><p>delay: not functional (timing is currently free-running only)</p></li>
+<li><p>expLong: long exposure time of high dynamic acquisition</p></li>
+<li><p>expShort: short exposure time of high dynamic acquisition</p></li>
+<li><p>offset: shift of measurement range in 0.5m steps</p></li>
+</ul>
+</li>
+<li><p>Available Output Data:</p>
+<ul>
+<li><p>distance: radial distance between camera and object</p></li>
+<li><p>x: x-coordinate of object pixel</p></li>
+<li><p>y: y-coordinate of object pixel</p></li>
+<li><p>z: z-coordinate of object pixel</p></li>
+<li><p>amplitude: detected signal strength</p></li>
+<li><p>confidence: metainformation for each pixel</p></li>
+<li><p>Metadata: image width [pix], image height [pix], timestamps</p></li>
+</ul>
+</li>
+<li><p>Data Processing:</p>
+<ul>
+<li><p>various Thresholds: invalidate pixels on various criteria</p></li>
+<li><p>Filters:</p>
+<ul>
+<li><p>spatial filters and parametrization</p></li>
+<li><p>temporal filters and parametrization</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="rgb-camera-features">
+<h2>6. RGB-Camera Features<a class="headerlink" href="#rgb-camera-features" title="Permalink to this headline"></a></h2>
+<p>The RGB cameras acquire color images of the objects.</p>
+<ul class="simple">
+<li><p>Modes:</p>
+<ul>
+<li><p>autoexposure</p></li>
+</ul>
+</li>
+<li><p>Acquisition Parameters:</p>
+<ul>
+<li><p>framerate: periodic image acquisition at 1/framerate-intervals</p></li>
+<li><p>delay: not functional (timing is currently free-running only)</p></li>
+</ul>
+</li>
+<li><p>Available Output Data:</p>
+<ul>
+<li><p>jpg-encoded RGB image</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="known-issues">
+<h2>7. Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Connectivity: ports must be connected pairwise with the same head-type: [Port0,Port1]   [Port2,Port3]   [Port4,Port5]</p></li>
+<li><p>Frame rate limitation: M03976 is limited to 1..10Hz</p></li>
+<li><p>No time synchronization: synchronized data acquisition / image triggering between ports is currently not possible.</p></li>
+<li><p>Software triggering in IDLE state is not operational</p></li>
+</ul>
+</section>
+<section id="look-forward-to-these-features-in-future-releases">
+<h2>8. Look forward to these features in future releases<a class="headerlink" href="#look-forward-to-these-features-in-future-releases" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>CAN: messages can be retrieved via a CAN bus system</p></li>
+<li><p>[eth1]: enable the second ethernet port</p></li>
+<li><p>USB: a mass storage device is accessible for data collection</p></li>
+<li><p>avoid crosstalk between multiple cameras by selecting a channel value</p></li>
+<li><p>synchronization among different ports - it will be possible to define the acquisition timing for SW-triggered and periodic acquisitions (eg. two heads have a synchronized acquistion)</p></li>
+</ul>
+</section>
+<section id="update-firmware-procedure">
+<h2>9. Update Firmware Procedure:<a class="headerlink" href="#update-firmware-procedure" title="Permalink to this headline"></a></h2>
+<p>Update procedure:</p>
+<ol class="simple">
+<li><p>Open <a class="reference external" href="http://192.168.0.69:8080/">http://192.168.0.69:8080/</a> in web browser. The SWUpdate web interface is shown.</p></li>
+<li><p>Drag and drop the <code class="docutils literal notranslate"><span class="pre">*.swu</span></code> firmware file into the <code class="docutils literal notranslate"><span class="pre">software</span> <span class="pre">update</span></code>-window. The upload procedure starts.</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

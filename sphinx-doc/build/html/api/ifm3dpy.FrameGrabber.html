@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FrameGrabber &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ImageBuffer" href="ifm3dpy.ImageBuffer.html" />
+    <link rel="prev" title="CameraBase" href="ifm3dpy.CameraBase.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../documentation/O3R/README.html">O3R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ifm3d/doc/sphinx/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ifm3d/doc/sphinx/content/installation_instructions.html">Installation instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ifm3d/doc/sphinx/cli_link.html">Command Line tool</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../ifm3d/doc/sphinx/python_api.html">Python API</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../ifm3d/doc/sphinx/python_api.html#module-ifm3dpy">ifm3dpy Module</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../ifm3d/doc/sphinx/python_api.html#variables">Variables</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../ifm3d/doc/sphinx/python_api.html#classes">Classes</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="ifm3dpy.Camera.html">Camera</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ifm3dpy.CameraBase.html">CameraBase</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">FrameGrabber</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ifm3dpy.ImageBuffer.html">ImageBuffer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ifm3dpy.O3RCamera.html">O3RCamera</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ifm3d/doc/sphinx/cpp_api/annotated.html">C++ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ifm3d/doc/sphinx/index.html">Indices and tables</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../ifm3d/doc/sphinx/index.html">Indices and tables</a> &raquo;</li>
+          <li><a href="../ifm3d/doc/sphinx/python_api.html">Python API Reference</a> &raquo;</li>
+      <li>FrameGrabber</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/api/ifm3dpy.FrameGrabber.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="framegrabber">
+<h1>FrameGrabber<a class="headerlink" href="#framegrabber" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="ifm3dpy.FrameGrabber">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">ifm3dpy.</span></span><span class="sig-name descname"><span class="pre">FrameGrabber</span></span><a class="headerlink" href="#ifm3dpy.FrameGrabber" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">pybind11_builtins.pybind11_object</span></code></p>
+<p>Implements a TCP FrameGrabber connected to a provided Camera</p>
+<p class="rubric">Methods Summary</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ifm3dpy.FrameGrabber.reset" title="ifm3dpy.FrameGrabber.reset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reset</span></code></a>(self, cam, mask, pcic_port)</p></td>
+<td><p>Resets the FrameGrabber with a new camera/bitmask</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#ifm3dpy.FrameGrabber.sw_trigger" title="ifm3dpy.FrameGrabber.sw_trigger"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sw_trigger</span></code></a>(self)</p></td>
+<td><p>Triggers the camera for image acquisition</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#ifm3dpy.FrameGrabber.wait_for_frame" title="ifm3dpy.FrameGrabber.wait_for_frame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wait_for_frame</span></code></a>(self, buff[, timeout_millis, ...])</p></td>
+<td><p>This function is used to grab and parse out time synchronized image data from the camera.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods Documentation</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ifm3dpy.FrameGrabber.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self:</span> <span class="pre">ifm3dpy.FrameGrabber</span></em>, <em class="sig-param"><span class="pre">cam:</span> <span class="pre">ifm3d::CameraBase</span></em>, <em class="sig-param"><span class="pre">mask:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">10</span></em>, <em class="sig-param"><span class="pre">pcic_port:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">0</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ifm3dpy.FrameGrabber.reset" title="Permalink to this definition"></a></dt>
+<dd><p>Resets the FrameGrabber with a new camera/bitmask</p>
+<dl class="simple">
+<dt>cam<span class="classifier">ifm3dpy.Camera</span></dt><dd><p>The camera instance to grab frames from.</p>
+</dd>
+<dt>mask<span class="classifier">uint16</span></dt><dd><p>A bitmask encoding the image acquisition schema to stream in from
+the camera.</p>
+</dd>
+<dt>pcic_port<span class="classifier">uint16</span></dt><dd><p>The PCIC port</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ifm3dpy.FrameGrabber.sw_trigger">
+<span class="sig-name descname"><span class="pre">sw_trigger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ifm3dpy.FrameGrabber" title="ifm3dpy.FrameGrabber"><span class="pre">ifm3dpy.FrameGrabber</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#ifm3dpy.FrameGrabber.sw_trigger" title="Permalink to this definition"></a></dt>
+<dd><p>Triggers the camera for image acquisition</p>
+<p>You should be sure to set the <cite>TriggerMode</cite> for your application to
+<cite>SW</cite> in order for this to be effective. This function
+simply does the triggering, data are still received asynchronously via
+<cite>WaitForFrame()</cite>.</p>
+<p>Calling this function when the camera is not in <cite>SW</cite> trigger mode or on
+a device that does not support software-trigger should result in a NOOP
+and no error will be returned (no exceptions thrown). However, we do
+not recommend calling this function in a tight framegrabbing loop when
+you know it is not needed. The “cost” of the NOOP is undefined and
+incurring it is not recommended.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ifm3dpy.FrameGrabber.wait_for_frame">
+<span class="sig-name descname"><span class="pre">wait_for_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#ifm3dpy.FrameGrabber" title="ifm3dpy.FrameGrabber"><span class="pre">ifm3dpy.FrameGrabber</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">buff</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="ifm3dpy.ImageBuffer.html#ifm3dpy.ImageBuffer" title="ifm3dpy.ImageBuffer"><span class="pre">ifm3dpy.ImageBuffer</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout_millis</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy_buff</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">organize</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#ifm3dpy.FrameGrabber.wait_for_frame" title="Permalink to this definition"></a></dt>
+<dd><p>This function is used to grab and parse out time synchronized image
+data from the camera.</p>
+<dl class="simple">
+<dt>buff<span class="classifier">ifm3dpy.FrameBuffer</span></dt><dd><p>A FrameBuffer object to update with the latest data from the
+camera.</p>
+</dd>
+<dt>timeout_millis<span class="classifier">int</span></dt><dd><p>Timeout in millis to wait for new image data from the FrameGrabber.
+If <cite>timeout_millis</cite> is set to 0, this function will block
+indefinitely.</p>
+</dd>
+<dt>copy_buff<span class="classifier">bool</span></dt><dd><p>Flag indicating whether the framegrabber’s internal
+buffer should be copied (O(n)) or swapped
+(O(1)) with the raw bytes of the passed in
+<cite>buff</cite>. You should only flag this as <cite>true</cite> if
+you are planning to use multiple clients with
+a single <cite>FrameGrabber</cite> – even then, think
+carefully before copying data around.</p>
+</dd>
+<dt>organize<span class="classifier">bool</span></dt><dd><p>Flag indicating whether or not <cite>Organize</cite> should be called on the
+<cite>ByteBuffer</cite> before returning, or whether it should be deferred
+until the data is accessed.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>bool</dt><dd><p>True if a new buffer was acquired w/in “timeout_millis”, false
+otherwise.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ifm3dpy.CameraBase.html" class="btn btn-neutral float-left" title="CameraBase" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ifm3dpy.ImageBuffer.html" class="btn btn-neutral float-right" title="ImageBuffer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

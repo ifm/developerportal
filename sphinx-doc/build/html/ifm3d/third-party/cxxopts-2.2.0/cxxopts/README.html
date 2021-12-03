@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Release versions &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/O3R/README.html">O3R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/sphinx/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/sphinx/content/installation_instructions.html">Installation instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/sphinx/cli_link.html">Command Line tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/sphinx/python_api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/sphinx/cpp_api/annotated.html">C++ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../doc/sphinx/index.html">Indices and tables</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Release versions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/ifm3d/third-party/cxxopts-2.2.0/cxxopts/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p><a class="reference external" href="https://travis-ci.org/jarro2783/cxxopts"><img alt="Build Status" src="https://travis-ci.org/jarro2783/cxxopts.svg?branch=master" /></a></p>
+<section class="tex2jax_ignore mathjax_ignore" id="release-versions">
+<h1>Release versions<a class="headerlink" href="#release-versions" title="Permalink to this headline"></a></h1>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">master</span></code> is generally a work in progress, and you probably want to use a
+tagged release version.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="quick-start">
+<h1>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline"></a></h1>
+<p>This is a lightweight C++ option parser library, supporting the standard GNU
+style syntax for options.</p>
+<p>Options can be given as:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>--long
+--long=argument
+--long argument
+-a
+-ab
+-abc argument
+</pre></div>
+</div>
+<p>where c takes an argument, but a and b do not.</p>
+<p>Additionally, anything after <code class="docutils literal notranslate"><span class="pre">--</span></code> will be parsed as a positional argument.</p>
+<section id="basics">
+<h2>Basics<a class="headerlink" href="#basics" title="Permalink to this headline"></a></h2>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#include &lt;cxxopts.hpp&gt;
+</pre></div>
+</div>
+<p>Create a cxxopts::Options instance.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cxxopts::Options options(&quot;MyProgram&quot;, &quot;One line description of MyProgram&quot;);
+</pre></div>
+</div>
+<p>Then use <code class="docutils literal notranslate"><span class="pre">add_options</span></code>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>options.add_options()
+  (&quot;d,debug&quot;, &quot;Enable debugging&quot;)
+  (&quot;f,file&quot;, &quot;File name&quot;, cxxopts::value&lt;std::string&gt;())
+  ;
+</pre></div>
+</div>
+<p>Options are declared with a long and an optional short option. A description
+must be provided. The third argument is the value, if omitted it is boolean.
+Any type can be given as long as it can be parsed, with operator&gt;&gt;.</p>
+<p>To parse the command line do:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>auto result = options.parse(argc, argv);
+</pre></div>
+</div>
+<p>To retrieve an option use <code class="docutils literal notranslate"><span class="pre">result.count(&quot;option&quot;)</span></code> to get the number of times
+it appeared, and</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>result[&quot;opt&quot;].as&lt;type&gt;()
+</pre></div>
+</div>
+<p>to get its value. If “opt” doesn’t exist, or isn’t of the right type, then an
+exception will be thrown.</p>
+<p>Note that the result of <code class="docutils literal notranslate"><span class="pre">options.parse</span></code> should only be used as long as the
+<code class="docutils literal notranslate"><span class="pre">options</span></code> object that created it is in scope.</p>
+</section>
+<section id="exceptions">
+<h2>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this headline"></a></h2>
+<p>Exceptional situations throw C++ exceptions. There are two types of
+exceptions: errors defining the options, and errors when parsing a list of
+arguments. All exceptions derive from <code class="docutils literal notranslate"><span class="pre">cxxopts::OptionException</span></code>. Errors
+defining options derive from <code class="docutils literal notranslate"><span class="pre">cxxopts::OptionSpecException</span></code> and errors
+parsing arguments derive from <code class="docutils literal notranslate"><span class="pre">cxxopts::OptionParseException</span></code>.</p>
+<p>All exceptions define a <code class="docutils literal notranslate"><span class="pre">what()</span></code> function to get a printable string
+explaining the error.</p>
+</section>
+<section id="help-groups">
+<h2>Help groups<a class="headerlink" href="#help-groups" title="Permalink to this headline"></a></h2>
+<p>Options can be placed into groups for the purposes of displaying help messages.
+To place options in a group, pass the group as a string to <code class="docutils literal notranslate"><span class="pre">add_options</span></code>. Then,
+when displaying the help, pass the groups that you would like displayed as a
+vector to the <code class="docutils literal notranslate"><span class="pre">help</span></code> function.</p>
+</section>
+<section id="positional-arguments">
+<h2>Positional Arguments<a class="headerlink" href="#positional-arguments" title="Permalink to this headline"></a></h2>
+<p>Positional arguments can be optionally parsed into one or more options.
+To set up positional arguments, call</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>options.parse_positional({&quot;first&quot;, &quot;second&quot;, &quot;last&quot;})
+</pre></div>
+</div>
+<p>where “last” should be the name of an option with a container type, and the
+others should have a single value.</p>
+</section>
+<section id="default-and-implicit-values">
+<h2>Default and implicit values<a class="headerlink" href="#default-and-implicit-values" title="Permalink to this headline"></a></h2>
+<p>An option can be declared with a default or an implicit value, or both.</p>
+<p>A default value is the value that an option takes when it is not specified
+on the command line. The following specifies a default value for an option:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cxxopts::value&lt;std::string&gt;()-&gt;default_value(&quot;value&quot;)
+</pre></div>
+</div>
+<p>An implicit value is the value that an option takes when it is given on the
+command line without an argument. The following specifies an implicit value:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cxxopts::value&lt;std::string&gt;()-&gt;implicit_value(&quot;implicit&quot;)
+</pre></div>
+</div>
+<p>If an option had both, then not specifying it would give the value <code class="docutils literal notranslate"><span class="pre">&quot;value&quot;</span></code>,
+writing it on the command line as <code class="docutils literal notranslate"><span class="pre">--option</span></code> would give the value <code class="docutils literal notranslate"><span class="pre">&quot;implicit&quot;</span></code>,
+and writing <code class="docutils literal notranslate"><span class="pre">--option=another</span></code> would give it the value <code class="docutils literal notranslate"><span class="pre">&quot;another&quot;</span></code>.</p>
+<p>Note that the default and implicit value is always stored as a string,
+regardless of the type that you want to store it in. It will be parsed as
+though it was given on the command line.</p>
+</section>
+<section id="boolean-values">
+<h2>Boolean values<a class="headerlink" href="#boolean-values" title="Permalink to this headline"></a></h2>
+<p>Boolean options have a default implicit value of <code class="docutils literal notranslate"><span class="pre">&quot;true&quot;</span></code>, which can be
+overridden. The effect is that writing <code class="docutils literal notranslate"><span class="pre">-o</span></code> by itself will set option <code class="docutils literal notranslate"><span class="pre">o</span></code> to
+<code class="docutils literal notranslate"><span class="pre">true</span></code>. However, they can also be written with various strings using <code class="docutils literal notranslate"><span class="pre">=value</span></code>.
+There is no way to disambiguate positional arguments from the value following
+a boolean, so we have chosen that they will be positional arguments, and
+therefore, <code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">false</span></code> does not work.</p>
+</section>
+<section id="std-vector-t-values">
+<h2><code class="docutils literal notranslate"><span class="pre">std::vector&lt;T&gt;</span></code> values<a class="headerlink" href="#std-vector-t-values" title="Permalink to this headline"></a></h2>
+<p>Parsing of list of values in form of an <code class="docutils literal notranslate"><span class="pre">std::vector&lt;T&gt;</span></code> is also supported, as long as <code class="docutils literal notranslate"><span class="pre">T</span></code>
+can be parsed. To separate single values in a list the definition <code class="docutils literal notranslate"><span class="pre">CXXOPTS_VECTOR_DELIMITER</span></code>
+is used, which is ‘,’ by default. Ensure that you use no whitespaces between values because
+those would be interpreted as the next command line option. Example for a command line option
+that can be parsed as a <code class="docutils literal notranslate"><span class="pre">std::vector&lt;double&gt;</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">my_list</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mf">2.1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mf">4.5</span>
+</pre></div>
+</div>
+</section>
+<section id="custom-help">
+<h2>Custom help<a class="headerlink" href="#custom-help" title="Permalink to this headline"></a></h2>
+<p>The string after the program name on the first line of the help can be
+completely replaced by calling <code class="docutils literal notranslate"><span class="pre">options.custom_help</span></code>. Note that you might
+also want to override the positional help by calling <code class="docutils literal notranslate"><span class="pre">options.positional_help</span></code>.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="linking">
+<h1>Linking<a class="headerlink" href="#linking" title="Permalink to this headline"></a></h1>
+<p>This is a header only library.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="requirements">
+<h1>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline"></a></h1>
+<p>The only build requirement is a C++ compiler that supports C++11 regular
+expressions. For example GCC &gt;= 4.9 or clang with libc++.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="todo-list">
+<h1>TODO list<a class="headerlink" href="#todo-list" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p>Allow unrecognised options.</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

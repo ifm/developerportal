@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Python API Reference &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Camera" href="../../../api/ifm3dpy.Camera.html" />
+    <link rel="prev" title="ifm3d - Command Line Tool" href="cli_link.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/O3R/README.html">O3R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/installation_instructions.html">Installation instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli_link.html">Command Line tool</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Python API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-ifm3dpy">ifm3dpy Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#variables">Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/ifm3dpy.Camera.html">Camera</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/ifm3dpy.CameraBase.html">CameraBase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/ifm3dpy.FrameGrabber.html">FrameGrabber</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/ifm3dpy.ImageBuffer.html">ImageBuffer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/ifm3dpy.O3RCamera.html">O3RCamera</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cpp_api/annotated.html">C++ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Indices and tables</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Indices and tables</a> &raquo;</li>
+      <li>Python API Reference</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/ifm3d/doc/sphinx/python_api.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="python-api-reference">
+<h1>Python API Reference<a class="headerlink" href="#python-api-reference" title="Permalink to this headline"></a></h1>
+<section id="module-ifm3dpy">
+<span id="ifm3dpy-module"></span><h2>ifm3dpy Module<a class="headerlink" href="#module-ifm3dpy" title="Permalink to this headline"></a></h2>
+<p>Bindings for the ifm3d Camera Library</p>
+<section id="variables">
+<h3>Variables<a class="headerlink" href="#variables" title="Permalink to this headline"></a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>__version__</p></td>
+<td><p>The ifm3d version.</p></td>
+</tr>
+<tr class="row-even"><td><p>__package__</p></td>
+<td><p>The ifm3d package.</p></td>
+</tr>
+<tr class="row-odd"><td><p>DEFAULT_IP</p></td>
+<td><p>The default IP to connect to.</p></td>
+</tr>
+<tr class="row-even"><td><p>DEFAULT_XMLRPC_PORT</p></td>
+<td><p>The default XMLRPC port.</p></td>
+</tr>
+<tr class="row-odd"><td><p>DEFAULT_PASSWORD</p></td>
+<td><p>The default password.</p></td>
+</tr>
+<tr class="row-even"><td><p>DEFAULT_SCHEMA_MASK</p></td>
+<td><p>The default pcic schema mask.</p></td>
+</tr>
+<tr class="row-odd"><td><p>IMG_RDIS</p></td>
+<td><p>Pcic schema constant for the radial distance image.</p></td>
+</tr>
+<tr class="row-even"><td><p>IMG_AMP</p></td>
+<td><p>Pcic schema constant for the normalized amplitude image.</p></td>
+</tr>
+<tr class="row-odd"><td><p>IMG_RAMP</p></td>
+<td><p>Pcic schema constant for the raw amplitude image.</p></td>
+</tr>
+<tr class="row-even"><td><p>IMG_CART</p></td>
+<td><p>Pcic schema constant for the cartesian image.</p></td>
+</tr>
+<tr class="row-odd"><td><p>IMG_UVEC</p></td>
+<td><p>Pcic schema constant for the wrapped unit vectors.</p></td>
+</tr>
+<tr class="row-even"><td><p>EXP_TIME</p></td>
+<td><p>Pcic schema constant for the amplitude image.</p></td>
+</tr>
+<tr class="row-odd"><td><p>IMG_GRAY</p></td>
+<td><p>Pcic schema constant for the wrapped ambient light image.</p></td>
+</tr>
+<tr class="row-even"><td><p>ILLU_TEMP</p></td>
+<td><p>Pcic schema constant for the illu temp.</p></td>
+</tr>
+<tr class="row-odd"><td><p>INTR_CAL</p></td>
+<td><p>Pcic schema constant for the intrinsic calibration.</p></td>
+</tr>
+<tr class="row-even"><td><p>INV_INTR_CAL</p></td>
+<td><p>Pcic schema constant for the inverse intrinsic calibration.</p></td>
+</tr>
+<tr class="row-odd"><td><p>JSON_MODEL</p></td>
+<td><p>Pcic schema constant for the json model.</p></td>
+</tr>
+<tr class="row-even"><td><p>O3D_TIME_SUPPORT_MAJOR</p></td>
+<td><p>Constant for querying for O3D time support.</p></td>
+</tr>
+<tr class="row-odd"><td><p>O3D_TIME_SUPPORT_MINOR</p></td>
+<td><p>Constant for querying for O3D time support.</p></td>
+</tr>
+<tr class="row-even"><td><p>O3D_TIME_SUPPORT_PATCH</p></td>
+<td><p>Constant for querying for O3D time support.</p></td>
+</tr>
+<tr class="row-odd"><td><p>O3D_TMP_PARAMS_SUPPORT_MAJOR</p></td>
+<td><p>Constant for querying for O3D temporary parameter support.</p></td>
+</tr>
+<tr class="row-even"><td><p>O3D_TMP_PARAMS_SUPPORT_MINOR</p></td>
+<td><p>Constant for querying for O3D temporary parameter support.</p></td>
+</tr>
+<tr class="row-odd"><td><p>O3D_TMP_PARAMS_SUPPORT_PATCH</p></td>
+<td><p>Constant for querying for O3D temporary parameter support.</p></td>
+</tr>
+<tr class="row-even"><td><p>O3D_INTRINSIC_PARAM_SUPPORT_MAJOR</p></td>
+<td><p>Constant for querying for O3D intrinsic parameter support.</p></td>
+</tr>
+<tr class="row-odd"><td><p>O3D_INTRINSIC_PARAM_SUPPORT_MINOR</p></td>
+<td><p>Constant for querying for O3D intrinsic parameter support.</p></td>
+</tr>
+<tr class="row-even"><td><p>O3D_INTRINSIC_PARAM_SUPPORT_PATCH</p></td>
+<td><p>Constant for querying for O3D intrinsic parameter support.</p></td>
+</tr>
+<tr class="row-odd"><td><p>O3D_INVERSE_INTRINSIC_PARAM_SUPPORT_MAJOR</p></td>
+<td><p>Constant for querying for O3D inverse intrinsic parameter support.</p></td>
+</tr>
+<tr class="row-even"><td><p>O3D_INVERSE_INTRINSIC_PARAM_SUPPORT_MINOR</p></td>
+<td><p>Constant for querying for O3D inverse intrinsic parameter support.</p></td>
+</tr>
+<tr class="row-odd"><td><p>O3D_INVERSE_INTRINSIC_PARAM_SUPPORT_PATCH</p></td>
+<td><p>Constant for querying for O3D inverse intrinsic parameter support.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline"></a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../../api/ifm3dpy.Camera.html#ifm3dpy.Camera" title="ifm3dpy.Camera"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Camera</span></code></a></p></td>
+<td><p>Class for managing an instance of an O3D/O3X Camera</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../../../api/ifm3dpy.CameraBase.html#ifm3dpy.CameraBase" title="ifm3dpy.CameraBase"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CameraBase</span></code></a></p></td>
+<td><p>Base class for managing an instance of an all cameras</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../../api/ifm3dpy.FrameGrabber.html#ifm3dpy.FrameGrabber" title="ifm3dpy.FrameGrabber"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FrameGrabber</span></code></a></p></td>
+<td><p>Implements a TCP FrameGrabber connected to a provided Camera</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../../../api/ifm3dpy.ImageBuffer.html#ifm3dpy.ImageBuffer" title="ifm3dpy.ImageBuffer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ImageBuffer</span></code></a></p></td>
+<td><p>Class which holds a validated image buffer from the sensor that represents a single time-synchronized set of images based on the current schema mask set on the active framegrabber.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../../api/ifm3dpy.O3RCamera.html#ifm3dpy.O3RCamera" title="ifm3dpy.O3RCamera"><code class="xref py py-obj docutils literal notranslate"><span class="pre">O3RCamera</span></code></a></p></td>
+<td><p>Class for managing an instance of an O3R Camera</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cli_link.html" class="btn btn-neutral float-left" title="ifm3d - Command Line Tool" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../../api/ifm3dpy.Camera.html" class="btn btn-neutral float-right" title="Camera" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

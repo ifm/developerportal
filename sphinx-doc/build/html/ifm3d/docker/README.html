@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ifm3d - Docker &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/O3R/README.html">O3R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../doc/sphinx/index.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../doc/sphinx/content/installation_instructions.html">Installation instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../doc/sphinx/cli_link.html">Command Line tool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../doc/sphinx/python_api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../doc/sphinx/cpp_api/annotated.html">C++ API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../doc/sphinx/index.html">Indices and tables</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>ifm3d - Docker</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/ifm3d/docker/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="ifm3d-docker">
+<h1>ifm3d - Docker<a class="headerlink" href="#ifm3d-docker" title="Permalink to this headline"></a></h1>
+<p>NOTE: This work with Docker is currently experimental. The process will be
+refined over time and is subject to change without notice. Thanks for your
+patience.</p>
+<p>As of ifm3d version 0.12.0, we are using <a class="reference external" href="https://www.docker.com/">Docker</a> as a
+means to build binary packages of the software, for Linux, to help ease
+installation for our users. We use Docker in two ways:</p>
+<ol class="simple">
+<li><p>To build the software packages (deb files)</p></li>
+<li><p>To provide a quick and easy way to test those debs on a fresh OS
+installation.</p></li>
+</ol>
+<p>Whether you plan to use Docker for building, running, or both, you will need to
+install Docker. There are two steps to getting Docker setup correctly:</p>
+<ol class="simple">
+<li><p>Install Docker using
+<a class="reference external" href="https://docs.docker.com/install/linux/docker-ce/ubuntu/">these instructions</a></p></li>
+<li><p>Carry out the post installation setup using
+<a class="reference external" href="https://docs.docker.com/install/linux/linux-postinstall/">these instructions</a></p></li>
+</ol>
+<section id="building">
+<h2>Building<a class="headerlink" href="#building" title="Permalink to this headline"></a></h2>
+<p>This section is only for ifm3d developers. Users can safely skip this part.</p>
+<p>To use Docker to build the ifm3d software packages, you should utilize the
+<span class="xref myst">build-debs.py</span> script (requires Python 3). The help
+output for the script is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./build-debs.py --help
+usage: build-debs.py [-h] [--docker_file DOCKER_FILE [DOCKER_FILE ...]]
+                     [--image IMAGE] [--vtag VTAG] [--run_tests]
+
+Build ifm3d debs via Docker
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --docker_file DOCKER_FILE [DOCKER_FILE ...]
+                        DockerFile list to process. If not specified, all
+                        `DockerFile&#39; specifications encountered in all
+                        subirectories (with respect to your current working
+                        directory), recursively, will be processed.
+  --image IMAGE         Docker image name.
+  --vtag VTAG           ifm3d git version tag to build. If omitted, `master&#39;
+                        will be checked out and built.
+  --run_tests           Run unit tests during build. Only specify this flag if
+                        testing against live hardware (e.g., O3D or O3X).
+</pre></div>
+</div>
+<p>Depending upon how you parameterize <code class="docutils literal notranslate"><span class="pre">build-debs.py</span></code>, the built packages will be
+placed next to the <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> in a subdirectory called <code class="docutils literal notranslate"><span class="pre">debs</span></code>. These debs can
+then be uploaded to ifm’s Nexus server for easy install via <code class="docutils literal notranslate"><span class="pre">apt-get</span></code>.</p>
+</section>
+<section id="running">
+<h2>Running<a class="headerlink" href="#running" title="Permalink to this headline"></a></h2>
+<p>If you just want to quickly evaluate an ifm 3D camera via <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code>, you can
+bring up a Docker container appropriate to your situation. We maintain a few
+to make this process easy.</p>
+<section id="non-ros-users">
+<h3>Non-ROS users<a class="headerlink" href="#non-ros-users" title="Permalink to this headline"></a></h3>
+<p>Dockerfiles to build can be found <span class="xref myst">here</span>.</p>
+<p><strong>Ubuntu 16.04</strong></p>
+<p>Be sure you are in the <span class="xref myst">16.04 directory</span>.</p>
+<p>Build the Docker container:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker build -t ifm3d1604 .
+</pre></div>
+</div>
+<p>Once the container is done being built, if you simply want to inspect your
+connected camera via the <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> command line tool, you can:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker run -u ifm -ti --rm ifm3d1604:latest /bin/bash
+ifm@c8c9865efb14:/$ ifm3d ls
+[
+  {
+    &quot;Active&quot;: true,
+    &quot;Description&quot;: &quot;&quot;,
+    &quot;Id&quot;: 351437496,
+    &quot;Index&quot;: 1,
+    &quot;Name&quot;: &quot;Sample Application&quot;
+  }
+]
+ifm@c8c9865efb14:/$ ifm3d hz
+FrameGrabber running at: 4.95815 Hz
+10 frames captured, over 1 runs
+ifm@c8c9865efb14:/$ ^D
+</pre></div>
+</div>
+<p>If you want to visualize the data using the
+<a class="reference external" href="https://github.com/ifm/ifm3d-pcl-viewer">ifm3d-pcl-viewer</a>:</p>
+<p>NOTE: The <code class="docutils literal notranslate"><span class="pre">xhost</span></code> command below is considered <em>insecure</em>. For exemplary
+purposes, we use this approach in these instructions. However, we urge you to
+read the <code class="docutils literal notranslate"><span class="pre">man</span></code> page for <code class="docutils literal notranslate"><span class="pre">xhost</span></code> and decide if this is a security concern for
+you before running the commands below. You have been warned.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ xhost +local:root
+non-network local connections being added to access control list
+
+$ docker run -u ifm -ti --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw ifm3d1604:latest /bin/bash
+ifm@b79de0545832:/$ ifm3d-pcl-viewer
+</pre></div>
+</div>
+<p>If your camera is connected at the default ip address of 192.168.0.69, you
+should now see a window rendering the streaming pointcloud.</p>
+<p><strong>Ubuntu 18.04</strong></p>
+<p>Be sure you are in the <span class="xref myst">18.04 directory</span>.</p>
+<p>Build the Docker container:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker build -t ifm3d1804 .
+</pre></div>
+</div>
+<p>Use the command line tools:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker run -u ifm -ti --rm ifm3d1804:latest /bin/bash
+ifm@330fc18969c4:/$ ifm3d ls
+[
+  {
+    &quot;Active&quot;: true,
+    &quot;Description&quot;: &quot;&quot;,
+    &quot;Id&quot;: 351437496,
+    &quot;Index&quot;: 1,
+    &quot;Name&quot;: &quot;Sample Application&quot;
+  }
+]
+ifm@330fc18969c4:/$ ifm3d hz
+FrameGrabber running at: 5.33508 Hz
+10 frames captured, over 1 runs
+ifm@330fc18969c4:/$ ^D
+</pre></div>
+</div>
+<p>Use the <a class="reference external" href="https://github.com/ifm/ifm3d-pcl-viewer">visualizer</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ xhost +local:root
+non-network local connections being added to access control list
+
+$ docker run -u ifm -ti --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw ifm3d1804:latest /bin/bash
+ifm@f98b659d1e71:/$ ifm3d-pcl-viewer
+</pre></div>
+</div>
+<p><strong>Ubuntu 20.04</strong></p>
+<p>Be sure you are in the <span class="xref myst">20.04 directory</span>.</p>
+<p>Build the Docker container:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker build -t ifm3d2004 .
+</pre></div>
+</div>
+<p>Use the command line tools:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker run -u ifm -ti --rm ifm3d2004:latest /bin/bash
+ifm@330fc18969c4:/$ ifm3d ls
+[
+  {
+    &quot;Active&quot;: true,
+    &quot;Description&quot;: &quot;&quot;,
+    &quot;Id&quot;: 351437496,
+    &quot;Index&quot;: 1,
+    &quot;Name&quot;: &quot;Sample Application&quot;
+  }
+]
+ifm@330fc18969c4:/$ ifm3d hz
+FrameGrabber running at: 5.33508 Hz
+10 frames captured, over 1 runs
+ifm@330fc18969c4:/$ ^D
+</pre></div>
+</div>
+<p>Use the <a class="reference external" href="https://github.com/ifm/ifm3d-pcl-viewer">visualizer</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ xhost +local:root
+non-network local connections being added to access control list
+
+$ docker run -u ifm -ti --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw ifm3d2004:latest /bin/bash
+ifm@f98b659d1e71:/$ ifm3d-pcl-viewer
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
