@@ -32,6 +32,7 @@ jobs:
     # Update references
     - name: Git Repos Update
       run: | 
+        chmod +x ./.github/scripts/clone.sh
         ./.github/scripts/clone.sh o3r/main-next https://github.com/ifm/ifm3d/tree/o3r/main-next sphinx-doc/source/ifm3d
         ./.github/scripts/clone.sh sphinx_update https://github.com/ifm/documentation sphinx-doc/source/documentation
         ./.github/scripts/clone.sh main https://github.com/ifm/ifm3d-docs sphinx-doc/etc/ifm3d-docs               
@@ -47,7 +48,6 @@ jobs:
         cp -r etc/ifm3d-docs/cpp_api build/html/ifm3d/doc/sphinx/
     - name: Push built docs
       run: |
-        chmod +x ./.github/scripts/clone.sh
         git config --global user.email "support.robotics@ifm.com"
         git config --global user.name "ifm-csr"
         git checkout -B pipeline
