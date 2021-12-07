@@ -33,9 +33,9 @@ jobs:
     - name: Git Repos Update
       run: | 
         chmod +x ./.github/scripts/clone.sh
-        ./.github/scripts/clone.sh o3r/main-next https://github.com/ifm/ifm3d sphinx-doc/source/ifm3d
-        ./.github/scripts/clone.sh sphinx_update https://github.com/ifm/documentation sphinx-doc/source/documentation
-        ./.github/scripts/clone.sh main https://github.com/ifm/ifm3d-docs sphinx-doc/etc/ifm3d-docs               
+        ./.github/scripts/clone.sh https://github.com/ifm/ifm3d o3r/main-next sphinx-doc/source/ifm3d
+        ./.github/scripts/clone.sh https://github.com/ifm/documentation sphinx_update sphinx-doc/source/documentation
+        ./.github/scripts/clone.sh https://github.com/ifm/ifm3d-docs main sphinx-doc/etc/ifm3d-docs               
     - name: Install reqs
       run: |
         pip install -r sphinx-doc/requirements.txt
