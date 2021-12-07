@@ -47,6 +47,7 @@ jobs:
         cp -r etc/ifm3d-docs/cpp_api build/html/ifm3d/doc/sphinx/
     - name: Push built docs
       run: |
+        chmod +x ./.github/scripts/clone.sh
         git config --global user.email "support.robotics@ifm.com"
         git config --global user.name "ifm-csr"
         git checkout -B pipeline
