@@ -51,7 +51,7 @@ jobs:
         git config --global user.email "support.robotics@ifm.com"
         git config --global user.name "ifm-csr"
         git fetch -a
-        git checkout origin/main && git pull
+        git checkout main && git pull
         git checkout -B gh_pages
         git merge main
         cd sphinx-doc
