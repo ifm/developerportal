@@ -4,7 +4,7 @@ on:
   push:
     branches:
     - '**'        # matches every branch
-    - '!pipeline'
+    - '!gh_pages'
   schedule:
     - cron:  '*/15 * * * *'
   workflow_dispatch:
@@ -34,7 +34,7 @@ jobs:
       run: | 
         chmod +x ./.github/scripts/clone.sh
         ./.github/scripts/clone.sh https://github.com/ifm/ifm3d o3r/main-next sphinx-doc/source/ifm3d
-        ./.github/scripts/clone.sh https://github.com/ifm/documentation sphinx_update sphinx-doc/source/documentation
+        ./.github/scripts/clone.sh https://github.com/ifm/documentation main sphinx-doc/source/documentation
         ./.github/scripts/clone.sh https://github.com/ifm/ifm3d-docs main sphinx-doc/etc/ifm3d-docs               
     - name: Install reqs
       run: |
@@ -50,7 +50,9 @@ jobs:
       run: |
         git config --global user.email "support.robotics@ifm.com"
         git config --global user.name "ifm-csr"
-        git checkout -B pipeline
-        git merge origin/lm_global_doc_pipeline
+        git fetch -a
+        git checkout origin/main && git pull
+        git checkout -B gh_pages
+        git merge origin/main
         cd sphinx-doc
-        git diff --quiet || (git add build/ && git rm --cached build/doctrees/environment.pickle && git commit -a -m'[bot] update built doc' --allow-empty && git push --force --set-upstream origin pipeline)
+        git diff --quiet || (git add build/ && git rm --cached build/doctrees/environment.pickle && git commit -a -m'[bot] update built doc' --allow-empty && git push --force --set-upstream origin gh_pages)
