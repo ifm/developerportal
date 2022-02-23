@@ -85,5 +85,13 @@ html_css_files = [
 ]
 
 myst_enable_extensions = [
-    "colon_fence"
+    "colon_fence",
+    "substitution"
 ]
+
+
+# -- Substitution variables
+# -------------------------------------------------
+myst_substitutions = {
+    "ifm3d_gh_repo" : "https://github.com/ifm/ifm3d" 
+}
