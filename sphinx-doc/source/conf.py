@@ -32,6 +32,7 @@ extensions = [
     'sphinx_automodapi.automodapi',
    'sphinx.ext.autosectionlabel',
    'sphinx_tabs.tabs',
+   'sphinx.ext.imgconverter',
    ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -89,7 +90,19 @@ myst_enable_extensions = [
     "substitution"
 ]
 
+# -------------------------------------------------
+# -- Options for pdf output
+# -------------------------------------------------
+latex_engine = 'lualatex'
+latex_elements = {
+    'fontpkg': r'''
+\setmainfont{DejaVu Serif}
+\setsansfont{DejaVu Sans}
+\setmonofont{DejaVu Sans Mono}
+''',
+}
 
+# -------------------------------------------------
 # -- Substitution variables
 # -------------------------------------------------
 myst_substitutions = {
