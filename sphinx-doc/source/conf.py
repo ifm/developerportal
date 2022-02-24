@@ -93,5 +93,7 @@ myst_enable_extensions = [
 # -- Substitution variables
 # -------------------------------------------------
 myst_substitutions = {
-    "ifm3d_gh_repo" : "https://github.com/ifm/ifm3d" 
+    "ifm3d_gh_url" : "https://github.com/ifm/ifm3d",
+    "ifm3d_main_branch":  "o3r/main-next", # The most up to date branch on ifm3d
+    "ifm3d_latest_tag_url": "https://github.com/ifm/ifm3d/tags",
 }
