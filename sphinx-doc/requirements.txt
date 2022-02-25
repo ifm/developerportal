@@ -6,3 +6,4 @@ ifm3dpy>=0.91.0
 sphinx-tabs==3.2.0
 sphinx-last-updated-by-git
 sphinx-version-warning
+sphinx-copybutton

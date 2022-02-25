@@ -1,4 +1,3 @@
-
 Welcome to the O3R's documentation!
 =============================================
 

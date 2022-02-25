@@ -34,6 +34,8 @@ extensions = [
     'sphinx_tabs.tabs', 
     'sphinx.ext.imgconverter', # Used for svg images in pdf generation
     'sphinx_last_updated_by_git', # Add the "Last updated note in the footer (taken from git latest commit on file)"
+    'sphinx_copybutton', # Ability to copy-paste code
+
    ]
 
 # Add any paths that contain templates here, relative to this directory.
