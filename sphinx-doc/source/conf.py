@@ -57,6 +57,10 @@ master_doc = 'index'
 # Make sure the  auto generated target is unique
 autosectionlabel_prefix_document = True
 
+# Remove the "$" sign at the beginning of the line when copying code
+copybutton_prompt_text = "$"
+copybutton_only_copy_prompt_lines = False
+
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
