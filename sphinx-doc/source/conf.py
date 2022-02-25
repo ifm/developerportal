@@ -30,10 +30,10 @@ author = 'ifm CSR'
 extensions = [
     'myst_parser',
     'sphinx_automodapi.automodapi',
-   'sphinx.ext.autosectionlabel',
-   'sphinx_tabs.tabs',
-   'sphinx.ext.imgconverter',
-   'sphinx_last_updated_by_git',
+    'sphinx.ext.autosectionlabel',
+    'sphinx_tabs.tabs', 
+    'sphinx.ext.imgconverter', # Used for svg images in pdf generation
+    'sphinx_last_updated_by_git', # Add the "Last updated note in the footer (taken from git latest commit on file)"
    ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -88,7 +88,7 @@ html_css_files = [
 
 myst_enable_extensions = [
     "colon_fence",
-    "substitution"
+    "substitution", # This enable the definition of substitution variables (see below)
 ]
 
 # -------------------------------------------------
