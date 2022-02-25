@@ -1,6 +1,6 @@
 # Resources available for download:  
 
-## Previous versions of the documentation:
+## Previous versions of the documentation
 
 |              Document                | firmware version | ifm3d version | ifm3d-ros1 version | ifm3d-ros2 version |
 | ------------------------------------ | ---------------- | ------------- | ------------------ | ------------------ |
