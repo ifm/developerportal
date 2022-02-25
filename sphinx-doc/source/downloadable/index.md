@@ -1,4 +1,4 @@
-# Resources available for download:  
+# Resources available for download
 
 ## Previous versions of the documentation
 
