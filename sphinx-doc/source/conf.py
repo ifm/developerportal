@@ -30,8 +30,12 @@ author = 'ifm CSR'
 extensions = [
     'myst_parser',
     'sphinx_automodapi.automodapi',
-   'sphinx.ext.autosectionlabel',
-   'sphinx_tabs.tabs',
+    'sphinx.ext.autosectionlabel',
+    'sphinx_tabs.tabs', 
+    'sphinx.ext.imgconverter', # Used for svg images in pdf generation
+    'sphinx_last_updated_by_git', # Add the "Last updated note in the footer (taken from git latest commit on file)"
+    'sphinx_copybutton', # Ability to copy-paste code
+
    ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -52,6 +56,10 @@ master_doc = 'index'
 
 # Make sure the  auto generated target is unique
 autosectionlabel_prefix_document = True
+
+# Remove the "$" sign at the beginning of the line when copying code
+copybutton_prompt_text = "$"
+copybutton_only_copy_prompt_lines = False
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -86,10 +94,22 @@ html_css_files = [
 
 myst_enable_extensions = [
     "colon_fence",
-    "substitution"
+    "substitution", # This enable the definition of substitution variables (see below)
 ]
 
+# -------------------------------------------------
+# -- Options for pdf output
+# -------------------------------------------------
+latex_engine = 'lualatex'
+latex_elements = {
+    'fontpkg': r'''
+\setmainfont{DejaVu Serif}
+\setsansfont{DejaVu Sans}
+\setmonofont{DejaVu Sans Mono}
+''',
+}
 
+# -------------------------------------------------
 # -- Substitution variables
 # -------------------------------------------------
 myst_substitutions = {
