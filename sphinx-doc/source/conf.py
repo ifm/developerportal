@@ -91,6 +91,9 @@ html_static_path = ['_static']
 html_css_files = [
     'custom.css',
 ]
+html_js_files = [
+    'ifm3d.js',
+]
 
 myst_enable_extensions = [
     "colon_fence",
