@@ -3,3 +3,7 @@ Sphinx==4.2.0
 sphinx-rtd-theme==1.0.0
 sphinx-automodapi==0.13
 ifm3dpy>=0.91.0
+sphinx-tabs==3.2.0
+sphinx-last-updated-by-git
+sphinx-version-warning
+sphinx-copybutton
