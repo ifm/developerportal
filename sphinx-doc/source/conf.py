@@ -116,4 +116,6 @@ myst_substitutions = {
     "ifm3d_gh_url" : "https://github.com/ifm/ifm3d",
     "ifm3d_main_branch":  "o3r/main-next", # The most up to date branch on ifm3d
     "ifm3d_latest_tag_url": "https://github.com/ifm/ifm3d/tags",
+    "ifm3d_latest_version": "0.93.0",
+    "ifm3d_ros2_latest_tag_url": "https://github.com/ifm/ifm3d-ros2/tags",
 }
