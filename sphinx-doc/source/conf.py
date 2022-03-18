@@ -33,7 +33,7 @@ extensions = [
     'sphinx.ext.autosectionlabel',
     'sphinx_tabs.tabs', 
     'sphinx.ext.imgconverter', # Used for svg images in pdf generation
-    'sphinx_last_updated_by_git', # Add the "Last updated note in the footer (taken from git latest commit on file)"
+    # 'sphinx_last_updated_by_git', # Add the "Last updated note in the footer (taken from git latest commit on file)"
     'sphinx_copybutton', # Ability to copy-paste code
 
    ]
@@ -116,4 +116,6 @@ myst_substitutions = {
     "ifm3d_gh_url" : "https://github.com/ifm/ifm3d",
     "ifm3d_main_branch":  "o3r/main-next", # The most up to date branch on ifm3d
     "ifm3d_latest_tag_url": "https://github.com/ifm/ifm3d/tags",
+    "ifm3d_latest_version": "0.93.0",
+    "ifm3d_ros2_latest_tag_url": "https://github.com/ifm/ifm3d-ros2/tags",
 }
