@@ -33,7 +33,10 @@ jobs:
     - name: Git Repos Update
       run: | 
         chmod +x ./.github/scripts/clone.sh
-        ./.github/scripts/clone.sh https://github.com/ifm/ifm3d v0.93.0 sphinx-doc/source/ifm3d
+        git clone https://github.com/ifm/ifm3d sphinx-doc/source/ifm3d
+        cd sphinx-doc/source/ifm3d
+        git checkout 3db99ea9cac13a01583aa64b2be43ad669d5af42
+        cd ../../..
         ./.github/scripts/clone.sh https://github.com/ifm/documentation main sphinx-doc/source/documentation
         ./.github/scripts/clone.sh https://github.com/ifm/ifm3d-docs main sphinx-doc/etc/ifm3d-docs   
         ./.github/scripts/clone.sh https://github.com/ifm/ifm3d-ros.git master sphinx-doc/source/ROS/ifm3d-ros  
