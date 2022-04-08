@@ -49,7 +49,7 @@ jobs:
         cd sphinx-doc 
         rm -r -f build
         cp source/ifm3d/README.md source/ifm3d/doc/sphinx/content
-        mkdir source/ifm3d/doc/sphinx/content/examples
+        mkdir -p source/ifm3d/doc/sphinx/content/examples
         cp -r -n source/ifm3d/examples/* source/ifm3d/doc/sphinx/content/examples
         make html
         cp -r etc/ifm3d-docs/cpp_api build/html/ifm3d/doc/sphinx/
