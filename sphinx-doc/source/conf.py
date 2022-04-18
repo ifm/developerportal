@@ -81,7 +81,8 @@ html_theme_options = {
     'sticky_navigation': True,
     'navigation_depth': -1,
     'includehidden': True,
-    'titles_only': False
+    'titles_only': False,
+    'globaltoc_includehidden': True,
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -118,4 +119,6 @@ myst_substitutions = {
     "ifm3d_latest_tag_url": "https://github.com/ifm/ifm3d/tags",
     "ifm3d_latest_version": "0.93.0",
     "ifm3d_ros2_latest_tag_url": "https://github.com/ifm/ifm3d-ros2/tags",
+    "ifm3d_ros_latest_version": "1.0.0",
+    "ifm3d_ros_latest_tag_url": "https://github.com/ifm/ifm3d-ros/releases",
 }
