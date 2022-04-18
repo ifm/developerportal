@@ -37,8 +37,10 @@ jobs:
         cd sphinx-doc/source/ifm3d
         git checkout 3db99ea9cac13a01583aa64b2be43ad669d5af42
         cd ../../..
+        git clone https://github.com/ifm/ifm3d-docs sphinx-doc/etc/ifm3d-docs
+        cd sphinx-doc/etc/ifm3d-docs
+        git checkout 0d978ebaed1f2e0898cff56281aad849b598c22c
         ./.github/scripts/clone.sh https://github.com/ifm/documentation main sphinx-doc/source/documentation
-        ./.github/scripts/clone.sh https://github.com/ifm/ifm3d-docs main sphinx-doc/etc/ifm3d-docs   
         ./.github/scripts/clone.sh https://github.com/ifm/ifm3d-ros.git master sphinx-doc/source/ROS/ifm3d-ros  
         ./.github/scripts/clone.sh https://github.com/ifm/ifm3d-ros2.git master sphinx-doc/source/ROS/ifm3d-ros2      
     - name: Install reqs
