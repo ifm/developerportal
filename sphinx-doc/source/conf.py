@@ -120,4 +120,5 @@ myst_substitutions = {
     "ifm3d_latest_version": "0.93.0",
     "ifm3d_ros2_latest_tag_url": "https://github.com/ifm/ifm3d-ros2/tags",
     "ifm3d_ros_latest_version": "1.0.0",
+    "ifm3d_ros_latest_tag_url": "https://github.com/ifm/ifm3d-ros/releases",
 }
