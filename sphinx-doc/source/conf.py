@@ -21,9 +21,9 @@ project = 'O3R'
 copyright = '2021, ifm CSR'
 author = 'ifm CSR'
 
-
+# ----------------------------------------------------------------------------
 # -- General configuration ---------------------------------------------------
-
+# ----------------------------------------------------------------------------
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
@@ -35,7 +35,7 @@ extensions = [
     'sphinx.ext.imgconverter', # Used for svg images in pdf generation
     'sphinx_last_updated_by_git', # Add the "Last updated note in the footer (taken from git latest commit on file)"
     'sphinx_copybutton', # Ability to copy-paste code
-
+    'versionwarning.extension', # Add "news" banners
    ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -52,7 +52,9 @@ exclude_patterns = [
 
 master_doc = 'index'
 
+# ----------------------------------------------------------------------------
 # -- Configuring the extensions -------------------------------------------------
+# ----------------------------------------------------------------------------
 
 # Make sure the  auto generated target is unique
 autosectionlabel_prefix_document = True
@@ -61,7 +63,9 @@ autosectionlabel_prefix_document = True
 copybutton_prompt_text = "$"
 copybutton_only_copy_prompt_lines = False
 
+# ----------------------------------------------------------------------------
 # -- Options for HTML output -------------------------------------------------
+# ----------------------------------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.

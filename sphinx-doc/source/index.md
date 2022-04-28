@@ -1,5 +1,7 @@
 Welcome to the O3R's documentation!
 =============================================
+```{include} news_fw.md
+```
 
 :::{toctree}
 O3R <documentation/O3R/README>
