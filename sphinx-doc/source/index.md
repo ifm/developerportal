@@ -1,6 +1,6 @@
 Welcome to the O3R's documentation!
 =============================================
-```{include} news.md
+```{include} news_fw.md
 ```
 
 :::{toctree}
