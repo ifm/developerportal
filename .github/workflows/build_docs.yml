@@ -55,7 +55,7 @@ jobs:
         mkdir -p source/ifm3d/doc/sphinx/content/examples
         cp -r -n source/ifm3d/examples/* source/ifm3d/doc/sphinx/content/examples
         make html
-        cp -r etc/ifm3d-docs/cpp_api build/html/ifm3d/doc/sphinx/
+        cp -r etc/ifm3d-docs/html/cpp_api build/html/ifm3d/doc/sphinx/
     - name: Push built docs
       run: |
         git config --global user.email "support.robotics@ifm.com"
