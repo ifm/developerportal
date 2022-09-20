@@ -122,7 +122,7 @@ myst_substitutions = {
     "ifm3d_main_branch":  "o3r/main-next", # The most up to date branch on ifm3d
     "ifm3d_latest_tag_url": "https://github.com/ifm/ifm3d/tags",
     "ifm3d_containers_list_url": "https://github.com/ifm/ifm3d/pkgs/container/ifm3d",
-    "ifm3d_latest_version": "0.93.0",
+    "ifm3d_latest_version": "1.0.0",
     "ifm3d_ros2_latest_tag_url": "https://github.com/ifm/ifm3d-ros2/tags",
     "ifm3d_ros_latest_version": "1.0.0",
     "ifm3d_ros_latest_tag_url": "https://github.com/ifm/ifm3d-ros/releases",

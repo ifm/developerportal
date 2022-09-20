@@ -35,11 +35,11 @@ jobs:
         chmod +x ./.github/scripts/clone.sh
         git clone https://github.com/ifm/ifm3d sphinx-doc/source/ifm3d
         cd sphinx-doc/source/ifm3d
-        git checkout 3db99ea9cac13a01583aa64b2be43ad669d5af42
+        git checkout v1.0.0
         cd ../../..
         git clone https://github.com/ifm/ifm3d-docs sphinx-doc/etc/ifm3d-docs
         cd sphinx-doc/etc/ifm3d-docs
-        git checkout 0d978ebaed1f2e0898cff56281aad849b598c22c
+        git checkout 26a13de7650273d9a15f765d671ae9a8aed57868
         cd ../../..
         ./.github/scripts/clone.sh https://github.com/ifm/documentation main sphinx-doc/source/documentation
         ./.github/scripts/clone.sh https://github.com/ifm/ifm3d-ros.git master sphinx-doc/source/ROS/ifm3d-ros  
