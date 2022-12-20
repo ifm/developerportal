@@ -21,17 +21,21 @@ project = 'O3R'
 copyright = '2021, ifm CSR'
 author = 'ifm CSR'
 
-
+# ----------------------------------------------------------------------------
 # -- General configuration ---------------------------------------------------
-
+# ----------------------------------------------------------------------------
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
     'myst_parser',
     'sphinx_automodapi.automodapi',
-   'sphinx.ext.autosectionlabel',
-   'sphinx_tabs.tabs',
+    'sphinx.ext.autosectionlabel',
+    'sphinx_tabs.tabs', 
+    'sphinx.ext.imgconverter', # Used for svg images in pdf generation
+    'sphinx_last_updated_by_git', # Add the "Last updated note in the footer (taken from git latest commit on file)"
+    'sphinx_copybutton', # Ability to copy-paste code
+    'versionwarning.extension', # Add "news" banners
    ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -48,12 +52,20 @@ exclude_patterns = [
 
 master_doc = 'index'
 
+# ----------------------------------------------------------------------------
 # -- Configuring the extensions -------------------------------------------------
+# ----------------------------------------------------------------------------
 
 # Make sure the  auto generated target is unique
 autosectionlabel_prefix_document = True
 
+# Remove the "$" sign at the beginning of the line when copying code
+copybutton_prompt_text = "$"
+copybutton_only_copy_prompt_lines = False
+
+# ----------------------------------------------------------------------------
 # -- Options for HTML output -------------------------------------------------
+# ----------------------------------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
@@ -73,7 +85,8 @@ html_theme_options = {
     'sticky_navigation': True,
     'navigation_depth': -1,
     'includehidden': True,
-    'titles_only': False
+    'titles_only': False,
+    'globaltoc_includehidden': True,
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
@@ -85,5 +98,32 @@ html_css_files = [
 ]
 
 myst_enable_extensions = [
-    "colon_fence"
+    "colon_fence",
+    "substitution", # This enable the definition of substitution variables (see below)
 ]
+
+# -------------------------------------------------
+# -- Options for pdf output
+# -------------------------------------------------
+latex_engine = 'lualatex'
+latex_elements = {
+    'fontpkg': r'''
+\setmainfont{DejaVu Serif}
+\setsansfont{DejaVu Sans}
+\setmonofont{DejaVu Sans Mono}
+''',
+}
+
+# -------------------------------------------------
+# -- Substitution variables
+# -------------------------------------------------
+myst_substitutions = {
+    "ifm3d_gh_url" : "https://github.com/ifm/ifm3d",
+    "ifm3d_main_branch":  "main", # The most up to date branch on ifm3d
+    "ifm3d_latest_tag_url": "https://github.com/ifm/ifm3d/tags",
+    "ifm3d_containers_list_url": "https://github.com/ifm/ifm3d/pkgs/container/ifm3d",
+    "ifm3d_latest_version": "1.1.0",
+    "ifm3d_ros2_latest_tag_url": "https://github.com/ifm/ifm3d-ros2/tags",
+    "ifm3d_ros_latest_version": "1.0.0",
+    "ifm3d_ros_latest_tag_url": "https://github.com/ifm/ifm3d-ros/releases",
+}
