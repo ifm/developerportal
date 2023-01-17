@@ -33,14 +33,6 @@ jobs:
     - name: Git Repos Update
       run: | 
         chmod +x ./.github/scripts/clone.sh
-        git clone https://github.com/ifm/ifm3d sphinx-doc/source/ifm3d
-        cd sphinx-doc/source/ifm3d
-        git checkout v1.0.1
-        cd ../../..
-        git clone https://github.com/ifm/ifm3d-docs sphinx-doc/etc/ifm3d-docs
-        cd sphinx-doc/etc/ifm3d-docs
-        git checkout 85d8e91d1a3fa34dbd93f7b13756a64c7872a563
-        cd ../../..
         ./.github/scripts/clone.sh https://github.com/ifm/documentation main sphinx-doc/source/documentation
         ./.github/scripts/clone.sh https://github.com/ifm/ifm3d-ros.git master sphinx-doc/source/ROS/ifm3d-ros  
         ./.github/scripts/clone.sh https://github.com/ifm/ifm3d-ros2.git master sphinx-doc/source/ROS/ifm3d-ros2      
@@ -51,11 +43,7 @@ jobs:
       run: |
         cd sphinx-doc 
         rm -r -f build
-        cp source/ifm3d/README.md source/ifm3d/doc/sphinx/content
-        mkdir -p source/ifm3d/doc/sphinx/content/examples
-        cp -r -n source/ifm3d/examples/* source/ifm3d/doc/sphinx/content/examples
         make html
-        cp -r etc/ifm3d-docs/html/cpp_api build/html/ifm3d/doc/sphinx/
     - name: Push built docs
       run: |
         git config --global user.email "support.robotics@ifm.com"
