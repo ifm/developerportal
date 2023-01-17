@@ -9,6 +9,9 @@ pages:
   stage: documentation
   before_script:
     - pip install -r requirements.txt
+    - apt-get update -y
+    - apt-get upgrade -y
+    - apt-get install git-core -y
     - chmod +x ./.github/scripts/clone.sh
     - ./.github/scripts/clone.sh https://github.com/ifm/documentation main sphinx-doc/source/documentation
     - ./.github/scripts/clone.sh https://github.com/ifm/ifm3d-ros.git master sphinx-doc/source/ROS/ifm3d-ros  
