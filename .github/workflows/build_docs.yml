@@ -41,9 +41,11 @@ jobs:
         pip install -r sphinx-doc/requirements.txt
     - name: Build docs
       run: |
-        cd sphinx-doc 
-        rm -r -f build
-        make html
+        rm -r -f docs
+        sphinx-build source docs
+    - name: Run checks
+      run: |
+        sphinx-build -b linkcheck source docs
     - name: Push built docs
       run: |
         git config --global user.email "support.robotics@ifm.com"
