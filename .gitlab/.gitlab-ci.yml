@@ -1,0 +1,20 @@
+image: python:3.8-slim
+
+stages:
+  - documentation
+
+pages:
+  tags:
+    - shared_docker
+  stage: documentation
+  before_script:
+    - pip install -r requirements.txt
+  script:
+    - rm -rf docs
+    - sphinx-build source docs
+    - sphinx-build -b linkcheck source docs
+    - mv docs public
+  artifacts:
+    paths:
+      - public
+

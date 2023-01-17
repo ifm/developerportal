@@ -38,7 +38,7 @@ jobs:
         ./.github/scripts/clone.sh https://github.com/ifm/ifm3d-ros2.git master sphinx-doc/source/ROS/ifm3d-ros2      
     - name: Install reqs
       run: |
-        pip install -r sphinx-doc/requirements.txt
+        pip install -r requirements.txt
     - name: Build docs
       run: |
         rm -r -f docs
