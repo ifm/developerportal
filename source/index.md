@@ -4,12 +4,17 @@ Welcome to the O3R's documentation!
 ```
 
 :::{toctree}
-Unboxing <documentation/GettingStarted/Unboxing/README>
-Getting Started <documentation/GettingStarted/getting_started_index>
+Getting Started <documentation/GettingStarted/index>
+Device Configuration <documentation/DeviceConfiguration/index>
 Utilities <O3R-utilities/index>
 Samples
 Applications <applications_index>
 Docker <documentation/Docker>
 ifm3d API <api.ifm3d.com/html>
+Firmware <documentation/Firmware/index>
+FAQ <documentation/FAQ/FAQ>
 :::
- 
+
+TODO: o3r-utilities integration
+TODO: ODS docs integration
+TODO: Samples?
