@@ -9,9 +9,11 @@ Device Configuration <documentation/DeviceConfiguration/index>
 Utilities <O3R-utilities/index>
 Samples
 Applications <applications_index>
-Docker <documentation/Docker>
-ifm3d API <api.ifm3d.com/html>
+Docker <documentation/Docker/index>
+ifm3d API <ifm3d/index>
+ROS <ROS/index>
 Firmware <documentation/Firmware/index>
+Downloads <downloadable/index>
 FAQ <documentation/FAQ/FAQ>
 :::
 
