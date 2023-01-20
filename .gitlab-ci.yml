@@ -13,7 +13,7 @@ pages:
     - apt-get upgrade -y
     - apt-get install git-core -y
     - chmod +x ./.github/scripts/clone.sh
-    - ./.github/scripts/clone.sh https://${DEPLOY_USERNAME}:${DEPLOY_PASSWORD}@gitlab-ee.dev.ifm/syntron/support/csr/o3r/documentation.git restructure-docs sphinx-doc/source/documentation
+    - ./.github/scripts/clone.sh https://gitlab-ci-token:$CI_JOB_TOKEN@gitlab-ee.dev.ifm/syntron/support/csr/o3r/documentation.git restructure-docs sphinx-doc/source/documentation
     - ./.github/scripts/clone.sh https://github.com/ifm/ifm3d-ros.git master sphinx-doc/source/ROS/ifm3d-ros  
     - ./.github/scripts/clone.sh https://github.com/ifm/ifm3d-ros2.git master sphinx-doc/source/ROS/ifm3d-ros2      
   script:
