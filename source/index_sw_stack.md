@@ -9,5 +9,5 @@ ifmVisionAssistant <documentation/GettingStarted/ifmVisionAssistant/index>
 Python <https://api.ifm3d.com/html/examples/index.html>
 C++ <https://api.ifm3d.com/html/examples/index.html>
 ROS <ROS/ifm3d-ros/index>
-ROS 2 <ROS/ifm3d-ros2/index>
+ROS 2 <ROS/ifm3d-ros2/README>
 :::
