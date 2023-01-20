@@ -16,6 +16,8 @@ pages:
     - ./.github/scripts/clone.sh https://gitlab-ci-token:$CI_JOB_TOKEN@gitlab-ee.dev.ifm/syntron/support/csr/o3r/documentation.git restructure-docs source/documentation
     - ./.github/scripts/clone.sh https://github.com/ifm/ifm3d-ros.git master source/ROS/ifm3d-ros  
     - ./.github/scripts/clone.sh https://github.com/ifm/ifm3d-ros2.git master source/ROS/ifm3d-ros2      
+    - ./.github/scripts/clone.sh https://gitlab-ci-token:$CI_JOB_TOKEN@gitlab-ee.dev.ifm/syntron/support/csr/o3r/o3r-utilities.git sphinx-setup source/o3r-utilities
+    # - ./.github/scripts/clone.sh https://github.com/ifm/o3r-utilities.git main source/o3r-utilities  
   script:
     - rm -rf docs
     - sphinx-build source docs
