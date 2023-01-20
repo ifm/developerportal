@@ -4,7 +4,7 @@ Welcome to the O3R's documentation!
 ```
 
 :::{toctree}
-Getting Started <documentation/GettingStarted/index>
+Getting Started <index_getting_started>
 Device Configuration <documentation/DeviceConfiguration/index>
 Utilities <O3R-utilities/index>
 Samples
