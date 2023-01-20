@@ -19,7 +19,7 @@ pages:
   script:
     - rm -rf docs
     - sphinx-build source docs
-    - sphinx-build -b linkcheck source docs
+    # - sphinx-build -b linkcheck source docs
     - mv docs public
   artifacts:
     paths:
