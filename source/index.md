@@ -6,7 +6,7 @@ Welcome to the O3R's documentation!
 :::{toctree}
 Getting Started <index_getting_started>
 Device Configuration <documentation/DeviceConfiguration/index>
-Utilities <O3R-utilities/index>
+Utilities <o3r-utilities/README>
 Samples
 Applications <applications_index>
 Docker <documentation/Docker/index>
@@ -17,6 +17,5 @@ Downloads <downloadable/index>
 FAQ <documentation/FAQ/FAQ>
 :::
 
-TODO: o3r-utilities integration
 TODO: ODS docs integration
 TODO: Samples?
