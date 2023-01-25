@@ -41,6 +41,7 @@ jobs:
       run: |
         rm -r -f docs
         sphinx-build source docs
+        cp .nojekyll docs/.nojekyll
     # - name: Run checks
     #   run: |
     #     sphinx-build -b linkcheck source docs
