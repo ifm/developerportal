@@ -39,11 +39,11 @@ jobs:
         pip install -r requirements.txt
     - name: Build docs
       run: |
-        rm -r -f build
-        sphinx-build source build
+        rm -r -f docs
+        sphinx-build source docs
     # - name: Run checks
     #   run: |
-    #     sphinx-build -b linkcheck source build
+    #     sphinx-build -b linkcheck source docs
     - name: Push built docs
       run: |
         git config --global user.email "support.robotics@ifm.com"
@@ -52,4 +52,4 @@ jobs:
         git checkout main && git pull
         git checkout -B gh_pages
         git merge main
-        git diff --quiet || (git add build/ && git rm --ignore-unmatch --cached build/doctrees/environment.pickle && git commit -a -m'[bot] update built doc' --allow-empty && git push --force --set-upstream origin gh_pages)
+        git diff --quiet || (git add docs/ && git rm --ignore-unmatch --cached docs/doctrees/environment.pickle && git commit -a -m'[bot] update built doc' --allow-empty && git push --force --set-upstream origin gh_pages)
