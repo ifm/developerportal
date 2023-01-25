@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer's portal</title>
+    <script src="jquery/jquery-3.4.1.min.js"></script>
+    <script>
+        $(function() {
+            // $("#header").load("header.html");
+            $("#footer").load("footer.html");
+        });
+    </script>
+    <link rel="stylesheet" href="ifmr_devportal.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="readme.css">
+    <link rel="stylesheet" href="footerstyle.css">
+    <link rel="stylesheet" href="swcompat.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <div id="orangebar">&nbsp;</div>
+
+        <div class="ifmdevportal-banner-responsive-bg-image" style="padding-bottom: 30px;">
+            <div class="masthead">
+                <a href="index.html"><img id="mastheadlogo" src="assets/ifm-white-circle.svg" alt="ifm logo"></a><br> O3 Developer's Portal</div>
+
+            <nav>
+                <ul class="pagemenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Unboxing</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">Extension Tools</a></li>
+                    <li><a href="#">Docs</a></li>
+                </ul>
+            </nav>
+
+        </div>
+
+
+        <div class="section ospicker">
+            <h1>Official Downloads of O3 software</h1>
+            <a href="ubuntu.html">Ubuntu Linux</a><a class href="tegra.html">Linux for Tegra</a><a class href="windows.html">Windows</a><a class href="ros.html">ROS</a><a class href="source-install.html">Compile from source</a><a class href="matrix.html">Compatibility Matrix</a>
+            <div style="height: 30px;">&nbsp;</div>
+
+            <div id="thepage"></div>
+
+        </div>
+
+
+        <div id="footer"></div>
+    </div>
+    <script>
+        $.ajax({
+            url: 'https://raw.githubusercontent.com/ifm/ifm3d/master/doc/swcompat.md',
+            success: function(data) {
+                $('#thepage').html(data);
+            }
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .block {
+            width: 95vw;
+            border: 2px solid grey;
+            padding: 5px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="block" id="sec1"></div>
+    <div class="block" id="sec2"></div>
+    <div class="block" id="sec3"></div>
+    <div class="block" id="sec4"></div>
+    <script>
+        $(document).ready(function() {
+            $.get("https://github.com/ifm/ifm3d-examples/blob/9df25c5863d42a00f021c72525b9b893bfc7d3c7/exposure_time/ex-exposure_times.cpp", function(data) {
+                var test = data.split('\n');
+
+                var count = 65;
+                var tonum = 70;
+                tonum = tonum + 1;
+                var mytext = "<pre><code>";
+
+                while (count < tonum) {
+
+                    mytext = mytext + test[count] + '\n';
+
+                    count++;
+
+                }
+
+                mytext += "</code></pre>";
+                $("#sec1").html(mytext);
+            });
+        });
+    </script>
+</body>
+
+</html>

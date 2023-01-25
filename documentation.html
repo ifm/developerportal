@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer's portal</title>
+    <script src="jquery/jquery-3.4.1.min.js"></script>
+    <script>
+        $(function() {
+            $("#subheader").load("subheader.html");
+            $("#footer").load("footer.html");
+        });
+    </script>
+    <link rel="stylesheet" href="ifmr_devportal.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="readme.css">
+    <link rel="stylesheet" href="footerstyle.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+</head>
+
+<body>
+    <div class="container">
+
+        <div id="subheader"></div>
+
+        <div class="section" id="mainframe">
+
+            <div class="docapi" data-repo="ifm/documentation/"  data-branch="main" data-subfolder="O3R" data-file="README.md">
+                <div class="docapi_sidebar">
+                    <!-- <div class="docapi_search">
+                        <input type="text" name="docapi_search" id="docapi_search">
+                    </div> -->
+                    <div class="docapi_menu_con"></div>
+                </div>
+                <div class="docapi_content"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="footer"></div>
+    <script src="jquery/markdownit.min.js"></script>
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    <script type="text/javascript"> docsearch({
+    apiKey: 'f2f30c76f9d3d9707510f452d6c8a5ab',
+    indexName: 'ifm3d',
+    inputSelector: '#docapi_search',
+    debug: false // Set debug to true if you want to inspect the dropdown
+    });
+    </script> -->
+    <script src="jquery/docapi.js"></script>
+</body>
+
+</html>

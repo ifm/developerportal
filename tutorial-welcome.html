@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer's portal</title>
+    <script src="jquery/jquery-3.4.1.min.js"></script>
+    <script>
+        $(function() {
+            $("#subheader").load("subheader.html");
+            $("#footer").load("footer.html");
+        });
+    </script>
+    <link rel="stylesheet" href="ifmr_devportal.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="readme.css">
+    <link rel="stylesheet" href="footerstyle.css">
+    <style>
+        .tut_cat_picker {
+            padding-top: 5%;
+            padding-left: 80px;
+        }
+        
+        .tut_cat_picker ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 200px;
+            float: left;
+        }
+        
+        .tut_cat_picker li {
+            background-color: #eaeaea;
+        }
+        
+        .tut_cat_picker li a {
+            display: block;
+            color: #000;
+            padding: 8px 16px;
+            margin: 5px 0;
+            text-decoration: none;
+        }
+        
+        .tut_cat_picker li a:hover {
+            background-color: #ff6e00;
+            color: #fff;
+        }
+        
+        #para {
+            line-height: 2.5;
+            padding-left: 350px;
+            width: auto;
+            max-width: 1050px;
+        }
+        
+        @media screen and (max-width: 750px) {
+            .tut_cat_picker ul {
+                float: none;
+            }
+            #para {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div id="subheader"></div>
+
+        <div class="tut_cat_picker">
+            <h1>Tutorial categories menu</h1>
+
+            <ul>
+                <li><a href="unboxing.html">Unboxing</a></li>
+                <li><a href="visualization.html">Visualization</a></li>
+                <li><a href="set_parameters.html">Setting parameters</a></li>
+                <li><a href="get_data.html">Getting data</a></li>
+                <li><a href="logging2.html">Logging</a></li>
+                <li><a href="two-heads.html">Two heads viewer</a></li>
+                <li><a href="2d_images.html">Get 2d images</a></li>
+                <li><a href="log_streams.html">Log streams</a></li></ul>
+        </div>
+        <div id="para">Welcome to the O3R C-Sample Support center. This page is designed to step through the evaluation process of the O3R C-Sample prototype.
+            <br><b>Unboxing</b> explains the hardware setup/SW installation and <b>Visualization</b> provides a first look at the O3R point cloud. <b>Setting parameters</b> describes how to “turn the dials” on the available parameters while
+            <b>Getting data</b> details how to stream the point cloud over the wire. A logger is provided because all conversations should start with data. Finally, if you have an ifm demo bracket, an example of combining two point clouds into one large
+            scene is provided. In total, these examples should provide all the tools necessary to perform robust testing of the O3R data.<br><br> Check back here for updates throughout the development process. </div>
+        <div style="height: 30px;">&nbsp;</div>
+
+        <div id="thepage">&nbsp;
+        </div>
+
+
+
+        <div id="footer"></div>
+    </div>
+
+</body>
+
+</html>
