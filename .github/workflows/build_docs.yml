@@ -41,7 +41,7 @@ jobs:
       run: |
         rm -r -f docs
         sphinx-build source docs
-        cp .nojekyll docs/.nojekyll
+        mv docs/* .
     # - name: Run checks
     #   run: |
     #     sphinx-build -b linkcheck source docs
@@ -53,4 +53,4 @@ jobs:
         git checkout main && git pull
         git checkout -B gh_pages
         git merge main
-        git diff --quiet || (git add docs/ && git rm --ignore-unmatch --cached docs/doctrees/environment.pickle && git commit -a -m'[bot] update built doc' --allow-empty && git push --force --set-upstream origin gh_pages)
+        git diff --quiet || (git add * && git rm --ignore-unmatch --cached doctrees/environment.pickle && git commit -a -m'[bot] update built doc' --allow-empty && git push --force --set-upstream origin gh_pages)
