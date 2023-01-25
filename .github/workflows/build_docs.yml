@@ -26,9 +26,6 @@ jobs:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v3
-#       with:
-#         token: ${{ secrets.GH_TOKEN }}
-#         submodules: true
     # Update references
     - name: Git Repos Update
       run: | 
@@ -55,5 +52,4 @@ jobs:
         git checkout main && git pull
         git checkout -B gh_pages
         git merge main
-        cd sphinx-doc
         git diff --quiet || (git add build/ && git rm --cached build/doctrees/environment.pickle && git commit -a -m'[bot] update built doc' --allow-empty && git push --force --set-upstream origin gh_pages)
