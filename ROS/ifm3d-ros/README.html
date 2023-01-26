@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <meta property="article:modified_time" content="2022-06-08T16:17:44+00:00" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ifm3d-ros &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/js/versionwarning.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ifm3d_ros on Ubuntu 20.04 and ROS Noetic" href="ifm3d_ros_driver/doc/noetic.html" />
+    <link rel="prev" title="ifm3d-ros" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../index_getting_started.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../documentation/GettingStarted/Unboxing/hw_unboxing.html">Hardware Unboxing</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index_sw_stack.html">Pick your software stack</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../documentation/GettingStarted/ifmVisionAssistant/index.html">ifmVisionAssistant</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://api.ifm3d.com/html/examples/index.html">Python</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://api.ifm3d.com/html/examples/index.html">C++</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">ROS</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">ifm3d-ros overview</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#release-versions">Release versions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#ifm3d-ros-for-the-o3r">ifm3d-ros for the O3R</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#software-compatibility-matrix">Software Compatibility Matrix</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#internal-ifm3d-ros-subpackage-version-structure">Internal ifm3d-ros subpackage version structure</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#organization-of-the-software">Organization of the software</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#building-and-installing-the-software">Building and installing the software</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="ifm3d_ros_driver/doc/noetic.html">Preparing your system</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ifm3d_ros_driver/doc/building.html">Installing the ifm3d-ros node</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ifm3d_ros_driver/doc/distributed_build.html">Build for distributed systems</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#license">LICENSE</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ifm3d_ros_driver/README.html">ifm3d_ros_driver</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ifm3d_ros_msgs/README.html">ifm3d_ros_msgs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ifm3d_ros_examples/README.html">ifm3d_ros_examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ifm3d-ros2/README.html">ROS 2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/DeviceConfiguration/index.html">Device Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../o3r-utilities/README.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../applications_index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/Docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ifm3d/index.html">ifm3d API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">ROS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../downloadable/index.html">Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/FAQ/FAQ.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index_getting_started.html">Getting started with the O3R</a> &raquo;</li>
+          <li><a href="../../index_sw_stack.html">Pick your favorite software stack</a> &raquo;</li>
+          <li><a href="index.html">ifm3d-ros</a> &raquo;</li>
+      <li>ifm3d-ros</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/ROS/ifm3d-ros/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="ifm3d-ros">
+<h1>ifm3d-ros<a class="headerlink" href="#ifm3d-ros" title="Permalink to this headline"></a></h1>
+<div class="section" id="release-versions">
+<h2>Release versions<a class="headerlink" href="#release-versions" title="Permalink to this headline"></a></h2>
+<p>:warning: Note that the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch is generally in a work in progress, and you probably want to use a tagged <a class="reference external" href="https://github.com/ifm/ifm3d-ros/releases">release version</a> for production.</p>
+</div>
+<div class="section" id="ifm3d-ros-for-the-o3r">
+<h2>ifm3d-ros for the O3R<a class="headerlink" href="#ifm3d-ros-for-the-o3r" title="Permalink to this headline"></a></h2>
+<p><strong>NOTE: The ifm3d-ros package has had major changes recently. Please be aware that this might cause problems on your system for building pipelines based on our old build instructions.</strong>
+We tried to ensure backward compatibility where ever possible. If you find any major breaks, please let us know.</p>
+<p>ifm3d-ros is a wrapper around <span class="xref myst">ifm3d</span> enabling the usage of the O3R camera platform (ifm ToF cameras) from within <a class="reference external" href="http://ros.org">ROS</a> software systems.
+<strong>Please make sure to use version 1.0.0 or above for O3R compatibility.</strong></p>
+<p><img alt="rviz1" src="../../_images/O3R_merged_point_cloud.png" /></p>
+</div>
+<div class="section" id="software-compatibility-matrix">
+<h2>Software Compatibility Matrix<a class="headerlink" href="#software-compatibility-matrix" title="Permalink to this headline"></a></h2>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>ifm3d-ros version</strong></p></th>
+<th class="head"><p><strong>ifm3d version</strong></p></th>
+<th class="head"><p><strong>ROS distribution(s)</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1.0.0</p></td>
+<td><p>0.91.0</p></td>
+<td><p>Noetic</p></td>
+</tr>
+<tr class="row-odd"><td><p>1.0.1</p></td>
+<td><p>0.93.0</p></td>
+<td><p>Noetic</p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="internal-ifm3d-ros-subpackage-version-structure">
+<h3>Internal ifm3d-ros subpackage version structure<a class="headerlink" href="#internal-ifm3d-ros-subpackage-version-structure" title="Permalink to this headline"></a></h3>
+<p>Please see the internal subpackage version structure for a known <code class="docutils literal notranslate"><span class="pre">ifm3d-ros</span> <span class="pre">version</span></code>.</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>ifm3d-ros version</strong></p></th>
+<th class="head"><p><strong>ifm3d_ros_driver</strong></p></th>
+<th class="head"><p><strong>ifm3d_ros_msgs</strong></p></th>
+<th class="head"><p><strong>ifm3d_ros_examples</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1.0.0</p></td>
+<td><p>0.7.0</p></td>
+<td><p>0.1.0</p></td>
+<td><p>0.1.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>1.0.1</p></td>
+<td><p>1.0.1</p></td>
+<td><p>0.1.0</p></td>
+<td><p>0.1.0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="organization-of-the-software">
+<h2>Organization of the software<a class="headerlink" href="#organization-of-the-software" title="Permalink to this headline"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">ifm3d-ros</span></code> meta package provides three subpackages:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ifm3d_ros_driver</span></code> provides the core interface for receiving data for ifm 3d (O3R) cameras.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ifm3d_ros_msgs</span></code> gathers the ifm-specific messages types and the services for configuring and triggering the camera.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ifm3d_ros_examples</span></code> provides additional helper scripts and examples.</p></li>
+</ul>
+<p>The name <code class="docutils literal notranslate"><span class="pre">ifm3d-ros</span></code>  was kept even tough this is not consistent with ROS package naming conventions.
+This ROS package has been split into three sub packages in an effort to facilitate dependency handling on distributed systems and simplify deployment on embedded platforms. For instance, the package <code class="docutils literal notranslate"><span class="pre">ifm3d_ros_msgs</span></code> can be installed independently of the other packages to control the camera from a separate computing platform. The <code class="docutils literal notranslate"><span class="pre">ifm3d_ros_examples</span></code> holds our launch files and examples.</p>
+</div>
+<div class="section" id="building-and-installing-the-software">
+<h2>Building and installing the software<a class="headerlink" href="#building-and-installing-the-software" title="Permalink to this headline"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ifm3d_ros_driver/doc/noetic.html">Preparing your system</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ifm3d_ros_driver/doc/building.html">Installing the ifm3d-ros node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ifm3d_ros_driver/doc/distributed_build.html">Build for distributed systems</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="license">
+<h2>LICENSE<a class="headerlink" href="#license" title="Permalink to this headline"></a></h2>
+<p>Please see the file called <span class="xref myst">LICENSE</span>.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="ifm3d-ros" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ifm3d_ros_driver/doc/noetic.html" class="btn btn-neutral float-right" title="ifm3d_ros on Ubuntu 20.04 and ROS Noetic" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.
+      <span class="lastupdated">Last updated on Jun 08, 2022.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

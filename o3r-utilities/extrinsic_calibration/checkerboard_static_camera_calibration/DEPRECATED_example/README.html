@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <meta property="article:modified_time" content="2023-01-20T15:34:39+00:00" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Extrinsic Calibration Routine for O3R Camera &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/clipboard.min.js"></script>
+        <script src="../../../../_static/copybutton.js"></script>
+        <script src="../../../../_static/js/versionwarning.js"></script>
+        <script src="../../../../_static/tabs.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../index_getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/DeviceConfiguration/index.html">Device Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../applications_index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/Docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ifm3d/index.html">ifm3d API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ROS/index.html">ROS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../downloadable/index.html">Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/FAQ/FAQ.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Extrinsic Calibration Routine for O3R Camera</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/o3r-utilities/extrinsic_calibration/checkerboard_static_camera_calibration/DEPRECATED_example/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="extrinsic-calibration-routine-for-o3r-camera">
+<h1>Extrinsic Calibration Routine for O3R Camera<a class="headerlink" href="#extrinsic-calibration-routine-for-o3r-camera" title="Permalink to this headline"></a></h1>
+<p>Vision sensors are critical for perceiving the environment, however the visual information is of no use unless the sensor data is calibrated. The process to transform the camera frame to the robot base frame is called <strong>extrinsic calibration</strong>.</p>
+<p>This document provides a tutorial for the extrinsic calibration (robot-camera) of the O3R camera using a single image of a standard checkerboard of a known size. This will be done in 3 steps:</p>
+<ul class="simple">
+<li><p>Prerequisites</p></li>
+<li><p>Setting up the scene</p></li>
+<li><p>Measurement and Calibration</p></li>
+</ul>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>This tutorial assumes that you have already setup the camera/VPU and can visualise the pointcloud/amplitude images. If you do not have a viewer available, one of the options is to use Rviz along with the <a class="reference external" href="https://ifm3d.com/sphinx-doc/build/html/ROS/index.html">ifm3d ROS Wrapper</a>.</p></li>
+<li><p>You will also need to know the exact location of the robot base frame in order to take distance measurements from that position to the checkerboard.</p></li>
+</ul>
+<p>Make sure the camera is connected to the laptop and you can ping the sensor before you proceed to the next steps.</p>
+<ul>
+<li><p>Setup the environment.</p>
+<ol class="simple">
+<li><p>Git clone the repository.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ifm</span><span class="o">/</span><span class="n">o3r</span><span class="o">-</span><span class="n">utilities</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Enter the root folder for calibration</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">o3r</span><span class="o">-</span><span class="n">utilities</span><span class="o">/</span><span class="n">calibration</span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Create a virtual environment.</p></li>
+</ol>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-0-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-0-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-0-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">env</span>
+<span class="n">source</span> <span class="n">env</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">activate</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-V2luZG93cw==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-V2luZG93cw==" name="V2luZG93cw==" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">venv</span> <span class="n">env</span>
+<span class="n">cd</span> <span class="n">env</span>
+<span class="o">.</span>\<span class="n">Scripts</span>\<span class="n">activate</span><span class="o">.</span><span class="n">bat</span>
+<span class="n">cd</span> <span class="o">..</span>
+<span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
+</pre></div>
+</div>
+</div></div>
+<ol class="simple">
+<li><p>Install dependencies.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+</li>
+<li><p>Checkerboard of size 800x600mm printed on a matte finish paper. Using glossy paper will cause reflections and inhibit accurate calibration of the camera. The exact checkerboard has been given in the <strong>resources</strong> folder. Stick the checkerboard on a rigid cardboard so that the paper does not flop around during calibration.</p></li>
+<li><p>Cardboard edges should not extend past the checkerboard dimensions as this will result in error in calibration.</p></li>
+<li><p>You can also use a different size checkerboard as long as you update the <code class="docutils literal notranslate"><span class="pre">FrameSize</span></code>, <code class="docutils literal notranslate"><span class="pre">TargetWidth</span></code> and <code class="docutils literal notranslate"><span class="pre">TargetHeight</span></code> in the run.py script.</p></li>
+</ul>
+</div>
+<div class="section" id="setting-up-the-scene">
+<h2>Setting up the scene<a class="headerlink" href="#setting-up-the-scene" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Rest the checkerboard on a wall and make sure the checkerboard occupies the maximum field of view of the camera for the most accurate calibration.</p></li>
+<li><p>The easiest way to place the checkerboard is to have it be exactly flat with the wall as it reduces the number of distance measurements you will need to take. This is not an absolute requirement though.</p></li>
+<li><p>Tilt the board if a reflection of the illumination is seen on the camera image. You can tilt as long as the top edge is fully resting on the wall. Keep in mind that all the edges of the board should still be visible by the camera after tilting the checkerboard.</p></li>
+</ul>
+<p>Below are 2 examples of the amplitude image seen in a bad and a good checkerboard placement.</p>
+<ul class="simple">
+<li><p>Bad placement: High reflection on checkerboard causes the intersections between the checkerboard cells to not get detected.</p></li>
+</ul>
+<p><img alt="" src="../../../../_images/badimage.png" /></p>
+<ul class="simple">
+<li><p>Good placement: Low reflection allows all intersections to be captured.</p></li>
+</ul>
+<p><img alt="" src="../../../../_images/Goodimage.png" /></p>
+<div class="section" id="orientation-of-the-checkerboard">
+<h3>Orientation of the checkerboard<a class="headerlink" href="#orientation-of-the-checkerboard" title="Permalink to this headline"></a></h3>
+<p>If the camera is mounted <strong>horizontally</strong> (longer edge of camera parallel to ground), place the checkerboard horizontally with the longer edge parallel to the ground. Like this:</p>
+<p><img alt="" src="../../../../_images/Horizontal.png" /></p>
+<p>If the camera is mounted <strong>vertically</strong> (shorter edge of camera parallel to ground), place the checkerboard vertically with the shorter edge parallel to the ground. Like this:</p>
+<p><img alt="" src="../../../../_images/Vertical.png" /></p>
+</div>
+</div>
+<div class="section" id="measurement-and-calibration">
+<h2>Measurement and Calibration<a class="headerlink" href="#measurement-and-calibration" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Open the <strong>run.py</strong> script and update the IP address (line 9) according to the one associated to your VPU. By default it is set to 192.168.0.69.</p></li>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">Horizontal</span></code> variable as <em>True</em> if camera mounting is horizontal or <em>False</em> otherwise (line 10).</p></li>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">UpsideDown</span></code> (line 11) variable as <em>False</em> if camera label is printed at the top while mounted horizontally or left side if mounted vertically, when looking at the field of view from behind the camera, <em>True</em> otherwise.</p></li>
+</ul>
+<p>For the calibration process, we assume a right hand coordinate system for the measurement of all the distances and that the robot base frame is located at floor level (Z=0). All the distances are measured <strong>in meters [m]</strong></p>
+<ul class="simple">
+<li><p>Measure the X_RobotToWall (line 14) as:</p></li>
+</ul>
+<p><img alt="" src="../../../../_images/Robottowall.png" /></p>
+<ul class="simple">
+<li><p>Measure the X_RobotToTarget (line 15) as:</p></li>
+</ul>
+<p><img alt="" src="../../../../_images/robottotarget.png" /></p>
+<p><strong>If the checkerboard is placed exactly flat on the wall, the measurements of X_RobotToWall will be equal to X_RobotToTarget.</strong></p>
+<ul class="simple">
+<li><p>Measure the Y_RobotToTargetLeftEdge(line 18) and Y_RobotToTargetRightEdge(line 19) as:</p></li>
+</ul>
+<p><img alt="" src="../../../../_images/leftrightedge.png" /></p>
+<ul class="simple">
+<li><p>Measure the Z_WallToGround (line 16) and Z_TargetToGround (line 17) as:</p></li>
+</ul>
+<p><img alt="" src="../../../../_images/zmeasure.png" /></p>
+<p><strong>Z_TargetToGround is 0 if the checkerboard is resting on the ground</strong></p>
+<ul class="simple">
+<li><p><strong>Update the port for the camera</strong> (line 12) to be calibrated before you run the calibration script as the script will erase the old calibration and update it with new calibration values.</p></li>
+<li><p>Run the run.py script for the calibration.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">run</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>After calibrating all the cameras, perform a soft reboot of the VPU to save the values even after unplugging the VPU.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-aWZtM2RweSBMaWJyYXJ5" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-aWZtM2RweSBMaWJyYXJ5" name="aWZtM2RweSBMaWJyYXJ5" role="tab" tabindex="0">ifm3dpy Library</button><button aria-controls="panel-1-SUZNM2QgQysrIENMSQ==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-SUZNM2QgQysrIENMSQ==" name="SUZNM2QgQysrIENMSQ==" role="tab" tabindex="-1">IFM3d C++ CLI</button></div><div aria-labelledby="tab-1-aWZtM2RweSBMaWJyYXJ5" class="sphinx-tabs-panel group-tab" id="panel-1-aWZtM2RweSBMaWJyYXJ5" name="aWZtM2RweSBMaWJyYXJ5" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ifm3dpy</span> <span class="kn">import</span> <span class="n">CameraBase</span>
+<span class="n">o3r</span> <span class="o">=</span> <span class="n">CameraBase</span><span class="p">()</span>
+<span class="n">o3r</span><span class="o">.</span><span class="n">reboot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-SUZNM2QgQysrIENMSQ==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-SUZNM2QgQysrIENMSQ==" name="SUZNM2QgQysrIENMSQ==" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">ifm3d</span><span class="w"> </span><span class="n">reboot</span>
+</pre></div>
+</div>
+</div></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.
+      <span class="lastupdated">Last updated on Jan 20, 2023.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

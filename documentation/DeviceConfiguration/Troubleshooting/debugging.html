@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <meta property="article:modified_time" content="2023-01-25T20:09:11+00:00" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>O3R Information for debugging &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="SNTP (Simple Network Time Protocol) setup" href="../sntp.html" />
+    <link rel="prev" title="Diagnosis information" href="diagnosis.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index_getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Device Configuration</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Parameters/index.html">Imager Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ImagesDescription/index.html">Images Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Interfaces/index.html">Communication Interfaces</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Troubleshooting</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="diagnosis.html">Diagnosis information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="diagnosis.html#error-descriptions">Error descriptions</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">O3R Information for debugging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-debug-the-o3r">HOW to debug the O3R:</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#status-leds-and-port-leds">Status LEDs and port LEDs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#if-you-can-not-establish-a-connection-to-the-vpu-via-the-iva">If you can not establish a connection to the VPU via the iVA:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#diagnosis-information">Diagnosis information:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../sntp.html">SNTP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../o3r-utilities/README.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../applications_index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ifm3d/index.html">ifm3d API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ROS/index.html">ROS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Device Configuration</a> &raquo;</li>
+          <li><a href="index.html">Troubleshooting tools</a> &raquo;</li>
+      <li>O3R Information for debugging</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/documentation/DeviceConfiguration/Troubleshooting/debugging.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="o3r-information-for-debugging">
+<h1>O3R Information for debugging<a class="headerlink" href="#o3r-information-for-debugging" title="Permalink to this headline"></a></h1>
+<p>When sending us debug request please include the information below:</p>
+<p><strong>Required O3R system information:</strong></p>
+<ul class="simple">
+<li><p>VPU (IPC) hardware information: i.e. OVP800, M03975, M04239</p></li>
+<li><p>O3R camera hardware: i.e.</p>
+<ul>
+<li><p>O3R225: add serial number</p></li>
+<li><p>O3R222: add serial number</p></li>
+<li><p>M03969</p></li>
+<li><p>M03933</p></li>
+</ul>
+</li>
+<li><p>Any additional hardware connected: i.e.</p>
+<ul>
+<li><p>USB thumb drives / SSD</p></li>
+<li><p>CAN hardware</p></li>
+<li><p>….</p></li>
+</ul>
+</li>
+<li><p>The complete JSON configuration</p></li>
+</ul>
+<p><strong>Required Software version information:</strong></p>
+<ul class="simple">
+<li><p>Embedded firmware version: two ways to find this out</p>
+<ul>
+<li><p>Via the JSON: use the get method to receive the O3R configuration information via JSON:
+<a class="reference external" href="http://api.ifm3d.com/html/examples/o3r/configuration/configuration.html">ifm3d.com how to receive the camera configuration</a></p></li>
+<li><p>Via the Vision Assistant: top right hand corner:
+<img alt="055afc8c3b028c996ec20567e877b775.png" src="../../../_images/2688a88ba71f432ca0cb99bd7acf2526.png" /></p></li>
+</ul>
+</li>
+<li><p>Local (Laptop / Computer) OS: OS and version</p></li>
+<li><p>ifm3d / ifm3dpy API version</p></li>
+<li><p>(ifm Vision Assistant version - if iVA is used)</p></li>
+<li><p>(ROS wrapper version)</p></li>
+</ul>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="how-to-debug-the-o3r">
+<h1>HOW to debug the O3R:<a class="headerlink" href="#how-to-debug-the-o3r" title="Permalink to this headline"></a></h1>
+<p>The easiest way to debug a new O3R hardware is to use the ifm Vision Assistant: it can be downloaded <a class="reference external" href="https://www.ifm.com/de/en/product/O3D300?tab=documents">here</a></p>
+<ol class="simple">
+<li><p>Connect the VPU (OVP8xx) to your computer and edit your local network configuration to match the default static IPv4 of the system</p>
+<ol class="simple">
+<li><p>Ping the system to make sure it can be reached:</p></li>
+</ol>
+</li>
+<li><p>Open the ifm Vision Assistant:</p>
+<ol class="simple">
+<li><p>Connect to the camera:</p>
+<ol class="simple">
+<li><p>Option 1: Search automatically - PCIC “search function” used here</p></li>
+<li><p>Option 2: Connect manually: <code class="docutils literal notranslate"><span class="pre">CTRL</span> <span class="pre">+</span> <span class="pre">M</span></code>
+<img alt="c48fd752dab1a2e1c9d2c0156b2a67ba.png" src="../../../_images/036b053e0cf0422da657b0fe260822e9.png" /></p></li>
+<li><p>ifm Vision Assistant window: after successful connection
+<img alt="b38649b855f15c8079f96c534558a89b.png" src="../../../_images/a1cd94cda41140a0ab95918f35011bc2.png" /></p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Check the device details: top right hand corner
+Device Status -&gt; Show device details
+<img alt="498d1a1a4d817f426b7496a153b9e573.png" src="../../../_images/f046d34322a144c984ded6f171fcfebe.png" /></p></li>
+<li><p>Check the diagnostic information: top right hand corner
+Device Status -&gt; Diagnostic
+<img alt="5aaeb3f2540bab23bae5318fe824a01e.png" src="../../../_images/dc1a047c6eb0498db3ab0f5fdea8eeb4.png" /></p></li>
+</ol>
+<div class="section" id="status-leds-and-port-leds">
+<h2>Status LEDs and port LEDs<a class="headerlink" href="#status-leds-and-port-leds" title="Permalink to this headline"></a></h2>
+<p>Starting with firmware version 0.16.x the LEDs at the front of the VPU show the correct system information:</p>
+<ul class="simple">
+<li><p>STATE LED:</p>
+<ul>
+<li><p>The STATE LED should be green.</p></li>
+<li><p>The STATE LED will be red if an ERROR is active  the internal diagnosis functionality:
+The System will set the ERROR state automatically.</p></li>
+</ul>
+</li>
+<li><p>PORT LEDs:</p>
+<ul>
+<li><p>Each Port LED is handled separately: If the connected imager (i.e. 2D RGB / 3D TOF imager) is registered and ready the LED will turn green</p></li>
+<li><p>If the LEDs is off:</p>
+<ul>
+<li><p>The imager / camera is not registered by the system: i.e. connected during live operation. It will only be registered with the next reboot cycle.</p></li>
+<li><p>The imager / camera cable connectivity is incorrect: i.e. 2D and 3D connected to the same paired deserializer</p></li>
+<li><p>The imager / cameras calibration information is still getting downloaded after it’s was connected for the first time to this VPU.</p></li>
+<li><p>For additional possible error cases please check the diagnosis information.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="if-you-can-not-establish-a-connection-to-the-vpu-via-the-iva">
+<h2>If you can not establish a connection to the VPU via the iVA:<a class="headerlink" href="#if-you-can-not-establish-a-connection-to-the-vpu-via-the-iva" title="Permalink to this headline"></a></h2>
+<ol class="simple">
+<li><p>Check the network settings: i.e. try to ping the system on it default / configured IP in a local network</p></li>
+<li><p>Disconnect all camera heads and power cycle the VPU:</p>
+<ol class="simple">
+<li><p>This will allow you to find hardware configuration problems: I.e. camera heads connected to the “wrong” ports
+<a class="reference external" href="http://ifm3d.com/sphinx-doc/build/html/documentation/O3R/GettingStarted/hw_unboxing.html">Please double-check the configuration doc for details on the hardware connectivity</a></p></li>
+<li><p>If step 1 (above) worked try to reconnect one cable at a time to the correct ports as described in the doc above. Please be aware that any hardware change, e.g. connecting a new head, requires a reboot before it will become available.</p></li>
+</ol>
+</li>
+</ol>
+<p>We are working on more verbose logging and easier to understand error message when connections with the ifm Vision Assitant fail.
+This document will be update with the new release of the ifm Vision Assistant and O3R embedded firmware release.</p>
+</div>
+<div class="section" id="diagnosis-information">
+<h2>Diagnosis information:<a class="headerlink" href="#diagnosis-information" title="Permalink to this headline"></a></h2>
+<p>Diagnosis information can be retrieved via:</p>
+<ol class="simple">
+<li><p>ifm Vision Assistant</p></li>
+<li><p>JSON via it’s own socket connection:
+Example: <code class="docutils literal notranslate"><span class="pre">http://192.168.0.69/api/rpc/v1/com.ifm.diagnostic/?method=get</span></code></p></li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="diagnosis.html" class="btn btn-neutral float-left" title="Diagnosis information" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../sntp.html" class="btn btn-neutral float-right" title="SNTP (Simple Network Time Protocol) setup" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.
+      <span class="lastupdated">Last updated on Jan 25, 2023.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

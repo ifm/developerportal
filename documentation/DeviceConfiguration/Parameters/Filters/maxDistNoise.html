@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <meta property="article:modified_time" content="2023-01-25T20:09:11+00:00" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maximum Distance Noise &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/clipboard.min.js"></script>
+        <script src="../../../../_static/copybutton.js"></script>
+        <script src="../../../../_static/js/versionwarning.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Minimum Amplitude" href="minAmplitude.html" />
+    <link rel="prev" title="Filtering Process" href="filteringProcess.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../index_getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Device Configuration</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Imager Parameters</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../parameters.html">Parameters overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../AcquisitionSettings/README.html">Acquisition parameters</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="README.html">Filters</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="filteringProcess.html">Filtering process overview</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Maximum distance noise</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#abstract">Abstract</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#description">Description</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#related-topics">Related topics</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="minAmplitude.html">Minimum amplitude</a></li>
+<li class="toctree-l4"><a class="reference internal" href="minReflectivity.html">Minimum reflectivity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bilateralFilter.html">Adaptive noise bilateral filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="median.html">Median filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="temporalFilter.html">Temporal filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mixedPixelFilter.html">Mixed pixel filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="symmetryThreshold.html">Symmetry threshold</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../ImagesDescription/index.html">Images Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Interfaces/index.html">Communication Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sntp.html">SNTP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../o3r-utilities/README.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../applications_index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ifm3d/index.html">ifm3d API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ROS/index.html">ROS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../downloadable/index.html">Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQ/FAQ.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Device Configuration</a> &raquo;</li>
+          <li><a href="../index.html">Parameters</a> &raquo;</li>
+          <li><a href="README.html">Filters</a> &raquo;</li>
+      <li>Maximum Distance Noise</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/documentation/DeviceConfiguration/Parameters/Filters/maxDistNoise.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="maximum-distance-noise">
+<h1>Maximum Distance Noise<a class="headerlink" href="#maximum-distance-noise" title="Permalink to this headline"></a></h1>
+<div class="section" id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline"></a></h2>
+<p>The O3R software estimates distance noise per pixel as well as the distance information per pixel. This distance noise parameter is an estimation of the standard deviation of the radial distance measurement, given in meters. It is based on a noise model built upon the acquired time of flight (ToF) measurements of a single frame. Pixels with a noise value above the threshold <code class="docutils literal notranslate"><span class="pre">maxDistNoise</span></code> are invalidated.</p>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline"></a></h2>
+<p>The O3R camera and software use the ifm ToF technology to measure the distance of objects per pixel. The result are a distance image as and a distance noise image. The distance noise deduction can be interpreted as a standard deviation of the distance measurement in a metric scale. The noise level is dependent on the received signal’s amplitude (lower amplitude means greater noise) and on the ambient light level (high ambient light level, especially sunlight, can lead to high noise level).</p>
+<p>The distance noise image is processed in the same algorithmic pipeline as the distance image. Any filter applied to the distance image is applied to the distance noise image as well. For example, if filters are activated in the spatial domain (see the <span class="xref myst">bilateral filter</span>), then they also filter the distance noise image such that the adapted noise image reflects the lowered noise due to lateral filtering.</p>
+<p>The parameter <code class="docutils literal notranslate"><span class="pre">maxDistNoise</span></code> is used to invalidate pixels with high noise levels. Higher <code class="docutils literal notranslate"><span class="pre">maxDistNoise</span></code> values will allow noisier pixels to be valid pixels in the point cloud. The maximum allowed value is 1 meter, although we do not recommend using such a high value because the resulting distance measurement will be highly inaccurate in the noisy areas.
+Low <code class="docutils literal notranslate"><span class="pre">maxDistNoise</span></code> values will result in more noisy pixels being marked as invalid. Values lower than 0.01 meters should always be validated against worst-case expected object and ambient light levels.</p>
+<p>The minimum allowed <code class="docutils literal notranslate"><span class="pre">maxDistNoise</span></code> value is 0.00 meters. This will switch off the validation process based on the estimated distance noise image. The distance noise image is still computed and available to the user.</p>
+<p>We suggest you start your experiments with the default values and assess the point cloud quality for your specific use case. The current default value is set to 0.02 meters, which allows for a robust point cloud with negligible noise. For applications where a rich point cloud (i.e., a cloud with more valid pixels) is preferred over accuracy, increasing the noise threshold can be a good idea.</p>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h3>
+<p>The following table shows measurements for the same scene with two different distance noise threshold values. The scene consists of a box positioned 1 meter away from the camera, outside in full sunlight. The amount of noise due to the ambient light is high, but it is apparent that we can still get distance values for many pixels by increasing the noise threshold.</p>
+<blockquote>
+<div><p>Note: For demonstration purposes, we disabled the <span class="xref myst">temporal filter</span> in these images.</p>
+</div></blockquote>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Noise threshold [m]</p></th>
+<th class="head"><p>Distance noise image</p></th>
+<th class="head"><p></p></th>
+<th class="head"><p>Point cloud</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>0.01</p></td>
+<td><p><img alt="Low noise threshold - noise image" src="../../../../_images/noise_outside_noise.png" /></p></td>
+<td><p><img alt="Color bar" src="../../../../_images/color_bar_noise.png" /></p></td>
+<td><p><img alt="Low noise threshold in the point cloud" src="../../../../_images/low_noise_001_outside_cloud.png" /></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>0.07</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p><img alt="Low noise threshold in the point cloud" src="../../../../_images/med_noise_007_outside_cloud.png" /></p></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><p>Note: The distance noise image is the same for both noise threshold values. The difference is viewed in the point cloud, where the noise filtering discards more or fewer pixels.</p>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="related-topics">
+<h2>Related topics<a class="headerlink" href="#related-topics" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><span class="xref myst">Bilateral filter</span> (see also the <span class="xref myst">median filter</span>)</p></li>
+<li><p><span class="xref myst">Temporal filter</span></p></li>
+<li><p><span class="xref myst">Minimum amplitude</span></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="filteringProcess.html" class="btn btn-neutral float-left" title="Filtering Process" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="minAmplitude.html" class="btn btn-neutral float-right" title="Minimum Amplitude" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.
+      <span class="lastupdated">Last updated on Jan 25, 2023.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

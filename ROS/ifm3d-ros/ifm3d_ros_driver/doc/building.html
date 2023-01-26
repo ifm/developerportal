@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <meta property="article:modified_time" content="2022-04-27T14:55:21+00:00" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Building and Installing the ifm3d-ros package &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/clipboard.min.js"></script>
+        <script src="../../../../_static/copybutton.js"></script>
+        <script src="../../../../_static/js/versionwarning.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Building and installing for distributed systems" href="distributed_build.html" />
+    <link rel="prev" title="ifm3d_ros on Ubuntu 20.04 and ROS Noetic" href="noetic.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../index_getting_started.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../../documentation/GettingStarted/Unboxing/hw_unboxing.html">Hardware Unboxing</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../../index_sw_stack.html">Pick your software stack</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../../../documentation/GettingStarted/ifmVisionAssistant/index.html">ifmVisionAssistant</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://api.ifm3d.com/html/examples/index.html">Python</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://api.ifm3d.com/html/examples/index.html">C++</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../index.html">ROS</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../../README.html">ifm3d-ros overview</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="../../README.html#release-versions">Release versions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../README.html#ifm3d-ros-for-the-o3r">ifm3d-ros for the O3R</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../README.html#software-compatibility-matrix">Software Compatibility Matrix</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../README.html#organization-of-the-software">Organization of the software</a></li>
+<li class="toctree-l5 current"><a class="reference internal" href="../../README.html#building-and-installing-the-software">Building and installing the software</a><ul class="current">
+<li class="toctree-l6"><a class="reference internal" href="noetic.html">Preparing your system</a></li>
+<li class="toctree-l6 current"><a class="current reference internal" href="#">Installing the ifm3d-ros node</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#step-by-step-build-instructions-for-the-ros-node-ifm3d-ros">Step-by-Step build instructions for the ROS node <code class="docutils literal notranslate"><span class="pre">ifm3d-ros</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="#installation-directory-of-ros-node">Installation directory of ROS node</a></li>
+<li class="toctree-l8"><a class="reference internal" href="#create-and-initialize-your-catkin-workspace">Create and initialize your catkin workspace</a></li>
+<li class="toctree-l8"><a class="reference internal" href="#get-the-ifm3d-ros-wrapper-code-from-github">Get the <code class="docutils literal notranslate"><span class="pre">ifm3d-ros</span></code> wrapper code from GitHub</a></li>
+<li class="toctree-l8"><a class="reference internal" href="#build-the-ros-node">Build the ROS node</a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="#building-subpackages">Building subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="distributed_build.html">Build for distributed systems</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../../README.html#license">LICENSE</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../README.html">ifm3d_ros_driver</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../ifm3d_ros_msgs/README.html">ifm3d_ros_msgs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../ifm3d_ros_examples/README.html">ifm3d_ros_examples</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../ifm3d-ros2/README.html">ROS 2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/DeviceConfiguration/index.html">Device Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../o3r-utilities/README.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../applications_index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/Docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ifm3d/index.html">ifm3d API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">ROS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../downloadable/index.html">Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/FAQ/FAQ.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../../index_getting_started.html">Getting started with the O3R</a> &raquo;</li>
+          <li><a href="../../../../index_sw_stack.html">Pick your favorite software stack</a> &raquo;</li>
+          <li><a href="../../index.html">ifm3d-ros</a> &raquo;</li>
+          <li><a href="../../README.html">ifm3d-ros</a> &raquo;</li>
+      <li>Building and Installing the ifm3d-ros package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/ROS/ifm3d-ros/ifm3d_ros_driver/doc/building.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="building-and-installing-the-ifm3d-ros-package">
+<h1>Building and Installing the ifm3d-ros package<a class="headerlink" href="#building-and-installing-the-ifm3d-ros-package" title="Permalink to this headline"></a></h1>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline"></a></h2>
+<p>We suggest to build the <code class="docutils literal notranslate"><span class="pre">ifm3d-ros</span></code> node on top of Ubuntu 20.04 and ROS noetic.
+If you have reached this document via the <a class="reference internal" href="noetic.html"><span class="doc std std-doc">noetic ifm3d building instructions</span></a> and followed all the major steps in there you can skip the three steps listed below. They are just a short repetition.</p>
+<ol class="simple">
+<li><p><a class="reference external" href="http://www.ubuntu.com">Ubuntu 20.04 LTS</a></p></li>
+<li><p><a class="reference external" href="http://wiki.ros.org/noetic/Installation/">ROS Noetic</a> - we recommend <code class="docutils literal notranslate"><span class="pre">ros-noetic-desktop-full</span></code>.</p></li>
+<li><p><a class="reference external" href="https://github.com/ifm/ifm3d/tree/o3r/dev">ifm3d</a></p></li>
+</ol>
+<blockquote>
+<div><p>Note: Some users may require older ROS distributions for legacy reasons. The supplied ROS package may very well work with limited changes on older ROS distributions. At least previous version could be run as far back as Indigo and Kinetic. However, we didn’t test this ourselves. Please be aware that if you chose to go this route no guarantee is given.</p>
+</div></blockquote>
+</div>
+<div class="section" id="step-by-step-build-instructions-for-the-ros-node-ifm3d-ros">
+<h2>Step-by-Step build instructions for the ROS node <code class="docutils literal notranslate"><span class="pre">ifm3d-ros</span></code><a class="headerlink" href="#step-by-step-build-instructions-for-the-ros-node-ifm3d-ros" title="Permalink to this headline"></a></h2>
+<p>Building and installing ifm3d-ros is accomplished by utilizing the ROS <a class="reference external" href="http://wiki.ros.org/catkin">catkin</a> tool. There are many tutorials and other pieces of advice available online advising how to most effectively utilize catkin. The instructions that now follow represent how we choose to use catkin to build and <em>permanently install</em> a ROS package from source.</p>
+<p><strong>Alternatively: If you are looking for independent sub-package build  - please see <a class="reference internal" href="distributed_build.html"><span class="doc std std-doc">distributed build instructions</span></a></strong></p>
+<div class="section" id="installation-directory-of-ros-node">
+<h3>Installation directory of ROS node<a class="headerlink" href="#installation-directory-of-ros-node" title="Permalink to this headline"></a></h3>
+<p>First, we need to decide where we want our software to be installed. For purposes of this document, we will assume that we will install our ROS packages at <code class="docutils literal notranslate"><span class="pre">~/catkin_ws/src</span></code>.</p>
+<blockquote>
+<div><p>NOTE: Below we assume <code class="docutils literal notranslate"><span class="pre">noetic</span></code>. Adapting to other ROS distributions is left as an exercise for the reader.</p>
+</div></blockquote>
+</div>
+<div class="section" id="create-and-initialize-your-catkin-workspace">
+<h3>Create and initialize your catkin workspace<a class="headerlink" href="#create-and-initialize-your-catkin-workspace" title="Permalink to this headline"></a></h3>
+<p>Next, we want to create a <em>catkin workspace</em> that we can use to build and install that code from.
+For further information about setting up you <em>catkin workspace</em> please see this documentation: <a class="reference external" href="http://wiki.ros.org/catkin/Tutorials/create_a_workspace">create a catkin workspace</a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir -p ~/catkin_ws/src &amp;&amp; cd ~/catkin_ws/src
+$ catkin_init_workspace
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-the-ifm3d-ros-wrapper-code-from-github">
+<h3>Get the <code class="docutils literal notranslate"><span class="pre">ifm3d-ros</span></code> wrapper code from GitHub<a class="headerlink" href="#get-the-ifm3d-ros-wrapper-code-from-github" title="Permalink to this headline"></a></h3>
+<p>Next, we need to get the code from GitHub. Please adapt the commands when not following the suggested directory structure: <code class="docutils literal notranslate"><span class="pre">~/catkin_ws/src/</span></code></p>
+<blockquote>
+<div><p>Note that the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch is generally a work in progress. Please use a  <a class="reference external" href="https://github.com/ifm/ifm3d-ros/releases">tagged release</a>.</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/catkin_ws/src
+$ git clone https://github.com/ifm/ifm3d-ros.git
+</pre></div>
+</div>
+<p>So, you should have a catkin workspace set up to build the ifm3d-ros code that looks similar to this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[ ~/catkin_ws/src ]
+rosuser@tuna: $ pwd
+/home/rosuser/catkin_ws/src
+
+[ ~/catkin_ws/src/ifm3d-ros ]
+rosuser@tuna: $ ls -l
+total 0
+lrwxrwxrwx 1 rosuser rosuser 50 Mar 26 15:16 CMakeLists.txt -&gt; /opt/ros/noetic/share/catkin_ws/cmake/toplevel.cmake
+lrwxrwxrwx 1 rosuser rosuser 31 Mar 26 15:16 ifm3d-ros
+</pre></div>
+</div>
+</div>
+<div class="section" id="build-the-ros-node">
+<h3>Build the ROS node<a class="headerlink" href="#build-the-ros-node" title="Permalink to this headline"></a></h3>
+<p>Now we are ready to build the code. The following code block shows you how to simply run catkin_make without anything else happening further.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/catkin_ws/
+$ catkin_make
+</pre></div>
+</div>
+<p>This will create a <code class="docutils literal notranslate"><span class="pre">devel</span></code> and <code class="docutils literal notranslate"><span class="pre">build</span></code> folder in your catkin workspace, which contains the required code for running the ROS node. To test this you can easily set-up your current shell and run: <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">~/catkin_ws/devel/setup.bash</span> <span class="pre">&amp;&amp;</span> <span class="pre">roslaunch</span> <span class="pre">ifm3d_ros_examples</span> <span class="pre">camera.launch</span></code>.</p>
+<p>The ROS package should now be installed in <code class="docutils literal notranslate"><span class="pre">~/ros/ifm3d-ros</span></code>. To test everything out you should open a fresh bash shell, and start up a ROS core:
+(Please don’t forget to source the ifm3d-ros package first if you haven’t done it yet.)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ roscore &amp;
+$ roslaunch ifm3d_ros_examples camera.launch
+</pre></div>
+</div>
+<p>Open another shell and start the rviz node to visualize the data coming from the camera:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ roslaunch ifm3d_ros_examples rviz.launch
+</pre></div>
+</div>
+<blockquote>
+<div><p>Note: <code class="docutils literal notranslate"><span class="pre">rviz.launch</span></code> does not include the camera node itself, but subscribes to published topics (distance, amplitude, etc). A camera node need to be running in parallel to rviz (you can use <code class="docutils literal notranslate"><span class="pre">camera.launch</span></code>).</p>
+</div></blockquote>
+<p>At this point, you should see an rviz window that looks something like the image below (note that this is the view from 3 camera heads):
+<img alt="rviz1" src="../../../../_images/O3R_merged_point_cloud.png" /></p>
+<p>Congratulations! You can now have complete control over the O3R perception platform from inside ROS.</p>
+</div>
+</div>
+<div class="section" id="building-subpackages">
+<h2>Building subpackages<a class="headerlink" href="#building-subpackages" title="Permalink to this headline"></a></h2>
+<p>Please see <a class="reference internal" href="distributed_build.html"><span class="doc std std-doc">this documentation</span></a> for how to build some of the subpackages for distributed systems.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="noetic.html" class="btn btn-neutral float-left" title="ifm3d_ros on Ubuntu 20.04 and ROS Noetic" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="distributed_build.html" class="btn btn-neutral float-right" title="Building and installing for distributed systems" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.
+      <span class="lastupdated">Last updated on Apr 27, 2022.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

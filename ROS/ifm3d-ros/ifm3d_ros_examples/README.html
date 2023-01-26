@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <meta property="article:modified_time" content="2022-01-21T20:50:05+00:00" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The ifm3d_ros_examples package &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="ifm3d-ros2" href="../../ifm3d-ros2/README.html" />
+    <link rel="prev" title="The ifm3d_ros_msgs package" href="../ifm3d_ros_msgs/README.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index_getting_started.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../documentation/GettingStarted/Unboxing/hw_unboxing.html">Hardware Unboxing</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../index_sw_stack.html">Pick your software stack</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../../documentation/GettingStarted/ifmVisionAssistant/index.html">ifmVisionAssistant</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://api.ifm3d.com/html/examples/index.html">Python</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://api.ifm3d.com/html/examples/index.html">C++</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">ROS</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../README.html">ifm3d-ros overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ifm3d_ros_driver/README.html">ifm3d_ros_driver</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ifm3d_ros_msgs/README.html">ifm3d_ros_msgs</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">ifm3d_ros_examples</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#launchfiles">Launchfiles</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#nodelet-launch-structure">Nodelet launch structure</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#building-launch-files-distributed-systems">Building launch files distributed systems</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#license">LICENSE</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../ifm3d-ros2/README.html">ROS 2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/DeviceConfiguration/index.html">Device Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../o3r-utilities/README.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../applications_index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/Docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ifm3d/index.html">ifm3d API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">ROS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/FAQ/FAQ.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index_getting_started.html">Getting started with the O3R</a> &raquo;</li>
+          <li><a href="../../../index_sw_stack.html">Pick your favorite software stack</a> &raquo;</li>
+          <li><a href="../index.html">ifm3d-ros</a> &raquo;</li>
+      <li>The <code class="docutils literal notranslate"><span class="pre">ifm3d_ros_examples</span></code> package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/ROS/ifm3d-ros/ifm3d_ros_examples/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="the-ifm3d-ros-examples-package">
+<h1>The <code class="docutils literal notranslate"><span class="pre">ifm3d_ros_examples</span></code> package<a class="headerlink" href="#the-ifm3d-ros-examples-package" title="Permalink to this headline"></a></h1>
+<p>This package provides examples and helper scripts for using the ifm O3R camera platform.</p>
+<div class="section" id="launchfiles">
+<h2>Launchfiles<a class="headerlink" href="#launchfiles" title="Permalink to this headline"></a></h2>
+<p>Please see the list below for launch files shipped with the examples package:</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">six_cameras.launch</span></code></p></td>
+<td><p>Launches six nodes, reading data streams on ports 0, 1, 2, 3, 4 and 5. Provide coordinate frame transforms for each node. Note: you can use this example for less than six heads, but you will get a <code class="docutils literal notranslate"><span class="pre">timeout</span></code> error where no heads are connected. This does not disrupt the proper functioning of the connected heads.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">nodelet.launch</span></code></p></td>
+<td><p>This is handling the nodelet manager which makes it possible to launch a nodelet similarly as you would a simple node.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">head.launch</span></code></p></td>
+<td><p>Launches two data streams for both the 2D RGB imager and 3D TOF imager on a camera head. Default ports are 0 (pcic_port:=50010) and 2 (pcic_port:=50012). For different port numbers input port as a parameter when launching.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">camera.launch</span></code></p></td>
+<td><p>Launches a single camera stream - so only 3D data or 2D RGB data. This launch file is comparable to a single camera setup (O3Ds and O3Xs)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="nodelet-launch-structure">
+<h3>Nodelet launch structure<a class="headerlink" href="#nodelet-launch-structure" title="Permalink to this headline"></a></h3>
+<blockquote>
+<div><p>Note: The O3R platform can handle multiple data streams.*<br />
+The <code class="docutils literal notranslate"><span class="pre">camera.launch</span></code> file only launches a node for one data stream, on the default pcic port 50010. To launch a node for a different port, use:</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ roslaunch ifm3d_ros_driver camera.launch pcic_port:=&lt;PORT_NUMBER&gt;
+</pre></div>
+</div>
+<p>The launch file(s) encapsulate several features:</p>
+<ol class="simple">
+<li><p>It (partially) exposes the <code class="docutils literal notranslate"><span class="pre">camera_nodelet</span></code> parameters as command-line arguments for ease of runtime configuration.</p></li>
+<li><p>It instantiates a nodelet manager which the <code class="docutils literal notranslate"><span class="pre">camera_nodelet</span></code> will be loaded into.</p></li>
+<li><p>It launches the camera nodelet itself.</p></li>
+<li><p>It publishes the static transform from the camera’s optical frame to a traditional ROS sensor frame as a tf2 <code class="docutils literal notranslate"><span class="pre">static_transform_publisher</span></code>.</p></li>
+</ol>
+<p>You can either use <span class="xref myst">this launch file</span> directly, or, use it as a basis for integrating <code class="docutils literal notranslate"><span class="pre">ifm3d_ros</span></code> into your own robot software system.</p>
+<blockquote>
+<div><p>Note: the O3R camera heads carry two imagers, a 3D time-of-flight and a RGB imager.</p>
+</div></blockquote>
+<p>We provide the <code class="docutils literal notranslate"><span class="pre">head.launch</span></code> launchfile to handle a whole O3R camera head, that starts two nodes, one for the RGB image (we assume it is plugged in port 0), and one for the 3D imager (we assume it is plugged in port 2).</p>
+</div>
+</div>
+<div class="section" id="building-launch-files-distributed-systems">
+<h2>Building launch files distributed systems<a class="headerlink" href="#building-launch-files-distributed-systems" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Note: This is WIR. We are currently working on Docker images which will allow you an easy deployment of our ROS node to the VPU.</p>
+</div></blockquote>
+</div>
+<div class="section" id="license">
+<h2>LICENSE<a class="headerlink" href="#license" title="Permalink to this headline"></a></h2>
+<p>Please see the file called <span class="xref myst">LICENSE</span>.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../ifm3d_ros_msgs/README.html" class="btn btn-neutral float-left" title="The ifm3d_ros_msgs package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../ifm3d-ros2/README.html" class="btn btn-neutral float-right" title="ifm3d-ros2" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.
+      <span class="lastupdated">Last updated on Jan 21, 2022.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
