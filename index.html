@@ -1,110 +1,698 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html class="writer-html5" lang="en" >
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Developer's portal</title>
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <script>
-        $(function() {
-            $("#mainheader").load("mainheader.html");
-            $("#footer").load("footer.html");
-        });
-    </script>
-    <link rel="stylesheet" href="ifmr_devportal.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="footerstyle.css">
+  <meta charset="utf-8" />
+    <meta property="article:modified_time" content="2023-01-20T16:23:21+00:00" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to the O3R’s documentation! &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+        <script src="_static/js/versionwarning.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting started with the O3R" href="index_getting_started.html" /> 
 </head>
 
-<body>
-    <div class="container">
-
-        <div id="mainheader"></div>
-<!-- 
-         <div class="section">
-            <h2 class="center">Download O3 software</h2>
-            <div class="softwarelinks">
-                <div class="iconholder"><a class="icon linuxlogo" href="#">O3R for Linux</a>Coming soon
-                <div class="iconholder"><a class="icon roslogo" href="#">O3R for ROS</a>Coming soon
-                <div class="iconholder"><a class="icon windowslogo" target="_blank" href="#">O3R for Windows</a>Coming soon
-            </div>
-        </div> -->
-
-        <div class="solid"></div>
-
-        <div class="section">
-            <ul class="home-bullets">
-
-                <li>
-                    <h2 class="left">Getting started</h2>
-                    <!-- <p><a class="" href="documentation.html#ifm/documentation/main/O3R/GettingStarted/README.md">Get started</a> with the O3R platform.</p> -->
-                    <p><a class="" href="sphinx-doc/build/html/documentation/O3R/GettingStarted/README.html">Get started</a> with the O3R platform.</p>
-                    <p style="color:white">Backup documentation<a class="" href="documentation.html" style="color:white"> here</a></p>
-                </li>
-
-                <li class="home-bullets settings">
-                    <h2 class="left">Documentation</h2>
-                    <!-- <p>Learn more about the camera settings and our toolset in our <a class="" href="documentation.html">documentation</a>.</p> -->
-                    <p>Learn more about the camera settings and our toolset in our <a class="" href="sphinx-doc/build/html/index.html">documentation</a>.</p>
-                </li>
-
-                <li class="home-bullets tools">
-                    <h2 class="left">Extension Tools</h2>
-                    <p>Get started with accessing our growing list of custom built
-                        <a class="" href="coming-soon.html" target="_blank">extension tools (coming soon).</a>&nbsp;
-                    </p>
-                </li>
-                <li>                    
-                    <h2 class="left">Fieldtest samples - DEPRECATED</h2>
-                    <p>Check out the contents of our Evaluation kit and the next steps to take to <a href="tutorial-welcome.html">get started</a>.
-                        (Only applicable for C-Sample series)
-                    
-                    </p>      
-                </li>      
-
-            </ul>
-
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="#" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="index_getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation/DeviceConfiguration/index.html">Device Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="o3r-utilities/README.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="applications_index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation/Docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ifm3d/index.html">ifm3d API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ROS/index.html">ROS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation/Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="downloadable/index.html">Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation/FAQ/FAQ.html">FAQ</a></li>
+</ul>
 
         </div>
+      </div>
+    </nav>
 
-        <div class="section ad">
-            <img id="robotchar" src="assets/robot.jpg" alt="robot">
-            <div>
-                <h2 class="left">Explore ifm robotics on Github</h2>
-                <p>The wire protocol document, code examples and ROS implementation can be download from <a class="" href="https://github.com/ifm" target="_blank">ifm Github.</a></p>
-            </div>
-            <div id="githublogo">
-                <img src="assets/github-logo.svg" alt="github logo" width="110px">
-            </div>
-        </div>
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">O3R</a>
+      </nav>
 
-        <div id="footer"></div>
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+      <li>Welcome to the O3R’s documentation!</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="welcome-to-the-o3r-s-documentation">
+<h1>Welcome to the O3R’s documentation!<a class="headerlink" href="#welcome-to-the-o3r-s-documentation" title="Permalink to this headline"></a></h1>
+<div class="admonition-news admonition">
+<p class="admonition-title">News</p>
+<p>A new firmware version is available for the O3R platform.<br />
+Find it here: <a class="reference external" href="https://www.ifm.com/us/en/product/OVP800?tab=documents">FW 16.23</a></p>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index_getting_started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="documentation/GettingStarted/Unboxing/hw_unboxing.html">Hardware Unboxing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index_sw_stack.html">Pick your software stack</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/index.html">ifmVisionAssistant</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/introduction_and_installation.html">Introduction and installation</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/introduction_and_installation.html#installing-the-ifmvisionassistant">Installing the ifmVisionAssistant</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/introduction_and_installation.html#downloading-and-unpacking-the-software">Downloading and unpacking the software</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/connecting_ifmVA_to_O3R.html">Connect to the O3R</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/connecting_ifmVA_to_O3R.html#start-the-ifmvisionassistant">Start the ifmVisionAssistant</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/connecting_ifmVA_to_O3R.html#start-screen-overview">Start screen overview</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/connecting_ifmVA_to_O3R.html#connection">Connection</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/connecting_ifmVA_to_O3R.html#using-find-sensor">Using <code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">sensor</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/connecting_ifmVA_to_O3R.html#manual-connection">Manual connection</a></li>
+<li class="toctree-l6"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/connecting_ifmVA_to_O3R.html#connect-to-recent-system-s">Connect to recent system(s)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/first_steps_ifmVA.html">First steps</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/first_steps_ifmVA.html#activating-the-heads-to-receive-2d-3d-data">Activating the heads to receive 2D &amp; 3D data</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/first_steps_ifmVA.html#optional-updating-the-firmware">(Optional) Updating the firmware</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/changing_parameters.html">Changing parameters</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/changing_parameters.html#short-parameter-overview">Short parameter overview</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/configuring_applications.html">Configuring applications</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/configuring_applications.html#activating-an-application">Activating an application</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/device_and_diagnosis_data.html">Device and diagnosis information</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/device_and_diagnosis_data.html#displaying-the-device-status">Displaying the device status</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/device_and_diagnosis_data.html#device-details">Device details</a></li>
+<li class="toctree-l6"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/device_and_diagnosis_data.html#diagnostic-data">Diagnostic data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference external" href="https://api.ifm3d.com/html/examples/index.html">Python</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://api.ifm3d.com/html/examples/index.html">C++</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ROS/ifm3d-ros/index.html">ROS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros/README.html">ifm3d-ros overview</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros/README.html#release-versions">Release versions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros/README.html#ifm3d-ros-for-the-o3r">ifm3d-ros for the O3R</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros/README.html#software-compatibility-matrix">Software Compatibility Matrix</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="ROS/ifm3d-ros/README.html#internal-ifm3d-ros-subpackage-version-structure">Internal ifm3d-ros subpackage version structure</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros/README.html#organization-of-the-software">Organization of the software</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros/README.html#building-and-installing-the-software">Building and installing the software</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/noetic.html">Preparing your system</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/building.html">Installing the ifm3d-ros node</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/building.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l7"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/building.html#step-by-step-build-instructions-for-the-ros-node-ifm3d-ros">Step-by-Step build instructions for the ROS node <code class="docutils literal notranslate"><span class="pre">ifm3d-ros</span></code></a><ul>
+<li class="toctree-l8"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/building.html#installation-directory-of-ros-node">Installation directory of ROS node</a></li>
+<li class="toctree-l8"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/building.html#create-and-initialize-your-catkin-workspace">Create and initialize your catkin workspace</a></li>
+<li class="toctree-l8"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/building.html#get-the-ifm3d-ros-wrapper-code-from-github">Get the <code class="docutils literal notranslate"><span class="pre">ifm3d-ros</span></code> wrapper code from GitHub</a></li>
+<li class="toctree-l8"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/building.html#build-the-ros-node">Build the ROS node</a></li>
+</ul>
+</li>
+<li class="toctree-l7"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/building.html#building-subpackages">Building subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/distributed_build.html">Build for distributed systems</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/distributed_build.html#building-one-package-independently-from-your-catkin-workspace">Building one package independently from your catkin workspace</a><ul>
+<li class="toctree-l8"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/distributed_build.html#building-the-driver-package">Building the driver package</a></li>
+<li class="toctree-l8"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/distributed_build.html#building-the-messages-package">Building the messages package</a></li>
+<li class="toctree-l8"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/distributed_build.html#building-the-examples-package">Building the examples package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros/README.html#license">LICENSE</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/README.html">ifm3d_ros_driver</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/README.html#ros-interface">ROS Interface</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/README.html#nodelet-parameters">Nodelet - parameters</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/README.html#nodelet-published-topics">Nodelet - published Topics</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/README.html#nodelet-subscribed-topics">Nodelet - subscribed Topics</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/README.html#nodelet-advertised-services">Nodelet - advertised Services</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/README.html#known-limitations">Known limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/README.html#additional-documentation">Additional Documentation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/README.html#license">LICENSE</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_msgs/README.html">ifm3d_ros_msgs</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_msgs/README.html#standalone-installation-of-the-messages-packages">Standalone Installation of the messages packages</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_msgs/README.html#license">LICENSE</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_examples/README.html">ifm3d_ros_examples</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_examples/README.html#launchfiles">Launchfiles</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_examples/README.html#nodelet-launch-structure">Nodelet launch structure</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_examples/README.html#building-launch-files-distributed-systems">Building launch files distributed systems</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_examples/README.html#license">LICENSE</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ROS/ifm3d-ros2/README.html">ROS 2</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros2/README.html#software-compatibility-matrix">Software Compatibility Matrix</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros2/README.html#building-and-installing-the-software">Building and Installing the Software</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros2/README.html#pre-requisites">Pre-requisites</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros2/README.html#building-from-source">Building from source</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros2/README.html#launch-the-node">Launch the node</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros2/README.html#ros-interface">ROS Interface</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros2/README.html#parameters">Parameters</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros2/README.html#published-topics">Published Topics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros2/README.html#subscribed-topics">Subscribed Topics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros2/README.html#advertised-services">Advertised Services</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros2/README.html#additional-documentation">Additional Documentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros2/README.html#todo">ToDo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros2/README.html#known-limitations">Known limitations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros2/README.html#license">LICENSE</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="documentation/DeviceConfiguration/index.html">Device Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/index.html">Imager Parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html">Parameters overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#acquisition-settings">Acquisition Settings</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#framerate">Framerate</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#d-imager">3D imager</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#modes">Modes</a></li>
+<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#exposure-times">Exposure Times</a></li>
+<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#offset">Offset</a></li>
+<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#channel-selection-and-channel-value">Channel selection and channel value</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#id1">2D imager</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#mode">Mode</a></li>
+<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#exposure-time">Exposure time</a></li>
+<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#gain">Gain</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#filters">Filters</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#maximum-distance-noise">Maximum Distance Noise</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#minimum-amplitude-and-minimum-reflectivity">Minimum Amplitude and minimum reflectivity</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#adaptive-noise-bilateral-filter-and-median-filter">Adaptive Noise Bilateral Filter and Median Filter</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#temporal-filter">Temporal Filter</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#mixed-pixel-filtering">Mixed Pixel Filtering</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#symmetry-threshold">Symmetry Threshold</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/AcquisitionSettings/README.html">Acquisition parameters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/AcquisitionSettings/modes.html">Modes</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/AcquisitionSettings/modes.html#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/AcquisitionSettings/modes.html#example">Example</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/AcquisitionSettings/modes.html#related-topics">Related Topics</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/AcquisitionSettings/offset.html">Offset</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/AcquisitionSettings/offset.html#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/AcquisitionSettings/offset.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/AcquisitionSettings/triggering.html">Trigger</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/AcquisitionSettings/triggering.html#system-architecture">System architecture</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/AcquisitionSettings/triggering.html#o3r-states-and-its-effect-on-synchronization">O3R States and its effect on synchronization</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/AcquisitionSettings/triggering.html#o3r-default-state">O3R default state</a></li>
+<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/AcquisitionSettings/triggering.html#states">States</a></li>
+<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/AcquisitionSettings/triggering.html#run-state">RUN state</a></li>
+<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/AcquisitionSettings/triggering.html#idle-state">IDLE state</a></li>
+<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/AcquisitionSettings/triggering.html#system-configuration-parameters">System configuration parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/AcquisitionSettings/triggering.html#system-latency-and-relevant-variables">System latency and relevant variables</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/AcquisitionSettings/triggering.html#o3r-timing-repeatability">O3R timing repeatability</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/AcquisitionSettings/triggering.html#test-case-1-framerate-precision-and-jitter">Test case 1: framerate precision and jitter</a></li>
+<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/AcquisitionSettings/triggering.html#additional-test-cases">additional test cases:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/README.html">Filters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/filteringProcess.html">Filtering process overview</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/filteringProcess.html#related-topics">Related Topics</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/maxDistNoise.html">Maximum distance noise</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/maxDistNoise.html#abstract">Abstract</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/maxDistNoise.html#description">Description</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/maxDistNoise.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/maxDistNoise.html#related-topics">Related topics</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/minAmplitude.html">Minimum amplitude</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/minAmplitude.html#abstract">Abstract</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/minAmplitude.html#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/minAmplitude.html#related-topics">Related topics</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/minReflectivity.html">Minimum reflectivity</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/minReflectivity.html#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/minReflectivity.html#example">Example</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/minReflectivity.html#related-topics">Related topics</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/bilateralFilter.html">Adaptive noise bilateral filter</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/bilateralFilter.html#abstract">Abstract</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/bilateralFilter.html#description">Description</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/bilateralFilter.html#example">Example</a></li>
+<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/bilateralFilter.html#scenes-involving-motion">Scenes involving motion</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/bilateralFilter.html#related-topics">Related topics</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/median.html">Median filter</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/median.html#abstract">Abstract</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/median.html#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/median.html#example">Example</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/median.html#bilateral-vs-median-filtering">Bilateral vs. median filtering</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/median.html#disadvantages-of-the-median-filter">Disadvantages of the median filter</a></li>
+<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/median.html#bilateral-and-median-filters-combined">Bilateral and median filters combined</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/median.html#related-topics">Related topics</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/temporalFilter.html">Temporal filter</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/temporalFilter.html#abstract">Abstract</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/temporalFilter.html#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/temporalFilter.html#examples">Examples</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/temporalFilter.html#reducing-noise">Reducing Noise</a></li>
+<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/temporalFilter.html#recovering-lost-pixels">Recovering Lost Pixels</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/temporalFilter.html#related-settings">Related settings</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/mixedPixelFilter.html">Mixed pixel filter</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/mixedPixelFilter.html#abstract">Abstract</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/mixedPixelFilter.html#description">Description</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/mixedPixelFilter.html#angle-based-validation-method">Angle based validation method</a></li>
+<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/mixedPixelFilter.html#distance-based-validation-method-will-be-deprecated">Distance based validation method (will be deprecated)</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/mixedPixelFilter.html#examples">Examples</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/mixedPixelFilter.html#different-angle-threshold-values">Different angle threshold values</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/symmetryThreshold.html">Symmetry threshold</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/symmetryThreshold.html#abstract">Abstract</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/symmetryThreshold.html#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/Filters/symmetryThreshold.html#example">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/DeviceConfiguration/ImagesDescription/index.html">Images Description</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="documentation/DeviceConfiguration/ImagesDescription/imagesDescription.html">Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/ImagesDescription/imagesDescription.html#raw-amplitude-image-and-amplitude-image">Raw Amplitude image and Amplitude image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/ImagesDescription/imagesDescription.html#distance-image-radial">Distance image (radial)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/ImagesDescription/imagesDescription.html#distance-noise-radial">Distance noise (radial)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/ImagesDescription/imagesDescription.html#confidence">Confidence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/ImagesDescription/imagesDescription.html#reflectivity">Reflectivity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/ImagesDescription/imagesDescription.html#point-cloud-xyz">Point cloud (XYZ)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/ImagesDescription/imagesDescription.html#unit-vectors">Unit vectors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/ImagesDescription/imagesDescription.html#jpeg-image">JPEG image</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="documentation/DeviceConfiguration/ImagesDescription/confidenceImage.html">Confidence Image</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/DeviceConfiguration/Interfaces/index.html">Communication Interfaces</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="documentation/DeviceConfiguration/Interfaces/ethernet.html">Ethernet interfaces</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/Interfaces/ethernet.html#set-a-static-ip">Set a static IP</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="documentation/DeviceConfiguration/Interfaces/can.html">CAN interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/Interfaces/can.html#hardware">Hardware</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/Interfaces/can.html#software">Software</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/Interfaces/can.html#example-interfacing-with-the-dtm425-rfid-antenna-using-docker">Example: Interfacing with the DTM425 RFID antenna using Docker</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/DeviceConfiguration/Troubleshooting/index.html">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="documentation/DeviceConfiguration/Troubleshooting/diagnosis.html">Diagnosis information</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/Troubleshooting/diagnosis.html#receiving-the-diagnostic-data">Receiving the diagnostic data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="documentation/DeviceConfiguration/Troubleshooting/diagnosis.html#error-descriptions">Error descriptions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/Troubleshooting/diagnosis.html#differences-active-dormant">Differences: active/dormant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/Troubleshooting/diagnosis.html#error-message-structure">Error message structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/Troubleshooting/diagnosis.html#general-o3r-diagnosis-information">General O3R diagnosis information</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/Troubleshooting/diagnosis.html#ods-specific-diagnosis-information">ODS specific diagnosis information</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/Troubleshooting/diagnosis.html#ifm3d-errors">ifm3d errors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="documentation/DeviceConfiguration/Troubleshooting/debugging.html">O3R Information for debugging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documentation/DeviceConfiguration/Troubleshooting/debugging.html#how-to-debug-the-o3r">HOW to debug the O3R:</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/Troubleshooting/debugging.html#status-leds-and-port-leds">Status LEDs and port LEDs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/Troubleshooting/debugging.html#if-you-can-not-establish-a-connection-to-the-vpu-via-the-iva">If you can not establish a connection to the VPU via the iVA:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/Troubleshooting/debugging.html#diagnosis-information">Diagnosis information:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/DeviceConfiguration/sntp.html">SNTP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="o3r-utilities/README.html">Utilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="o3r-utilities/extrinsic_calibration/README.html">Extrinsic calibration routines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="o3r-utilities/extrinsic_calibration/checkerboard_static_camera_calibration/README.html">The checkerboard method</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="o3r-utilities/extrinsic_calibration/checkerboard_static_camera_calibration/README.html#procedure">Procedure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="o3r-utilities/extrinsic_calibration/checkerboard_static_camera_calibration/README.html#setting-up-the-scene">Setting up the scene</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="o3r-utilities/extrinsic_calibration/checkerboard_static_camera_calibration/README.html#requirements">Requirements</a></li>
+<li class="toctree-l5"><a class="reference internal" href="o3r-utilities/extrinsic_calibration/checkerboard_static_camera_calibration/README.html#scene">Scene</a></li>
+<li class="toctree-l5"><a class="reference internal" href="o3r-utilities/extrinsic_calibration/checkerboard_static_camera_calibration/README.html#isometric-view-of-the-scene">Isometric View of the Scene</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="o3r-utilities/extrinsic_calibration/checkerboard_static_camera_calibration/README.html#required-measurements">Required Measurements</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="o3r-utilities/extrinsic_calibration/checkerboard_static_camera_calibration/README.html#measurements-for-the-above-scene">Measurements for the above scene</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="applications_index.html">Applications</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="documentation/Docker/index.html">Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="documentation/Docker/docker.html">Getting started with Docker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="documentation/Docker/docker.html#a-basic-container">A basic container</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Docker/docker.html#build-the-container">Build the container</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="documentation/Docker/docker.html#troubleshooting-proxies">Troubleshooting: proxies</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Docker/docker.html#run-a-container">Run a container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Docker/docker.html#save-a-container">Save a container</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="documentation/Docker/docker.html#load-and-start-a-container">Load and start a container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documentation/Docker/docker.html#add-features-to-the-container">Add features to the container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documentation/Docker/docker.html#install-ifm3d-in-the-container">Install ifm3d in the container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documentation/Docker/docker.html#building-on-top-of-the-ifm-base-image">Building on top of the ifm base image</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/Docker/deployVPU.html">Deployment on board</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="documentation/Docker/deployVPU.html#ssh-connection">SSH connection</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Docker/deployVPU.html#generate-ssh-key-pair">1. Generate ssh key-pair</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Docker/deployVPU.html#upload-the-public-key-to-the-vpu">2. Upload the public key to the VPU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Docker/deployVPU.html#connect-to-the-vpu-using-the-passphrase">3. Connect to the VPU using the passphrase</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="documentation/Docker/deployVPU.html#scp">SCP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documentation/Docker/deployVPU.html#local-docker-registry">Local docker registry</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Docker/deployVPU.html#create-a-local-docker-registry">Create a local Docker registry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Docker/deployVPU.html#push-a-container-to-your-local-registry">Push a container to your local registry</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Docker/deployVPU.html#pull-a-container-from-the-local-registry-host">Pull a container from the local registry - host</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Docker/deployVPU.html#pull-a-container-from-the-local-registry-vpu">Pull a container from the local registry - VPU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Docker/deployVPU.html#stop-the-registry">Stop the registry</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/Docker/autostart.html">Autostarting the container</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="documentation/Docker/autostart.html#docker-compose">Docker compose</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Docker/autostart.html#sample-docker-compose-yml">Sample docker-compose.yml</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="documentation/Docker/autostart.html#start-the-container-s">Start the container(s)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documentation/Docker/autostart.html#auto-start-the-container-s-after-a-reboot-of-the-vpu">Auto start the container(s) after a reboot of the VPU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documentation/Docker/autostart.html#save-data-on-consistently-on-the-vpu-with-a-container">Save data on consistently on the VPU with a container</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/Docker/gpu.html">Enabling GPU usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="documentation/Docker/gpu.html#using-the-gpu-of-the-vpu">Using the GPU of the VPU</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Docker/gpu.html#dockerfile-sample">Dockerfile sample</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Docker/gpu.html#start-the-container-with-the-nvidia-runtime">Start the container with the NVIDIA runtime</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="documentation/Docker/gpu.html#using-docker-run">Using <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/Docker/gpu.html#use-docker-compose-to-specify-the-runtime">Use <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> to specify the runtime</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ifm3d/index.html">ifm3d API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ROS/index.html">ROS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ROS/ifm3d-ros/index.html">ROS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ROS/ifm3d-ros/README.html">ifm3d-ros overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros/README.html#release-versions">Release versions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros/README.html#ifm3d-ros-for-the-o3r">ifm3d-ros for the O3R</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros/README.html#software-compatibility-matrix">Software Compatibility Matrix</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros/README.html#internal-ifm3d-ros-subpackage-version-structure">Internal ifm3d-ros subpackage version structure</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros/README.html#organization-of-the-software">Organization of the software</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros/README.html#building-and-installing-the-software">Building and installing the software</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/noetic.html">Preparing your system</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/building.html">Installing the ifm3d-ros node</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/building.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/building.html#step-by-step-build-instructions-for-the-ros-node-ifm3d-ros">Step-by-Step build instructions for the ROS node <code class="docutils literal notranslate"><span class="pre">ifm3d-ros</span></code></a><ul>
+<li class="toctree-l7"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/building.html#installation-directory-of-ros-node">Installation directory of ROS node</a></li>
+<li class="toctree-l7"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/building.html#create-and-initialize-your-catkin-workspace">Create and initialize your catkin workspace</a></li>
+<li class="toctree-l7"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/building.html#get-the-ifm3d-ros-wrapper-code-from-github">Get the <code class="docutils literal notranslate"><span class="pre">ifm3d-ros</span></code> wrapper code from GitHub</a></li>
+<li class="toctree-l7"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/building.html#build-the-ros-node">Build the ROS node</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/building.html#building-subpackages">Building subpackages</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/distributed_build.html">Build for distributed systems</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/distributed_build.html#building-one-package-independently-from-your-catkin-workspace">Building one package independently from your catkin workspace</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/distributed_build.html#building-the-driver-package">Building the driver package</a></li>
+<li class="toctree-l7"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/distributed_build.html#building-the-messages-package">Building the messages package</a></li>
+<li class="toctree-l7"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/distributed_build.html#building-the-examples-package">Building the examples package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros/README.html#license">LICENSE</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/README.html">ifm3d_ros_driver</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/README.html#ros-interface">ROS Interface</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/README.html#nodelet-parameters">Nodelet - parameters</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/README.html#nodelet-published-topics">Nodelet - published Topics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/README.html#nodelet-subscribed-topics">Nodelet - subscribed Topics</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/README.html#nodelet-advertised-services">Nodelet - advertised Services</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/README.html#known-limitations">Known limitations</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/README.html#additional-documentation">Additional Documentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/README.html#license">LICENSE</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_msgs/README.html">ifm3d_ros_msgs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_msgs/README.html#standalone-installation-of-the-messages-packages">Standalone Installation of the messages packages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_msgs/README.html#license">LICENSE</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_examples/README.html">ifm3d_ros_examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_examples/README.html#launchfiles">Launchfiles</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_examples/README.html#nodelet-launch-structure">Nodelet launch structure</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_examples/README.html#building-launch-files-distributed-systems">Building launch files distributed systems</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_examples/README.html#license">LICENSE</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ROS/ifm3d-ros2/README.html">ROS2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ROS/ifm3d-ros2/README.html#software-compatibility-matrix">Software Compatibility Matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ROS/ifm3d-ros2/README.html#building-and-installing-the-software">Building and Installing the Software</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros2/README.html#pre-requisites">Pre-requisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros2/README.html#building-from-source">Building from source</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros2/README.html#launch-the-node">Launch the node</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ROS/ifm3d-ros2/README.html#ros-interface">ROS Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros2/README.html#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros2/README.html#published-topics">Published Topics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros2/README.html#subscribed-topics">Subscribed Topics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros2/README.html#advertised-services">Advertised Services</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ROS/ifm3d-ros2/README.html#additional-documentation">Additional Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ROS/ifm3d-ros2/README.html#todo">ToDo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ROS/ifm3d-ros2/README.html#known-limitations">Known limitations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ROS/ifm3d-ros2/README.html#license">LICENSE</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="documentation/Firmware/index.html">Firmware</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/index.html">Release notes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/Firmware_0.14.x_Release_Notes.html">Version 14.23</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/Firmware_0.14.x_Release_Notes.html#previous-releases">Previous Releases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/Firmware_0.14.x_Release_Notes.html#compatible-image-processing-platforms">Compatible Image Processing Platforms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/Firmware_0.14.x_Release_Notes.html#supported-heads">Supported Heads</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/Firmware_0.14.x_Release_Notes.html#general-features">General Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/Firmware_0.14.x_Release_Notes.html#ifm-camera-usage">ifm Camera Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/Firmware_0.14.x_Release_Notes.html#d-camera-features">3D-Camera Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/Firmware_0.14.x_Release_Notes.html#rgb-camera-features">RGB-Camera Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/Firmware_0.14.x_Release_Notes.html#known-issues">Known Issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/Firmware_0.14.x_Release_Notes.html#look-forward-to-these-features-in-future-releases">Look forward to these features in future releases</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/FW_0.16.x_Release_Notes.html">Version 16.23</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/FW_0.16.x_Release_Notes.html#previous-releases">Previous Releases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/FW_0.16.x_Release_Notes.html#compatible-software-versions">Compatible software versions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/FW_0.16.x_Release_Notes.html#compatible-video-processing-platforms">Compatible Video Processing Platforms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/FW_0.16.x_Release_Notes.html#supported-camera-articles">Supported Camera Articles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/FW_0.16.x_Release_Notes.html#new-features">New Features</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/FW_0.16.x_Release_Notes.html#library-ifm3d">Library: ifm3d</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/FW_0.16.x_Release_Notes.html#connectivity">Connectivity:</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/FW_0.16.x_Release_Notes.html#rgb-camera-features">RGB-Camera Features</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/FW_0.16.x_Release_Notes.html#synchronization-and-trigger">Synchronization and trigger</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/FW_0.16.x_Release_Notes.html#intrinsic-calibration">Intrinsic calibration</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/FW_0.16.x_Release_Notes.html#diagnosis">Diagnosis</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/FW_0.16.x_Release_Notes.html#cross-talk-mitigation">Cross-talk mitigation</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/FW_0.16.x_Release_Notes.html#application-concept">Application Concept</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/FW_0.16.x_Release_Notes.html#led">LED</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/FW_0.16.x_Release_Notes.html#fixes">Fixes</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/FW_0.16.x_Release_Notes.html#d-camera-features">3D-Camera Features</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/FW_0.16.x_Release_Notes.html#known-issues">Known Issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Firmware/ReleaseNotes/FW_0.16.x_Release_Notes.html#look-forward-to-these-features-in-future-releases">Look forward to these features in future releases</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/Firmware/fw_update.html">How to update</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="documentation/Firmware/fw_update.html#download-the-firmware">Download the firmware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documentation/Firmware/fw_update.html#with-the-web-interface">With the web interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documentation/Firmware/fw_update.html#with-ifm3d">With ifm3d</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="downloadable/index.html">Downloads</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="downloadable/index.html#previous-versions-of-the-documentation">Previous versions of the documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="documentation/FAQ/FAQ.html">FAQ</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="documentation/FAQ/FAQ.html#lookup-table-for-ifm3d-ros-version-compatibility">Lookup Table for ifm3d-ROS Version Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/FAQ/FAQ.html#hardware-connectivity">Hardware (Connectivity)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/FAQ/FAQ.html#camera-configuration">Camera Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/FAQ/FAQ.html#data-receiving">Data Receiving</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/FAQ/FAQ.html#diagnostics">Diagnostics</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<p>TODO: ODS docs integration
+TODO: Samples?</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index_getting_started.html" class="btn btn-neutral float-right" title="Getting started with the O3R" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
+  <hr/>
 
-    <script>
-        $.getJSON("https://api.github.com/repos/ifm/ifm3d/releases", function(data) {
-            var myversion = data[0].name;
-            var mypubdate = data[0].published_at;
-            var filename = data[0].assets[0].name;
-            var cleandate = [];
-            var mydate = new Date(mypubdate) + '';
-            cleandate = mydate.split(" ");
-            var pubdate = cleandate[1] + " " + cleandate[2] + ", " + cleandate[3];
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.
+      <span class="lastupdated">Last updated on Jan 20, 2023.
+      </span></p>
+  </div>
 
-            $(".title").html(filename);
-            $(".version").html(myversion);
-            $(".time").html(pubdate);
-        });
-    </script>
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
 </body>
-
 </html>
-
-
-<!-- <div class="section">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-</div> -->

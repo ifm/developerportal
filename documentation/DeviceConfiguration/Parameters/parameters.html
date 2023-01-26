@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <meta property="article:modified_time" content="2023-01-25T20:09:11+00:00" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings Description &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Acquisition settings" href="AcquisitionSettings/README.html" />
+    <link rel="prev" title="Parameters" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index_getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Device Configuration</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Imager Parameters</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Parameters overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#acquisition-settings">Acquisition Settings</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#framerate">Framerate</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#d-imager">3D imager</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#modes">Modes</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#exposure-times">Exposure Times</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#offset">Offset</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#channel-selection-and-channel-value">Channel selection and channel value</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#id1">2D imager</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#mode">Mode</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#exposure-time">Exposure time</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#gain">Gain</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#filters">Filters</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#maximum-distance-noise">Maximum Distance Noise</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#minimum-amplitude-and-minimum-reflectivity">Minimum Amplitude and minimum reflectivity</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#adaptive-noise-bilateral-filter-and-median-filter">Adaptive Noise Bilateral Filter and Median Filter</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#temporal-filter">Temporal Filter</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#mixed-pixel-filtering">Mixed Pixel Filtering</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#symmetry-threshold">Symmetry Threshold</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="AcquisitionSettings/README.html">Acquisition parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Filters/README.html">Filters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ImagesDescription/index.html">Images Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Interfaces/index.html">Communication Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sntp.html">SNTP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../o3r-utilities/README.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../applications_index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ifm3d/index.html">ifm3d API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ROS/index.html">ROS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Device Configuration</a> &raquo;</li>
+          <li><a href="index.html">Parameters</a> &raquo;</li>
+      <li>Settings Description</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/documentation/DeviceConfiguration/Parameters/parameters.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="settings-description">
+<h1>Settings Description<a class="headerlink" href="#settings-description" title="Permalink to this headline"></a></h1>
+<blockquote>
+<div><p>Note: The min, max and default values of each parameter are defined in the json schema.
+To print out the schema, you can use the <span class="xref myst">ifm3d CLI</span>:
+<code class="docutils literal notranslate"><span class="pre">ifm3d</span> <span class="pre">jsonschema</span></code></p>
+</div></blockquote>
+<div class="section" id="acquisition-settings">
+<h2>Acquisition Settings<a class="headerlink" href="#acquisition-settings" title="Permalink to this headline"></a></h2>
+<div class="section" id="framerate">
+<h3>Framerate<a class="headerlink" href="#framerate" title="Permalink to this headline"></a></h3>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable name</p></th>
+<th class="head"><p>Short description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">framerate</span></code></p></td>
+<td><p>Defines the number of frames captured each second</p></td>
+</tr>
+</tbody>
+</table>
+<p>For the O3R system the FPS is independent from the applied imager settings (exposure mode and times, filters, etc.). Higher exposure times, for example, will <strong>not</strong> negatively impact the system’s FPS. The O3R is designed to achieve 20 FPS in the 2 m and 4 m modes, <em>regardless</em> of applied settings.</p>
+</div>
+<div class="section" id="d-imager">
+<h3>3D imager<a class="headerlink" href="#d-imager" title="Permalink to this headline"></a></h3>
+<div class="section" id="modes">
+<h4>Modes<a class="headerlink" href="#modes" title="Permalink to this headline"></a></h4>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable name</p></th>
+<th class="head"><p>Short description</p></th>
+<th class="head"><p>Available values</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mode</span></code> (for the 3D imager)</p></td>
+<td><p>This parameter designates the measurement range: 2 or 4 meters.</p></td>
+<td><p>standard_range2m, standard_range4m, cyclic_4m_2m_4m_2m</p></td>
+</tr>
+</tbody>
+</table>
+<p>Learn more <span class="xref myst">about the standard modes for the 3D imager</span>.</p>
+</div>
+<div class="section" id="exposure-times">
+<h4>Exposure Times<a class="headerlink" href="#exposure-times" title="Permalink to this headline"></a></h4>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable name</p></th>
+<th class="head"><p>Short description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">exposureLong</span></code>, <code class="docutils literal notranslate"><span class="pre">exposureShort</span></code></p></td>
+<td><p>These parameters are used to set the exposure times.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Exposure times are utilized to maximize the number of valid pixels in a scene. The use of multiple exposures (HDR) permits the camera to operate in “dynamic” environments that require the detection of dark and light objects at both the minimum and maximum ranges.</p>
+<p>The proper exposure time for a pixel depends on factors such as the dynamics of the scene and whether the target is moving or stationary. For highly reflective targets or for motion, a short exposure time is best. For targets far away or with low reflectivity, we prefer a high exposure time.
+As such, it is common that all targets of a scene cannot be properly exposed with a single exposure time.
+To reduce noise and the number of overexposed/underexposed pixels, we use three exposures for each frame. The <code class="docutils literal notranslate"><span class="pre">standard</span></code> modes provides two settable exposure times (<code class="docutils literal notranslate"><span class="pre">expLong</span></code> and <code class="docutils literal notranslate"><span class="pre">expShort</span></code>) plus a third <em>constant</em> exposure (set at 30 µs) designed to help detect highly reflective targets in the very near range (~1 m). Note that using a small ratio of exposure times helps reduce noise in transitions regions (where neighboring pixels use different exposure times).</p>
+<blockquote>
+<div><p>Note: You can find which exposure time is used for each pixel by analyzing the confidence image as detailed <span class="xref myst">here</span>.</p>
+</div></blockquote>
+</div>
+<div class="section" id="offset">
+<h4>Offset<a class="headerlink" href="#offset" title="Permalink to this headline"></a></h4>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable name</p></th>
+<th class="head"><p>Short description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">offset</span></code></p></td>
+<td><p>Shifts the start point of the measured range (see <span class="xref myst">mode</span>)</p></td>
+</tr>
+</tbody>
+</table>
+<p>Coded modulation dictates the base range of the camera (e.g., 0 to 2 m). Coded modulation also allows this range to be offset or shifted from its start point. In the example of 0 – 2 m base range, an <code class="docutils literal notranslate"><span class="pre">offset</span></code> of 1 would lead to a 1 – 3 m range. Continuing this example, an <code class="docutils literal notranslate"><span class="pre">offset</span></code> of 2 leads to a 2 – 4m range. The <code class="docutils literal notranslate"><span class="pre">offset</span></code> can be changed frame by frame.</p>
+<p>Learn more <span class="xref myst">here</span>.</p>
+</div>
+<div class="section" id="channel-selection-and-channel-value">
+<h4>Channel selection and channel value<a class="headerlink" href="#channel-selection-and-channel-value" title="Permalink to this headline"></a></h4>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable name</p></th>
+<th class="head"><p>Short description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">channelSelection</span></code></p></td>
+<td><p>Defines the user mode for handling channel selection: currently only manual</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">channelValue</span></code></p></td>
+<td><p>Defines the channel value</p></td>
+</tr>
+</tbody>
+</table>
+<p>This concept for cross talk mitigation is based on channels, each channel corresponding to a different modulation frequency. Use a channel combination of mutually exclusive channels to <em>almost</em> completely reduce the possibility and effect of cross talk between O3R camera heads.
+The channel value has to be set per 3D TOF imager / O3R camera head. By default it is to value 0.
+A channel value difference of 1 has been shown to be adequate. Any additional channel value offset (&gt; 1) will not improve crosstalk mitigation between O3R camera heads.</p>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>2D imager<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
+<div class="section" id="mode">
+<h4>Mode<a class="headerlink" href="#mode" title="Permalink to this headline"></a></h4>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable name</p></th>
+<th class="head"><p>Short description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mode</span></code> (for the 2D imager)</p></td>
+<td><p>This parameter designates the acquisition mode: auto or manual exposure</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="exposure-time">
+<h4>Exposure time<a class="headerlink" href="#exposure-time" title="Permalink to this headline"></a></h4>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable name</p></th>
+<th class="head"><p>Short description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">exposureTime</span></code></p></td>
+<td><p>Exposure time used for the acquisition of the RGB image, in ms.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="gain">
+<h4>Gain<a class="headerlink" href="#gain" title="Permalink to this headline"></a></h4>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable name</p></th>
+<th class="head"><p>Short description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">gain</span></code></p></td>
+<td><p>Image gain (affects sensibility to light).</p></td>
+</tr>
+</tbody>
+</table>
+<p>The gain is particularly useful in low light situations, used in combination with the exposure time: increasing the exposure time as well as the gain will result in a brighter image.</p>
+</div>
+</div>
+</div>
+<div class="section" id="filters">
+<h2>Filters<a class="headerlink" href="#filters" title="Permalink to this headline"></a></h2>
+<div class="section" id="maximum-distance-noise">
+<h3>Maximum Distance Noise<a class="headerlink" href="#maximum-distance-noise" title="Permalink to this headline"></a></h3>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable name</p></th>
+<th class="head"><p>Short description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">maxDistNoise</span></code></p></td>
+<td><p>Defines the maximum allowable distance noise. Its value represents the standard deviation of the distance value, in meters.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Typical filters tend to utilize “broad strokes” when making decisions on which pixel to keep and which to filter. These “broad strokes” may eliminate pixels that are critical to the use case. By utilizing the noise value, we only eliminate pixels with the highest noise value (e.g, ambient light) while preserving the maximum amount of usable data. Applying filters in conjunction with the maximum distance noise filter increases the potential for usable pixels in the scene.</p>
+<p>When to change default:</p>
+<ul class="simple">
+<li><p>Lower the max. distance noise value if you are attempting to measure an object with high precision (e.g, box dimensioning).</p></li>
+<li><p>Increase the max. distance noise value if it is more important to evaluate all pixels in the scene, regardless of their noise (e.g., obstacle detection).</p></li>
+</ul>
+<p>Learn more <span class="xref myst">here</span>.</p>
+</div>
+<div class="section" id="minimum-amplitude-and-minimum-reflectivity">
+<h3>Minimum Amplitude and minimum reflectivity<a class="headerlink" href="#minimum-amplitude-and-minimum-reflectivity" title="Permalink to this headline"></a></h3>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable name</p></th>
+<th class="head"><p>Short description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">minAmplitude</span></code></p></td>
+<td><p>Defines the minimum amplitude value required for a pixel to be valid</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">minReflectivity</span></code></p></td>
+<td><p>Defines the minimum reflectivity required of the measured object for a pixel to be valid</p></td>
+</tr>
+<tr class="row-even"><td><p>A pixel is valid if the energy (amplitude) received is above the defined threshold. The measured amplitude is primarily affected by both the reflectivity of the object and its distance to the camera.</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>When to change the default:</p>
+<p>Lower the default value when the standard targets are known to have low reflectivity (e.g., &lt;10% like matte black targets). A lower amplitude threshold is also valuable when attempting to detect negative obstacles (e.g., stairs).
+It is recommended to enable a noise filter (temporal or adaptive filter) when lowering the default minimum amplitude.</p>
+<p>Learn more about the minimum amplitude <span class="xref myst">here</span>.</p>
+<p>Learn more about the minimum reflectivity <span class="xref myst">here</span></p>
+</div>
+<div class="section" id="adaptive-noise-bilateral-filter-and-median-filter">
+<h3>Adaptive Noise Bilateral Filter and Median Filter<a class="headerlink" href="#adaptive-noise-bilateral-filter-and-median-filter" title="Permalink to this headline"></a></h3>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable name</p></th>
+<th class="head"><p>Short description</p></th>
+<th class="head"><p>Min/max values</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">anfFilterSizeDiv2</span></code></p></td>
+<td><p>Adaptive Noise Bilateral Filter. mask size is <em>(2*anfFilterSizeDiv2+1)^2</em>.</p></td>
+<td><p>0: disable the filter <br />1: 3x3 <br />2: 5x5 <br />3: 7x7</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">medianSizeDiv2</span></code></p></td>
+<td><p>Size of the mask for spatial median filtering (the size is <em>(2*medianSizeDiv2+1)^2)</em></p></td>
+<td><p>0: disable the filter <br />1: 3x3 <br />2: 5x5</p></td>
+</tr>
+</tbody>
+</table>
+<p>The adaptive bilateral noise filter reduces distance noise while also preserving object edges. Utilizing a larger number of pixels (e.g., 7x7) in the mask will, in most cases, result in better image quality.</p>
+<p><strong>We recommend that you typically use the bilateral filter because it is more efficient and has a better incorporation of the noise.</strong></p>
+<p>The median filter does not preserve edges as well as the bilateral filter and tends to produce round corners, but being more computationally efficient, could be utilized with “in-motion” use cases (e.g., obstacle detection on mobile robots).</p>
+<p>Learn more <span class="xref myst">here</span></p>
+</div>
+<div class="section" id="temporal-filter">
+<h3>Temporal Filter<a class="headerlink" href="#temporal-filter" title="Permalink to this headline"></a></h3>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable name</p></th>
+<th class="head"><p>Short description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">enableTemporalFilter</span></code></p></td>
+<td><p>Enables the filter</p></td>
+</tr>
+</tbody>
+</table>
+<p>The temporal filter mitigates distance noise by integrating pixel information over multiple frames. There is no strict limit for the number of frames. Instead, an automatic resetting approach is applied to the pixels.</p>
+<p>Although the O3R temporal filter can be used on “in-motion” use cases, it is best suited for static scenes.</p>
+<p>Learn more <span class="xref myst">here</span></p>
+</div>
+<div class="section" id="mixed-pixel-filtering">
+<h3>Mixed Pixel Filtering<a class="headerlink" href="#mixed-pixel-filtering" title="Permalink to this headline"></a></h3>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable name</p></th>
+<th class="head"><p>Short description</p></th>
+<th class="head"><p>Min/max values</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mixedPixelFilterMode</span></code></p></td>
+<td><p>Filtering mode (angle or distance)</p></td>
+<td><p>0: disable the filter, 1: mixed pixel filter is on and uses an angle threshold, 2: mixed pixel filter is on and uses an adaptive delta distance threshold</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mixedPixelThresholdRad</span></code></p></td>
+<td><p>Threshold given in [rad] for the minimum angle between the surface tangent and the view vector (used if <code class="docutils literal notranslate"><span class="pre">mixedPixelFilterMode</span></code>=1).</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>Mixed pixels (or “flying pixels”) are pixels that fall partially on a foreground object and partially on an object in the background. Because the physics of indirect ToF do not allow the imager to distinguish partial pixel measurements, the full pixel result is a weighted average distance measurement between the two targets. When viewing the point cloud, these pixels appear “floating”, or not corresponding to any object.
+The mixed pixel filter removes the mixed pixels from the image.</p>
+<p>When to change the default:
+Mixed pixels fall on the edges of targets. Use cases, such as negative obstacle detection, could take advantage of the additional information provided by these mixed pixels, requiring the filter to be disabled.</p>
+<p>Learn more <span class="xref myst">here</span></p>
+</div>
+<div class="section" id="symmetry-threshold">
+<h3>Symmetry Threshold<a class="headerlink" href="#symmetry-threshold" title="Permalink to this headline"></a></h3>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable name</p></th>
+<th class="head"><p>Short description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">dynamicSymmetryThreshold</span></code></p></td>
+<td><p>The threshold given as a factor of the symmetry’s standard deviation. If set to 0, the filter is disabled.</p></td>
+</tr>
+</tbody>
+</table>
+<p>The raw modulated signal used to perform the distance measurement is designed to be perfectly symmetrical (sent and received). This is true for static applications. If the object is in motion, however, the symmetry of the reflected signal may be altered, leading to “motion blur”. This artifact can be mitigated by allowing “less” symmetry in the measurements.</p>
+<blockquote>
+<div><p>Note: adjusting this filter for faster motion, or allowing less symmetry, will increase overall distance noise.</p>
+</div></blockquote>
+<p>Learn more <span class="xref myst">here</span></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Parameters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="AcquisitionSettings/README.html" class="btn btn-neutral float-right" title="Acquisition settings" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.
+      <span class="lastupdated">Last updated on Jan 25, 2023.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

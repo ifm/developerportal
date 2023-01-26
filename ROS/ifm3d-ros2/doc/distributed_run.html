@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <meta property="article:modified_time" content="2021-11-22T16:22:13+00:00" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to RUN this ROS2 wrapper from inside a Docker container image &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/DeviceConfiguration/index.html">Device Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../o3r-utilities/README.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../applications_index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/Docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ifm3d/index.html">ifm3d API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">ROS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/FAQ/FAQ.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>How to RUN this ROS2 wrapper from inside a Docker container image</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/ROS/ifm3d-ros2/doc/distributed_run.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="how-to-run-this-ros2-wrapper-from-inside-a-docker-container-image">
+<h1>How to RUN this ROS2 wrapper from inside a Docker container image<a class="headerlink" href="#how-to-run-this-ros2-wrapper-from-inside-a-docker-container-image" title="Permalink to this headline"></a></h1>
+<div class="section" id="run-it-natively">
+<h2>Run it natively<a class="headerlink" href="#run-it-natively" title="Permalink to this headline"></a></h2>
+<p>Follow these steps to get the ROS 2 node to run on your system.</p>
+<ol class="simple">
+<li><p>Build from source: please don’t forget to build the ifm3d C++ API form source as well. See the installation documentation <span class="xref myst">here</span></p></li>
+<li><p>This step is only required for ROS 2 foxy and older distributions:<br />
+(Install alternative DDS settings configuration: This needs to be done once: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">ros-foxy-rmw-cyclonedds-cpp</span></code>)</p></li>
+<li><p>Source the <code class="docutils literal notranslate"><span class="pre">ìfm3d_ros2</span></code> installation: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <span class="pre">~/colcon_ws/install/setup.bash</span></code></p></li>
+<li><p>This step is only required for ROS 2 foxy and older distributions:<br />
+(Change DDS settings: This needs to be done every time (changes the DDS setup) and needs to be done after the source of ROS and the ifm3d_ros2 node: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">export</span> <span class="pre">RMW_IMPLEMENTATION=rmw_cyclonedds_cpp</span> </code>)</p></li>
+<li><p>Run the ros2 node: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">ros2</span> <span class="pre">launch</span> <span class="pre">ifm3d_ros2</span> <span class="pre">camera_managed.launch.py</span> </code></p></li>
+</ol>
+<p>You should now be able to see these topics (via <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">ros2</span> <span class="pre">topic</span> <span class="pre">list</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">ifm3d</span><span class="o">/</span><span class="n">camera</span><span class="o">/</span><span class="n">amplitude</span>
+<span class="o">/</span><span class="n">ifm3d</span><span class="o">/</span><span class="n">camera</span><span class="o">/</span><span class="n">cloud</span>
+<span class="o">/</span><span class="n">ifm3d</span><span class="o">/</span><span class="n">camera</span><span class="o">/</span><span class="n">confidence</span>
+<span class="o">/</span><span class="n">ifm3d</span><span class="o">/</span><span class="n">camera</span><span class="o">/</span><span class="n">distance</span>
+<span class="o">/</span><span class="n">ifm3d</span><span class="o">/</span><span class="n">camera</span><span class="o">/</span><span class="n">extrinsics</span>
+<span class="o">/</span><span class="n">ifm3d</span><span class="o">/</span><span class="n">camera</span><span class="o">/</span><span class="n">raw_amplitude</span>
+<span class="o">/</span><span class="n">ifm3d</span><span class="o">/</span><span class="n">camera</span><span class="o">/</span><span class="n">transition_event</span>
+<span class="o">/</span><span class="n">ifm3d</span><span class="o">/</span><span class="n">camera</span><span class="o">/</span><span class="n">xyz_image</span>
+<span class="o">/</span><span class="n">parameter_events</span>
+<span class="o">/</span><span class="n">rosout</span>
+<span class="o">/</span><span class="n">tf_static</span>
+</pre></div>
+</div>
+<p>Please keep in mind that the launch file <code class="docutils literal notranslate"><span class="pre">camera_managed.launch.py</span></code> uses the default TCP port 50010 (for the data communication), so the camera head’s 3D imager needs to be connected to the phyical port 0 (marked <code class="docutils literal notranslate"><span class="pre">PORT0</span></code> on the VPU).</p>
+</div>
+<div class="section" id="run-ros-node-in-a-docker-container">
+<h2>RUN ROS node in a docker container<a class="headerlink" href="#run-ros-node-in-a-docker-container" title="Permalink to this headline"></a></h2>
+<p>Follow these steps to get our supplied Docker container to run on your system.</p>
+<div class="section" id="docker-container-master">
+<h3>Docker container (master)<a class="headerlink" href="#docker-container-master" title="Permalink to this headline"></a></h3>
+<p>The instructions below apply to ROS2 galactic. Please change the commands to suit your ROS 2 distribution.</p>
+<ol class="simple">
+<li><p>Download and save the Docker container image to your deployment system.</p></li>
+<li><p>Run the Docker container image with container networking settings: <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">-ti</span> <span class="pre">amd64/ifm3d-ros2:dev_galactic</span> <span class="pre">bash</span></code></p></li>
+<li><p>Source ROS2 and the <code class="docutils literal notranslate"><span class="pre">ìfm3d_ros2</span></code> installation: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">source</span> <span class="pre">/opt/ros/galactic/setup.bash</span> <span class="pre">&amp;&amp;</span> <span class="pre">source</span> <span class="pre">/home/ifm/colcon_ws/ifm3d-ros2/install/setup.bash</span></code></p></li>
+<li><p>(All ROS nodes should see each other as long as they are on the same ROS domain ID. The default <code class="docutils literal notranslate"><span class="pre">ROS_DOMAIN_ID</span></code> is 0 and doesn’t get changed here)</p></li>
+<li><p>Run the ros2 node: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">ros2</span> <span class="pre">launch</span> <span class="pre">ifm3d_ros2</span> <span class="pre">camera_managed.launch.py</span> </code></p></li>
+</ol>
+</div>
+<div class="section" id="second-ros2-galactic-installation-slave">
+<h3>Second ROS2 galactic installation (slave)<a class="headerlink" href="#second-ros2-galactic-installation-slave" title="Permalink to this headline"></a></h3>
+<p>The instructions below apply to ROS2 galactic. Please change the commands to suit your ROS 2 distribution.</p>
+<ol class="simple">
+<li><p>(Source ROS2 galactic on slave): <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/opt/ros/galactic/setup.bash</span></code></p></li>
+<li><p>Check that ROS topics are available (on <code class="docutils literal notranslate"><span class="pre">ROS_DOMAIN_ID=0</span></code>): <code class="docutils literal notranslate"><span class="pre">ros2</span> <span class="pre">topic</span> <span class="pre">list</span></code></p></li>
+</ol>
+<p>You should now be able to see these topics (via <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">ros2</span> <span class="pre">topic</span> <span class="pre">list</span></code>) on the slave machine as well:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">ifm3d</span><span class="o">/</span><span class="n">camera</span><span class="o">/</span><span class="n">amplitude</span>
+<span class="o">/</span><span class="n">ifm3d</span><span class="o">/</span><span class="n">camera</span><span class="o">/</span><span class="n">cloud</span>
+<span class="o">/</span><span class="n">ifm3d</span><span class="o">/</span><span class="n">camera</span><span class="o">/</span><span class="n">confidence</span>
+<span class="o">/</span><span class="n">ifm3d</span><span class="o">/</span><span class="n">camera</span><span class="o">/</span><span class="n">distance</span>
+<span class="o">/</span><span class="n">ifm3d</span><span class="o">/</span><span class="n">camera</span><span class="o">/</span><span class="n">extrinsics</span>
+<span class="o">/</span><span class="n">ifm3d</span><span class="o">/</span><span class="n">camera</span><span class="o">/</span><span class="n">raw_amplitude</span>
+<span class="o">/</span><span class="n">ifm3d</span><span class="o">/</span><span class="n">camera</span><span class="o">/</span><span class="n">transition_event</span>
+<span class="o">/</span><span class="n">ifm3d</span><span class="o">/</span><span class="n">camera</span><span class="o">/</span><span class="n">xyz_image</span>
+<span class="o">/</span><span class="n">parameter_events</span>
+<span class="o">/</span><span class="n">rosout</span>
+<span class="o">/</span><span class="n">tf_static</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.
+      <span class="lastupdated">Last updated on Nov 22, 2021.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <meta property="article:modified_time" content="2023-01-25T20:09:11+00:00" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagnosis information &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+        <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="O3R Information for debugging" href="debugging.html" />
+    <link rel="prev" title="Troubleshooting tools" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index_getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Device Configuration</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Parameters/index.html">Imager Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ImagesDescription/index.html">Images Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Interfaces/index.html">Communication Interfaces</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Troubleshooting</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Diagnosis information</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#receiving-the-diagnostic-data">Receiving the diagnostic data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#error-descriptions">Error descriptions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#differences-active-dormant">Differences: active/dormant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#error-message-structure">Error message structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#general-o3r-diagnosis-information">General O3R diagnosis information</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ods-specific-diagnosis-information">ODS specific diagnosis information</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ifm3d-errors">ifm3d errors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="debugging.html">O3R Information for debugging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="debugging.html#how-to-debug-the-o3r">HOW to debug the O3R:</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../sntp.html">SNTP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../o3r-utilities/README.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../applications_index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ifm3d/index.html">ifm3d API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ROS/index.html">ROS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">Device Configuration</a> &raquo;</li>
+          <li><a href="index.html">Troubleshooting tools</a> &raquo;</li>
+      <li>Diagnosis information</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/documentation/DeviceConfiguration/Troubleshooting/diagnosis.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="diagnosis-information">
+<h1>Diagnosis information<a class="headerlink" href="#diagnosis-information" title="Permalink to this headline"></a></h1>
+<p>The O3R system allows a system wide monitoring via its diagnosis information.</p>
+<p>To verify the working status of the O3R system and especially the ODS application, a diagnostic query can be used. It is recommended to poll this diagnostic data automatically/periodically (e.g. every 5 sec.) to get the status of the overall system.</p>
+<div class="section" id="receiving-the-diagnostic-data">
+<h2>Receiving the diagnostic data<a class="headerlink" href="#receiving-the-diagnostic-data" title="Permalink to this headline"></a></h2>
+<p>For ifm3d 1.1.0 and above, it is possible to retrieve the diagnosis information as follows:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-0-Yysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Yysr" name="Yysr" role="tab" tabindex="-1">c++</button><button aria-controls="panel-0-Q0xJ" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Q0xJ" name="Q0xJ" role="tab" tabindex="-1">CLI</button></div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel group-tab" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ifm3dpy</span> <span class="kn">import</span> <span class="n">O3R</span>
+<span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">()</span>
+<span class="n">o3r</span><span class="o">.</span><span class="n">get_diagnostic</span><span class="p">()</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-Yysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Yysr" name="Yysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ifm3d/device/o3r.h&gt;</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">o3r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">O3R</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">diag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o3r</span><span class="o">-&gt;</span><span class="n">GetDiagnostic</span><span class="p">();</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-Q0xJ" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Q0xJ" name="Q0xJ" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ifm3d<span class="w"> </span>diagnostic
+</pre></div>
+</div>
+</div></div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="error-descriptions">
+<h1>Error descriptions<a class="headerlink" href="#error-descriptions" title="Permalink to this headline"></a></h1>
+<div class="section" id="differences-active-dormant">
+<h2>Differences: active/dormant<a class="headerlink" href="#differences-active-dormant" title="Permalink to this headline"></a></h2>
+<p>The O3R system differentiates between active errors - which are currently active, and dormant errors - errors which happened any time between the start of the system and now.
+In most cases, it is recommend to only use the active errors.</p>
+</div>
+<div class="section" id="error-message-structure">
+<h2>Error message structure<a class="headerlink" href="#error-message-structure" title="Permalink to this headline"></a></h2>
+<p>Error message structure is a follows:</p>
+<ul class="simple">
+<li><p><strong>source</strong>: The internal source (name) of the diagnostic event.</p></li>
+<li><p><strong>count</strong>: This counter tracks how often an event was detected.</p></li>
+<li><p><strong>state</strong>: Active and dormant. If the state is reported active, the event was present during the call to get. If it is reported dormant there was no active event during the call to get.</p></li>
+<li><p><strong>bootid</strong>: For persistent diagnostic events this is an information to distinguish between an event which was detected during one boot. Due to the fact we do not persist the diagnostics at the moment this can be ignored.</p></li>
+</ul>
+<p><strong>IDs</strong></p>
+<ul class="simple">
+<li><p><strong>icc</strong> The micro controller on the camera head which monitors the camera status.</p></li>
+<li><p><strong>tcu</strong> The trigger control unit which is responsible for the synchronization.</p></li>
+<li><p><strong>mira</strong> The internal name of the 3D ToF chip.</p></li>
+</ul>
+</div>
+<div class="section" id="general-o3r-diagnosis-information">
+<h2>General O3R diagnosis information<a class="headerlink" href="#general-o3r-diagnosis-information" title="Permalink to this headline"></a></h2>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Error title</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ERROR_HEAD_OVERTEMPERATURE_ICC</p></td>
+<td><p>If the illumination current controller detects an overtemperature the port will enter an error state.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ERROR_HEAD_INVALID_CALIBRATION</p></td>
+<td><p>If the illumination current controller detects that the current calibration has a check sum error or is not present at all, the port will enter an error state.</p></td>
+</tr>
+<tr class="row-even"><td><p>ERROR_VPU_OVERVOLTAGE_24V</p></td>
+<td><p>If the VPU detects an overvoltage the device will enter an error state.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ERROR_BOOT_SEQUENCE_INVALID_CONFIGURATION</p></td>
+<td><p>The VPU can not construct a valid configuration, i.e. the boot-up procedure is blocked .</p></td>
+</tr>
+<tr class="row-even"><td><p>ERROR_EUCAP_UNSUPPORTED_IMU</p></td>
+<td><p>No IMU is detected or the IMU is missing its respective calibration information.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ERROR_VPU_TCU_COMM_ERROR</p></td>
+<td><p>If the VPU detects a communication error with the timing control unit.</p></td>
+</tr>
+<tr class="row-even"><td><p>ERROR_VPU_UNDERVOLTAGE_24V</p></td>
+<td><p>If the VPU detects an undervoltage the device will enter an error state.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ERROR_BOOT_SEQUENCE_PORT_CONFIGURATION_TIMEOUT</p></td>
+<td><p>When the imager process of the assigned port does not respond during a 5 sec timeout during boot-up.</p></td>
+</tr>
+<tr class="row-even"><td><p>ERROR_VPU_WATCHDOG_TIMEOUT</p></td>
+<td><p>A VPU global watchdog error is detected.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ERROR_GECCO_CONFIGURATION_NO_CALIB</p></td>
+<td><p>A imager specific calibration information is not available: this might be due to a calibration download failure or missing calibration on the camera head.</p></td>
+</tr>
+<tr class="row-even"><td><p>ERROR_VPU_UNDERVOLTAGE_1_8V</p></td>
+<td><p>If the VPU detects an undervoltage: specific undervoltage at 8 V.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ERROR_VPU_UNDERVOLTAGE_5V</p></td>
+<td><p>If the VPU detects an undervoltage: specific undervoltage at 5 V.</p></td>
+</tr>
+<tr class="row-even"><td><p>ERROR_CONIG_EUCAP_INVALID_HEAD_COMBINATION</p></td>
+<td><p>A invalid hardware connectivity is detected: this is most likely a combination of different imager types being connected to a “paired” deserializer. Check the hardware connection requirements per Video Processing Unit (VPU) article.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ERROR_BOOT_SEQUENCE_TCU_FW_UPDATE_FAILED</p></td>
+<td><p>The firmware update of the trigger control unit failed. The whole system will be in error state.</p></td>
+</tr>
+<tr class="row-even"><td><p>ERROR_MIRA_GRABBER_FRAME_TIMEOUT</p></td>
+<td><p>An imager specific data acquisition thread timeout is detected.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ERROR_BOOT_SEQUENCE_TCU_INVALID_FW</p></td>
+<td><p>The VPU detects an incompatible TCU firmware version. The compatibility check is performed on a major and minor compatibility check.</p></td>
+</tr>
+<tr class="row-even"><td><p>ERROR_MIRA_GRABBER_MIRA_RESET</p></td>
+<td><p>An imager specific data acquisition thread timeout is detected and corrected. The imager specific data acquisition thread was recovered and reset.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="ods-specific-diagnosis-information">
+<h2>ODS specific diagnosis information<a class="headerlink" href="#ods-specific-diagnosis-information" title="Permalink to this headline"></a></h2>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Error title</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ERROR_ODSAPP_VO_IMAGE_FRAMERATE</p></td>
+<td><p>Framerate of the head used by the visual odometry not high enough</p></td>
+</tr>
+<tr class="row-odd"><td><p>ERROR_ODSAPP_IMAGE_IMU_DELAY_IMPLAUSIBLE</p></td>
+<td><p>This might be an indication that the receivers connected to the VPU are slowing down the VPU processing too much. Make sure that Power Saving modes are disabled on the receivers.</p></td>
+</tr>
+<tr class="row-even"><td><p>ERROR_ODSAPP_ALGO_INTERNAL</p></td>
+<td><p>Internal fallback error for ODS application during runtime  - if unspecified error cases are set.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ERROR_ODSAPP_UNSTABLE_FRAMERATES</p></td>
+<td><p>Framerate within ODS unstable. Check power supply, cable connection, etc. This might also be an indication that the receivers connected to the VPU are slowing down the VPU processing too much. Make sure that Power Saving modes are disabled on the receivers.</p></td>
+</tr>
+<tr class="row-even"><td><p>ERROR_ODSAPP_EXTR_DI_CALIB_IMPLAUSIBLE</p></td>
+<td><p>The error is raised when any of the 3D ports contains a transZ value &lt;= 0.01m. A consequence of this error is also that ERROR_ODSAPP_PARAMETER_PLAUSIBILITY_CHECK_FAILED is set and that the affected camera does not update the fused occupancy grid.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ERROR_ODSAPP_VO_EXTR_DI_CALIB_IMPLAUSIBLE</p></td>
+<td><p>The extrinsic calibration of the used head for visual odometry is not plausible. The visual odometry camera needs to see a reasonably large part of the floor. The floor must be at least visible at radial distances between 1.00 m and 1.50 m from the camera.</p></td>
+</tr>
+<tr class="row-even"><td><p>ERROR_ODSAPP_DEFAULT_ZONE_USED</p></td>
+<td><p>Default zone ID=0 used</p></td>
+</tr>
+<tr class="row-odd"><td><p>ERROR_ODSAPP_PARAMETER_PLAUSIBILITY_CHECK_FAILED</p></td>
+<td><p>If there are cross-dependencies in the ODS application parameters, which are not modeled in the JSON schema, the ODS application shall check for them and set an error if the parameter set is invalid.</p></td>
+</tr>
+<tr class="row-even"><td><p>ERROR_ODSAPP_STANDSTILL_CHECKS_NOT_EXECUTED</p></td>
+<td><p>The error is set on initialization of the ODS application. The error is reset after the EMVO has detected the standstill condition and the standstill checks have been executed once.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ERROR_ODSAPP_EXTR_VPU_CALIB_IMPLAUSIBLE</p></td>
+<td><p>The algorithm shall check that during detected standstill the direction of the acceleration vector differs not more than +/- 5 degree from the expected direction parallel to the user’s Z axis with the expected sign with respecting the extrinsic VPU and IMU calibration.</p></td>
+</tr>
+<tr class="row-even"><td><p>ERROR_ODSAPP_INTR_IMU_CALIB_IMPLAUSIBLE</p></td>
+<td><p>In standstill, the length of the measured acceleration vector is expected to be 9.80665 m/s^2, the measured angular rate is expected to be 0 rad/s. If the measurements differ from the expectation by more than 0.12 m/s^2 (acceleration) or 0.012 rad/s (angular rate) the error will be set.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ERROR_ODSAPP_VELOCITY_UNAVAILABLE</p></td>
+<td><p>After the EMVO receives no Visual Odometry update for more than a few seconds, the error shall be set. The error is reset / deactivated when the visual odometry has valid output again.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="ifm3d-errors">
+<h2>ifm3d errors<a class="headerlink" href="#ifm3d-errors" title="Permalink to this headline"></a></h2>
+<p>The ifm3d API has its own set of error codes and messages. A complete list can be found <a class="reference external" href="https://ifm.github.io/ifm3d-docs/html/cpp_api/err_8h_source.html">here</a>.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Troubleshooting tools" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="debugging.html" class="btn btn-neutral float-right" title="O3R Information for debugging" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.
+      <span class="lastupdated">Last updated on Jan 25, 2023.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

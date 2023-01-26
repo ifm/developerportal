@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <meta property="article:modified_time" content="2023-01-25T20:09:11+00:00" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Autostart a container on the VPU &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/js/versionwarning.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Enabling GPU usage on the VPU" href="gpu.html" />
+    <link rel="prev" title="Deploying a container to the VPU" href="deployVPU.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index_getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DeviceConfiguration/index.html">Device Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../o3r-utilities/README.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../applications_index.html">Applications</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Docker</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="docker.html">Getting started with Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployVPU.html">Deployment on board</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Autostarting the container</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#docker-compose">Docker compose</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sample-docker-compose-yml">Sample docker-compose.yml</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#start-the-container-s">Start the container(s)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#auto-start-the-container-s-after-a-reboot-of-the-vpu">Auto start the container(s) after a reboot of the VPU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#save-data-on-consistently-on-the-vpu-with-a-container">Save data on consistently on the VPU with a container</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gpu.html">Enabling GPU usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ifm3d/index.html">ifm3d API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ROS/index.html">ROS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../downloadable/index.html">Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FAQ/FAQ.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Docker on O3R</a> &raquo;</li>
+      <li>Autostart a container on the VPU</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/documentation/Docker/autostart.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="autostart-a-container-on-the-vpu">
+<h1>Autostart a container on the VPU<a class="headerlink" href="#autostart-a-container-on-the-vpu" title="Permalink to this headline"></a></h1>
+<p>Once the container(s) has(ve) been transferred to the VPU, you can set up an autostart service to automatically run the containers as start-up.
+For auto-starting a container, <code class="docutils literal notranslate"><span class="pre">Docker</span> <span class="pre">compose</span></code> is used. The VPU already provides a service <code class="docutils literal notranslate"><span class="pre">.config/systemd/user/oem-dc&#64;.service</span></code> which can be used for auto-starting a service: this is what we will use.</p>
+<div class="section" id="docker-compose">
+<h2>Docker compose<a class="headerlink" href="#docker-compose" title="Permalink to this headline"></a></h2>
+<p>Generate a sample directory and a <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file at following destination: <code class="docutils literal notranslate"><span class="pre">/usr/share/oem/docker/compose/</span></code>. E.g. <code class="docutils literal notranslate"><span class="pre">/usr/share/oem/docker/compose/jupyter/docker-compose.yml</span></code></p>
+<p>This file should contain the information for starting the container you need.</p>
+<div class="section" id="sample-docker-compose-yml">
+<h3>Sample docker-compose.yml<a class="headerlink" href="#sample-docker-compose-yml" title="Permalink to this headline"></a></h3>
+<p>The following <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file would create a service called <code class="docutils literal notranslate"><span class="pre">jupyter</span></code>, based on the image <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> and bind the container ports 8888 to the host port 8888 on start.</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>version: &quot;3.3&quot;
+services:
+    jupyter:
+        image: jupyter
+        ports:
+            - 8888:8888
+</pre></div>
+</div>
+<blockquote>
+<div><p>Note: The Docker version on the VPU expects the docker-compose.yml to be either version 2.2 or 3.3. Fur further information refer to <a class="reference external" href="https://docs.docker.com/compose/gettingstarted/">docker compose</a>.</p>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="start-the-container-s">
+<h2>Start the container(s)<a class="headerlink" href="#start-the-container-s" title="Permalink to this headline"></a></h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> can be started via <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">up</span></code> within the <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> directory.<br />
+<strong>TODO: add example of <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">compose-up</span></code></strong><br />
+It is also possible to start the service with <code class="docutils literal notranslate"><span class="pre">systemctl</span></code>:</p>
+<div class="highlight-Linux notranslate"><div class="highlight"><pre><span></span>systemctl --user start oem-dc@jupyter
+</pre></div>
+</div>
+<p>After a few seconds, the service should have started and it is possible to get the status of this service:</p>
+<div class="highlight-Linux notranslate"><div class="highlight"><pre><span></span>systemctl --user status oem-dc@jupyter
+</pre></div>
+</div>
+<p><strong>TODO: add the result of this cmd</strong></p>
+<p>Another way of seeing all running container is <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span></code>.</p>
+</div>
+<div class="section" id="auto-start-the-container-s-after-a-reboot-of-the-vpu">
+<h2>Auto start the container(s) after a reboot of the VPU<a class="headerlink" href="#auto-start-the-container-s-after-a-reboot-of-the-vpu" title="Permalink to this headline"></a></h2>
+<p>To restart the container automatically, simply <code class="docutils literal notranslate"><span class="pre">enable</span></code> the service:</p>
+<div class="highlight-Linux notranslate"><div class="highlight"><pre><span></span>systemctl --user enable oem-dc@jupyter
+</pre></div>
+</div>
+<p>See <a class="reference external" href="#start-the-container(s)">Start the container</a> on how to start the container with a <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span> <span class="pre">file</span></code></p>
+</div>
+<div class="section" id="save-data-on-consistently-on-the-vpu-with-a-container">
+<h2>Save data on consistently on the VPU with a container<a class="headerlink" href="#save-data-on-consistently-on-the-vpu-with-a-container" title="Permalink to this headline"></a></h2>
+<p><strong>TODO: move this section to a more appropriate chapter</strong>
+<em>Coming soon</em></p>
+<p>Data created and saved within a container is only available for the running instance of the container itself. Restarting the container leads to a loss of the previously saved data. Use <code class="docutils literal notranslate"><span class="pre">volumes</span></code> to avoid this scenario.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="deployVPU.html" class="btn btn-neutral float-left" title="Deploying a container to the VPU" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="gpu.html" class="btn btn-neutral float-right" title="Enabling GPU usage on the VPU" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.
+      <span class="lastupdated">Last updated on Jan 25, 2023.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

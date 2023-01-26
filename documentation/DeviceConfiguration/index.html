@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <meta property="article:modified_time" content="2023-01-25T20:09:11+00:00" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Device Configuration &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/js/versionwarning.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Parameters" href="Parameters/index.html" />
+    <link rel="prev" title="ifm3d-ros2" href="../../ROS/ifm3d-ros2/README.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index_getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Device Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Parameters/index.html">Imager Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ImagesDescription/index.html">Images Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Interfaces/index.html">Communication Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Troubleshooting/index.html">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sntp.html">SNTP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../o3r-utilities/README.html">Utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../applications_index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ifm3d/index.html">ifm3d API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ROS/index.html">ROS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../downloadable/index.html">Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../FAQ/FAQ.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Device Configuration</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/documentation/DeviceConfiguration/index.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="device-configuration">
+<h1>Device Configuration<a class="headerlink" href="#device-configuration" title="Permalink to this headline"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Parameters/index.html">Imager Parameters</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Parameters/parameters.html">Parameters overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Parameters/parameters.html#acquisition-settings">Acquisition Settings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/parameters.html#framerate">Framerate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/parameters.html#d-imager">3D imager</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="Parameters/parameters.html#modes">Modes</a></li>
+<li class="toctree-l5"><a class="reference internal" href="Parameters/parameters.html#exposure-times">Exposure Times</a></li>
+<li class="toctree-l5"><a class="reference internal" href="Parameters/parameters.html#offset">Offset</a></li>
+<li class="toctree-l5"><a class="reference internal" href="Parameters/parameters.html#channel-selection-and-channel-value">Channel selection and channel value</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/parameters.html#id1">2D imager</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="Parameters/parameters.html#mode">Mode</a></li>
+<li class="toctree-l5"><a class="reference internal" href="Parameters/parameters.html#exposure-time">Exposure time</a></li>
+<li class="toctree-l5"><a class="reference internal" href="Parameters/parameters.html#gain">Gain</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Parameters/parameters.html#filters">Filters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/parameters.html#maximum-distance-noise">Maximum Distance Noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/parameters.html#minimum-amplitude-and-minimum-reflectivity">Minimum Amplitude and minimum reflectivity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/parameters.html#adaptive-noise-bilateral-filter-and-median-filter">Adaptive Noise Bilateral Filter and Median Filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/parameters.html#temporal-filter">Temporal Filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/parameters.html#mixed-pixel-filtering">Mixed Pixel Filtering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/parameters.html#symmetry-threshold">Symmetry Threshold</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Parameters/AcquisitionSettings/README.html">Acquisition parameters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Parameters/AcquisitionSettings/modes.html">Modes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/AcquisitionSettings/modes.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/AcquisitionSettings/modes.html#example">Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/AcquisitionSettings/modes.html#related-topics">Related Topics</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Parameters/AcquisitionSettings/offset.html">Offset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/AcquisitionSettings/offset.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/AcquisitionSettings/offset.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Parameters/AcquisitionSettings/triggering.html">Trigger</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/AcquisitionSettings/triggering.html#system-architecture">System architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/AcquisitionSettings/triggering.html#o3r-states-and-its-effect-on-synchronization">O3R States and its effect on synchronization</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="Parameters/AcquisitionSettings/triggering.html#o3r-default-state">O3R default state</a></li>
+<li class="toctree-l5"><a class="reference internal" href="Parameters/AcquisitionSettings/triggering.html#states">States</a></li>
+<li class="toctree-l5"><a class="reference internal" href="Parameters/AcquisitionSettings/triggering.html#run-state">RUN state</a></li>
+<li class="toctree-l5"><a class="reference internal" href="Parameters/AcquisitionSettings/triggering.html#idle-state">IDLE state</a></li>
+<li class="toctree-l5"><a class="reference internal" href="Parameters/AcquisitionSettings/triggering.html#system-configuration-parameters">System configuration parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/AcquisitionSettings/triggering.html#system-latency-and-relevant-variables">System latency and relevant variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/AcquisitionSettings/triggering.html#o3r-timing-repeatability">O3R timing repeatability</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="Parameters/AcquisitionSettings/triggering.html#test-case-1-framerate-precision-and-jitter">Test case 1: framerate precision and jitter</a></li>
+<li class="toctree-l5"><a class="reference internal" href="Parameters/AcquisitionSettings/triggering.html#additional-test-cases">additional test cases:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Parameters/Filters/README.html">Filters</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Parameters/Filters/filteringProcess.html">Filtering process overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/Filters/filteringProcess.html#related-topics">Related Topics</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Parameters/Filters/maxDistNoise.html">Maximum distance noise</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/Filters/maxDistNoise.html#abstract">Abstract</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/Filters/maxDistNoise.html#description">Description</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="Parameters/Filters/maxDistNoise.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/Filters/maxDistNoise.html#related-topics">Related topics</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Parameters/Filters/minAmplitude.html">Minimum amplitude</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/Filters/minAmplitude.html#abstract">Abstract</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/Filters/minAmplitude.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/Filters/minAmplitude.html#related-topics">Related topics</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Parameters/Filters/minReflectivity.html">Minimum reflectivity</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/Filters/minReflectivity.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/Filters/minReflectivity.html#example">Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/Filters/minReflectivity.html#related-topics">Related topics</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Parameters/Filters/bilateralFilter.html">Adaptive noise bilateral filter</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/Filters/bilateralFilter.html#abstract">Abstract</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/Filters/bilateralFilter.html#description">Description</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="Parameters/Filters/bilateralFilter.html#example">Example</a></li>
+<li class="toctree-l5"><a class="reference internal" href="Parameters/Filters/bilateralFilter.html#scenes-involving-motion">Scenes involving motion</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/Filters/bilateralFilter.html#related-topics">Related topics</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Parameters/Filters/median.html">Median filter</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/Filters/median.html#abstract">Abstract</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/Filters/median.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/Filters/median.html#example">Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/Filters/median.html#bilateral-vs-median-filtering">Bilateral vs. median filtering</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="Parameters/Filters/median.html#disadvantages-of-the-median-filter">Disadvantages of the median filter</a></li>
+<li class="toctree-l5"><a class="reference internal" href="Parameters/Filters/median.html#bilateral-and-median-filters-combined">Bilateral and median filters combined</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/Filters/median.html#related-topics">Related topics</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Parameters/Filters/temporalFilter.html">Temporal filter</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/Filters/temporalFilter.html#abstract">Abstract</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/Filters/temporalFilter.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/Filters/temporalFilter.html#examples">Examples</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="Parameters/Filters/temporalFilter.html#reducing-noise">Reducing Noise</a></li>
+<li class="toctree-l5"><a class="reference internal" href="Parameters/Filters/temporalFilter.html#recovering-lost-pixels">Recovering Lost Pixels</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/Filters/temporalFilter.html#related-settings">Related settings</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Parameters/Filters/mixedPixelFilter.html">Mixed pixel filter</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/Filters/mixedPixelFilter.html#abstract">Abstract</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/Filters/mixedPixelFilter.html#description">Description</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="Parameters/Filters/mixedPixelFilter.html#angle-based-validation-method">Angle based validation method</a></li>
+<li class="toctree-l5"><a class="reference internal" href="Parameters/Filters/mixedPixelFilter.html#distance-based-validation-method-will-be-deprecated">Distance based validation method (will be deprecated)</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/Filters/mixedPixelFilter.html#examples">Examples</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="Parameters/Filters/mixedPixelFilter.html#different-angle-threshold-values">Different angle threshold values</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Parameters/Filters/symmetryThreshold.html">Symmetry threshold</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/Filters/symmetryThreshold.html#abstract">Abstract</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/Filters/symmetryThreshold.html#description">Description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Parameters/Filters/symmetryThreshold.html#example">Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ImagesDescription/index.html">Images Description</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ImagesDescription/imagesDescription.html">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ImagesDescription/imagesDescription.html#raw-amplitude-image-and-amplitude-image">Raw Amplitude image and Amplitude image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ImagesDescription/imagesDescription.html#distance-image-radial">Distance image (radial)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ImagesDescription/imagesDescription.html#distance-noise-radial">Distance noise (radial)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ImagesDescription/imagesDescription.html#confidence">Confidence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ImagesDescription/imagesDescription.html#reflectivity">Reflectivity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ImagesDescription/imagesDescription.html#point-cloud-xyz">Point cloud (XYZ)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ImagesDescription/imagesDescription.html#unit-vectors">Unit vectors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ImagesDescription/imagesDescription.html#jpeg-image">JPEG image</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ImagesDescription/confidenceImage.html">Confidence Image</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Interfaces/index.html">Communication Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Interfaces/ethernet.html">Ethernet interfaces</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Interfaces/ethernet.html#set-a-static-ip">Set a static IP</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Interfaces/can.html">CAN interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Interfaces/can.html#hardware">Hardware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Interfaces/can.html#software">Software</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Interfaces/can.html#example-interfacing-with-the-dtm425-rfid-antenna-using-docker">Example: Interfacing with the DTM425 RFID antenna using Docker</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Troubleshooting/index.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Troubleshooting/diagnosis.html">Diagnosis information</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Troubleshooting/diagnosis.html#receiving-the-diagnostic-data">Receiving the diagnostic data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Troubleshooting/diagnosis.html#error-descriptions">Error descriptions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Troubleshooting/diagnosis.html#differences-active-dormant">Differences: active/dormant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Troubleshooting/diagnosis.html#error-message-structure">Error message structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Troubleshooting/diagnosis.html#general-o3r-diagnosis-information">General O3R diagnosis information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Troubleshooting/diagnosis.html#ods-specific-diagnosis-information">ODS specific diagnosis information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Troubleshooting/diagnosis.html#ifm3d-errors">ifm3d errors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Troubleshooting/debugging.html">O3R Information for debugging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Troubleshooting/debugging.html#how-to-debug-the-o3r">HOW to debug the O3R:</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Troubleshooting/debugging.html#status-leds-and-port-leds">Status LEDs and port LEDs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Troubleshooting/debugging.html#if-you-can-not-establish-a-connection-to-the-vpu-via-the-iva">If you can not establish a connection to the VPU via the iVA:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Troubleshooting/debugging.html#diagnosis-information">Diagnosis information:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sntp.html">SNTP</a></li>
+</ul>
+</div>
+<p>This section contains a description the different aspects of setting up your device: configuration of the iToF and RGB parameters, communication interfaces, synchronization, etc.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../ROS/ifm3d-ros2/README.html" class="btn btn-neutral float-left" title="ifm3d-ros2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Parameters/index.html" class="btn btn-neutral float-right" title="Parameters" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.
+      <span class="lastupdated">Last updated on Jan 25, 2023.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
