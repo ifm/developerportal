@@ -2,7 +2,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-    <meta property="article:modified_time" content="2023-01-25T20:09:11+00:00" />
+    <meta property="article:modified_time" content="2023-02-20T09:51:27+00:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FIRMWARE 0.16.23 RELEASE NOTES &mdash; O3R  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -308,6 +308,12 @@ Please refer to the ifm O3Rs website <a class="reference external" href="http://
 <ul class="simple">
 <li><p>Connectivity: ports must be connected pairwise with the same head-type: [Port0,Port1]   [Port2,Port3]   [Port4,Port5]</p></li>
 <li><p>For FW version &gt;= 0.16.23 the heads default state is CONF. <strong>Change to RUN mode to receive data.</strong></p></li>
+<li><p>Software trigger:</p>
+<ul>
+<li><p>A IDLE state configuration has to be applied twice to take effect: IDLE -&gt; RUN -&gt; IDLE</p></li>
+<li><p>The first software trigger command may not be accepted by the device: send software trigger commands (via API) multiple times</p></li>
+</ul>
+</li>
 <li><p>Automatic channel selection per imager not yet implemented. It is advised to set all head channel values differently</p>
 <ul>
 <li><p>Channel difference of &gt;=2 digits improves crosstalk mitigation</p></li>
@@ -343,7 +349,7 @@ Please refer to the ifm O3Rs website <a class="reference external" href="http://
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021, ifm CSR.
-      <span class="lastupdated">Last updated on Jan 25, 2023.
+      <span class="lastupdated">Last updated on Feb 20, 2023.
       </span></p>
   </div>
 

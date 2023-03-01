@@ -20,9 +20,17 @@ In this calibration routine, the camera and checkerboard can not be moved/distur
    $ source venv/bin/activate           # activate the virtual environment
    $ pip install -r requirements.txt    # install the required python packages
    ```
-3. Open the Jupyter notebook and select the created venv python interpreter as the kernel.
-    After setting up the scene and measuring all the distances: edit the following parameters in the second cell of the Jupyter Notebook.
+3. Activate the new python venv and start Jupyter lab "( this automatically select the correct python kernel)"
+    ```sh
+    source venv/bin/activate  
+    jupyter-lab
+    ```
+    !["Jupyter Lab example"](_resources/jupyter_lab.PNG)
 
+    Alternatively: Open the Jupyter notebook (based on your systems default python interpreter) and select the created venv python interpreter as the kernel.
+      After setting up the scene and measuring all the distances: edit the following parameters in the second cell of the Jupyter Notebook.
+
+4. Start the calibration process:
     > Note: The values below are examples values: please input the values as measured for your setup.
     ```python
     if True:
@@ -47,6 +55,13 @@ In this calibration routine, the camera and checkerboard can not be moved/distur
     ...
     ```
 5. Edit all the measurements
+6. Select your prefered data input source:
+    ```python3
+    source = "ifm3dpy://%s/port%d" % (ip, camPort)
+    #source = "adlive://%s/port%d" % (ip, camPort)
+    # it's also possible to use a recording as source:
+    #source=r"adrec://C:\Projects\iCV-Algo\O3R\workspace\20210920_095332_calib2.h5"
+    ```
 6. Use either reflectivity or amplitude image for calibration: depending on which has a less noticeably bright spot (resulting from the active illumination of the O3R camera).
    ```python
     # by default, the amplitude image is used to detect the corner points. As an alternative, you might try to use

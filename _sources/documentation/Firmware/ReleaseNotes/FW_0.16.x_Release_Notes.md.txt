@@ -74,7 +74,7 @@ This firmware release supports the following ifm camera articles:
 ## New Features
 
 ### Library: ifm3d
-+ complete API-redesign of ifm3d-library: 
++ complete API-redesign of ifm3d-library:
   + version >= 1.1.0, refer to the ifm3d [changelogs](https://github.com/ifm/ifm3d/releases). **This is a breaking change, follow the [migration guide](https://ifm.github.io/ifm3d-docs/html/content/migration_guide/index.html) for details on migrating existing code**
 
 ### Connectivity:
@@ -108,7 +108,7 @@ This firmware release supports the following ifm camera articles:
 
 ### Diagnosis
 + Diagnosis data
-    + accessible through [ifm3D-library](https://www.ifm3d.com) 
+    + accessible through [ifm3D-library](https://www.ifm3d.com)
     + Camera specific diagnosis information
     + Application specific diagnose information
     + Example: temperature information for all system components
@@ -116,7 +116,7 @@ This firmware release supports the following ifm camera articles:
 ### Cross-talk mitigation
 + Imager synchronization in combination with channel implementation effectively mitigates crosstalk between heads on the same VPU
 
-### Application Concept 
+### Application Concept
 + ODS - Obstacle Detection System (only for article: M04239, refer to specific documentation)
 
 ### LED
@@ -132,6 +132,9 @@ This firmware release supports the following ifm camera articles:
 ## Known Issues
 * Connectivity: ports must be connected pairwise with the same head-type: [Port0,Port1]   [Port2,Port3]   [Port4,Port5]
 * For FW version >= 0.16.23 the heads default state is CONF. **Change to RUN mode to receive data.**
+* Software trigger:
+  * A IDLE state configuration has to be applied twice to take effect: IDLE -> RUN -> IDLE
+  * The first software trigger command may not be accepted by the device: send software trigger commands (via API) multiple times
 * Automatic channel selection per imager not yet implemented. It is advised to set all head channel values differently
   * Channel difference of >=2 digits improves crosstalk mitigation
 * If the initial download of the calibration file from the head was corrupted, the head can not be used. Make sure not to interrupt power until all connected port LEDs are active (=green)
@@ -139,7 +142,7 @@ This firmware release supports the following ifm camera articles:
 * No backward compatibility: once a camera heads is attached to a VPU running FW 0.16.23 it will be updated and no longer work on a VPU running FW 0.14.23
 * Loss of extrinsic calibration information of all heads, if the head connectivity is changed (any head added or removed)
 * The IPv4 discovery feature for discovering a device on the local network is not working
-* ODS must not be used together with user-defined docker containers 
+* ODS must not be used together with user-defined docker containers
 * ODS startup time high (~5s)
 * ODS in preseries state (refer to ODS documentation)
 

@@ -2,7 +2,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-    <meta property="article:modified_time" content="2023-01-25T20:09:11+00:00" />
+    <meta property="article:modified_time" content="2023-02-23T10:39:55+00:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>First steps after the first initial connection &mdash; O3R  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -52,7 +52,7 @@
 <li class="toctree-l4"><a class="reference internal" href="introduction_and_installation.html">Introduction and installation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="connecting_ifmVA_to_O3R.html">Connect to the O3R</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">First steps</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#activating-the-heads-to-receive-2d-3d-data">Activating the heads to receive 2D &amp; 3D data</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#activating-the-heads-for-2d-3d-data-acquisition">Activating the heads for 2D &amp; 3D data acquisition</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#optional-updating-the-firmware">(Optional) Updating the firmware</a></li>
 </ul>
 </li>
@@ -109,14 +109,14 @@
              
   <div class="tex2jax_ignore mathjax_ignore section" id="first-steps-after-the-first-initial-connection">
 <h1>First steps after the first initial connection<a class="headerlink" href="#first-steps-after-the-first-initial-connection" title="Permalink to this headline"></a></h1>
-<p>After unboxing and setting up of the O3R system, an initial test is beneficial. This can prove that the hardware is connected and working properly.</p>
+<p>Next to unboxing and setting up of the O3R system, an initial test is beneficial. This can prove that the hardware is connected and working properly.</p>
 <p><strong>Tip: When the hardware is not working properly, a firmware update might solve the issue. Please refer to the release notes and compatibility lists to see if the current installed firmware is suited for the currently used ifmVisionAssistant.</strong></p>
-<div class="section" id="activating-the-heads-to-receive-2d-3d-data">
-<h2>Activating the heads to receive 2D &amp; 3D data<a class="headerlink" href="#activating-the-heads-to-receive-2d-3d-data" title="Permalink to this headline"></a></h2>
-<p>The first step to verify the overall functionality is setting all connected O3R-heads (e.g. O3R225) to “RUN” and receive 2D &amp; 3D information.</p>
+<div class="section" id="activating-the-heads-for-2d-3d-data-acquisition">
+<h2>Activating the heads for 2D &amp; 3D data acquisition<a class="headerlink" href="#activating-the-heads-for-2d-3d-data-acquisition" title="Permalink to this headline"></a></h2>
+<p>The first step to verify the overall functionality is setting all connected O3R-heads (e.g. O3R222/225) to “RUN” and receive 2D &amp; 3D information.</p>
 <p>A newly unboxed O3R system does not show anything in the monitor area - yet.</p>
 <p><img alt="blank monitor" src="../../../_images/blank_monitor.png" /></p>
-<p>To set all heads to “RUN”, it is necessary to switch to <code class="docutils literal notranslate"><span class="pre">Port</span> <span class="pre">settings</span></code> and use the <code class="docutils literal notranslate"><span class="pre">Set</span> <span class="pre">all</span> <span class="pre">ports</span> <span class="pre">to</span> <span class="pre">RUN</span> <span class="pre">state</span></code> button.
+<p>To set all heads at once to the “RUN”, it is necessary to switch to <code class="docutils literal notranslate"><span class="pre">Port</span> <span class="pre">settings</span></code> and use the <code class="docutils literal notranslate"><span class="pre">Set</span> <span class="pre">all</span> <span class="pre">ports</span> <span class="pre">to</span> <span class="pre">RUN</span> <span class="pre">state</span></code> button.
 Please keep in mind that this is a Vision Assistant specific helper function, which isn’t native to the underlying parameter JSON structure. Its working method is to iterate through every port and set its <code class="docutils literal notranslate"><span class="pre">state</span></code> to <code class="docutils literal notranslate"><span class="pre">RUN</span></code>.</p>
 <p><img alt="set all ports to run" src="../../../_images/set_all_ports_to_run.gif" /></p>
 <p>If there are heads connected (listed in the <code class="docutils literal notranslate"><span class="pre">Port</span> <span class="pre">settings</span></code>), they will change from <code class="docutils literal notranslate"><span class="pre">CONF</span></code> to <code class="docutils literal notranslate"><span class="pre">RUN</span></code> and both a 2D and 3D image (if both ports from the respective head are connected) will be received by the ifmVisionAssistant.</p>
@@ -159,7 +159,7 @@ Please keep in mind that this is a Vision Assistant specific helper function, wh
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021, ifm CSR.
-      <span class="lastupdated">Last updated on Jan 25, 2023.
+      <span class="lastupdated">Last updated on Feb 23, 2023.
       </span></p>
   </div>
 
