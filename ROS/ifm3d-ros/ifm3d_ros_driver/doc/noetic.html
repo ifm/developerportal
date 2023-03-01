@@ -2,7 +2,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-    <meta property="article:modified_time" content="2022-04-27T14:55:21+00:00" />
+    <meta property="article:modified_time" content="2023-02-09T08:43:51+00:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ifm3d_ros on Ubuntu 20.04 and ROS Noetic &mdash; O3R  documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
@@ -58,7 +58,10 @@
 <li class="toctree-l5"><a class="reference internal" href="../../README.html#software-compatibility-matrix">Software Compatibility Matrix</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../../README.html#organization-of-the-software">Organization of the software</a></li>
 <li class="toctree-l5 current"><a class="reference internal" href="../../README.html#building-and-installing-the-software">Building and installing the software</a><ul class="current">
-<li class="toctree-l6 current"><a class="current reference internal" href="#">Preparing your system</a></li>
+<li class="toctree-l6 current"><a class="current reference internal" href="#">Preparing your system</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#known-issues-and-defects">Known Issues and Defects</a></li>
+</ul>
+</li>
 <li class="toctree-l6"><a class="reference internal" href="building.html">Installing the ifm3d-ros node</a></li>
 <li class="toctree-l6"><a class="reference internal" href="distributed_build.html">Build for distributed systems</a></li>
 </ul>
@@ -119,8 +122,8 @@
 <h1>ifm3d_ros on Ubuntu 20.04 and ROS Noetic<a class="headerlink" href="#ifm3d-ros-on-ubuntu-20-04-and-ros-noetic" title="Permalink to this headline"></a></h1>
 <p>Our package <code class="docutils literal notranslate"><span class="pre">ìfm3d-ros</span></code>, more precisely the <code class="docutils literal notranslate"><span class="pre">ifm3d_ros_driver</span></code>, depends on the underling C++ API <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code>. This needs to be installed first.</p>
 <blockquote>
-<div><p>NOTE: The instructions below apply if you plan to build and install <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> from source.<br />
-NOTE: For older versions of the <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> (<code class="docutils literal notranslate"><span class="pre">0.12.0</span> <span class="pre">&lt;version</span> <span class="pre">&lt;</span> <span class="pre">0.17.0</span></code>) binary Debian packages exist. These don’t contain the latest ifm3d version required for using the O3R camera platform. So please build from source as described below.</p>
+<div><p><strong>NOTE</strong>: The instructions below apply if you plan to build and install <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> from source.<br />
+<strong>NOTE</strong>: For older versions of the <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> (<code class="docutils literal notranslate"><span class="pre">0.12.0</span> <span class="pre">&lt;version</span> <span class="pre">&lt;</span> <span class="pre">0.17.0</span></code>) binary Debian packages exist. These don’t contain the latest ifm3d version required for using the O3R camera platform. So please build from source as described below.</p>
 </div></blockquote>
 <p>For further information about the ifm3d O3R hardware and software please see our <a class="reference external" href="https://ifm3d.com/">developer website</a>.</p>
 <p>This article provides a quick-start guide for getting a fresh installation of Ubuntu 20.04 ready for usage with <code class="docutils literal notranslate"><span class="pre">ifm3d-ros</span></code> and an O3R camera system. As a prerequisite for this article, we assume you already have Ubuntu 20.04 installed (but have done no other configuration). A <em>minimal</em> installation of 20.04 is sufficient for following along below.</p>
@@ -159,9 +162,18 @@ There are a few things that we need to install to successfully build from source
 <li><p>Install ifm3d:<br />
 <span class="xref myst">ifm3d</span> is the core underlying C++ driver that <code class="docutils literal notranslate"><span class="pre">ifm3d_ros</span></code> wraps.
 To install <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code>, please follow the instructions <span class="xref myst">here</span>.</p>
+<p><strong>NOTE</strong>: Choose the correct ifm3d version. See <a class="reference external" href="https://ifm3d.com/ROS/ifm3d-ros/README.html#software-compatibility-matrix">compatibility Matrix</a>.</p>
 <p>You are now in position to install the <code class="docutils literal notranslate"><span class="pre">ifm3d-ros</span></code> wrapper. Please switch to the instructions <a class="reference internal" href="building.html"><span class="doc std std-doc">here</span></a>.</p>
 </li>
 </ol>
+<div class="section" id="known-issues-and-defects">
+<h2>Known Issues and Defects<a class="headerlink" href="#known-issues-and-defects" title="Permalink to this headline"></a></h2>
+<p>There is a bug in <code class="docutils literal notranslate"><span class="pre">ifm3d</span> <span class="pre">v0.93.0</span></code> that says you must have OpenCV installed for ifm3d_ros.<br />
+Run the following command to avoid the issue:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>sed<span class="w"> </span>-i.bak<span class="w"> </span><span class="s1">&#39;22,44d&#39;</span><span class="w"> </span>/usr/lib/cmake/ifm3d-0.93.0/ifm3d-config.cmake
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -176,7 +188,7 @@ To install <code class="docutils literal notranslate"><span class="pre">ifm3d</s
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021, ifm CSR.
-      <span class="lastupdated">Last updated on Apr 27, 2022.
+      <span class="lastupdated">Last updated on Feb 09, 2023.
       </span></p>
   </div>
 

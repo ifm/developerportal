@@ -2,7 +2,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-    <meta property="article:modified_time" content="2023-01-25T08:47:48+00:00" />
+    <meta property="article:modified_time" content="2023-02-20T14:50:46+00:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Utilities &mdash; O3R  documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -25,7 +25,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Extrinsic calibration routines: camera to robot coordinates" href="extrinsic_calibration/README.html" />
+    <link rel="next" title="Introduction to ifm camera coordinate systems and their transformations" href="intro_to_calibrations/README.html" />
     <link rel="prev" title="SNTP (Simple Network Time Protocol) setup" href="../documentation/DeviceConfiguration/sntp.html" /> 
 </head>
 
@@ -48,7 +48,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../index_getting_started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../documentation/DeviceConfiguration/index.html">Device Configuration</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Utilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro_to_calibrations/README.html">Intro to calibration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="extrinsic_calibration/README.html">Extrinsic calibration routines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="registration2d3d/README.html">2D-3D registration Example</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../applications_index.html">Applications</a></li>
@@ -88,21 +90,21 @@
 <h1>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="intro_to_calibrations/README.html">Intro to calibration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intro_to_calibrations/README.html#sensor-coordinate-system-pixel-coordinate-system">Sensor-coordinate-system / pixel coordinate system:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_to_calibrations/README.html#optics-coordinate-system-optics-space">Optics-coordinate-system (optics space):</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_to_calibrations/README.html#defining-where-the-camera-is">Defining where the camera is</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_to_calibrations/README.html#using-calibration-data-stored-on-the-camera-head">Using calibration data stored on the camera head:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro_to_calibrations/README.html#glossary">Glossary:</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="extrinsic_calibration/README.html">Extrinsic calibration routines</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="extrinsic_calibration/checkerboard_static_camera_calibration/README.html">The checkerboard method</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extrinsic_calibration/checkerboard_static_camera_calibration/README.html#procedure">Procedure</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extrinsic_calibration/checkerboard_static_camera_calibration/README.html#setting-up-the-scene">Setting up the scene</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="extrinsic_calibration/checkerboard_static_camera_calibration/README.html#requirements">Requirements</a></li>
-<li class="toctree-l4"><a class="reference internal" href="extrinsic_calibration/checkerboard_static_camera_calibration/README.html#scene">Scene</a></li>
-<li class="toctree-l4"><a class="reference internal" href="extrinsic_calibration/checkerboard_static_camera_calibration/README.html#isometric-view-of-the-scene">Isometric View of the Scene</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extrinsic_calibration/checkerboard_static_camera_calibration/README.html">The checkerboard method</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="extrinsic_calibration/checkerboard_static_camera_calibration/README.html#required-measurements">Required Measurements</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="extrinsic_calibration/checkerboard_static_camera_calibration/README.html#measurements-for-the-above-scene">Measurements for the above scene</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="registration2d3d/README.html">2D-3D registration Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="registration2d3d/README.html#procedure">Procedure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="registration2d3d/README.html#example-output">Example output</a></li>
 </ul>
 </li>
 </ul>
@@ -114,14 +116,14 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../documentation/DeviceConfiguration/sntp.html" class="btn btn-neutral float-left" title="SNTP (Simple Network Time Protocol) setup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="extrinsic_calibration/README.html" class="btn btn-neutral float-right" title="Extrinsic calibration routines: camera to robot coordinates" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="intro_to_calibrations/README.html" class="btn btn-neutral float-right" title="Introduction to ifm camera coordinate systems and their transformations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021, ifm CSR.
-      <span class="lastupdated">Last updated on Jan 25, 2023.
+      <span class="lastupdated">Last updated on Feb 20, 2023.
       </span></p>
   </div>
 

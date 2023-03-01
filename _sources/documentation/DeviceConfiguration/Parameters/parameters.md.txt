@@ -11,49 +11,7 @@
 
 For the O3R system the FPS is independent from the applied imager settings (exposure mode and times, filters, etc.). Higher exposure times, for example, will **not** negatively impact the system's FPS. The O3R is designed to achieve 20 FPS in the 2 m and 4 m modes, *regardless* of applied settings.
 
-### 3D imager
-#### Modes
-|Variable name|Short description|Available values|
-|--|--|--|
-|`mode` (for the 3D imager) |This parameter designates the measurement range: 2 or 4 meters.|standard_range2m, standard_range4m, cyclic_4m_2m_4m_2m|
-
-Learn more [about the standard modes for the 3D imager](documentation/O3R/Parameters/AcquisitionSettings/modes:Modes).
-
-#### Exposure Times
-|Variable name|Short description|
-|--|--|
-|`exposureLong`, `exposureShort`|These parameters are used to set the exposure times.|
-
-Exposure times are utilized to maximize the number of valid pixels in a scene. The use of multiple exposures (HDR) permits the camera to operate in “dynamic” environments that require the detection of dark and light objects at both the minimum and maximum ranges.
-
-The proper exposure time for a pixel depends on factors such as the dynamics of the scene and whether the target is moving or stationary. For highly reflective targets or for motion, a short exposure time is best. For targets far away or with low reflectivity, we prefer a high exposure time.
-As such, it is common that all targets of a scene cannot be properly exposed with a single exposure time.
-To reduce noise and the number of overexposed/underexposed pixels, we use three exposures for each frame. The `standard` modes provides two settable exposure times (`expLong` and `expShort`) plus a third *constant* exposure (set at 30 µs) designed to help detect highly reflective targets in the very near range (~1 m). Note that using a small ratio of exposure times helps reduce noise in transitions regions (where neighboring pixels use different exposure times).
-
-> Note: You can find which exposure time is used for each pixel by analyzing the confidence image as detailed [here](documentation/O3R/ProductsDescription/ImagesDescription/confidenceImage:The%20confidence%20image).
-
-#### Offset
-|Variable name|Short description|
-|--|--|
-|`offset`|Shifts the start point of the measured range (see [mode](documentation/O3R/Parameters/parameters:modes))|
-
-Coded modulation dictates the base range of the camera (e.g., 0 to 2 m). Coded modulation also allows this range to be offset or shifted from its start point. In the example of 0 – 2 m base range, an `offset` of 1 would lead to a 1 – 3 m range. Continuing this example, an `offset` of 2 leads to a 2 – 4m range. The `offset` can be changed frame by frame.
-
-Learn more [here](documentation/O3R/Parameters/AcquisitionSettings/offset:Offset).
-
-#### Channel selection and channel value
-
-|Variable name|Short description|
-|--|--|
-|`channelSelection`|Defines the user mode for handling channel selection: currently only manual |
-|`channelValue`|Defines the channel value |
-
-This concept for cross talk mitigation is based on channels, each channel corresponding to a different modulation frequency. Use a channel combination of mutually exclusive channels to *almost* completely reduce the possibility and effect of cross talk between O3R camera heads.
-The channel value has to be set per 3D TOF imager / O3R camera head. By default it is to value 0.
-A channel value difference of 1 has been shown to be adequate. Any additional channel value offset (> 1) will not improve crosstalk mitigation between O3R camera heads.
-
 ### 2D imager
-
 #### Mode
 |Variable name|Short description|
 |--|--|
@@ -69,6 +27,48 @@ A channel value difference of 1 has been shown to be adequate. Any additional ch
 |`gain`| Image gain (affects sensibility to light).|
 
 The gain is particularly useful in low light situations, used in combination with the exposure time: increasing the exposure time as well as the gain will result in a brighter image.
+
+### 3D imager
+#### Modes
+|Variable name|Short description|Available values|
+|--|--|--|
+|`mode` (for the 3D imager) |This parameter designates the measurement range: 2 or 4 meters.|standard_range2m, standard_range4m, cyclic_4m_2m_4m_2m|
+
+Learn more [about the standard modes for the 3D imager](documentation/O3R/Parameters/AcquisitionSettings/modes:Modes).
+
+#### Exposure Times
+|Variable name|Short description|
+|--|--|
+|`exposureLong`, `exposureShort`|These parameters are used to set the exposure times.|
+
+Exposure times are utilized to maximize the number of valid pixels in a scene. The use of multiple exposures (HDR) permits the camera to operate in “dynamic” environments that require the detection of dark and light objects at both the minimum and maximum ranges.
+
+The proper exposure time for a pixel depends on factors such as the dynamics of the scene and whether the target is moving or stationary. For highly reflective targets or for motion, a short exposure time is best. For targets far away or with low surface reflectance  choosing high exposure time is preferable.
+As such, it is common that all targets of a scene cannot be properly exposed with a single exposure time.
+To reduce noise and the number of overexposed/underexposed pixels, we use three exposures for each frame. The `standard` modes provides two settable exposure times (`expLong` and `expShort`) plus a third *constant* exposure (set at 30 µs) designed to help detect highly reflective targets in the very near range (~1 m). Note that using a small ratio of exposure times helps reduce noise in transitions regions (where neighboring pixels use different exposure times).
+
+> Note: You can find which exposure time is used for each pixel by analyzing the confidence image as detailed [here](documentation/O3R/ProductsDescription/ImagesDescription/confidenceImage:The%20confidence%20image).
+
+#### Offset
+|Variable name|Short description|
+|--|--|
+|`offset`|Shifts the start point of the measured range (see [mode](documentation/O3R/Parameters/parameters:modes))|
+
+Coded modulation dictates the base range of the camera (e.g., 0 to 2 m). Coded modulation also allows this range to be offset or shifted from its start point. In the example of 0 – 2 m base range, an `offset` of 0.5 m would lead to a 0.5 – 2.5 m range. Continuing this example, an `offset` of 1 leads to a 1 – 3m range. The `offset` can be changed frame by frame.
+
+Learn more [here](documentation/O3R/Parameters/AcquisitionSettings/offset:Offset).
+
+#### Channel selection and channel value
+
+|Variable name|Short description|
+|--|--|
+|`channelSelection`|Defines the user mode for handling channel selection: currently only manual |
+|`channelValue`|Defines the channel value |
+
+This concept for cross talk mitigation is based on channels, each channel corresponding to a different modulation frequency. Use a channel combination of mutually exclusive channels to *almost* completely reduce the possibility and effect of cross talk between O3R camera heads.
+The channel value has to be set per 3D TOF imager / O3R camera head. By default it is to value 0.
+A channel value difference of 1 has been shown to be adequate. Any additional channel value offset (> 1) will not improve crosstalk mitigation between O3R camera heads.
+
 
 ## Filters
 ### Maximum Distance Noise
@@ -121,7 +121,7 @@ Learn more [here](documentation/O3R/Parameters/Filters/bilateralFilter:Adaptive%
 
 The temporal filter mitigates distance noise by integrating pixel information over multiple frames. There is no strict limit for the number of frames. Instead, an automatic resetting approach is applied to the pixels.
 
-Although the O3R temporal filter can be used on “in-motion” use cases, it is best suited for static scenes.
+Although the O3R temporal filter can be used for “in-motion” use cases, it is best suited for static scenes.
 
 Learn more [here](documentation/O3R/Parameters/Filters/temporalFilter:Temporal%20Filter)
 

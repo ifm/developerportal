@@ -1,3 +1,20 @@
+# Docker: Getting started
+For a general introduction to the Docker software container technology please have a look at the [official Docker documentation website](https://docs.docker.com/get-started/).
+
+This will guide you to your fist steps on how to get started with Docker, i.e.:
++ Build and run an image as a container
++ Share images using Docker Hub
++ Deploy Docker applications using multiple containers with a database
++ Run applications using Docker Compose
+
+For the O3R system specifics please see / follow the documentation provided below.
+This documentation includes:
++ How to build and run docker containers on the O3R platform
++ Configuring logging on edge devices such as the O3R VPU (additional document)
++ Deploying on the O3R VPU (additional document)
++ Autostart Docker containers (additional document)
++ Utilizing the GPU on the O3R VPU device (additional document)
+
 # Build and run a docker container for the O3R platform
 
 In this document we guide you through building a container from scratch. We start by building a small container. This container will increase in size and complexity the further we go. We will use a python base image and install the ifm3d (ifm3dpy) library.
@@ -11,7 +28,7 @@ Building containers without the right base image will not run on the VPU, an arm
 :::
 ## A basic container
 
-Every Docker container image is built by Docker using a Dockerfile. 
+Every Docker container image is built by Docker using a Dockerfile.
 A docker file contains all the necessary information for building a container image. Most of the Dockerfiles are starting with a base image that is retrieved from the Docker Hub during the build process. Docker will automatically fetch the image for the architecture hosting the build (arm64/aarch64). When building a container for an architecture other than the hosts', the destination architecture needs to be specified in the Dockerfile.
 The Dockerfile is just a text file named `Dockerfile` without any file extension (watch out, it is case sensitive). You can use `docker build [path to Dockerfile]` to start the build process.
 

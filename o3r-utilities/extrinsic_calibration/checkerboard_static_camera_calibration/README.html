@@ -2,7 +2,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-    <meta property="article:modified_time" content="2023-01-25T08:47:48+00:00" />
+    <meta property="article:modified_time" content="2023-02-20T14:53:56+00:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Checkerboard Static Camera - Calibration Routine &mdash; O3R  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -25,7 +25,7 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Applications" href="../../../applications_index.html" />
+    <link rel="next" title="2D-3D Registration Example" href="../../registration2d3d/README.html" />
     <link rel="prev" title="Extrinsic calibration routines: camera to robot coordinates" href="../README.html" /> 
 </head>
 
@@ -48,6 +48,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../index_getting_started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../documentation/DeviceConfiguration/index.html">Device Configuration</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../README.html">Utilities</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../intro_to_calibrations/README.html">Intro to calibration</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../README.html">Extrinsic calibration routines</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">The checkerboard method</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#procedure">Procedure</a></li>
@@ -65,6 +66,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../registration2d3d/README.html">2D-3D registration Example</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../applications_index.html">Applications</a></li>
@@ -127,8 +129,16 @@ $<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </sp
 </pre></div>
 </div>
 </li>
-<li><p>Open the Jupyter notebook and select the created venv python interpreter as the kernel.
+<li><p>Activate the new python venv and start Jupyter lab “( this automatically select the correct python kernel)”</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>venv/bin/activate<span class="w">  </span>
+jupyter-lab
+</pre></div>
+</div>
+<p><img alt="&quot;Jupyter Lab example&quot;" src="o3r-utilities/extrinsic_calibration/checkerboard_static_camera_calibration/_resources/jupyter_lab.PNG" /></p>
+<p>Alternatively: Open the Jupyter notebook (based on your systems default python interpreter) and select the created venv python interpreter as the kernel.
 After setting up the scene and measuring all the distances: edit the following parameters in the second cell of the Jupyter Notebook.</p>
+</li>
+<li><p>Start the calibration process:</p>
 <blockquote>
 <div><p>Note: The values below are examples values: please input the values as measured for your setup.</p>
 </div></blockquote>
@@ -156,6 +166,14 @@ After setting up the scene and measuring all the distances: edit the following p
 </div>
 </li>
 <li><p>Edit all the measurements</p></li>
+<li><p>Select your prefered data input source:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">=</span> <span class="s2">&quot;ifm3dpy://</span><span class="si">%s</span><span class="s2">/port</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="n">camPort</span><span class="p">)</span>
+<span class="c1">#source = &quot;adlive://%s/port%d&quot; % (ip, camPort)</span>
+<span class="c1"># it&#39;s also possible to use a recording as source:</span>
+<span class="c1">#source=r&quot;adrec://C:\Projects\iCV-Algo\O3R\workspace\20210920_095332_calib2.h5&quot;</span>
+</pre></div>
+</div>
+</li>
 <li><p>Use either reflectivity or amplitude image for calibration: depending on which has a less noticeably bright spot (resulting from the active illumination of the O3R camera).</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="c1"># by default, the amplitude image is used to detect the corner points. As an alternative, you might try to use</span>
  <span class="c1"># the reflectivity image instead.</span>
@@ -298,14 +316,14 @@ to capture the whole checkerboard in the amplitude/reflectivity image.</p></td>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../README.html" class="btn btn-neutral float-left" title="Extrinsic calibration routines: camera to robot coordinates" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../../../applications_index.html" class="btn btn-neutral float-right" title="Applications" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../../registration2d3d/README.html" class="btn btn-neutral float-right" title="2D-3D Registration Example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021, ifm CSR.
-      <span class="lastupdated">Last updated on Jan 25, 2023.
+      <span class="lastupdated">Last updated on Feb 20, 2023.
       </span></p>
   </div>
 

@@ -2,7 +2,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-    <meta property="article:modified_time" content="2023-01-25T20:09:11+00:00" />
+    <meta property="article:modified_time" content="2023-02-23T10:39:55+00:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Settings Description &mdash; O3R  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -51,17 +51,17 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Parameters overview</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#acquisition-settings">Acquisition Settings</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#framerate">Framerate</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#d-imager">3D imager</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#d-imager">2D imager</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#mode">Mode</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#exposure-time">Exposure time</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#gain">Gain</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#id1">3D imager</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#modes">Modes</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#exposure-times">Exposure Times</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#offset">Offset</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#channel-selection-and-channel-value">Channel selection and channel value</a></li>
-</ul>
-</li>
-<li class="toctree-l5"><a class="reference internal" href="#id1">2D imager</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#mode">Mode</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#exposure-time">Exposure time</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#gain">Gain</a></li>
 </ul>
 </li>
 </ul>
@@ -149,88 +149,7 @@ To print out the schema, you can use the <span class="xref myst">ifm3d CLI</span
 <p>For the O3R system the FPS is independent from the applied imager settings (exposure mode and times, filters, etc.). Higher exposure times, for example, will <strong>not</strong> negatively impact the system’s FPS. The O3R is designed to achieve 20 FPS in the 2 m and 4 m modes, <em>regardless</em> of applied settings.</p>
 </div>
 <div class="section" id="d-imager">
-<h3>3D imager<a class="headerlink" href="#d-imager" title="Permalink to this headline"></a></h3>
-<div class="section" id="modes">
-<h4>Modes<a class="headerlink" href="#modes" title="Permalink to this headline"></a></h4>
-<table class="colwidths-auto docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Variable name</p></th>
-<th class="head"><p>Short description</p></th>
-<th class="head"><p>Available values</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mode</span></code> (for the 3D imager)</p></td>
-<td><p>This parameter designates the measurement range: 2 or 4 meters.</p></td>
-<td><p>standard_range2m, standard_range4m, cyclic_4m_2m_4m_2m</p></td>
-</tr>
-</tbody>
-</table>
-<p>Learn more <span class="xref myst">about the standard modes for the 3D imager</span>.</p>
-</div>
-<div class="section" id="exposure-times">
-<h4>Exposure Times<a class="headerlink" href="#exposure-times" title="Permalink to this headline"></a></h4>
-<table class="colwidths-auto docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Variable name</p></th>
-<th class="head"><p>Short description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">exposureLong</span></code>, <code class="docutils literal notranslate"><span class="pre">exposureShort</span></code></p></td>
-<td><p>These parameters are used to set the exposure times.</p></td>
-</tr>
-</tbody>
-</table>
-<p>Exposure times are utilized to maximize the number of valid pixels in a scene. The use of multiple exposures (HDR) permits the camera to operate in “dynamic” environments that require the detection of dark and light objects at both the minimum and maximum ranges.</p>
-<p>The proper exposure time for a pixel depends on factors such as the dynamics of the scene and whether the target is moving or stationary. For highly reflective targets or for motion, a short exposure time is best. For targets far away or with low reflectivity, we prefer a high exposure time.
-As such, it is common that all targets of a scene cannot be properly exposed with a single exposure time.
-To reduce noise and the number of overexposed/underexposed pixels, we use three exposures for each frame. The <code class="docutils literal notranslate"><span class="pre">standard</span></code> modes provides two settable exposure times (<code class="docutils literal notranslate"><span class="pre">expLong</span></code> and <code class="docutils literal notranslate"><span class="pre">expShort</span></code>) plus a third <em>constant</em> exposure (set at 30 µs) designed to help detect highly reflective targets in the very near range (~1 m). Note that using a small ratio of exposure times helps reduce noise in transitions regions (where neighboring pixels use different exposure times).</p>
-<blockquote>
-<div><p>Note: You can find which exposure time is used for each pixel by analyzing the confidence image as detailed <span class="xref myst">here</span>.</p>
-</div></blockquote>
-</div>
-<div class="section" id="offset">
-<h4>Offset<a class="headerlink" href="#offset" title="Permalink to this headline"></a></h4>
-<table class="colwidths-auto docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Variable name</p></th>
-<th class="head"><p>Short description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">offset</span></code></p></td>
-<td><p>Shifts the start point of the measured range (see <span class="xref myst">mode</span>)</p></td>
-</tr>
-</tbody>
-</table>
-<p>Coded modulation dictates the base range of the camera (e.g., 0 to 2 m). Coded modulation also allows this range to be offset or shifted from its start point. In the example of 0 – 2 m base range, an <code class="docutils literal notranslate"><span class="pre">offset</span></code> of 1 would lead to a 1 – 3 m range. Continuing this example, an <code class="docutils literal notranslate"><span class="pre">offset</span></code> of 2 leads to a 2 – 4m range. The <code class="docutils literal notranslate"><span class="pre">offset</span></code> can be changed frame by frame.</p>
-<p>Learn more <span class="xref myst">here</span>.</p>
-</div>
-<div class="section" id="channel-selection-and-channel-value">
-<h4>Channel selection and channel value<a class="headerlink" href="#channel-selection-and-channel-value" title="Permalink to this headline"></a></h4>
-<table class="colwidths-auto docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Variable name</p></th>
-<th class="head"><p>Short description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">channelSelection</span></code></p></td>
-<td><p>Defines the user mode for handling channel selection: currently only manual</p></td>
-</tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">channelValue</span></code></p></td>
-<td><p>Defines the channel value</p></td>
-</tr>
-</tbody>
-</table>
-<p>This concept for cross talk mitigation is based on channels, each channel corresponding to a different modulation frequency. Use a channel combination of mutually exclusive channels to <em>almost</em> completely reduce the possibility and effect of cross talk between O3R camera heads.
-The channel value has to be set per 3D TOF imager / O3R camera head. By default it is to value 0.
-A channel value difference of 1 has been shown to be adequate. Any additional channel value offset (&gt; 1) will not improve crosstalk mitigation between O3R camera heads.</p>
-</div>
-</div>
-<div class="section" id="id1">
-<h3>2D imager<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
+<h3>2D imager<a class="headerlink" href="#d-imager" title="Permalink to this headline"></a></h3>
 <div class="section" id="mode">
 <h4>Mode<a class="headerlink" href="#mode" title="Permalink to this headline"></a></h4>
 <table class="colwidths-auto docutils align-default">
@@ -276,6 +195,87 @@ A channel value difference of 1 has been shown to be adequate. Any additional ch
 </tbody>
 </table>
 <p>The gain is particularly useful in low light situations, used in combination with the exposure time: increasing the exposure time as well as the gain will result in a brighter image.</p>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>3D imager<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
+<div class="section" id="modes">
+<h4>Modes<a class="headerlink" href="#modes" title="Permalink to this headline"></a></h4>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable name</p></th>
+<th class="head"><p>Short description</p></th>
+<th class="head"><p>Available values</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mode</span></code> (for the 3D imager)</p></td>
+<td><p>This parameter designates the measurement range: 2 or 4 meters.</p></td>
+<td><p>standard_range2m, standard_range4m, cyclic_4m_2m_4m_2m</p></td>
+</tr>
+</tbody>
+</table>
+<p>Learn more <span class="xref myst">about the standard modes for the 3D imager</span>.</p>
+</div>
+<div class="section" id="exposure-times">
+<h4>Exposure Times<a class="headerlink" href="#exposure-times" title="Permalink to this headline"></a></h4>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable name</p></th>
+<th class="head"><p>Short description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">exposureLong</span></code>, <code class="docutils literal notranslate"><span class="pre">exposureShort</span></code></p></td>
+<td><p>These parameters are used to set the exposure times.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Exposure times are utilized to maximize the number of valid pixels in a scene. The use of multiple exposures (HDR) permits the camera to operate in “dynamic” environments that require the detection of dark and light objects at both the minimum and maximum ranges.</p>
+<p>The proper exposure time for a pixel depends on factors such as the dynamics of the scene and whether the target is moving or stationary. For highly reflective targets or for motion, a short exposure time is best. For targets far away or with low surface reflectance  choosing high exposure time is preferable.
+As such, it is common that all targets of a scene cannot be properly exposed with a single exposure time.
+To reduce noise and the number of overexposed/underexposed pixels, we use three exposures for each frame. The <code class="docutils literal notranslate"><span class="pre">standard</span></code> modes provides two settable exposure times (<code class="docutils literal notranslate"><span class="pre">expLong</span></code> and <code class="docutils literal notranslate"><span class="pre">expShort</span></code>) plus a third <em>constant</em> exposure (set at 30 µs) designed to help detect highly reflective targets in the very near range (~1 m). Note that using a small ratio of exposure times helps reduce noise in transitions regions (where neighboring pixels use different exposure times).</p>
+<blockquote>
+<div><p>Note: You can find which exposure time is used for each pixel by analyzing the confidence image as detailed <span class="xref myst">here</span>.</p>
+</div></blockquote>
+</div>
+<div class="section" id="offset">
+<h4>Offset<a class="headerlink" href="#offset" title="Permalink to this headline"></a></h4>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable name</p></th>
+<th class="head"><p>Short description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">offset</span></code></p></td>
+<td><p>Shifts the start point of the measured range (see <span class="xref myst">mode</span>)</p></td>
+</tr>
+</tbody>
+</table>
+<p>Coded modulation dictates the base range of the camera (e.g., 0 to 2 m). Coded modulation also allows this range to be offset or shifted from its start point. In the example of 0 – 2 m base range, an <code class="docutils literal notranslate"><span class="pre">offset</span></code> of 0.5 m would lead to a 0.5 – 2.5 m range. Continuing this example, an <code class="docutils literal notranslate"><span class="pre">offset</span></code> of 1 leads to a 1 – 3m range. The <code class="docutils literal notranslate"><span class="pre">offset</span></code> can be changed frame by frame.</p>
+<p>Learn more <span class="xref myst">here</span>.</p>
+</div>
+<div class="section" id="channel-selection-and-channel-value">
+<h4>Channel selection and channel value<a class="headerlink" href="#channel-selection-and-channel-value" title="Permalink to this headline"></a></h4>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable name</p></th>
+<th class="head"><p>Short description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">channelSelection</span></code></p></td>
+<td><p>Defines the user mode for handling channel selection: currently only manual</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">channelValue</span></code></p></td>
+<td><p>Defines the channel value</p></td>
+</tr>
+</tbody>
+</table>
+<p>This concept for cross talk mitigation is based on channels, each channel corresponding to a different modulation frequency. Use a channel combination of mutually exclusive channels to <em>almost</em> completely reduce the possibility and effect of cross talk between O3R camera heads.
+The channel value has to be set per 3D TOF imager / O3R camera head. By default it is to value 0.
+A channel value difference of 1 has been shown to be adequate. Any additional channel value offset (&gt; 1) will not improve crosstalk mitigation between O3R camera heads.</p>
 </div>
 </div>
 </div>
@@ -369,7 +369,7 @@ It is recommended to enable a noise filter (temporal or adaptive filter) when lo
 </tbody>
 </table>
 <p>The temporal filter mitigates distance noise by integrating pixel information over multiple frames. There is no strict limit for the number of frames. Instead, an automatic resetting approach is applied to the pixels.</p>
-<p>Although the O3R temporal filter can be used on “in-motion” use cases, it is best suited for static scenes.</p>
+<p>Although the O3R temporal filter can be used for “in-motion” use cases, it is best suited for static scenes.</p>
 <p>Learn more <span class="xref myst">here</span></p>
 </div>
 <div class="section" id="mixed-pixel-filtering">
@@ -433,7 +433,7 @@ Mixed pixels fall on the edges of targets. Use cases, such as negative obstacle 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021, ifm CSR.
-      <span class="lastupdated">Last updated on Jan 25, 2023.
+      <span class="lastupdated">Last updated on Feb 23, 2023.
       </span></p>
   </div>
 
