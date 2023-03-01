@@ -1,18 +1,18 @@
 # First steps after the first initial connection
 
-After unboxing and setting up of the O3R system, an initial test is beneficial. This can prove that the hardware is connected and working properly.
+Next to unboxing and setting up of the O3R system, an initial test is beneficial. This can prove that the hardware is connected and working properly.
 
 **Tip: When the hardware is not working properly, a firmware update might solve the issue. Please refer to the release notes and compatibility lists to see if the current installed firmware is suited for the currently used ifmVisionAssistant.**
 
-## Activating the heads to receive 2D & 3D data
+## Activating the heads for 2D & 3D data acquisition
 
-The first step to verify the overall functionality is setting all connected O3R-heads (e.g. O3R225) to "RUN" and receive 2D & 3D information.
+The first step to verify the overall functionality is setting all connected O3R-heads (e.g. O3R222/225) to "RUN" and receive 2D & 3D information.
 
 A newly unboxed O3R system does not show anything in the monitor area - yet.
 
 ![blank monitor](resources/blank_monitor.png)
 
-To set all heads to "RUN", it is necessary to switch to `Port settings` and use the `Set all ports to RUN state` button.
+To set all heads at once to the "RUN", it is necessary to switch to `Port settings` and use the `Set all ports to RUN state` button.
 Please keep in mind that this is a Vision Assistant specific helper function, which isn't native to the underlying parameter JSON structure. Its working method is to iterate through every port and set its `state` to `RUN`.
 
 ![set all ports to run](resources/set_all_ports_to_run.gif)

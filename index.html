@@ -2,7 +2,6 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-    <meta property="article:modified_time" content="2023-01-20T16:23:21+00:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Welcome to the O3R’s documentation! &mdash; O3R  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -102,15 +101,15 @@ Find it here: <a class="reference external" href="https://www.ifm.com/us/en/prod
 <li class="toctree-l5"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/connecting_ifmVA_to_O3R.html#start-the-ifmvisionassistant">Start the ifmVisionAssistant</a></li>
 <li class="toctree-l5"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/connecting_ifmVA_to_O3R.html#start-screen-overview">Start screen overview</a></li>
 <li class="toctree-l5"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/connecting_ifmVA_to_O3R.html#connection">Connection</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/connecting_ifmVA_to_O3R.html#using-find-sensor">Using <code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">sensor</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/connecting_ifmVA_to_O3R.html#by-using-find-sensor">By using <code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">sensor</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/connecting_ifmVA_to_O3R.html#manual-connection">Manual connection</a></li>
-<li class="toctree-l6"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/connecting_ifmVA_to_O3R.html#connect-to-recent-system-s">Connect to recent system(s)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/connecting_ifmVA_to_O3R.html#connect-to-recent-system-s-by-using-recent">Connect to recent system(s) by using <code class="docutils literal notranslate"><span class="pre">Recent</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/first_steps_ifmVA.html">First steps</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/first_steps_ifmVA.html#activating-the-heads-to-receive-2d-3d-data">Activating the heads to receive 2D &amp; 3D data</a></li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/first_steps_ifmVA.html#activating-the-heads-for-2d-3d-data-acquisition">Activating the heads for 2D &amp; 3D data acquisition</a></li>
 <li class="toctree-l5"><a class="reference internal" href="documentation/GettingStarted/ifmVisionAssistant/first_steps_ifmVA.html#optional-updating-the-firmware">(Optional) Updating the firmware</a></li>
 </ul>
 </li>
@@ -144,7 +143,10 @@ Find it here: <a class="reference external" href="https://www.ifm.com/us/en/prod
 </li>
 <li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros/README.html#organization-of-the-software">Organization of the software</a></li>
 <li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros/README.html#building-and-installing-the-software">Building and installing the software</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/noetic.html">Preparing your system</a></li>
+<li class="toctree-l6"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/noetic.html">Preparing your system</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/noetic.html#known-issues-and-defects">Known Issues and Defects</a></li>
+</ul>
+</li>
 <li class="toctree-l6"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/building.html">Installing the ifm3d-ros node</a><ul>
 <li class="toctree-l7"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/building.html#prerequisites">Prerequisites</a></li>
 <li class="toctree-l7"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/building.html#step-by-step-build-instructions-for-the-ros-node-ifm3d-ros">Step-by-Step build instructions for the ROS node <code class="docutils literal notranslate"><span class="pre">ifm3d-ros</span></code></a><ul>
@@ -230,17 +232,17 @@ Find it here: <a class="reference external" href="https://www.ifm.com/us/en/prod
 <li class="toctree-l3"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html">Parameters overview</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#acquisition-settings">Acquisition Settings</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#framerate">Framerate</a></li>
-<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#d-imager">3D imager</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#d-imager">2D imager</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#mode">Mode</a></li>
+<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#exposure-time">Exposure time</a></li>
+<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#gain">Gain</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#id1">3D imager</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#modes">Modes</a></li>
 <li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#exposure-times">Exposure Times</a></li>
 <li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#offset">Offset</a></li>
 <li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#channel-selection-and-channel-value">Channel selection and channel value</a></li>
-</ul>
-</li>
-<li class="toctree-l5"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#id1">2D imager</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#mode">Mode</a></li>
-<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#exposure-time">Exposure time</a></li>
-<li class="toctree-l6"><a class="reference internal" href="documentation/DeviceConfiguration/Parameters/parameters.html#gain">Gain</a></li>
 </ul>
 </li>
 </ul>
@@ -424,6 +426,30 @@ Find it here: <a class="reference external" href="https://www.ifm.com/us/en/prod
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="o3r-utilities/README.html">Utilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="o3r-utilities/intro_to_calibrations/README.html">Intro to calibration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="o3r-utilities/intro_to_calibrations/README.html#sensor-coordinate-system-pixel-coordinate-system">Sensor-coordinate-system / pixel coordinate system:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="o3r-utilities/intro_to_calibrations/README.html#optics-coordinate-system-optics-space">Optics-coordinate-system (optics space):</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="o3r-utilities/intro_to_calibrations/README.html#optics-space-non-rectified">Optics space non-rectified</a></li>
+<li class="toctree-l4"><a class="reference internal" href="o3r-utilities/intro_to_calibrations/README.html#optics-space-rectified">Optics space rectified</a></li>
+<li class="toctree-l4"><a class="reference internal" href="o3r-utilities/intro_to_calibrations/README.html#head-coordinate-system-head-space">Head-coordinate-system (head space):</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="o3r-utilities/intro_to_calibrations/README.html#defining-where-the-camera-is">Defining where the camera is</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="o3r-utilities/intro_to_calibrations/README.html#user-coordinate-system">User-coordinate-system:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="o3r-utilities/intro_to_calibrations/README.html#extrinsic-calibration">Extrinsic calibration:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="o3r-utilities/intro_to_calibrations/README.html#using-calibration-data-stored-on-the-camera-head">Using calibration data stored on the camera head:</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="o3r-utilities/intro_to_calibrations/README.html#generating-point-clouds-from-scratch">Generating point clouds from scratch:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="o3r-utilities/intro_to_calibrations/README.html#glossary">Glossary:</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="o3r-utilities/intro_to_calibrations/README.html#intrinsic-calibration">Intrinsic calibration:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="o3r-utilities/intro_to_calibrations/README.html#inverse-intrinsic-calibration">Inverse-Intrinsic calibration:</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="o3r-utilities/extrinsic_calibration/README.html">Extrinsic calibration routines</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="o3r-utilities/extrinsic_calibration/checkerboard_static_camera_calibration/README.html">The checkerboard method</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="o3r-utilities/extrinsic_calibration/checkerboard_static_camera_calibration/README.html#procedure">Procedure</a></li>
@@ -441,13 +467,19 @@ Find it here: <a class="reference external" href="https://www.ifm.com/us/en/prod
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="o3r-utilities/registration2d3d/README.html">2D-3D registration Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="o3r-utilities/registration2d3d/README.html#procedure">Procedure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="o3r-utilities/registration2d3d/README.html#example-output">Example output</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="applications_index.html">Applications</a><ul class="simple">
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="documentation/Docker/index.html">Docker</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="documentation/Docker/docker.html">Getting started with Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="documentation/Docker/docker.html">Docker: Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/Docker/docker.html#build-and-run-a-docker-container-for-the-o3r-platform">Build and run a docker container for the O3R platform</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="documentation/Docker/docker.html#a-basic-container">A basic container</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="documentation/Docker/docker.html#build-the-container">Build the container</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="documentation/Docker/docker.html#troubleshooting-proxies">Troubleshooting: proxies</a></li>
@@ -481,6 +513,16 @@ Find it here: <a class="reference external" href="https://www.ifm.com/us/en/prod
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/Docker/logging.html">Docker logging configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="documentation/Docker/logging.html#docker-default-logging">Docker default logging</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Docker/logging.html#docker-logging-drivers">Docker logging drivers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Docker/logging.html#docker-logging-configuration">Docker logging configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Docker/logging.html#run-a-docker-container-with-logging-driver-configuration">Run a docker container with logging driver configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="documentation/Docker/logging.html#double-check-the-docker-logging-configuration-for-a-container">Double check the docker logging configuration for a container</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="documentation/Docker/autostart.html">Autostarting the container</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="documentation/Docker/autostart.html#docker-compose">Docker compose</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="documentation/Docker/autostart.html#sample-docker-compose-yml">Sample docker-compose.yml</a></li>
@@ -503,6 +545,7 @@ Find it here: <a class="reference external" href="https://www.ifm.com/us/en/prod
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="documentation/Docker/cpu.html">CPU usage</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ifm3d/index.html">ifm3d API</a></li>
@@ -517,7 +560,10 @@ Find it here: <a class="reference external" href="https://www.ifm.com/us/en/prod
 </li>
 <li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros/README.html#organization-of-the-software">Organization of the software</a></li>
 <li class="toctree-l4"><a class="reference internal" href="ROS/ifm3d-ros/README.html#building-and-installing-the-software">Building and installing the software</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/noetic.html">Preparing your system</a></li>
+<li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/noetic.html">Preparing your system</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/noetic.html#known-issues-and-defects">Known Issues and Defects</a></li>
+</ul>
+</li>
 <li class="toctree-l5"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/building.html">Installing the ifm3d-ros node</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/building.html#prerequisites">Prerequisites</a></li>
 <li class="toctree-l6"><a class="reference internal" href="ROS/ifm3d-ros/ifm3d_ros_driver/doc/building.html#step-by-step-build-instructions-for-the-ros-node-ifm3d-ros">Step-by-Step build instructions for the ROS node <code class="docutils literal notranslate"><span class="pre">ifm3d-ros</span></code></a><ul>
@@ -673,9 +719,7 @@ TODO: Samples?</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, ifm CSR.
-      <span class="lastupdated">Last updated on Jan 20, 2023.
-      </span></p>
+    <p>&#169; Copyright 2021, ifm CSR.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

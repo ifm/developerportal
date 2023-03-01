@@ -2,7 +2,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-    <meta property="article:modified_time" content="2022-01-21T20:50:05+00:00" />
+    <meta property="article:modified_time" content="2023-02-09T08:43:51+00:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The ifm3d_ros_examples package &mdash; O3R  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -129,7 +129,7 @@
 <td><p>This is handling the nodelet manager which makes it possible to launch a nodelet similarly as you would a simple node.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">head.launch</span></code></p></td>
-<td><p>Launches two data streams for both the 2D RGB imager and 3D TOF imager on a camera head. Default ports are 0 (pcic_port:=50010) and 2 (pcic_port:=50012). For different port numbers input port as a parameter when launching.</p></td>
+<td><p>Launches two data streams for both the 2D RGB imager and 3D TOF imager on a camera head. Default ports are 0 for 3D data (pcic_port_1:=50010) and 2 for 2D RGB data (pcic_port_2:=50012). For different port numbers input port as a parameter when launching.</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">camera.launch</span></code></p></td>
 <td><p>Launches a single camera stream - so only 3D data or 2D RGB data. This launch file is comparable to a single camera setup (O3Ds and O3Xs)</p></td>
@@ -183,7 +183,7 @@ The <code class="docutils literal notranslate"><span class="pre">camera.launch</
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021, ifm CSR.
-      <span class="lastupdated">Last updated on Jan 21, 2022.
+      <span class="lastupdated">Last updated on Feb 09, 2023.
       </span></p>
   </div>
 

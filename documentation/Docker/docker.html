@@ -2,9 +2,9 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-    <meta property="article:modified_time" content="2023-01-25T20:09:11+00:00" />
+    <meta property="article:modified_time" content="2023-02-08T09:12:59+00:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Build and run a docker container for the O3R platform &mdash; O3R  documentation</title>
+  <title>Docker: Getting started &mdash; O3R  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -50,7 +50,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../o3r-utilities/README.html">Utilities</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../applications_index.html">Applications</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Docker</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Getting started with Docker</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Docker: Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-and-run-a-docker-container-for-the-o3r-platform">Build and run a docker container for the O3R platform</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#a-basic-container">A basic container</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#build-the-container">Build the container</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#troubleshooting-proxies">Troubleshooting: proxies</a></li>
@@ -67,8 +68,10 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="deployVPU.html">Deployment on board</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logging.html">Docker logging configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="autostart.html">Autostarting the container</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gpu.html">Enabling GPU usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpu.html">CPU usage</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../ifm3d/index.html">ifm3d API</a></li>
@@ -93,7 +96,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">Docker on O3R</a> &raquo;</li>
-      <li>Build and run a docker container for the O3R platform</li>
+      <li>Docker: Getting started</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/documentation/Docker/docker.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -103,8 +106,28 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="build-and-run-a-docker-container-for-the-o3r-platform">
-<h1><a class="toc-backref" href="#id1">Build and run a docker container for the O3R platform</a><a class="headerlink" href="#build-and-run-a-docker-container-for-the-o3r-platform" title="Permalink to this headline"></a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="docker-getting-started">
+<h1><a class="toc-backref" href="#id1">Docker: Getting started</a><a class="headerlink" href="#docker-getting-started" title="Permalink to this headline"></a></h1>
+<p>For a general introduction to the Docker software container technology please have a look at the <a class="reference external" href="https://docs.docker.com/get-started/">official Docker documentation website</a>.</p>
+<p>This will guide you to your fist steps on how to get started with Docker, i.e.:</p>
+<ul class="simple">
+<li><p>Build and run an image as a container</p></li>
+<li><p>Share images using Docker Hub</p></li>
+<li><p>Deploy Docker applications using multiple containers with a database</p></li>
+<li><p>Run applications using Docker Compose</p></li>
+</ul>
+<p>For the O3R system specifics please see / follow the documentation provided below.
+This documentation includes:</p>
+<ul class="simple">
+<li><p>How to build and run docker containers on the O3R platform</p></li>
+<li><p>Configuring logging on edge devices such as the O3R VPU (additional document)</p></li>
+<li><p>Deploying on the O3R VPU (additional document)</p></li>
+<li><p>Autostart Docker containers (additional document)</p></li>
+<li><p>Utilizing the GPU on the O3R VPU device (additional document)</p></li>
+</ul>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="build-and-run-a-docker-container-for-the-o3r-platform">
+<h1><a class="toc-backref" href="#id2">Build and run a docker container for the O3R platform</a><a class="headerlink" href="#build-and-run-a-docker-container-for-the-o3r-platform" title="Permalink to this headline"></a></h1>
 <p>In this document we guide you through building a container from scratch. We start by building a small container. This container will increase in size and complexity the further we go. We will use a python base image and install the ifm3d (ifm3dpy) library.</p>
 <p>If you want to use any of our available docker images or directly build on top of our Dockerfiles, you can jump directly to <a class="reference external" href="#building-on-top-of-the-ifm-base-image">this section</a> or check out the list of docker images officially supported by ifm <em>coming soon</em>.</p>
 <p>Note that the O3R VPU (Video Processing Unit) is based on an NVIDIA Jetson system (TX2), which is arm64/aarch64 based.
@@ -112,29 +135,30 @@ Building containers without the right base image will not run on the VPU, an arm
 <div class="contents topic" id="contents">
 <p class="topic-title">Contents</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#build-and-run-a-docker-container-for-the-o3r-platform" id="id1">Build and run a docker container for the O3R platform</a></p>
+<li><p><a class="reference internal" href="#docker-getting-started" id="id1">Docker: Getting started</a></p></li>
+<li><p><a class="reference internal" href="#build-and-run-a-docker-container-for-the-o3r-platform" id="id2">Build and run a docker container for the O3R platform</a></p>
 <ul>
-<li><p><a class="reference internal" href="#a-basic-container" id="id2">A basic container</a></p>
+<li><p><a class="reference internal" href="#a-basic-container" id="id3">A basic container</a></p>
 <ul>
-<li><p><a class="reference internal" href="#build-the-container" id="id3">Build the container</a></p>
+<li><p><a class="reference internal" href="#build-the-container" id="id4">Build the container</a></p>
 <ul>
-<li><p><a class="reference internal" href="#troubleshooting-proxies" id="id4">Troubleshooting: proxies</a></p></li>
+<li><p><a class="reference internal" href="#troubleshooting-proxies" id="id5">Troubleshooting: proxies</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#run-a-container" id="id5">Run a container</a></p></li>
-<li><p><a class="reference internal" href="#save-a-container" id="id6">Save a container</a></p></li>
+<li><p><a class="reference internal" href="#run-a-container" id="id6">Run a container</a></p></li>
+<li><p><a class="reference internal" href="#save-a-container" id="id7">Save a container</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#load-and-start-a-container" id="id7">Load and start a container</a></p></li>
-<li><p><a class="reference internal" href="#add-features-to-the-container" id="id8">Add features to the container</a></p></li>
-<li><p><a class="reference internal" href="#install-ifm3d-in-the-container" id="id9">Install ifm3d in the container</a></p></li>
-<li><p><a class="reference internal" href="#building-on-top-of-the-ifm-base-image" id="id10">Building on top of the ifm base image</a></p></li>
+<li><p><a class="reference internal" href="#load-and-start-a-container" id="id8">Load and start a container</a></p></li>
+<li><p><a class="reference internal" href="#add-features-to-the-container" id="id9">Add features to the container</a></p></li>
+<li><p><a class="reference internal" href="#install-ifm3d-in-the-container" id="id10">Install ifm3d in the container</a></p></li>
+<li><p><a class="reference internal" href="#building-on-top-of-the-ifm-base-image" id="id11">Building on top of the ifm base image</a></p></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="a-basic-container">
-<h2><a class="toc-backref" href="#id2">A basic container</a><a class="headerlink" href="#a-basic-container" title="Permalink to this headline"></a></h2>
+<h2><a class="toc-backref" href="#id3">A basic container</a><a class="headerlink" href="#a-basic-container" title="Permalink to this headline"></a></h2>
 <p>Every Docker container image is built by Docker using a Dockerfile.
 A docker file contains all the necessary information for building a container image. Most of the Dockerfiles are starting with a base image that is retrieved from the Docker Hub during the build process. Docker will automatically fetch the image for the architecture hosting the build (arm64/aarch64). When building a container for an architecture other than the hosts’, the destination architecture needs to be specified in the Dockerfile.
 The Dockerfile is just a text file named <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> without any file extension (watch out, it is case sensitive). You can use <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">build</span> <span class="pre">[path</span> <span class="pre">to</span> <span class="pre">Dockerfile]</span></code> to start the build process.</p>
@@ -145,7 +169,7 @@ The Dockerfile is just a text file named <code class="docutils literal notransla
 </pre></div>
 </div>
 <div class="section" id="build-the-container">
-<h3><a class="toc-backref" href="#id3">Build the container</a><a class="headerlink" href="#build-the-container" title="Permalink to this headline"></a></h3>
+<h3><a class="toc-backref" href="#id4">Build the container</a><a class="headerlink" href="#build-the-container" title="Permalink to this headline"></a></h3>
 <p>Building:
 To build a container use <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">build</span> <span class="pre">[path/to/Dockerfile]</span></code>. If an image tag (name) is needed, you can specify it within the docker build command.</p>
 <div class="highlight-Docker notranslate"><div class="highlight"><pre><span></span><span class="c"># Assuming the Dockerfile is located within the same directory:</span>
@@ -171,7 +195,7 @@ ifm3d<span class="w">                     </span>latest<span class="w">         
 </pre></div>
 </div>
 <div class="section" id="troubleshooting-proxies">
-<h4><a class="toc-backref" href="#id4">Troubleshooting: proxies</a><a class="headerlink" href="#troubleshooting-proxies" title="Permalink to this headline"></a></h4>
+<h4><a class="toc-backref" href="#id5">Troubleshooting: proxies</a><a class="headerlink" href="#troubleshooting-proxies" title="Permalink to this headline"></a></h4>
 <p>Depending on the network infrastructure, docker might need the proxy information for building the container. You can input them directly when running the command:</p>
 <div class="highlight-Docker notranslate"><div class="highlight"><pre><span></span><span class="c">#$HTTP_PROXY &amp; $HTTPS_PROXY are variables containing the proxy address. E.g.: HTTPS_PROXY=https//[PROXY ADDRESS]</span>
 $<span class="w"> </span>docker<span class="w"> </span>image<span class="w"> </span>build<span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">http_proxy</span><span class="o">=</span><span class="nv">$HTTP_PROXY</span><span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">https_proxy</span><span class="o">=</span><span class="nv">$HTTPS_PROXY</span><span class="w"> </span>-t<span class="w"> </span>jupyter<span class="w"> </span>.
@@ -194,7 +218,7 @@ $<span class="w"> </span>docker<span class="w"> </span>image<span class="w"> </s
 </div>
 </div>
 <div class="section" id="run-a-container">
-<h3><a class="toc-backref" href="#id5">Run a container</a><a class="headerlink" href="#run-a-container" title="Permalink to this headline"></a></h3>
+<h3><a class="toc-backref" href="#id6">Run a container</a><a class="headerlink" href="#run-a-container" title="Permalink to this headline"></a></h3>
 <blockquote>
 <div><p>Note: To run a container built for another chip architecture than the host system, you need to use <code class="docutils literal notranslate"><span class="pre">qemu</span></code> to handle the virtualization. For further information see:</p>
 <ul class="simple">
@@ -228,7 +252,7 @@ hello
 </div>
 </div>
 <div class="section" id="save-a-container">
-<h3><a class="toc-backref" href="#id6">Save a container</a><a class="headerlink" href="#save-a-container" title="Permalink to this headline"></a></h3>
+<h3><a class="toc-backref" href="#id7">Save a container</a><a class="headerlink" href="#save-a-container" title="Permalink to this headline"></a></h3>
 <p>The container is working, let’s save it so we can share it around. Docker already provides us with the right tool: <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">save</span></code>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker<span class="w"> </span>save<span class="w"> </span>ifm3d<span class="w"> </span>&gt;<span class="w"> </span>ifm3d.tar
 </pre></div>
@@ -236,7 +260,7 @@ hello
 </div>
 </div>
 <div class="section" id="load-and-start-a-container">
-<h2><a class="toc-backref" href="#id7">Load and start a container</a><a class="headerlink" href="#load-and-start-a-container" title="Permalink to this headline"></a></h2>
+<h2><a class="toc-backref" href="#id8">Load and start a container</a><a class="headerlink" href="#load-and-start-a-container" title="Permalink to this headline"></a></h2>
 <p>To reload the content of a previously saved image, use:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>load<span class="w"> </span>&lt;<span class="w"> </span>ifm3d.tar
 </pre></div>
@@ -250,7 +274,7 @@ hello
 </div></blockquote>
 </div>
 <div class="section" id="add-features-to-the-container">
-<h2><a class="toc-backref" href="#id8">Add features to the container</a><a class="headerlink" href="#add-features-to-the-container" title="Permalink to this headline"></a></h2>
+<h2><a class="toc-backref" href="#id9">Add features to the container</a><a class="headerlink" href="#add-features-to-the-container" title="Permalink to this headline"></a></h2>
 <p>Until now, our container is not really useful. Let’s update the container’s kernel, install python packages and create a user (this will improve security). To do that, we need to improve the Dockerfile:</p>
 <p>Dockerfile:</p>
 <div class="highlight-Docker notranslate"><div class="highlight"><pre><span></span><span class="c"># This Dockerfile is a documentation example and might not build after a copy/paste process</span>
@@ -317,7 +341,7 @@ pythonuser@319eb5ea67e0:/$<span class="w"> </span>pip<span class="w"> </span>fre
 </div>
 </div>
 <div class="section" id="install-ifm3d-in-the-container">
-<h2><a class="toc-backref" href="#id9">Install ifm3d in the container</a><a class="headerlink" href="#install-ifm3d-in-the-container" title="Permalink to this headline"></a></h2>
+<h2><a class="toc-backref" href="#id10">Install ifm3d in the container</a><a class="headerlink" href="#install-ifm3d-in-the-container" title="Permalink to this headline"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">ifm3dpy</span></code> is the python binding for the ifm3D library. You can install it from source (download it <a class="reference external" href="https://github.com/ifm/ifm3d">here</a>) or use the <a class="reference external" href="https://github.com/ifm/ifm3d/pkgs/container/ifm3d">docker image</a> provided by ifm which can be used on the VPU and contains the ifm3d and ifm3dpy libraries.</p>
 <p>The Dockerfile could look similar to this:</p>
 <div class="highlight-Docker notranslate"><div class="highlight"><pre><span></span><span class="c"># This Dockerfile is a documentation example and might not be build after a copy/paste process</span>
@@ -435,7 +459,7 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 </div>
 </div>
 <div class="section" id="building-on-top-of-the-ifm-base-image">
-<h2><a class="toc-backref" href="#id10">Building on top of the ifm base image</a><a class="headerlink" href="#building-on-top-of-the-ifm-base-image" title="Permalink to this headline"></a></h2>
+<h2><a class="toc-backref" href="#id11">Building on top of the ifm base image</a><a class="headerlink" href="#building-on-top-of-the-ifm-base-image" title="Permalink to this headline"></a></h2>
 <p>Now you want your own container, with your python script to run. Base your Dockerfile simply on the <code class="docutils literal notranslate"><span class="pre">ghcr.io/ifm/ifm3d:stable</span></code> image:</p>
 <div class="highlight-Dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="w"> </span><span class="s">ghcr.io/ifm/ifm3d:stable</span>
 </pre></div>
@@ -457,7 +481,7 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021, ifm CSR.
-      <span class="lastupdated">Last updated on Jan 25, 2023.
+      <span class="lastupdated">Last updated on Feb 08, 2023.
       </span></p>
   </div>
 

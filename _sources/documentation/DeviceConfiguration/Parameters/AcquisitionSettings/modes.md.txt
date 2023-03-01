@@ -6,7 +6,7 @@ The O3R has the specificity to provide several measurement ranges. A distance me
 
 >Note: Objects *very* close to the beginning or end of the measurement range can still have an impact on the measurement.
 
-By default, the O3R provides two measurement ranges: two meters and four meters. These ranges use different frequencies to perform the Time-of-Flight (ToF) measurement and therefore show different characteristics, especially in how they are affected by artifacts. The four-meter mode shows higher noise levels than the two-meter mode (around twice as much).
+By default, the O3R provides two measurement ranges: two and four meters. These ranges use different frequencies to perform the Time-of-Flight (ToF) measurement and therefore show different characteristics, especially in how they are affected by artifacts. The four-meter mode shows higher noise levels than the two-meter mode (around twice as much).
 
 ## Example
 
