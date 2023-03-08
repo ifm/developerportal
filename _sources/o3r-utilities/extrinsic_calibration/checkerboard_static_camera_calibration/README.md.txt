@@ -2,10 +2,10 @@
 
 In this calibration routine, the camera and checkerboard can not be moved/disturbed during the calibration process. Before proceeding to perform the calibration process we assume that the user
 
-- already has connected the camera head to the VPU.
+- has already connected the camera head to the VPU.
 - changed the PORT state from "CONF" to "RUN".
-- able to receive the 3D Data because this routine uses only the amplitude image/reflectivity image for the calibration.
-- not running the ifmVisionAssistant in parallel.
+- is able to receive the 3D Data because this routine uses only the amplitude image/reflectivity image for the calibration.
+- is not running the ifmVisionAssistant in parallel.
 - knows the exact position of a robot coordinate system.
 
 ## Procedure
@@ -14,23 +14,25 @@ In this calibration routine, the camera and checkerboard can not be moved/distur
    ```sh
    $ git clone https://github.com/ifm/o3r-utilities.git
    ```
-2. Create a virtual environment and install the required packages.
+2. Create a virtual environment and install the required packages (run from the extrinsic_calibration/checkerboard_static_camera_calibration folder).
     ```sh
    $ python -m venv venv                # create a virtual environment
    $ source venv/bin/activate           # activate the virtual environment
    $ pip install -r requirements.txt    # install the required python packages
    ```
-3. Activate the new python venv and start Jupyter lab "( this automatically select the correct python kernel)"
+3. Activate the new python venv, register it with ipykernal (used to work with virtual environments and Jupyter notebooks) and start Jupyter lab:
     ```sh
-    source venv/bin/activate  
-    jupyter-lab
+    $ source venv/bin/activate  # Activate the virtual environment
+    $ pip install ipykernel # Install ipykernel to work with venv and Jupyter notebooks
+    $ python -m ipykernel install --user --name=venv # Register the venv
+    $ jupyter-lab # Start jupyter-lab
     ```
-    !["Jupyter Lab example"](_resources/jupyter_lab.PNG)
+    ![Jupyter Lab example](_resources/jupyter_lab.png)
 
-    Alternatively: Open the Jupyter notebook (based on your systems default python interpreter) and select the created venv python interpreter as the kernel.
-      After setting up the scene and measuring all the distances: edit the following parameters in the second cell of the Jupyter Notebook.
+> Note: you can remove a venv from the list of ipykernels with `jupyter kernelspec remove venv`
 
 4. Start the calibration process:
+After setting up the scene and measuring all the distances (see section below): edit the following parameters in the second cell of the Jupyter Notebook.
     > Note: The values below are examples values: please input the values as measured for your setup.
     ```python
     if True:

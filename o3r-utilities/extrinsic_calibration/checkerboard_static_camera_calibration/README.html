@@ -2,7 +2,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-    <meta property="article:modified_time" content="2023-02-20T14:53:56+00:00" />
+    <meta property="article:modified_time" content="2023-03-06T20:35:12+00:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Checkerboard Static Camera - Calibration Routine &mdash; O3R  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -108,10 +108,10 @@
 <h1>Checkerboard Static Camera - Calibration Routine<a class="headerlink" href="#checkerboard-static-camera-calibration-routine" title="Permalink to this headline"></a></h1>
 <p>In this calibration routine, the camera and checkerboard can not be moved/disturbed during the calibration process. Before proceeding to perform the calibration process we assume that the user</p>
 <ul class="simple">
-<li><p>already has connected the camera head to the VPU.</p></li>
+<li><p>has already connected the camera head to the VPU.</p></li>
 <li><p>changed the PORT state from “CONF” to “RUN”.</p></li>
-<li><p>able to receive the 3D Data because this routine uses only the amplitude image/reflectivity image for the calibration.</p></li>
-<li><p>not running the ifmVisionAssistant in parallel.</p></li>
+<li><p>is able to receive the 3D Data because this routine uses only the amplitude image/reflectivity image for the calibration.</p></li>
+<li><p>is not running the ifmVisionAssistant in parallel.</p></li>
 <li><p>knows the exact position of a robot coordinate system.</p></li>
 </ul>
 <div class="section" id="procedure">
@@ -122,23 +122,29 @@
 </pre></div>
 </div>
 </li>
-<li><p>Create a virtual environment and install the required packages.</p>
+<li><p>Create a virtual environment and install the required packages (run from the extrinsic_calibration/checkerboard_static_camera_calibration folder).</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv<span class="w">                </span><span class="c1"># create a virtual environment</span>
 $<span class="w"> </span><span class="nb">source</span><span class="w"> </span>venv/bin/activate<span class="w">           </span><span class="c1"># activate the virtual environment</span>
 $<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt<span class="w">    </span><span class="c1"># install the required python packages</span>
 </pre></div>
 </div>
 </li>
-<li><p>Activate the new python venv and start Jupyter lab “( this automatically select the correct python kernel)”</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>venv/bin/activate<span class="w">  </span>
-jupyter-lab
+<li><p>Activate the new python venv, register it with ipykernal (used to work with virtual environments and Jupyter notebooks) and start Jupyter lab:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>venv/bin/activate<span class="w">  </span><span class="c1"># Activate the virtual environment</span>
+$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>ipykernel<span class="w"> </span><span class="c1"># Install ipykernel to work with venv and Jupyter notebooks</span>
+$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>ipykernel<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span>--name<span class="o">=</span>venv<span class="w"> </span><span class="c1"># Register the venv</span>
+$<span class="w"> </span>jupyter-lab<span class="w"> </span><span class="c1"># Start jupyter-lab</span>
 </pre></div>
 </div>
-<p><img alt="&quot;Jupyter Lab example&quot;" src="o3r-utilities/extrinsic_calibration/checkerboard_static_camera_calibration/_resources/jupyter_lab.PNG" /></p>
-<p>Alternatively: Open the Jupyter notebook (based on your systems default python interpreter) and select the created venv python interpreter as the kernel.
-After setting up the scene and measuring all the distances: edit the following parameters in the second cell of the Jupyter Notebook.</p>
+<p><img alt="Jupyter Lab example" src="o3r-utilities/extrinsic_calibration/checkerboard_static_camera_calibration/_resources/jupyter_lab.png" /></p>
 </li>
-<li><p>Start the calibration process:</p>
+</ol>
+<blockquote>
+<div><p>Note: you can remove a venv from the list of ipykernels with <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">kernelspec</span> <span class="pre">remove</span> <span class="pre">venv</span></code></p>
+</div></blockquote>
+<ol>
+<li><p>Start the calibration process:
+After setting up the scene and measuring all the distances (see section below): edit the following parameters in the second cell of the Jupyter Notebook.</p>
 <blockquote>
 <div><p>Note: The values below are examples values: please input the values as measured for your setup.</p>
 </div></blockquote>
@@ -323,7 +329,7 @@ to capture the whole checkerboard in the amplitude/reflectivity image.</p></td>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021, ifm CSR.
-      <span class="lastupdated">Last updated on Feb 20, 2023.
+      <span class="lastupdated">Last updated on Mar 06, 2023.
       </span></p>
   </div>
 
