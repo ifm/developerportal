@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <meta property="article:modified_time" content="2023-03-15T09:54:57+00:00" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VPU IMU general information &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="2D-3D Registration Example" href="../../registration2d3d/README.html" />
+    <link rel="prev" title="Checkerboard Static Camera - Calibration Routine" href="../checkerboard_static_camera_calibration/README.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index_getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/DeviceConfiguration/index.html">Device Configuration</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../README.html">Utilities</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../intro_to_calibrations/README.html">Intro to calibration</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../README.html">Extrinsic calibration routines</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../checkerboard_static_camera_calibration/README.html">The static checkerboard method</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">VPU IMU general information</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#imu-orientation">IMU orientation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#imu-reference-point">IMU reference point</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#vpu-extrinsic-calibration-and-misalignment-estimation">VPU Extrinsic Calibration and Misalignment Estimation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vpu-extrinsic-calibration-tool">VPU Extrinsic Calibration Tool</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vpu-misalignment-estimation-tool">VPU Misalignment Estimation Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../registration2d3d/README.html">2D-3D registration Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../applications_index.html">Applications</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/Docker/index.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ifm3d/index.html">ifm3d API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ROS/index.html">ROS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/FAQ/FAQ.html">FAQ</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../README.html">Utilities</a> &raquo;</li>
+          <li><a href="../README.html">Extrinsic calibration routines: camera to robot coordinates</a> &raquo;</li>
+      <li>VPU IMU general information</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/o3r-utilities/extrinsic_calibration/IMU_VPU_extrinsic_calibration/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="vpu-imu-general-information">
+<h1>VPU IMU general information<a class="headerlink" href="#vpu-imu-general-information" title="Permalink to this headline"></a></h1>
+<div class="section" id="imu-orientation">
+<h2>IMU orientation<a class="headerlink" href="#imu-orientation" title="Permalink to this headline"></a></h2>
+<p>ODS uses the IMU to compute the motion of the vehicle. To do this, the VPU needs to be calibrated, using the same reference frame as used for the head calibration.</p>
+<p>In the table below, we assume that the VPU is positioned parallel to the coordinate system. We provide the angle correspondence between the VPU position and the <code class="docutils literal notranslate"><span class="pre">rotX</span></code>, <code class="docutils literal notranslate"><span class="pre">rotY</span></code> and <code class="docutils literal notranslate"><span class="pre">rotZ</span></code> values. The translations can be measured directly from CAD drawings or on the vehicle itself.</p>
+<p>User coordinate system: X (forward), Y (to the left), Z (up).</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>rotX [rad]</p></th>
+<th class="head"><p>rotY [rad]</p></th>
+<th class="head"><p>rotZ [rad]</p></th>
+<th class="head"><p>VPU plugs direction</p></th>
+<th class="head"><p>VPU plugs direction in user coordinates (math.)</p></th>
+<th class="head"><p>VPU label direction</p></th>
+<th class="head"><p>VPU label direction in user coordinates (math.)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>to the right</p></td>
+<td><p>-Y</p></td>
+<td><p>upwards</p></td>
+<td><p>+Z</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>pi/2</p></td>
+<td><p>to the front</p></td>
+<td><p>+X</p></td>
+<td><p>upwards</p></td>
+<td><p>+Z</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>pi</p></td>
+<td><p>to the left</p></td>
+<td><p>+Y</p></td>
+<td><p>upwards</p></td>
+<td><p>+Z</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>-pi/2</p></td>
+<td><p>to the back</p></td>
+<td><p>-X</p></td>
+<td><p>upwards</p></td>
+<td><p>+Z</p></td>
+</tr>
+<tr class="row-even"><td><p>pi/2</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>downwards</p></td>
+<td><p>-Z</p></td>
+<td><p>to the right</p></td>
+<td><p>-Y</p></td>
+</tr>
+<tr class="row-odd"><td><p>pi/2</p></td>
+<td><p>pi/2</p></td>
+<td><p>0</p></td>
+<td><p>downwards</p></td>
+<td><p>-Z</p></td>
+<td><p>to the front</p></td>
+<td><p>+X</p></td>
+</tr>
+<tr class="row-even"><td><p>pi/2</p></td>
+<td><p>pi</p></td>
+<td><p>0</p></td>
+<td><p>downwards</p></td>
+<td><p>-Z</p></td>
+<td><p>to the left</p></td>
+<td><p>+Y</p></td>
+</tr>
+<tr class="row-odd"><td><p>pi/2</p></td>
+<td><p>-pi/2</p></td>
+<td><p>0</p></td>
+<td><p>downwards</p></td>
+<td><p>-Z</p></td>
+<td><p>to the back</p></td>
+<td><p>-X</p></td>
+</tr>
+<tr class="row-even"><td><p>pi</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>to the left</p></td>
+<td><p>+Y</p></td>
+<td><p>downwards</p></td>
+<td><p>-Z</p></td>
+</tr>
+<tr class="row-odd"><td><p>pi</p></td>
+<td><p>0</p></td>
+<td><p>pi/2</p></td>
+<td><p>to the front</p></td>
+<td><p>+X</p></td>
+<td><p>downwards</p></td>
+<td><p>-Z</p></td>
+</tr>
+<tr class="row-even"><td><p>pi</p></td>
+<td><p>0</p></td>
+<td><p>pi</p></td>
+<td><p>to the right</p></td>
+<td><p>-Y</p></td>
+<td><p>downwards</p></td>
+<td><p>-Z</p></td>
+</tr>
+<tr class="row-odd"><td><p>pi</p></td>
+<td><p>0</p></td>
+<td><p>-pi/2</p></td>
+<td><p>to the back</p></td>
+<td><p>-X</p></td>
+<td><p>downwards</p></td>
+<td><p>-Z</p></td>
+</tr>
+<tr class="row-even"><td><p>-pi/2</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>upwards</p></td>
+<td><p>+Z</p></td>
+<td><p>to the left</p></td>
+<td><p>+Y</p></td>
+</tr>
+<tr class="row-odd"><td><p>-pi/2</p></td>
+<td><p>pi/2</p></td>
+<td><p>0</p></td>
+<td><p>upwards</p></td>
+<td><p>+Z</p></td>
+<td><p>to the front</p></td>
+<td><p>+X</p></td>
+</tr>
+<tr class="row-even"><td><p>-pi/2</p></td>
+<td><p>pi</p></td>
+<td><p>0</p></td>
+<td><p>upwards</p></td>
+<td><p>+Z</p></td>
+<td><p>to the right</p></td>
+<td><p>-Y</p></td>
+</tr>
+<tr class="row-odd"><td><p>-pi/2</p></td>
+<td><p>-pi/2</p></td>
+<td><p>0</p></td>
+<td><p>upwards</p></td>
+<td><p>+Z</p></td>
+<td><p>to the back</p></td>
+<td><p>-X</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>pi/2</p></td>
+<td><p>pi</p></td>
+<td><p>to the left</p></td>
+<td><p>+Y</p></td>
+<td><p>to the front</p></td>
+<td><p>+X</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>-pi/2</p></td>
+<td><p>pi</p></td>
+<td><p>to the left</p></td>
+<td><p>+Y</p></td>
+<td><p>to the back</p></td>
+<td><p>-X</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>pi/2</p></td>
+<td><p>0</p></td>
+<td><p>to the right</p></td>
+<td><p>-Y</p></td>
+<td><p>to the front</p></td>
+<td><p>+X</p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>-pi/2</p></td>
+<td><p>0</p></td>
+<td><p>to the right</p></td>
+<td><p>-Y</p></td>
+<td><p>to the back</p></td>
+<td><p>-X</p></td>
+</tr>
+<tr class="row-even"><td><p>-pi/2</p></td>
+<td><p>0</p></td>
+<td><p>pi/2</p></td>
+<td><p>to the front</p></td>
+<td><p>+X</p></td>
+<td><p>to the left</p></td>
+<td><p>+Y</p></td>
+</tr>
+<tr class="row-odd"><td><p>pi/2</p></td>
+<td><p>0</p></td>
+<td><p>pi/2</p></td>
+<td><p>to the front</p></td>
+<td><p>+X</p></td>
+<td><p>to the right</p></td>
+<td><p>-Y</p></td>
+</tr>
+<tr class="row-even"><td><p>-pi/2</p></td>
+<td><p>0</p></td>
+<td><p>-pi/2</p></td>
+<td><p>to the back</p></td>
+<td><p>-X</p></td>
+<td><p>to the left</p></td>
+<td><p>+Y</p></td>
+</tr>
+<tr class="row-odd"><td><p>pi/2</p></td>
+<td><p>0</p></td>
+<td><p>-pi/2</p></td>
+<td><p>to the back</p></td>
+<td><p>-X</p></td>
+<td><p>to the right</p></td>
+<td><p>-Y</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="imu-reference-point">
+<h2>IMU reference point<a class="headerlink" href="#imu-reference-point" title="Permalink to this headline"></a></h2>
+<p>The geometrical reference point of the VPU is the intersection point of the two lines of diagonally opposing mounting points at the back of the VPU.
+See the figure below for reference.</p>
+<p><img alt="" src="../../../_images/vpu_refpoint.png" /></p>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="vpu-extrinsic-calibration-and-misalignment-estimation">
+<h1>VPU Extrinsic Calibration and Misalignment Estimation<a class="headerlink" href="#vpu-extrinsic-calibration-and-misalignment-estimation" title="Permalink to this headline"></a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h2>
+<p>The extrinsic calibration of the VPU, i.e., extrinsicVPUToUser, defines the 3D transformation between the VPU coordinate system and the User coordinate system.
+It is the basis for the ego-motion estimation of the ODS application of O3R, which is based on IMU measurements.
+Since deviations in the extrinsic VPU calibration can impact the ego-motion estimation and therefore the overall ODS performance, it should be as accurate as possible.</p>
+<p>To this end, the VPU Extrinsic Calibration Tool assists in determining the extrinsic VPU calibration for axis-aligned mounting positions.
+Moreover, the VPU Misalignment Estimation Tool allows to estimate the so-called VPU misalignment, i.e., small deviations in the orientation of the VPU, to provide an improved extrinsic VPU calibration.</p>
+</div>
+<div class="section" id="vpu-extrinsic-calibration-tool">
+<h2>VPU Extrinsic Calibration Tool<a class="headerlink" href="#vpu-extrinsic-calibration-tool" title="Permalink to this headline"></a></h2>
+<p>The VPU Extrinsic Calibration Tool is started using the following command: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">vpu_extrinsic_calibration.py</span> <span class="pre">--ip</span> <span class="pre">192.168.0.69</span> <span class="pre">--source</span> <span class="pre">port6</span></code>.
+The input argument <code class="docutils literal notranslate"><span class="pre">ip</span></code> is the IP address of the VPU, <code class="docutils literal notranslate"><span class="pre">source</span></code> specifies the IMU port.</p>
+<p>The left side of the GUI shows a table containing the 24 possible orientations of the VPU for axis-aligned mounting positions.
+By identifying the direction of the plugs and the labels of the VPU in the User coordinate system, the correct orientation can be determined.
+Inserting the corresponding ID on the right side of the GUI, allows rotX, rotY and rotZ to be conveniently set.
+For mounting positions of the VPU that are not axis aligned, rotX, rotY and rotZ can be entered directly.
+The translation (transX, transY, transZ) between the VPU coordinate system and User coordinate system must be measured manually and must also be specified.
+Note that the origin of the VPU coordinate system is defined as the center of the mechanical interface, i.e., the center of the four screw holes on the bottom of the VPU.</p>
+<p><img alt="" src="../../../_images/vpu_extrinsic_calibration_gui.png" /></p>
+<p>For more details about the orientation of the VPU, see the full size VPU IPC image here: <img alt="" src="../../../_images/ovp800.png" /></p>
+<p>After providing the measurements, the extrinsic VPU calibration has to be updated (press <code class="docutils literal notranslate"><span class="pre">Update</span></code>), i.e., the two text boxes on the bottom are updated.
+Make sure to check that the text box on the right contains the correct values, before the extrinsic VPU calibration, i.e., extrinsicVPUToUser, is stored on the VPU (press <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">to</span> <span class="pre">VPU</span></code>).</p>
+</div>
+<div class="section" id="vpu-misalignment-estimation-tool">
+<h2>VPU Misalignment Estimation Tool<a class="headerlink" href="#vpu-misalignment-estimation-tool" title="Permalink to this headline"></a></h2>
+<p>The VPU Misalignment Estimation Tool relies on IMU data recorded while the vehicle moves on a path shaped like a “lying eight”, i.e., a right turn followed by a left turn (or vice versa, see the figure below).
+While this motion mainly results in angular rates $\omega_{z}$ (around the z-axis), the VPU misalignment (small deviations in the orientation of the VPU) manifests in angular rates $\omega_{x}$ and $\omega_{y}$ different from zero (around the x- and y-axis).
+The VPU misalignment is estimated in a least-squares optimization such that the angular rates $\omega_{x}$ and $\omega_{y}$ vanish.
+The estimated VPU misalignment is used to update the extrinsic calibration of the VPU.</p>
+<p><img alt="" src="../../../_images/lying_eight.png" /></p>
+<p>The VPU Misalignment Estimation Tool is started using the following command: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">vpu_misalignment_estimation.py</span> <span class="pre">--ip</span> <span class="pre">192.168.0.69</span> <span class="pre">--source</span> <span class="pre">port6</span></code>.
+The input argument <code class="docutils literal notranslate"><span class="pre">ip</span></code> is the IP address of the VPU, <code class="docutils literal notranslate"><span class="pre">source</span></code> specifies the IMU port.</p>
+<p>The left side of the GUI shows the recorded angular rates (separately for $\omega_{x}$, $\omega_{y}$ and $\omega_{z}$).
+The bottom row is the original data, while the top row shows the (aligned) data after estimating the VPU misalignment.
+The right side offers several buttons to start and stop data recording (<code class="docutils literal notranslate"><span class="pre">Start</span> <span class="pre">Recording</span></code> and <code class="docutils literal notranslate"><span class="pre">Stop</span> <span class="pre">Recording</span></code>, respectively), to estimate the VPU misalignment (<code class="docutils literal notranslate"><span class="pre">Estimate</span> <span class="pre">Misalignment</span></code>), to store the updated extrinsic calibration on the VPU (<code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">to</span> <span class="pre">VPU</span></code>) and to close the window (<code class="docutils literal notranslate"><span class="pre">Close</span> <span class="pre">Window</span></code>).
+Moreover, three text boxes show information about the VPU misalignment estimation (top), the extrinsic VPU calibration, i.e., extrinsicVPUToUser, as well as instructions and other results (bottom).</p>
+<p><img alt="" src="../../../_images/vpu_misalignment_estimation_gui_1.png" /></p>
+<p>Make sure that the extrinsic VPU calibration is correctly stored on the VPU and is shown in the corresponding text box before starting to record data.</p>
+<p>Follow the instructions and press <code class="docutils literal notranslate"><span class="pre">Start</span> <span class="pre">Recording</span></code> to start recording data.
+Note that it is mandatory to wait for one second before moving the vehicle.
+In addition, the VPU Misalignment Estimation Tool expects the vehicle to move in positive x-direction first, i.e., the “lying eight”-shaped path must be driven as depicted in the figure above.
+To assist recording data, the recorded angular rates are continuously updated and the last ten seconds are displayed.
+The length of the recorded data is not important.
+Everything from a few seconds to more than one minute is fine.
+Make sure that there is a significant rotation with \omega_{z}$ reaching more than +/- 0.25 rad/s in both turns.
+The radius of the two turns can be anything between half a meter and several meters.
+Make sure that the vehicle is moving on flat ground.</p>
+<p>Press <code class="docutils literal notranslate"><span class="pre">Stop</span> <span class="pre">Recording</span></code> to stop recording data.
+All the recorded angular rates are shown.
+The extrinsic calibration is checked for plausibility.
+If this check is passed, follow the instructions and press <code class="docutils literal notranslate"><span class="pre">Estimate</span> <span class="pre">Misalignment</span></code>.</p>
+<p><img alt="" src="../../../_images/vpu_misalignment_estimation_gui_2.png" /></p>
+<p>The VPU misalignment is estimated.
+The results (two angles $\alpha$ and $\beta$ along with the final RMSE) are shown in the top text box.
+On the left side of the GUI, the angular rates using the updated extrinsic VPU calibration based on the estimated misalignment are displayed in the top row.
+The angular rates $\omega_{x}$ and $\omega_{y}$ should have vanished or should at least be smaller than before.
+This is also checked as part of a plausibility check.
+If it is passed, the improved extrinsic VPU calibration can be stored on the VPU (press <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">to</span> <span class="pre">VPU</span></code>).</p>
+<p><img alt="" src="../../../_images/vpu_misalignment_estimation_gui_3.png" /></p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../checkerboard_static_camera_calibration/README.html" class="btn btn-neutral float-left" title="Checkerboard Static Camera - Calibration Routine" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../registration2d3d/README.html" class="btn btn-neutral float-right" title="2D-3D Registration Example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.
+      <span class="lastupdated">Last updated on Mar 15, 2023.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
