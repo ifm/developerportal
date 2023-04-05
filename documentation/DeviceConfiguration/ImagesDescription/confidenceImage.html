@@ -2,7 +2,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-    <meta property="article:modified_time" content="2023-01-25T20:09:11+00:00" />
+    <meta property="article:modified_time" content="2023-04-05T09:37:53+00:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The confidence image &mdash; O3R  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -106,12 +106,12 @@
 <li><p>64: CONF_INVALID_RANGE - the pixel is outside of the measurement range;</p></li>
 <li><p>128: CONF_SUSPECT_PIXEL - this is a bad pixel on the chip;</p></li>
 <li><p>256: RESERVED</p></li>
-<li><p>512: CONF_EDGEPIXEL - edge pixels refer to the image edges which are sometimes invalidated by lateral filters;</p></li>
+<li><p>512: CONF_EDGEPIXEL or CONF_ISOLATED - edge pixels refer to the image edges which are sometimes invalidated by lateral filters, an isolated pixel is a pixel with random amplitude in an area where no amplitude is measured;</p></li>
 <li><p>1024: CONF_UNPLAUSIBLE - pixels remaining after shifting the <span class="xref myst">offset</span>, between the camera and the beginning of the shifted range;</p></li>
 <li><p>2048: CONF_REFLECTIVITY - the <span class="xref myst">reflectivity</span> is below the threshold;</p></li>
 <li><p>4096: CONF_DYNAMIC_AMPLITUDE - the pixel is probably part of the halo around a very bright object (see the <span class="xref myst">dynamic amplitude threshold <em>(documentation coming soon)</em></span> and the <span class="xref myst">stray-light filter</span>);</p></li>
 <li><p>16384: CONF_MIXEDPIXEL - the pixel is a <span class="xref myst">mixed pixel</span>, part of which is measuring the object and the other part the background;</p></li>
-<li><p>32768: CONF_ISOLATED - an isolated pixel with random amplitude in an area where no amplitude is measured.</p></li>
+<li><p>32768: CROSSTALK: the pixel is invalidated because of detected interference from other sources.</p></li>
 </ul>
 </div>
 
@@ -127,7 +127,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021, ifm CSR.
-      <span class="lastupdated">Last updated on Jan 25, 2023.
+      <span class="lastupdated">Last updated on Apr 05, 2023.
       </span></p>
   </div>
 

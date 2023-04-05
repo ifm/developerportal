@@ -2,7 +2,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-    <meta property="article:modified_time" content="2023-01-25T20:09:11+00:00" />
+    <meta property="article:modified_time" content="2023-04-05T09:37:53+00:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Diagnosis information &mdash; O3R  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -115,7 +115,7 @@
 <h2>Receiving the diagnostic data<a class="headerlink" href="#receiving-the-diagnostic-data" title="Permalink to this headline"></a></h2>
 <p>For ifm3d 1.1.0 and above, it is possible to retrieve the diagnosis information as follows:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-0-Yysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Yysr" name="Yysr" role="tab" tabindex="-1">c++</button><button aria-controls="panel-0-Q0xJ" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Q0xJ" name="Q0xJ" role="tab" tabindex="-1">CLI</button></div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel group-tab" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ifm3dpy</span> <span class="kn">import</span> <span class="n">O3R</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-0-Yysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Yysr" name="Yysr" role="tab" tabindex="-1">c++</button><button aria-controls="panel-0-Q0xJ" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Q0xJ" name="Q0xJ" role="tab" tabindex="-1">CLI</button></div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel group-tab" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ifm3dpy.device</span> <span class="kn">import</span> <span class="n">O3R</span>
 <span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">()</span>
 <span class="n">o3r</span><span class="o">.</span><span class="n">get_diagnostic</span><span class="p">()</span>
 </pre></div>
@@ -129,6 +129,9 @@
 </pre></div>
 </div>
 </div></div>
+<p>.. warning::
+Firmware 1.0.14 introduces an additional intermediate group (layer) to the JSON structure of the returned diagnostic JSON string.
+The diagnostic Error message structure (as described below) can be found under the additional group <code class="docutils literal notranslate"><span class="pre">event</span></code>.</p>
 </div>
 </div>
 <div class="tex2jax_ignore mathjax_ignore section" id="error-descriptions">
@@ -267,7 +270,7 @@ In most cases, it is recommend to only use the active errors.</p>
 </div>
 <div class="section" id="ifm3d-errors">
 <h2>ifm3d errors<a class="headerlink" href="#ifm3d-errors" title="Permalink to this headline"></a></h2>
-<p>The ifm3d API has its own set of error codes and messages. A complete list can be found <a class="reference external" href="https://ifm.github.io/ifm3d-docs/html/cpp_api/err_8h_source.html">here</a>.</p>
+<p>The ifm3d API has its own set of error codes and messages. A complete list can be found <a class="reference external" href="https://api.ifm3d.com/latest/cpp_api/err_8h_source.html">here</a>.</p>
 </div>
 </div>
 
@@ -283,7 +286,7 @@ In most cases, it is recommend to only use the active errors.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021, ifm CSR.
-      <span class="lastupdated">Last updated on Jan 25, 2023.
+      <span class="lastupdated">Last updated on Apr 05, 2023.
       </span></p>
   </div>
 

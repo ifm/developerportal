@@ -10,7 +10,7 @@ For ifm3d 1.1.0 and above, it is possible to retrieve the diagnosis information 
 :::::{tabs}
 ::::{group-tab} Python
 :::python
-from ifm3dpy import O3R
+from ifm3dpy.device import O3R
 o3r = O3R()
 o3r.get_diagnostic()
 :::
@@ -29,6 +29,10 @@ ifm3d diagnostic
 ::::
 :::::
 
+
+.. warning::
+    Firmware 1.0.14 introduces an additional intermediate group (layer) to the JSON structure of the returned diagnostic JSON string.
+    The diagnostic Error message structure (as described below) can be found under the additional group `event`.
 
 
 # Error descriptions
@@ -90,4 +94,4 @@ Error message structure is a follows:
 
 ## ifm3d errors
 
-The ifm3d API has its own set of error codes and messages. A complete list can be found [here](https://ifm.github.io/ifm3d-docs/html/cpp_api/err_8h_source.html).
+The ifm3d API has its own set of error codes and messages. A complete list can be found [here](https://api.ifm3d.com/latest/cpp_api/err_8h_source.html).
