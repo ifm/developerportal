@@ -2,7 +2,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-    <meta property="article:modified_time" content="2023-04-05T09:37:53+00:00" />
+    <meta property="article:modified_time" content="2023-04-07T19:53:34+00:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>How to update the firmware: &mdash; O3R  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -57,10 +57,14 @@
 <li class="toctree-l2"><a class="reference internal" href="ReleaseNotes/index.html">Release notes</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">How to update</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#download-the-firmware">Download the firmware</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#with-the-web-interface">With the web interface</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#with-ifmvisionassistant">With ifmVisionAssistant</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#with-ifm3d">With ifm3d</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#reboot-to-production-state-from-recovery-state">Reboot to production state from recovery state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#starting-firmware-is-version-1-0-0">Starting firmware is version &lt; 1.0.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Starting firmware is version&gt;= 1.0.0</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#reboot-to-recovery">Reboot to recovery</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#with-the-web-interface">With the web interface</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#with-ifmvisionassistant">With ifmVisionAssistant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#with-ifm3d">With ifm3d</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -107,99 +111,114 @@
 <li><p>Select the firmware from the list. It will start downloading the file.</p></li>
 </ul>
 </div>
+<div class="section" id="starting-firmware-is-version-1-0-0">
+<h2>Starting firmware is version &lt; 1.0.0<a class="headerlink" href="#starting-firmware-is-version-1-0-0" title="Permalink to this headline"></a></h2>
+<p>When updating to a firmware version 1.0.0 or above, starting with a firmware version below 1.0.0, please refer to <span class="xref myst">the migration guide</span>.</p>
+</div>
+<div class="section" id="id1">
+<h2>Starting firmware is version&gt;= 1.0.0<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<div class="section" id="reboot-to-recovery">
+<h3>Reboot to recovery<a class="headerlink" href="#reboot-to-recovery" title="Permalink to this headline"></a></h3>
+<p>When the starting firmware is version 1.0.0 and above, a reboot to recovery state is necessary to perform an update.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-Q0xJ" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-Q0xJ" name="Q0xJ" role="tab" tabindex="0">CLI</button><button aria-controls="panel-0-Yysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Yysr" name="Yysr" role="tab" tabindex="-1">c++</button><button aria-controls="panel-0-cHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-cHl0aG9u" name="cHl0aG9u" role="tab" tabindex="-1">python</button></div><div aria-labelledby="tab-0-Q0xJ" class="sphinx-tabs-panel group-tab" id="panel-0-Q0xJ" name="Q0xJ" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>reboot<span class="w"> </span>--recovery
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-Yysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Yysr" name="Yysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ifm3d/device/o3r.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ifm3d/swupdater/swupdater.h&gt;</span>
+<span class="p">...</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">o3r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">O3R</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">sw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">SWUpdater</span><span class="o">&gt;</span><span class="p">(</span><span class="n">o3r</span><span class="p">);</span>
+<span class="n">sw</span><span class="o">-&gt;</span><span class="n">RebootToRecovery</span><span class="p">();</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sw</span><span class="o">-&gt;</span><span class="n">WaitForRecovery</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;System in recovery mode&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span><span class="w">  </span>
+<span class="p">...</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-cHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-cHl0aG9u" name="cHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ifm3dpy.swupdater</span> <span class="kn">import</span> <span class="n">SWUpdater</span>
+<span class="kn">from</span> <span class="nn">ifm3dpy.device</span> <span class="kn">import</span> <span class="n">O3R</span>
+<span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">()</span>
+<span class="n">sw</span> <span class="o">=</span> <span class="n">SWUpdater</span><span class="p">(</span><span class="n">o3r</span><span class="p">)</span>
+<span class="n">sw</span><span class="o">.</span><span class="n">reboot_to_recovery</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">sw</span><span class="o">.</span><span class="n">wait_for_recovery</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;System in recovery mode)</span>
+</pre></div>
+</div>
+</div></div>
+</div>
 <div class="section" id="with-the-web-interface">
-<h2>With the web interface<a class="headerlink" href="#with-the-web-interface" title="Permalink to this headline"></a></h2>
+<h3>With the web interface<a class="headerlink" href="#with-the-web-interface" title="Permalink to this headline"></a></h3>
+<p>Once the device is in recovery mode (see section above), you can open the web interface:</p>
 <ol class="simple">
 <li><p>Open <a class="reference external" href="http://192.168.0.69:8080/">http://192.168.0.69:8080/</a> in web browser. The SWUpdate web interface is shown.</p></li>
 <li><p>Drag and drop the <code class="docutils literal notranslate"><span class="pre">*.swu</span></code> firmware file into the <code class="docutils literal notranslate"><span class="pre">software</span> <span class="pre">update</span></code>-window. The upload procedure starts.</p></li>
 </ol>
-<p>For updating the firmware version from 0.16.xx to 1.0.xx, please follow the workflow in the <a class="reference internal" href="ReleaseNotes/FW_1.0.x/FW_1.0.x_migration_guide.html"><span class="doc std std-doc">migration guide</span></a></p>
-<p>In firmware version 1.0.x, the system will be in the production state and the web interface will not be available to user. So the user has to reboot the system to recovery mode and then the user can access the web interface. To reboot the system to recovery mode follow the following steps.</p>
-<ol class="simple">
-<li><p>Open http://192.168.0.69/api/rpc/v1/com.ifm.efector/ in the web browser.</p></li>
-<li><p>Enter <code class="docutils literal notranslate"><span class="pre">RebootToRecovery</span></code> as the method input. The device will reboot to recovery now.</p></li>
-</ol>
-<img align="center" height="300" src="resources/reboot2recovery.gif">
-<ol class="simple">
-<li><p>After a few seconds, the PORT LEDs will start flashing in a sequence indicating that the VPU is in recovery state.</p></li>
-</ol>
-<img width="400" height="200" src="resources/recovery_state.gif">
-<ol class="simple">
-<li><p>Open <a class="reference external" href="http://192.168.0.69:8080/">http://192.168.0.69:8080/</a> in the web browser to access the SWUpdater web interface.</p></li>
-<li><p>Drag and drop the <code class="docutils literal notranslate"><span class="pre">*1_0_x.swu</span></code> firmware file into the <code class="docutils literal notranslate"><span class="pre">software</span> <span class="pre">update</span></code> window. The upload procedure starts.</p></li>
-<li><p>After the firmware flashes to the VPU, the system restarts.</p></li>
-<li><p>After a few minutes, the PORT LEDs will turn ON indicating that the firmware is flashed successfully.</p></li>
-</ol>
-<p><em>Please keep in mind that when rebooting to productive the WebInterface will not return, this is due to the fact there is no longer a SWUpdate process in the productive system.</em></p>
+<p>The system will automatically reboot in productive mode. The web interface will not be available anymore (it is only available in recovery mode).</p>
 </div>
 <div class="section" id="with-ifmvisionassistant">
-<h2>With ifmVisionAssistant<a class="headerlink" href="#with-ifmvisionassistant" title="Permalink to this headline"></a></h2>
-<p>Download the ifmVisionAssistant from <a class="reference external" href="https://www.ifm.com/us/en/product/OVP800?tab=documents">https://www.ifm.com/us/en/product/OVP800?tab=documents</a></p>
-<p>Updating the firmware from 0.16.xx to 1.0.xx is currently not possible with the ifmVisionAssistant.</p>
-<p>Updating the firmware from 1.0.xx to 1.0.xx via ifmVisionAssistant(v2.6.12) is currently supported on a Windows machine only. The Debian package of ifmVisionAssistant supporting Linux distributions will be released soon.</p>
-<p>Expecting that user extracted the ZIP file and executing the following commands in the same directory</p>
-<ol class="simple">
+<h3>With ifmVisionAssistant<a class="headerlink" href="#with-ifmvisionassistant" title="Permalink to this headline"></a></h3>
+<p>Download the ifmVisionAssistant from https://www.ifm.com/us/en/product/OVP800?tab=documents</p>
+<blockquote>
+<div><p>Note: Updating the firmware from 0.16.xx to 1.0.xx is currently not possible with the ifmVisionAssistant.</p>
+</div></blockquote>
+<blockquote>
+<div><p>Note: Updating the firmware from 1.0.xx to 1.0.xx via ifmVisionAssistant(v2.6.12) is currently supported on a Windows machine only. The Debian package of ifmVisionAssistant supporting Linux distributions will be released soon.</p>
+</div></blockquote>
+<p>In the instructions below, we expect that the user extracted the ZIP file and is executing the following commands in the same directory:</p>
+<ul class="simple">
 <li><p>Open the command prompt and run the ifmVisionAssistant executable</p></li>
-</ol>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>C:<span class="se">\U</span>sers<span class="se">\D</span>esktop<span class="se">\i</span>VA_2_6_12<span class="w"> </span>$<span class="w"> </span>ifmVisionAssistant.exe
+</ul>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>C:<span class="se">\U</span>sers<span class="se">\D</span>esktop<span class="se">\i</span>VA_2_6_12<span class="w"> </span>$<span class="w"> </span>ifmVisionAssistant.exe
 </pre></div>
 </div>
 <p>To get the logs during firmware update, execute the above command with <code class="docutils literal notranslate"><span class="pre">-log</span></code> flag as shown below.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>C:<span class="se">\U</span>sers<span class="se">\D</span>esktop<span class="se">\i</span>VA_2_6_12<span class="w"> </span>$<span class="w"> </span>ifmVisionAssistant.exe<span class="w"> </span>-log
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>C:<span class="se">\U</span>sers<span class="se">\D</span>esktop<span class="se">\i</span>VA_2_6_12<span class="w"> </span>$<span class="w"> </span>ifmVisionAssistant.exe<span class="w"> </span>-log
 </pre></div>
 </div>
-<p>The log file is saved in i.e C:\Users\XYZ\AppData\Roaming\ifm electronic\ifmVisionAssistant\logs</p>
-<ol class="simple">
-<li><p>Connect to the VPU and navigate to the <code class="docutils literal notranslate"><span class="pre">VPU</span> <span class="pre">Settings</span></code> window and click <code class="docutils literal notranslate"><span class="pre">Update</span></code> under the <strong>Firmware update</strong> section. The version beside the <code class="docutils literal notranslate"><span class="pre">Update</span></code> button refers to the current version running on VPU.</p></li>
+<p>The log file is saved in <code class="docutils literal notranslate"><span class="pre">C:\Users\&lt;UserName&gt;\AppData\Roaming\ifm</span> <span class="pre">electronic\ifmVisionAssistant\logs</span></code></p>
+<ul class="simple">
+<li><p>Connect to the VPU and navigate to the VPU Settings window and click Update under the <code class="docutils literal notranslate"><span class="pre">Firmware</span> <span class="pre">Update</span></code> section. The version beside the <code class="docutils literal notranslate"><span class="pre">Update</span></code> button refers to the current version running on VPU.</p></li>
 <li><p>Select the File and the update process will start.</p></li>
-</ol>
+</ul>
 </div>
 <div class="section" id="with-ifm3d">
-<h2>With ifm3d<a class="headerlink" href="#with-ifm3d" title="Permalink to this headline"></a></h2>
-<p>In the instructions below, replace <code class="docutils literal notranslate"><span class="pre">firmware_image.swu</span></code> with the name of the firmware file you downloaded from <a class="reference external" href="https://www.ifm.com/">ifm.com</a>.
-We assume you are running these commands from the folders in which the <code class="docutils literal notranslate"><span class="pre">.swu</span></code> file is located.</p>
+<h3>With ifm3d<a class="headerlink" href="#with-ifm3d" title="Permalink to this headline"></a></h3>
+<p>Once the device is in recovery mode, you can use ifm3d to update the firmware.
+In the instructions below, replace <code class="docutils literal notranslate"><span class="pre">&lt;path/to/firmware_image.swu&gt;</span></code> with the path to the firmware file you downloaded from <a class="reference external" href="https://www.ifm.com/">ifm.com</a>.
+The code below is continued from the “reboot to recovery” section.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-Q0xJ" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-Q0xJ" name="Q0xJ" role="tab" tabindex="0">CLI</button><button aria-controls="panel-0-Yysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Yysr" name="Yysr" role="tab" tabindex="-1">c++</button><button aria-controls="panel-0-cHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-cHl0aG9u" name="cHl0aG9u" role="tab" tabindex="-1">python</button></div><div aria-labelledby="tab-0-Q0xJ" class="sphinx-tabs-panel group-tab" id="panel-0-Q0xJ" name="Q0xJ" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>reboot<span class="w"> </span>--recovery
-%<span class="w"> </span><span class="nb">wait</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>system<span class="w"> </span>to<span class="w"> </span>reboot
-
-$<span class="w"> </span>ifm3d<span class="w"> </span>swupdate<span class="w"> </span>&lt;<span class="w"> </span>firmware_image.swu
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-Q0xJ" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-Q0xJ" name="Q0xJ" role="tab" tabindex="0">CLI</button><button aria-controls="panel-1-Yysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-Yysr" name="Yysr" role="tab" tabindex="-1">c++</button><button aria-controls="panel-1-cHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-cHl0aG9u" name="cHl0aG9u" role="tab" tabindex="-1">python</button></div><div aria-labelledby="tab-1-Q0xJ" class="sphinx-tabs-panel group-tab" id="panel-1-Q0xJ" name="Q0xJ" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>swupdate<span class="w"> </span>&lt;<span class="w"> </span>&lt;path/to/firmware_image.swu&gt;
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-0-Yysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Yysr" name="Yysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">TODO</span>
+</div><div aria-labelledby="tab-1-Yysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-Yysr" name="Yysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sw</span><span class="o">-&gt;</span><span class="n">FlashFirmware</span><span class="p">(</span><span class="s">&quot;&lt;path/to/firmware_image.swu&gt;&quot;</span><span class="p">)){</span>
+<span class="w">    </span><span class="n">sw</span><span class="o">-&gt;</span><span class="n">WaitForProductive</span><span class="p">();</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;System ready!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-0-cHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-cHl0aG9u" name="cHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ifm3dpy.device</span> <span class="kn">import</span> <span class="n">O3R</span><span class="p">()</span>
-<span class="kn">from</span> <span class="nn">ifm3dpy.swupdater</span> <span class="kn">import</span> <span class="n">SWUpdater</span>
-
-<span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">()</span>
-
-<span class="n">sw_updater</span><span class="o">.</span><span class="n">reboot_to_recovery</span><span class="p">()</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">sw_updater</span><span class="o">.</span><span class="n">wait_for_recovery</span><span class="p">(</span><span class="mi">60000</span><span class="p">):</span> <span class="c1"># Wait for 1 min</span>
-    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Device failed to boot into recovery&quot;</span><span class="p">)</span>
-<span class="c1"># once the system has rebooted</span>
-<span class="n">o3r</span><span class="o">.</span><span class="n">swupdate</span><span class="p">(</span><span class="n">firmware_image</span><span class="o">.</span><span class="n">swu</span><span class="p">)</span>
+</div><div aria-labelledby="tab-1-cHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-cHl0aG9u" name="cHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">sw</span><span class="o">.</span><span class="n">flash_firmware</span><span class="p">(</span><span class="s1">&#39;&lt;path/to/firmware_image.swu&gt;&#39;</span><span class="p">):</span>
+    <span class="n">sw</span><span class="o">.</span><span class="n">wait_for_productive</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;System ready!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div>
+<blockquote>
+<div><p>Note: the code snippets above do not show how to handle exceptions when they occur in the update process.
+Please refer to the API documentation for details on the potential exceptions thrown by each function.</p>
+</div></blockquote>
+<p>Double check the firmware version after the update:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-Ojo6Q0xJ" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-2-Ojo6Q0xJ" name="Ojo6Q0xJ" role="tab" tabindex="0"></button></div><div aria-labelledby="tab-2-Ojo6Q0xJ" class="sphinx-tabs-panel group-tab" id="panel-2-Ojo6Q0xJ" name="Ojo6Q0xJ" role="tabpanel" tabindex="0"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<span class="p">:::</span><span class="n">python</span>
+<span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/swVersion/firmware&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dev</span><span class="o">-&gt;</span><span class="n">Get</span><span class="p">({</span><span class="s">&quot;/device/swVersion/firmware&quot;</span><span class="p">});</span>
 </pre></div>
 </div>
 </div></div>
 </div>
-<div class="section" id="reboot-to-production-state-from-recovery-state">
-<h2>Reboot to production state from recovery state<a class="headerlink" href="#reboot-to-production-state-from-recovery-state" title="Permalink to this headline"></a></h2>
-<p>If the firmware update failed and VPU is stuck in a recovery state, the VPU has to be rebooted to the production state. Unfortunately at the current moment, this can only be achieved by executing the following code snippet.</p>
-<div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-Q0xJ" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-Q0xJ" name="Q0xJ" role="tab" tabindex="0">CLI</button><button aria-controls="panel-1-cHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-cHl0aG9u" name="cHl0aG9u" role="tab" tabindex="-1">python</button></div><div aria-labelledby="tab-1-Q0xJ" class="sphinx-tabs-panel group-tab" id="panel-1-Q0xJ" name="Q0xJ" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>reboot<span class="w"> </span>--recovery
-</pre></div>
-</div>
-</div><div aria-labelledby="tab-1-cHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-cHl0aG9u" name="cHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ifm3dpy.device</span> <span class="kn">import</span> <span class="n">O3R</span>
-<span class="kn">from</span> <span class="nn">ifm3dpy.swupdater</span> <span class="kn">import</span> <span class="n">SWUpdater</span>
-
-<span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">()</span>
-<span class="n">sw_updater</span> <span class="o">=</span> <span class="n">SWUpdater</span><span class="p">(</span><span class="n">o3r</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="ow">not</span> <span class="n">sw_updater</span><span class="o">.</span><span class="n">wait_for_productive</span><span class="p">(</span><span class="mi">2000</span><span class="p">):</span> <span class="c1"># Wait for 2 seconds</span>
-    <span class="n">sw_updater</span><span class="o">.</span><span class="n">reboot_to_productive</span><span class="p">()</span>
-</pre></div>
-</div>
-</div></div>
 </div>
 </div>
 
@@ -215,7 +234,7 @@ $<span class="w"> </span>ifm3d<span class="w"> </span>swupdate<span class="w"> <
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021, ifm CSR.
-      <span class="lastupdated">Last updated on Apr 05, 2023.
+      <span class="lastupdated">Last updated on Apr 07, 2023.
       </span></p>
   </div>
 

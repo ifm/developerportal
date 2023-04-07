@@ -2,7 +2,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-    <meta property="article:modified_time" content="2023-04-05T09:37:53+00:00" />
+    <meta property="article:modified_time" content="2023-04-07T19:53:34+00:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Migration guide: FW update process from FW version 0.16.23 to FW version 1.0.x &mdash; O3R  documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
@@ -22,7 +22,6 @@
         <script src="../../../../_static/clipboard.min.js"></script>
         <script src="../../../../_static/copybutton.js"></script>
         <script src="../../../../_static/js/versionwarning.js"></script>
-        <script src="../../../../_static/tabs.js"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -62,11 +61,7 @@
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Migration Guide: 0.16.23 to 1.0.14</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#prerequisite">Prerequisite</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#changes">Changes</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#inconvenience">Inconvenience</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#workflow">Workflow</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#example-workflow-step-3-4">Example workflow step 3 / 4:</a></li>
-</ul>
-</li>
+<li class="toctree-l5"><a class="reference internal" href="#workflow">Workflow</a></li>
 </ul>
 </li>
 </ul>
@@ -117,14 +112,6 @@
 <div class="section" id="changes">
 <h2>Changes<a class="headerlink" href="#changes" title="Permalink to this headline"></a></h2>
 <p>The previous firmware versions had an A/B image approach. When a software update was initiated the inactive image was updated. During a reboot the updated image was selected and booted into. This approach cuts the available space into two images. Firmware 1.0.x provides a dedicated recovery system for updating the productive system. The increase of the free space in the root filesystem of the productive system comes with the cost to boot into this recovery system to perform an update.</p>
-</div>
-<div class="section" id="inconvenience">
-<h2>Inconvenience<a class="headerlink" href="#inconvenience" title="Permalink to this headline"></a></h2>
-<p>As mentioned one has to boot into the recovery system first to perform the initial update to FW 1.0.x. This can be dove via the ifm3d library (<code class="docutils literal notranslate"><span class="pre">version</span> <span class="pre">&gt;=</span> <span class="pre">1.2.4</span></code>).
-Please see the provided helper Python3 modules to perform a firmware update or follow the process as outlined below.</p>
-<blockquote>
-<div><p>TODO: add instructions based on swu update webfontend on port 8080</p>
-</div></blockquote>
 <blockquote>
 <div><p>Important: There will be no possibility to downgrade an firmware version 1.0.x to the 0.16.x release series by an SWU update anymore.</p>
 </div></blockquote>
@@ -137,52 +124,9 @@ Please see the provided helper Python3 modules to perform a firmware update or f
 <ol class="simple">
 <li><p>✅ Perform a Factory reset which includes network settings ❗</p></li>
 <li><p>✅ Update the O3R to the latest 0.16.23 firmware. ❗</p></li>
-<li><p>✅ Install the latest firmware version 1.0.x. In this step only the recovery system is installed! The VPU will reboot into recovery automatically.</p></li>
-<li><p>✅ Install the latest firmware version 1.0.x on the VPU (yes, you have to do this twice). This will reboot automatically into the productive system. Please keep in mind that when rebooting to productive the WebInterface will not return, this is due to the fact there is no longer a SWUpdate process in the productive system.</p></li>
+<li><p>✅ Install the latest firmware version 1.0.x. In this step only the recovery system is installed! The VPU will reboot into recovery automatically. Use the web interface at <a class="reference external" href="http://192.168.0.69:8080/">http://192.168.0.69:8080/</a> to update.</p></li>
+<li><p>✅ Install the latest firmware version 1.0.x on the VPU (yes, you have to do this twice). Use the web interface at <a class="reference external" href="http://192.168.0.69:8080/">http://192.168.0.69:8080/</a> to update. This will reboot automatically into the productive system. Please keep in mind that when rebooting to productive the web interface will not return, this is due to the fact there is no longer a SWUpdate process in the productive system.</p></li>
 </ol>
-<div class="section" id="example-workflow-step-3-4">
-<h3>Example workflow step 3 / 4:<a class="headerlink" href="#example-workflow-step-3-4" title="Permalink to this headline"></a></h3>
-<div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-Q0xJ" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-Q0xJ" name="Q0xJ" role="tab" tabindex="0">CLI</button><button aria-controls="panel-0-Yysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Yysr" name="Yysr" role="tab" tabindex="-1">c++</button><button aria-controls="panel-0-cHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-cHl0aG9u" name="cHl0aG9u" role="tab" tabindex="-1">python</button></div><div aria-labelledby="tab-0-Q0xJ" class="sphinx-tabs-panel group-tab" id="panel-0-Q0xJ" name="Q0xJ" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>reboot<span class="w"> </span>--recovery
-%<span class="w"> </span><span class="nb">wait</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>system<span class="w"> </span>to<span class="w"> </span>reboot
-
-$<span class="w"> </span>ifm3d<span class="w"> </span>swupdate<span class="w"> </span>&lt;<span class="w"> </span>firmware_image.swu
-</pre></div>
-</div>
-</div><div aria-labelledby="tab-0-Yysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Yysr" name="Yysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ifm3d/device/o3r.h&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ifm3d/swupdater/swupdater.h&gt;</span>
-<span class="p">...</span>
-<span class="k">auto</span><span class="w"> </span><span class="n">o3r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">O3R</span><span class="o">&gt;</span><span class="p">();</span>
-<span class="k">auto</span><span class="w"> </span><span class="n">sw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">SWUpdater</span><span class="o">&gt;</span><span class="p">(</span><span class="n">o3r</span><span class="p">);</span>
-<span class="n">sw</span><span class="o">-&gt;</span><span class="n">RebootToRecovery</span><span class="p">();</span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sw</span><span class="o">-&gt;</span><span class="n">WaitForRecovery</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;System in recovery mode&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="n">sw</span><span class="o">-&gt;</span><span class="n">FlashFirmware</span><span class="p">(</span><span class="n">swu_filename</span><span class="p">)</span>
-<span class="p">...</span>
-</pre></div>
-</div>
-</div><div aria-labelledby="tab-0-cHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-cHl0aG9u" name="cHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
-<span class="kn">from</span> <span class="nn">ifm3dpy.device</span> <span class="kn">import</span> <span class="n">O3R</span><span class="p">()</span>
-<span class="kn">from</span> <span class="nn">ifm3dpy.swupdater</span> <span class="kn">import</span> <span class="n">SWUpdater</span>
-
-<span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">()</span>
-
-<span class="n">sw_updater</span> <span class="o">=</span> <span class="n">SWUpdater</span><span class="p">(</span><span class="n">o3r</span><span class="p">)</span>
-<span class="n">sw_updater</span><span class="o">.</span><span class="n">reboot_to_recovery</span><span class="p">()</span>
-<span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># allow grace period before requesting recovery state</span>
-
-<span class="k">if</span> <span class="ow">not</span> <span class="n">sw_updater</span><span class="o">.</span><span class="n">wait_for_recovery</span><span class="p">(</span><span class="mi">60000</span><span class="p">):</span>
-    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Device failed to boot into recovery&quot;</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="ow">not</span> <span class="n">sw_updater</span><span class="o">.</span><span class="n">flash_firmware</span><span class="p">(</span><span class="n">swu_filename</span><span class="p">,</span> <span class="n">timeout_millis</span><span class="o">=</span><span class="mi">120000</span><span class="p">):</span>
-    <span class="n">_reboot_productive</span><span class="p">(</span><span class="n">o3r</span><span class="o">=</span><span class="n">o3r</span><span class="p">)</span>
-    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Firmware update failed&quot;</span><span class="p">)</span>
-
-</pre></div>
-</div>
-</div></div>
-</div>
 </div>
 </div>
 
@@ -198,7 +142,7 @@ $<span class="w"> </span>ifm3d<span class="w"> </span>swupdate<span class="w"> <
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021, ifm CSR.
-      <span class="lastupdated">Last updated on Apr 05, 2023.
+      <span class="lastupdated">Last updated on Apr 07, 2023.
       </span></p>
   </div>
 
