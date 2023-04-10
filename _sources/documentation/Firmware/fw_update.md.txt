@@ -116,15 +116,19 @@ if sw.flash_firmware('<path/to/firmware_image.swu>'):
 Double check the firmware version after the update:
 
 :::::{tabs}
-::::{group-tab}
-:::CLI
+::::{group-tab} CLI
+:::bash
 $ ifm3d dump | jq .device.swVersion.firmware
 :::
-:::python
-o3r.get(["/device/swVersion/firmware"])
-:::
+::::
+::::{group-tab} c++
 :::c++
 ifm3d::json config = dev->Get({"/device/swVersion/firmware"});
+:::
+::::
+::::{group-tab} python
+:::python
+o3r.get(["/device/swVersion/firmware"])
 :::
 ::::
 :::::

@@ -2,7 +2,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-    <meta property="article:modified_time" content="2023-04-07T19:53:34+00:00" />
+    <meta property="article:modified_time" content="2023-04-10T18:16:10+00:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>How to update the firmware: &mdash; O3R  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -209,12 +209,13 @@ Please refer to the API documentation for details on the potential exceptions th
 </div></blockquote>
 <p>Double check the firmware version after the update:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-Ojo6Q0xJ" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-2-Ojo6Q0xJ" name="Ojo6Q0xJ" role="tab" tabindex="0"></button></div><div aria-labelledby="tab-2-Ojo6Q0xJ" class="sphinx-tabs-panel group-tab" id="panel-2-Ojo6Q0xJ" name="Ojo6Q0xJ" role="tabpanel" tabindex="0"><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-<span class="p">:::</span><span class="n">python</span>
-<span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/swVersion/firmware&quot;</span><span class="p">])</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-Q0xJ" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-2-Q0xJ" name="Q0xJ" role="tab" tabindex="0">CLI</button><button aria-controls="panel-2-Yysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-Yysr" name="Yysr" role="tab" tabindex="-1">c++</button><button aria-controls="panel-2-cHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-cHl0aG9u" name="cHl0aG9u" role="tab" tabindex="-1">python</button></div><div aria-labelledby="tab-2-Q0xJ" class="sphinx-tabs-panel group-tab" id="panel-2-Q0xJ" name="Q0xJ" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.device.swVersion.firmware
 </pre></div>
 </div>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dev</span><span class="o">-&gt;</span><span class="n">Get</span><span class="p">({</span><span class="s">&quot;/device/swVersion/firmware&quot;</span><span class="p">});</span>
+</div><div aria-labelledby="tab-2-Yysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-Yysr" name="Yysr" role="tabpanel" tabindex="0"><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dev</span><span class="o">-&gt;</span><span class="n">Get</span><span class="p">({</span><span class="s">&quot;/device/swVersion/firmware&quot;</span><span class="p">});</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-2-cHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-cHl0aG9u" name="cHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/swVersion/firmware&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div></div>
@@ -234,7 +235,7 @@ Please refer to the API documentation for details on the potential exceptions th
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021, ifm CSR.
-      <span class="lastupdated">Last updated on Apr 07, 2023.
+      <span class="lastupdated">Last updated on Apr 10, 2023.
       </span></p>
   </div>
 
