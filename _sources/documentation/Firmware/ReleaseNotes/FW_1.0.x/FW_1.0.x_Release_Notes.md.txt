@@ -182,6 +182,9 @@ The steps outlined there are required to change the device from a A/B redundant 
 * On floors with not enough visible structure, ego motion might not be available (visible with diagnostics VELOCTIY_UNAVAILABLE)
   This can lead to performance degradations, i.e. limited detection range, objects might be missed
 * Application conf parameter are not handled correctly
+* Initializing an ODS application instance with default extrinsic calibration parameters - ODS app with two heads:
+  * Configuration description: One head with non-default extrinsic calibration and one with default extrinsic calibration parameters causes a instable non-recoverable app instance
+  * Outcome: The ODS error state may not be propagated to a correct diagnostic error code (implausible extrinsic calibration), The camera streams for the respective camera heads may not be released after error state occured
 
 
 ## Fixes

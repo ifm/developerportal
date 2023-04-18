@@ -2,7 +2,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-    <meta property="article:modified_time" content="2023-04-05T09:37:53+00:00" />
+    <meta property="article:modified_time" content="2023-04-17T09:33:28+00:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FIRMWARE 1.0.14 RELEASE NOTES &mdash; O3R  documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
@@ -395,6 +395,12 @@ The steps outlined there are required to change the device from a A/B redundant 
 <li><p>On floors with not enough visible structure, ego motion might not be available (visible with diagnostics VELOCTIY_UNAVAILABLE)
 This can lead to performance degradations, i.e. limited detection range, objects might be missed</p></li>
 <li><p>Application conf parameter are not handled correctly</p></li>
+<li><p>Initializing an ODS application instance with default extrinsic calibration parameters - ODS app with two heads:</p>
+<ul>
+<li><p>Configuration description: One head with non-default extrinsic calibration and one with default extrinsic calibration parameters causes a instable non-recoverable app instance</p></li>
+<li><p>Outcome: The ODS error state may not be propagated to a correct diagnostic error code (implausible extrinsic calibration), The camera streams for the respective camera heads may not be released after error state occured</p></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -500,7 +506,7 @@ This can lead to performance degradations, i.e. limited detection range, objects
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021, ifm CSR.
-      <span class="lastupdated">Last updated on Apr 05, 2023.
+      <span class="lastupdated">Last updated on Apr 17, 2023.
       </span></p>
   </div>
 
