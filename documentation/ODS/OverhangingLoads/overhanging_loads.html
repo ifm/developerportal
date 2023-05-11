@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Overhanging loads &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Extrinsic calibration for ODS" href="../ExtrinsicCalibration/index_extrinsic_calibration.html" />
+    <link rel="prev" title="How to switch ODS applications" href="../ChangingViews/changing_views.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index_ods.html">ODS</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Mounting/mounting.html">Mounting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Instantiation/instantiation.html">Instantiation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Configuration/configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Zones/zones.html">Zones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OccupancyGrid/occupancy_grid.html">Occupancy grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Recording/ods_data_recording.html">Recording</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ChangingViews/changing_views.html">Changing views</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Overhanging loads</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-can-be-considered-an-overhanging-load">What can be considered an overhanging load?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-configure">How to configure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#shape-definition">Shape Definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuration-in-ifm-vision-assistant">Configuration in ifm Vision Assistant</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#comparing-with-and-without-overhanging-load-feature-in-ods">Comparing with and without overhanging load feature in ODS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#impact-of-stray-light-artifacts">Impact of stray light artifacts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ExtrinsicCalibration/index_extrinsic_calibration.html">Extrinsic calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../FieldTest/index_field_test.html">Field test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DeviceVerification/index_device_verification.html">Device verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../iVA/index_ifmODS_iVA.html">ifmVisionAssistant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Python/index_ifmODS_python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Cpp/index_ifmODS_cpp.html">C++</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index_ods.html">ODS (Obstacle Detection System)</a> &raquo;</li>
+      <li>Overhanging loads</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/documentation/ODS/OverhangingLoads/overhanging_loads.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="overhanging-loads">
+<h1>Overhanging loads<a class="headerlink" href="#overhanging-loads" title="Permalink to this headline"></a></h1>
+<p>This feature introduces the possibility to define a static region in the user coordinate system which will be then excluded from the Obstacle Detection System. A typical use case is a situation where the load intersects with the FOV of at least one of the cameras on the AGV. A reasonable accuracy in the extrinsic calibration is a pre-requirement for this feature.</p>
+<p>However, it should be noted that even with a proper customization of the overhanging load, detection performance will be deteriorated due to stray light caused by the load.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Feature added in `firmware version &gt;= 1.0.14`
+</pre></div>
+</div>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline"></a></h2>
+<p>For load-carrying AGVs a typical scenario exists where the load intersects with the FoV of the camera causing false positives in the occupancy grid.
+These false positives negatively impact the performance of ODS, by reducing its close-range detection capabilities.</p>
+<p>To mitigate this effect, the ODS feature <code class="docutils literal notranslate"><span class="pre">overhanging</span> <span class="pre">loads</span></code> is introduced to exclude measurement data from a specific geometric region from ODS. Only false positives originating from this geometric region can be reliably excluded by the overhanging load feature.</p>
+<p>It has to be noted that the <code class="docutils literal notranslate"><span class="pre">overhanging</span> <span class="pre">loads</span></code> region should be static over time (w.r.t. to the robot coordinate system (RCS)).</p>
+<p>This 3D exclusion region is defined by a 2D convex hull of up to 6 points in the XY plane (occupancy grid plane) in conjunction with the <code class="docutils literal notranslate"><span class="pre">minLoadHeight</span></code> and <code class="docutils literal notranslate"><span class="pre">maxLoadHeight</span></code> parameters for specifying its Z range. A pixel (3D measurement) is excluded if and only if the corresponding pixel ray intersects with the 3D exclusion region.</p>
+<p><img alt="Zone Configuration" src="../../../_images/overhanging_load_config.png" /></p>
+</div>
+<div class="section" id="what-can-be-considered-an-overhanging-load">
+<h2>What can be considered an overhanging load?<a class="headerlink" href="#what-can-be-considered-an-overhanging-load" title="Permalink to this headline"></a></h2>
+<p>If a load is obstructing the FoV of any of the cameras mounted on the AGV it is considered an overhanging load.
+Please don’t use this tool for other purposes that excluding static objects (w.r.t to the RCS). For use cases other that the designed applications this feature can reduce the ODS performance dramatically, and is therefore highly discouraged.</p>
+<p>The minimum Load Height parameter: <code class="docutils literal notranslate"><span class="pre">minLoadHeight</span></code> is by default set to 40 cm above the ground.
+It should not be confused with a parameter of an application use case where the user wants to exclude a particular region on the ground from ODS.</p>
+<p>Setting <code class="docutils literal notranslate"><span class="pre">minLoadHeight</span></code> to zero will result in the ground pixels getting excluded which in turn results in detecting no usable floor for visual odometry.</p>
+</div>
+<div class="section" id="how-to-configure">
+<h2>How to configure<a class="headerlink" href="#how-to-configure" title="Permalink to this headline"></a></h2>
+<p>The configuration parameters for the overhanging load feature are placed in the grid section of the ODS JSON. This enables the feature to be configurable per application instance.
+The loads defining geometric region has to be static over time. It can only be configured for a app instance in <code class="docutils literal notranslate"><span class="pre">CONF</span></code> state.</p>
+<div class="section" id="shape-definition">
+<h3>Shape Definition<a class="headerlink" href="#shape-definition" title="Permalink to this headline"></a></h3>
+<p>The 3d regions are defined by a 2D convex hull of up to 6 points in the XY plane and a minLoadHeight and maxLoadHeight parameter for specifying the z range. Therefore, each 3D region has n+2 boundary plane patches (where n is the number of points of the convex hull outline).  A pixel is invalidated if the corresponding pixel ray intersects with at least one of the boundary plane patches.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>{
+  &quot;applications&quot;: {
+    &quot;instances&quot;: {
+      &quot;app0&quot;: {
+        &quot;class&quot;: &quot;ods&quot;,
+        &quot;configuration&quot;: {
+          &quot;grid&quot;: {
+            &quot;overhangingLoads&quot;: [{
+              &quot;active&quot;: true,
+              &quot;minLoadHeight&quot;: 0.4,
+              &quot;maxLoadHeight&quot;: 1.0,
+              &quot;region&quot;: [[-1.5, -2.0], [1.5, -2.0], [1.5, 2.0], [-1.5, 2.0]]
+            }]
+          },
+                ....}
+            }
+        }
+      }
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="configuration-in-ifm-vision-assistant">
+<h3>Configuration in ifm Vision Assistant<a class="headerlink" href="#configuration-in-ifm-vision-assistant" title="Permalink to this headline"></a></h3>
+<p><img alt="iVA" src="../../../_images/ol_iVA.gif" /></p>
+</div>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
+<p>In the following test setup, an overhanging load, i.e. a flat wooden piece, is obstructing the FoV of the cameras on the AGV.
+If no overhanging load region were defined it will be picked up by ODS as an obstacle. By defining and activating the overhanging load feature, the load is ignored from ODS.</p>
+<div class="section" id="comparing-with-and-without-overhanging-load-feature-in-ods">
+<h3>Comparing with and without overhanging load feature in ODS<a class="headerlink" href="#comparing-with-and-without-overhanging-load-feature-in-ods" title="Permalink to this headline"></a></h3>
+<p><img alt="Test Setup" src="../../../_images/test_setup.jpg" /></p>
+<p>The flat piece of wood mounted above the cameras intersects the cameras’ field of view resulting in a false positive when no overhanging load region is defined. After defining and activating the overhanging load region feature, the load is ignored.</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Overhanging load feature: Inactive</p></th>
+<th class="head"><p>Overhanging load feature: Active</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><img alt="Overhanging-load feature inactivated" src="../../../_images/inactive_ol.png" /></p></td>
+<td><p><img alt="Overhanging-load feature activated" src="../../../_images/active_ol.png" /></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="impact-of-stray-light-artifacts">
+<h2>Impact of stray light artifacts<a class="headerlink" href="#impact-of-stray-light-artifacts" title="Permalink to this headline"></a></h2>
+<p>The robustness of the system against different Time of Flight (ToF) artifacts with an overhanging load feature enabled have to be considered.
+The system does not exclude the ToF measurements (i.e. measurement data) or apply different acquisition settings, but masked-out pixels based on the rays intersecting with the defined cuboid.</p>
+<p>Therefore the stray light caused by the load can affect the performance of the ODS even though the exclusion cuboid excludes the whole geometric shape of the load. I.e. the stray light artifacts can be distributed over a larger area than the load itself. Please configure the geometric shape of the overhanging load area larger than the actual load shape, to be robust against stray light artifacts caused by the load.</p>
+<p>The result is that even with proper customization of overhanging load parameters, the detection performance of ODS may deteriorate.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../ChangingViews/changing_views.html" class="btn btn-neutral float-left" title="How to switch ODS applications" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../ExtrinsicCalibration/index_extrinsic_calibration.html" class="btn btn-neutral float-right" title="Extrinsic calibration for ODS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

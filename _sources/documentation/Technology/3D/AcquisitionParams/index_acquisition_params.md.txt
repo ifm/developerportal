@@ -1,0 +1,65 @@
+# Acquisition parameters
+> Note: The min, max and default values of each parameter are defined in the json schema.
+> To print out the schema, you can use the [ifm3d CLI](ifm3d/doc/sphinx/cli_link:ifm3d%20-%20Command%20Line%20Tool):
+> `ifm3d jsonschema`
+
+## Framerate
+|Variable name|Short description|
+|--|--|
+|`framerate`|Defines the number of frames captured each second|
+
+For the O3R system the FPS is independent from the applied imager settings (exposure mode and times, filters, etc.). Higher exposure times, for example, will **not** negatively impact the system's FPS. The O3R is designed to achieve 20 FPS in the 2 m and 4 m modes, *regardless* of applied settings.
+
+## Exposure Times
+|Variable name|Short description|
+|--|--|
+|`exposureLong`, `exposureShort`|These parameters are used to set the exposure times.|
+
+Exposure times are utilized to maximize the number of valid pixels in a scene. The use of multiple exposures (HDR) permits the camera to operate in “dynamic” environments that require the detection of dark and light objects at both the minimum and maximum ranges.
+
+The proper exposure time for a pixel depends on factors such as the dynamics of the scene and whether the target is moving or stationary. For highly reflective targets or for motion, a short exposure time is best. For targets far away or with low surface reflectance  choosing high exposure time is preferable.
+As such, it is common that all targets of a scene cannot be properly exposed with a single exposure time.
+To reduce noise and the number of overexposed/underexposed pixels, we use three exposures for each frame. The `standard` modes provides two settable exposure times (`expLong` and `expShort`) plus a third *constant* exposure (set at 30 µs) designed to help detect highly reflective targets in the very near range (~1 m). Note that using a small ratio of exposure times helps reduce noise in transitions regions (where neighboring pixels use different exposure times).
+
+> Note: You can find which exposure time is used for each pixel by analyzing the confidence image as detailed [here](documentation/O3R/ProductsDescription/ImagesDescription/confidenceImage:The%20confidence%20image).
+
+## Offset
+### Overview
+|Variable name|Short description|
+|--|--|
+|`offset`|Shifts the start point of the measured range (see [mode](documentation/O3R/Parameters/parameters:modes))|
+
+Coded modulation dictates the base range of the camera (e.g., 0 to 2 m). Coded modulation also allows this range to be offset or shifted from its start point. In the example of 0 – 2 m base range, an `offset` of 0.5 m would lead to a 0.5 – 2.5 m range. Continuing this example, an `offset` of 1 leads to a 1 – 3m range. The `offset` can be changed frame by frame.
+
+### Details
+The offset parameter shifts the beginning of the measurement range in space. For instance, when using the 2m mode with an offset of 1m, the O3R will compute distance data for a range between 1 and 3 m from the camera.
+
+Using the offset can allow you to collect distance measurements past the measurement range set by the [mode](documentation/O3R/Parameters/AcquisitionSettings/modes:Modes) while taking advantage of the robust point cloud the O3R provides and the specificities of each mode.
+
+The offset can be set at negative values, which brings the end of the measurement range closer to the camera. This can be useful for mitigating MPI artifacts (*coming soon*)), for instance, or for avoiding artifacts caused by highly reflective objects (see [stray-light artifacts](documentation/O3R/Parameters/Filters/strayLight:Stray%20Light%20Filter)), by removing the cause of the artifact from the FoV.
+
+### Example
+Let's look at the following scene. Three boxes are positioned in front of the camera at about one, two, and three meters away.
+![RGB view of the offset scene](resources/offset_scene.png)
+
+We are using the 2m [mode](documentation/O3R/Parameters/AcquisitionSettings/modes:Modes), with all the other settings as default. The table below shows the point cloud for multiple values of the offset.
+
+| Offset (meters)| Point Cloud|
+|--|--|
+| -0.5| ![Point cloud with offset -0.5](resources/offset_-05_cloud.png)|
+| 0| ![Point cloud with offset 0](resources/offset_0_cloud.png)|
+| 1.5| ![Point cloud with offset 1.5](resources/offset_15_cloud.png)|
+| 2.5| ![Point cloud with offset 2.5](resources/offset_25_cloud.png)|
+
+> Note: In the last image where the offset is set to 2.5m, we can see that the noise is higher than in the other images. This is due to the distance to the camera, with which the noise increases, and to the fact that the most robust measurement is in the middle of the range, which is from around 3 to 4 m in the case of the last example. The ground in front of the box is outside of the robustness area.
+## Channel selection and channel value
+
+|Variable name|Short description|
+|--|--|
+|`channelSelection`|Defines the user mode for handling channel selection: currently only manual |
+|`channelValue`|Defines the channel value |
+
+This concept for cross talk mitigation is based on channels, each channel corresponding to a different modulation frequency. Use a channel combination of mutually exclusive channels to *almost* completely reduce the possibility and effect of cross talk between O3R camera heads.
+The channel value has to be set per 3D TOF imager / O3R camera head. By default it is to value 0.
+A channel value difference of 1 has been shown to be adequate. Any additional channel value offset (> 1) will not improve crosstalk mitigation between O3R camera heads.
+

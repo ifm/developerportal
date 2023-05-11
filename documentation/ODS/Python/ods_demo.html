@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Full example &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="ODS c++ examples" href="../Cpp/index_ifmODS_cpp.html" />
+    <link rel="prev" title="How to monitor the diagnostic" href="diagnostic.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index_ods.html">ODS</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Mounting/mounting.html">Mounting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Instantiation/instantiation.html">Instantiation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Configuration/configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Zones/zones.html">Zones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OccupancyGrid/occupancy_grid.html">Occupancy grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Recording/ods_data_recording.html">Recording</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ChangingViews/changing_views.html">Changing views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OverhangingLoads/overhanging_loads.html">Overhanging loads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ExtrinsicCalibration/index_extrinsic_calibration.html">Extrinsic calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../FieldTest/index_field_test.html">Field test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DeviceVerification/index_device_verification.html">Device verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../iVA/index_ifmODS_iVA.html">ifmVisionAssistant</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index_ifmODS_python.html">Python</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="how_to_use_examples.html">How to use these examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ods_config.html">How to configure ODS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ods_stream.html">How to stream data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="diagnostic.html">How to monitor the diagnostic</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Full example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Cpp/index_ifmODS_cpp.html">C++</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index_ods.html">ODS (Obstacle Detection System)</a> &raquo;</li>
+          <li><a href="index_ifmODS_python.html">Python examples</a> &raquo;</li>
+      <li>Full example</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/documentation/ODS/Python/ods_demo.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="full-example">
+<h1>Full example<a class="headerlink" href="#full-example" title="Permalink to this headline"></a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#%%###################################################################</span>
+<span class="c1"># Showcases a typical sequence of an ODS application running</span>
+<span class="c1"># from the initial configuration to the &quot;while true&quot; streaming of data</span>
+<span class="c1">######################################################################</span>
+
+<span class="c1"># Imports</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">logging</span> 
+<span class="kn">from</span> <span class="nn">ifm3dpy.device</span> <span class="kn">import</span> <span class="n">O3R</span>
+<span class="kn">from</span> <span class="nn">bootup_monitor</span> <span class="kn">import</span> <span class="n">BootUpMonitor</span>
+<span class="kn">from</span> <span class="nn">diagnostic</span> <span class="kn">import</span> <span class="n">O3RDiagnostic</span>
+<span class="kn">from</span> <span class="nn">ods_config</span> <span class="kn">import</span> <span class="n">ODSConfig</span>
+<span class="kn">from</span> <span class="nn">ods_stream</span> <span class="kn">import</span> <span class="n">ODSStream</span>
+
+<span class="c1"># Initialization of basic objects</span>
+<span class="n">ADDR</span> <span class="o">=</span> <span class="s2">&quot;192.168.0.69&quot;</span>
+<span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">(</span><span class="n">ADDR</span><span class="p">)</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">()</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+
+<span class="c1">#%%######################################</span>
+<span class="c1"># Make sure boot up sequence is completed</span>
+<span class="c1">#########################################</span>
+<span class="k">with</span> <span class="n">BootUpMonitor</span><span class="p">(</span><span class="n">o3r</span><span class="p">)</span> <span class="k">as</span> <span class="n">bootup_monitor</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span> 
+        <span class="n">bootup_monitor</span><span class="o">.</span><span class="n">monitor_VPU_bootup</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">TimeoutError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">err</span>
+
+<span class="c1">#%%######################################</span>
+<span class="c1"># Check the diagnostic for any critical errors</span>
+<span class="c1">#########################################</span>
+<span class="n">diag</span> <span class="o">=</span> <span class="n">O3RDiagnostic</span><span class="p">(</span><span class="n">o3r</span><span class="o">=</span><span class="n">o3r</span><span class="p">,</span> <span class="n">log_to_file</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">err</span> <span class="ow">in</span> <span class="n">diag</span><span class="o">.</span><span class="n">get_diagnostic_filtered</span><span class="p">({</span><span class="s2">&quot;state&quot;</span><span class="p">:</span><span class="s2">&quot;active&quot;</span><span class="p">})[</span><span class="s2">&quot;events&quot;</span><span class="p">]:</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Active error: </span><span class="si">{</span><span class="n">err</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">err</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Review any active errors before continuing.&quot;</span><span class="p">)</span>
+
+<span class="c1">#%%######################################</span>
+<span class="c1"># Start the async diag</span>
+<span class="c1">#########################################</span>
+<span class="n">diag</span><span class="o">.</span><span class="n">start_async_diag</span><span class="p">()</span>
+
+<span class="c1">#%%######################################</span>
+<span class="c1"># Configure two ODS applications (forward and back)</span>
+<span class="c1">#########################################</span>
+<span class="n">o3r</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;/applications&quot;</span><span class="p">)</span>
+<span class="n">ods_config</span><span class="o">=</span><span class="n">ODSConfig</span><span class="p">(</span><span class="n">o3r</span><span class="o">=</span><span class="n">o3r</span><span class="p">)</span>
+<span class="c1"># To ensure readability, we first set the extrinsic calibration of</span>
+<span class="c1"># the cameras and then configure the two ODS instances.</span>
+<span class="c1"># These two steps can be merged if desired.</span>
+<span class="n">ods_config</span><span class="o">.</span><span class="n">set_config_from_file</span><span class="p">(</span><span class="s2">&quot;configs/extrinsic_two_heads.json&quot;</span><span class="p">)</span>
+<span class="n">ods_config</span><span class="o">.</span><span class="n">set_config_from_file</span><span class="p">(</span><span class="s2">&quot;configs/ods_two_apps_config.json&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">app</span> <span class="ow">in</span> <span class="p">(</span><span class="n">apps</span> <span class="o">:=</span> <span class="n">ods_config</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/applications/instances&quot;</span><span class="p">])[</span><span class="s2">&quot;applications&quot;</span><span class="p">][</span><span class="s2">&quot;instances&quot;</span><span class="p">]):</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Instantiated app: </span><span class="si">{</span><span class="n">app</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Setting the first app to RUN</span>
+<span class="n">ods_config</span><span class="o">.</span><span class="n">set_config_from_dict</span><span class="p">({</span><span class="s2">&quot;applications&quot;</span><span class="p">:{</span><span class="s2">&quot;instances&quot;</span><span class="p">:{</span><span class="nb">list</span><span class="p">(</span><span class="n">apps</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]:{</span><span class="s2">&quot;state&quot;</span><span class="p">:</span><span class="s2">&quot;RUN&quot;</span><span class="p">}}}})</span>
+
+<span class="c1">#%%######################################</span>
+<span class="c1"># Start streaming data from forward app</span>
+<span class="c1">#########################################</span>
+<span class="n">ods_stream_front</span> <span class="o">=</span> <span class="n">ODSStream</span><span class="p">(</span><span class="n">o3r</span><span class="o">=</span><span class="n">o3r</span><span class="p">,</span> <span class="n">app_name</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">apps</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ods_stream_front</span><span class="o">.</span><span class="n">start_ods_stream</span><span class="p">()</span>
+
+<span class="c1">#%%######################################</span>
+<span class="c1"># Display data</span>
+<span class="c1">#########################################</span>
+<span class="kn">from</span> <span class="nn">ods_viewer</span> <span class="kn">import</span> <span class="n">OCVWindow</span>
+
+<span class="n">viewer</span> <span class="o">=</span> <span class="n">OCVWindow</span><span class="p">(</span><span class="s2">&quot;Occupancy grid, zones and diagnostic&quot;</span><span class="p">)</span><span class="c1">#ods_stream_front.get_occupancy_grid().image)</span>
+<span class="n">viewer</span><span class="o">.</span><span class="n">create_window</span><span class="p">()</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;View: front,&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Zones: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ods_stream_front</span><span class="o">.</span><span class="n">get_zones</span><span class="p">()</span><span class="o">.</span><span class="n">zone_occupied</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Diagnostic: &quot;</span> <span class="o">+</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">diag</span><span class="o">.</span><span class="n">diagnostic</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">])[</span><span class="s2">&quot;events&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
+        <span class="n">viewer</span><span class="o">.</span><span class="n">update_image</span><span class="p">(</span><span class="n">ods_stream_front</span><span class="o">.</span><span class="n">get_occupancy_grid</span><span class="p">()</span><span class="o">.</span><span class="n">image</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Vieweing interrupted, turning off data streams. Continuing on with the demo.&quot;</span><span class="p">)</span>
+
+<span class="c1">#%%######################################</span>
+<span class="c1"># Switch to backward app   </span>
+<span class="c1">#########################################</span>
+<span class="n">ods_stream_front</span><span class="o">.</span><span class="n">stop_ods_stream</span><span class="p">()</span>
+<span class="n">ods_config</span><span class="o">.</span><span class="n">set_config_from_dict</span><span class="p">({</span><span class="s2">&quot;applications&quot;</span><span class="p">:{</span><span class="s2">&quot;instances&quot;</span><span class="p">:{</span><span class="nb">list</span><span class="p">(</span><span class="n">apps</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]:{</span><span class="s2">&quot;state&quot;</span><span class="p">:</span><span class="s2">&quot;CONF&quot;</span><span class="p">}}}})</span>
+<span class="n">ods_config</span><span class="o">.</span><span class="n">set_config_from_dict</span><span class="p">({</span><span class="s2">&quot;applications&quot;</span><span class="p">:{</span><span class="s2">&quot;instances&quot;</span><span class="p">:{</span><span class="nb">list</span><span class="p">(</span><span class="n">apps</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">1</span><span class="p">]:{</span><span class="s2">&quot;state&quot;</span><span class="p">:</span><span class="s2">&quot;RUN&quot;</span><span class="p">}}}})</span>
+
+<span class="n">ods_stream_back</span> <span class="o">=</span> <span class="n">ODSStream</span><span class="p">(</span><span class="n">o3r</span><span class="o">=</span><span class="n">o3r</span><span class="p">,</span> <span class="n">app_name</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">apps</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ods_stream_back</span><span class="o">.</span><span class="n">start_ods_stream</span><span class="p">()</span>
+
+<span class="c1">#%%######################################</span>
+<span class="c1"># Display data</span>
+<span class="c1">#########################################</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;View: front,&quot;</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Zones: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">ods_stream_back</span><span class="o">.</span><span class="n">get_zones</span><span class="p">()</span><span class="o">.</span><span class="n">zone_occupied</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Diagnostic: &quot;</span> <span class="o">+</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">diag</span><span class="o">.</span><span class="n">diagnostic</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">])[</span><span class="s2">&quot;events&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">])</span>
+        <span class="n">viewer</span><span class="o">.</span><span class="n">update_image</span><span class="p">(</span><span class="n">ods_stream_back</span><span class="o">.</span><span class="n">get_occupancy_grid</span><span class="p">()</span><span class="o">.</span><span class="n">image</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="c1"># Turning data streams off and app to CONF to avoid overheating.</span>
+    <span class="n">ods_stream_back</span><span class="o">.</span><span class="n">stop_ods_stream</span><span class="p">()</span>
+    <span class="n">ods_config</span><span class="o">.</span><span class="n">set_config_from_dict</span><span class="p">({</span><span class="s2">&quot;applications&quot;</span><span class="p">:{</span><span class="s2">&quot;instances&quot;</span><span class="p">:{</span><span class="nb">list</span><span class="p">(</span><span class="n">apps</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">1</span><span class="p">]:{</span><span class="s2">&quot;state&quot;</span><span class="p">:</span><span class="s2">&quot;CONF&quot;</span><span class="p">}}}})</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Vieweing interrupted, turning off data streams. End of the demo.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="diagnostic.html" class="btn btn-neutral float-left" title="How to monitor the diagnostic" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Cpp/index_ifmODS_cpp.html" class="btn btn-neutral float-right" title="ODS c++ examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

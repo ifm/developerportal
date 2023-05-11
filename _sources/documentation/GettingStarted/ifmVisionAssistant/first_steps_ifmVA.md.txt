@@ -43,21 +43,3 @@ This Vision Assistant specific feature overlays the 2D RGB data of the respectiv
 
 The 2D & 3D mapping might be changed in the future to take the optical models into account. Until then please refer to the Python example for a complete 2D RGB & 3D point cloud mapping.
 ![display 2D in 3D](resources/display_2D_in_3D.gif)
-
-## (Optional) Updating the firmware
-
-To have the best experience with the O3R system and the ifmVisionAssistant, the newest ifmVisionAssistant and the newest O3R firmware should be used.
-
-**Please refer to the ifm landing pages or the ifm3d.com to see the newest firmware release.**
-
-The newest firmware can be installed via the `VPU settings` menu.
-
-![vpu settings](resources/vpu_settings.png)
-
-Using the `Update` function within `Firmware update` provides a new menu to choose the right firmware (image). Afterwards, the system tries to update the system.
-
-**Warning: Some parameters are lost after an firmware update is over. Please save the configuration before starting the update.**
-
-![update firmware](resources/update_firmware.gif)
-
-If the firmware update is successfull, it is recommended to verify the overall funcitonality again (see [Activating the heads](#activating-the-heads-to-receive-2d3d-data)).

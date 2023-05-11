@@ -2,7 +2,6 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-    <meta property="article:modified_time" content="2023-02-09T08:43:51+00:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ifm3d_ros on Ubuntu 20.04 and ROS Noetic &mdash; O3R  documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
@@ -45,49 +44,44 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../../../../index_getting_started.html">Getting Started</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../../../documentation/GettingStarted/Unboxing/hw_unboxing.html">Hardware Unboxing</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../../../../index_sw_stack.html">Pick your software stack</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../../../../documentation/GettingStarted/ifmVisionAssistant/index.html">ifmVisionAssistant</a></li>
-<li class="toctree-l3"><a class="reference external" href="https://api.ifm3d.com/html/examples/index.html">Python</a></li>
-<li class="toctree-l3"><a class="reference external" href="https://api.ifm3d.com/html/examples/index.html">C++</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="../../index.html">ROS</a><ul class="current">
-<li class="toctree-l4 current"><a class="reference internal" href="../../README.html">ifm3d-ros overview</a><ul class="current">
-<li class="toctree-l5"><a class="reference internal" href="../../README.html#release-versions">Release versions</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../../README.html#ifm3d-ros-for-the-o3r">ifm3d-ros for the O3R</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../../README.html#software-compatibility-matrix">Software Compatibility Matrix</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../../README.html#organization-of-the-software">Organization of the software</a></li>
-<li class="toctree-l5 current"><a class="reference internal" href="../../README.html#building-and-installing-the-software">Building and installing the software</a><ul class="current">
-<li class="toctree-l6 current"><a class="current reference internal" href="#">Preparing your system</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#known-issues-and-defects">Known Issues and Defects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../index_software_interfaces.html">Software Interfaces</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../../documentation/SoftwareInterfaces/iVA/index_iVA.html">ifm Vision Assistant</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://api.ifm3d.com/stable/">ifm3d/ifm3dpy API</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">ROS: ifm3d-ros</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../../README.html">ifm3d-ros overview</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../../README.html#release-versions">Release versions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../README.html#ifm3d-ros-for-the-o3r">ifm3d-ros for the O3R</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../README.html#software-compatibility-matrix">Software Compatibility Matrix</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../README.html#organization-of-the-software">Organization of the software</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../../README.html#building-and-installing-the-software">Building and installing the software</a><ul class="current">
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Preparing your system</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#known-issues-and-defects">Known Issues and Defects</a></li>
 </ul>
 </li>
-<li class="toctree-l6"><a class="reference internal" href="building.html">Installing the ifm3d-ros node</a></li>
-<li class="toctree-l6"><a class="reference internal" href="distributed_build.html">Build for distributed systems</a></li>
+<li class="toctree-l5"><a class="reference internal" href="building.html">Installing the ifm3d-ros node</a></li>
+<li class="toctree-l5"><a class="reference internal" href="distributed_build.html">Build for distributed systems</a></li>
 </ul>
 </li>
-<li class="toctree-l5"><a class="reference internal" href="../../README.html#license">LICENSE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../README.html#license">LICENSE</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="../README.html">ifm3d_ros_driver</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../ifm3d_ros_msgs/README.html">ifm3d_ros_msgs</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../ifm3d_ros_examples/README.html">ifm3d_ros_examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../README.html">ifm3d_ros_driver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ifm3d_ros_msgs/README.html">ifm3d_ros_msgs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ifm3d_ros_examples/README.html">ifm3d_ros_examples</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../../ifm3d-ros2/README.html">ROS 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ifm3d-ros2/README.html">ROS2: ifm3d-ros2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../documentation/SoftwareInterfaces/Docker/index_docker.html">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../documentation/SoftwareInterfaces/ifmDiagnostic/index_diagnostic.html">ifmDiagnostic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../documentation/SoftwareInterfaces/Toolbox/index_toolbox.html">Toolbox</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/DeviceConfiguration/index.html">Device Configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../o3r-utilities/README.html">Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../applications_index.html">Applications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/Docker/index.html">Docker</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../ifm3d/index.html">ifm3d API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../index.html">ROS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/Firmware/index.html">Firmware</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../downloadable/index.html">Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/ODS/index_ods.html">ODS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../documentation/FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../downloadable/index.html">History</a></li>
 </ul>
 
         </div>
@@ -104,8 +98,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../../index_getting_started.html">Getting started with the O3R</a> &raquo;</li>
-          <li><a href="../../../../index_sw_stack.html">Pick your favorite software stack</a> &raquo;</li>
+          <li><a href="../../../../index_software_interfaces.html">Software Interfaces</a> &raquo;</li>
           <li><a href="../../index.html">ifm3d-ros</a> &raquo;</li>
           <li><a href="../../README.html">ifm3d-ros</a> &raquo;</li>
       <li>ifm3d_ros on Ubuntu 20.04 and ROS Noetic</li>
@@ -187,9 +180,7 @@ Run the following command to avoid the issue:</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, ifm CSR.
-      <span class="lastupdated">Last updated on Feb 09, 2023.
-      </span></p>
+    <p>&#169; Copyright 2021, ifm CSR.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CAN interface &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Ethernet interfaces" href="ethernet.html" />
+    <link rel="prev" title="Resource management" href="ResourceManagement/index_resource_management.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index_hardware_interfaces.html">Technology</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../2D/2d.html">2D Cameras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3D/index_3d.html">3D Cameras</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index_vpu.html">VPU</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ResourceManagement/index_resource_management.html">Resources management</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">CAN</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#hardware">Hardware</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#software">Software</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#example-interfacing-with-the-dtm425-rfid-antenna-using-docker">Example: Interfacing with the DTM425 RFID antenna using Docker</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ethernet.html">Ethernet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usb.html">USB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sntp.html">NTP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hmi.html">HMI: LEDs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IMU/imu.html">IMU</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../SystemVerification/index_system_verification.html">System Verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index_hardware_interfaces.html#available-hardware-and-specifications">Available hardware and specifications.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index_hardware_interfaces.html#cad-drawings-of-vpu-and-camera-heads">CAD drawings of VPU and camera heads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index_hardware_interfaces.html#camera-heads">Camera Heads</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index_hardware_interfaces.html">Technology</a> &raquo;</li>
+          <li><a href="index_vpu.html">VPU (Vision Processing Unit)</a> &raquo;</li>
+      <li>CAN interface</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/documentation/Technology/VPU/can.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="can-interface">
+<h1>CAN interface<a class="headerlink" href="#can-interface" title="Permalink to this headline"></a></h1>
+<div class="section" id="hardware">
+<h2>Hardware<a class="headerlink" href="#hardware" title="Permalink to this headline"></a></h2>
+<p>The O3R has a built-in CAN-bus interface, with the CAN-High and CAN-Low lines on pin 4 and 5 respectively (cf. <span class="xref myst">hardware diagram</span>). Note that cables will need a terminating resistor like the <a class="reference external" href="https://www.ifm.com/de/en/product/E11589">E11589</a>.</p>
+</div>
+<div class="section" id="software">
+<h2>Software<a class="headerlink" href="#software" title="Permalink to this headline"></a></h2>
+<p>The CAN interface is supported since firmware version 0.14.1 with no further configuration needed. Note that the CAN interface is only accessible in Docker when using <code class="docutils literal notranslate"><span class="pre">--network</span> <span class="pre">host</span></code>.</p>
+</div>
+<div class="section" id="example-interfacing-with-the-dtm425-rfid-antenna-using-docker">
+<h2>Example: Interfacing with the <a class="reference external" href="https://www.ifm.com/de/en/product/DTM425">DTM425</a> RFID antenna using Docker<a class="headerlink" href="#example-interfacing-with-the-dtm425-rfid-antenna-using-docker" title="Permalink to this headline"></a></h2>
+<p><strong>Step 1</strong>: Connect the DTM425 to the O3R and both to power.</p>
+<p><strong>Step 2</strong>: Create a minimal Docker file (filename: <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>), as shown below:</p>
+<div class="highlight-Docker notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="w"> </span><span class="s">arm64v8/alpine</span>
+
+<span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>add<span class="w"> </span>python3<span class="w"> </span>py3-pip
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>canopen
+
+<span class="k">COPY</span><span class="w"> </span>can_example.py<span class="w"> </span>/usr/local/bin
+<span class="k">COPY</span><span class="w"> </span>DTM425.eds<span class="w"> </span>/usr/local/share
+
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;can_example.py&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>This Docker file installs Python and the CANopen library for Python. The example script is then installed into the image and set to automatically execute when the container is run.</p>
+<p><strong>Step 3</strong>: Create the example Python script (filename: <code class="docutils literal notranslate"><span class="pre">can_example.py</span></code>; see below) and download the required <a class="reference external" href="https://www.ifm.com/de/en/product/DTM425?tab=documents">EDS file</a> (filename <code class="docutils literal notranslate"><span class="pre">DTM425.eds</span></code>). Place the files in the same location as the Docker file. Make sure that the script has the executable permission set.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">canopen</span>
+
+
+<span class="k">def</span> <span class="nf">connect</span><span class="p">():</span>
+    <span class="n">nw</span> <span class="o">=</span> <span class="n">canopen</span><span class="o">.</span><span class="n">Network</span><span class="p">()</span>
+    <span class="n">nw</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s2">&quot;can0&quot;</span><span class="p">,</span> <span class="n">bustype</span><span class="o">=</span><span class="s2">&quot;socketcan&quot;</span><span class="p">)</span>
+    <span class="n">nw</span><span class="o">.</span><span class="n">scanner</span><span class="o">.</span><span class="n">search</span><span class="p">()</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+
+    <span class="n">device</span> <span class="o">=</span> <span class="n">nw</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">nw</span><span class="o">.</span><span class="n">scanner</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;/usr/local/share/DTM425.eds&quot;</span><span class="p">)</span>
+    <span class="n">device</span><span class="o">.</span><span class="n">nmt</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;OPERATIONAL&quot;</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">nw</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">disconnect</span><span class="p">(</span><span class="n">nw</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+    <span class="n">device</span><span class="o">.</span><span class="n">nmt</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;PRE-OPERATIONAL&quot;</span>
+    <span class="n">nw</span><span class="o">.</span><span class="n">disconnect</span>
+
+
+<span class="k">def</span> <span class="nf">write_tag</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="n">memory_size</span> <span class="o">=</span> <span class="n">device</span><span class="o">.</span><span class="n">sdo</span><span class="p">[</span><span class="mh">0x2182</span><span class="p">][</span><span class="mh">0x4</span><span class="p">]</span><span class="o">.</span><span class="n">raw</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">memory_size</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span> <span class="o">*</span> <span class="p">(</span><span class="n">memory_size</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">offset</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">memory_size</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span> <span class="k">if</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">8</span> <span class="o">&lt;=</span> <span class="n">memory_size</span> <span class="k">else</span>
+                  <span class="n">memory_size</span> <span class="o">-</span> <span class="n">offset</span><span class="p">)</span>
+        <span class="n">device</span><span class="o">.</span><span class="n">sdo</span><span class="p">[</span><span class="mh">0x2380</span><span class="p">]</span><span class="o">.</span><span class="n">raw</span> <span class="o">=</span> <span class="n">offset</span>
+        <span class="n">device</span><span class="o">.</span><span class="n">sdo</span><span class="p">[</span><span class="mh">0x2381</span><span class="p">]</span><span class="o">.</span><span class="n">raw</span> <span class="o">=</span> <span class="n">length</span>
+        <span class="n">device</span><span class="o">.</span><span class="n">sdo</span><span class="p">[</span><span class="mh">0x2382</span><span class="p">]</span><span class="o">.</span><span class="n">raw</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">offset</span><span class="p">:</span><span class="n">offset</span> <span class="o">+</span> <span class="n">length</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">read_tag</span><span class="p">(</span><span class="n">device</span><span class="p">):</span>
+    <span class="n">memory_size</span> <span class="o">=</span> <span class="n">device</span><span class="o">.</span><span class="n">sdo</span><span class="p">[</span><span class="mh">0x2182</span><span class="p">][</span><span class="mh">0x4</span><span class="p">]</span><span class="o">.</span><span class="n">raw</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">offset</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">memory_size</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="mi">8</span> <span class="k">if</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">8</span> <span class="o">&lt;=</span> <span class="n">memory_size</span> <span class="k">else</span> <span class="n">memory_size</span> <span class="o">-</span> <span class="n">offset</span>
+        <span class="n">device</span><span class="o">.</span><span class="n">sdo</span><span class="p">[</span><span class="mh">0x2280</span><span class="p">]</span><span class="o">.</span><span class="n">raw</span> <span class="o">=</span> <span class="n">offset</span>
+        <span class="n">device</span><span class="o">.</span><span class="n">sdo</span><span class="p">[</span><span class="mh">0x2281</span><span class="p">]</span><span class="o">.</span><span class="n">raw</span> <span class="o">=</span> <span class="n">length</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span> <span class="o">+</span> <span class="n">device</span><span class="o">.</span><span class="n">sdo</span><span class="p">[</span><span class="mh">0x2282</span><span class="p">]</span><span class="o">.</span><span class="n">raw</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+
+
+<span class="n">nw</span><span class="p">,</span> <span class="n">device</span> <span class="o">=</span> <span class="n">connect</span><span class="p">()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\xDE\xAD\xBE\xEF</span><span class="s1">&#39;</span>
+<span class="n">write_tag</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Writing tag:&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reading tag:&quot;</span><span class="p">,</span> <span class="n">read_tag</span><span class="p">(</span><span class="n">device</span><span class="p">))</span>
+<span class="n">disconnect</span><span class="p">(</span><span class="n">nw</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The script writes the hex-value <code class="docutils literal notranslate"><span class="pre">0xdeadbeef</span></code> to the RFID tag and reads the data from the tag. When scanning for the device, it is assumed that the RFID antenna is the only CAN device on the bus, besides the VPU itself.</p>
+<p><strong>Step 4</strong>: Build, deploy and run the Docker container:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>build<span class="w"> </span>.<span class="w"> </span>-t<span class="w"> </span>dtm425_example
+docker<span class="w"> </span>save<span class="w"> </span>dtm425_example<span class="w"> </span><span class="p">|</span><span class="w"> </span>ssh<span class="w"> </span>-C<span class="w"> </span>oem@192.168.0.69<span class="w"> </span>docker<span class="w"> </span>load
+ssh<span class="w"> </span>oem@192.168.0.69<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>dtm425_example
+</pre></div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">--network</span> <span class="pre">host</span></code> <em>is required</em> to access the CAN interface.</p>
+<p>The output of the last command should look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Writing</span> <span class="n">tag</span><span class="p">:</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\xde\xad\xbe\xef</span><span class="s1">&#39;</span>
+<span class="n">Reading</span> <span class="n">tag</span><span class="p">:</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\xde\xad\xbe\xef\x00\x00\x00</span><span class="s1">[...]</span><span class="se">\x00\x00\x00</span><span class="s1">&#39;</span>
+</pre></div>
+</div>
+<p>For more information on necessary setup steps for <span class="xref myst">building</span> and <span class="xref myst">deployment</span>, please see the linked pages.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ResourceManagement/index_resource_management.html" class="btn btn-neutral float-left" title="Resource management" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ethernet.html" class="btn btn-neutral float-right" title="Ethernet interfaces" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

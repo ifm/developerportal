@@ -1,0 +1,89 @@
+
+# Zones 
+
+## Description
+
+## Parameters
+
+A zone maps the probability information of all grid cells inside the zones extent to a binary values: `true` means that an object is detected, `false` that no object is detected`.
+This mapping is based on the convex hull (2D) `zoneCoordinates`, the parameter `maxHeight`, the `probabilityThreshold`.
+
+Additionally, the parameter `minObjectHeight` allows you to edit the expected minimum object height above the floor (Z==0 plane) per camera. The `minObjectHeight` parameter is handled on a per camera basis to allow fine tuning for multi camera setups with different camera mounting heights. For higher cameras the `minObjectHeight` can be lower compared to lower-mounted cameras to allow the user to see further distances and lower objects relative to the floor plane.
+
+The parameter `maxHeight` is a global parameter for all zones. The 3D extent (maximum) boundaries along the vertical axis is therefore the same for all zones.
+
+![Zone Configuration](img/set_example_zones.gif)
+
+### Zone extent
+
+The 3D zone extent is defined via the 2D (convex) hull of the points in space as defined by the list `zoneCoordinates`. Its volume is handled via the combined `maxHeight` parameter and `minObjectHeight` parameters. If configured, [overhanging loads](OverhangingLoads/overhanging_loads.md) will also be taken into account.
+
+### Probability threshold
+
+The parameter `probabilityThreshold` defines the binarization from a 8 bit scaled probability value per grid cell to a binary (occupation) value per grid cell.
+All binary occupation values of grid cells inside the zone are then combined to form the binary output per zone.
+
+### Number of zones
+As of `FW version 1.0.14` an ODS application is limited to a maximum of three zones.
+
+## Output
+
+| Name         | Type    | Description                                                                  |
+| ------------ | ------- | ---------------------------------------------------------------------------- |
+| timestamp_ns | uint64  | timestamp of occupancy grid in [ns] - ntp time if ntp server is synchronized |
+| zoneConfigID | uint32  | the user-defined ID for the zone configuration                               |
+| zoneOccupied | int8[3] | a flag for each zone describing whether it is occupied or free               |
+
+You can also view the zones' output at the bottom left corner of the `Application` window as shown in the below figure.
+
+![Zone Output](img/zone_output_iVA.png)
+
+### Timestamp
+
+Every ods data package (chunk) also contains a timestamp[ns]. If a `NTP-server` is provided, the timestamp[ns] is synchronized.
+
+### zoneConfigID
+
+The user-defined ID for the currently used zone configuration.
+
+### zoneOccupied
+
+One zone state information for all zones: this is always an array of 3 elements independently of if 3 or less zones have been configured.
+
+
+## Examples
+### Only one zone
+```json
+{
+  "zoneCoordinates": [[[1.0,1.0], [1.0,0.0], [-1.0, 0.0], [-1.0, 1.0]]]
+}
+```
+
+The JSON shown here is the convex hull of one zone (2D on the ground plane).
+The width (lateral size, that is in Y-direction) is 2 m. The length (longitudinal size, that is in X-direction) is 1 m.
+
+### Three zones
+```json
+{
+  "zoneCoordinates": [
+    [[0,1],[1,1],[1,-1],[0,-1]],
+    [[1,1],[2,1],[2,-1],[1,-1]],
+    [[2,1],[3,1],[3,-1],[2,-1]]
+  ]
+}
+```
+### Example output
+In `FW 0.16.23` and `FW 1.0.14` the configuration and output of zones is limited to three zones.
+
+The user can set up-to 3 zones at a time. Trying to set 4 zones in the JSON configuration will result it a JSON schema error: ifm3d / ifm3dpy custom error.
+
+The zone evaluation output is also limited to three zones. Independently of how many zones are configured, one zone output is a vector of three elements.
+The first element pertains to the first zone, the second element to the second zone, etc.
+
+The example array below shows the output of 10 consecutive frames buffered into one array.
+```python
+array([[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]], dtype=uint8)
+
+```

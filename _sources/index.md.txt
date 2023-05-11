@@ -3,19 +3,17 @@ Welcome to the O3R's documentation!
 ```{include} news_fw.md
 ```
 
-:::{toctree}
-Getting Started <index_getting_started>
-Device Configuration <documentation/DeviceConfiguration/index>
-Utilities <o3r-utilities/README>
-Samples
-Applications <applications_index>
-Docker <documentation/Docker/index>
-ifm3d API <ifm3d/index>
-ROS <ROS/index>
-Firmware <documentation/Firmware/index>
-Downloads <downloadable/index>
-FAQ <documentation/FAQ/FAQ>
-:::
 
-TODO: ODS docs integration
-TODO: Samples?
+This website contains all the documentation for the O3R platform. Find the datasheets and use case descriptions on [ifm.com](https://www.ifm.com/us/en/us/robotics/cameras/o3r/o3r).
+
+:::{toctree}
+    :maxdepth: 2
+Home <self>
+Getting started <documentation/GettingStarted/index_getting_started>
+Firmware <documentation/Firmware/index_fw>
+Technology <documentation/Technology/index_hardware_interfaces>
+Software Interfaces <index_software_interfaces>
+ODS <documentation/ODS/index_ods>
+FAQ <documentation/FAQ/FAQ>
+History <downloadable/index>
+:::

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Using an usb drive with the VPU &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="NTP(Network Time Protocol)" href="sntp.html" />
+    <link rel="prev" title="Ethernet interfaces" href="ethernet.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index_hardware_interfaces.html">Technology</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../2D/2d.html">2D Cameras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3D/index_3d.html">3D Cameras</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index_vpu.html">VPU</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ResourceManagement/index_resource_management.html">Resources management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="can.html">CAN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ethernet.html">Ethernet</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">USB</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#preparing-the-usb-drive">Preparing the usb drive</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#ext4-format-usb-mounting-preparation">EXT4 format USB mounting preparation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sntp.html">NTP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hmi.html">HMI: LEDs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IMU/imu.html">IMU</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../SystemVerification/index_system_verification.html">System Verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index_hardware_interfaces.html#available-hardware-and-specifications">Available hardware and specifications.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index_hardware_interfaces.html#cad-drawings-of-vpu-and-camera-heads">CAD drawings of VPU and camera heads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index_hardware_interfaces.html#camera-heads">Camera Heads</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index_hardware_interfaces.html">Technology</a> &raquo;</li>
+          <li><a href="index_vpu.html">VPU (Vision Processing Unit)</a> &raquo;</li>
+      <li>Using an usb drive with the VPU</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/documentation/Technology/VPU/usb.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="using-an-usb-drive-with-the-vpu">
+<h1>Using an usb drive with the VPU<a class="headerlink" href="#using-an-usb-drive-with-the-vpu" title="Permalink to this headline"></a></h1>
+<p>The VPU provides two <code class="docutils literal notranslate"><span class="pre">USB</span></code> interfaces, <code class="docutils literal notranslate"><span class="pre">USB-A</span></code> (USB 3.0) and <code class="docutils literal notranslate"><span class="pre">USB</span> <span class="pre">mini</span></code>. It is possible to increase the VPU memory size by utilizing USB thumb drives or USB SSDs. To use any USB storage device, it is necessary to mount the drive first.</p>
+<div class="section" id="preparing-the-usb-drive">
+<h2>Preparing the usb drive<a class="headerlink" href="#preparing-the-usb-drive" title="Permalink to this headline"></a></h2>
+<p>The VPU’s operating system supports two file formats:</p>
+<ul class="simple">
+<li><p>FAT32</p></li>
+<li><p>EXT4</p></li>
+</ul>
+<p>These can be auto-mounted via the <code class="docutils literal notranslate"><span class="pre">mount</span></code> command and its respective daemon.</p>
+<p><strong>FAT32:</strong>
+For FAT32 formatted devices no additional steps are required. It can be directly mounted via the auto-mount daemon to the VPU.</p>
+<p><strong>EXT4:</strong>
+For EXT4 formatted devices the user needs to perform additional steps to match the OEM users <code class="docutils literal notranslate"><span class="pre">uid</span></code> and <code class="docutils literal notranslate"><span class="pre">gid</span></code> on the VPU’s embedded OS.
+Otherwise only read permissions are granted when mounting the USB storage device.</p>
+<div class="section" id="ext4-format-usb-mounting-preparation">
+<h3>EXT4 format USB mounting preparation<a class="headerlink" href="#ext4-format-usb-mounting-preparation" title="Permalink to this headline"></a></h3>
+<ol class="simple">
+<li><p>Find out the uid and gid of the oem user on the VPU embedded OS</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>oem@o3r-vpu-c0:~#<span class="w"> </span>id<span class="w"> </span>-u<span class="w"> </span>oem
+<span class="m">989</span>
+oemt@o3r-vpu-c0:~#<span class="w"> </span>id<span class="w"> </span>-g<span class="w"> </span>oem
+<span class="m">987</span>
+
+<span class="m">2</span>.<span class="w"> </span>Change<span class="w"> </span>the<span class="w"> </span>USB<span class="w"> </span>mount<span class="w"> </span>point<span class="w"> </span>on<span class="w"> </span>your<span class="w"> </span>**Linux<span class="w"> </span>Laptop**<span class="w"> </span>via<span class="w"> </span>chown
+</pre></div>
+</div>
+<p>sudo chown 989:987 -R &lt;usb_mountpoint&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+&gt; Note: Please be aware the changing the mountpoints uid and gid may result in missing read access on your laptop. The restore read access on your laptop to the USB storage device, change the uid and gid back to match your personal user accounts ones.
+
+
+## Plug in and mounting
+
+After plugging in the drive, the mount is started by using the command `mount`
+
+```bash
+o3r-vpu-c0:~$ mount
+proc on /proc type proc (rw,relatime)
+none on /dev type devtmpfs (rw,relatime,size=1578060k,nr_inodes=394515,mode=755)
+sysfs on /sys type sysfs (rw,relatime)
+/dev/mmcblk0p1 on / type ext4 (rw,relatime,data=ordered)
+tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev)
+devpts on /dev/pts type devpts (rw,relatime,gid=5,mode=620,ptmxmode=666)
+tmpfs on /run type tmpfs (rw,nosuid,nodev,mode=755)
+tmpfs on /sys/fs/cgroup type tmpfs (ro,nosuid,nodev,noexec,mode=755)
+cgroup2 on /sys/fs/cgroup/unified type cgroup2 (rw,nosuid,nodev,noexec,relatime)
+cgroup on /sys/fs/cgroup/systemd type cgroup (rw,nosuid,nodev,noexec,relatime,xattr,name=systemd)
+pstore on /sys/fs/pstore type pstore (rw,nosuid,nodev,noexec,relatime)
+cgroup on /sys/fs/cgroup/pids type cgroup (rw,nosuid,nodev,noexec,relatime,pids)
+cgroup on /sys/fs/cgroup/net_cls,net_prio type cgroup (rw,nosuid,nodev,noexec,relatime,net_cls,net_prio)
+cgroup on /sys/fs/cgroup/cpuset type cgroup (rw,nosuid,nodev,noexec,relatime,cpuset)
+cgroup on /sys/fs/cgroup/freezer type cgroup (rw,nosuid,nodev,noexec,relatime,freezer)
+cgroup on /sys/fs/cgroup/memory type cgroup (rw,nosuid,nodev,noexec,relatime,memory)
+cgroup on /sys/fs/cgroup/cpu,cpuacct type cgroup (rw,nosuid,nodev,noexec,relatime,cpu,cpuacct)
+cgroup on /sys/fs/cgroup/debug type cgroup (rw,nosuid,nodev,noexec,relatime,debug)
+cgroup on /sys/fs/cgroup/hugetlb type cgroup (rw,nosuid,nodev,noexec,relatime,hugetlb)
+cgroup on /sys/fs/cgroup/blkio type cgroup (rw,nosuid,nodev,noexec,relatime,blkio)
+cgroup on /sys/fs/cgroup/devices type cgroup (rw,nosuid,nodev,noexec,relatime,devices)
+cgroup on /sys/fs/cgroup/perf_event type cgroup (rw,nosuid,nodev,noexec,relatime,perf_event)
+mqueue on /dev/mqueue type mqueue (rw,nosuid,nodev,noexec,relatime)
+hugetlbfs on /dev/hugepages type hugetlbfs (rw,relatime)
+debugfs on /sys/kernel/debug type debugfs (rw,nosuid,nodev,noexec,relatime)
+tmpfs on /tmp type tmpfs (rw,nosuid,nodev)
+configfs on /sys/kernel/config type configfs (rw,nosuid,nodev,noexec,relatime)
+tmpfs on /var/volatile type tmpfs (rw,relatime)
+/dev/mmcblk0p33 on /opt/ifm/data type ext4 (rw,relatime,data=ordered)
+overlay on /etc/systemd/network type overlay (rw,relatime,lowerdir=/etc/systemd/network,upperdir=/opt/ifm/data/overlayfs/upper/network,workdir=/opt/ifm/data/overlayfs/work/network)
+tmpfs on /run/user/989 type tmpfs (rw,nosuid,nodev,relatime,size=392056k,mode=700,uid=989,gid=987)
+systemd-1 on /run/media/system/IFM type autofs (rw,relatime,fd=79,pgrp=1,timeout=3,minproto=5,maxproto=5,direct)
+</pre></div>
+</div>
+<p>If the mount is successful you can find the drive at <code class="docutils literal notranslate"><span class="pre">/run/media/system/&lt;USB_name&gt;/</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>o3r-vpu-c0:~$<span class="w"> </span>ls<span class="w"> </span>-la<span class="w"> </span>/run/media/system/IFM/
+total<span class="w"> </span><span class="m">957660</span>
+drwxr-xr-x<span class="w"> </span><span class="m">6</span><span class="w"> </span>oem<span class="w">  </span>oem<span class="w">       </span><span class="m">4096</span><span class="w"> </span>Jan<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">1970</span><span class="w"> </span>.
+drwxr-xr-x<span class="w"> </span><span class="m">3</span><span class="w"> </span>root<span class="w"> </span>root<span class="w">        </span><span class="m">60</span><span class="w"> </span>Feb<span class="w">  </span><span class="m">7</span><span class="w"> </span><span class="m">15</span>:54<span class="w"> </span>..
+...
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ethernet.html" class="btn btn-neutral float-left" title="Ethernet interfaces" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sntp.html" class="btn btn-neutral float-right" title="NTP(Network Time Protocol)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

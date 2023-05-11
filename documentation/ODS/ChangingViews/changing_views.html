@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to switch ODS applications &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Overhanging loads" href="../OverhangingLoads/overhanging_loads.html" />
+    <link rel="prev" title="ODS data recording strategies" href="../Recording/ods_data_recording.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index_ods.html">ODS</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Mounting/mounting.html">Mounting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Instantiation/instantiation.html">Instantiation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Configuration/configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Zones/zones.html">Zones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OccupancyGrid/occupancy_grid.html">Occupancy grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Recording/ods_data_recording.html">Recording</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Changing views</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-multiple-applications">Configuring multiple applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#state-machine-design-for-robust-application-switches">State machine design for robust application switches</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state-machine-states">State machine states</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#how-to-switch-applications">How to switch applications</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#full-example">Full example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../OverhangingLoads/overhanging_loads.html">Overhanging loads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ExtrinsicCalibration/index_extrinsic_calibration.html">Extrinsic calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../FieldTest/index_field_test.html">Field test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DeviceVerification/index_device_verification.html">Device verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../iVA/index_ifmODS_iVA.html">ifmVisionAssistant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Python/index_ifmODS_python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Cpp/index_ifmODS_cpp.html">C++</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index_ods.html">ODS (Obstacle Detection System)</a> &raquo;</li>
+      <li>How to switch ODS applications</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/documentation/ODS/ChangingViews/changing_views.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="how-to-switch-ods-applications">
+<h1>How to switch ODS applications<a class="headerlink" href="#how-to-switch-ods-applications" title="Permalink to this headline"></a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The support for multiple applications was introduced in firmware version 1.0.x.</p>
+</div>
+<div class="section" id="configuring-multiple-applications">
+<h2>Configuring multiple applications<a class="headerlink" href="#configuring-multiple-applications" title="Permalink to this headline"></a></h2>
+<p>An application configuration implementation should consist of the following steps:</p>
+<ol class="simple">
+<li><p>Monitoring the boot-up process to validate that the O3R system is fully booted and available,</p></li>
+<li><p>Deleting any apps that were previously set and saved as a persistent configuration on the device</p></li>
+<li><p>Loading the desired applications configuration from file</p></li>
+<li><p>Creating an <code class="docutils literal notranslate"><span class="pre">AppHandler</span></code> class instance:</p>
+<ol class="simple">
+<li><p>Creating the App Handler class instance with the knowledge off all desired app instance list</p></li>
+<li><p>Setting each single application in a sequential order via the App Handler - monitoring the application configuration</p></li>
+<li><p>(Setting a dummy extrinsic calibration for all camera heads used in at least on ODS instance - for the ODS apps to be functional)</p></li>
+</ol>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Regarding step 3, splitting the application into more manageable “smaller chunks” is a good idea to keep single configuration times low and monitor each application switch more closely.
+If an application instance creation fails, the system only rolls back the current configuration and not the complete configuration of all apps.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The ODS application requires the <code class="docutils literal notranslate"><span class="pre">transZ</span></code> extrinsic calibration parameters of dependent camera heads to be different to their default values: <code class="docutils literal notranslate"><span class="pre">transZ</span> <span class="pre">!=</span> <span class="pre">0</span></code>.</p>
+</div>
+<!-- TODOOOO: App switching code has to be refactored to new examples -->
+<blockquote>
+<div><p>Please see the full example for a working copy of this code.</p>
+</div></blockquote>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">IP</span> <span class="o">=</span> <span class="s2">&quot;192.168.0.69&quot;</span>
+<span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">(</span><span class="n">ip</span><span class="o">=</span><span class="n">IP</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">monitor_bootup</span><span class="p">(</span><span class="n">ip</span><span class="o">=</span><span class="n">IP</span><span class="p">,</span> <span class="n">o3r</span><span class="o">=</span><span class="n">o3r</span><span class="p">,</span> <span class="n">stages</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;device&quot;</span><span class="p">,</span> <span class="s2">&quot;ports&quot;</span><span class="p">])</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;O3R device available&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">TimeoutError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+        <span class="s2">&quot;no connection to VPU device with camera heads connected could be established&quot;</span>
+    <span class="p">)</span>
+    <span class="k">raise</span> <span class="n">e</span>
+
+<span class="k">if</span> <span class="n">delete_apps</span><span class="o">.</span><span class="n">check_for_existing_app</span><span class="p">(</span><span class="n">o3r</span><span class="p">):</span>
+    <span class="n">delete_apps</span><span class="o">.</span><span class="n">delete_existing_app</span><span class="p">(</span><span class="n">o3r</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;deleted all existing apps&quot;</span><span class="p">)</span>
+
+<span class="n">ods_2app_conf</span> <span class="o">=</span> <span class="n">default_values</span><span class="o">.</span><span class="n">ODS_APP_SWITCH_CONFIG</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ods_2app_conf</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">ods_config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+
+<span class="c1"># 1. create am app Handlder object</span>
+<span class="n">apps_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ods_config</span><span class="p">[</span><span class="s2">&quot;applications&quot;</span><span class="p">][</span><span class="s2">&quot;instances&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="n">app_handle</span> <span class="o">=</span> <span class="n">AppHandler</span><span class="p">(</span><span class="n">ip</span><span class="o">=</span><span class="n">IP</span><span class="p">,</span> <span class="n">o3r</span><span class="o">=</span><span class="n">o3r</span><span class="p">,</span> <span class="n">app_active</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">apps</span><span class="o">=</span><span class="n">apps_list</span><span class="p">)</span>
+
+<span class="c1"># 2. set ODS applications: i.e. create application instances</span>
+<span class="n">single_apps</span> <span class="o">=</span> <span class="n">get_single_app_instances</span><span class="p">(</span><span class="n">ods_config</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">sg</span> <span class="ow">in</span> <span class="n">single_apps</span><span class="p">:</span>
+    <span class="n">app_handle</span><span class="o">.</span><span class="n">set_ods_config</span><span class="p">(</span><span class="n">sg</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Applications available after sequential configuration:</span><span class="se">\n</span><span class="s1"> </span><span class="si">{</span><span class="n">app_handle</span><span class="o">.</span><span class="n">ods_config</span><span class="p">[</span><span class="s2">&quot;applications&quot;</span><span class="p">][</span><span class="s2">&quot;instances&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># 3. set extrinsic calibration for ODS application to be functional</span>
+<span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">app_handle</span><span class="o">.</span><span class="n">get_cam_ports</span><span class="p">(</span><span class="n">ods_config</span><span class="p">):</span>
+    <span class="n">set_dummy_extrinsics</span><span class="p">(</span><span class="n">app_handle</span><span class="o">.</span><span class="n">o3r</span><span class="p">,</span> <span class="n">port_number</span><span class="o">=</span><span class="n">p</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;port&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="state-machine-design-for-robust-application-switches">
+<h2>State machine design for robust application switches<a class="headerlink" href="#state-machine-design-for-robust-application-switches" title="Permalink to this headline"></a></h2>
+<div class="section" id="requirements">
+<h3>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Only one active application (that is, in <code class="docutils literal notranslate"><span class="pre">RUN</span></code> state) is allowed.</p></li>
+<li><p>Applications will automatically set the states of dependent data streams, for example if <code class="docutils literal notranslate"><span class="pre">app0</span></code> uses <code class="docutils literal notranslate"><span class="pre">port0,</span> <span class="pre">port1,</span> <span class="pre">port6</span></code> a state change of the application will automatically switch the states of <code class="docutils literal notranslate"><span class="pre">port0,</span> <span class="pre">port1,</span> <span class="pre">port6</span></code> as well to match the state of the application.</p></li>
+<li><p>An inactive state (all applications in <code class="docutils literal notranslate"><span class="pre">CONF</span></code> state) is allowed.</p></li>
+<li><p>Only data from a live application can be retrieved.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Between an application switch the ODS internal visual odometry module needs an additional 5 seconds to fully settle. Only after it has fully initialized the AGV can start moving.</p>
+</div>
+<p>See the example implementation here:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">set_app_active</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_req</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">app_req</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">apps</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;app not available&quot;</span><span class="p">)</span>
+
+    <span class="c1"># set currently active app to CONF state if not equal to requested app</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">app_active</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span> <span class="ow">and</span> <span class="n">app_req</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">app_active</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_app_state</span><span class="p">(</span><span class="n">app</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">app_active</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="s2">&quot;CONF&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_set_app_state</span><span class="p">(</span><span class="n">app</span><span class="o">=</span><span class="n">app_req</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="s2">&quot;RUN&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">app_active</span> <span class="o">=</span> <span class="n">app_req</span>
+
+    <span class="c1"># additional grace period to allow the ODS applications vo module to fully initialize</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="state-machine-states">
+<h3>State machine states<a class="headerlink" href="#state-machine-states" title="Permalink to this headline"></a></h3>
+<p>A typical use case of multiple applications is an AGV that can drive in multiple directions.
+The states are therefore:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Driving</span> <span class="pre">forward</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Driving</span> <span class="pre">backward</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Stationary</span></code></p></li>
+</ul>
+<p>Any state change between the three states of the AGV should trigger a state change of the ODS applications.</p>
+<p>There is a one-to-one relation between the AGV states and the applications states:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Driving</span> <span class="pre">forward</span></code> == <code class="docutils literal notranslate"><span class="pre">app0</span> <span class="pre">active</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Driving</span> <span class="pre">backward</span></code> = <code class="docutils literal notranslate"><span class="pre">app1</span> <span class="pre">active</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Stationary</span></code> == <code class="docutils literal notranslate"><span class="pre">all</span> <span class="pre">apps</span> <span class="pre">inactive</span></code></p></li>
+</ul>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span> <span class="c1"># 4.1. set one app active and request some data</span>
+<span class="n">app_handle</span><span class="o">.</span><span class="n">set_app_active</span><span class="p">(</span><span class="n">app_req</span><span class="o">=</span><span class="s2">&quot;app0&quot;</span><span class="p">)</span>
+<span class="n">app_handle</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">app</span><span class="o">=</span><span class="s2">&quot;app0&quot;</span><span class="p">)</span>
+
+<span class="c1"># 4.2. set a different app active and request some data</span>
+<span class="n">app_handle</span><span class="o">.</span><span class="n">set_app_active</span><span class="p">(</span><span class="n">app_req</span><span class="o">=</span><span class="s2">&quot;app1&quot;</span><span class="p">)</span>
+<span class="n">app_handle</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">app</span><span class="o">=</span><span class="s2">&quot;app1&quot;</span><span class="p">)</span>
+
+<span class="c1"># 5. request data from a non-active app</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">app_handle</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">app</span><span class="o">=</span><span class="s2">&quot;app0&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+<span class="c1"># 6. set all apps to inactive state, i.e. to save battery power</span>
+<span class="n">app_handle</span><span class="o">.</span><span class="n">set_all_apps_inactive</span><span class="p">()</span>
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-switch-applications">
+<h3>How to switch applications<a class="headerlink" href="#how-to-switch-applications" title="Permalink to this headline"></a></h3>
+<p>A App Handler class should automatically resolve mutually exclusive activations of multiple app instances and resolve requests to data from inactive apps.</p>
+<p>Such an App Handler class shall has three primary methods:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">set_ods_config</span></code>: allow for setting multiple applications sequentially and keep track of all available applications</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set_app_active</span></code>: set one application to <code class="docutils literal notranslate"><span class="pre">RUN</span></code> state and resolve any other applications to <code class="docutils literal notranslate"><span class="pre">CONF</span></code> state</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set_all_apps_inactive</span></code>: set all application instances to <code class="docutils literal notranslate"><span class="pre">CONF</span></code> state to preserve battery power and allow for cool-off.</p></li>
+</ul>
+<p>The additional method implemented <code class="docutils literal notranslate"><span class="pre">get_data</span></code> is an example method for how to retrieve one data set from a live application. Please be aware the the internal FrameGrabber module of the ifm3d / ifm3dpy API needs 0.5 seconds of grace period after call it’s constructor to buffer data.</p>
+<p>If this grace period is not met the user might not be abele to receive any data from this FrameGrabber class instance at all!</p>
+</div>
+</div>
+<div class="section" id="full-example">
+<h2>Full example<a class="headerlink" href="#full-example" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Note: the example code below was taken from the main method of the example implementation in [ods_examples/switch_application.py]</p>
+</div></blockquote>
+<p>Check the full implementation as a Python3 helper class here:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="mi">8</span><span class="o">&lt;--</span> <span class="s2">&quot;ods_examples/switch_application.py&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Recording/ods_data_recording.html" class="btn btn-neutral float-left" title="ODS data recording strategies" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../OverhangingLoads/overhanging_loads.html" class="btn btn-neutral float-right" title="Overhanging loads" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

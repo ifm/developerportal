@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Temporal Filter &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/clipboard.min.js"></script>
+        <script src="../../../../_static/copybutton.js"></script>
+        <script src="../../../../_static/js/versionwarning.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Mixed Pixel Filter" href="mixedPixelFilter.html" />
+    <link rel="prev" title="(Spatial) Median Filter" href="median.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index_hardware_interfaces.html">Technology</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../2D/2d.html">2D Cameras</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index_3d.html">3D Cameras</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../modes.html">Modes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../AcquisitionParams/index_acquisition_params.html">Acquisition parameters</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index_processing_params.html">Processing parameters</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="processing_params.html">Overview of the processing parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="filteringProcess.html">Filtering process overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="maxDistNoise.html">Maximum distance noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="minAmplitude.html">Minimum amplitude</a></li>
+<li class="toctree-l4"><a class="reference internal" href="minReflectivity.html">Minimum reflectivity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bilateralFilter.html">Adaptive noise bilateral filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="median.html">Median filter</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Temporal filter</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#abstract">Abstract</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#reducing-noise">Reducing Noise</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#recovering-lost-pixels">Recovering Lost Pixels</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#related-settings">Related settings</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="mixedPixelFilter.html">Mixed pixel filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="symmetryThreshold.html">Symmetry threshold</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../triggering.html">O3R System synchronization and triggering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ImagesDescription/index_images_description.html">Images description</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../VPU/index_vpu.html">VPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../SystemVerification/index_system_verification.html">System Verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index_hardware_interfaces.html#available-hardware-and-specifications">Available hardware and specifications.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index_hardware_interfaces.html#cad-drawings-of-vpu-and-camera-heads">CAD drawings of VPU and camera heads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../index_hardware_interfaces.html#camera-heads">Camera Heads</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index_hardware_interfaces.html">Technology</a> &raquo;</li>
+          <li><a href="../index_3d.html">3D Camera Configuration</a> &raquo;</li>
+          <li><a href="index_processing_params.html">Processing parameters</a> &raquo;</li>
+      <li>Temporal Filter</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/documentation/Technology/3D/ProcessingParams/temporalFilter.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="temporal-filter">
+<h1>Temporal Filter<a class="headerlink" href="#temporal-filter" title="Permalink to this headline"></a></h1>
+<div class="section" id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline"></a></h2>
+<p>The temporal filter filters the data over—you guessed it—time. Each measurement per pixel over several frames is used to produce the filtered value, reducing (distance) noise per pixel.
+This filter is best suited for static scenes because the objects in the scene are in the same relative positions over multiple frames.</p>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline"></a></h2>
+<p>The temporal filter affects all images—distance image, point cloud, and so on—by reducing the noise. The filtered value for each pixel at a certain time is computed by integrating information over multiple frames. There is no strict limit on how many frames are taken into account for filtering; instead, the filter is automatically reset when necessary, such as when motion is detected.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h2>
+<div class="section" id="reducing-noise">
+<h3>Reducing Noise<a class="headerlink" href="#reducing-noise" title="Permalink to this headline"></a></h3>
+<p>The primary role of the temporal filter is to reduce noise. The following images show a before/after of a scene measured without (left images) and with (right images) the temporal filter. The two images in the second row represent the distance noise, with the color black representing a negligible amount of noise and blue a noise of around 2 cm. We can see that the noise is greatly reduced by the use of the temporal filter. It is even more visible “live”. Try it!</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><img alt="Noise without temporal filter" src="../../../../_images/noise_no_temp_filter.png" /></p></th>
+<th class="head"><p><img alt="Noise with temporal filter" src="../../../../_images/noise_temp_filter_on.png" /></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><img alt="Noise image without temporal filter" src="../../../../_images/noise_image.png" /></p></td>
+<td><p><img alt="Noise image with temporal filter" src="../../../../_images/no_noise_image.png" /></p></td>
+<td><p><img alt="Color bar for noise image" src="../../../../_images/color_bar_noise.png" /></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="recovering-lost-pixels">
+<h3>Recovering Lost Pixels<a class="headerlink" href="#recovering-lost-pixels" title="Permalink to this headline"></a></h3>
+<p>Because the filter estimates pixel values over time, a positive side effect is that it gathers more data overall. Certain pixels might reflect too little light because of their distance to the camera or their material, which causes them to be discarded during the filtering process (by the <span class="xref myst">spatial filter</span>, for instance, or the <span class="xref myst">minimum amplitude filter</span>). However, distance data for these pixels can potentially be computed by collecting light over multiple frames. In the following two images, we compare the same scene without (left image) and with (right image) the filter. We can see that a section of the floor (around 10 cm) at the end of the range (the point at which the pixels return the least amount of light) is not visible without the temporal filter. Note that this section of the floor could also possibly be recovered using the <span class="xref myst">distance noise</span> with higher values for the distance noise threshold, with the disadvantage of increasing the overall noise.</p>
+<p>|<img alt="Scene without temporal filter" src="../../../../_images/no_temporal_filter.png" />|<img alt="Scene with temporal filter" src="../../../../_images/temporal_filter_on.png" />|</p>
+</div>
+</div>
+<div class="section" id="related-settings">
+<h2>Related settings<a class="headerlink" href="#related-settings" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><span class="xref myst">Distance noise</span></p></li>
+<li><p><span class="xref myst">Minimum amplitude</span></p></li>
+<li><p><span class="xref myst">Spatial filter</span></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="median.html" class="btn btn-neutral float-left" title="(Spatial) Median Filter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mixedPixelFilter.html" class="btn btn-neutral float-right" title="Mixed Pixel Filter" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

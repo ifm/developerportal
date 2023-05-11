@@ -2,7 +2,6 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-    <meta property="article:modified_time" content="2022-04-19T14:51:47+00:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ifm3d-ros2 &mdash; O3R  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -25,7 +24,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Device Configuration" href="../../documentation/DeviceConfiguration/index.html" />
+    <link rel="next" title="Docker on O3R" href="../../documentation/SoftwareInterfaces/Docker/index_docker.html" />
     <link rel="prev" title="The ifm3d_ros_examples package" href="../ifm3d-ros/ifm3d_ros_examples/README.html" /> 
 </head>
 
@@ -45,47 +44,42 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../../index_getting_started.html">Getting Started</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../documentation/GettingStarted/Unboxing/hw_unboxing.html">Hardware Unboxing</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../../index_sw_stack.html">Pick your software stack</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../../documentation/GettingStarted/ifmVisionAssistant/index.html">ifmVisionAssistant</a></li>
-<li class="toctree-l3"><a class="reference external" href="https://api.ifm3d.com/html/examples/index.html">Python</a></li>
-<li class="toctree-l3"><a class="reference external" href="https://api.ifm3d.com/html/examples/index.html">C++</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../ifm3d-ros/index.html">ROS</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">ROS 2</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#software-compatibility-matrix">Software Compatibility Matrix</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#building-and-installing-the-software">Building and Installing the Software</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#pre-requisites">Pre-requisites</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#building-from-source">Building from source</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#launch-the-node">Launch the node</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index_software_interfaces.html">Software Interfaces</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../documentation/SoftwareInterfaces/iVA/index_iVA.html">ifm Vision Assistant</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://api.ifm3d.com/stable/">ifm3d/ifm3dpy API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ifm3d-ros/index.html">ROS: ifm3d-ros</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ROS2: ifm3d-ros2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#software-compatibility-matrix">Software Compatibility Matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building-and-installing-the-software">Building and Installing the Software</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pre-requisites">Pre-requisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#building-from-source">Building from source</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#launch-the-node">Launch the node</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#ros-interface">ROS Interface</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#parameters">Parameters</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#published-topics">Published Topics</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#subscribed-topics">Subscribed Topics</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#advertised-services">Advertised Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ros-interface">ROS Interface</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#published-topics">Published Topics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subscribed-topics">Subscribed Topics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#advertised-services">Advertised Services</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#additional-documentation">Additional Documentation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#todo">ToDo</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#known-limitations">Known limitations</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#license">LICENSE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#additional-documentation">Additional Documentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#todo">ToDo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#known-limitations">Known limitations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#license">LICENSE</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../documentation/SoftwareInterfaces/Docker/index_docker.html">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../documentation/SoftwareInterfaces/ifmDiagnostic/index_diagnostic.html">ifmDiagnostic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../documentation/SoftwareInterfaces/Toolbox/index_toolbox.html">Toolbox</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../documentation/DeviceConfiguration/index.html">Device Configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../o3r-utilities/README.html">Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../applications_index.html">Applications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../documentation/Docker/index.html">Docker</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ifm3d/index.html">ifm3d API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../index.html">ROS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../documentation/Firmware/index.html">Firmware</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../downloadable/index.html">Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/ODS/index_ods.html">ODS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../documentation/FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../downloadable/index.html">History</a></li>
 </ul>
 
         </div>
@@ -102,8 +96,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index_getting_started.html">Getting started with the O3R</a> &raquo;</li>
-          <li><a href="../../index_sw_stack.html">Pick your favorite software stack</a> &raquo;</li>
+          <li><a href="../../index_software_interfaces.html">Software Interfaces</a> &raquo;</li>
       <li>ifm3d-ros2</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/ROS/ifm3d-ros2/README.md.txt" rel="nofollow"> View page source</a>
@@ -381,15 +374,13 @@ Thanks for your patience as we continue to ensure our ROS2 interface is feature-
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../ifm3d-ros/ifm3d_ros_examples/README.html" class="btn btn-neutral float-left" title="The ifm3d_ros_examples package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../../documentation/DeviceConfiguration/index.html" class="btn btn-neutral float-right" title="Device Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../../documentation/SoftwareInterfaces/Docker/index_docker.html" class="btn btn-neutral float-right" title="Docker on O3R" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, ifm CSR.
-      <span class="lastupdated">Last updated on Apr 19, 2022.
-      </span></p>
+    <p>&#169; Copyright 2021, ifm CSR.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

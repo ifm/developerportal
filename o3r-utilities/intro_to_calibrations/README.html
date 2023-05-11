@@ -2,7 +2,6 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-    <meta property="article:modified_time" content="2023-02-20T14:50:46+00:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Introduction to ifm camera coordinate systems and their transformations &mdash; O3R  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -24,9 +23,7 @@
         <script src="../../_static/js/versionwarning.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Extrinsic calibration routines: camera to robot coordinates" href="../extrinsic_calibration/README.html" />
-    <link rel="prev" title="Utilities" href="../README.html" /> 
+    <link rel="search" title="Search" href="../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,45 +41,14 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../index_getting_started.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../documentation/DeviceConfiguration/index.html">Device Configuration</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../README.html">Utilities</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Intro to calibration</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#sensor-coordinate-system-pixel-coordinate-system">Sensor-coordinate-system / pixel coordinate system:</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#optics-coordinate-system-optics-space">Optics-coordinate-system (optics space):</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#optics-space-non-rectified">Optics space non-rectified</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#optics-space-rectified">Optics space rectified</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#head-coordinate-system-head-space">Head-coordinate-system (head space):</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#defining-where-the-camera-is">Defining where the camera is</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#user-coordinate-system">User-coordinate-system:</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#extrinsic-calibration">Extrinsic calibration:</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#using-calibration-data-stored-on-the-camera-head">Using calibration data stored on the camera head:</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#generating-point-clouds-from-scratch">Generating point clouds from scratch:</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#glossary">Glossary:</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#intrinsic-calibration">Intrinsic calibration:</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#inverse-intrinsic-calibration">Inverse-Intrinsic calibration:</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../extrinsic_calibration/README.html">Extrinsic calibration routines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../registration2d3d/README.html">2D-3D registration Example</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../applications_index.html">Applications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../documentation/Docker/index.html">Docker</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ifm3d/index.html">ifm3d API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../ROS/index.html">ROS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../documentation/Firmware/index.html">Firmware</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../downloadable/index.html">Downloads</a></li>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../documentation/ODS/index_ods.html">ODS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../documentation/FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../downloadable/index.html">History</a></li>
 </ul>
 
         </div>
@@ -99,7 +65,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../README.html">Utilities</a> &raquo;</li>
       <li>Introduction to ifm camera coordinate systems and their transformations</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/o3r-utilities/intro_to_calibrations/README.md.txt" rel="nofollow"> View page source</a>
@@ -129,7 +94,7 @@
 </ol>
 <p>Out-of-the-box, all O3R camera heads are calibrated. This means they can provide the user with point cloud data using a coordinate system relative to the camera head, this is the <strong>head-coordinate-system</strong>.</p>
 <p>In the following a short overview is given to help you understand these three reference frames better. For details of their relation and the exact methods to retrieve the calibration parameters / perform the transformation with the methods provided in this example, please see the calibrations schema.</p>
-<a class="reference internal image-reference" href="../../_images/calibrations_schematic.png"><img alt="top_view" class="align-center" src="../../_images/calibrations_schematic.png" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="../../_images/calibrations_schematic1.png"><img alt="top_view" class="align-center" src="../../_images/calibrations_schematic1.png" style="width: 400px;" /></a>
 <div class="section" id="sensor-coordinate-system-pixel-coordinate-system">
 <h2>Sensor-coordinate-system / pixel coordinate system:<a class="headerlink" href="#sensor-coordinate-system-pixel-coordinate-system" title="Permalink to this headline"></a></h2>
 <p>The <strong>sensor-coordinate-system</strong> is a way of representing pixels on the camera sensor as a 2 dimensional vector, i.e. a classical pixel coordinate system: pixel rows, pixel columns.</p>
@@ -155,7 +120,7 @@ These intrinsic camera calibration parameters also hold information about the di
 </ul>
 <p>All 3D ToF 2-dimensional images are non-rectified. This is by choice, since all rectification process include a resampling / interpolation.
 Resampling and interpolation does not preserve the geometrical positions (in pixel coordinates) or involves averaging over a local neighborhood in pixel space, e.g. “mixes” geometrical distinct signal.</p>
-<p>For details see <a class="reference external" href="#intrinsic-calibration">intrinsic calibration</a> and <a class="reference external" href="#inverse-intrinsic-calibration">inverse intrinsic calibration</a>.</p>
+<p>For details see <span class="xref myst">intrinsic calibration</span> and <span class="xref myst">inverse intrinsic calibration</span>.</p>
 </div>
 <div class="section" id="optics-space-rectified">
 <h3>Optics space rectified<a class="headerlink" href="#optics-space-rectified" title="Permalink to this headline"></a></h3>
@@ -189,9 +154,9 @@ The z direction is directly pointing out of front of the camera (i.e. orthogonal
 <div class="section" id="generating-point-clouds-from-scratch">
 <h3>Generating point clouds from scratch:<a class="headerlink" href="#generating-point-clouds-from-scratch" title="Permalink to this headline"></a></h3>
 <p>The following diagram demonstrates how to use the calibration data and example functions to translate one form of camera data to another.</p>
-<a class="reference internal image-reference" href="../../_images/calibrations_schematic.png"><img alt="top_view" class="align-center" src="../../_images/calibrations_schematic.png" style="width: 1000px;" /></a>
+<a class="reference internal image-reference" href="../../_images/calibrations_schematic1.png"><img alt="top_view" class="align-center" src="../../_images/calibrations_schematic1.png" style="width: 1000px;" /></a>
 <p>The names used this diagram match the functions and variables demonstrated in examples such as 2d-3d Registration. The result of that example is shown below, where a point cloud that has been colored by associating depth data with color data from an O3R225 camera.</p>
-<p><img alt="" src="../../_images/2d3dexample.png" /></p>
+<p><img alt="" src="../../_images/2d3dexample1.png" /></p>
 </div>
 </div>
 <div class="section" id="glossary">
@@ -215,17 +180,12 @@ The z direction is directly pointing out of front of the camera (i.e. orthogonal
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../README.html" class="btn btn-neutral float-left" title="Utilities" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../extrinsic_calibration/README.html" class="btn btn-neutral float-right" title="Extrinsic calibration routines: camera to robot coordinates" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, ifm CSR.
-      <span class="lastupdated">Last updated on Feb 20, 2023.
-      </span></p>
+    <p>&#169; Copyright 2021, ifm CSR.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

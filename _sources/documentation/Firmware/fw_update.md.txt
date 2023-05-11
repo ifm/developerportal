@@ -11,7 +11,7 @@ The firmware image is available on the [ifm.com](https://www.ifm.com/) website. 
 - Select the firmware from the list. It will start downloading the file.
 
 ## Starting firmware is version < 1.0.0
-When updating to a firmware version 1.0.0 or above, starting with a firmware version below 1.0.0, please refer to [the migration guide](FW_1.0.x_migration_guide.md).
+When updating to a firmware version 1.0.0 or above, starting with a firmware version below 1.0.0, please refer to [the migration guide](../Firmware/ReleaseNotes/FW_1.0.x/FW_1.0.x_migration_guide.md).
 ## Starting firmware is version>= 1.0.0
 ### Reboot to recovery
 When the starting firmware is version 1.0.0 and above, a reboot to recovery state is necessary to perform an update. 

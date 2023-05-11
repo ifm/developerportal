@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagnose error code: reaction strategies &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Diagnostic retrieval" href="DiagnosticRetrieval/index_diagnostic_retrieval.html" />
+    <link rel="prev" title="Diagnostics error code sources" href="diagnostic_sources.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../iVA/index_iVA.html">ifm Vision Assistant</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://api.ifm3d.com/stable/">ifm3d/ifm3dpy API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ROS/ifm3d-ros/index.html">ROS: ifm3d-ros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ROS/ifm3d-ros2/README.html">ROS2: ifm3d-ros2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Docker/index_docker.html">Docker</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index_diagnostic.html">ifmDiagnostic</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="diagnostic_sources.html">Diagnostic error codes</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Diagnose error code: reaction strategies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#severity-levels-definitions">Severity levels definitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#severity-level-dependent-actions">Severity Level dependent actions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#handling-strategies">Handling strategies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#reboot-power-cycle">Reboot / power cycle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#factory-reset">Factory reset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#flash-firmware-anew">Flash firmware anew</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#camera-head-connectivity">Camera head connectivity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#image-loss-due-to-trigger-overruns-non-accepted-trigger-signals">Image loss due to trigger overruns / non accepted trigger signals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#image-buffer-availability">Image buffer availability</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#watchdog-errors-timeouts">Watchdog errors / timeouts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fpd-link-errors">FPD-Link errors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#internal-error-in-the-port-algorithm">Internal error in the port algorithm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#check-mounting-setup">Check mounting setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ods-unstable-framerate-implications">ODS unstable framerate implications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ethernet-connection-issues">Ethernet connection issues</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="DiagnosticRetrieval/index_diagnostic_retrieval.html">Diagnostic retrieval</a></li>
+<li class="toctree-l3"><a class="reference internal" href="debugging.html">Debugging with ifm support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Toolbox/index_toolbox.html">Toolbox</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index_software_interfaces.html">Software Interfaces</a> &raquo;</li>
+          <li><a href="index_diagnostic.html">O3R Diagnostics: overview</a> &raquo;</li>
+      <li>Diagnose error code: reaction strategies</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/documentation/SoftwareInterfaces/ifmDiagnostic/diagnostic_reaction_strategy.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="diagnose-error-code-reaction-strategies">
+<h1>Diagnose error code: reaction strategies<a class="headerlink" href="#diagnose-error-code-reaction-strategies" title="Permalink to this headline"></a></h1>
+<p>This diagnosis reaction strategy is motivated by the fact that different error codes / scenarios have different implications and severity and therefore have to be treated differently.</p>
+<div class="section" id="severity-levels-definitions">
+<h2>Severity levels definitions<a class="headerlink" href="#severity-levels-definitions" title="Permalink to this headline"></a></h2>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Priority</p></th>
+<th class="head"><p>Severity</p></th>
+<th class="head"><p>Meaning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Minor</p></td>
+<td><p>Information</p></td>
+<td><p>This level is used to convey information to the user. No persistent error has occurred.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Moderate</p></td>
+<td><p>Warning</p></td>
+<td><p>This level indicates that an error was detected but is not serious enough to interfere with the running of the program.</p></td>
+</tr>
+<tr class="row-even"><td><p>Major</p></td>
+<td><p>Severe Error</p></td>
+<td><p>This level indicates that a serious error was detected and persistent.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Critical</p></td>
+<td><p>Unrecoverable</p></td>
+<td><p>This level usually indicates a error that forces termination of processing.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="severity-level-dependent-actions">
+<h2>Severity Level dependent actions<a class="headerlink" href="#severity-level-dependent-actions" title="Permalink to this headline"></a></h2>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Error category</p></th>
+<th class="head"><p>Priority</p></th>
+<th class="head"><p>Severity level</p></th>
+<th class="head"><p>Handling strategy</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="xref myst">Boot sequence</span></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Boot sequence boot sequence 101014</p></td>
+<td><p>Major</p></td>
+<td><p>Severe</p></td>
+<td><p>VPU specific EEPROM content can not be read. <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a> if persistent <a class="reference internal" href="#factory-reset"><span class="std std-doc">factory  reset</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Boot sequence boot sequence 101018</p></td>
+<td><p>Major</p></td>
+<td><p>Unrecoverable</p></td>
+<td><p>Bring-up failed and unrecoverable. Manual reconfiguration required. <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a> if persistent <a class="reference internal" href="#factory-reset"><span class="std std-doc">factory  reset</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Boot sequence tcu 101000</p></td>
+<td><p>Critical</p></td>
+<td><p>Severe / Unrecoverable</p></td>
+<td><p>TCU firmware is not compatible / was not updated automatically to the correct FW dependent version <br> <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a> if persistent <a class="reference internal" href="#factory-reset"><span class="std std-doc">factory  reset</span></a> and <a class="reference internal" href="#flash-firmware-anew"><span class="std std-doc">flash firmware anew</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Boot sequence head 101004</p></td>
+<td><p>Critical</p></td>
+<td><p>Unrecoverable</p></td>
+<td><p>The camera head hardware may not be supported by this VPU and firmware. Disconnect all camera heads <br> <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a> and connect one camera head at a time to debug the problem.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Boot sequence head 101005</p></td>
+<td><p>Major</p></td>
+<td><p>Severe</p></td>
+<td><p>The camera mode is not be supported by this VPU and firmware. Select a different mode via the configuration tools and <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Boot sequence head 101008</p></td>
+<td><p>Major</p></td>
+<td><p>Severe</p></td>
+<td><p>The extrinsic calibration saved on the device (<code class="docutils literal notranslate"><span class="pre">saveInit</span></code>) does not match the connected hard at this specific port. <a class="reference internal" href="#factory-reset"><span class="std std-doc">factory  reset</span></a> to remove the all persistently saved settings or debug config manually per port.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Boot sequence head 101009</p></td>
+<td><p>Critical</p></td>
+<td><p>Unrecoverable</p></td>
+<td><p>The validation of the camera head hardware identification failed. <br> <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a> if persistent <a class="reference internal" href="#factory-reset"><span class="std std-doc">factory  reset</span></a> and <a class="reference internal" href="#flash-firmware-anew"><span class="std std-doc">flash firmware anew</span></a>. Replace hardware</p></td>
+</tr>
+<tr class="row-even"><td><p>Boot sequence head 101016</p></td>
+<td><p>Critical</p></td>
+<td><p>Unrecoverable</p></td>
+<td><p>Different camera streams connected to the same deserializer. Update hardware connectivity and <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Boot sequence icc 101010</p></td>
+<td><p>Critical</p></td>
+<td><p>Unrecoverable</p></td>
+<td><p>The illumination controller FW does not match the one required by the device FW. <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a> if persistent <a class="reference internal" href="#flash-firmware-anew"><span class="std std-doc">flash firmware anew</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p>Boot sequence icc 101011</p></td>
+<td><p>Critical</p></td>
+<td><p>Unrecoverable</p></td>
+<td><p>The illumination controller FW does not match the one required by the device FW. <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a> if persistent <a class="reference internal" href="#flash-firmware-anew"><span class="std std-doc">flash firmware anew</span></a>. Replace camera hardware.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Boot sequence icc 101012</p></td>
+<td><p>Critical</p></td>
+<td><p>Unrecoverable</p></td>
+<td><p>The illumination controller FW does not match the one required by the device FW. An update is attempted. <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a> if persistent <a class="reference internal" href="#flash-firmware-anew"><span class="std std-doc">flash firmware anew</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p>Boot sequence icc 101013</p></td>
+<td><p>Critical</p></td>
+<td><p>Unrecoverable</p></td>
+<td><p>The illumination controller FW does not match the one required by the device FW. <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a> if persistent <a class="reference internal" href="#flash-firmware-anew"><span class="std std-doc">flash firmware anew</span></a>.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Error category</p></th>
+<th class="head"><p>Priority</p></th>
+<th class="head"><p>Severity level</p></th>
+<th class="head"><p>Handling strategy</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="xref myst">Boot sequence</span></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Boot sequence 101002 imu</p></td>
+<td><p>Critical</p></td>
+<td><p>Severe</p></td>
+<td><p>Detected IMU hardware is not compatible. <br> <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a> if persistent <a class="reference internal" href="#factory-reset"><span class="std std-doc">factory  reset</span></a> and <a class="reference internal" href="#flash-firmware-anew"><span class="std std-doc">flash firmware anew</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Boot sequence 101003 imu</p></td>
+<td><p>Critical</p></td>
+<td><p>Severe</p></td>
+<td><p>Invalid IMU calibration used at boot-up. <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a> if persistent <a class="reference internal" href="#factory-reset"><span class="std std-doc">factory  reset</span></a> and <a class="reference internal" href="#flash-firmware-anew"><span class="std std-doc">flash firmware anew</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Boot sequence 101006 port</p></td>
+<td><p>Critical</p></td>
+<td><p>Severe / Unrecoverable</p></td>
+<td><p><a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a> if persistent <a class="reference internal" href="#factory-reset"><span class="std std-doc">factory  reset</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Boot sequence 101007 port</p></td>
+<td><p>Critical</p></td>
+<td><p>Severe</p></td>
+<td><p>The configuration saved on the device (<code class="docutils literal notranslate"><span class="pre">saveInit</span></code>) does not match the connected hard at this specific port. Manual reconfiguration required. If persistent <a class="reference internal" href="#factory-reset"><span class="std std-doc">factory  reset</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Boot sequence 101015 port</p></td>
+<td><p>Moderate</p></td>
+<td><p>Severe</p></td>
+<td><p>A dummy calibration is used during runtime. Measurement performance and accuracy may be reduced. <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a> if persistent <a class="reference internal" href="#factory-reset"><span class="std std-doc">factory  reset</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p>Boot sequence 101017 port</p></td>
+<td><p>Major</p></td>
+<td><p>Severe</p></td>
+<td><p>Camera head did not respond within 5 sec after boot-up. <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a> if persistent over runtime <a class="reference internal" href="#factory-reset"><span class="std std-doc">factory  reset</span></a> and <a class="reference internal" href="#flash-firmware-anew"><span class="std std-doc">flash firmware anew</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Boot sequence 101019 port</p></td>
+<td><p>Moderate</p></td>
+<td><p>Warning</p></td>
+<td><p>User specified EEPROM content used. Measurement performance and accuracy may be reduced. <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Boot sequence 101020 port</p></td>
+<td><p>Moderate</p></td>
+<td><p>Warning</p></td>
+<td><p>User specified calibration used. Measurement performance and accuracy may be reduced. <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a></p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Error category</p></th>
+<th class="head"><p>Priority</p></th>
+<th class="head"><p>Severity level</p></th>
+<th class="head"><p>Handling strategy</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="xref myst">VPU</span></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>VPU 103002</p></td>
+<td><p>Major</p></td>
+<td><p>Warning</p></td>
+<td><p>fix power supply</p></td>
+</tr>
+<tr class="row-even"><td><p>VPU 103003</p></td>
+<td><p>Major</p></td>
+<td><p>Warning</p></td>
+<td><p>fix power supply</p></td>
+</tr>
+<tr class="row-odd"><td><p>VPU 103004</p></td>
+<td><p>Major</p></td>
+<td><p>Severe</p></td>
+<td><p>fix power supply - <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>VPU 103005</p></td>
+<td><p>Major</p></td>
+<td><p>Severe</p></td>
+<td><p>fix power supply - <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>VPU 103006</p></td>
+<td><p>Major</p></td>
+<td><p>Severe</p></td>
+<td><p>fix power supply - <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>VPU 103007</p></td>
+<td><p>Major</p></td>
+<td><p>Severe</p></td>
+<td><p>fix power supply - <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>VPU 103008</p></td>
+<td><p>Major</p></td>
+<td><p>Severe</p></td>
+<td><p><span class="xref myst">Provide adequate (passive) cooling via heat conduction and convection</span></p></td>
+</tr>
+<tr class="row-even"><td><p>VPU 103009</p></td>
+<td><p>Moderate</p></td>
+<td><p>Warning</p></td>
+<td><p>Check NTP server availability and correct configuration</p></td>
+</tr>
+<tr class="row-odd"><td><p>VPU 1030010</p></td>
+<td><p>Moderate</p></td>
+<td><p>Severe</p></td>
+<td><p>For IDLE state conditions trigger overrun may result in missed image information <br> see <a class="reference internal" href="#image-loss-due-to-trigger-overruns-non-accepted-trigger-signals"><span class="std std-doc">trigger overruns</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>VPU 103011</p></td>
+<td><p>Major</p></td>
+<td><p>Severe</p></td>
+<td><p><a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>VPU 103012</p></td>
+<td><p>Moderate / Major</p></td>
+<td><p>Warning / Severe Error</p></td>
+<td><p>If only sporadic the system will be recover by itself. If persistent or repeated check <a class="reference internal" href="#watchdog-errors-timeouts"><span class="std std-doc">Watchdog errors</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>COMM 103000</p></td>
+<td><p>Critical</p></td>
+<td><p>Severe Error</p></td>
+<td><p><a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a> if persistent <a class="reference internal" href="#factory-reset"><span class="std std-doc">factory  reset</span></a> and <a class="reference internal" href="#flash-firmware-anew"><span class="std std-doc">flash firmware anew</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>COMM 103001</p></td>
+<td><p>Moderate</p></td>
+<td><p>Warning</p></td>
+<td><p>Warning only: if persistently active <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a></p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Error category</p></th>
+<th class="head"><p>Priority</p></th>
+<th class="head"><p>Severity level</p></th>
+<th class="head"><p>Handling strategy</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="xref myst">Port</span></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Port 102011</p></td>
+<td><p>Moderate / Major</p></td>
+<td><p>Warning / Severe Error</p></td>
+<td><p>Warning only: if persistently active <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>Port 102013</p></td>
+<td><p>Critical</p></td>
+<td><p>Severe / Unrecoverable</p></td>
+<td><p><a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a> if persistent check for <a class="reference internal" href="#fpd-link-errors"><span class="std std-doc">hardware defects</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>Port 102014</p></td>
+<td><p>Major / Critical</p></td>
+<td><p>Warning / Severe Error</p></td>
+<td><p>if persistent <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a> for non-series hardware check <a class="reference internal" href="#internal-error-in-the-port-algorithm"><span class="std std-doc">internal Algorithmic errors</span></a></p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Error category</p></th>
+<th class="head"><p>Priority</p></th>
+<th class="head"><p>Severity level</p></th>
+<th class="head"><p>Handling strategy</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="xref myst">HEAD</span></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>head 102000</p></td>
+<td><p>Major</p></td>
+<td><p>Severe</p></td>
+<td><p><span class="xref myst">Provide adequate (passive) cooling via heat conduction and convection</span></p></td>
+</tr>
+<tr class="row-even"><td><p>head 102001</p></td>
+<td><p>Major</p></td>
+<td><p>Severe</p></td>
+<td><p>fix power supply - if active / persistent <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a> to reset / reboot heads</p></td>
+</tr>
+<tr class="row-odd"><td><p>head 102002</p></td>
+<td><p>Major</p></td>
+<td><p>Severe</p></td>
+<td><p>If detected the system will enter error state and blocks image acquisition - to reset  <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a> <br> if persistent <a class="reference internal" href="#flash-firmware-anew"><span class="std std-doc">flash firmware anew</span></a> to update all respective micro controller versions</p></td>
+</tr>
+<tr class="row-even"><td><p>head 102003</p></td>
+<td><p>Major</p></td>
+<td><p>Warning / Severe</p></td>
+<td><p>The respective head will be blocked for image acquisition until no overvoltage is present - fix power supply and cable hardware</p></td>
+</tr>
+<tr class="row-odd"><td><p>head 102004</p></td>
+<td><p>Major</p></td>
+<td><p>Warning / Severe</p></td>
+<td><p>The respective head will be blocked for image acquisition until no undervoltage is present - fix power supply and cable hardware</p></td>
+</tr>
+<tr class="row-even"><td><p>head 102005</p></td>
+<td><p>Major</p></td>
+<td><p>Unrecoverable</p></td>
+<td><p>The respective head will be blocked for image acquisition until system is <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">rebooted</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>head 102006</p></td>
+<td><p>Critical</p></td>
+<td><p>Unrecoverable</p></td>
+<td><p>The respective head (including its illumination) will be blocked until system is <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">rebooted</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>head 102007</p></td>
+<td><p>Major</p></td>
+<td><p>Unrecoverable</p></td>
+<td><p>The respective head has detected a check sum error for its calibration - will be blocked until system is <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">rebooted</span></a> <br> if persistent <a class="reference internal" href="#factory-reset"><span class="std std-doc">factory  reset</span></a>, finally <a class="reference internal" href="#flash-firmware-anew"><span class="std std-doc">flash firmware anew</span></a> or replace hardware</p></td>
+</tr>
+<tr class="row-odd"><td><p>head 102008</p></td>
+<td><p>Major</p></td>
+<td><p>Unrecoverable</p></td>
+<td><p>The respective head will be blocked until system is <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">rebooted</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>head 102009</p></td>
+<td><p>Warning</p></td>
+<td><p>Severe</p></td>
+<td><p><span class="xref myst">Provide adequate (passive) cooling via heat conduction and convection</span>. <br> The respective head has reached temperatures exceeding its threshold and will be switched off until cooled down. After cool down phase the head will switch to live operation again by itself.</p></td>
+</tr>
+<tr class="row-odd"><td><p>head 102010</p></td>
+<td><p>Major</p></td>
+<td><p>Unrecoverable</p></td>
+<td><p>The respective head will be blocked until system is <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">rebooted</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>head 102012</p></td>
+<td><p>Moderate</p></td>
+<td><p>Warning / Severe</p></td>
+<td><p>The system detected a imager reset and performed a self healing operation. If error persists <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a>.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Error category</p></th>
+<th class="head"><p>Priority</p></th>
+<th class="head"><p>Severity level</p></th>
+<th class="head"><p>Handling strategy</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="xref myst">IMU</span></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>IMU 104000</p></td>
+<td><p>Minor / Moderate</p></td>
+<td><p>Warning</p></td>
+<td><p>The system checks for IMU timestamp and temperature value plausibility. This warning is active until new plausible data is available. <br> If error is persistent over longer time durations <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a></p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Error category</p></th>
+<th class="head"><p>Priority</p></th>
+<th class="head"><p>Severity level</p></th>
+<th class="head"><p>Handling strategy</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="xref myst">di</span></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>di 102015</p></td>
+<td><p>Major</p></td>
+<td><p>Severe</p></td>
+<td><p>Sanity checks based on the intrinsic calibration file failed. The data acquisition of the respective camera is blocked. This is most likely due to old / incompatible hardware. <br> If error is persistent <a class="reference internal" href="#factory-reset"><span class="std std-doc">factory  reset</span></a> and <a class="reference internal" href="#flash-firmware-anew"><span class="std std-doc">flash firmware anew</span></a> or replace hardware.</p></td>
+</tr>
+<tr class="row-even"><td><p>di 102016</p></td>
+<td><p>Moderate</p></td>
+<td><p>Warning</p></td>
+<td><p>If motion compensation is activated but can not be performed due to missing ego data. <a class="reference internal" href="#check-mounting-setup"><span class="std std-doc">Check your mounting setup</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>di 102017</p></td>
+<td><p>Moderate</p></td>
+<td><p>Warning</p></td>
+<td><p>If motion compensation is activated but can not be performed due to ego data availability, i.e. outdated timestamps. <a class="reference internal" href="#check-mounting-setup"><span class="std std-doc">Check your mounting setup</span></a>.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Error category</p></th>
+<th class="head"><p>Priority</p></th>
+<th class="head"><p>Severity level</p></th>
+<th class="head"><p>Handling strategy</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="xref myst">ODS</span></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>ODS 105000</p></td>
+<td><p>Moderate</p></td>
+<td><p>Warning</p></td>
+<td><p>The app checks plausible IMU / VPU extrinsic calibration. Perform a IMU / VPU calibration and sanity check <span class="xref myst">link</span></p></td>
+</tr>
+<tr class="row-even"><td><p>ODS 105001</p></td>
+<td><p>Minor / Moderate</p></td>
+<td><p>Warning</p></td>
+<td><p>The app checks plausible 3D data timestamps. No internal escalation is performed if active.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ODS 105002</p></td>
+<td><p>Major</p></td>
+<td><p>Severe</p></td>
+<td><p>The app checks camera specific calibration for plausibility. If error is active the respective camera can not be used in this app. <br> If persistent <a class="reference internal" href="#flash-firmware-anew"><span class="std std-doc">flash firmware anew</span></a> to trigger downloads of calibration files again and update dependent camera drivers.</p></td>
+</tr>
+<tr class="row-even"><td><p>ODS 105003</p></td>
+<td><p>Major</p></td>
+<td><p>Severe</p></td>
+<td><p>The app checks its configuration for plausibility. If implausible the app is set to error state and has to be reconfigured to exit error state. <br> <span class="xref myst">Check the app specific JSON schema for configuration verification</span>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ODS 105004</p></td>
+<td><p>Minor / Moderate</p></td>
+<td><p>Warning</p></td>
+<td><p>The app checks plausible 3D frame timestamps. No internal escalation is performed if active.</p></td>
+</tr>
+<tr class="row-even"><td><p>ODS 105005</p></td>
+<td><p>Minor / Moderate</p></td>
+<td><p>Info</p></td>
+<td><p>The app checks performs repeated IMU standstill calibration during live operation. If the estimated calibration values differ more than the internal threshold from their expected values this error will be activated. <br> This is an internal error - no internal escalation strategy will be applied. It will be automatically be reset by the application at the next possible instance.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ODS 105006</p></td>
+<td><p>Major</p></td>
+<td><p>Severe</p></td>
+<td><p>At least one sub-component of the app is unstable due to unstable framerate of the input data stream. See <a class="reference internal" href="#ods-unstable-framerate-implications"><span class="std std-doc">ODS unstable framerate</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>ODS 105007</p></td>
+<td><p>Moderate</p></td>
+<td><p>Warning</p></td>
+<td><p>The app performs ego-motion estimations. If no ego-motion is available the application performance may be reduced proportionally to time sice ego-motion estimation was lost. <br> No internal escalation is performed if active. <br> <a class="reference internal" href="#check-mounting-setup"><span class="std std-doc">Check your mounting setup</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ODS 105008</p></td>
+<td><p>Minor / Moderate</p></td>
+<td><p>Information</p></td>
+<td><p>The app checks for default zone configuration. No internal escalation is performed if active.</p></td>
+</tr>
+<tr class="row-even"><td><p>ODS 105009</p></td>
+<td><p>Major</p></td>
+<td><p>Warning / Severe</p></td>
+<td><p>The app failed to perform ego-motion estimations.<br> If this error persists, even if the vehicle is standing still with a significant part of structured floor visible on the VO camera, this is an indication that there is either an issue with the IMU or with the extrinsic calibration of the VO camera.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ODS 105010</p></td>
+<td><p>Major</p></td>
+<td><p>Warning / Severe Error</p></td>
+<td><p>Uncaught internal app exceptions. If persistent instantiate and reconfigure the app, <a class="reference internal" href="#reboot-power-cycle"><span class="std std-doc">reboot</span></a> for non-series hardware check <a class="reference internal" href="#internal-error-in-the-port-algorithm"><span class="std std-doc">internal Algorithmic errors</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>ODS 105011</p></td>
+<td><p>Moderate</p></td>
+<td><p>Warning</p></td>
+<td><p>The app checks plausible extrinsic head calibration. Performance may be reduced . No internal escalation is performed if active. <br> <a class="reference internal" href="#check-mounting-setup"><span class="std std-doc">Check your mounting setup</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ODS 105012</p></td>
+<td><p>Moderate</p></td>
+<td><p>Warning</p></td>
+<td><p>The app is configured with development features active, e.g. overwrite of velocity information status. This is not suggested for deployment as it may lead to unexpected behavior.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="handling-strategies">
+<h1>Handling strategies<a class="headerlink" href="#handling-strategies" title="Permalink to this headline"></a></h1>
+<div class="section" id="reboot-power-cycle">
+<h2>Reboot / power cycle<a class="headerlink" href="#reboot-power-cycle" title="Permalink to this headline"></a></h2>
+<p>A software reboot can be performed via the <a class="reference external" href="https://api.ifm3d.com/html/_autosummary/ifm3dpy.O3R.html?highlight=reboot#ifm3dpy.O3R.reboot">API CLI methods</a> or via the respective OS calls (on the embedded device).</p>
+<p>Alternatively one can power cycle the device: the power connection should be interrupted for at least 5 seconds.</p>
+</div>
+<div class="section" id="factory-reset">
+<h2>Factory reset<a class="headerlink" href="#factory-reset" title="Permalink to this headline"></a></h2>
+<p>The device can be reset to factory conditions and configuration via the <a class="reference external" href="https://api.ifm3d.com/html/content/cmdline_overview.html?highlight=factory%20reset">CLI method</a>, <a class="reference external" href="https://api.ifm3d.com/html/_autosummary/ifm3dpy.O3R.html?highlight=factory%20reset#ifm3dpy.O3R.factory_reset">API method</a></p>
+</div>
+<div class="section" id="flash-firmware-anew">
+<h2>Flash firmware anew<a class="headerlink" href="#flash-firmware-anew" title="Permalink to this headline"></a></h2>
+<p>Please flash the firmware again. For backward compatibility, see the <a class="reference external" href="https://ifm3d.com/documentation/Firmware/index.html">firmware release notes</a>.</p>
+</div>
+<div class="section" id="camera-head-connectivity">
+<h2>Camera head connectivity<a class="headerlink" href="#camera-head-connectivity" title="Permalink to this headline"></a></h2>
+<p>Different camera head imagers, e.g. 2D RGB and 3D ToF, or 3D ToF imagers of different resolutions, need to be connected to separate deserializers.
+Ports [0,1], Ports [2,3], Ports [4,5] are paired to the same deserializer internally and can therefore only handle image streams of the same type.
+Checks can be performed by verifying the cable description at the mini-Fakra connector or via the complete system status JSON (config under device).</p>
+</div>
+<div class="section" id="image-loss-due-to-trigger-overruns-non-accepted-trigger-signals">
+<h2>Image loss due to trigger overruns / non accepted trigger signals<a class="headerlink" href="#image-loss-due-to-trigger-overruns-non-accepted-trigger-signals" title="Permalink to this headline"></a></h2>
+<p>The system runs in a triggered mode internally for RUN and IDLE state. The difference is: for RUN state the system gets triggered continuously (internally), whereas in IDLE state only single software trigger signals are propagated / listened for.</p>
+<p>The trigger overrun only applies to the software triggered state - IDLE state: in case multiple trigger signals have been sent and can not be accepted by the system.
+In case of trigger overruns the system may have lost trigger signals, i.e. the respective images may not have been acquired or their frame start may have been delayed by an undefined time.
+Additionally check for network latency which cause trigger signals to get delayed.</p>
+</div>
+<div class="section" id="image-buffer-availability">
+<h2>Image buffer availability<a class="headerlink" href="#image-buffer-availability" title="Permalink to this headline"></a></h2>
+<p>Internally the system monitors its data buffer states. Each data stream is buffer into its own buffers with an anticipated buffer size, depending on the type and data frequency.</p>
+<p>When the data is not retrieved fast enough, i.e. the queue is not popped often enough this error is activated:</p>
+<ol class="simple">
+<li><p>Externally pointing data streams: the data retrieval rate is not adequate - possible bottlenecks are: network bottlenecks (insufficient network speed / latency ), OEM application running at low data retrieval rates, etc. Check your software and hardware for bottlenecks!.</p></li>
+<li><p>Internally pointing data stream: ifm applications on the device: The application is not processing data with the required frequency. See the application specific error codes. Check for additional (Docker based) applications which have high resource requirements.</p></li>
+</ol>
+<p>For case 1 (external): In case data is not retrieved fast enough the data buffer will be partially flushed.
+For case 2 (internal): In case data is not retrieved fast enough the data acquisition framerate can be slowed down.</p>
+</div>
+<div class="section" id="watchdog-errors-timeouts">
+<h2>Watchdog errors / timeouts<a class="headerlink" href="#watchdog-errors-timeouts" title="Permalink to this headline"></a></h2>
+<p>The system monitors its internal process states via watchdogs. Each watchdog has it own respective timeout, which is configured to not activate under normal operation conditions, e.g. normal processing power requirements.</p>
+<p>High processing requirements or certain re-configurations during runtime can cause sporadic triggers of watchdog timeouts. This can be tracked by dormant and low error counts. This case can be neglected.</p>
+<p>In case repeated active watchdog errors and high error counts increases (&gt; 5 / min) the system may not be self recoverable and requires a reboot.</p>
+</div>
+<div class="section" id="fpd-link-errors">
+<h2>FPD-Link errors<a class="headerlink" href="#fpd-link-errors" title="Permalink to this headline"></a></h2>
+<p>The system monitors the FPD-Link communication between the VPU and each camera head.</p>
+<p>The FPD-Link communication can perform self healing actions for most cases. If <code class="docutils literal notranslate"><span class="pre">ERROR_PORT_FPDLINK</span></code> errors are active the system entered a non-recoverable FPD-Link dependent error state.
+Possible sources of such errors are loose cable connections, continuous EMV / ESD disturbances on the cables, damaged cables, etc. Check for possible hardware malfunctions first and replace FAKRA cables to ensure no hardware defects are present.</p>
+</div>
+<div class="section" id="internal-error-in-the-port-algorithm">
+<h2>Internal error in the port algorithm<a class="headerlink" href="#internal-error-in-the-port-algorithm" title="Permalink to this headline"></a></h2>
+<p>The algorithmic data evaluation pipeline on the embedded device monitor for uncaught internal error cases. These should not be present for series hardware and software as supplied by ifm.</p>
+<p>For prerelease software and prototype hardware this error may occur. Please check the release notes for known defects for your specific non-series software and hardware.
+For older hardware that is no longer supported by newer firmware / software releases this error may occur.
+In these cases the data will most likely still be available but may be reduced in performance and accuracy.</p>
+</div>
+<div class="section" id="check-mounting-setup">
+<h2>Check mounting setup<a class="headerlink" href="#check-mounting-setup" title="Permalink to this headline"></a></h2>
+<p>Depending on the application specific mounting setups may be required to ensure all required data can be seen, appears in the FOV of the respective camera head.</p>
+<p><strong>Motion compensation:</strong>
+The motion compensation algorithm requires the floor to be part of the scene to work. If the floor is not part of the scene / can not be identified as floor for longer durations (&gt; 50 frames), motion compensation will be deactivated.
+Fix:</p>
+<ul class="simple">
+<li><p>Double check your mounting setup for rigidness.</p></li>
+<li><p>Check for hardware cleanliness: dust and finger prints on the housing will reduce performance and possible floor range.</p></li>
+<li><p>If hardware has recently been replaced check for correct alignment and calibrate the system (extrinsic calibration).</p></li>
+</ul>
+</div>
+<div class="section" id="ods-unstable-framerate-implications">
+<h2>ODS unstable framerate implications<a class="headerlink" href="#ods-unstable-framerate-implications" title="Permalink to this headline"></a></h2>
+<p>In case an sub-component unstable framerate has been detected the system runs with reduced performance. This includes:</p>
+<ul class="simple">
+<li><p>throttled input data stream framerate</p></li>
+<li><p>reduced output performance / data quality.</p></li>
+</ul>
+<p>This error can be caused by high resource (CPU / GPU) load scenarios on the embedded device. If additional resource heavy software components are run simultaneously this can cause system overload.
+<strong>Solution strategy:</strong></p>
+<ul class="simple">
+<li><p>We are working on solutions where CPU intense operations are offloaded to the GPU. This will free up CPU resources for OEM applications - will be available with final FW version 1.0.x</p></li>
+<li><p>OEM user applications should be pinned to specific CPU cores (ARM cores): since ifm applications mainly utilize the Denver cores, OEM applications should be pinned to specific ARM cores. <!-- TODO insert link --></p></li>
+</ul>
+</div>
+<div class="section" id="ethernet-connection-issues">
+<h2>Ethernet connection issues<a class="headerlink" href="#ethernet-connection-issues" title="Permalink to this headline"></a></h2>
+<p>Ethernet connection issues are as of FW 1.0.14 not tracked as diagnostic events / errors. A Ethernet patch cable disconnect for example will not result in an error state as indicated by the status LEDs or diagnostic entries. Such an error can only be tracked using the ifm3d trace call to retrieve the full embedded systemD journal log.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="diagnostic_sources.html" class="btn btn-neutral float-left" title="Diagnostics error code sources" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="DiagnosticRetrieval/index_diagnostic_retrieval.html" class="btn btn-neutral float-right" title="Diagnostic retrieval" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deploying a container to the VPU &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="How to handle verbose logging for Docker containers" href="logging.html" />
+    <link rel="prev" title="Docker: Getting started" href="docker.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../iVA/index_iVA.html">ifm Vision Assistant</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://api.ifm3d.com/stable/">ifm3d/ifm3dpy API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ROS/ifm3d-ros/index.html">ROS: ifm3d-ros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ROS/ifm3d-ros2/README.html">ROS2: ifm3d-ros2</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index_docker.html">Docker</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="docker.html">Docker: Getting started</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#build-and-run-a-docker-container-for-the-o3r-platform">Build and run a docker container for the O3R platform</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Deployment on board</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ssh-connection">SSH connection</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#generate-ssh-key-pair">1. Generate ssh key-pair</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#upload-the-public-key-to-the-vpu">2. Upload the public key to the VPU</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#connect-to-the-vpu-using-the-passphrase">3. Connect to the VPU using the passphrase</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#scp">SCP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#local-docker-registry">Local docker registry</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#create-a-local-docker-registry">Create a local Docker registry</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#push-a-container-to-your-local-registry">Push a container to your local registry</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pull-a-container-from-the-local-registry-host">Pull a container from the local registry - host</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#pull-a-container-from-the-local-registry-vpu">Pull a container from the local registry - VPU</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#stop-the-registry">Stop the registry</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html">Docker logging configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autostart.html">Autostarting the container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gpu.html">Enabling GPU usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cpu.html">CPU usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ifmDiagnostic/index_diagnostic.html">ifmDiagnostic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Toolbox/index_toolbox.html">Toolbox</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index_software_interfaces.html">Software Interfaces</a> &raquo;</li>
+          <li><a href="index_docker.html">Docker on O3R</a> &raquo;</li>
+      <li>Deploying a container to the VPU</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/documentation/SoftwareInterfaces/Docker/deployVPU.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="deploying-a-container-to-the-vpu">
+<h1>Deploying a container to the VPU<a class="headerlink" href="#deploying-a-container-to-the-vpu" title="Permalink to this headline"></a></h1>
+<p>There are several ways for deploying a container. This documentation focuses on the following two:</p>
+<ul class="simple">
+<li><p>Using <code class="docutils literal notranslate"><span class="pre">scp</span></code></p></li>
+<li><p>Using a local docker registry</p></li>
+</ul>
+<p>Every VPU has two users:</p>
+<ul class="simple">
+<li><p>root - ifm user with all rights</p></li>
+<li><p>oem - customer user, this is the only one you have access to.</p></li>
+</ul>
+<p>The first step to access the VPU is to connect to it via SSH.</p>
+<div class="section" id="ssh-connection">
+<h2>SSH connection<a class="headerlink" href="#ssh-connection" title="Permalink to this headline"></a></h2>
+<p>To connect to the VPU via ssh, follow these steps:</p>
+<ol class="simple">
+<li><p>Generate an ssh key-pair</p></li>
+<li><p>Upload the public key to the VPU</p></li>
+<li><p>Connect to the VPU using the passphrase</p></li>
+</ol>
+<div class="section" id="generate-ssh-key-pair">
+<h3>1. Generate ssh key-pair<a class="headerlink" href="#generate-ssh-key-pair" title="Permalink to this headline"></a></h3>
+<p>All user specific ssh keys are located at <code class="docutils literal notranslate"><span class="pre">~/.ssh</span></code>. This is the place where the private key for the connection to the VPU should be stored.</p>
+<p>To generate an ssh key-pair, use <code class="docutils literal notranslate"><span class="pre">ssh-keygen</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>~/.ssh/
+<span class="go">~/.ssh$ ssh-keygen -t rsa -b 4096 -C &quot;[email-address]&quot;</span>
+<span class="go">Generating public/private rsa key pair.</span>
+<span class="go">Enter file in which to save the key (/home/devoegse/.ssh/id_rsa): id_o3r</span>
+<span class="go">Enter passphrase (empty for no passphrase):</span>
+<span class="go">Enter same passphrase again:</span>
+<span class="go">...</span>
+</pre></div>
+</div>
+<p>A passphrase is also needed. After that command, two new keys are generated within the <code class="docutils literal notranslate"><span class="pre">~/.ssh</span></code> directory. With the example above it would be: <code class="docutils literal notranslate"><span class="pre">id_o3r</span></code> &amp; <code class="docutils literal notranslate"><span class="pre">id_o3r.pub</span></code>.</p>
+</div>
+<div class="section" id="upload-the-public-key-to-the-vpu">
+<h3>2. Upload the public key to the VPU<a class="headerlink" href="#upload-the-public-key-to-the-vpu" title="Permalink to this headline"></a></h3>
+<p>Uploading the public (<code class="docutils literal notranslate"><span class="pre">.pub</span></code>) ssh key to the VPU is achieved via the ifm3d library.
+The device configuration includes a parameter for authorized keys: <code class="docutils literal notranslate"><span class="pre">authorized_keys</span></code>.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;network&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;authorized_keys&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;ipAddressConfig&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;macEth0&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;00:04:4B:EA:95:FB&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;macEth1&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;00:02:01:23:33:36&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;networkSpeed&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;staticIPv4Address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.0.69&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;staticIPv4Gateway&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.0.201&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;staticIPv4SubNetMask&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;255.255.255.0&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;useDHCP&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="p">},</span>
+</pre></div>
+</div>
+<p>To add a new key, the VPU configuration needs to be changed. This can be done with several ways (see <a class="reference external" href="https://api.ifm3d.com/stable/examples/o3r/configuration/configuration.html">configuring the camera</a>). The easiest way in this case is to use the <code class="docutils literal notranslate"><span class="pre">jq</span></code> command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>--arg<span class="w"> </span>id<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>&lt;<span class="w"> </span>~/.ssh/id_o3r.pub<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="s1">&#39;.device.network.authorized_keys=$id&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>ifm3d<span class="w"> </span>config
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ifm3d</span> <span class="pre">dump</span></code> - This command receives the current configuration from the VPU.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">jq</span> <span class="pre">--arg</span> <span class="pre">id</span> <span class="pre">&quot;$(&lt;</span> <span class="pre">~/.ssh/id_o3r.pub)&quot;</span></code> - This loads the public key into the variable <code class="docutils literal notranslate"><span class="pre">id</span></code> and provides it to the <code class="docutils literal notranslate"><span class="pre">jq</span></code> command</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'.device.network.authorized_keys=$id'</span></code> - Here the json value from <code class="docutils literal notranslate"><span class="pre">authorized_keys</span></code> is changed for the public key within the variable <code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ifm3d</span> <span class="pre">config</span></code> - The new json is now used to change the configuration of the VPU via <code class="docutils literal notranslate"><span class="pre">ifm3d</span> <span class="pre">config</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="connect-to-the-vpu-using-the-passphrase">
+<h3>3. Connect to the VPU using the passphrase<a class="headerlink" href="#connect-to-the-vpu-using-the-passphrase" title="Permalink to this headline"></a></h3>
+<p>After the key is uploaded, it is possible to connect with <code class="docutils literal notranslate"><span class="pre">ssh</span></code> and the username <code class="docutils literal notranslate"><span class="pre">oem</span></code> to the VPU:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ssh<span class="w"> </span>oem@192.168.0.69
+<span class="go">The authenticity of host &#39;192.168.0.69 (192.168.0.69)&#39; can&#39;t be established.</span>
+<span class="go">ECDSA key fingerprint is SHA256:8gjC9za45TTRZNz5JCMwaNJ27BLfsPyDtjBaBQ2vyHw.</span>
+<span class="go">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes</span>
+<span class="go">Warning: Permanently added &#39;192.168.0.69&#39; (ECDSA) to the list of known hosts.</span>
+<span class="gp">o3r-vpu-c0:~$</span>
+</pre></div>
+</div>
+<p>There will be a prompt for the passphrase, configured during step 1.</p>
+</div>
+</div>
+<div class="section" id="scp">
+<h2>SCP<a class="headerlink" href="#scp" title="Permalink to this headline"></a></h2>
+<p>The first way to transfer a container to the VPU is to copy a saved container via scp.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>path/to/container/folder$<span class="w"> </span>scp<span class="w"> </span>ifm3d.tar<span class="w"> </span>oem@192.168.0.69:/home/oem/
+oem@192.168.0.69’s<span class="w"> </span>password:
+ifm3d.tar<span class="w">                                                                       </span><span class="m">100</span>%<span class="w">  </span>108MB<span class="w">  </span><span class="m">51</span>.5MB/s<span class="w">   </span><span class="m">00</span>:02
+</pre></div>
+</div>
+<p>The system will ask for a password: <code class="docutils literal notranslate"><span class="pre">oem</span></code></p>
+<p>To verify if the copy process worked, use the command <code class="docutils literal notranslate"><span class="pre">sync</span></code> on the VPU after the copying the container.</p>
+<blockquote>
+<div><p>Note: Use ssh to connect to the VPU - see <a class="reference internal" href="#ssh-connection"><span class="std std-doc">SSH connection</span></a></p>
+</div></blockquote>
+<blockquote>
+<div><p>Note: The <code class="docutils literal notranslate"><span class="pre">oem</span></code> user has no write rights outside of his/her home directory. Therefore use <code class="docutils literal notranslate"><span class="pre">/home/oem/</span></code> for saving files etc. It is possible to create folders within the oem directory.</p>
+</div></blockquote>
+<p>When copying large containers to the VPU, we recommend using the following command in order to avoid requiring double space:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>save<span class="w"> </span>&lt;image&gt;<span class="w"> </span><span class="p">|</span><span class="w"> </span>ssh<span class="w"> </span>-C<span class="w"> </span>oem@192.168.0.69<span class="w"> </span>docker<span class="w"> </span>load
+</pre></div>
+</div>
+<p>Once you copied the container, you can load and start it (see <span class="xref myst">instructions</span>)</p>
+</div>
+<div class="section" id="local-docker-registry">
+<h2>Local docker registry<a class="headerlink" href="#local-docker-registry" title="Permalink to this headline"></a></h2>
+<p>Due to the fact that proxy servers are sometimes hard to deal with and that disk resources on the VPU is also limited, it might come handy to run a Docker registry in your local network.</p>
+<div class="section" id="create-a-local-docker-registry">
+<h3>Create a local Docker registry<a class="headerlink" href="#create-a-local-docker-registry" title="Permalink to this headline"></a></h3>
+<p>The local Docker registry is created by using the container images provided by Docker itself and host them.
+On the host system (not the VPU) activate a local Docker registry with following commands:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>pull<span class="w"> </span>registry:latest
+<span class="gp"># </span>Start<span class="w"> </span>the<span class="w"> </span>registry<span class="w"> </span>and<span class="w"> </span><span class="nb">bind</span><span class="w"> </span>the<span class="w"> </span>container<span class="w"> </span>ports<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>host<span class="w"> </span>ports
+<span class="gp">$ </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">5000</span>:5000<span class="w"> </span>--name<span class="w"> </span>registry<span class="w"> </span>registry:latest
+</pre></div>
+</div>
+<blockquote>
+<div><p>Note: A local registry might seem complicated at first. For further information refer to the <a class="reference external" href="https://docs.docker.com/registry/deploying/">official documentation</a>.</p>
+</div></blockquote>
+</div>
+<div class="section" id="push-a-container-to-your-local-registry">
+<h3>Push a container to your local registry<a class="headerlink" href="#push-a-container-to-your-local-registry" title="Permalink to this headline"></a></h3>
+<p>To push a container to the registry, it is recommended to first tag the image differently. E.g. if the registry is run on the localhost with port 5000, the image tag could be named:</p>
+<div class="highlight-Docker notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>tag<span class="w"> </span>ifm3d<span class="w"> </span>localhost:5000/ifm3d
+</pre></div>
+</div>
+<p>Use the normal push command for uploading to the local registry:</p>
+<div class="highlight-Docker notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>push<span class="w"> </span>localhost:5000/ifm3d
+</pre></div>
+</div>
+</div>
+<div class="section" id="pull-a-container-from-the-local-registry-host">
+<h3>Pull a container from the local registry - host<a class="headerlink" href="#pull-a-container-from-the-local-registry-host" title="Permalink to this headline"></a></h3>
+<p>If a local Docker registry is running, use <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">pull</span></code> to pull the image:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker pull localhost:5000/ifm3d</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="pull-a-container-from-the-local-registry-vpu">
+<h3>Pull a container from the local registry - VPU<a class="headerlink" href="#pull-a-container-from-the-local-registry-vpu" title="Permalink to this headline"></a></h3>
+<p><em>Coming soon</em></p>
+</div>
+<div class="section" id="stop-the-registry">
+<h3>Stop the registry<a class="headerlink" href="#stop-the-registry" title="Permalink to this headline"></a></h3>
+<p>To stop the registry:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker container stop registry &amp;&amp; docker container rm -v registry</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="docker.html" class="btn btn-neutral float-left" title="Docker: Getting started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="logging.html" class="btn btn-neutral float-right" title="How to handle verbose logging for Docker containers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagnostics error code sources &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Diagnose error code: reaction strategies" href="diagnostic_reaction_strategy.html" />
+    <link rel="prev" title="O3R Diagnostics: overview" href="index_diagnostic.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../iVA/index_iVA.html">ifm Vision Assistant</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://api.ifm3d.com/stable/">ifm3d/ifm3dpy API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ROS/ifm3d-ros/index.html">ROS: ifm3d-ros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ROS/ifm3d-ros2/README.html">ROS2: ifm3d-ros2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Docker/index_docker.html">Docker</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index_diagnostic.html">ifmDiagnostic</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Diagnostic error codes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#boot-up-sequence">Boot-up sequence</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#tcu">tcu</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#head">head</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#icc">icc</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#imu">imu</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#port">port</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#vpu">VPU</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#comms">Comms</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Port</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#camera-head">Camera Head</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">IMU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#di-distance-image-processing">DI (Distance Image) processing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ods-app">ODS app</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="diagnostic_reaction_strategy.html">Diagnose error code: reaction strategies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="diagnostic_reaction_strategy.html#handling-strategies">Handling strategies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="DiagnosticRetrieval/index_diagnostic_retrieval.html">Diagnostic retrieval</a></li>
+<li class="toctree-l3"><a class="reference internal" href="debugging.html">Debugging with ifm support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Toolbox/index_toolbox.html">Toolbox</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index_software_interfaces.html">Software Interfaces</a> &raquo;</li>
+          <li><a href="index_diagnostic.html">O3R Diagnostics: overview</a> &raquo;</li>
+      <li>Diagnostics error code sources</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/documentation/SoftwareInterfaces/ifmDiagnostic/diagnostic_sources.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="diagnostics-error-code-sources">
+<h1>Diagnostics error code sources<a class="headerlink" href="#diagnostics-error-code-sources" title="Permalink to this headline"></a></h1>
+<p><strong>General information about O3R diagnosis information</strong>
+The O3R system provides diagnosis information for different root causes: see the list of independent error case root causes below.</p>
+<div class="section" id="boot-up-sequence">
+<h2>Boot-up sequence<a class="headerlink" href="#boot-up-sequence" title="Permalink to this headline"></a></h2>
+<p><strong>WHEN:</strong></p>
+<ul class="simple">
+<li><p>This list of error code may be present from start-up of the system.</p></li>
+<li><p>This list of error codes should not persist longterm, i.e. the error state has to switch to dormant for the boot-up to be successful.</p></li>
+</ul>
+<p><strong>CONTENT</strong></p>
+<p>Boot-sequence and TCU error codes are related to the system configuration on boot-up without any additional hardware being connected / present, i.e. no camera heads etc. connected.
+The table IMU holds information about IMU specific error codes during boot-up.</p>
+<p>For camera head specific error codes on boot-up see the table head and its subcategory ICC. The table port is related to error codes regarding camera heads connected to the physical FARKRA ports of the VPU. This mapps camera head specific error codes to their respective hardware connection.</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ID</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>101014</p></td>
+<td><p>ERROR_BOOT_SEQUENCE_VPU_EEPROM</p></td>
+<td><p>VPU EEPROM content invalid</p></td>
+</tr>
+<tr class="row-odd"><td><p>101018</p></td>
+<td><p>ERROR_BOOT_SEQUENCE_INVALID_CONFIGURATION</p></td>
+<td><p>Unable to construct a valid device configuration</p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="tcu">
+<h3>tcu<a class="headerlink" href="#tcu" title="Permalink to this headline"></a></h3>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ID</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>101000</p></td>
+<td><p>ERROR_BOOT_SEQUENCE_TCU_INVALID_FW</p></td>
+<td><p>The installed TCU firmware is incompatible</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="head">
+<h3>head<a class="headerlink" href="#head" title="Permalink to this headline"></a></h3>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ID</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>101004</p></td>
+<td><p>ERROR_BOOT_SEQUENCE_HEAD_INVALID_DRIVER</p></td>
+<td><p>The appropriate driver for the connected head is not available</p></td>
+</tr>
+<tr class="row-odd"><td><p>101005</p></td>
+<td><p>ERROR_BOOT_SEQUENCE_HEAD_ALGO_INCOMPATIBLE</p></td>
+<td><p>The appropriate algorithm for the selected mode is not available</p></td>
+</tr>
+<tr class="row-even"><td><p>101008</p></td>
+<td><p>ERROR_BOOT_SEQUENCE_HEAD_INVALID_SERIAL_NUMBER</p></td>
+<td><p>The serial number of an extrinsically calibrated head does not match; please recalibrate after changing heads</p></td>
+</tr>
+<tr class="row-odd"><td><p>101009</p></td>
+<td><p>ERROR_BOOT_SEQUENCE_HEAD_IDENTIFICATION</p></td>
+<td><p>Head identification data is invalid</p></td>
+</tr>
+<tr class="row-even"><td><p>101016</p></td>
+<td><p>ERROR_BOOT_SEQUENCE_HEAD_COMBINATION</p></td>
+<td><p>Only 2D/2D pairing or 3D/3D pairing is allowed</p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="icc">
+<h4>icc<a class="headerlink" href="#icc" title="Permalink to this headline"></a></h4>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ID</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>101010</p></td>
+<td><p>ERROR_BOOT_SEQUENCE_HEAD_ICC_FW_CHECK</p></td>
+<td><p>Due to incorrect ICC firmware data an ICC update is attempted</p></td>
+</tr>
+<tr class="row-odd"><td><p>101011</p></td>
+<td><p>ERROR_BOOT_SEQUENCE_HEAD_ICC_FW_UPDATE</p></td>
+<td><p>The ICC firmware data is still incorrect after an ICC update</p></td>
+</tr>
+<tr class="row-even"><td><p>101012</p></td>
+<td><p>ERROR_BOOT_SEQUENCE_HEAD_ICC_FW_INCOMPATIBLE</p></td>
+<td><p>Due to an incompatible ICC firmware version an ICC update is attempted</p></td>
+</tr>
+<tr class="row-odd"><td><p>101013</p></td>
+<td><p>ERROR_BOOT_SEQUENCE_HEAD_ICC_FLASH</p></td>
+<td><p>Unable to read the ICC flash</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="imu">
+<h3>imu<a class="headerlink" href="#imu" title="Permalink to this headline"></a></h3>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ID</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>101002</p></td>
+<td><p>ERROR_BOOT_SEQUENCE_IMU_INVALID_HW</p></td>
+<td><p>The installed IMU (if any) was not recognised</p></td>
+</tr>
+<tr class="row-odd"><td><p>101003</p></td>
+<td><p>ERROR_BOOT_SEQUENCE_IMU_INVALID_CALIBRATION</p></td>
+<td><p>The IMU calibration is either missing or incorrect</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="port">
+<h3>port<a class="headerlink" href="#port" title="Permalink to this headline"></a></h3>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ID</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>101006</p></td>
+<td><p>ERROR_BOOT_SEQUENCE_PORT_CALIBRATION</p></td>
+<td><p>The port calibration is invalid</p></td>
+</tr>
+<tr class="row-odd"><td><p>101007</p></td>
+<td><p>ERROR_BOOT_SEQUENCE_PORT_INVALID_CONFIGURATION</p></td>
+<td><p>The init configuration does not match the port</p></td>
+</tr>
+<tr class="row-even"><td><p>101015</p></td>
+<td><p>ERROR_BOOT_SEQUENCE_PORT_DUMMY_CALIBRATION</p></td>
+<td><p>A dummy calibration is used for the port</p></td>
+</tr>
+<tr class="row-odd"><td><p>101017</p></td>
+<td><p>ERROR_BOOT_SEQUENCE_PORT_CONFIGURATION_TIMEOUT</p></td>
+<td><p>The imager did not respond to the frame software</p></td>
+</tr>
+<tr class="row-even"><td><p>101019</p></td>
+<td><p>ERROR_BOOT_SEQUENCE_PORT_EEPROM_OVERRIDE</p></td>
+<td><p>A user-provided EEPROM file is used instead of the actual EEPROM</p></td>
+</tr>
+<tr class="row-odd"><td><p>101020</p></td>
+<td><p>ERROR_BOOT_SEQUENCE_PORT_CALIBRATION_OVERRIDE</p></td>
+<td><p>A user-provided calibration file is used</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="vpu">
+<h2>VPU<a class="headerlink" href="#vpu" title="Permalink to this headline"></a></h2>
+<p><strong>WHEN:</strong></p>
+<ul class="simple">
+<li><p>This list of error codes may occur at any time during the runtime of the system.</p></li>
+<li><p>Depending on the severity of these error codes: i.e. combination of error code and number of activations in a certain amount of time, the error escalation strategy has to be decided see  <a class="reference internal" href="diagnostic_reaction_strategy.html"><span class="doc std std-doc">error escalation strategy</span></a>.</p></li>
+</ul>
+<p><strong>CONTENT:</strong></p>
+<ul class="simple">
+<li><p>VPU error codes hold information about undervoltage scenarios at certain voltage levels.</p></li>
+<li><p>VPU error codes hold information about VPU overtemperature, NTP sync status, trigger overruns, image buffer overflows, and watchdog timeouts for the imager retrieval processes.</p></li>
+<li><p>COMM error codes hold information about communication faults to the TCU (trigger control unit) and temperature sensors.</p></li>
+</ul>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ID</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>103002</p></td>
+<td><p>ERROR_VPU_OVERVOLTAGE_24V</p></td>
+<td><p>Overvoltage was detected for the 24V line</p></td>
+</tr>
+<tr class="row-odd"><td><p>103003</p></td>
+<td><p>ERROR_VPU_UNDERVOLTAGE_24V</p></td>
+<td><p>Undervoltage was detected for the 24V line</p></td>
+</tr>
+<tr class="row-even"><td><p>103004</p></td>
+<td><p>ERROR_VPU_OVERVOLTAGE_5V</p></td>
+<td><p>Overvoltage was detected for the 5V line</p></td>
+</tr>
+<tr class="row-odd"><td><p>103005</p></td>
+<td><p>ERROR_VPU_UNDERVOLTAGE_5V</p></td>
+<td><p>Undervoltage was detected for the 5V line</p></td>
+</tr>
+<tr class="row-even"><td><p>103006</p></td>
+<td><p>ERROR_VPU_OVERVOLTAGE_1_8V</p></td>
+<td><p>Overvoltage was detected for the 1.8V line</p></td>
+</tr>
+<tr class="row-odd"><td><p>103007</p></td>
+<td><p>ERROR_VPU_UNDERVOLTAGE_1_8V</p></td>
+<td><p>Undervoltage was detected for the 1.8V line</p></td>
+</tr>
+<tr class="row-even"><td><p>103008</p></td>
+<td><p>ERROR_VPU_OVERTEMPERATURE</p></td>
+<td><p>Detected overtemperature for VPU mainboard</p></td>
+</tr>
+<tr class="row-odd"><td><p>103009</p></td>
+<td><p>ERROR_VPU_NTP_NOT_SYNCHRONIZED</p></td>
+<td><p>Unable to synchronise time with NTP server</p></td>
+</tr>
+<tr class="row-even"><td><p>103010</p></td>
+<td><p>ERROR_VPU_TRIGGER_OVERRUN</p></td>
+<td><p>A trigger overrun was detected</p></td>
+</tr>
+<tr class="row-odd"><td><p>103011</p></td>
+<td><p>ERROR_VPU_NO_FREE_IMAGEBUFFERS</p></td>
+<td><p>More image buffers are needed than are available</p></td>
+</tr>
+<tr class="row-even"><td><p>103012</p></td>
+<td><p>ERROR_VPU_WATCHDOG_TIMEOUT</p></td>
+<td><p>A watchdog timeout occured; the component was restarted</p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="comms">
+<h3>Comms<a class="headerlink" href="#comms" title="Permalink to this headline"></a></h3>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ID</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>103000</p></td>
+<td><p>ERROR_VPU_COMM_TCU</p></td>
+<td><p>Unable to communicate to the TCU</p></td>
+</tr>
+<tr class="row-odd"><td><p>103001</p></td>
+<td><p>ERROR_VPU_COMM_TEMPSENSOR</p></td>
+<td><p>Unable to communicate to the temperature sensor</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>Port<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<p><strong>WHEN:</strong></p>
+<ul class="simple">
+<li><p>This list of error codes may occur at any time during the runtime of the system.</p></li>
+<li><p>Depending on the severity of these error codes: i.e. combination of error code and number of activations in a certain amount of time, the error escalation strategy has to be decided see  <a class="reference internal" href="diagnostic_reaction_strategy.html"><span class="doc std std-doc">error escalation strategy</span></a>.</p></li>
+</ul>
+<p><strong>CONTENT:</strong></p>
+<p>Port error codes hold information about data stream drops due to:</p>
+<ul class="simple">
+<li><p>3D imager timeouts</p></li>
+<li><p>FPD-Link internal communication errors, e.g. EMV shocks.</p></li>
+<li><p>Internal algorithmic errors while processing the time of flight data.</p></li>
+</ul>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ID</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>102011</p></td>
+<td><p>ERROR_PORT_FRAME_TIMEOUT</p></td>
+<td><p>The 3D imager detected a frame timeout</p></td>
+</tr>
+<tr class="row-odd"><td><p>102013</p></td>
+<td><p>ERROR_PORT_FPDLINK</p></td>
+<td><p>An unrecoverable FPD-Link error occured</p></td>
+</tr>
+<tr class="row-even"><td><p>102014</p></td>
+<td><p>ERROR_PORT_ALGO_INTERNAL</p></td>
+<td><p>Internal error in the port algorithm</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="camera-head">
+<h2>Camera Head<a class="headerlink" href="#camera-head" title="Permalink to this headline"></a></h2>
+<p><strong>WHEN:</strong></p>
+<ul class="simple">
+<li><p>This list of error codes may occur at any time during the runtime of the system.</p></li>
+<li><p>Depending on the severity of these error codes: i.e. combination of error code and number of activations in a certain amount of time, the error escalation strategy has to be decided see  <a class="reference internal" href="diagnostic_reaction_strategy.html"><span class="doc std std-doc">error escalation strategy</span></a>.</p></li>
+</ul>
+<p><strong>CONTENT:</strong></p>
+<ul class="simple">
+<li><p>Head error codes hold information about overtemperature scenarios, brown outs, etc.  detected at the temperature sensor per camera head.</p></li>
+<li><p>Head error codes hold information about overvoltage and undervoltage scenarios at certain voltage levels.</p></li>
+<li><p>Camera shut-off due to eye-safety violations or overtemperature at the VCSEL driver.</p></li>
+<li><p>Camera imager resets, etc.</p></li>
+</ul>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ID</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>102000</p></td>
+<td><p>ERROR_HEAD_OVERTEMPERATURE_ICC</p></td>
+<td><p>Head ICC has overtemperature</p></td>
+</tr>
+<tr class="row-odd"><td><p>102001</p></td>
+<td><p>ERROR_HEAD_BROWNOUT</p></td>
+<td><p>Detected head brownout</p></td>
+</tr>
+<tr class="row-even"><td><p>102002</p></td>
+<td><p>ERROR_HEAD_ENVELOPE_PAUSE_VIOLATION</p></td>
+<td><p>Detected violation of the envelope pause ratio</p></td>
+</tr>
+<tr class="row-odd"><td><p>102003</p></td>
+<td><p>ERROR_HEAD_OVERVOLTAGE</p></td>
+<td><p>Head has overvoltage</p></td>
+</tr>
+<tr class="row-even"><td><p>102004</p></td>
+<td><p>ERROR_HEAD_UNDERVOLTAGE</p></td>
+<td><p>Head has undervoltage</p></td>
+</tr>
+<tr class="row-odd"><td><p>102005</p></td>
+<td><p>ERROR_HEAD_VCSEL_OVERCURRENT</p></td>
+<td><p>Head VCSEL has overcurrent</p></td>
+</tr>
+<tr class="row-even"><td><p>102006</p></td>
+<td><p>ERROR_HEAD_EYESAFETY_SHUTDOWN</p></td>
+<td><p>Head was shut down due to eye-safety concerns</p></td>
+</tr>
+<tr class="row-odd"><td><p>102007</p></td>
+<td><p>ERROR_HEAD_INVALID_CALIBRATION</p></td>
+<td><p>Head current calibration is invalid</p></td>
+</tr>
+<tr class="row-even"><td><p>102008</p></td>
+<td><p>ERROR_HEAD_ENVELOPE_PULSE_ERROR</p></td>
+<td><p>Detected pulse error for envelope signal</p></td>
+</tr>
+<tr class="row-odd"><td><p>102009</p></td>
+<td><p>ERROR_HEAD_VCSEL_OVERTEMPERATURE</p></td>
+<td><p>Head VCSEL has overtemperature</p></td>
+</tr>
+<tr class="row-even"><td><p>102010</p></td>
+<td><p>ERROR_HEAD_ENVELOPE_MAX_DURATION</p></td>
+<td><p>Maximum length of envelope signal was detected</p></td>
+</tr>
+<tr class="row-odd"><td><p>102012</p></td>
+<td><p>ERROR_HEAD_IMAGER_RESET</p></td>
+<td><p>The 3D imager was unexpectedly reset</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id2">
+<h2>IMU<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
+<p><strong>WHEN:</strong></p>
+<ul class="simple">
+<li><p>This list of error codes may occur at any time during the runtime of the system.</p></li>
+<li><p>Depending on the severity of these error codes: i.e. combination of error code and number of activations in a certain amount of time, the error escalation strategy has to be decided see  <a class="reference internal" href="diagnostic_reaction_strategy.html"><span class="doc std std-doc">error escalation strategy</span></a>.</p></li>
+</ul>
+<p><strong>CONTENT:</strong>
+IMU specific errors such as implausible IMU data returned from the sensor.</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ID</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>104000</p></td>
+<td><p>ERROR_IMU_DATA_IMPLAUSIBLE</p></td>
+<td><p>Received implausible IMU data</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="di-distance-image-processing">
+<h2>DI (Distance Image) processing<a class="headerlink" href="#di-distance-image-processing" title="Permalink to this headline"></a></h2>
+<p><strong>WHEN:</strong></p>
+<ul class="simple">
+<li><p>This list of error codes may occur at any time during the runtime of the system.</p></li>
+<li><p>Depending on the severity of these error codes: i.e. combination of error code and number of activations in a certain amount of time, the error escalation strategy has to be decided see  <a class="reference internal" href="diagnostic_reaction_strategy.html"><span class="doc std std-doc">error escalation strategy</span></a>.</p></li>
+</ul>
+<p><strong>CONTENT:</strong></p>
+<ul class="simple">
+<li><p>Unexpected content encountered inside the (intrinsic) calibration file.</p></li>
+<li><p>No ego-motion data (ODS) was received or ego-motion data is corrupted.</p></li>
+</ul>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ID</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>102015</p></td>
+<td><p>ERROR_DI_UNEXPECTED_CALIB_CONTENT</p></td>
+<td><p>The port calibration contains unexpected values</p></td>
+</tr>
+<tr class="row-odd"><td><p>102016</p></td>
+<td><p>ERROR_DI_MOTION_COMP_NO_EGO_DATA</p></td>
+<td><p>Expected motion compensation data, but none was received</p></td>
+</tr>
+<tr class="row-even"><td><p>102017</p></td>
+<td><p>ERROR_DI_MOTION_COMP_EGA_DATA_TIMESTAMP_MISMATCH</p></td>
+<td><p>Received motion compensation data is too old or contains implausible timestamps</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="ods-app">
+<h2>ODS app<a class="headerlink" href="#ods-app" title="Permalink to this headline"></a></h2>
+<p><strong>WHEN:</strong></p>
+<ul class="simple">
+<li><p>This list of error codes may occur at any time during the runtime of the ODS application.</p></li>
+<li><p>Depending on the severity of these error codes: i.e. combination of error code and number of activations in a certain amount of time, the error escalation strategy has to be decided see  <a class="reference internal" href="diagnostic_reaction_strategy.html"><span class="doc std std-doc">error escalation strategy</span></a>.</p></li>
+</ul>
+<p><strong>CONTENT:</strong></p>
+<p>Odsapp error codes hold information about:</p>
+<ul class="simple">
+<li><p>extrinsic calibration of the camera heads are implausible.</p></li>
+<li><p>mismatched timestamp between IMU data and image data.</p></li>
+<li><p>implausible extrinsic calibration, i.e. default values used for <code class="docutils literal notranslate"><span class="pre">extrinsic_head_to_user</span></code> and implausible extrinsic calibration (camera heads) values.</p></li>
+<li><p>ODS app parameterization plausibility checks, i.e default zones used.</p></li>
+<li><p>insufficient / unstable framerates during runtime.</p></li>
+<li><p>missing stand still (3-5 sec) before starting each ODS run.</p></li>
+</ul>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ID</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>105000</p></td>
+<td><p>ERROR_ODSAPP_EXTR_VPU_CALIB_IMPLAUSIBLE</p></td>
+<td><p>Implausible extrinsic VPU calibration</p></td>
+</tr>
+<tr class="row-odd"><td><p>105001</p></td>
+<td><p>ERROR_ODSAPP_IMAGE_IMU_DELAY_IMPLAUSIBLE</p></td>
+<td><p>Detected an implausible delay between IMU and image data</p></td>
+</tr>
+<tr class="row-even"><td><p>105002</p></td>
+<td><p>ERROR_ODSAPP_VO_EXTR_DI_CALIB_IMPLAUSIBLE</p></td>
+<td><p>Implausible extrinsic calibration of visual odometry head</p></td>
+</tr>
+<tr class="row-odd"><td><p>105003</p></td>
+<td><p>ERROR_ODSAPP_PARAMETER_PLAUSIBILITY_CHECK_FAILED</p></td>
+<td><p>Implausible ODS configuration parameters</p></td>
+</tr>
+<tr class="row-even"><td><p>105004</p></td>
+<td><p>ERROR_ODSAPP_VO_IMAGE_FRAMERATE</p></td>
+<td><p>Insufficient framerate of ODS input images</p></td>
+</tr>
+<tr class="row-odd"><td><p>105005</p></td>
+<td><p>ERROR_ODSAPP_INTR_IMU_CALIB_IMPLAUSIBLE</p></td>
+<td><p>Implausible intrinsic IMU calibration</p></td>
+</tr>
+<tr class="row-even"><td><p>105006</p></td>
+<td><p>ERROR_ODSAPP_UNSTABLE_FRAMERATES</p></td>
+<td><p>Unstable framerate of at least one input stream</p></td>
+</tr>
+<tr class="row-odd"><td><p>105007</p></td>
+<td><p>ERROR_ODSAPP_VELOCITY_UNAVAILABLE</p></td>
+<td><p>Unable to determine velocity</p></td>
+</tr>
+<tr class="row-even"><td><p>105008</p></td>
+<td><p>ERROR_ODSAPP_DEFAULT_ZONE_USED</p></td>
+<td><p>Using the default ODS zones</p></td>
+</tr>
+<tr class="row-odd"><td><p>105009</p></td>
+<td><p>ERROR_ODSAPP_STANDSTILL_CHECKS_NOT_EXECUTED</p></td>
+<td><p>Standstill condition not detected</p></td>
+</tr>
+<tr class="row-even"><td><p>105010</p></td>
+<td><p>ERROR_ODSAPP_ALGO_INTERNAL</p></td>
+<td><p>Internal algo error; please see the logs for further information</p></td>
+</tr>
+<tr class="row-odd"><td><p>105011</p></td>
+<td><p>ERROR_ODSAPP_EXTR_DI_CALIB_IMPLAUSIBLE</p></td>
+<td><p>Implausible extrinsic head calibration</p></td>
+</tr>
+<tr class="row-even"><td><p>105012</p></td>
+<td><p>ERROR_ODSAPP_TEST_MODE_WARNING</p></td>
+<td><p>Implausible extrinsic head calibration</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index_diagnostic.html" class="btn btn-neutral float-left" title="O3R Diagnostics: overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="diagnostic_reaction_strategy.html" class="btn btn-neutral float-right" title="Diagnose error code: reaction strategies" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

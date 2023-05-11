@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Automated camera head calibration tools &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="How to verify the extrinsic calibration" href="CameraCalibrationVerification/extrinsic_calibration_verification.html" />
+    <link rel="prev" title="Extrinsic calibration for ODS" href="index_extrinsic_calibration.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index_ods.html">ODS</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Mounting/mounting.html">Mounting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Instantiation/instantiation.html">Instantiation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Configuration/configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Zones/zones.html">Zones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OccupancyGrid/occupancy_grid.html">Occupancy grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Recording/ods_data_recording.html">Recording</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ChangingViews/changing_views.html">Changing views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OverhangingLoads/overhanging_loads.html">Overhanging loads</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index_extrinsic_calibration.html">Extrinsic calibration</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Automated camera head calibration tools</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#multi-frame-calibration">Multi-Frame Calibration</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#procedure">Procedure</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="CameraCalibrationVerification/extrinsic_calibration_verification.html">How to verify the extrinsic calibration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VPUCalibration/README.html">VPU extrinsic calibration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../FieldTest/index_field_test.html">Field test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DeviceVerification/index_device_verification.html">Device verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../iVA/index_ifmODS_iVA.html">ifmVisionAssistant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Python/index_ifmODS_python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Cpp/index_ifmODS_cpp.html">C++</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index_ods.html">ODS (Obstacle Detection System)</a> &raquo;</li>
+          <li><a href="index_extrinsic_calibration.html">Extrinsic calibration for ODS</a> &raquo;</li>
+      <li>Automated camera head calibration tools</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/documentation/ODS/ExtrinsicCalibration/multi_frame_calibration.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="automated-camera-head-calibration-tools">
+<h1>Automated camera head calibration tools<a class="headerlink" href="#automated-camera-head-calibration-tools" title="Permalink to this headline"></a></h1>
+<p>Camera calibration tools and tactics can change depending on the needs of the application.</p>
+<p>ifm provides <span class="xref myst">python code samples</span> to facilitate calibration using a stationary checkerboard. This process can be used to build calibration cells for end-of-line testing of AMRs/AGVs camera systems.</p>
+<p>When developing an AMR and testing the camera system, the static calibration methodology requires repeated measurements with each repositioning of the vehicle. An alternate tool was built to address the needs for field-testing of cameras. This tool is called Multi-Frame-Calibration.</p>
+<div class="section" id="multi-frame-calibration">
+<h2>Multi-Frame Calibration<a class="headerlink" href="#multi-frame-calibration" title="Permalink to this headline"></a></h2>
+<p>The Multi-frame-Calibration tool allows the roboticist to perform camera calibration by moving the vehicle which the camera is attached to.</p>
+<p>The Application will use the pictures that the camera collects while the vehicle is moving to determine the 3 rotation parameters of the camera’s extrinsic calibration.</p>
+<p>Prerequisites:</p>
+<ul class="simple">
+<li><p>An o3r camera system mounted on a vehicle.</p></li>
+<li><p>A vehicle which can travel in a straight line in the negative-x direction (backward).</p></li>
+<li><p>A computer connected to the VPU of the o3r camera system.</p></li>
+<li><p>Measurements of the translations of the camera head (transX, transY, and transZ of the extrinsicHeadToUser properties). This can be measured manually, or derived from CAD. Note that the camera positions are relative to the center of the rear face of the camera head.</p></li>
+</ul>
+<!-- TODO: ADD link to image -->
+<ul class="simple">
+<li><p>The Multi-Frame-Calibration software package. Currently this is available upon request from support.robotics&#64;ifm.com.</p></li>
+<li><p>A printed calibration checkerboard (checkerboard.pdf in 0.8m x 0.6m) resting on the floor or at a height so that it is in the field of view of the camera being calibrated.</p></li>
+</ul>
+<!-- TODOOO: ADD PDF for printout -->
+<div class="section" id="procedure">
+<h3>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline"></a></h3>
+<p>Place the target vertical with the reference corner up.</p>
+<p>Open the Multi-Frame-Calibration application, selecting the port which corresponds to the camera to be calibrated. You will see a live view from the specified camera.</p>
+<p>The menu at the left side of the application will help guide you through the calibration procedure.</p>
+<!-- TODO: add UI picture -->
+<p>Type in the camera translations.</p>
+<!-- TODO: add UI picture -->
+<p>Position the vehicle so that as it moves backward, the calibration target will be completely in the camera’s field-of-view for at least 2 meters of motion. Side-mounted cameras will require motion parallel to the target,
+rear-mounted cameras will require motion toward the target, and front-mounted cameras will require motion away from the target.</p>
+<!-- TODO: add diagram -->
+<p>Click start-sequence, and begin moving the robot backwards in a straight line at no more than 0.3 meters per second. The application will automatically record pictures of the calibration target as the view of the target changes. The movement can be considered complete when the vehicle has moved at least 1-2m with the target in view. Click stop-sequence.</p>
+<!-- TODO: add UI picture -->
+<p>There are two additional pictures that need to be recorded. These need to be taken from either side of the straight-line path that the vehicle moved over. Drive the vehicle so that the camera is positioned more than 0.25m from the straight-line path, ensure that the checkerboard is detected in the UI and select “Add image”. Drive the vehicle to the other side of the straight-line path and again select “Add image”</p>
+<!-- TODO: add diagram-->
+<p>You can now press calibrate and the result should be a passing calibration. The extrinsic calibration of this camera can then be deployed on the vehicle.</p>
+<!-- TODO: add UI picture -->
+</div>
+<div class="section" id="troubleshooting">
+<h3>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline"></a></h3>
+<p>In the case that calibration is failing, the UI should suggest a few options to fix the problem. These may be:</p>
+<ul class="simple">
+<li><p>Not enough images to calibrate with. Try positioning the straight-line path so that the camera can see the calibration target over a longer distance.</p></li>
+<li><p>Off-axis images are too close. Try positioning the additional photos so that the camera is &gt; 0.25m from the path that the camera moved during the straight-line sequence.</p></li>
+<li><p>Motion not linear. Ensure that the vehicle is moving in a straight line, some vehicles can be guided manually, but will not travel in an exactly straight line in this mode. Use a mode of moving the vehicle in a precise line.</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index_extrinsic_calibration.html" class="btn btn-neutral float-left" title="Extrinsic calibration for ODS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="CameraCalibrationVerification/extrinsic_calibration_verification.html" class="btn btn-neutral float-right" title="How to verify the extrinsic calibration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

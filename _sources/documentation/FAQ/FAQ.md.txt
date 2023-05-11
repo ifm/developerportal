@@ -1,10 +1,10 @@
-# Lookup Table for Firmware Version Compatibility
+# FAQ
+## Lookup Table for Firmware Version Compatibility
 | Firmware Version | Supported VPU          | Supported Camera Heads         | ifm3d-library | ifmVisionAssistant |
 | ---------------- | ---------------------- | ------------------------------ | ------------- | ------------------ |
 | 0.16.23          | OVP800, M04239         | O3R222, O3R225AB, 03R225AC     | >=1.1.1       | >=2.6.7            |
 | 0.14.23          | OVP800, M03975, MO4239 | O3R222, O3R225, M03933, M03969 | 0.93.x        | N/A                |
-
-### Lookup Table for ifm3d-ROS Version Compatibility
+## Lookup Table for ifm3d-ROS Version Compatibility
 
 For ROS2 distributions Software Compatibility Matrix please refer [ifm3d-ros2 github page](https://github.com/ifm/ifm3d-ros2) and for the ROS distributions please refer this [ifm3d-ros github page](https://github.com/ifm/ifm3d-ros)
 
@@ -13,7 +13,7 @@ Changelog for different packages can seen [here](http://ifm3d.com/sphinx-doc/bui
 ## Hardware (Connectivity)
 **Q: Why is the Status LED blinking but not turning RED for an undervoltage error?**
 
-A: In an undervoltage situation (not enough power supplied) the LED status is flashing only. A 2.5A and 24V power source is minimum requirement for the operation. Please double check the diagnosis information via [software](../GettingStarted/debugging.md).
+A: In an undervoltage situation (not enough power supplied) the LED status is flashing only. A 2.5A and 24V power source is minimum requirement for the operation. Please double check [the diagnostic information](../SoftwareInterfaces/ifmDiagnostic/index_diagnostic.md).
 
 **Q: Why is the PORT LED not turning green after camera head is connected?**
 
@@ -21,7 +21,7 @@ A: This can happen for different scenarios:
 - If the camera is plugged in during runtime: no hot-plug capabilities are enabled.
 - If different imager types are connected to the same pair of ports, i.e. [PORT0,PORT1]; [PORT2,PORT3]; [PORT4,PORT5]: only a same imager type is supported per port pair.
 - When the camera is connected for the first time, the calibration download will take up to 2 minutes. The respective LED turn green after the download process is completed.
-Please check the diagnosis information via [software](../ProductsDescription/diagnosis.md).
+Please check [the diagnosis information](../SoftwareInterfaces/ifmDiagnostic/index_diagnostic.md).
 
 **Q: I am not able to receive data from the camera heads?**
 
@@ -61,10 +61,6 @@ A: No, the O3R system can be switched off at anytime (except during firmware upd
 
 A: No, the O3R camera heads were calibrated in the production state and don't need an additional intrinsic calibration performed by the user.
 
-**Q: How do I configure the Stray Light Filter?**
-
-A: By default, the stray light filter is active, and it is not recommended to disable this filter because of its side effects. You can learn more about this filter [here](../GettingStarted/../Parameters/Filters/strayLight.md).
-
 **Q: Do I have to repeat the extrinsic calibration procedure every time I reconnect the camera?**
 
 A: No, once the extrinsic calibration parameters are saved to the VPU (via a [save_init function](https://ifm.github.io/ifm3d-docs/html/_autosummary/ifm3dpy.O3R.html?highlight=save%20init#ifm3dpy.O3R.save_init)) and will be available even after the reboot. **However**, if the camera's position is changed then extrinsic calibration has to be redone.
@@ -87,6 +83,6 @@ A: Once a camera head is connected to the VPU with firmware Version>=0.16.23 the
 
 **Q. How can I query the VPU log information?**
 
-A. The diagnostic information can be acquired via ifmVisionAssistant. To get the more detailed information about the diagnostic information please refer this [page](../ProductsDescription/diagnosis.md)
+A. The diagnostic information can be acquired via ifmVisionAssistant. To get the more detailed information about the diagnostic information please refer [this page](../SoftwareInterfaces/ifmDiagnostic/index_diagnostic.md)
 
 Additionally the system is constantly logging information in the background. You can receive this *trace* with our [ifm3d-library](https://ifm.github.io/ifm3d-docs/html/cli_link.html#ifm3d-command-line-tool). Please include this information when contacting us.

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Device and diagnosis data &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="ifm3d-ros" href="../../../ROS/ifm3d-ros/index.html" />
+    <link rel="prev" title="Configuring/Activating an application" href="configuring_applications.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index_iVA.html">ifm Vision Assistant</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="changing_parameters.html">Changing parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuring_applications.html">Configuring applications</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Device and diagnosis information</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#displaying-the-device-status">Displaying the device status</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#device-details">Device details</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#diagnostic-data">Diagnostic data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference external" href="https://api.ifm3d.com/stable/">ifm3d/ifm3dpy API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ROS/ifm3d-ros/index.html">ROS: ifm3d-ros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ROS/ifm3d-ros2/README.html">ROS2: ifm3d-ros2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Docker/index_docker.html">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ifmDiagnostic/index_diagnostic.html">ifmDiagnostic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Toolbox/index_toolbox.html">Toolbox</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index_software_interfaces.html">Software Interfaces</a> &raquo;</li>
+          <li><a href="index_iVA.html">ifm Vision Assistant</a> &raquo;</li>
+      <li>Device and diagnosis data</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/documentation/SoftwareInterfaces/iVA/device_and_diagnosis_data.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="device-and-diagnosis-data">
+<h1>Device and diagnosis data<a class="headerlink" href="#device-and-diagnosis-data" title="Permalink to this headline"></a></h1>
+<p>The O3R system provides device information but also a diagnosis data. This date is useful for easier debugging and provides further information about the state of the whole O3R system and applications.</p>
+<div class="section" id="displaying-the-device-status">
+<h2>Displaying the device status<a class="headerlink" href="#displaying-the-device-status" title="Permalink to this headline"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Device</span> <span class="pre">status</span></code> menu is located in the upper right corner.</p>
+<p><img alt="device status" src="../../../_images/device_status_menu.png" /></p>
+<p>This menu provides some short but useful hardware information.</p>
+<p><img alt="further information" src="../../../_images/further_device_status_menu.png" /></p>
+<div class="section" id="device-details">
+<h3>Device details<a class="headerlink" href="#device-details" title="Permalink to this headline"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Show</span> <span class="pre">device</span> <span class="pre">details</span></code> provides additional hardware/software information. It is also possible to save this information locally.</p>
+<p><strong>Tip: When contacting ifm due to possible issues, the device details are essential for further debugging.</strong></p>
+<p><img alt="device details" src="../../../_images/device_details.png" /></p>
+</div>
+<div class="section" id="diagnostic-data">
+<h3>Diagnostic data<a class="headerlink" href="#diagnostic-data" title="Permalink to this headline"></a></h3>
+<p>The diagnostic data contains several important information like temperature values, active and dormant errors.</p>
+<ul class="simple">
+<li><p>Active errors: Errors active during the last system diagnosis information collection.</p></li>
+<li><p>Dormant errors: Errors which occurred during the total uptime of the system but are not active anymore.</p></li>
+</ul>
+<p>It is possible to filter between active and dormant errors to get a better overview about the actual system status.</p>
+<p>It is strongly recommended to monitor the diagnosis information, if the system shows unexpected behavior, e.g. after connecting new hardware or running new an application.</p>
+<p><img alt="diagnostic data" src="../../../_images/diagnostic_data.gif" /></p>
+<p><strong>Tip: When contacting ifm due to possible issues, the list of active error(s) is essential for further debugging.</strong></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="configuring_applications.html" class="btn btn-neutral float-left" title="Configuring/Activating an application" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../../ROS/ifm3d-ros/index.html" class="btn btn-neutral float-right" title="ifm3d-ros" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -2,7 +2,6 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-    <meta property="article:modified_time" content="2022-04-19T13:59:44+00:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Building and Installing the ifm3d-ros2 package &mdash; O3R  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -43,16 +42,13 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../index_getting_started.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../documentation/DeviceConfiguration/index.html">Device Configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../o3r-utilities/README.html">Utilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../applications_index.html">Applications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../documentation/Docker/index.html">Docker</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../ifm3d/index.html">ifm3d API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../index.html">ROS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../documentation/Firmware/index.html">Firmware</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">Downloads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/ODS/index_ods.html">ODS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../documentation/FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
 </ul>
 
         </div>
@@ -84,20 +80,20 @@
 <div class="section" id="table-of-contents">
 <h2>Table of contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline"></a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="#building-and-installing-the-ifm3d-ros2-package">Building and Installing the ifm3d-ros2 package</a></p>
+<li><p><a class="reference internal" href="#building-and-installing-the-ifm3d-ros2-package"><span class="std std-doc">Building and Installing the ifm3d-ros2 package</span></a></p>
 <ul>
-<li><p><a class="reference external" href="#table-of-contents">Table of contents</a></p></li>
-<li><p><a class="reference external" href="#prerequisites">Prerequisites</a></p>
+<li><p><a class="reference internal" href="#table-of-contents"><span class="std std-doc">Table of contents</span></a></p></li>
+<li><p><a class="reference internal" href="#prerequisites"><span class="std std-doc">Prerequisites</span></a></p>
 <ul>
-<li><p><a class="reference external" href="#ifm3d-c-api">ifm3d C++ API</a></p></li>
+<li><p><a class="reference internal" href="#ifm3d-c-api"><span class="std std-doc">ifm3d C++ API</span></a></p></li>
 </ul>
 </li>
-<li><p><a class="reference external" href="#step-by-step-build-instructions-for-the-ros-node-ifm3d-ros2">Step-by-Step build instructions for the ROS node <code class="docutils literal notranslate"><span class="pre">ifm3d-ros2</span></code></a></p>
+<li><p><a class="reference internal" href="#step-by-step-build-instructions-for-the-ros-node-ifm3d-ros2"><span class="std std-doc">Step-by-Step build instructions for the ROS node <code class="docutils literal notranslate"><span class="pre">ifm3d-ros2</span></code></span></a></p>
 <ul>
-<li><p><a class="reference external" href="#1-installation-directory-of-ros-node">1. Installation directory of ROS node</a></p></li>
-<li><p><a class="reference external" href="#2-create-and-initialize-your-colcon-workspace">2. create and initialize your colcon workspace</a></p></li>
-<li><p><a class="reference external" href="#3-get-the-ifm3d-ros2-wrapper-code-from-github">3. Get the <code class="docutils literal notranslate"><span class="pre">ifm3d-ros2</span></code> wrapper code from GitHub</a></p></li>
-<li><p><a class="reference external" href="#4-build-the-ros-node-code">4. build the ROS node code</a></p></li>
+<li><p><a class="reference internal" href="#installation-directory-of-ros-node"><span class="std std-doc">1. Installation directory of ROS node</span></a></p></li>
+<li><p><a class="reference internal" href="#create-and-initialize-your-colcon-workspace"><span class="std std-doc">2. create and initialize your colcon workspace</span></a></p></li>
+<li><p><a class="reference internal" href="#get-the-ifm3d-ros2-wrapper-code-from-github"><span class="std std-doc">3. Get the <code class="docutils literal notranslate"><span class="pre">ifm3d-ros2</span></code> wrapper code from GitHub</span></a></p></li>
+<li><p><a class="reference internal" href="#build-the-ros-node-code"><span class="std std-doc">4. build the ROS node code</span></a></p></li>
 </ul>
 </li>
 </ul>
@@ -180,9 +176,7 @@ $ colcon test-result --all
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, ifm CSR.
-      <span class="lastupdated">Last updated on Apr 19, 2022.
-      </span></p>
+    <p>&#169; Copyright 2021, ifm CSR.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

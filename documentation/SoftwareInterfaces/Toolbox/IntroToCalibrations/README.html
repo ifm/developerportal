@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction to ifm camera coordinate systems and their transformations &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/clipboard.min.js"></script>
+        <script src="../../../../_static/copybutton.js"></script>
+        <script src="../../../../_static/js/versionwarning.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Collect camera calibration data" href="../Registration2d3d/collect_calibration_data.html" />
+    <link rel="prev" title="Toolbox" href="../index_toolbox.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../index_software_interfaces.html">Software Interfaces</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../iVA/index_iVA.html">ifm Vision Assistant</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://api.ifm3d.com/stable/">ifm3d/ifm3dpy API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../ROS/ifm3d-ros/index.html">ROS: ifm3d-ros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../ROS/ifm3d-ros2/README.html">ROS2: ifm3d-ros2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Docker/index_docker.html">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ifmDiagnostic/index_diagnostic.html">ifmDiagnostic</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index_toolbox.html">Toolbox</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Introduction to calibrations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sensor-coordinate-system-pixel-coordinate-system">Sensor-coordinate-system / pixel coordinate system:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#optics-coordinate-system-optics-space">Optics-coordinate-system (optics space):</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#optics-space-non-rectified">Optics space non-rectified</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#optics-space-rectified">Optics space rectified</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#head-coordinate-system-head-space">Head-coordinate-system (head space):</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#defining-where-the-camera-is">Defining where the camera is</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#user-coordinate-system">User-coordinate-system:</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#extrinsic-calibration">Extrinsic calibration:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#using-calibration-data-stored-on-the-camera-head">Using calibration data stored on the camera head:</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#generating-point-clouds-from-scratch">Generating point clouds from scratch:</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#glossary">Glossary</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#intrinsic-calibration">Intrinsic calibration:</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#inverse-intrinsic-calibration">Inverse-Intrinsic calibration:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../Registration2d3d/collect_calibration_data.html">Collect calibration values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ExtrinsicCalibration/README.html">Extrinsic calibrations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Registration2d3d/README.html">2D/3D registration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../../index_software_interfaces.html">Software Interfaces</a> &raquo;</li>
+          <li><a href="../index_toolbox.html">Toolbox</a> &raquo;</li>
+      <li>Introduction to ifm camera coordinate systems and their transformations</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/documentation/SoftwareInterfaces/Toolbox/IntroToCalibrations/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="introduction-to-ifm-camera-coordinate-systems-and-their-transformations">
+<h1>Introduction to ifm camera coordinate systems and their transformations<a class="headerlink" href="#introduction-to-ifm-camera-coordinate-systems-and-their-transformations" title="Permalink to this headline"></a></h1>
+<p>This guide should help newcomers understand camera coordinate  systems (and frames), and their relative transformations, and provide an overview of the implementation for the O3R camera system.</p>
+<p>There are a few different coordinate- systems / frames to be aware of:</p>
+<ol class="simple">
+<li><p>(sensor / pixel space)</p></li>
+<li><p>Optics space:</p>
+<ol class="simple">
+<li><p>Optics space non-rectified</p></li>
+<li><p>Optics space rectified</p></li>
+</ol>
+</li>
+<li><p>Head space</p></li>
+<li><p>User space</p></li>
+<li><p>IMU space</p></li>
+<li><p>Robot space</p></li>
+</ol>
+<p>Out-of-the-box, all O3R camera heads are calibrated. This means they can provide the user with point cloud data using a coordinate system relative to the camera head, this is the <strong>head-coordinate-system</strong>.</p>
+<p>In the following a short overview is given to help you understand these three reference frames better. For details of their relation and the exact methods to retrieve the calibration parameters / perform the transformation with the methods provided in this example, please see the calibrations schema.</p>
+<a class="reference internal image-reference" href="../../../../_images/calibrations_schematic.png"><img alt="top_view" class="align-center" src="../../../../_images/calibrations_schematic.png" style="width: 400px;" /></a>
+<div class="section" id="sensor-coordinate-system-pixel-coordinate-system">
+<h2>Sensor-coordinate-system / pixel coordinate system:<a class="headerlink" href="#sensor-coordinate-system-pixel-coordinate-system" title="Permalink to this headline"></a></h2>
+<p>The <strong>sensor-coordinate-system</strong> is a way of representing pixels on the camera sensor as a 2 dimensional vector, i.e. a classical pixel coordinate system: pixel rows, pixel columns.</p>
+<p>The upper-left pixel in an depth sensor (image sensor) is by convention <code class="docutils literal notranslate"><span class="pre">(0,0)</span></code> Depending on the sensors’ number of pixel rows and columns the opposing image corner (bottom-right) is at `(#num_rows, #num_columns).</p>
+<p>For the 38k imagers (03R222, O3R225) the bottom-right pixel is <code class="docutils literal notranslate"><span class="pre">(172,224)</span></code>.
+The implementation used in the example script are borrowed from Numpy.</p>
+</div>
+<div class="section" id="optics-coordinate-system-optics-space">
+<h2>Optics-coordinate-system (optics space):<a class="headerlink" href="#optics-coordinate-system-optics-space" title="Permalink to this headline"></a></h2>
+<div class="section" id="optics-space-non-rectified">
+<h3>Optics space non-rectified<a class="headerlink" href="#optics-space-non-rectified" title="Permalink to this headline"></a></h3>
+<p>The non rectified optical-coordinate system is a way of representing image rays as a 3 dimensional vector relative to the camera sensor.</p>
+<p>These image rays may be distorted by the optics of the system (lens). A perfect pinhole camera model does not apply here, as can be seen by the respective intrinsic calibration parameters per camera.
+These intrinsic camera calibration parameters also hold information about the distortion: depending on which model - symmetrical / asymmetrical distortion parameters.</p>
+<p>These images are supplied non-rectified (all 2-dimensional image arrays):</p>
+<ul class="simple">
+<li><p>amplitude image</p></li>
+<li><p>distance image</p></li>
+<li><p>distance noise image</p></li>
+<li><p>reflectivity image</p></li>
+<li><p>confidence image</p></li>
+<li><p>(2D RGB image)</p></li>
+</ul>
+<p>All 3D ToF 2-dimensional images are non-rectified. This is by choice, since all rectification process include a resampling / interpolation.
+Resampling and interpolation does not preserve the geometrical positions (in pixel coordinates) or involves averaging over a local neighborhood in pixel space, e.g. “mixes” geometrical distinct signal.</p>
+<p>For details see <a class="reference internal" href="#intrinsic-calibration"><span class="std std-doc">intrinsic calibration</span></a> and <a class="reference internal" href="#inverse-intrinsic-calibration"><span class="std std-doc">inverse intrinsic calibration</span></a>.</p>
+</div>
+<div class="section" id="optics-space-rectified">
+<h3>Optics space rectified<a class="headerlink" href="#optics-space-rectified" title="Permalink to this headline"></a></h3>
+<p>The <strong>optical-coordinate-system</strong> is a way of representing position in real space as a 3 dimensional vector relative to the camera sensor.</p>
+<p>The convention used by O3R is a right-handed cartesian coordinate system where (0,0,0) is the center of the camera optics. The z direction is directly pointing out of the sensor (i.e. orthogonal to the front face), x direction is pointing in the opposite direction from the FAKRA-connector, and y direction is pointing “up” (extending the two other directions conforming with the definition of a right handed coordinate system).</p>
+<p>The difference between this optics coordinate frame and the head coordinate frame is the their respective origin. The optics coordinate frame and head coordinate frame are offset in two directions: <code class="docutils literal notranslate"><span class="pre">trans_Z</span></code> and <code class="docutils literal notranslate"><span class="pre">trans_X</span></code>.</p>
+<!-- 
+TODO: Check is there a difference in the angle parameters - misalignment of the optics module relative to the head. -->
+</div>
+<div class="section" id="head-coordinate-system-head-space">
+<h3>Head-coordinate-system (head space):<a class="headerlink" href="#head-coordinate-system-head-space" title="Permalink to this headline"></a></h3>
+<p>The <strong>head-coordinate-system</strong> is a way of representing position in real space as a 3 dimensional vector relative to the camera head.</p>
+<p>The convention used by O3R is a right-handed cartesian coordinate system, where (0,0,0) is the center of the rear face of the camera: intersection point of two lines of diagonally opposing mounting points.
+The z direction is directly pointing out of front of the camera (i.e. orthogonal to the front face), x direction is pointing in the opposite direction from the FAKRA-connector, and y direction is pointing “up” (extending the two other directions conforming with the definition of a right handed coordinate system).</p>
+</div>
+</div>
+<div class="section" id="defining-where-the-camera-is">
+<h2>Defining where the camera is<a class="headerlink" href="#defining-where-the-camera-is" title="Permalink to this headline"></a></h2>
+<div class="section" id="user-coordinate-system">
+<h3>User-coordinate-system:<a class="headerlink" href="#user-coordinate-system" title="Permalink to this headline"></a></h3>
+<p>Often roboticists will refer to the this as the robot-coordinate-system, it is a way of representing positions relative to whatever feature is most convenient to measure from on their machinery.</p>
+<p>In order to receive point clouds in the <strong>user-coordinate-system</strong> directly from the O3R VPU, The user needs to define where the camera head is positioned within the <strong>user-coordinate-system</strong>, this is called the <strong>extrinsic calibration</strong>. Specifically this is called the “extHeadToUser” parameter which can be configured for each port of the O3R system.</p>
+</div>
+<div class="section" id="extrinsic-calibration">
+<h3>Extrinsic calibration:<a class="headerlink" href="#extrinsic-calibration" title="Permalink to this headline"></a></h3>
+<p><strong>Extrinsic calibration</strong> data takes the form of 6 degrees of freedom pose, x-y-z translation and roll, pitch, yaw (x-y-z rotations). These can be used to translate from one coordinate system to another.</p>
+<p>O3R extrinsic parameters are used to transform points from one coordinate system to another. See ‘The big picture’ for details of the processing steps to translate camera data from one form to another.</p>
+</div>
+</div>
+<div class="section" id="using-calibration-data-stored-on-the-camera-head">
+<h2>Using calibration data stored on the camera head:<a class="headerlink" href="#using-calibration-data-stored-on-the-camera-head" title="Permalink to this headline"></a></h2>
+<div class="section" id="generating-point-clouds-from-scratch">
+<h3>Generating point clouds from scratch:<a class="headerlink" href="#generating-point-clouds-from-scratch" title="Permalink to this headline"></a></h3>
+<p>The following diagram demonstrates how to use the calibration data and example functions to translate one form of camera data to another.</p>
+<a class="reference internal image-reference" href="../../../../_images/calibrations_schematic.png"><img alt="top_view" class="align-center" src="../../../../_images/calibrations_schematic.png" style="width: 1000px;" /></a>
+<p>The names used this diagram match the functions and variables demonstrated in examples such as 2d-3d Registration. The result of that example is shown below, where a point cloud that has been colored by associating depth data with color data from an O3R225 camera.</p>
+<p><img alt="" src="../../../../_images/2d3dexample.png" /></p>
+</div>
+</div>
+<div class="section" id="glossary">
+<h2>Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline"></a></h2>
+<div class="section" id="intrinsic-calibration">
+<h3>Intrinsic calibration:<a class="headerlink" href="#intrinsic-calibration" title="Permalink to this headline"></a></h3>
+<p>Intrinsic parameters encode the magnification and radial distortion of a lens in a way that we can take a position in sensor space ie. a pixel, and determine the path that light can take to arrive at that position.</p>
+<p>In essence, intrinsic projection turns a point in <strong>sensor space</strong> into a direction in the <strong>optical-coordinate-system</strong>.</p>
+<p>There are various ways of compensating for the distortion caused by camera optics. These are called optical models. O3R currently uses 2 optical models and provides a model ID corresponding to the optical model used for a given sensor.</p>
+<p>The intrinsic_projection() function can take a set of intrinsic parameters and a modelID and return unit vectors corresponding to the path that light took to arrive at that point.</p>
+</div>
+<div class="section" id="inverse-intrinsic-calibration">
+<h3>Inverse-Intrinsic calibration:<a class="headerlink" href="#inverse-intrinsic-calibration" title="Permalink to this headline"></a></h3>
+<p>Inverse-intrinsic are used to determine where on a sensor a given ray of light will be detected. This encodes the same information as the intrinsic calibration but is provided separately to simplify implementation.</p>
+<p>In essence, inverse-intrinsic projection turns a point in the <strong>optical-coordinate-system</strong> into a point in the <strong>sensor space</strong>.</p>
+<p>Inverse-intrinsic parameters, like intrinsic parameters, also use two separate optical models. In the calibration examples provided, the function inv_intrinsic_projection() applies inverse-intrinsic data to a point or point cloud to define positions in <strong>sensor space</strong>.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index_toolbox.html" class="btn btn-neutral float-left" title="Toolbox" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Registration2d3d/collect_calibration_data.html" class="btn btn-neutral float-right" title="Collect camera calibration data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

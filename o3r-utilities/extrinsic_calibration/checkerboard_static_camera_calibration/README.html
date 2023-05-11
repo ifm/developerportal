@@ -2,7 +2,6 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-    <meta property="article:modified_time" content="2023-03-06T20:35:12+00:00" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Checkerboard Static Camera - Calibration Routine &mdash; O3R  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -24,9 +23,7 @@
         <script src="../../../_static/js/versionwarning.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="VPU IMU general information" href="../IMU_VPU_extrinsic_calibration/README.html" />
-    <link rel="prev" title="Extrinsic calibration routines: camera to robot coordinates" href="../README.html" /> 
+    <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -44,40 +41,14 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../../index_getting_started.html">Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../documentation/DeviceConfiguration/index.html">Device Configuration</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../README.html">Utilities</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../intro_to_calibrations/README.html">Intro to calibration</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../README.html">Extrinsic calibration routines</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">The static checkerboard method</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#procedure">Procedure</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#setting-up-the-scene">Setting up the scene</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#requirements">Requirements</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#scene">Scene</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#isometric-view-of-the-scene">Isometric View of the Scene</a></li>
-</ul>
-</li>
-<li class="toctree-l4"><a class="reference internal" href="#required-measurements">Required Measurements</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#measurements-for-the-above-scene">Measurements for the above scene</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../IMU_VPU_extrinsic_calibration/README.html">VPU IMU general information</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../IMU_VPU_extrinsic_calibration/README.html#vpu-extrinsic-calibration-and-misalignment-estimation">VPU Extrinsic Calibration and Misalignment Estimation</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../registration2d3d/README.html">2D-3D registration Example</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../applications_index.html">Applications</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../documentation/Docker/index.html">Docker</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../ifm3d/index.html">ifm3d API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../ROS/index.html">ROS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../documentation/Firmware/index.html">Firmware</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">Downloads</a></li>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/ODS/index_ods.html">ODS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../documentation/FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
 </ul>
 
         </div>
@@ -94,8 +65,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../README.html">Utilities</a> &raquo;</li>
-          <li><a href="../README.html">Extrinsic calibration routines: camera to robot coordinates</a> &raquo;</li>
       <li>Checkerboard Static Camera - Calibration Routine</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/o3r-utilities/extrinsic_calibration/checkerboard_static_camera_calibration/README.md.txt" rel="nofollow"> View page source</a>
@@ -193,7 +162,7 @@ After setting up the scene and measuring all the distances (see section below): 
 </li>
 <li><p>Run the second cell and check the results. If the calibration is successful then the plots will be displayed as shown in below example figure.</p></li>
 </ol>
-<a class="reference internal image-reference" href="../../../_images/successful_calibration.png"><img alt="successful_calibration.png" class="align-center" src="../../../_images/successful_calibration.png" style="width: 800px;" /></a>
+<a class="reference internal image-reference" href="../../../_images/successful_calibration1.png"><img alt="successful_calibration.png" class="align-center" src="../../../_images/successful_calibration1.png" style="width: 800px;" /></a>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;!-- ![successful_calibration.png](_resources/successful_calibration.png) --&gt;
 </pre></div>
 </div>
@@ -217,7 +186,7 @@ Please <strong>don’t skip this step:</strong> after any further steps, the old
 <li><p>Rest the checkerboard on a wall and make sure the checkerboard occupies the maximum field of view of the camera for the most accurate calibration.</p></li>
 <li><p>Move the Robot such that the Y-Axis of a Robot Coordinate System is exactly parallel to the checkerboard.</p></li>
 </ul>
-<a class="reference internal image-reference" href="../../../_images/TOP_VIEW.png"><img alt="top_view" class="align-center" src="../../../_images/TOP_VIEW.png" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="../../../_images/TOP_VIEW1.png"><img alt="top_view" class="align-center" src="../../../_images/TOP_VIEW1.png" style="width: 400px;" /></a>
 <ul class="simple">
 <li><p>Tilt the board if a reflection of the illumination is seen on the camera image. You can tilt as long as the top edge is fully resting on the wall. Keep in mind that all the edges of the board still have to be visible to the camera after tilting the checkerboard.</p></li>
 </ul>
@@ -228,8 +197,8 @@ Please <strong>don’t skip this step:</strong> after any further steps, the old
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><img alt="Goodimage.png" src="../../../_images/Goodimage1.png" /></p></td>
-<td><p><img alt="badimage.png" src="../../../_images/badimage1.png" /></p></td>
+<tr class="row-even"><td><p><img alt="Goodimage.png" src="../../../_images/Goodimage2.png" /></p></td>
+<td><p><img alt="badimage.png" src="../../../_images/badimage2.png" /></p></td>
 </tr>
 </tbody>
 </table>
@@ -237,7 +206,7 @@ Please <strong>don’t skip this step:</strong> after any further steps, the old
 <div class="section" id="isometric-view-of-the-scene">
 <h3>Isometric View of the Scene<a class="headerlink" href="#isometric-view-of-the-scene" title="Permalink to this headline"></a></h3>
 <p>Please see this isometric view of a good scene to get a better understanding of the expected geometric configuration.</p>
-<a class="reference internal image-reference" href="../../../_images/isometric_view.png"><img alt="isometric_view" class="align-center" src="../../../_images/isometric_view.png" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="../../../_images/isometric_view1.png"><img alt="isometric_view" class="align-center" src="../../../_images/isometric_view1.png" style="width: 400px;" /></a>
 </div>
 </div>
 <div class="section" id="required-measurements">
@@ -251,11 +220,11 @@ Please <strong>don’t skip this step:</strong> after any further steps, the old
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Horizontal</p></td>
-<td><p><img alt="Horizontal.png" src="../../../_images/Horizontal1.png" /></p></td>
+<td><p><img alt="Horizontal.png" src="../../../_images/Horizontal2.png" /></p></td>
 <td><p>X_AB<br><br>Z_AB<br><br>X_CD<br><br>Z_CD<br><br>Y_AC<br><br>Y_BD</p></td>
 </tr>
 <tr class="row-odd"><td><p>Vertical</p></td>
-<td><p><img alt="Vertical.png" src="../../../_images/Vertical1.png" /></p></td>
+<td><p><img alt="Vertical.png" src="../../../_images/Vertical2.png" /></p></td>
 <td><p>X_AC<br><br>Z_AC<br><br>X_BD<br><br>Z_BD<br><br>Y_AB<br><br>Y_CD</p></td>
 </tr>
 </tbody>
@@ -282,14 +251,14 @@ Rotation angle results are given in radiant.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><a class="reference internal image-reference" href="../../../_images/RCS_CBCS.png"><img alt="RCS_CBCS" src="../../../_images/RCS_CBCS.png" style="width: 400px;" /></a>
+<tr class="row-even"><td><a class="reference internal image-reference" href="../../../_images/RCS_CBCS1.png"><img alt="RCS_CBCS" src="../../../_images/RCS_CBCS1.png" style="width: 400px;" /></a>
 </td>
-<td><a class="reference internal image-reference" href="../../../_images/bad_view.png"><img alt="bad_view" src="../../../_images/bad_view.png" style="width: 400px;" /></a>
+<td><a class="reference internal image-reference" href="../../../_images/bad_view1.png"><img alt="bad_view" src="../../../_images/bad_view1.png" style="width: 400px;" /></a>
 </td>
 </tr>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../../../_images/good_configuration.png"><img alt="good_con" src="../../../_images/good_configuration.png" style="width: 400px;" /></a>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../../../_images/good_configuration1.png"><img alt="good_con" src="../../../_images/good_configuration1.png" style="width: 400px;" /></a>
 </td>
-<td><a class="reference internal image-reference" href="../../../_images/correct_view.png"><img alt="corr_view" src="../../../_images/correct_view.png" style="width: 400px;" /></a>
+<td><a class="reference internal image-reference" href="../../../_images/correct_view1.png"><img alt="corr_view" src="../../../_images/correct_view1.png" style="width: 400px;" /></a>
 </td>
 </tr>
 </tbody>
@@ -307,7 +276,7 @@ Rotation angle results are given in radiant.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><a class="reference internal image-reference" href="../../../_images/Measurements.png"><img alt="measurements" src="../../../_images/Measurements.png" style="width: 500px;" /></a>
+<tr class="row-even"><td><a class="reference internal image-reference" href="../../../_images/Measurements1.png"><img alt="measurements" src="../../../_images/Measurements1.png" style="width: 500px;" /></a>
 </td>
 <td><p>Y_AC and Y_BD are both positive in this case
 because the checkerboard is moved to the right side
@@ -322,17 +291,12 @@ to capture the whole checkerboard in the amplitude/reflectivity image.</p></td>
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../README.html" class="btn btn-neutral float-left" title="Extrinsic calibration routines: camera to robot coordinates" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../IMU_VPU_extrinsic_calibration/README.html" class="btn btn-neutral float-right" title="VPU IMU general information" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, ifm CSR.
-      <span class="lastupdated">Last updated on Mar 06, 2023.
-      </span></p>
+    <p>&#169; Copyright 2021, ifm CSR.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
