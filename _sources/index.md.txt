@@ -10,7 +10,7 @@ This website contains all the documentation for the O3R platform. Find the datas
     :maxdepth: 2
 Home <self>
 Getting started <documentation/GettingStarted/index_getting_started>
-Firmware <documentation/Firmware/index_fw>
+Firmware <documentation/Firmware/index>
 Technology <documentation/Technology/index_hardware_interfaces>
 Software Interfaces <index_software_interfaces>
 ODS <documentation/ODS/index_ods>
