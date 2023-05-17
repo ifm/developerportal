@@ -24,7 +24,7 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="O3R ODS heat dissipation guidelines" href="HeatDissipation/heat_dissipation_guidelines.html" />
+    <link rel="next" title="Heat dissipation guidelines" href="HeatDissipation/heat_dissipation_guidelines.html" />
     <link rel="prev" title="Testing ODS" href="index_device_verification.html" /> 
 </head>
 
@@ -62,10 +62,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../ExtrinsicCalibration/index_extrinsic_calibration.html">Extrinsic calibration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../FieldTest/index_field_test.html">Field test</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index_device_verification.html">Device verification</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Temperature tests</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#temperature-test-examples-based-on-native-ods-application-at-maximum-load">Temperature test examples based on native ODS application at maximum load</a></li>
-</ul>
-</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Temperature tests</a></li>
 <li class="toctree-l3"><a class="reference internal" href="HeatDissipation/heat_dissipation_guidelines.html">Heat dissipation guidelines</a></li>
 </ul>
 </li>
@@ -106,28 +103,25 @@
              
   <div class="tex2jax_ignore mathjax_ignore section" id="ods-temperature-tests">
 <h1>ODS temperature tests<a class="headerlink" href="#ods-temperature-tests" title="Permalink to this headline"></a></h1>
-<div class="section" id="temperature-test-examples-based-on-native-ods-application-at-maximum-load">
-<h2>Temperature test examples based on native ODS application at maximum load<a class="headerlink" href="#temperature-test-examples-based-on-native-ods-application-at-maximum-load" title="Permalink to this headline"></a></h2>
-<p>A temperature test can easiest be implemented based on a native ifm ODS application instance running on the system during the testing procedure.
+<p>A temperature test can easiest be implemented based on a native ODS application instance running on the system during the testing procedure.
 This reflects the expected load during operation conditions most closely.</p>
-<p>Please be aware that this ODS application instance needs to be configured correctly, i.e. be functional and in RUN state during the temperature tests. A applications instance that has active severe or unrecoverable error codes during operation did not initialize completely and can therefore not be used to introduce the required system load on the VPU.</p>
+<p>Please be aware that this ODS application instance needs to be configured correctly, that is be functional and in RUN state during the temperature tests. A applications instance that has active severe or unrecoverable error codes during operation did not initialize completely and can therefore not be used to introduce the required system load on the VPU.</p>
 <p><strong>Please follow this checklist to double-check for good live operation before starting your temperature tests:</strong></p>
 <ol class="simple">
-<li><p>All camera heads are connected and live: i.e. check port LEDs</p></li>
+<li><p>All camera heads are connected and live: check port LEDs</p></li>
 <li><p>The VPU has fully booted:</p>
 <ol class="simple">
-<li><p>(check the system boot status via the bootup monitor tool)</p></li>
-<li><p>The ODS application instance was created and is functional, i.e. provides the ODS data output</p>
+<li><p>(check the system boot status via the boot-up monitor tool)</p></li>
+<li><p>The ODS application instance was created and is functional, this is provides the ODS data output</p>
 <ol class="simple">
 <li><p>Double-check the dependent ports: camera and IMU</p></li>
 </ol>
 </li>
-<li><p>No severe or unrecoverable active error code are present</p></li>
-<li><p>The ifm ODS application instances (i.e. all dependent camera heads) are set to 20 Hz - this introduces the most resource load on the VPU.</p></li>
+<li><p>No severe or unrecoverable active error code are present (check the diagnostic)</p></li>
+<li><p>The ODS application instances (that is all dependent camera heads) are set to 20 Hz - this introduces the most resource load on the VPU.</p></li>
 </ol>
 </li>
 </ol>
-</div>
 </div>
 
 
@@ -135,7 +129,7 @@ This reflects the expected load during operation conditions most closely.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index_device_verification.html" class="btn btn-neutral float-left" title="Testing ODS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="HeatDissipation/heat_dissipation_guidelines.html" class="btn btn-neutral float-right" title="O3R ODS heat dissipation guidelines" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="HeatDissipation/heat_dissipation_guidelines.html" class="btn btn-neutral float-right" title="Heat dissipation guidelines" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
