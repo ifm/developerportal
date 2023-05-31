@@ -65,7 +65,7 @@ Using the viewer of your choice, for example the ifmVisionAssistant, you can see
 A VPU (OVP800) can connect up to 6 3D imager, ranging from `Port 0` to `Port 5`. Providing the port information to the ODS configuration tells the system which heads should be used for the ODS application itself.
 
 :::{warning}
-    The ODS pre-release versions do not support more than 2 used heads within an ODS application.
+    The current ODS version do not support more than 3 used heads within an ODS application.
 :::
 
 ```JSON
