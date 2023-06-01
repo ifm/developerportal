@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>O3R Information for debugging &mdash; O3R  documentation</title>
+  <title>O3R information for debugging &mdash; O3R  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -25,7 +25,7 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Toolbox" href="../Toolbox/index_toolbox.html" />
-    <link rel="prev" title="Diagnostic error code monitoring" href="DiagnosticRetrieval/diagnostic_bootup_monitoring.html" /> 
+    <link rel="prev" title="Boot-up diagnostic" href="DiagnosticRetrieval/diagnostic_bootup_monitoring.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -92,7 +92,7 @@
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../../index_software_interfaces.html">Software Interfaces</a> &raquo;</li>
           <li><a href="index_diagnostic.html">O3R Diagnostics: overview</a> &raquo;</li>
-      <li>O3R Information for debugging</li>
+      <li>O3R information for debugging</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/documentation/SoftwareInterfaces/ifmDiagnostic/debugging.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -103,38 +103,37 @@
            <div itemprop="articleBody">
              
   <div class="tex2jax_ignore mathjax_ignore section" id="o3r-information-for-debugging">
-<h1>O3R Information for debugging<a class="headerlink" href="#o3r-information-for-debugging" title="Permalink to this headline"></a></h1>
-<p>When sending us a debug request, please include the information below:</p>
+<h1>O3R information for debugging<a class="headerlink" href="#o3r-information-for-debugging" title="Permalink to this headline"></a></h1>
+<p>When sending the ifm support team a debug request, please include the information below:</p>
 <p><strong>Required O3R system information:</strong></p>
 <ul class="simple">
-<li><p>VPU (IPC) hardware information: i.e. OVP800, M04239</p></li>
-<li><p>O3R camera hardware: i.e.</p>
+<li><p>VPU (IPC) hardware information: OVP800, M04239</p></li>
+<li><p>O3R camera hardware:</p>
 <ul>
 <li><p>O3R225: add serial number</p></li>
 <li><p>O3R222: add serial number</p></li>
 </ul>
 </li>
-<li><p>Any additional hardware connected: i.e.</p>
+<li><p>Any additional hardware connected:</p>
 <ul>
 <li><p>USB thumb drives / SSD</p></li>
 <li><p>CAN hardware</p></li>
 <li><p>….</p></li>
 </ul>
 </li>
-<li><p>The complete JSON configuration</p></li>
+<li><p>The complete json configuration</p></li>
 </ul>
 <p><strong>Required Software version information:</strong></p>
 <ul>
 <li><p>Embedded firmware version: three ways to find this out</p>
 <ul>
-<li><p>Via CLI: requires <code class="docutils literal notranslate"><span class="pre">jq</span></code> and <code class="docutils literal notranslate"><span class="pre">ifm3dpy</span></code> libraries. Can be installed from <a class="reference external" href="https://pypi.org/">pypi.org</a></p>
+<li><p>Via CLI: requires <code class="docutils literal notranslate"><span class="pre">jq</span></code> and <code class="docutils literal notranslate"><span class="pre">ifm3dpy</span></code> libraries, which can be installed from <a class="reference external" href="https://pypi.org/">pypi.org</a>.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3dpy<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.device.swVersion.firmware
 </pre></div>
 </div>
 </li>
-<li><p>Via the JSON: use the get method to receive the O3R configuration information via JSON:
-<a class="reference external" href="http://api.ifm3d.com/html/examples/o3r/configuration/configuration.html">ifm3d.com how to receive the camera configuration</a></p></li>
-<li><p>Via the Vision Assistant: top right-hand corner:
+<li><p>Via the json: use the <code class="docutils literal notranslate"><span class="pre">get</span></code> method to receive the O3R configuration information formatted in json. See <a class="reference external" href="http://api.ifm3d.com/html/examples/o3r/configuration/configuration.html">how to receive the camera configuration</a>.</p></li>
+<li><p>Via the Vision Assistant: click the “Device Status” button in the top right-hand corner.
 <img alt="055afc8c3b028c996ec20567e877b775.png" src="../../../_images/2688a88ba71f432ca0cb99bd7acf2526.png" /></p></li>
 </ul>
 </li>
@@ -152,7 +151,7 @@
 <ol class="simple">
 <li><p>This will allow you to find hardware configuration problems, for example, camera heads connected to the “wrong” ports.
 <a class="reference external" href="https://ifm3d.com/documentation/GettingStarted/Unboxing/hw_unboxing.html">Please double-check the configuration doc for details on the hardware connectivity</a></p></li>
-<li><p>If step 1 (above) worked try to reconnect one cable at a time to the correct ports as described in the doc above. Please be aware that any hardware change, e.g. connecting a new head, requires a reboot before it will become available.</p></li>
+<li><p>If step 1 (above) worked try to reconnect one cable at a time to the correct ports as described in the doc above. Please be aware that any hardware change, for example connecting a new head, requires a reboot before it will become available.</p></li>
 </ol>
 </li>
 </ul>
@@ -169,11 +168,11 @@
 </li>
 <li><p>PORT LEDs:</p>
 <ul>
-<li><p>Each Port LED is handled separately: If the connected imager (i.e. 2D RGB / 3D TOF imager) is registered and ready the LED will turn green</p></li>
+<li><p>Each Port LED is handled separately. If the connected imager (that is 2D RGB / 3D TOF imager) is registered and ready the LED will turn green</p></li>
 <li><p>If the LEDs are off:</p>
 <ul>
-<li><p>The imager is not registered by the system: i.e. connected during live operation. It will only be registered with the next reboot cycle.</p></li>
-<li><p>The imager’s cable connectivity is incorrect: i.e. 2D and 3D connected to the same paired deserializer</p></li>
+<li><p>The imager is not registered by the system, that is connected during live operation. It will only be registered with the next reboot cycle.</p></li>
+<li><p>The imager’s cable connectivity is incorrect, that is 2D and 3D connected to the same paired deserializer</p></li>
 <li><p>The imager’s calibration information is still getting downloaded after it was connected for the first time to this VPU.</p></li>
 <li><p>For additional possible error cases please check the diagnosis information.</p></li>
 </ul>
@@ -197,7 +196,7 @@
 </div>
 <div class="section" id="github-platform">
 <h2>GitHub platform<a class="headerlink" href="#github-platform" title="Permalink to this headline"></a></h2>
-<p>It is recommended to report any issues you may encounter while using the product on <a class="reference external" href="https://github.com/ifm/ifm3d">ifm GitHub repository</a>. The GitHub platform allows us to track and manage the issues efficiently. To report an issue via the GitHub repository, refer to this <a class="reference external" href="https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-an-issue">document</a>.</p>
+<p>It is recommended to report any issues you may encounter while using the product on <a class="reference external" href="https://github.com/ifm/ifm3d">ifm GitHub repository</a>. The GitHub platform allows the support and development teams to track and manage the issues efficiently. To report an issue via the GitHub repository, refer to this <a class="reference external" href="https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-an-issue">document</a>.</p>
 <p>As mentioned before, please include the hardware and software information of the system setup for a better understanding of the problem statement. Besides, in the comment section provide a detailed description of the issue, including any error messages you may have received, steps to reproduce the issue, and any other relevant information.</p>
 <p>If possible, please provide screenshots or videos to help illustrate the issue.</p>
 </div>
@@ -207,7 +206,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="DiagnosticRetrieval/diagnostic_bootup_monitoring.html" class="btn btn-neutral float-left" title="Diagnostic error code monitoring" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="DiagnosticRetrieval/diagnostic_bootup_monitoring.html" class="btn btn-neutral float-left" title="Boot-up diagnostic" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../Toolbox/index_toolbox.html" class="btn btn-neutral float-right" title="Toolbox" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

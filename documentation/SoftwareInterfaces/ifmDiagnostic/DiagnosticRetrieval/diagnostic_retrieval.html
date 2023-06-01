@@ -61,9 +61,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../diagnostic_reaction_strategy.html#handling-strategies">Handling strategies</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="index_diagnostic_retrieval.html">Diagnostic retrieval</a><ul class="current">
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Tools</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#ifm-vision-assistant-receiving-diagnostic-data">ifm Vision Assistant: Receiving diagnostic data</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#ifm3d-ifm3dpy-receiving-diagnostic-data">ifm3d / ifm3dpy: Receiving diagnostic data</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#additional-debugging-information">additional debugging information</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#with-the-ifm-vision-assistant">With the ifm Vision Assistant</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#with-ifm3d-or-ifm3dpy">With ifm3d or ifm3dpy</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#additional-debugging-information">Additional debugging information</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="diagnostic_example_output.html">Example output</a></li>
@@ -110,44 +110,88 @@
              
   <div class="tex2jax_ignore mathjax_ignore section" id="diagnostic-retrieval">
 <h1>Diagnostic retrieval<a class="headerlink" href="#diagnostic-retrieval" title="Permalink to this headline"></a></h1>
-<p><strong>How to get diagnostics data</strong></p>
-<p>Diagnostic information can be monitored using a selection of tools.
-The diagnostic information can be simultaneously retrieved using different tools: iVA, API, …</p>
-<div class="section" id="ifm-vision-assistant-receiving-diagnostic-data">
-<h2>ifm Vision Assistant: Receiving diagnostic data<a class="headerlink" href="#ifm-vision-assistant-receiving-diagnostic-data" title="Permalink to this headline"></a></h2>
+<p>The diagnostic information can be simultaneously retrieved using different tools: iVA, ifm3d API, etc.</p>
+<div class="section" id="with-the-ifm-vision-assistant">
+<h2>With the ifm Vision Assistant<a class="headerlink" href="#with-the-ifm-vision-assistant" title="Permalink to this headline"></a></h2>
 <p>Diagnosis information can be monitored via the ifm Vision Assistant (iVA) since version 2.6.
-For an explanation on how to get this information see the documentation on the <a class="reference external" href="https://ifm3d.com/documentation/GettingStarted/ifmVisionAssistant/device_and_diagnosis_data.html">main website</a>.</p>
+For an explanation on how to get this information see <a class="reference internal" href="../../iVA/device_and_diagnosis_data.html"><span class="doc std std-doc">the iVA documentation</span></a>.</p>
 </div>
-<div class="section" id="ifm3d-ifm3dpy-receiving-diagnostic-data">
-<h2>ifm3d / ifm3dpy: Receiving diagnostic data<a class="headerlink" href="#ifm3d-ifm3dpy-receiving-diagnostic-data" title="Permalink to this headline"></a></h2>
+<div class="section" id="with-ifm3d-or-ifm3dpy">
+<h2>With ifm3d or ifm3dpy<a class="headerlink" href="#with-ifm3d-or-ifm3dpy" title="Permalink to this headline"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">ifm3d</span> <span class="pre">/</span> <span class="pre">ifm3dpy</span></code> library provide functions to pull diagnostic data directly from the device.</p>
-<p>For ifm3d 1.1.0 and above, it is possible to retrieve the diagnosis information as follows:</p>
+<p>Diagnostic information can be monitored via two separate ways inside the API:</p>
+<ol class="simple">
+<li><p>Via polling the complete diagnostic information JSON</p></li>
+<li><p>Via listening asynchronously for diagnostic changes</p></li>
+</ol>
+<p>Option 1 gives the full set of information, or a filtered subset as specified by the user:</p>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-0-Yysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Yysr" name="Yysr" role="tab" tabindex="-1">c++</button><button aria-controls="panel-0-Q0xJ" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Q0xJ" name="Q0xJ" role="tab" tabindex="-1">CLI</button></div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel group-tab" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ifm3dpy.device</span> <span class="kn">import</span> <span class="n">O3R</span>
 <span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">()</span>
 <span class="n">o3r</span><span class="o">.</span><span class="n">get_diagnostic</span><span class="p">()</span>
+<span class="n">o3r</span><span class="o">.</span><span class="n">get_diagnostic_filtered</span><span class="p">({</span><span class="s2">&quot;state&quot;</span><span class="p">:</span><span class="s2">&quot;active&quot;</span><span class="p">})</span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-0-Yysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Yysr" name="Yysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ifm3d/device/o3r.h&gt;</span>
 <span class="k">auto</span><span class="w"> </span><span class="n">o3r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">O3R</span><span class="o">&gt;</span><span class="p">();</span>
 <span class="k">auto</span><span class="w"> </span><span class="n">diag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o3r</span><span class="o">-&gt;</span><span class="n">GetDiagnostic</span><span class="p">();</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">diag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o3r</span><span class="o">-&gt;</span><span class="n">GetDiagnosticFiltered</span><span class="p">(</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">JSON</span><span class="o">::</span><span class="n">parse</span><span class="p">(</span><span class="s">&quot;{</span><span class="se">\&quot;</span><span class="s">state</span><span class="se">\&quot;</span><span class="s">:</span><span class="se">\&quot;</span><span class="s">active</span><span class="se">\&quot;</span><span class="s">}&quot;</span><span class="p">));</span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-0-Q0xJ" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Q0xJ" name="Q0xJ" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ifm3d<span class="w"> </span>diagnostic
 </pre></div>
 </div>
 </div></div>
-<p>Diagnostic information can be monitored via two separate ways inside the API:</p>
-<ol class="simple">
-<li><p>Via polling the complete diagnostic information JSON: via RPC</p></li>
-<li><p>Via listening asynchronously for diagnostic changes: via PCIC</p></li>
-</ol>
-<p>Option 1 gives the full set of information, while option 2 only gives the user the changes.</p>
-<p>For option 1 see the O3R module related methods: <a class="reference external" href="https://api.ifm3d.com/html/_autosummary/ifm3dpy.O3R.html?highlight=diagnostic#ifm3dpy.O3R.get_diagnostic"><code class="docutils literal notranslate"><span class="pre">get_diagnostic</span></code></a> and <a class="reference external" href="https://api.ifm3d.com/html/_autosummary/ifm3dpy.O3R.html?highlight=diagnostic#ifm3dpy.O3R.get_diagnostic_filtered"><code class="docutils literal notranslate"><span class="pre">get_diagnostic_filtered</span></code></a>.</p>
-<p>For option 2 see the framegrabber related methods: <a class="reference external" href="https://api.ifm3d.com/html/_autosummary/ifm3dpy.FrameGrabber.html#ifm3dpy.FrameGrabber.on_async_error"><code class="docutils literal notranslate"><span class="pre">on_aync_error</span></code></a> and <a class="reference external" href="https://api.ifm3d.com/html/_autosummary/ifm3dpy.FrameGrabber.html#ifm3dpy.FrameGrabber.on_async_notification"><code class="docutils literal notranslate"><span class="pre">on_async_notification</span></code></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See the <code class="docutils literal notranslate"><span class="pre">O3R</span></code> related methods: <a class="reference external" href="https://api.ifm3d.com/html/_autosummary/ifm3dpy.O3R.html?highlight=diagnostic#ifm3dpy.O3R.get_diagnostic"><code class="docutils literal notranslate"><span class="pre">get_diagnostic</span></code></a> and <a class="reference external" href="https://api.ifm3d.com/html/_autosummary/ifm3dpy.O3R.html?highlight=diagnostic#ifm3dpy.O3R.get_diagnostic_filtered"><code class="docutils literal notranslate"><span class="pre">get_diagnostic_filtered</span></code></a>.</p>
+</div>
+<p>Option 2 provides diagnostic updates asynchronously as they occur. For this purpose, a dedicated PCIC port (50009) is available.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-1-Yysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-Yysr" name="Yysr" role="tab" tabindex="-1">c++</button></div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel group-tab" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ifm3dpy.device</span> <span class="kn">import</span> <span class="n">O3R</span>
+<span class="kn">from</span> <span class="nn">ifm3dpy.framegrabber</span> <span class="kn">import</span> <span class="n">FrameGrabber</span>
+<span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">()</span>
+<span class="n">fg</span> <span class="o">=</span> <span class="n">FrameGrabber</span><span class="p">(</span><span class="n">o3r</span><span class="p">,</span> <span class="mi">50009</span><span class="p">)</span>
+<span class="n">fg</span><span class="o">.</span><span class="n">on_async_error</span><span class="p">(</span><span class="k">lambda</span> <span class="nb">id</span><span class="p">,</span> <span class="n">JSON</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Got error </span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s2"> with content: </span><span class="si">{</span><span class="n">JSON</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+<span class="n">fg</span><span class="o">.</span><span class="n">start</span><span class="p">([])</span>
+
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-Yysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-Yysr" name="Yysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;chrono&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thread&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ifm3d/device/o3r.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ifm3d/fg.h&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">ifm3d</span><span class="o">::</span><span class="nn">literals</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">AsyncDiagCallback</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">message</span><span class="p">){</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Error id: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span>
+<span class="w">              </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Message: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">message</span>
+<span class="w">              </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span>
+<span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+
+<span class="w">  </span><span class="c1">// Declare the device object (one object only, corresponding to the VPU)</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">o3r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">O3R</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">fg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">FrameGrabber</span><span class="o">&gt;</span><span class="p">(</span><span class="n">o3r</span><span class="p">,</span><span class="w"> </span><span class="mi">50009</span><span class="p">);</span>
+<span class="w">  </span><span class="n">fg</span><span class="o">-&gt;</span><span class="n">OnAsyncError</span><span class="p">(</span><span class="o">&amp;</span><span class="n">AsyncDiagCallback</span><span class="p">);</span>
+<span class="w">  </span><span class="n">fg</span><span class="o">-&gt;</span><span class="n">Start</span><span class="p">({});</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See the <code class="docutils literal notranslate"><span class="pre">framegrabber</span></code> related methods: <a class="reference external" href="https://api.ifm3d.com/html/_autosummary/ifm3dpy.FrameGrabber.html#ifm3dpy.FrameGrabber.on_async_error"><code class="docutils literal notranslate"><span class="pre">on_aync_error</span></code></a> and <a class="reference external" href="https://api.ifm3d.com/html/_autosummary/ifm3dpy.FrameGrabber.html#ifm3dpy.FrameGrabber.on_async_notification"><code class="docutils literal notranslate"><span class="pre">on_async_notification</span></code></a>.</p>
+</div>
 </div>
 <div class="section" id="additional-debugging-information">
-<h2>additional debugging information<a class="headerlink" href="#additional-debugging-information" title="Permalink to this headline"></a></h2>
+<h2>Additional debugging information<a class="headerlink" href="#additional-debugging-information" title="Permalink to this headline"></a></h2>
 <p>When experiencing software bugs or crashes, providing the output of the systemD <code class="docutils literal notranslate"><span class="pre">journalctl</span></code> command is useful for debugging. Save it with the following commands:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ssh<span class="w"> </span>oem@192.168.0.69
 o3r-vpu-c0:~$<span class="w"> </span>journalctl<span class="w"> </span>&gt;<span class="w"> </span>log.txt

@@ -1,5 +1,4 @@
 # Diagnostic retrieval
-    3. [Diagnostic error code monitoring during boot-up and system operability based on active error codes](diagnostics_bootup_monitoring.md)
 
 :::{toctree}
 Tools <diagnostic_retrieval>

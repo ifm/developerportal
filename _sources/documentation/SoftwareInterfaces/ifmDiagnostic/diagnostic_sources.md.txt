@@ -82,7 +82,7 @@ Port error codes hold information about data stream drops due to:
 **CONTENT:**
 IMU specific errors such as implausible IMU data returned from the sensor.
 
-```{include} diagnosis_error_codes/section_imu.md
+```{include} diagnosis_error_codes/section_IMU.md
 ```
 
 ## DI (Distance Image) processing

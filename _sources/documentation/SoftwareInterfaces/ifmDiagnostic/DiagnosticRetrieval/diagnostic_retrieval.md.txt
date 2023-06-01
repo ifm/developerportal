@@ -1,25 +1,28 @@
 
 # Diagnostic retrieval
-**How to get diagnostics data**
 
-Diagnostic information can be monitored using a selection of tools.
-The diagnostic information can be simultaneously retrieved using different tools: iVA, API, ...
+The diagnostic information can be simultaneously retrieved using different tools: iVA, ifm3d API, etc.
 
-## ifm Vision Assistant: Receiving diagnostic data
+## With the ifm Vision Assistant
 Diagnosis information can be monitored via the ifm Vision Assistant (iVA) since version 2.6.
-For an explanation on how to get this information see the documentation on the [main website](https://ifm3d.com/documentation/GettingStarted/ifmVisionAssistant/device_and_diagnosis_data.html).
+For an explanation on how to get this information see [the iVA documentation](../../iVA/device_and_diagnosis_data.md).
 
-## ifm3d / ifm3dpy: Receiving diagnostic data
+## With ifm3d or ifm3dpy
 
 The `ifm3d / ifm3dpy` library provide functions to pull diagnostic data directly from the device.
 
-For ifm3d 1.1.0 and above, it is possible to retrieve the diagnosis information as follows:
+Diagnostic information can be monitored via two separate ways inside the API:
+1. Via polling the complete diagnostic information JSON
+2. Via listening asynchronously for diagnostic changes
+
+Option 1 gives the full set of information, or a filtered subset as specified by the user:
 :::::{tabs}
 ::::{group-tab} Python
 :::python
 from ifm3dpy.device import O3R
 o3r = O3R()
 o3r.get_diagnostic()
+o3r.get_diagnostic_filtered({"state":"active"})
 :::
 ::::
 ::::{group-tab} c++
@@ -27,6 +30,7 @@ o3r.get_diagnostic()
 #include <ifm3d/device/o3r.h>
 auto o3r = std::make_shared<ifm3d::O3R>();
 auto diag = o3r->GetDiagnostic();
+auto diag = o3r->GetDiagnosticFiltered(ifm3d::JSON::parse("{\"state\":\"active\"}"));
 :::
 ::::
 ::::{group-tab} CLI
@@ -36,17 +40,60 @@ ifm3d diagnostic
 ::::
 :::::
 
-Diagnostic information can be monitored via two separate ways inside the API:
-1. Via polling the complete diagnostic information JSON: via RPC
-2. Via listening asynchronously for diagnostic changes: via PCIC
+:::{note}
+See the `O3R` related methods: [`get_diagnostic`](https://api.ifm3d.com/html/_autosummary/ifm3dpy.O3R.html?highlight=diagnostic#ifm3dpy.O3R.get_diagnostic) and [`get_diagnostic_filtered`](https://api.ifm3d.com/html/_autosummary/ifm3dpy.O3R.html?highlight=diagnostic#ifm3dpy.O3R.get_diagnostic_filtered).
+:::
 
-Option 1 gives the full set of information, while option 2 only gives the user the changes.
+Option 2 provides diagnostic updates asynchronously as they occur. For this purpose, a dedicated PCIC port (50009) is available.
 
-For option 1 see the O3R module related methods: [`get_diagnostic`](https://api.ifm3d.com/html/_autosummary/ifm3dpy.O3R.html?highlight=diagnostic#ifm3dpy.O3R.get_diagnostic) and [`get_diagnostic_filtered`](https://api.ifm3d.com/html/_autosummary/ifm3dpy.O3R.html?highlight=diagnostic#ifm3dpy.O3R.get_diagnostic_filtered).
+:::::{tabs}
+::::{group-tab} Python
+:::python
+from ifm3dpy.device import O3R
+from ifm3dpy.framegrabber import FrameGrabber
+o3r = O3R()
+fg = FrameGrabber(o3r, 50009)
+fg.on_async_error(lambda id, JSON: print(f"Got error {id} with content: {JSON}"))
+fg.start([])
 
-For option 2 see the framegrabber related methods: [`on_aync_error`](https://api.ifm3d.com/html/_autosummary/ifm3dpy.FrameGrabber.html#ifm3dpy.FrameGrabber.on_async_error) and [`on_async_notification`](https://api.ifm3d.com/html/_autosummary/ifm3dpy.FrameGrabber.html#ifm3dpy.FrameGrabber.on_async_notification).
+:::
+::::
+::::{group-tab} c++
+:::cpp
+#include <iostream>
+#include <chrono>
+#include <thread>
+#include <ifm3d/device/o3r.h>
+#include <ifm3d/fg.h>
 
-## additional debugging information
+using namespace ifm3d::literals;
+
+void AsyncDiagCallback(int id, const std::string &message){
+    std::cout << "Error id: " << id << std::endl
+              << "Message: " << message
+              << std::endl;
+}
+int
+main()
+{
+
+  // Declare the device object (one object only, corresponding to the VPU)
+  auto o3r = std::make_shared<ifm3d::O3R>();
+  auto fg = std::make_shared<ifm3d::FrameGrabber>(o3r, 50009);
+  fg->OnAsyncError(&AsyncDiagCallback);
+  fg->Start({});
+  std::this_thread::sleep_for (std::chrono::seconds(10));
+  return 0;
+}
+:::
+::::
+:::::
+
+:::{note} 
+See the `framegrabber` related methods: [`on_aync_error`](https://api.ifm3d.com/html/_autosummary/ifm3dpy.FrameGrabber.html#ifm3dpy.FrameGrabber.on_async_error) and [`on_async_notification`](https://api.ifm3d.com/html/_autosummary/ifm3dpy.FrameGrabber.html#ifm3dpy.FrameGrabber.on_async_notification).
+:::
+
+## Additional debugging information
 
 When experiencing software bugs or crashes, providing the output of the systemD `journalctl` command is useful for debugging. Save it with the following commands:
 ```bash

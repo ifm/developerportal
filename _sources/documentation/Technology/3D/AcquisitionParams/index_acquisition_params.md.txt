@@ -61,5 +61,9 @@ We are using the 2m [mode](documentation/O3R/Parameters/AcquisitionSettings/mode
 
 This concept for cross talk mitigation is based on channels, each channel corresponding to a different modulation frequency. Use a channel combination of mutually exclusive channels to *almost* completely reduce the possibility and effect of cross talk between O3R camera heads.
 The channel value has to be set per 3D TOF imager / O3R camera head. By default it is to value 0.
-A channel value difference of 1 has been shown to be adequate. Any additional channel value offset (> 1) will not improve crosstalk mitigation between O3R camera heads.
 
+A channel value difference of 2 has been shown to be adequate. Any additional channel value offset (> 2) will not improve crosstalk mitigation between O3R camera heads.
+Use intermediate, i.e. odd channel numbers if larger numbers of channels are required: We suggest to geometrically separate cameras with channel differences 1 - for example forward and backward facing cameras on an AGV / AMR.
+
+As of firmware version 1.0.14 the channel value has to be manually set to a distinct value. We suggest to couple the channel value selection to a (randomized) channel value based your AGVs / AMRs serial number:
+O3R VPU ETH0 MAC IDs can be used but a “customer-serial number” or even “customer-site-specific-serial-number” is preferred. This is because these numbers are in better control by the customer than a MAC address. So finding a systematic way to map from an (arbitrary increasing) MAC-addresses to (linearly increasing) channels is difficult. Ideally there is a “customer-site-specific-serial-number” that more or less counts the vehicles in one location, i. e.  a simple `mod(number,200)` would do the trick.

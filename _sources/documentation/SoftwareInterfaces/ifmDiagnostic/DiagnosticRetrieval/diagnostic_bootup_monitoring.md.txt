@@ -1,9 +1,7 @@
-# Diagnostic error code monitoring
-
-**Monitoring during boot-up and system operability based on active error codes**
+# Boot-up diagnostic
 
 ## Verify the system operational state after boot-up
-To check if the system is operational after a boot-up sequence one should verify at least two stages (For ODS application):
+To check if the system is operational after a boot-up sequence one should verify at least two stages (for an ODS application):
 
 1. Check that confInitStages:
     1. For non-ODS application scenarios: `/device/diagnostic/confInitStages: ['device', 'ports']`
@@ -18,7 +16,7 @@ To check if the system is operational after a boot-up sequence one should verify
       ],
 ```
 
-Additionally it is advisable to periodically check them systems temperature values via the JSON config:
+Additionally it is advisable to periodically check them systems temperature values via the JSON configuration:
 ```JSON title="system temperatures: JSON config content"
       "temperatures": [
         {

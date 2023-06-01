@@ -34,15 +34,15 @@ These are the steps to start ODS in the iVA:
   ! Oops, that didn't work ! --> verify a M04239 VPU with ODS license is used.
 
 - Configure ODS parameters
-  - (this step is not need for a table top demonstration)
+  - (this step is not needed for a table top demonstration)
 
 - Start ODS
-  - set ODS-state to "RUN" -> the live occupancy grid should appear 
+  - set ODS-state to "RUN" -> the live occupancy grid should appear
 
   ! Oops, that didn't work ! --> change the extrinsic parameters to the suggested values above.
 
 - Play with display
-  - the application tab only shows the occupancy grid
+  - the application tab only shows the occupancy grid (white grid pattern marks occupied areas)
   - change to monitor tab -> the pointcloud and the occupancy grid are shown
 
 watch the video:
@@ -53,4 +53,3 @@ For better visualization of the point cloud when using ODS, use the Frame Filter
 
   ![Frame Filter](img/frame_filter.png)
 :::
-

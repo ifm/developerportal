@@ -35,9 +35,9 @@ These are possible to receive from a customer perspective and could be used for 
 ### AlgoDebug
 
 "AlgoDebug" records all necessary data for ifm to re-simulate the event as it occured during live operation.
-This includes the "normal" ifm Syntron data streams, e.g amplitude data, distance data, occupancy grid data, etc., and additional information from applications which might be protected because they are considered the intellectual property of ifm. This data is used to replay scenarios and reevaluate algorithmic approaches. Without this data, no feedback can be provided.
+This includes the "normal" ifm data streams, e.g amplitude data, distance data, occupancy grid data, etc., and additional information from applications which might be protected because they are considered the intellectual property of ifm. This data is used to replay scenarios and reevaluate algorithmic approaches. Without this data, no feedback can be provided.
 
-The regular ifm Syntron data streams inside an ifm Algo Debug dataset can be access by anyone without needing specific tools, i.e. the same way as a regular non-Algo Debug dataset.
+The regular ifm data streams inside an ifm Algo Debug dataset can be access by anyone without needing specific tools, i.e. the same way as a regular non-Algo Debug dataset.
 
 ## When to record
 
@@ -91,9 +91,9 @@ flowchart LR
 There is no standardized data stream format. However, is quite common to save 3D data as hdf5 data files.
 For this purposes ifm provides two separate recording formats:
 
-Namely the ifm openly accessible data (the same as can be accessed via the API) - often called the ifm Syntron hdf5 format, and a closed raw data format - called ifm Algo Debug hdf5 format.
+Namely the ifm openly accessible data (the same as can be accessed via the API) - often called the ifm hdf5 format, and a closed raw data format - called ifm Algo Debug hdf5 format.
 
-1. normal / open ifm Syntron hdf5 format
+1. normal / open ifm hdf5 format
 2. closed source / binary ifm Algo Debug format.
 
 ifm Algo debug data is saved in a specific hdf5 format, see the section above.
@@ -103,7 +103,7 @@ To receive and save data in this specific hdf5 data format, ifm tool are provide
 ### ifmVisionAssistant
 
 The ifm Vision Assistant is the go-to tool for receiving, saving, and replaying ifm O3R datasets.
-It is capable of recording both hdf5 formats. 
+It is capable of recording both hdf5 formats.
 
 #### Record and Replay
 

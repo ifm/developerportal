@@ -2,7 +2,7 @@
 # Camera Mounting
 
 The type of camera and mounting position of the camera will directly influence the performance of ODS.
-However, the ODS detection range is limited to a maximum of 4 m with the current Firmware version (FW 1.0.14). Based on the camera head chosen, mounting height is the second most important factor for influencing detection range.
+However, the ODS detection range is limited to a maximum of 4 m with firmware version: FW 1.0.14. Based on the camera head chosen, mounting height is the second most important factor for influencing detection range.
 
 Additionally, visual odometry has to be enabled and functional in firmware 1.0.14 to estimate the AGVs / ARMs egomotion.
 For visual odometry, a large portion of the floor should be present in the field of view of at least one camera. To achieve this we recommend the mounting height should be in the range of 250 mm to 700 mm from the ground. To know more about the factors that could influence the performance of ODS and to start benchmarking please refer to this [document](../FieldTest/PerformanceBenchmark/ods_performance_benchmark.md).
@@ -23,7 +23,7 @@ The VPU's coordinate system origin lies at the center of the VPU mechanical inte
 
 Cable management is essential for AGVs / AMRs for improved safety, reliability, efficiency and maintenance. Therefore we recommend the following tips for cable management.
 
-- Before installing the cables, plan the layout of the cables and the paths. Take considering of the power source, control units or any other interfaces used in AGV / AMRs. This reduces the of damage to the cables and EMV & ESD interference.
+- Before installing the cables, plan the layout of the cables and the paths. Take considering of the power source, control units or any other interfaces used in AGV / AMRs. This reduces the of damage to the cables and EMC & ESD interference.
 - Using the right size and type of cable is an effective way to keep the cables organized: please get in touch with your ifm sales engineer for more information about drag chain compatible HFM cables and HFM / Fakra cable adapters and different cable lengths.
 - Labeling the cables is very important to keep track of what they are and where they end up. This helps to troubleshoot any issues that can arise and makes it easier to perform maintenance / repairs. Ifm HFM cables (E3R1xx) cables come pre-labeled for their respective 2D and 3D imager data stream cables.
 - Strain relief can help to prevent damage to your cables by reducing the amount of tension or pulling force that is applied to them. This is especially important in areas where the cables may be subjected to movement and / or vibration.
@@ -44,5 +44,5 @@ Regular cleaning can help to ensure that they are operating at their best perfor
 
 - Use a clean, lint-free cloth: When cleaning the camera, it is important to use a clean, lint-free cloth that will not scratch or damage the lens or sensor. Microfiber clothes are a good choice.
 - Use compressed air or a blower brush: To remove any loose dust or dirt, you can use compressed air or a blower brush to gently blow away any debris from the lens and sensor.
-- Avoid using water or harsh chemicals: Do not use water or harsh chemicals to clean the camera, as this can damage the lens or sensor.
+- Avoid using water or harsh chemicals as this can damage the lens or sensor.
 - Clean regularly: To maintain optimal performance, it is recommended to clean the camera heads regularly, depending on the environment in which they are used. In dusty or dirty environments, more frequent cleaning may be necessary. We recommend to implement a weekly cleaning maintenance for non-dusty environments. For dusty environments a daily cleaning maintenance schedule is advised.

@@ -153,8 +153,8 @@ During all testing phases, issues could appear. To improve and verify the system
 <div class="section" id="algodebug">
 <h3>AlgoDebug<a class="headerlink" href="#algodebug" title="Permalink to this headline"></a></h3>
 <p>“AlgoDebug” records all necessary data for ifm to re-simulate the event as it occured during live operation.
-This includes the “normal” ifm Syntron data streams, e.g amplitude data, distance data, occupancy grid data, etc., and additional information from applications which might be protected because they are considered the intellectual property of ifm. This data is used to replay scenarios and reevaluate algorithmic approaches. Without this data, no feedback can be provided.</p>
-<p>The regular ifm Syntron data streams inside an ifm Algo Debug dataset can be access by anyone without needing specific tools, i.e. the same way as a regular non-Algo Debug dataset.</p>
+This includes the “normal” ifm data streams, e.g amplitude data, distance data, occupancy grid data, etc., and additional information from applications which might be protected because they are considered the intellectual property of ifm. This data is used to replay scenarios and reevaluate algorithmic approaches. Without this data, no feedback can be provided.</p>
+<p>The regular ifm data streams inside an ifm Algo Debug dataset can be access by anyone without needing specific tools, i.e. the same way as a regular non-Algo Debug dataset.</p>
 </div>
 </div>
 <div class="section" id="when-to-record">
@@ -206,9 +206,9 @@ This includes the “normal” ifm Syntron data streams, e.g amplitude data, dis
 <h3>Recording format<a class="headerlink" href="#recording-format" title="Permalink to this headline"></a></h3>
 <p>There is no standardized data stream format. However, is quite common to save 3D data as hdf5 data files.
 For this purposes ifm provides two separate recording formats:</p>
-<p>Namely the ifm openly accessible data (the same as can be accessed via the API) - often called the ifm Syntron hdf5 format, and a closed raw data format - called ifm Algo Debug hdf5 format.</p>
+<p>Namely the ifm openly accessible data (the same as can be accessed via the API) - often called the ifm hdf5 format, and a closed raw data format - called ifm Algo Debug hdf5 format.</p>
 <ol class="simple">
-<li><p>normal / open ifm Syntron hdf5 format</p></li>
+<li><p>normal / open ifm hdf5 format</p></li>
 <li><p>closed source / binary ifm Algo Debug format.</p></li>
 </ol>
 <p>ifm Algo debug data is saved in a specific hdf5 format, see the section above.</p>

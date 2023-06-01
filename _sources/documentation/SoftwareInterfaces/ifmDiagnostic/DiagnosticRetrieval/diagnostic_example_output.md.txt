@@ -1,6 +1,6 @@
 # Diagnostics example output
 
-## Example Diagnostic output
+## Example diagnostic output
 
 ```JSON title="Example output of one diagnostic error"
     {
@@ -24,7 +24,7 @@
 ```
 
 ### Description / ID / name
-These fields are used to identify the error: [Please see the complete list of available error codes](../diagnostic_sources.md).
+These fields are used to identify the error: [see the complete list of available error codes](../diagnostic_sources.md).
 
 ### Source
 This field describes the source of the error code on the embedded device and OS.
@@ -34,5 +34,5 @@ This is used to identify the exact application or process, if multiple similar s
 The O3R system differentiates between active errors - which are currently active, and dormant errors - errors which happened any time between the start of the system and now.
 
 ### Stats
-Stats gives you an overview over the the count of this specific error, i.e. how often it has switched states since its first activation / the first start.
-Last activated and last deactivated gives an overview over the timestamps and bootid of the last activation stages.
+Stats gives you an overview over the count of this specific error, that is how often it has switched states since boot up.
+Last activated and last deactivated gives an overview over the timestamps and boot id of the last activation stages.

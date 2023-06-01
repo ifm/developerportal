@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Diagnostic error code monitoring &mdash; O3R  documentation</title>
+  <title>Boot-up diagnostic &mdash; O3R  documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
@@ -24,7 +24,7 @@
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
-    <link rel="next" title="O3R Information for debugging" href="../debugging.html" />
+    <link rel="next" title="O3R information for debugging" href="../debugging.html" />
     <link rel="prev" title="Diagnostics example output" href="diagnostic_example_output.html" /> 
 </head>
 
@@ -95,7 +95,7 @@
           <li><a href="../../../../index_software_interfaces.html">Software Interfaces</a> &raquo;</li>
           <li><a href="../index_diagnostic.html">O3R Diagnostics: overview</a> &raquo;</li>
           <li><a href="index_diagnostic_retrieval.html">Diagnostic retrieval</a> &raquo;</li>
-      <li>Diagnostic error code monitoring</li>
+      <li>Boot-up diagnostic</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/documentation/SoftwareInterfaces/ifmDiagnostic/DiagnosticRetrieval/diagnostic_bootup_monitoring.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -105,12 +105,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="diagnostic-error-code-monitoring">
-<h1>Diagnostic error code monitoring<a class="headerlink" href="#diagnostic-error-code-monitoring" title="Permalink to this headline"></a></h1>
-<p><strong>Monitoring during boot-up and system operability based on active error codes</strong></p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="boot-up-diagnostic">
+<h1>Boot-up diagnostic<a class="headerlink" href="#boot-up-diagnostic" title="Permalink to this headline"></a></h1>
 <div class="section" id="verify-the-system-operational-state-after-boot-up">
 <h2>Verify the system operational state after boot-up<a class="headerlink" href="#verify-the-system-operational-state-after-boot-up" title="Permalink to this headline"></a></h2>
-<p>To check if the system is operational after a boot-up sequence one should verify at least two stages (For ODS application):</p>
+<p>To check if the system is operational after a boot-up sequence one should verify at least two stages (for an ODS application):</p>
 <ol class="simple">
 <li><p>Check that confInitStages:</p>
 <ol class="simple">
@@ -127,7 +126,7 @@
 <span class="w">      </span><span class="p">],</span>
 </pre></div>
 </div>
-<p>Additionally it is advisable to periodically check them systems temperature values via the JSON config:</p>
+<p>Additionally it is advisable to periodically check them systems temperature values via the JSON configuration:</p>
 <div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="nt">&quot;temperatures&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="p">{</span>
 <span class="w">          </span><span class="nt">&quot;entity&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;PLL-therm&quot;</span><span class="p">,</span>
@@ -188,7 +187,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="diagnostic_example_output.html" class="btn btn-neutral float-left" title="Diagnostics example output" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../debugging.html" class="btn btn-neutral float-right" title="O3R Information for debugging" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../debugging.html" class="btn btn-neutral float-right" title="O3R information for debugging" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

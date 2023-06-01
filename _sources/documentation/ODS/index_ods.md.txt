@@ -18,7 +18,7 @@ ODS doesn't follow any safety regulations: e.g. ASIL-level or similar, and can t
 + ODS outputs two kind of information sets:
    + A 2D occupancy grid information: typically used in addition to existing navigation information to avoid and navigate around obstacles
    + (3D) zone information: a typical use case is the direct propagation to the chassis control system to perform braking manuevers when obstacles are present
-   + ODS does not classify objects: the output information is independent of the object type
++ ODS does not classify objects: the output information is independent of the object type
 + multiple ODS applications can be initialized on one O3R VPU (IPC): one application instance per primary movement direction - i.e. forward, backward driving
 + ODS is a licensed application: Please see the O3Rs release notes for additional information for compatibility tables and embedded OS versions
 
