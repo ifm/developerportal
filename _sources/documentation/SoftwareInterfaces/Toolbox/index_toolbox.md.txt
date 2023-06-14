@@ -14,4 +14,5 @@ Introduction to calibrations <IntroToCalibrations/README>
 Collect calibration values <Registration2d3d/collect_calibration_data>
 Extrinsic calibrations <ExtrinsicCalibration/README>
 2D/3D registration <Registration2d3d/README>
+Data conversions <H5ToPCDConverter/h5_to_pcd_converter>
 :::
