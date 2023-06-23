@@ -12,7 +12,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The ifm3d_ros_msgs package &mdash; O3R  documentation</title>
+  <title>Topics &mdash; O3R  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -33,8 +33,8 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="The ifm3d_ros_examples package" href="../ifm3d_ros_examples/README.html" />
-    <link rel="prev" title="The ifm3d_ros_driver package" href="../ifm3d_ros_driver/README.html" /> 
+    <link rel="next" title="Advertised Services" href="services.html" />
+    <link rel="prev" title="How to visualize data with RVIZ" href="visualization.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -60,18 +60,24 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../../documentation/SoftwareInterfaces/iVA/index_iVA.html">ifm Vision Assistant</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://api.ifm3d.com/stable/">ifm3d/ifm3dpy API</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html">ROS: ifm3d-ros</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../README.html">ifm3d-ros overview</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../ifm3d_ros_driver/README.html">ifm3d_ros_driver</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">ifm3d_ros_msgs</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#standalone-installation-of-the-messages-packages">Standalone Installation of the messages packages</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#license">LICENSE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ifm3d-ros/index.html">ROS: ifm3d-ros</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">ROS2: ifm3d-ros2</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../README.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="building.html">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="launch.html">Launch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="visualization.html">Visualization</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Topics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#published-topics">Published Topics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#subscribed-topics">Subscribed Topics</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../ifm3d_ros_examples/README.html">ifm3d_ros_examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="services.html">Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parameters.html">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multi_head.html">Multi-head</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rpc_error_codes.html">Diagnostic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployment.html">Deployment</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../ifm3d-ros2/index.html">ROS2: ifm3d-ros2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../documentation/SoftwareInterfaces/Docker/index_docker.html">Docker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../documentation/SoftwareInterfaces/ifmDiagnostic/index_diagnostic.html">ifmDiagnostic</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../documentation/SoftwareInterfaces/Toolbox/index_toolbox.html">Toolbox</a></li>
@@ -97,10 +103,10 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../../index_software_interfaces.html">Software Interfaces</a> &raquo;</li>
-          <li><a href="../index.html">ifm3d-ros</a> &raquo;</li>
-      <li>The <code class="docutils literal notranslate"><span class="pre">ifm3d_ros_msgs</span></code> package</li>
+          <li><a href="../index.html">ifm3d-ros2</a> &raquo;</li>
+      <li>Topics</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/ROS/ifm3d-ros/ifm3d_ros_msgs/README.md.txt" rel="nofollow"> View page source</a>
+            <a href="../../../_sources/ROS/ifm3d-ros2/doc/topics.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -108,30 +114,80 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="the-ifm3d-ros-msgs-package">
-<h1>The <code class="docutils literal notranslate"><span class="pre">ifm3d_ros_msgs</span></code> package<a class="headerlink" href="#the-ifm3d-ros-msgs-package" title="Permalink to this headline"></a></h1>
-<p>This package provides the messages and services interfaces for the <code class="docutils literal notranslate"><span class="pre">ifm3d_ros_driver</span></code> package. It can be installed independently of the driver package <code class="docutils literal notranslate"><span class="pre">ifm3d_ros_driver</span></code> and examples package <code class="docutils literal notranslate"><span class="pre">ìfm3d_ros_examples</span></code>.</p>
-<div class="section" id="standalone-installation-of-the-messages-packages">
-<h2>Standalone Installation of the messages packages<a class="headerlink" href="#standalone-installation-of-the-messages-packages" title="Permalink to this headline"></a></h2>
-<p>If you plan on installing only one subpackage please see the instructions below.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">catkin_make</span> <span class="o">--</span><span class="n">only</span><span class="o">-</span><span class="n">pkg</span><span class="o">-</span><span class="k">with</span><span class="o">-</span><span class="n">deps</span> <span class="o">&lt;</span><span class="n">target_package</span><span class="o">&gt;</span>
-</pre></div>
+  <div class="tex2jax_ignore mathjax_ignore section" id="topics">
+<h1>Topics<a class="headerlink" href="#topics" title="Permalink to this headline"></a></h1>
+<div class="section" id="published-topics">
+<h2>Published Topics<a class="headerlink" href="#published-topics" title="Permalink to this headline"></a></h2>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>amplitude</p></td>
+<td><p>sensor_msgs/msg/Image</p></td>
+<td><p>The normalized amplitude image</p></td>
+</tr>
+<tr class="row-odd"><td><p>cloud</p></td>
+<td><p>sensor_msgs/msg/PointCloud2</p></td>
+<td><p>The point cloud data</p></td>
+</tr>
+<tr class="row-even"><td><p>confidence</p></td>
+<td><p>sensor_msgs/msg/Image</p></td>
+<td><p>The confidence image</p></td>
+</tr>
+<tr class="row-odd"><td><p>distance</p></td>
+<td><p>sensor_msgs/msg/Image</p></td>
+<td><p>The radial distance image</p></td>
+</tr>
+<tr class="row-even"><td><p>raw_amplitude</p></td>
+<td><p>sensor_msgs/msg/Image</p></td>
+<td><p>The raw amplitude image (currently not available for the O3R)</p></td>
+</tr>
+<tr class="row-odd"><td><p>rgb</p></td>
+<td><p>sensor_msgs/msg/Image</p></td>
+<td><p>The RGB 2D image of the 2D imager</p></td>
+</tr>
+<tr class="row-even"><td><p>extrinsics</p></td>
+<td><p>ifm3d_ros2::msg::Extrinsics</p></td>
+<td><p>The extrinsic calibration of the camera (camera to world)</p></td>
+</tr>
+<tr class="row-odd"><td><p>INTRINSIC_CALIB</p></td>
+<td><p>ifm3d_ros2::msg::Intrinsics</p></td>
+<td><p>The intrinsic calibration of the camera (optical system parameters)</p></td>
+</tr>
+<tr class="row-even"><td><p>INVERSE_INTRINSIC_CALIBRATION</p></td>
+<td><p>ifm3d_ros2::msg::InverseIntrinsics</p></td>
+<td><p>The inverse intrinsic calibration of the camera</p></td>
+</tr>
+<tr class="row-odd"><td><p>camera_info</p></td>
+<td><p>sensor_msgs::msg::CameraInfo</p></td>
+<td><p>The camera info topic containing the distortion model. This topic is published if the INTRINSIC_CALIB is part of the buffer list</p></td>
+</tr>
+<tr class="row-even"><td><p>TOF_INFO</p></td>
+<td><p>ifm3d_ros2::msg::TOFInfo</p></td>
+<td><p>A topic gathering various information from the tof camera (see <span class="xref myst">TOFinfo.msg</span>)</p></td>
+</tr>
+<tr class="row-odd"><td><p>RGB_INFO</p></td>
+<td><p>ifm3d_ros2::msg::RGBInfo</p></td>
+<td><p>A topic gathering various information from the rgb camera (see <span class="xref myst">RGBInfo.msg</span>)</p></td>
+</tr>
+<tr class="row-even"><td><p>diagnostics</p></td>
+<td><p>diagnostic_msgs::msg::DiagnosticArray</p></td>
+<td><p>Diagnostic messages pulled from the device every second</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All the topics are published with QoS <code class="docutils literal notranslate"><span class="pre">ifm3d_ros2::LowLatencyQoS</span></code>.</p>
 </div>
-<p>Please replace the tag <code class="docutils literal notranslate"><span class="pre">&lt;target_package&gt;</span></code> with the name of the package you want to compile:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">ifm3d_ros_driver</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ifm3d_ros_msgs</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ifm3d_ros_examples</span></code></p></li>
-</ul>
-<p>Some of our subpackages have dependencies to other packages and therefore will trigger a compiling of more subpackages, namely the packages <code class="docutils literal notranslate"><span class="pre">ifm3d_ros_examples</span></code> and <code class="docutils literal notranslate"><span class="pre">ifm3d_ros_driver</span></code>. These subpackges can not be used standalone.</p>
-<p>Don’t forget to switch back to building all packages afterwards:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">catkin_make</span> <span class="o">-</span><span class="n">DCATKIN_WHITELIST_PACKAGES</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
-</pre></div>
 </div>
-</div>
-<div class="section" id="license">
-<h2>LICENSE<a class="headerlink" href="#license" title="Permalink to this headline"></a></h2>
-<p>Please see the file called <span class="xref myst">LICENSE</span>.</p>
+<div class="section" id="subscribed-topics">
+<h2>Subscribed Topics<a class="headerlink" href="#subscribed-topics" title="Permalink to this headline"></a></h2>
+<p>None.</p>
 </div>
 </div>
 
@@ -139,8 +195,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../ifm3d_ros_driver/README.html" class="btn btn-neutral float-left" title="The ifm3d_ros_driver package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../ifm3d_ros_examples/README.html" class="btn btn-neutral float-right" title="The ifm3d_ros_examples package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="visualization.html" class="btn btn-neutral float-left" title="How to visualize data with RVIZ" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="services.html" class="btn btn-neutral float-right" title="Advertised Services" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

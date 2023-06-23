@@ -32,7 +32,9 @@
         <script src="../../../_static/js/versionwarning.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Diagnostic" href="rpc_error_codes.html" />
+    <link rel="prev" title="Parameters" href="parameters.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -50,12 +52,41 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../documentation/GettingStarted/index_getting_started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../documentation/Firmware/index.html">Firmware</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../documentation/Technology/index_hardware_interfaces.html">Technology</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../documentation/SoftwareInterfaces/iVA/index_iVA.html">ifm Vision Assistant</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://api.ifm3d.com/stable/">ifm3d/ifm3dpy API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ifm3d-ros/index.html">ROS: ifm3d-ros</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">ROS2: ifm3d-ros2</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../README.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="building.html">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="launch.html">Launch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="visualization.html">Visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="topics.html">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="services.html">Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parameters.html">Parameters</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Multi-head</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#o3r-2d-yaml"><code class="docutils literal notranslate"><span class="pre">o3r_2d.yaml</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#o3r-3d-yaml"><code class="docutils literal notranslate"><span class="pre">o3r_3d.yaml</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">o3r_3d.yaml</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#adapting-the-camera-configuration-to-your-needs">Adapting the camera configuration to your needs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="rpc_error_codes.html">Diagnostic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployment.html">Deployment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../documentation/SoftwareInterfaces/Docker/index_docker.html">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../documentation/SoftwareInterfaces/ifmDiagnostic/index_diagnostic.html">ifmDiagnostic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../documentation/SoftwareInterfaces/Toolbox/index_toolbox.html">Toolbox</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../documentation/ODS/index_ods.html">ODS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../documentation/FAQ/FAQ.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
@@ -75,6 +106,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index_software_interfaces.html">Software Interfaces</a> &raquo;</li>
+          <li><a href="../index.html">ifm3d-ros2</a> &raquo;</li>
       <li>Multi head launch file configuration</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/ROS/ifm3d-ros2/doc/multi_head.md.txt" rel="nofollow"> View page source</a>
@@ -85,32 +118,70 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="multi-head-launch-file-configuration">
+  <div class="tex2jax_ignore mathjax_ignore section" id="multi-head-launch-file-configuration">
 <h1>Multi head launch file configuration<a class="headerlink" href="#multi-head-launch-file-configuration" title="Permalink to this headline"></a></h1>
-<p>How to start streams from multiple heads at the same time:</p>
-<p>Use as following command: (relative location starting from your <code class="docutils literal notranslate"><span class="pre">colcon_ws</span></code>)</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ros2</span> <span class="n">launch</span> <span class="n">ifm3d_ros2</span> <span class="n">multi_cameras</span><span class="o">.</span><span class="n">launch</span><span class="o">.</span><span class="n">py</span> <span class="n">namespace</span><span class="o">:=</span><span class="s1">&#39;ifm3d_ros2&#39;</span> <span class="n">params</span><span class="o">:=</span><span class="s1">&#39;src/config/params_2cams.yaml&#39;</span>
+<p>It is possible to stream data from multiple imagers and camera heads (i.e. ports): while connecting both 2D and 3D data from your camera with your VPU or even with multiple cameras connected to one VPU.</p>
+<p>This can be achieved by altering your launch configuration yaml file and setting the camera-specific parameters, namely <code class="docutils literal notranslate"><span class="pre">pcic-port</span></code> and <code class="docutils literal notranslate"><span class="pre">buff_id_lists</span></code>, correctly.
+There are examples provided doing exactly that.</p>
+<div class="section" id="o3r-2d-yaml">
+<h2><code class="docutils literal notranslate"><span class="pre">o3r_2d.yaml</span></code><a class="headerlink" href="#o3r-2d-yaml" title="Permalink to this headline"></a></h2>
+<p>This example configuration connects to the 2D (RGB) data stream of one O3R camera head connected to port 0:</p>
+<p>The Ports on the VPU should be connected as follows:</p>
+<ul class="simple">
+<li><p>Camera 2D: physical port 0 - corresponds to <code class="docutils literal notranslate"><span class="pre">pcic_port=50010</span></code></p></li>
+</ul>
+<p>To launch this example, use the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>ifm3d_ros2<span class="w"> </span>camera.launch.py<span class="w"> </span>parameter_file_name:<span class="o">=</span>o3r_2d.yaml
 </pre></div>
 </div>
-<p>This will launch two instances of the lifecycle node and publish their data to independent topics and coordinate reference frames.</p>
-<blockquote>
-<div><p>Note: Please be aware that the <code class="docutils literal notranslate"><span class="pre">namespace:=ifm3d_ros2</span></code> argument has to be the same as the first field in the yaml configuration file. Otherwise, the namespace and dependent topic name declarations will not match.</p>
-</div></blockquote>
-<div class="section" id="up-to-6-heads">
-<h2>up to 6 heads<a class="headerlink" href="#up-to-6-heads" title="Permalink to this headline"></a></h2>
-<p>We ship this ROS node with two example yaml files:</p>
-<ol class="simple">
-<li><p>For 2 imagers, i.e both the 2D RGB imager and 3D TOF imager of a O3R camera head are connected.</p></li>
-<li><p>For 6 imager: no specific match for 2D RGB or 3D TOF imagers</p></li>
-</ol>
-<p>Please build your own yaml starting from this. A node process requires exactly one image stream. If the node gets started while the image stream is missing the node’s process will reply with timeout warnings displayed on your main process shell.</p>
+</div>
+<div class="section" id="o3r-3d-yaml">
+<h2><code class="docutils literal notranslate"><span class="pre">o3r_3d.yaml</span></code><a class="headerlink" href="#o3r-3d-yaml" title="Permalink to this headline"></a></h2>
+<p>This example configuration connects to the 3D (TOF) data stream of one O3R camera head connected to port 2:</p>
+<p>The Ports on the VPU should be connected as follows:</p>
+<ul class="simple">
+<li><p>Camera 3D: physical port 2 - corresponds to <code class="docutils literal notranslate"><span class="pre">pcic_port=50012</span></code></p></li>
+</ul>
+<p>To launch this example, use the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>ifm3d_ros2<span class="w"> </span>camera.launch.py<span class="w"> </span>parameter_file_name:<span class="o">=</span>o3r_3d.yaml
+</pre></div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2><code class="docutils literal notranslate"><span class="pre">o3r_3d.yaml</span></code><a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<p>This example configuration connects to two 3D (TOF) data stream <strong>AND</strong> two 2D (RGB) data stream of <strong>two</strong> O3R camera head connected to ports 0 - 3:</p>
+<p>The Ports on the VPU should be connected as follows:
+Camera head 1:</p>
+<ul class="simple">
+<li><p>Camera 2D: physical port 0 - corresponds to <code class="docutils literal notranslate"><span class="pre">pcic_port=50010</span></code></p></li>
+<li><p>Camera 3D: physical port 2 - corresponds to <code class="docutils literal notranslate"><span class="pre">pcic_port=50012</span></code></p></li>
+</ul>
+<p>Camera head 2:</p>
+<ul class="simple">
+<li><p>Camera 2D: physical port 1 - corresponds to <code class="docutils literal notranslate"><span class="pre">pcic_port=50011</span></code></p></li>
+<li><p>Camera 3D: physical port 3 - corresponds to <code class="docutils literal notranslate"><span class="pre">pcic_port=50013</span></code></p></li>
+</ul>
+<p>To launch this example, use the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>ifm3d_ros2<span class="w"> </span>two_o3r_heads.launch.py<span class="w"> </span>parameter_file_name:<span class="o">=</span>two_o3r_heads.yaml
+</pre></div>
+</div>
+<div class="section" id="adapting-the-camera-configuration-to-your-needs">
+<h3>Adapting the camera configuration to your needs<a class="headerlink" href="#adapting-the-camera-configuration-to-your-needs" title="Permalink to this headline"></a></h3>
+<p>The example configurations are provided in the directory <code class="docutils literal notranslate"><span class="pre">config/examples</span></code>.
+They can act as inspiration when configuring your own multi-camera setup.</p>
+<p>Please edit / add your own specific hardware and software configuration via these configuration yml files.
+For a specific number of ros node camera streams other than 1 or 4 (see examples) please create a updated launch helper yourself.</p>
+</div>
 </div>
 </div>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="parameters.html" class="btn btn-neutral float-left" title="Parameters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="rpc_error_codes.html" class="btn btn-neutral float-right" title="Diagnostic" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

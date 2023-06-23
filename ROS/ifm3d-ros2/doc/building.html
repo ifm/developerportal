@@ -32,7 +32,9 @@
         <script src="../../../_static/js/versionwarning.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Launch the node" href="launch.html" />
+    <link rel="prev" title="ifm3d-ros2 overview" href="../README.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -50,12 +52,49 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../documentation/GettingStarted/index_getting_started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../documentation/Firmware/index.html">Firmware</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../documentation/Technology/index_hardware_interfaces.html">Technology</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../documentation/SoftwareInterfaces/iVA/index_iVA.html">ifm Vision Assistant</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://api.ifm3d.com/stable/">ifm3d/ifm3dpy API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ifm3d-ros/index.html">ROS: ifm3d-ros</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">ROS2: ifm3d-ros2</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../README.html">Overview</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#ubuntu-and-ros">Ubuntu and ROS</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#ifm3d-c-api">ifm3d C++ API</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#testing-prerequisite">Testing prerequisite</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#build-and-install-ifm3d-ros2">Build and install <code class="docutils literal notranslate"><span class="pre">ifm3d-ros2</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#installation-directory">Installation directory</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#colcon-workspace">Colcon workspace</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#get-the-ifm3d-ros2-code-from-github">Get the <code class="docutils literal notranslate"><span class="pre">ifm3d-ros2</span></code> code from GitHub</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#build-ifm3d-ros2">Build <code class="docutils literal notranslate"><span class="pre">ifm3d-ros2</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#docker-containers">Docker containers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="launch.html">Launch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="visualization.html">Visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="topics.html">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="services.html">Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parameters.html">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multi_head.html">Multi-head</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rpc_error_codes.html">Diagnostic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployment.html">Deployment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../documentation/SoftwareInterfaces/Docker/index_docker.html">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../documentation/SoftwareInterfaces/ifmDiagnostic/index_diagnostic.html">ifmDiagnostic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../documentation/SoftwareInterfaces/Toolbox/index_toolbox.html">Toolbox</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../documentation/ODS/index_ods.html">ODS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../documentation/FAQ/FAQ.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
@@ -75,6 +114,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index_software_interfaces.html">Software Interfaces</a> &raquo;</li>
+          <li><a href="../index.html">ifm3d-ros2</a> &raquo;</li>
       <li>Building and Installing the ifm3d-ros2 package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/ROS/ifm3d-ros2/doc/building.md.txt" rel="nofollow"> View page source</a>
@@ -87,101 +128,99 @@
              
   <div class="tex2jax_ignore mathjax_ignore section" id="building-and-installing-the-ifm3d-ros2-package">
 <h1>Building and Installing the ifm3d-ros2 package<a class="headerlink" href="#building-and-installing-the-ifm3d-ros2-package" title="Permalink to this headline"></a></h1>
-<div class="section" id="table-of-contents">
-<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline"></a></h2>
-<ul class="simple">
-<li><p><a class="reference internal" href="#building-and-installing-the-ifm3d-ros2-package"><span class="std std-doc">Building and Installing the ifm3d-ros2 package</span></a></p>
-<ul>
-<li><p><a class="reference internal" href="#table-of-contents"><span class="std std-doc">Table of contents</span></a></p></li>
-<li><p><a class="reference internal" href="#prerequisites"><span class="std std-doc">Prerequisites</span></a></p>
-<ul>
-<li><p><a class="reference internal" href="#ifm3d-c-api"><span class="std std-doc">ifm3d C++ API</span></a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#step-by-step-build-instructions-for-the-ros-node-ifm3d-ros2"><span class="std std-doc">Step-by-Step build instructions for the ROS node <code class="docutils literal notranslate"><span class="pre">ifm3d-ros2</span></code></span></a></p>
-<ul>
-<li><p><a class="reference internal" href="#installation-directory-of-ros-node"><span class="std std-doc">1. Installation directory of ROS node</span></a></p></li>
-<li><p><a class="reference internal" href="#create-and-initialize-your-colcon-workspace"><span class="std std-doc">2. create and initialize your colcon workspace</span></a></p></li>
-<li><p><a class="reference internal" href="#get-the-ifm3d-ros2-wrapper-code-from-github"><span class="std std-doc">3. Get the <code class="docutils literal notranslate"><span class="pre">ifm3d-ros2</span></code> wrapper code from GitHub</span></a></p></li>
-<li><p><a class="reference internal" href="#build-the-ros-node-code"><span class="std std-doc">4. build the ROS node code</span></a></p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
 <div class="section" id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline"></a></h2>
-<p>We suggest building the <code class="docutils literal notranslate"><span class="pre">ifm3d-ros2</span></code> node on top of Ubuntu 20.04 Focal Fossa and ROS galactic.</p>
-<blockquote>
-<div><p>Note: Some users may require older ROS distributions for legacy reasons. The supplied ROS package may not work out of the box as it conflicts with the underling use of ASIO in the C++ API <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> and the simultaneous access to ASIO by fastRTPS (default DDS setting until ROS 2 Galactic). fastRTPS can be configured to use ASIO as standalone. We are working on a solution.
-In the meantime, a workaround is to use cycloneDDS as the DDS implementation. To do so, install cycloneDDS with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">ros-foxy-rmw-cyclonedds-cpp</span></code> (do this once), and export the configuration with <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">RMW_IMPLEMENTATION=rmw_cyclonedds_cpp</span></code> (do this every time).
-Please be aware that if you chose to go this route no guarantee is given.</p>
-</div></blockquote>
+<div class="section" id="ubuntu-and-ros">
+<h3>Ubuntu and ROS<a class="headerlink" href="#ubuntu-and-ros" title="Permalink to this headline"></a></h3>
+<p>We suggest building the <code class="docutils literal notranslate"><span class="pre">ifm3d-ros2</span></code> node on top of <a class="reference external" href="https://releases.ubuntu.com/jammy/">Ubuntu 22.04 Jammy Jellyfish</a> and <a class="reference external" href="https://docs.ros.org/en/humble/index.html">ROS Humble</a>.</p>
+</div>
 <div class="section" id="ifm3d-c-api">
 <h3>ifm3d C++ API<a class="headerlink" href="#ifm3d-c-api" title="Permalink to this headline"></a></h3>
-<p>The ROS node <code class="docutils literal notranslate"><span class="pre">ifm3d_ros2</span></code> requires the C++ API ifm3d to be installed locally for your system before compiling and running the ROS node.</p>
-<p>Please follow these instructions on how to build <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> from source: <span class="xref myst">build ifm3d from source instructions</span></p>
+<p>The ROS node <code class="docutils literal notranslate"><span class="pre">ifm3d_ros2</span></code> requires the C++ API ifm3d to be installed locally for your system before compiling and running the ROS node.
+Refer to <a class="reference internal" href="../README.html"><span class="doc std std-doc">the compatibility matrix</span></a> to find out the correct ifm3d API version.</p>
+<p>Follow these instructions on how to install <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> (we recommend using the pre-built package): <a class="reference external" href="https://api.ifm3d.com/stable/content/installation_instructions/install_linux_binary.html">install ifm3d</a>.</p>
+</div>
+<div class="section" id="testing-prerequisite">
+<h3>Testing prerequisite<a class="headerlink" href="#testing-prerequisite" title="Permalink to this headline"></a></h3>
+<p>These two packages are only required for testing but not at runtime:</p>
+<ul class="simple">
+<li><p>launch_testing</p></li>
+<li><p>launch_testing_ament_cmake</p></li>
+</ul>
+<p>On debian based systems they may be installed as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt install ros-${ROS_DISTRO}-launch-testing ros-${ROS_DISTRO}-launch-testing-ament-cmake
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The tests are currently a work in progress.</p>
 </div>
 </div>
-<div class="section" id="step-by-step-build-instructions-for-the-ros-node-ifm3d-ros2">
-<h2>Step-by-Step build instructions for the ROS node <code class="docutils literal notranslate"><span class="pre">ifm3d-ros2</span></code><a class="headerlink" href="#step-by-step-build-instructions-for-the-ros-node-ifm3d-ros2" title="Permalink to this headline"></a></h2>
-<p>Building and installing ifm3d-ros2 is accomplished by utilizing the ROS2 <a class="reference external" href="https://colcon.readthedocs.io/en/released/">colcon</a> tool. There are many tutorials and other pieces of advice available online advising how to most effectively utilize it.</p>
-<div class="section" id="installation-directory-of-ros-node">
-<h3>1. Installation directory of ROS node<a class="headerlink" href="#installation-directory-of-ros-node" title="Permalink to this headline"></a></h3>
+</div>
+<div class="section" id="build-and-install-ifm3d-ros2">
+<h2>Build and install <code class="docutils literal notranslate"><span class="pre">ifm3d-ros2</span></code><a class="headerlink" href="#build-and-install-ifm3d-ros2" title="Permalink to this headline"></a></h2>
+<p>Building and installing ifm3d-ros2 is accomplished by utilizing the ROS2 <a class="reference external" href="https://colcon.readthedocs.io/en/released/">colcon</a> tool.</p>
+<div class="section" id="installation-directory">
+<h3>Installation directory<a class="headerlink" href="#installation-directory" title="Permalink to this headline"></a></h3>
 <p>First, we need to decide where we want our software to be installed. For purposes of this document, we will assume that we will install our ROS packages at <code class="docutils literal notranslate"><span class="pre">~/colcon_ws/src</span></code>.</p>
-<blockquote>
-<div><p>NOTE: Below we assume <code class="docutils literal notranslate"><span class="pre">galactic</span></code>. Adapting to other ROS distributions is left as an exercise for the reader.</p>
-</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Below we assume <code class="docutils literal notranslate"><span class="pre">humble</span></code>. Adapting to other ROS distributions is left as an exercise for the reader.</p>
 </div>
-<div class="section" id="create-and-initialize-your-colcon-workspace">
-<h3>2. create and initialize your colcon workspace<a class="headerlink" href="#create-and-initialize-your-colcon-workspace" title="Permalink to this headline"></a></h3>
+</div>
+<div class="section" id="colcon-workspace">
+<h3>Colcon workspace<a class="headerlink" href="#colcon-workspace" title="Permalink to this headline"></a></h3>
 <p>Next, we want to create a <em>colcon workspace</em> that we can use to build and install that code from.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir -p ~/colcon_ws/src 
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir -p ~/colcon_ws/src
 </pre></div>
 </div>
 </div>
-<div class="section" id="get-the-ifm3d-ros2-wrapper-code-from-github">
-<h3>3. Get the <code class="docutils literal notranslate"><span class="pre">ifm3d-ros2</span></code> wrapper code from GitHub<a class="headerlink" href="#get-the-ifm3d-ros2-wrapper-code-from-github" title="Permalink to this headline"></a></h3>
+<div class="section" id="get-the-ifm3d-ros2-code-from-github">
+<h3>Get the <code class="docutils literal notranslate"><span class="pre">ifm3d-ros2</span></code> code from GitHub<a class="headerlink" href="#get-the-ifm3d-ros2-code-from-github" title="Permalink to this headline"></a></h3>
 <p>Next, we need to get the code from GitHub. Please adapt the commands when not following the suggested directory structure: <code class="docutils literal notranslate"><span class="pre">~/colcon_ws/src/</span></code></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/colcon_ws/src
-$ git clone https://github.com/ifm/ifm3d-ros2.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/colcon_ws/src
+$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/ifm/ifm3d-ros2.git
+$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>&lt;version&gt;<span class="w"> </span><span class="c1"># Replace the targeted version</span>
 </pre></div>
 </div>
-<blockquote>
-<div><p>Note: the master branch is generally a work in progress.
-We recommend picking a <a class="reference external" href="https://github.com/ifm/ifm3d-ros2/tags">tagged released version</a> for your builds, to ensure stability between builds.</p>
-</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The master branch is generally a work in progress.</p>
+<p>We recommend picking a <a class="reference external" href="https://github.com/ifm/ifm3d-ros2/tags">tagged released version</a> for your builds, to ensure stability between builds.</p>
 </div>
-<div class="section" id="build-the-ros-node-code">
-<h3>4. build the ROS node code<a class="headerlink" href="#build-the-ros-node-code" title="Permalink to this headline"></a></h3>
+</div>
+<div class="section" id="build-ifm3d-ros2">
+<h3>Build <code class="docutils literal notranslate"><span class="pre">ifm3d-ros2</span></code><a class="headerlink" href="#build-ifm3d-ros2" title="Permalink to this headline"></a></h3>
 <p>Build your workspace:</p>
-<blockquote>
-<div><p>NOTE: the <code class="docutils literal notranslate"><span class="pre">--cmake-args</span> <span class="pre">-DBUILD_TESTING=ON</span></code> part of the <code class="docutils literal notranslate"><span class="pre">colcon</span></code> command below is not strictly necessary (tests are <code class="docutils literal notranslate"><span class="pre">ON</span></code> by default), however, it is explicit (see: <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">-mthis</span></code>)).</p>
-</div></blockquote>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ~/colcon_ws/
-$ colcon build --cmake-args -DBUILD_TESTING=ON
-Starting &gt;&gt;&gt; ifm3d_ros2
-Finished &lt;&lt;&lt; ifm3d_ros2 [17.6s]
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/colcon_ws/
+$<span class="w"> </span>colcon<span class="w"> </span>build<span class="w"> </span>--cmake-args<span class="w"> </span>-DBUILD_TESTING<span class="o">=</span>OFF
+Starting<span class="w"> </span>&gt;&gt;&gt;<span class="w"> </span>ifm3d_ros2
+Finished<span class="w"> </span><span class="o">&lt;&lt;&lt;</span><span class="w"> </span>ifm3d_ros2<span class="w"> </span><span class="o">[</span><span class="m">17</span>.6s<span class="o">]</span>
 
-Summary: 1 package finished [17.8s]
+Summary:<span class="w"> </span><span class="m">1</span><span class="w"> </span>package<span class="w"> </span>finished<span class="w"> </span><span class="o">[</span><span class="m">17</span>.8s<span class="o">]</span>
 </pre></div>
 </div>
-<p>Tests: They are not functional at the moment. Please check the launch files to see if the ROS node works after building it for now.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ colcon test
-$ colcon test-result --all
-[ ... output omitted ... ]
-</pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The tests are not functional at the moment.</p>
 </div>
-<p>Now that the package is build, continue following our <a class="reference internal" href="../README.html"><span class="doc std std-doc">README</span></a> instructions for launching the node(s).</p>
+<p>To confirm that the node is functional, try <a class="reference internal" href="launch.html"><span class="doc std std-doc">launching it</span></a> and inspecting <a class="reference internal" href="topics.html"><span class="doc std std-doc">the published topics</span></a>.</p>
 </div>
+</div>
+<div class="section" id="docker-containers">
+<h2>Docker containers<a class="headerlink" href="#docker-containers" title="Permalink to this headline"></a></h2>
+<p>We provide a Dockerfile build instruction for building the ROS2 node inside a Docker container.
+For reference and for deployment of the ROS node via a Docker software Docker container see the <span class="xref myst">Dockerfile</span>.</p>
 </div>
 </div>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../README.html" class="btn btn-neutral float-left" title="ifm3d-ros2 overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="launch.html" class="btn btn-neutral float-right" title="Launch the node" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

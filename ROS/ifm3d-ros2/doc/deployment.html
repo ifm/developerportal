@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to run ifm3d-ros2 from inside a Docker container &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Docker on O3R" href="../../../documentation/SoftwareInterfaces/Docker/index_docker.html" />
+    <link rel="prev" title="Diagnostic" href="rpc_error_codes.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../documentation/SoftwareInterfaces/iVA/index_iVA.html">ifm Vision Assistant</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://api.ifm3d.com/stable/">ifm3d/ifm3dpy API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ifm3d-ros/index.html">ROS: ifm3d-ros</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">ROS2: ifm3d-ros2</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../README.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="building.html">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="launch.html">Launch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="visualization.html">Visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="topics.html">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="services.html">Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parameters.html">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multi_head.html">Multi-head</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rpc_error_codes.html">Diagnostic</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Deployment</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#build-the-docker-container">Build the docker container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deploy-the-container">Deploy the container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#distributed-setup">Distributed setup</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#primary-docker-container-ifm3d-ros2-node">Primary docker container: ifm3d-ros2 node</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#second-ros2-client-plain-ros2">Second ROS2 client: plain ros2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../documentation/SoftwareInterfaces/Docker/index_docker.html">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../documentation/SoftwareInterfaces/ifmDiagnostic/index_diagnostic.html">ifmDiagnostic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../documentation/SoftwareInterfaces/Toolbox/index_toolbox.html">Toolbox</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index_software_interfaces.html">Software Interfaces</a> &raquo;</li>
+          <li><a href="../index.html">ifm3d-ros2</a> &raquo;</li>
+      <li>How to run ifm3d-ros2 from inside a Docker container</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/ROS/ifm3d-ros2/doc/deployment.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="how-to-run-ifm3d-ros2-from-inside-a-docker-container">
+<h1>How to run ifm3d-ros2 from inside a Docker container<a class="headerlink" href="#how-to-run-ifm3d-ros2-from-inside-a-docker-container" title="Permalink to this headline"></a></h1>
+<p>Follow these steps to get our supplied Docker container to run on your system.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The instructions below apply to ROS2 Humble. Please change the commands to suit your ROS 2 distribution.</p>
+</div>
+<div class="section" id="build-the-docker-container">
+<h2>Build the docker container<a class="headerlink" href="#build-the-docker-container" title="Permalink to this headline"></a></h2>
+<p>We provide a Dockerfile and a build script to help you build a docker container with ifm3d and ifm3d-ros2. To use it, check out the <code class="docutils literal notranslate"><span class="pre">build_container.sh</span></code> script. Open it up and adjust the arguments to suit your target architecture (arm64v8 or amd64) and the targeted ifm3d and ifm3d-ros2 version. Then you can build the container:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./build_humble.sh
+<span class="o">[</span>+<span class="o">]</span><span class="w"> </span>Building<span class="w"> </span><span class="m">675</span>.3s<span class="w"> </span><span class="o">(</span><span class="m">23</span>/23<span class="o">)</span><span class="w"> </span><span class="nv">FINISHED</span>
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>internal<span class="o">]</span><span class="w"> </span>load<span class="w"> </span>build<span class="w"> </span>definition<span class="w"> </span>from<span class="w"> </span>Dockerfile<span class="w">                                                                                                                    </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>transferring<span class="w"> </span>dockerfile:<span class="w"> </span><span class="m">2</span>.92kB<span class="w">                                                                                                                                  </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>internal<span class="o">]</span><span class="w"> </span>load<span class="w"> </span>.dockerignore<span class="w">                                                                                                                                       </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>transferring<span class="w"> </span>context:<span class="w"> </span>2B<span class="w">                                                                                                                                         </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>internal<span class="o">]</span><span class="w"> </span>load<span class="w"> </span>metadata<span class="w"> </span><span class="k">for</span><span class="w"> </span>docker.io/arm64v8/ros:humble-ros-core<span class="w">                                                                                                  </span><span class="m">1</span>.1s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>internal<span class="o">]</span><span class="w"> </span>load<span class="w"> </span>metadata<span class="w"> </span><span class="k">for</span><span class="w"> </span>docker.io/arm64v8/ros:humble<span class="w">                                                                                                           </span><span class="m">0</span>.9s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>auth<span class="o">]</span><span class="w"> </span>arm64v8/ros:pull<span class="w"> </span>token<span class="w"> </span><span class="k">for</span><span class="w"> </span>registry-1.docker.io<span class="w">                                                                                                              </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>CACHED<span class="w"> </span><span class="o">[</span>build<span class="w"> </span><span class="m">1</span>/9<span class="o">]</span><span class="w"> </span>FROM<span class="w"> </span>docker.io/arm64v8/ros:humble@sha256:13eed2b61402a7be4dcfb1463398966f27fe807e81e447456d167627ce9ee8ee<span class="w">                                        </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>CACHED<span class="w"> </span>https://github.com/ifm/ifm3d/releases/download/v1.2.6/ifm3d-ubuntu-22.04-arm64-debs_1.2.6.tar<span class="w">                                                                </span><span class="m">0</span>.6s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>CACHED<span class="w"> </span><span class="o">[</span>stage-1<span class="w"> </span><span class="m">1</span>/7<span class="o">]</span><span class="w"> </span>FROM<span class="w"> </span>docker.io/arm64v8/ros:humble-ros-core@sha256:b58d5d27371fac49e2d50649cb37effa390a3f854a473689a333c44e64a66f81<span class="w">                             </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>build<span class="w"> </span><span class="m">2</span>/9<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span>id<span class="w"> </span>ifm<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span>useradd<span class="w"> </span>--uid<span class="w"> </span><span class="m">30000</span><span class="w"> </span>--create-home<span class="w"> </span>-s<span class="w"> </span>/bin/bash<span class="w"> </span>-U<span class="w"> </span>ifm<span class="w">                                                                         </span><span class="m">0</span>.5s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>build<span class="w"> </span><span class="m">3</span>/9<span class="o">]</span><span class="w"> </span>WORKDIR<span class="w"> </span>/home/ifm<span class="w">                                                                                                                                       </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>build<span class="w"> </span><span class="m">4</span>/9<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w">     </span>git<span class="w">     </span>jq<span class="w">     </span>libxmlrpc-c++8-dev<span class="w">     </span>libproj-dev<span class="w">     </span>build-essential<span class="w">     </span>coreutils<span class="w">     </span>cmake<span class="w">     </span>wget<span class="w">   </span><span class="m">172</span>.1s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>build<span class="w"> </span><span class="m">5</span>/9<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span>mkdir<span class="w"> </span>/home/ifm/ifm3d<span class="w">                                                                                                                               </span><span class="m">0</span>.5s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>build<span class="w"> </span><span class="m">6</span>/9<span class="o">]</span><span class="w"> </span>ADD<span class="w"> </span>https://github.com/ifm/ifm3d/releases/download/v1.2.6/ifm3d-ubuntu-22.04-arm64-debs_1.2.6.tar<span class="w"> </span>/home/ifm/ifm3d<span class="w">                                       </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>build<span class="w"> </span><span class="m">7</span>/9<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/home/ifm/ifm3d<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w">    </span>tar<span class="w"> </span>-xf<span class="w"> </span>ifm3d-ubuntu-22.04-arm64-debs_1.2.6.tar<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w">      </span>dpkg<span class="w"> </span>-i<span class="w"> </span>*.deb<span class="w">                                                      </span><span class="m">2</span>.1s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>build<span class="w"> </span><span class="m">8</span>/9<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/home/ifm/colcon_ws/src<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w">     </span><span class="nb">cd</span><span class="w"> </span>/home/ifm/colcon_ws/src<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w">     </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/ifm/ifm3d-ros2.git<span class="w"> </span>-b<span class="w"> </span>lm_humble_tests<span class="w"> </span>--sin<span class="w">  </span><span class="m">4</span>.2s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>build<span class="w"> </span><span class="m">9</span>/9<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/home/ifm/colcon_ws<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w">     </span><span class="nb">source</span><span class="w"> </span>/opt/ros/humble/setup.bash<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w">     </span>colcon<span class="w"> </span>build<span class="w"> </span>--cmake-<span class="w">  </span><span class="m">242</span>.8s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>stage-1<span class="w"> </span><span class="m">2</span>/7<span class="o">]</span><span class="w"> </span>COPY<span class="w"> </span>--from<span class="o">=</span>build<span class="w"> </span>/home/ifm/colcon_ws<span class="w"> </span>/home/ifm/colcon_ws<span class="w">                                                                                             </span><span class="m">0</span>.1s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>stage-1<span class="w"> </span><span class="m">3</span>/7<span class="o">]</span><span class="w"> </span>COPY<span class="w"> </span>--from<span class="o">=</span>build<span class="w"> </span>/home/ifm/ifm3d/*.deb<span class="w"> </span>/home/ifm/ifm3d/<span class="w">                                                                                              </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>stage-1<span class="w"> </span><span class="m">4</span>/7<span class="o">]</span><span class="w"> </span>WORKDIR<span class="w"> </span>/home/ifm<span class="w">                                                                                                                                     </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>stage-1<span class="w"> </span><span class="m">5</span>/7<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span>apt-get<span class="w"> </span>update<span class="w">     </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--no-install-recommends<span class="w">     </span>libxmlrpc-c++8v5<span class="w">     </span>locales<span class="w">     </span>sudo<span class="w">     </span>libssl-dev<span class="w">     </span>libgoogle-glog0v<span class="w">  </span><span class="m">238</span>.2s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>stage-1<span class="w"> </span><span class="m">6</span>/7<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/home/ifm/ifm3d<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w">    </span>dpkg<span class="w"> </span>-i<span class="w"> </span>*.deb<span class="w">                                                                                                            </span><span class="m">2</span>.1s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>stage-1<span class="w"> </span><span class="m">7</span>/7<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;en_US.UTF-8 UTF-8&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/etc/locale.gen<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w">     </span>locale-gen<span class="w"> </span>en_US.UTF-8<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w">     </span>/usr/sbin/update-locale<span class="w"> </span><span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8<span class="w">                         </span><span class="m">7</span>.1s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>exporting<span class="w"> </span>to<span class="w"> </span>image<span class="w">                                                                                                                                                  </span><span class="m">3</span>.3s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>exporting<span class="w"> </span>layers<span class="w">                                                                                                                                                 </span><span class="m">3</span>.3s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>writing<span class="w"> </span>image<span class="w"> </span>sha256:c1d72f3316c084ee0bb759c9aa9bdfdd64bcdcff33a3011efeadcf6f38815160<span class="w">                                                                            </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>naming<span class="w"> </span>to<span class="w"> </span>docker.io/library/ifm3d-ros:humble-arm64_v8
+</pre></div>
+</div>
+</div>
+<div class="section" id="deploy-the-container">
+<h2>Deploy the container<a class="headerlink" href="#deploy-the-container" title="Permalink to this headline"></a></h2>
+<p>To deploy the container on to the VPU, or use the container locally to interact with the O3R platform, please refer to our <a class="reference internal" href="../../../documentation/SoftwareInterfaces/Docker/index_docker.html"><span class="doc std std-doc">docker documentation</span></a>.</p>
+</div>
+<div class="section" id="distributed-setup">
+<h2>Distributed setup<a class="headerlink" href="#distributed-setup" title="Permalink to this headline"></a></h2>
+<p>It is possible to run a complete ROS system in a distributed way. In this section we provide instructions to run ifm3d-ros2 in a container deployed on the VPU (primary container), and the visualization locally on a laptop (secondary system).
+These instructions can be adapted to suit other architectural designs.</p>
+<div class="section" id="primary-docker-container-ifm3d-ros2-node">
+<h3>Primary docker container: ifm3d-ros2 node<a class="headerlink" href="#primary-docker-container-ifm3d-ros2-node" title="Permalink to this headline"></a></h3>
+<ol class="simple">
+<li><p>Build and deploy the docker container image to the VPU (see <a class="reference internal" href="../../../documentation/SoftwareInterfaces/Docker/deployVPU.html"><span class="doc std std-doc">the documentation on how to deploy a container</span></a>):</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker<span class="w"> </span>save<span class="w"> </span>docker.io/library/ifm3d-ros:humble-arm64_v8<span class="w"> </span><span class="p">|</span><span class="w"> </span>ssh<span class="w"> </span>-C<span class="w"> </span>oem@192.168.0.69<span class="w"> </span>docker<span class="w"> </span>load
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>SSH to the VPU and run the container:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ssh<span class="w"> </span>oem@192.168.0.69<span class="w"> </span><span class="c1">#Adapt to the IP address of your VPU</span>
+o3r-vpu-c0$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-ti<span class="w"> </span>--net<span class="o">=</span>host<span class="w"> </span>ifm3d-ros:humble-arm64_v8
+root@952330b98eac:/home/ifm#
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Source ROS2 and the <code class="docutils literal notranslate"><span class="pre">ìfm3d_ros2</span></code> installation:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root@952330b98eac:/home/ifm#<span class="w"> </span><span class="nb">source</span><span class="w"> </span>/opt/ros/humble/setup.bash<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span>colcon_ws/install/setup.bash
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>All ROS nodes should see each other as long as they are on the same ROS domain ID. The default <code class="docutils literal notranslate"><span class="pre">ROS_DOMAIN_ID</span></code> is 0 and doesn’t get changed here.</p></li>
+<li><p>Run the ros2 node:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ros2<span class="w"> </span>launch<span class="w"> </span>ifm3d_ros2<span class="w"> </span>camera.launch.py
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The command above uses the default configuration defined in the <code class="docutils literal notranslate"><span class="pre">/config/camera_default_parameters.yaml</span></code> file. You can adapt the parameters by using a different config file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root@62b0c2e120bb:/home/ifm/$<span class="w"> </span>ros2<span class="w"> </span>launch<span class="w"> </span>ifm3d_ros2<span class="w"> </span>camera.launch.py<span class="w">  </span>parameter_file_directory:<span class="o">=</span>config/examples<span class="w"> </span>parameter_file_name:<span class="o">=</span>o3r_3d.yaml<span class="w"> </span>camera_name:<span class="o">=</span>camera_3d
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="second-ros2-client-plain-ros2">
+<h2>Second ROS2 client: plain ros2<a class="headerlink" href="#second-ros2-client-plain-ros2" title="Permalink to this headline"></a></h2>
+<ol class="simple">
+<li><p>Source ROS2 on the secondary machine:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>/opt/ros/galactic/setup.bash
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Check that ROS topics are available (on <code class="docutils literal notranslate"><span class="pre">ROS_DOMAIN_ID=0</span></code>):</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ros2<span class="w"> </span>topic<span class="w"> </span>list
+/ifm3d/camera/amplitude
+/ifm3d/camera/cloud
+/ifm3d/camera/confidence
+/ifm3d/camera/distance
+/ifm3d/camera/extrinsics
+/ifm3d/camera/raw_amplitude
+/ifm3d/camera/transition_event
+/parameter_events
+/rosout
+/tf_static
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Start the visualization and subscribe to the relevant topic:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>rviz2
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To use Rviz2 from a docker container, the container has to be started with a specific environment:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>-v<span class="w"> </span>/tmp/.X11-unix:/tmp/.X11-unix<span class="w"> </span>--env<span class="o">=</span>DISPLAY<span class="w"> </span>--env<span class="o">=</span><span class="nv">QT_X11_NO_MITSHM</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>--net<span class="o">=</span>host<span class="w"> </span>--privileged<span class="w"> </span>ros:humble-ros-core
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="rpc_error_codes.html" class="btn btn-neutral float-left" title="Diagnostic" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../../documentation/SoftwareInterfaces/Docker/index_docker.html" class="btn btn-neutral float-right" title="Docker on O3R" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

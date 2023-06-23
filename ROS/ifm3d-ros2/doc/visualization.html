@@ -12,7 +12,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HOW to visualize the point cloud with RVIZ &mdash; O3R  documentation</title>
+  <title>How to visualize data with RVIZ &mdash; O3R  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -32,7 +32,9 @@
         <script src="../../../_static/js/versionwarning.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
-    <link rel="search" title="Search" href="../../../search.html" /> 
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Topics" href="topics.html" />
+    <link rel="prev" title="Launch the node" href="launch.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -50,12 +52,37 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../documentation/GettingStarted/index_getting_started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../documentation/Firmware/index.html">Firmware</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../documentation/Technology/index_hardware_interfaces.html">Technology</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../documentation/SoftwareInterfaces/iVA/index_iVA.html">ifm Vision Assistant</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://api.ifm3d.com/stable/">ifm3d/ifm3dpy API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ifm3d-ros/index.html">ROS: ifm3d-ros</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">ROS2: ifm3d-ros2</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../README.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="building.html">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="launch.html">Launch</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Visualization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#viewing-the-rgb-image">Viewing the RGB image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qos-reliability-best-effort">QoS reliability - best effort</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="topics.html">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="services.html">Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parameters.html">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="multi_head.html">Multi-head</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rpc_error_codes.html">Diagnostic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployment.html">Deployment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../documentation/SoftwareInterfaces/Docker/index_docker.html">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../documentation/SoftwareInterfaces/ifmDiagnostic/index_diagnostic.html">ifmDiagnostic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../documentation/SoftwareInterfaces/Toolbox/index_toolbox.html">Toolbox</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../documentation/ODS/index_ods.html">ODS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../documentation/FAQ/FAQ.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
@@ -75,7 +102,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>HOW to visualize the point cloud with RVIZ</li>
+          <li><a href="../../../index_software_interfaces.html">Software Interfaces</a> &raquo;</li>
+          <li><a href="../index.html">ifm3d-ros2</a> &raquo;</li>
+      <li>How to visualize data with RVIZ</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/ROS/ifm3d-ros2/doc/visualization.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -85,12 +114,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="how-to-visualize-the-point-cloud-with-rviz">
-<h1>HOW to visualize the point cloud with RVIZ<a class="headerlink" href="#how-to-visualize-the-point-cloud-with-rviz" title="Permalink to this headline"></a></h1>
-<p>The included launch file <code class="docutils literal notranslate"><span class="pre">camera_managed.launch.py</span></code> will publish and remap all topics and services to <code class="docutils literal notranslate"><span class="pre">/ifm3d_ros2/xxx</span></code>, for example the point cloud topic will be remapped to <code class="docutils literal notranslate"><span class="pre">/ifm3d_ros2/camera/cloud</span></code>.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="how-to-visualize-data-with-rviz">
+<h1>How to visualize data with RVIZ<a class="headerlink" href="#how-to-visualize-data-with-rviz" title="Permalink to this headline"></a></h1>
+<p>The included launch file <code class="docutils literal notranslate"><span class="pre">camera.launch.py</span></code> will publish and remap all topics and services to <code class="docutils literal notranslate"><span class="pre">/ifm3d/camera</span></code>, for example the point cloud topic will be remapped to <code class="docutils literal notranslate"><span class="pre">/ifm3d/camera/cloud</span></code>.
+Both the namespace (default: <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code>) and the node name (default: <code class="docutils literal notranslate"><span class="pre">camera</span></code>) can be changed via the launch description files.</p>
+<p>A pre-configured RViz2 will be launched when setting the <code class="docutils literal notranslate"><span class="pre">visualization</span></code> argument of the launch file to <code class="docutils literal notranslate"><span class="pre">true</span></code>. Be aware that the RViz configuration assumes the default namespace and node name.
+You have to change the topic subscriptions yourself when using non-default values.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>launch<span class="w"> </span>ifm3d_ros2<span class="w"> </span>camera.launch.py<span class="w"> </span>visualization:<span class="o">=</span><span class="nb">true</span>
+</pre></div>
+</div>
+<div class="section" id="viewing-the-rgb-image">
+<h2>Viewing the RGB image<a class="headerlink" href="#viewing-the-rgb-image" title="Permalink to this headline"></a></h2>
+<p>The RGB image is published on the <code class="docutils literal notranslate"><span class="pre">/ifm3d/camera*/rgb</span></code> topic in a compressed JPEG format.
+This is useful to save bandwidth, but cannot be visualized as-is with RViz.</p>
+<p>The image can be uncompressed using the <code class="docutils literal notranslate"><span class="pre">image_transport</span> <span class="pre">republish</span></code> node:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>ros-humble-compressed-image-transport
+$<span class="w"> </span>ros2<span class="w"> </span>run<span class="w"> </span>image_transport<span class="w"> </span>republish<span class="w"> </span>compressed<span class="w"> </span>raw<span class="w"> </span>--ros-args<span class="w"> </span>--remap<span class="w"> </span>/in/compressed:<span class="o">=</span>/ifm3d/camera/rgb<span class="w"> </span>--remap<span class="w"> </span>out:<span class="o">=</span>/uncompressed_rgb
+</pre></div>
+</div>
+<p>In RViz, you can now subscribe to the <code class="docutils literal notranslate"><span class="pre">/uncompressed_rgb</span></code> topic to visualize the RGB image.</p>
+</div>
 <div class="section" id="qos-reliability-best-effort">
 <h2>QoS reliability - best effort<a class="headerlink" href="#qos-reliability-best-effort" title="Permalink to this headline"></a></h2>
-<p>When you open RVIZ for the first time and subscribe the point cloud topic to it, it will not be displayed as we need to change the default qualitty of service (QoS) settings per topic.</p>
+<p>When you open RVIZ for the first time and subscribe to the point cloud topic, it will not be displayed as we need to change the default quality of service (QoS) settings per topic.</p>
 <p>To change these settings:</p>
 <ol class="simple">
 <li><p>subscribe to a topic in RVIZ by adding it (ADD button)</p></li>
@@ -98,25 +144,15 @@
 <li><p>Select <code class="docutils literal notranslate"><span class="pre">reliability</span></code> and set it to <code class="docutils literal notranslate"><span class="pre">Best</span> <span class="pre">Effort</span></code></p></li>
 </ol>
 </div>
-<div class="section" id="change-axis-directions-to-suit-your-interpretation-of-a-robot-coordinate-reference-system">
-<h2>Change axis directions to suit your interpretation of a robot coordinate reference system<a class="headerlink" href="#change-axis-directions-to-suit-your-interpretation-of-a-robot-coordinate-reference-system" title="Permalink to this headline"></a></h2>
-<p>We have removed the rotation parameter which have been part of the <code class="docutils literal notranslate"><span class="pre">camera_managed.launch.py</span></code> launch file which move the axis directions around. This decision was reached because we believe there should be only one place to change the extrinsic parameters to keep things unambiguous.<br />
-We suggest changing the extrinsic parameters via our JSON interface (see ifm3d) and the mapped dump and config ROS services for this. The extrinsic parameters are applied to every measurement (distance image, and point cloud).</p>
-<p>If you would still like to add a <code class="docutils literal notranslate"><span class="pre">tf</span> <span class="pre">publisher</span></code> which switches the X-, and Z-axis please see the example below. Afterwards the Z-axis will measure positive values in the direction of the center optical ray of each camera.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="o">&lt;</span><span class="n">node</span> <span class="n">pkg</span><span class="o">=</span><span class="s2">&quot;tf2_ros&quot;</span>
-        <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;static_transform_publisher&quot;</span>
-        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;$(arg camera)_tf&quot;</span>
-        <span class="n">args</span><span class="o">=</span><span class="s2">&quot;0 0 0 -1.5707963267948966 0 -1.5707963267948966 $(arg frame_id_base)_link $(arg frame_id_base)_optical_link&quot;</span>
-        <span class="n">respawn</span><span class="o">=</span><span class="s2">&quot;$(arg respawn)&quot;</span> <span class="o">/&gt;</span>
-</pre></div>
-</div>
-</div>
 </div>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="launch.html" class="btn btn-neutral float-left" title="Launch the node" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="topics.html" class="btn btn-neutral float-right" title="Topics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

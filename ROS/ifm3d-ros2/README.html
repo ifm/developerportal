@@ -12,7 +12,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ifm3d-ros2 &mdash; O3R  documentation</title>
+  <title>ifm3d-ros2 overview &mdash; O3R  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -33,8 +33,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Docker on O3R" href="../../documentation/SoftwareInterfaces/Docker/index_docker.html" />
-    <link rel="prev" title="The ifm3d_ros_examples package" href="../ifm3d-ros/ifm3d_ros_examples/README.html" /> 
+    <link rel="next" title="Building and Installing the ifm3d-ros2 package" href="doc/building.html" />
+    <link rel="prev" title="ifm3d-ros2" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -61,25 +61,28 @@
 <li class="toctree-l2"><a class="reference internal" href="../../documentation/SoftwareInterfaces/iVA/index_iVA.html">ifm Vision Assistant</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://api.ifm3d.com/stable/">ifm3d/ifm3dpy API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ifm3d-ros/index.html">ROS: ifm3d-ros</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">ROS2: ifm3d-ros2</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#software-compatibility-matrix">Software Compatibility Matrix</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#building-and-installing-the-software">Building and Installing the Software</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#pre-requisites">Pre-requisites</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#building-from-source">Building from source</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#launch-the-node">Launch the node</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">ROS2: ifm3d-ros2</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#software-compatibility-matrix">Software Compatibility Matrix</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#prerelease-versions">Prerelease versions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#release-versions">Release versions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#deprecated-ifm3d-ros2-versions">Deprecated ifm3d-ros2 Versions</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#ros-interface">ROS Interface</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#parameters">Parameters</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#published-topics">Published Topics</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#subscribed-topics">Subscribed Topics</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#advertised-services">Advertised Services</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#todo">ToDo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#known-issues">Known Issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#license">LICENSE</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#additional-documentation">Additional Documentation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#todo">ToDo</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#known-limitations">Known limitations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#license">LICENSE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doc/building.html">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doc/launch.html">Launch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doc/visualization.html">Visualization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doc/topics.html">Topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doc/services.html">Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doc/parameters.html">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doc/multi_head.html">Multi-head</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doc/rpc_error_codes.html">Diagnostic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doc/deployment.html">Deployment</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../documentation/SoftwareInterfaces/Docker/index_docker.html">Docker</a></li>
@@ -107,7 +110,8 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../index_software_interfaces.html">Software Interfaces</a> &raquo;</li>
-      <li>ifm3d-ros2</li>
+          <li><a href="index.html">ifm3d-ros2</a> &raquo;</li>
+      <li>ifm3d-ros2 overview</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/ROS/ifm3d-ros2/README.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -117,15 +121,62 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="ifm3d-ros2">
-<h1>ifm3d-ros2<a class="headerlink" href="#ifm3d-ros2" title="Permalink to this headline"></a></h1>
-<p><strong>This release is intended to be used with the O3R camera platform ONLY. For other ifm cameras please see the tagged release 0.3.0.</strong></p>
-<p><strong>NOTE: The ifm3d-ros2 package has had major changes recently. Please be aware that this might cause problems on your system for building pipelines based on our old build instructions.</strong><br />
-We tried to ensure backward compatibility where ever possible. If you find any major breaks, please let us know.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="ifm3d-ros2-overview">
+<h1>ifm3d-ros2 overview<a class="headerlink" href="#ifm3d-ros2-overview" title="Permalink to this headline"></a></h1>
+<p><em>This documentation is formatted to be read on <a class="reference external" href="https://ifm3d.com/ROS/ifm3d-ros2/README.html">www.ifm3d.com</a>.</em></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The ifm3d-ros2 package has had major changes recently. Please be aware that this might cause problems on your system for building pipelines based on our old build instructions.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This release is intended to be used with the O3R camera platform ONLY. For other ifm cameras (e.g. O3D3xx and O3X2xx) please see the tagged releases 0.3.0 and 0.7.0 respectively.</p>
+</div>
 <p><code class="docutils literal notranslate"><span class="pre">ifm3d-ros2</span></code> is a wrapper around <a class="reference external" href="https://github.com/ifm/ifm3d">ifm3d</a> enabling the usage of ifm O3R ToF camera platform from within <a class="reference external" href="https://index.ros.org/doc/ros2/">ROS 2</a> software systems.</p>
 <p><img alt="rviz" src="../../_images/O3R_merged_point_cloud1.png" /></p>
 <div class="section" id="software-compatibility-matrix">
 <h2>Software Compatibility Matrix<a class="headerlink" href="#software-compatibility-matrix" title="Permalink to this headline"></a></h2>
+<div class="section" id="prerelease-versions">
+<h3>Prerelease versions<a class="headerlink" href="#prerelease-versions" title="Permalink to this headline"></a></h3>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ifm3d_ros2 version</p></th>
+<th class="head"><p>ifm3d version</p></th>
+<th class="head"><p>(O3R) embedded FW versions</p></th>
+<th class="head"><p>ROS 2 distribution</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1.1.0</p></td>
+<td><p>1.2.6</p></td>
+<td><p>1.0.14</p></td>
+<td><p>Humble</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="release-versions">
+<h3>Release versions<a class="headerlink" href="#release-versions" title="Permalink to this headline"></a></h3>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ifm3d_ros2 version</p></th>
+<th class="head"><p>ifm3d version</p></th>
+<th class="head"><p>(O3R) embedded FW versions</p></th>
+<th class="head"><p>ROS 2 distribution</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1.0.1</p></td>
+<td><p>0.93.0</p></td>
+<td><p>0.14.23</p></td>
+<td><p>Foxy</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="deprecated-ifm3d-ros2-versions">
+<h3>Deprecated ifm3d-ros2 Versions<a class="headerlink" href="#deprecated-ifm3d-ros2-versions" title="Permalink to this headline"></a></h3>
+<p>The following versions are deprecated and no longer supported.</p>
 <table class="colwidths-auto docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>ifm3d_ros2 version</p></th>
@@ -134,11 +185,11 @@ We tried to ensure backward compatibility where ever possible. If you find any m
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>1.0.1</p></td>
+<tr class="row-even"><td><p>1.0.1 DEPRECATED</p></td>
 <td><p>0.93.0</p></td>
 <td><p>Galactic</p></td>
 </tr>
-<tr class="row-odd"><td><p>1.0.0</p></td>
+<tr class="row-odd"><td><p>1.0.0 DEPRECATED</p></td>
 <td><p>0.92.0</p></td>
 <td><p>Galactic</p></td>
 </tr>
@@ -160,218 +211,21 @@ We tried to ensure backward compatibility where ever possible. If you find any m
 </tr>
 </tbody>
 </table>
-<blockquote>
-<div><p>Note: <code class="docutils literal notranslate"><span class="pre">ifm3d_ros2</span></code> version 1.0.0 is released as an early developer release for the O3R camera.</p>
-</div></blockquote>
 </div>
-<div class="section" id="building-and-installing-the-software">
-<h2>Building and Installing the Software<a class="headerlink" href="#building-and-installing-the-software" title="Permalink to this headline"></a></h2>
-<div class="section" id="pre-requisites">
-<h3>Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permalink to this headline"></a></h3>
-<ol class="simple">
-<li><p><a class="reference external" href="https://docs.ros.org/en/galactic/Installation.html">ROS2</a></p></li>
-<li><p><span class="xref myst">ifm3d</span></p></li>
-</ol>
-<p>These two packages are only required for testing but not at runtime:</p>
-<ul class="simple">
-<li><p>launch_testing</p></li>
-<li><p>launch_testing_ament_cmake</p></li>
-</ul>
-<p>On debian based systems they may be installed as follows (replacing <code class="docutils literal notranslate"><span class="pre">galactic</span></code>with your target ROS2 distribution).</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt install ros-galactic-launch-testing ros-galactic-launch-testing-ament-cmake
-</pre></div>
-</div>
-<p>You will also need to install boost, which is typically pre-installed in ubuntu distributions, but can be missing when using other platforms:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt install libboost-all-dev
-</pre></div>
-</div>
-</div>
-<div class="section" id="building-from-source">
-<h3>Building from source<a class="headerlink" href="#building-from-source" title="Permalink to this headline"></a></h3>
-<p>Please see the separate building instruction for building from source: <a class="reference internal" href="doc/building.html"><span class="doc std std-doc">here</span></a></p>
-</div>
-<div class="section" id="launch-the-node">
-<h3>Launch the node<a class="headerlink" href="#launch-the-node" title="Permalink to this headline"></a></h3>
-<p>Launch the camera node (assuming you are in <code class="docutils literal notranslate"><span class="pre">~/colcon_ws/</span></code>):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ . install/setup.bash
-$ ros2 launch ifm3d_ros2 camera_managed.launch.py
-</pre></div>
-</div>
-<blockquote>
-<div><p>Note: we also provide a helper launch file to start multiple camera nodes. See the documentation <a class="reference internal" href="doc/multi_head.html"><span class="doc std std-doc">here</span></a>.</p>
-</div></blockquote>
-<p>Open another shell and start the RVIZ node to visualize the data coming from the camera:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ros2 launch ifm3d_ros2 rviz.launch.py
-</pre></div>
-</div>
-<blockquote>
-<div><p>Note: <code class="docutils literal notranslate"><span class="pre">rviz.launch.py</span></code> does not include the camera node itself, but subscribes to published topics (distance, amplitude, etc). A camera node need to be running in parallel to rviz (you can use <code class="docutils literal notranslate"><span class="pre">camera_managed.launch</span></code>).
-Note also that the <code class="docutils literal notranslate"><span class="pre">rviz.launch.py</span></code> launchfile assumes one data stream publishes at <code class="docutils literal notranslate"><span class="pre">/ifm3d/camera/&lt;topic_name&gt;</span></code>.</p>
-</div></blockquote>
-<p>:warning: to view the RGB image, follow the instructions <a class="reference internal" href="doc/view_2d.html"><span class="doc std std-doc">here</span></a>.</p>
-<p>At this point, you should see an rviz window that looks something like the image below (note that this is the view from 3 camera heads):
-<img alt="rviz1" src="../../_images/O3R_merged_point_cloud1.png" /></p>
-<p>Congratulations! You can now have complete control over the O3R perception platform from inside ROS.</p>
-</div>
-</div>
-<div class="section" id="ros-interface">
-<h2>ROS Interface<a class="headerlink" href="#ros-interface" title="Permalink to this headline"></a></h2>
-<div class="section" id="parameters">
-<h3>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline"></a></h3>
-<table class="colwidths-auto docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Name</p></th>
-<th class="head"><p>Data Type</p></th>
-<th class="head"><p>Default Value</p></th>
-<th class="head"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>~/frame_latency_thresh</p></td>
-<td><p>float</p></td>
-<td><p>1.0</p></td>
-<td><p>Time (seconds) used to determine that timestamps from the camera cannot be trusted. When this threshold is exceeded, when compared to system time, we use the reception time of the frame and not the capture time of the frame.</p></td>
-</tr>
-<tr class="row-odd"><td><p>~/ip</p></td>
-<td><p>string</p></td>
-<td><p>192.168.0.69</p></td>
-<td><p>The ip address of the camera.</p></td>
-</tr>
-<tr class="row-even"><td><p>~/password</p></td>
-<td><p>string</p></td>
-<td><p></p></td>
-<td><p>The password required to establish an edit session with the camera.</p></td>
-</tr>
-<tr class="row-odd"><td><p>~/schema_mask</p></td>
-<td><p>int16</p></td>
-<td><p>0xf</p></td>
-<td><p>The schema mask to apply to the active session with the frame grabber. This determines which images are available for publication from the camera. More about schemas can be gleaned from the ifm3d project</p></td>
-</tr>
-<tr class="row-even"><td><p>~/timeout_millis</p></td>
-<td><p>int</p></td>
-<td><p>500</p></td>
-<td><p>The number of milliseconds to wait for the framegrabber to return new frame data before declaring a “timeout” and to stop blocking on new data.</p></td>
-</tr>
-<tr class="row-odd"><td><p>~/timeout_tolerance_secs</p></td>
-<td><p>float</p></td>
-<td><p>5.0</p></td>
-<td><p>The wall time to wait with no new data from the camera before trying to establish a new connection to the camera. This helps to provide robustness against camera cables becoming unplugged or other in-field pathologies which would cause the connection between the ROS node and the camera to be broken.</p></td>
-</tr>
-<tr class="row-even"><td><p>~/sync_clocks DEPRECATED</p></td>
-<td><p>bool</p></td>
-<td><p>false</p></td>
-<td><p>Attempt to sync the camera clock to the system clock at start-up. The side-effect is that timestamps on the image should reflect the capture time as opposed to the receipt time. Please note: resolution of this sync is only granular to 1 second. If fine-grained image acquisition times are needed, consider using the on-camera NTP server (available on select camera models).</p></td>
-</tr>
-<tr class="row-odd"><td><p>~/xmlrpc_port</p></td>
-<td><p>uint16</p></td>
-<td><p>80</p></td>
-<td><p>The TCP port the camera’s xmlrpc server is listening on for requests.</p></td>
-</tr>
-<tr class="row-even"><td><p>~/pcic_port</p></td>
-<td><p>uint16</p></td>
-<td><p>50010</p></td>
-<td><p>The TCP (data) port the camera’s pcic server is listening on for requests.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="published-topics">
-<h3>Published Topics<a class="headerlink" href="#published-topics" title="Permalink to this headline"></a></h3>
-<table class="colwidths-auto docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Name</p></th>
-<th class="head"><p>Data Type</p></th>
-<th class="head"><p>Quality of Service (QoS)</p></th>
-<th class="head"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>amplitude</p></td>
-<td><p>sensor_msgs/msg/Image</p></td>
-<td><p><a href="include/ifm3d_ros2/qos.hpp">ifm3d_ros::LowLatencyQoS</a></p></td>
-<td><p>The normalized amplitude image</p></td>
-</tr>
-<tr class="row-odd"><td><p>cloud</p></td>
-<td><p>sensor_msgs/msg/PointCloud2</p></td>
-<td><p><a href="include/ifm3d_ros2/qos.hpp">ifm3d_ros::LowLatencyQoS</a></p></td>
-<td><p>The point cloud data</p></td>
-</tr>
-<tr class="row-even"><td><p>confidence</p></td>
-<td><p>sensor_msgs/msg/Image</p></td>
-<td><p><a href="include/ifm3d_ros2/qos.hpp">ifm3d_ros::LowLatencyQoS</a></p></td>
-<td><p>The confidence image</p></td>
-</tr>
-<tr class="row-odd"><td><p>distance</p></td>
-<td><p>sensor_msgs/msg/Image</p></td>
-<td><p><a href="include/ifm3d_ros2/qos.hpp">ifm3d_ros::LowLatencyQoS</a></p></td>
-<td><p>The radial distance image</p></td>
-</tr>
-<tr class="row-even"><td><p><em>raw_amplitude</em></p></td>
-<td><p><em>sensor_msgs/msg/Image</em></p></td>
-<td><p><a href="include/ifm3d_ros2/qos.hpp">ifm3d_ros::LowLatencyQoS</a></p></td>
-<td><p>The raw amplitude image (currently not available for the O3R)</p></td>
-</tr>
-<tr class="row-odd"><td><p>rgb</p></td>
-<td><p>sensor_msgs/msg/Image</p></td>
-<td><p><a href="include/ifm3d_ros2/qos.hpp">ifm3d_ros::LowLatencyQoS</a></p></td>
-<td><p>The RGB 2D image of the 2D imager</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="subscribed-topics">
-<h3>Subscribed Topics<a class="headerlink" href="#subscribed-topics" title="Permalink to this headline"></a></h3>
-<p>None.</p>
-</div>
-<div class="section" id="advertised-services">
-<h3>Advertised Services<a class="headerlink" href="#advertised-services" title="Permalink to this headline"></a></h3>
-<table class="colwidths-auto docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Name</p></th>
-<th class="head"><p>Service Definition</p></th>
-<th class="head"><p>Description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Dump</p></td>
-<td><p><a href="srv/Dump.srv">ifm3d/Dump</a></p></td>
-<td><p>Dumps the state of the camera parameters to JSON</p></td>
-</tr>
-<tr class="row-odd"><td><p>Config</p></td>
-<td><p><a href="srv/Config.srv">ifm3d/Config</a></p></td>
-<td><p>Provides a means to configure the camera and imager settings, declaratively from a JSON encoding of the desired settings.</p></td>
-</tr>
-<tr class="row-even"><td><p>Softon</p></td>
-<td><p><a href="srv/Softon.srv">ifm3d/Softon</a></p></td>
-<td><p>Provides a means to quickly change the camera state from IDLE to RUN.</p></td>
-</tr>
-<tr class="row-odd"><td><p>Softoff</p></td>
-<td><p><a href="srv/Softoff.srv">ifm3d/Softoff</a></p></td>
-<td><p>Provides a means to quickly change the camera state from RUN to IDLE.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="section" id="additional-documentation">
-<h2>Additional Documentation<a class="headerlink" href="#additional-documentation" title="Permalink to this headline"></a></h2>
-<ul class="simple">
-<li><p><a class="reference internal" href="doc/dump_and_config.html"><span class="doc std std-doc">Inspecting and configuring the camera/imager settings</span></a></p></li>
-<li><p><a class="reference internal" href="doc/building.html"><span class="doc std std-doc">Building the ROS node from source</span></a></p></li>
-<li><p><a class="reference internal" href="doc/visualization.html"><span class="doc std std-doc">Visualization</span></a></p></li>
-<li><p><a class="reference internal" href="doc/distributed_run.html"><span class="doc std std-doc">Running the ROS node on a distributed system</span></a></p></li>
-<li><p><a class="reference internal" href="doc/rpc_error_codes.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> API RPC error codes</span></a></p></li>
-</ul>
 </div>
 <div class="section" id="todo">
 <h2>ToDo<a class="headerlink" href="#todo" title="Permalink to this headline"></a></h2>
 <p>We are currently working on rounding out the feature set of our ROS2 interface. Our current objectives are to get the feature set to an equivalent
-level to that of our ROS1 interface and to tune the ROS2/DDS performance to optimize the usage of our cameras from within ROS2 system (for different DDS implementations).<br />
+level to that of our ROS1 interface and to tune the ROS2/DDS performance to optimize the usage of our cameras from within ROS2 system (for different DDS implementations).
 Thanks for your patience as we continue to ensure our ROS2 interface is feature-rich, robust, and performant. Your feedback is greatly appreciated.</p>
 </div>
-<div class="section" id="known-limitations">
-<h2>Known limitations<a class="headerlink" href="#known-limitations" title="Permalink to this headline"></a></h2>
-<p>This ROS 2 node build on top of the <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> API which handles the data communication between the camera platform and the outside world. This is based on ASIO which conflicts with the DDS middleware fastRTPS implementation in ROS (until ROS foxy). We are currently working on a solution. Until then we suggest to use cyclone DDS for older ROS 2 distributions.</p>
+<div class="section" id="known-issues">
+<h2>Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>Installing ifm3d API with it’s default runtime libs may result in multiple versions of glog on the system: this results in a compilable but non-functional ROS node.
+Please either use the glog version as included in your Ubuntu release (if compatible) or uninstall any incompatible lib version before installing the ifm3d required version.
+We are working on providing a fix to the underlying API which removes the GLOG logging from the API.</p></li>
+</ul>
 </div>
 <div class="section" id="license">
 <h2>LICENSE<a class="headerlink" href="#license" title="Permalink to this headline"></a></h2>
@@ -383,8 +237,8 @@ Thanks for your patience as we continue to ensure our ROS2 interface is feature-
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../ifm3d-ros/ifm3d_ros_examples/README.html" class="btn btn-neutral float-left" title="The ifm3d_ros_examples package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../../documentation/SoftwareInterfaces/Docker/index_docker.html" class="btn btn-neutral float-right" title="Docker on O3R" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="ifm3d-ros2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="doc/building.html" class="btn btn-neutral float-right" title="Building and Installing the ifm3d-ros2 package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
