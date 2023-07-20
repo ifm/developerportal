@@ -6,9 +6,9 @@ Every port parameter can be set manually with the ifmVisionAssistant - under `Po
 
 ## Short parameter overview
 
-**This documentation does not include the description of every parameter, but rather focus on the general approach to change a parameter. For a list of settings, parameters, etc please check the documentation [here](http://ifm3d.com/sphinx-doc/build/html/documentation/O3R/Parameters/README.html)**
+**This documentation does not include the description of every parameter, but rather focus on the general approach to change a parameter. For a list of settings, parameters, etc please check the documentation [here](../../Technology/3D/ProcessingParams/index_processing_params.md)**
 
-Every port menu includes its own configuration / parameters. These parameters can be changed manually via the ifmVisionAssistant. The ifmVisionAssistant is however not considered as the main configuration tool. This role is fulfilled by the [ifm3d-library](http://ifm3d.com/sphinx-doc/build/html/ifm3d/index.html).
+Every port menu includes its own configuration / parameters. These parameters can be changed manually via the ifmVisionAssistant. The ifmVisionAssistant is however not considered as the main configuration tool. This role is fulfilled by the [ifm3d-library](https://api.ifm3d.com/stable/).
 
 The ifmVisionAssistant is a tool to verify the overall system and experience certain changes live.
 

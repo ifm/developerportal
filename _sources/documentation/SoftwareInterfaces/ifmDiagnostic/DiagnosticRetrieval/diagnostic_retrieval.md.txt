@@ -41,7 +41,7 @@ ifm3d diagnostic
 :::::
 
 :::{note}
-See the `O3R` related methods: [`get_diagnostic`](https://api.ifm3d.com/html/_autosummary/ifm3dpy.O3R.html?highlight=diagnostic#ifm3dpy.O3R.get_diagnostic) and [`get_diagnostic_filtered`](https://api.ifm3d.com/html/_autosummary/ifm3dpy.O3R.html?highlight=diagnostic#ifm3dpy.O3R.get_diagnostic_filtered).
+See the `O3R` related methods: [`get_diagnostic`](https://api.ifm3d.com/stable/_autosummary/ifm3dpy.device.O3R.html#ifm3dpy.device.O3R.get_diagnostic) and [`get_diagnostic_filtered`](https://api.ifm3d.com/stable/_autosummary/ifm3dpy.device.O3R.html#ifm3dpy.device.O3R.get_diagnostic_filtered).
 :::
 
 Option 2 provides diagnostic updates asynchronously as they occur. For this purpose, a dedicated PCIC port (50009) is available.
@@ -90,7 +90,7 @@ main()
 :::::
 
 :::{note} 
-See the `framegrabber` related methods: [`on_aync_error`](https://api.ifm3d.com/html/_autosummary/ifm3dpy.FrameGrabber.html#ifm3dpy.FrameGrabber.on_async_error) and [`on_async_notification`](https://api.ifm3d.com/html/_autosummary/ifm3dpy.FrameGrabber.html#ifm3dpy.FrameGrabber.on_async_notification).
+See the `framegrabber` related methods: [`on_aync_error`](https://api.ifm3d.com/stable/_autosummary/ifm3dpy.framegrabber.FrameGrabber.html#ifm3dpy.framegrabber.FrameGrabber.on_async_error) and [`on_async_notification`](https://api.ifm3d.com/stable/_autosummary/ifm3dpy.framegrabber.FrameGrabber.html#ifm3dpy.framegrabber.FrameGrabber.on_async_notification).
 :::
 
 ## Additional debugging information

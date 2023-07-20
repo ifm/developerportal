@@ -100,7 +100,7 @@
 <h2>ifm3d-ros services provide no response<a class="headerlink" href="#ifm3d-ros-services-provide-no-response" title="Permalink to this headline"></a></h2>
 <p>On systems utilizing a single core processor, you may find that the Dump, Config and Trigger services of ifm3d-ros package do not provide any response when invoked.</p>
 <p>This issue can be resolved by setting the <b>”num_worker_threads”</b> parameter for your ROS nodelet manager to use a value &gt; 1. You can read more about this parameter <a class="reference external" href="http://wiki.ros.org/nodelet">here</a>.</p>
-<p>The snippet below show’s how to set this parameter using the <a class="reference external" href="https://github.com/ifm/ifm3d-ros/blob/master/launch/nodelet.launch">nodelet.launch</a> file of the ifm3d-ros package.</p>
+<p>The snippet below show’s how to set this parameter using the <a class="reference external" href="https://github.com/ifm/ifm3d-ros/blob/master/ifm3d_ros_driver/launch/nodelet.launch">nodelet.launch</a> file of the ifm3d-ros package.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="o">&lt;</span><span class="n">node</span> <span class="n">pkg</span><span class="o">=</span><span class="s2">&quot;nodelet&quot;</span>
         <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;nodelet&quot;</span>
         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;$(arg camera)_standalone_nodelet&quot;</span>

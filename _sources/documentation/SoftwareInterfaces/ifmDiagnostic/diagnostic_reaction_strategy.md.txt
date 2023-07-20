@@ -122,12 +122,12 @@ This diagnosis reaction strategy is motivated by the fact that different error c
 
 # Handling strategies
 ## Reboot / power cycle
-A software reboot can be performed via the [API CLI methods](https://api.ifm3d.com/html/_autosummary/ifm3dpy.O3R.html?highlight=reboot#ifm3dpy.O3R.reboot) or via the respective OS calls (on the embedded device).
+A software reboot can be performed via the [API CLI methods](https://api.ifm3d.com/stable/_autosummary/ifm3dpy.device.O3R.html#ifm3dpy.device.O3R.reboot) or via the respective OS calls (on the embedded device).
 
 Alternatively one can power cycle the device: the power connection should be interrupted for at least 5 seconds.
 
 ## Factory reset
-The device can be reset to factory conditions and configuration via the [CLI method](https://api.ifm3d.com/html/content/cmdline_overview.html?highlight=factory%20reset), [API method](https://api.ifm3d.com/html/_autosummary/ifm3dpy.O3R.html?highlight=factory%20reset#ifm3dpy.O3R.factory_reset)
+The device can be reset to factory conditions and configuration via the [CLI method](https://api.ifm3d.com/html/content/cmdline_overview.html?highlight=factory%20reset), [API method](https://api.ifm3d.com/stable/_autosummary/ifm3dpy.device.O3R.html#ifm3dpy.device.O3R.factory_reset)
 
 ## Flash firmware anew
 Please flash the firmware again. For backward compatibility, see the [firmware release notes](https://ifm3d.com/documentation/Firmware/index.html).

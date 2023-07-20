@@ -8,7 +8,7 @@
 
 For ROS2 distributions Software Compatibility Matrix please refer [ifm3d-ros2 github page](https://github.com/ifm/ifm3d-ros2) and for the ROS distributions please refer this [ifm3d-ros github page](https://github.com/ifm/ifm3d-ros)
 
-Changelog for different packages can seen [here](http://ifm3d.com/sphinx-doc/build/html/ROS/ifm3d-ros/CHANGELOG.html?highlight=error).
+Changelog for different packages can seen [here for ifm3d-ros](https://ifm3d.com/ROS/ifm3d-ros/CHANGELOG.html) and [here for ifm3d-ros2](https://ifm3d.com/ROS/ifm3d-ros2/CHANGELOG.html).
 
 ## Hardware (Connectivity)
 **Q: Why is the Status LED blinking but not turning RED for an undervoltage error?**
@@ -63,7 +63,7 @@ A: No, the O3R camera heads were calibrated in the production state and don't ne
 
 **Q: Do I have to repeat the extrinsic calibration procedure every time I reconnect the camera?**
 
-A: No, once the extrinsic calibration parameters are saved to the VPU (via a [save_init function](https://ifm.github.io/ifm3d-docs/html/_autosummary/ifm3dpy.O3R.html?highlight=save%20init#ifm3dpy.O3R.save_init)) and will be available even after the reboot. **However**, if the camera's position is changed then extrinsic calibration has to be redone.
+A: No, once the extrinsic calibration parameters are saved to the VPU (via a [save_init function](https://api.ifm3d.com/stable/_autosummary/ifm3dpy.device.O3R.html#ifm3dpy.device.O3R.save_init)) and will be available even after the reboot. **However**, if the camera's position is changed then extrinsic calibration has to be redone.
 
 **Q: Is it essential to connect the calibrated camera head to the same port to maintain the extrinsic calibration parameters**?
 
