@@ -22,7 +22,7 @@ Prerequisites:
 <!-- TODO: ADD link to image -->
 * The Motion Camera Calibration software package. Currently, this is available upon request from support.robotics@ifm.com.
 * A printed calibration checkerboard (checkerboard.pdf in 0.8m x 0.6m) resting on the floor or at a height so that it is in the field of view of the camera being calibrated.
-Please find the checkerboard in pdf format {download}` here <_resources/MotionCameraCalibrationTarget_600_800.pdf>`
+Please find the checkerboard in pdf format {download}` here <_resources/MotionCameraCalibrationTarget_600X800.pdf>`
 
 ### Installation
 We recommend installing the MCC tool to a fresh Python3 venv to minimize the risk of conflicting versions of dependent Python libraries.
