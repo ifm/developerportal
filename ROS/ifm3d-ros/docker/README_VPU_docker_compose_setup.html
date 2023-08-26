@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROS network: Docker container &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>ROS network: Docker container</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/ROS/ifm3d-ros/docker/README_VPU_docker_compose_setup.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="ros-network-docker-container">
+<h1>ROS network: Docker container<a class="headerlink" href="#ros-network-docker-container" title="Permalink to this headline"></a></h1>
+<p>There are several objectives and limitations to consider when running a ifm3d-ros Docker container on the VPU:</p>
+<p>There are two goals that must be met when running a Docker container directly on the VPU:</p>
+<ol class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">IFM3D_IP=127.0.0.1</span></code> for local communication to avoid network drop propagation of ETH0 into the container.</p></li>
+<li><p>Allow communication between ROS nodes through the localhost / default gateway (0.0.0.0) instead of the Ethernet interface ETH0.</p></li>
+</ol>
+<p>All Docker processes should run in a single Docker container instance. Only by running all ROS processes in the same Docker context can the communication overhead be limited.
+This communication overhead consists of serializing, sending ROS data frames over the network, and de-serializing this data at each ROS receiver.</p>
+<p>The ifm3d-ros nodes are designed in a ROS nodelet architecture: To take advantage of the nodelet performance gains, all dependent ROS nodes should also be implemented as ROS nodelets.
+Only then the full advantage of a nodelet architecture can be used: i.e. passing data reference pointers instead of serializing / deserializing the data to be sent in the network.</p>
+<p>Please see the solutions below to setup a network communication to allow running a ifm3d-ros node in a Docker container on the VPU.</p>
+<div class="section" id="solution-1-localhost-based-communication-network-host">
+<h2>Solution 1: localhost based communication - network host<a class="headerlink" href="#solution-1-localhost-based-communication-network-host" title="Permalink to this headline"></a></h2>
+<p><strong>Limitations of ROS in a Docker container context</strong></p>
+<ul class="simple">
+<li><p>ifm3d camera communication: use localhost - 127.0.0.1 to avoid ETH0 network drops resulting in ifm3d objects re-init</p>
+<ul>
+<li><p>(192.168.0.69 Interface used for ROS communications is not feasible: all network connection drops get propagated into the container / ROS master and node)</p></li>
+</ul>
+</li>
+<li><p>manual port selection for roslaunch is not possible:</p>
+<ul>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">network</span> <span class="pre">host</span></code> to share the host network to the Docker container during runtime</p></li>
+</ul>
+</li>
+<li><p>Since the ROS master and node communication can not be separated for the network interfaces:</p>
+<ul>
+<li><p>both have to communicate on the same network - default route: 0.0.0.0 interface</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Alternative:</strong></p>
+<ul class="simple">
+<li><p>2 ROS Masters and a ROS bridge to connect them: This however is not feasible as ROS bridges are not designed to handle large datasets such as point cloud data.</p></li>
+</ul>
+<p><strong>Solution</strong>
+<strong>Please do not route the ROS communication via the Default gateway - a communication via ETH0 (192.168.0.0 subnet) is highly discouraged as its routing tables will change when connections on ETH0 NIC are established or closed!</strong></p>
+<ul>
+<li><p>For name resolution manually modify the /etc/hosts
+Docker container</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">127.0.0.1</span>	<span class="n">localhost</span><span class="o">.</span><span class="n">localdomain</span>		<span class="n">localhost</span>
+<span class="mf">0.0.0.0</span>		<span class="n">ifm3d_rosmaster</span>
+<span class="mf">0.0.0.0</span>		<span class="n">ifm3d_ros</span>
+</pre></div>
+</div>
+</li>
+<li><p>IPC / Laptop: /etc/hosts</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">192.168.0.69</span>    <span class="n">ifm3d_rosmaster</span>
+<span class="mf">192.168.0.69</span>    <span class="n">ifm3d_ros</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>During Runtime these parameters env variables have to be set:</p>
+<ul class="simple">
+<li><p>Docker Containers:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">IFM3D_IP</span><span class="o">=</span><span class="s2">&quot;127.0.0.1&quot;</span>
+<span class="n">export</span> <span class="n">ROS_MASTER_URI</span><span class="o">=</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">ifm3d_rosmaster</span><span class="p">:</span><span class="mi">11311</span>
+<span class="n">export</span> <span class="n">ROS_HOSTNAME</span><span class="o">=</span><span class="n">ifm3d_ros</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Laptop IPC:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">ROS_MASTER_URI</span><span class="o">=</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">ifm3d_rosmaster</span><span class="p">:</span><span class="mi">11311</span>
+<span class="n">export</span> <span class="n">ROS_HOSTNAME</span><span class="o">=</span><span class="n">ifm3d_ros_listener</span>
+</pre></div>
+</div>
+<p>The corresponding DNS <code class="docutils literal notranslate"><span class="pre">/etc/hosts</span></code> - see above</p>
+<p>Dockerfile</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>version: &quot;2.3&quot;
+services:
+  ifm3d_ros:
+    tty: true
+    image: ifm3d-ros:noetic-arm64_v8
+
+    restart: unless-stopped
+    volumes:
+      - ./launch/four_cameras.launch:/home/ifm/catkin_ws/src/ifm3d_ros_driver/launch/four_cameras.launch
+      - ./hosts_ros_master:/etc/hosts/
+
+    logging:
+      driver: &quot;json-file&quot;
+      options:
+        mode: non-blocking
+        max-buffer-size: &quot;20m&quot;
+
+    command:
+      - /bin/bash
+      - -c
+      - |
+        set -a
+        . /opt/ros/noetic/setup.sh;
+        . /home/ifm/catkin_ws/devel/setup.sh;
+        export IFM3D_IP=&quot;127.0.0.1&quot;;
+        export ROS_MASTER_URI=http://ifm3d_rosmaster:11311;
+        export ROS_HOSTNAME=ifm3d_ros;
+        echo $$ROS_MASTER_URI;
+        echo $$ROS_IP;
+        roslaunch ifm3d_ros_driver four_cameras.launch --wait -t 10
+
+    network_mode: host
+</pre></div>
+</div>
+</div>
+<div class="section" id="solution-2-separate-docker-network">
+<h2>Solution 2: separate Docker network<a class="headerlink" href="#solution-2-separate-docker-network" title="Permalink to this headline"></a></h2>
+<p><strong>Motivation</strong>
+Separate the two networks: localhost and dedicated Docker network for ROS container communication on the VPU.
+This will solve the problem of all ROS communication being shared on the same node.</p>
+<p><strong>Limitations</strong>.
+Please note that the following changes may result in routing tables that are not functional. This may cause the VPU to be inaccessible via its Ethernet interface. Please proceed with caution.</p>
+<p><strong>When creating/modifying networks on the VPU, please consider your existing network topology and possible conflicts!</strong>.</p>
+<p><strong>Docker compose including network setup:</strong>.
+This includes setting up a dedicated <code class="docutils literal notranslate"><span class="pre">ros_net</span></code> Docker network for shared communication between Docker containers.</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>version: &quot;2.3&quot;
+services:
+  ifm3d_ros:
+    tty: true
+    image: ifm3d-ros:noetic-arm64_v8
+
+    extra_hosts:
+      - &quot;dockerhost:172.20.0.1&quot;
+
+    networks:
+      ros_net:
+        ipv4_address: 172.20.0.2
+
+    ports:
+      - 11311:11311
+
+
+    restart: unless-stopped
+    volumes:
+      - ./launch/four_cameras.launch:/home/ifm/catkin_ws/src/ifm3d_ros_driver/launch/four_cameras.launch
+    logging:
+      driver: &quot;json-file&quot;
+      options:
+        mode: non-blocking
+        max-buffer-size: &quot;20m&quot;
+
+    command:
+      - /bin/bash
+      - -c
+      - |
+        (. /opt/ros/noetic/setup.sh;
+        . /home/ifm/catkin_ws/devel/setup.sh;
+        export ROS_MASTER_URI=http://172.20.0.2:11311;
+        export ROS_HOSTNAME=172.20.0.2;
+        echo ROS_MASTER_URI=$$ROS_MASTER_URI;
+        echo ROS_HOSTNAME=$$ROS_HOSTNAME;
+        roscore &amp;
+        roslaunch ifm3d_ros_driver four_cameras.launch --wait -t 10)
+
+networks:
+  ros_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/16
+          gateway: 172.20.0.1
+
+</pre></div>
+</div>
+<p>Depending on Docker and the docker-compose version a first initial manual setup of such a Docker network might be required:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>network<span class="w"> </span>create<span class="w"> </span>--gateway<span class="w"> </span><span class="m">172</span>.20.0.1<span class="w"> </span>--subnet<span class="w"> </span><span class="m">172</span>.20.0.0/24<span class="w"> </span>ros_net
+</pre></div>
+</div>
+<p>The resulting routing table</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Destination</span>     <span class="n">Gateway</span>         <span class="n">Genmask</span>         <span class="n">Flags</span> <span class="n">Metric</span> <span class="n">Ref</span>    <span class="n">Use</span> <span class="n">Iface</span>
+<span class="mf">0.0.0.0</span>         <span class="mf">192.168.0.201</span>   <span class="mf">0.0.0.0</span>         <span class="n">UG</span>    <span class="mi">0</span>      <span class="mi">0</span>        <span class="mi">0</span> <span class="n">eth0</span>
+<span class="mf">172.17.0.0</span>      <span class="mf">0.0.0.0</span>         <span class="mf">255.255.0.0</span>     <span class="n">U</span>     <span class="mi">0</span>      <span class="mi">0</span>        <span class="mi">0</span> <span class="n">docker0</span>
+<span class="mf">172.20.0.0</span>      <span class="mf">0.0.0.0</span>         <span class="mf">255.255.0.0</span>     <span class="n">U</span>     <span class="mi">0</span>      <span class="mi">0</span>        <span class="mi">0</span> <span class="n">br</span><span class="o">-</span><span class="mi">5866</span><span class="n">d929f186</span>
+<span class="mf">192.168.0.0</span>     <span class="mf">0.0.0.0</span>         <span class="mf">255.255.255.0</span>   <span class="n">U</span>     <span class="mi">0</span>      <span class="mi">0</span>        <span class="mi">0</span> <span class="n">eth0</span>
+</pre></div>
+</div>
+<p>To allow communication between this dedicated Docker network one has to attach this virtual interface (the Docker network) to the ETH0 interface:
+<strong>THIS IS CURRENTLY ONLY POSSIBLE AS root user and NOT as oem user</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brctl<span class="w"> </span>show
+bridge<span class="w"> </span>name<span class="w">		</span>bridge<span class="w"> </span>id<span class="w">		</span>STP<span class="w"> </span>enabled<span class="w">	</span>interfaces
+br-5866d929f186<span class="w">		</span><span class="m">8000</span>.02428756949b<span class="w">	</span>no<span class="w">		</span>eth0
+<span class="w">																</span>vethd1fc3b6
+</pre></div>
+</div>
+<p>Add the virtual interface to ETH0 interface</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brctl<span class="w"> </span>addif<span class="w"> </span>br-5866d929f186<span class="w"> </span>eth0
+</pre></div>
+</div>
+<p><strong>IPC / Host machine</strong>
+To listen to ifm3d-ros topics and services (additionally to the ROS masters topics) an additional route has to be configured on the host:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>ip<span class="w"> </span>route<span class="w"> </span>add<span class="w"> </span><span class="m">172</span>.20.0.1/24<span class="w"> </span>via<span class="w"> </span><span class="m">192</span>.168.0.69
+</pre></div>
+</div>
+<p>After exporting the correct <code class="docutils literal notranslate"><span class="pre">ROS_MASTER_URI</span></code> and <code class="docutils literal notranslate"><span class="pre">ROS_HOSTNAME</span></code> the communication with the ROS core and ifm3d-ros node should be possible:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">ROS_MASTER_URI</span><span class="o">=</span>http://172.20.0.1:11311
+<span class="nb">export</span><span class="w"> </span><span class="nv">ROS_HOSTNAME</span><span class="o">=</span><span class="m">172</span>.20.0.1
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, ifm CSR.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
