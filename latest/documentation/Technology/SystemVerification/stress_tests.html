@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stress Tests &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+        <script src="../../../_static/tabs.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Software Interfaces" href="../../../index_software_interfaces.html" />
+    <link rel="prev" title="System Verification" href="index_system_verification.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index_hardware_interfaces.html">Technology</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Hardware_Interfaces/hardware_specifications.html">Available hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Hardware_Interfaces/CAD_Drawings.html">CAD drawings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../PortsOverview/ports_overview.html">Ports overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Hardware_Interfaces/camera_heads.html">Camera Heads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2D/2d.html">2D Cameras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3D/index_3d.html">3D Cameras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../VPU/index_vpu.html">VPU</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index_system_verification.html">System Verification</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Stress test</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#specifications">Specifications</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#vibration-and-shock">1. Vibration and Shock</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#emv-testing">2. EMV Testing</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#temperature-testing">3. Temperature Testing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index_hardware_interfaces.html">Technology</a> &raquo;</li>
+          <li><a href="index_system_verification.html">System Verification</a> &raquo;</li>
+      <li>Stress Tests</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/documentation/Technology/SystemVerification/stress_tests.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="stress-tests">
+<h1>Stress Tests<a class="headerlink" href="#stress-tests" title="Permalink to this headline"></a></h1>
+<p>The stress testing results in assessing the performance, reliability and stability of the O3R system. These tests will be performed by subjecting the hardware components to extreme stress conditions(internal and external) under different conditions.</p>
+<p>The external stress factors include:</p>
+<ul class="simple">
+<li><p>Vibration</p></li>
+<li><p>Shock</p></li>
+<li><p>EMV</p></li>
+<li><p>Temperature</p></li>
+</ul>
+<p>The internal stress (as induced by the O3R system itself) includes:</p>
+<ul class="simple">
+<li><p>VPU stressing: CPU, GPU, RAM</p></li>
+<li><p>Head stressing: maximum load, that is maximum framerate and acquisition times for all camera heads</p></li>
+</ul>
+<p>To monitor the system’s operational state, ifm suggests monitoring the following O3R system data steams and  diagnosis outputs:</p>
+<ul class="simple">
+<li><p>Diagnosis information</p></li>
+<li><p>O3R internal temperatures</p></li>
+<li><p>(O3R data availability)</p></li>
+</ul>
+<div class="section" id="specifications">
+<h2>Specifications<a class="headerlink" href="#specifications" title="Permalink to this headline"></a></h2>
+<p>The technical specification is available from the <a class="reference external" href="https://www.ifm.com/">ifm.com</a> under respective product’s page. The following table is used for demonstration purposes only.</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Test type</p></th>
+<th class="head"><p>Norm</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>EMC</p></td>
+<td><p>EN IEC 61000-6-4</p></td>
+<td><p>radiation of interference / residential, commercial and light-industrial environments</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>EN IEC 61000-6-2</p></td>
+<td><p>noise immunity / industrial environments</p></td>
+</tr>
+<tr class="row-even"><td><p>Shock resistance</p></td>
+<td><p>DIN EN 60068-2-27</p></td>
+<td><p>50 g / (11 ms) not repetitive</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>DIN EN 60068-2-27</p></td>
+<td><p>40 g / (6 ms) repetitive</p></td>
+</tr>
+<tr class="row-even"><td><p>Vibration resistance</p></td>
+<td><p>DIN EN 60068-2-6</p></td>
+<td><p>2 g / (10…150 Hz)</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>DIN EN 60068-2-64</p></td>
+<td><p>2.3 g RMS / (10…500 Hz)</p></td>
+</tr>
+<tr class="row-even"><td><p>Electrical safety</p></td>
+<td><p>DIN EN 61010-2-201</p></td>
+<td><p>electrical supply only via PELV circuits</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Test type</p></th>
+<th class="head"><p>Range</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Temperature</p></td>
+<td><p>[°C] -10…40</p></td>
+<td><p>Ambient temperature</p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="vibration-and-shock">
+<h3>1. Vibration and Shock<a class="headerlink" href="#vibration-and-shock" title="Permalink to this headline"></a></h3>
+<p>These tests are independent of the system’s live operation, that is can be performed in an offline state - without monitoring the live status.</p>
+<p>The O3R systems functionality can be verified explicitly by comparing sets of functionality before and after the test runs.
+These sets of functionality can include:</p>
+<ul class="simple">
+<li><p>complete boot-up of the system</p></li>
+<li><p>availability of all connected cameras (heads) and a review of their data streams</p></li>
+</ul>
+<p>Alternatively, the functionality can be verified implicitly by testing a complete system behavior (for example your AGV / AMR) before and after the test.
+The benchmarking results should stay the same within the boundary of the benchmark’s repeatability.</p>
+</div>
+<div class="section" id="emv-testing">
+<h3>2. EMV Testing<a class="headerlink" href="#emv-testing" title="Permalink to this headline"></a></h3>
+<p>These tests typically involve testing for EMV emission, EMV emission, and self-interference immunity. Depending on the norm not all parts may apply and different thresholds may be required.</p>
+<p>During testing the operation of the device may be interrupted for short amounts of time, according to the norm, and live operation has to be resumed within its time tolerance.
+Please test the O3R system in its intended mounting place including all surrounding components.</p>
+<p>The system’s operational state can be determined by the time difference between consecutive timestamps: for example O3R VPU CPU clock-based timestamps or an independent test machines clock.</p>
+<p>The (CPU-based) data frame timestamp is generated by the IPC (VPU) clock when new data is acquired from a camera head. For test purposes, the timestamp latency and jitter should be sufficiently low (latency and jitter). Please refer to the example script to calculate the framerate of the system in our <span class="xref myst">ifm3d GitHub repository</span>.</p>
+<p>This may either be done on a recorded dataset in the post or on data retrieved in live operation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>**Please compare these statistical values against typical values under undisturbed operation conditions, to ensure the system&#39;s capability to retrieve the required data at full framerate!**
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="temperature-testing">
+<h3>3. Temperature Testing<a class="headerlink" href="#temperature-testing" title="Permalink to this headline"></a></h3>
+<p>A first set of temperature tests is typically run during a proof of concept phase on a component level, that is the O3R system and its intended (prototype) mounting setup are tested in a smaller temperature chamber. This is a good indication of whether the passive cooling capabilities of the camera and VPU mounting are sufficient for the full ambient temperature range.
+Please set all camera heads to their maximum allowed framerate: for example <code class="docutils literal notranslate"><span class="pre">20</span> <span class="pre">Hz</span></code>.</p>
+<p>Load on the VPUs CPU and GPU can be introduced by running a functional ODS application instance, or by artificially introducing CPU and GPU load via tools such as <a class="reference external" href="https://packages.ubuntu.com/search?keywords=stress">stress</a> and <a class="reference external" href="https://github.com/anseeto/jetson-gpu-burn">gpu-burn</a>.</p>
+<p>In a secondary step temperature tests are repeated on a fully assembled machine level, for example the complete AGV / AMR is tested in larger temperature chambers, with all active components in live operation. This may include:</p>
+<ul class="simple">
+<li><p>The battery management system (BMS) is under full load.</p></li>
+<li><p>Active cooling of the battery cells if applicable.</p></li>
+<li><p>Additional heat introducing “computers,” for example: IPCs, PLCs, …</p></li>
+<li><p>Active cooling, that is fans that distribute energy over larger passive heat sinks or perform an exchange of air from the inside to the outside of the machine</p></li>
+<li><p>…</p></li>
+</ul>
+<p>Additionally “heat” is introduced via the temperature chamber to mimic maximum ambient heat levels during operation.
+This test will determine the operability of the O3R system, based on the effectiveness of the whole cooling concept.</p>
+<p>The external temperature ratings of the O3R system components (VPU and O3R camera heads) are rated for external temperatures up to 40°C ambient temperature. This temperature threshold should only be used as an indication value. The internal temperature of each part (VPU device and one temperature value per camera head) has to stay below their respective threshold values.
+If this can be assured the external temperature values are only of secondary importance, as the device can perform under these ambient temperatures.</p>
+<p><strong>Temperature Monitoring</strong></p>
+<p>The O3R shows its temperature values in live operation, as part of the read-only values of the JSON configuration string.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-0-Q0xJ" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Q0xJ" name="Q0xJ" role="tab" tabindex="-1">CLI</button></div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel group-tab" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#############################################</span>
+<span class="c1"># Copyright 2023-present ifm electronic, gmbh</span>
+<span class="c1"># SPDX-License-Identifier: Apache-2.0</span>
+<span class="c1">#############################################</span>
+
+<span class="kn">from</span> <span class="nn">ifm3dpy</span> <span class="kn">import</span> <span class="n">O3R</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">dt_string</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y_%m_</span><span class="si">%d</span><span class="s2">-%H_%M_%S&quot;</span><span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+        <span class="n">filename</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;temperature_test_</span><span class="si">{</span><span class="n">dt_string</span><span class="si">}</span><span class="s2">.log&quot;</span><span class="p">,</span>
+        <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
+        <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2">.</span><span class="si">%(msecs)03d</span><span class="s2"> </span><span class="si">%(levelname)s</span><span class="s2">: </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">datefmt</span><span class="o">=</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">IP</span> <span class="o">=</span> <span class="s2">&quot;192.168.0.69&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;IP: </span><span class="si">{</span><span class="n">IP</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">(</span><span class="n">IP</span><span class="p">)</span>
+    <span class="n">temperatures</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/diagnostic/temperatures&quot;</span><span class="p">])[</span><span class="s2">&quot;device&quot;</span><span class="p">][</span><span class="s2">&quot;diagnostic&quot;</span><span class="p">][</span>
+        <span class="s2">&quot;temperatures&quot;</span>
+    <span class="p">]</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">temperatures</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">temperatures</span><span class="p">:</span>
+        <span class="c1"># test for tuple: (&#39;overtemperature&#39;, True)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;overtemperature&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;overtemperature reached: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;overtemperature reached: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-Q0xJ" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Q0xJ" name="Q0xJ" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.device.diagnostic.temperatures&#39;</span>
+</pre></div>
+</div>
+</div></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="../_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+ 
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.robotics@ifm.com">support.robotics@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

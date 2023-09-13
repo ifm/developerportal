@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Using a USB drive with the VPU &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="NTP(Network Time Protocol)" href="sntp.html" />
+    <link rel="prev" title="Ethernet interfaces" href="ethernet.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index_hardware_interfaces.html">Technology</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Hardware_Interfaces/hardware_specifications.html">Available hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Hardware_Interfaces/CAD_Drawings.html">CAD drawings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../PortsOverview/ports_overview.html">Ports overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Hardware_Interfaces/camera_heads.html">Camera Heads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2D/2d.html">2D Cameras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3D/index_3d.html">3D Cameras</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index_vpu.html">VPU</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ResourceManagement/index_resource_management.html">Resources management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="can.html">CAN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ethernet.html">Ethernet</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">USB</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#preparing-the-usb-drive">Preparing the USB drive</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#ext4-format-usb-mounting-preparation">EXT4 format USB mounting preparation</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#plug-in-and-mounting">Plug in and mounting</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sntp.html">NTP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Timestamps/timestamps.html">Timestamps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hmi.html">HMI: LEDs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IMU/imu.html">IMU</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../SystemVerification/index_system_verification.html">System Verification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index_hardware_interfaces.html">Technology</a> &raquo;</li>
+          <li><a href="index_vpu.html">VPU (Vision Processing Unit)</a> &raquo;</li>
+      <li>Using a USB drive with the VPU</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/documentation/Technology/VPU/usb.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="using-a-usb-drive-with-the-vpu">
+<h1>Using a USB drive with the VPU<a class="headerlink" href="#using-a-usb-drive-with-the-vpu" title="Permalink to this headline"></a></h1>
+<p>The VPU provides two <code class="docutils literal notranslate"><span class="pre">USB</span></code> interfaces, <code class="docutils literal notranslate"><span class="pre">USB-A</span></code> (USB 3.0) and <code class="docutils literal notranslate"><span class="pre">USB</span> <span class="pre">mini</span></code>.
+It is possible to increase the VPU memory size by utilizing USB thumb drives or USB SSDs on the <code class="docutils literal notranslate"><span class="pre">USB-A</span></code> interface. To use any USB storage device, it is necessary to mount the drive first.</p>
+<p>.. note::
+The USB auto mount service mounts your USB mass storage device to <code class="docutils literal notranslate"><span class="pre">/run/media/system/&lt;USB_name&gt;/</span></code>. See the details below.</p>
+<div class="section" id="preparing-the-usb-drive">
+<h2>Preparing the USB drive<a class="headerlink" href="#preparing-the-usb-drive" title="Permalink to this headline"></a></h2>
+<p>The VPU’s operating system supports two file formats:</p>
+<ul class="simple">
+<li><p>FAT32</p></li>
+<li><p>EXT4</p></li>
+</ul>
+<p>These can be auto-mounted via the <code class="docutils literal notranslate"><span class="pre">mount</span></code> command and its respective daemon.</p>
+<p><strong>FAT32:</strong>
+For FAT32 formatted devices no additional steps are required. It can be directly mounted via the auto-mount daemon to the VPU.</p>
+<p><strong>EXT4:</strong>
+For EXT4 formatted devices the user needs to perform additional steps to match the OEM users <code class="docutils literal notranslate"><span class="pre">uid</span></code> and <code class="docutils literal notranslate"><span class="pre">gid</span></code> on the VPU’s embedded OS.
+Otherwise only read permissions are granted when mounting the USB storage device. This is a design that is introduced by the handling of access rights to EXT4 formatted devices on Linux systems.
+If you are an experience EXT4 user feel free to skip the following instructions steps:</p>
+<div class="section" id="ext4-format-usb-mounting-preparation">
+<h3>EXT4 format USB mounting preparation<a class="headerlink" href="#ext4-format-usb-mounting-preparation" title="Permalink to this headline"></a></h3>
+<p><strong>Option 1:</strong>
+“The crude way”</p>
+<p>The easiest option is to mount the EXT4 formatted device to your Linux laptop of choice and relax the write and read permissions to be accessible by any user:</p>
+<ol class="simple">
+<li><p>Mount the SSD to your laptop</p></li>
+<li><p>Change the mount point to be accessible by all users:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>user@laptop:~$<span class="w"> </span>chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span>/media/&lt;mount_point&gt;
+</pre></div>
+</div>
+<p>Please be aware that the <code class="docutils literal notranslate"><span class="pre">chmod</span></code> command only affects the existing files within <code class="docutils literal notranslate"><span class="pre">/media/&lt;mount_point&gt;</span></code>.</p>
+<p><strong>Option 2:</strong>
+“Setting the VPU’s OEM user UID and GID specifically”</p>
+<p>Please be aware that setting user specific GID and UID has to be done <strong>PER</strong> user.
+This means, that is has to be done for the OEM user on the VPU to write to the device, as well as any specific users created inside your own Docker container.</p>
+<p>Below an exemplary workflow is shown for setting the VPU’s OEM users UID and GID.</p>
+<p>On the VPU:</p>
+<ol class="simple">
+<li><p>Find out the requested users UID and GID on the VPU or inside the Docker container</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>oem@o3r-vpu-c0:~#<span class="w"> </span>id<span class="w"> </span>-u<span class="w"> </span>oem
+<span class="m">989</span>
+oemt@o3r-vpu-c0:~#<span class="w"> </span>id<span class="w"> </span>-g<span class="w"> </span>oem
+<span class="m">987</span>
+</pre></div>
+</div>
+<p>On your Linux laptop of choice:</p>
+<ol class="simple">
+<li><p>Change the USB mount point on your <strong>Linux Laptop</strong> via <code class="docutils literal notranslate"><span class="pre">chown</span></code></p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>user@laptop:~$<span class="w"> </span>sudo<span class="w"> </span>chown<span class="w"> </span><span class="m">989</span>:987<span class="w"> </span>-R<span class="w"> </span>/media/&lt;mount_point&gt;
+</pre></div>
+</div>
+<p>.. note::
+Please be aware that changing the GID and UID mount points may result in missing read access on your laptop. To restore read access on your laptop to the USB storage device, change the GID and UID back to match your personal user accounts ones.</p>
+</div>
+</div>
+<div class="section" id="plug-in-and-mounting">
+<h2>Plug in and mounting<a class="headerlink" href="#plug-in-and-mounting" title="Permalink to this headline"></a></h2>
+<p>After plugging in the drive, the mount is started by using the command <code class="docutils literal notranslate"><span class="pre">mount</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>o3r-vpu-c0:~$<span class="w"> </span>mount
+proc<span class="w"> </span>on<span class="w"> </span>/proc<span class="w"> </span><span class="nb">type</span><span class="w"> </span>proc<span class="w"> </span><span class="o">(</span>rw,relatime<span class="o">)</span>
+none<span class="w"> </span>on<span class="w"> </span>/dev<span class="w"> </span><span class="nb">type</span><span class="w"> </span>devtmpfs<span class="w"> </span><span class="o">(</span>rw,relatime,size<span class="o">=</span>1578060k,nr_inodes<span class="o">=</span><span class="m">394515</span>,mode<span class="o">=</span><span class="m">755</span><span class="o">)</span>
+sysfs<span class="w"> </span>on<span class="w"> </span>/sys<span class="w"> </span><span class="nb">type</span><span class="w"> </span>sysfs<span class="w"> </span><span class="o">(</span>rw,relatime<span class="o">)</span>
+/dev/mmcblk0p1<span class="w"> </span>on<span class="w"> </span>/<span class="w"> </span><span class="nb">type</span><span class="w"> </span>ext4<span class="w"> </span><span class="o">(</span>rw,relatime,data<span class="o">=</span>ordered<span class="o">)</span>
+tmpfs<span class="w"> </span>on<span class="w"> </span>/dev/shm<span class="w"> </span><span class="nb">type</span><span class="w"> </span>tmpfs<span class="w"> </span><span class="o">(</span>rw,nosuid,nodev<span class="o">)</span>
+devpts<span class="w"> </span>on<span class="w"> </span>/dev/pts<span class="w"> </span><span class="nb">type</span><span class="w"> </span>devpts<span class="w"> </span><span class="o">(</span>rw,relatime,gid<span class="o">=</span><span class="m">5</span>,mode<span class="o">=</span><span class="m">620</span>,ptmxmode<span class="o">=</span><span class="m">666</span><span class="o">)</span>
+tmpfs<span class="w"> </span>on<span class="w"> </span>/run<span class="w"> </span><span class="nb">type</span><span class="w"> </span>tmpfs<span class="w"> </span><span class="o">(</span>rw,nosuid,nodev,mode<span class="o">=</span><span class="m">755</span><span class="o">)</span>
+tmpfs<span class="w"> </span>on<span class="w"> </span>/sys/fs/cgroup<span class="w"> </span><span class="nb">type</span><span class="w"> </span>tmpfs<span class="w"> </span><span class="o">(</span>ro,nosuid,nodev,noexec,mode<span class="o">=</span><span class="m">755</span><span class="o">)</span>
+cgroup2<span class="w"> </span>on<span class="w"> </span>/sys/fs/cgroup/unified<span class="w"> </span><span class="nb">type</span><span class="w"> </span>cgroup2<span class="w"> </span><span class="o">(</span>rw,nosuid,nodev,noexec,relatime<span class="o">)</span>
+cgroup<span class="w"> </span>on<span class="w"> </span>/sys/fs/cgroup/systemd<span class="w"> </span><span class="nb">type</span><span class="w"> </span>cgroup<span class="w"> </span><span class="o">(</span>rw,nosuid,nodev,noexec,relatime,xattr,name<span class="o">=</span>systemd<span class="o">)</span>
+pstore<span class="w"> </span>on<span class="w"> </span>/sys/fs/pstore<span class="w"> </span><span class="nb">type</span><span class="w"> </span>pstore<span class="w"> </span><span class="o">(</span>rw,nosuid,nodev,noexec,relatime<span class="o">)</span>
+cgroup<span class="w"> </span>on<span class="w"> </span>/sys/fs/cgroup/pids<span class="w"> </span><span class="nb">type</span><span class="w"> </span>cgroup<span class="w"> </span><span class="o">(</span>rw,nosuid,nodev,noexec,relatime,pids<span class="o">)</span>
+cgroup<span class="w"> </span>on<span class="w"> </span>/sys/fs/cgroup/net_cls,net_prio<span class="w"> </span><span class="nb">type</span><span class="w"> </span>cgroup<span class="w"> </span><span class="o">(</span>rw,nosuid,nodev,noexec,relatime,net_cls,net_prio<span class="o">)</span>
+cgroup<span class="w"> </span>on<span class="w"> </span>/sys/fs/cgroup/cpuset<span class="w"> </span><span class="nb">type</span><span class="w"> </span>cgroup<span class="w"> </span><span class="o">(</span>rw,nosuid,nodev,noexec,relatime,cpuset<span class="o">)</span>
+cgroup<span class="w"> </span>on<span class="w"> </span>/sys/fs/cgroup/freezer<span class="w"> </span><span class="nb">type</span><span class="w"> </span>cgroup<span class="w"> </span><span class="o">(</span>rw,nosuid,nodev,noexec,relatime,freezer<span class="o">)</span>
+cgroup<span class="w"> </span>on<span class="w"> </span>/sys/fs/cgroup/memory<span class="w"> </span><span class="nb">type</span><span class="w"> </span>cgroup<span class="w"> </span><span class="o">(</span>rw,nosuid,nodev,noexec,relatime,memory<span class="o">)</span>
+cgroup<span class="w"> </span>on<span class="w"> </span>/sys/fs/cgroup/cpu,cpuacct<span class="w"> </span><span class="nb">type</span><span class="w"> </span>cgroup<span class="w"> </span><span class="o">(</span>rw,nosuid,nodev,noexec,relatime,cpu,cpuacct<span class="o">)</span>
+cgroup<span class="w"> </span>on<span class="w"> </span>/sys/fs/cgroup/debug<span class="w"> </span><span class="nb">type</span><span class="w"> </span>cgroup<span class="w"> </span><span class="o">(</span>rw,nosuid,nodev,noexec,relatime,debug<span class="o">)</span>
+cgroup<span class="w"> </span>on<span class="w"> </span>/sys/fs/cgroup/hugetlb<span class="w"> </span><span class="nb">type</span><span class="w"> </span>cgroup<span class="w"> </span><span class="o">(</span>rw,nosuid,nodev,noexec,relatime,hugetlb<span class="o">)</span>
+cgroup<span class="w"> </span>on<span class="w"> </span>/sys/fs/cgroup/blkio<span class="w"> </span><span class="nb">type</span><span class="w"> </span>cgroup<span class="w"> </span><span class="o">(</span>rw,nosuid,nodev,noexec,relatime,blkio<span class="o">)</span>
+cgroup<span class="w"> </span>on<span class="w"> </span>/sys/fs/cgroup/devices<span class="w"> </span><span class="nb">type</span><span class="w"> </span>cgroup<span class="w"> </span><span class="o">(</span>rw,nosuid,nodev,noexec,relatime,devices<span class="o">)</span>
+cgroup<span class="w"> </span>on<span class="w"> </span>/sys/fs/cgroup/perf_event<span class="w"> </span><span class="nb">type</span><span class="w"> </span>cgroup<span class="w"> </span><span class="o">(</span>rw,nosuid,nodev,noexec,relatime,perf_event<span class="o">)</span>
+mqueue<span class="w"> </span>on<span class="w"> </span>/dev/mqueue<span class="w"> </span><span class="nb">type</span><span class="w"> </span>mqueue<span class="w"> </span><span class="o">(</span>rw,nosuid,nodev,noexec,relatime<span class="o">)</span>
+hugetlbfs<span class="w"> </span>on<span class="w"> </span>/dev/hugepages<span class="w"> </span><span class="nb">type</span><span class="w"> </span>hugetlbfs<span class="w"> </span><span class="o">(</span>rw,relatime<span class="o">)</span>
+debugfs<span class="w"> </span>on<span class="w"> </span>/sys/kernel/debug<span class="w"> </span><span class="nb">type</span><span class="w"> </span>debugfs<span class="w"> </span><span class="o">(</span>rw,nosuid,nodev,noexec,relatime<span class="o">)</span>
+tmpfs<span class="w"> </span>on<span class="w"> </span>/tmp<span class="w"> </span><span class="nb">type</span><span class="w"> </span>tmpfs<span class="w"> </span><span class="o">(</span>rw,nosuid,nodev<span class="o">)</span>
+configfs<span class="w"> </span>on<span class="w"> </span>/sys/kernel/config<span class="w"> </span><span class="nb">type</span><span class="w"> </span>configfs<span class="w"> </span><span class="o">(</span>rw,nosuid,nodev,noexec,relatime<span class="o">)</span>
+tmpfs<span class="w"> </span>on<span class="w"> </span>/var/volatile<span class="w"> </span><span class="nb">type</span><span class="w"> </span>tmpfs<span class="w"> </span><span class="o">(</span>rw,relatime<span class="o">)</span>
+/dev/mmcblk0p33<span class="w"> </span>on<span class="w"> </span>/opt/ifm/data<span class="w"> </span><span class="nb">type</span><span class="w"> </span>ext4<span class="w"> </span><span class="o">(</span>rw,relatime,data<span class="o">=</span>ordered<span class="o">)</span>
+overlay<span class="w"> </span>on<span class="w"> </span>/etc/systemd/network<span class="w"> </span><span class="nb">type</span><span class="w"> </span>overlay<span class="w"> </span><span class="o">(</span>rw,relatime,lowerdir<span class="o">=</span>/etc/systemd/network,upperdir<span class="o">=</span>/opt/ifm/data/overlayfs/upper/network,workdir<span class="o">=</span>/opt/ifm/data/overlayfs/work/network<span class="o">)</span>
+tmpfs<span class="w"> </span>on<span class="w"> </span>/run/user/989<span class="w"> </span><span class="nb">type</span><span class="w"> </span>tmpfs<span class="w"> </span><span class="o">(</span>rw,nosuid,nodev,relatime,size<span class="o">=</span>392056k,mode<span class="o">=</span><span class="m">700</span>,uid<span class="o">=</span><span class="m">989</span>,gid<span class="o">=</span><span class="m">987</span><span class="o">)</span>
+systemd-1<span class="w"> </span>on<span class="w"> </span>/run/media/system/IFM<span class="w"> </span><span class="nb">type</span><span class="w"> </span>autofs<span class="w"> </span><span class="o">(</span>rw,relatime,fd<span class="o">=</span><span class="m">79</span>,pgrp<span class="o">=</span><span class="m">1</span>,timeout<span class="o">=</span><span class="m">3</span>,minproto<span class="o">=</span><span class="m">5</span>,maxproto<span class="o">=</span><span class="m">5</span>,direct<span class="o">)</span>
+</pre></div>
+</div>
+<p>If the mount is successful you can find the drive at <code class="docutils literal notranslate"><span class="pre">/run/media/system/&lt;USB_name&gt;/</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>o3r-vpu-c0:~$<span class="w"> </span>ls<span class="w"> </span>-la<span class="w"> </span>/run/media/system/IFM/
+total<span class="w"> </span><span class="m">957660</span>
+drwxrwxrwx<span class="w"> </span><span class="m">6</span><span class="w"> </span>oem<span class="w">  </span>oem<span class="w">       </span><span class="m">4096</span><span class="w"> </span>Jan<span class="w">  </span><span class="m">1</span><span class="w">  </span><span class="m">1970</span><span class="w"> </span>.
+drwxrwxrwx<span class="w"> </span><span class="m">3</span><span class="w"> </span>root<span class="w"> </span>root<span class="w">        </span><span class="m">60</span><span class="w"> </span>Feb<span class="w">  </span><span class="m">7</span><span class="w"> </span><span class="m">15</span>:54<span class="w"> </span>..
+...
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="../_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+ 
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.robotics@ifm.com">support.robotics@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

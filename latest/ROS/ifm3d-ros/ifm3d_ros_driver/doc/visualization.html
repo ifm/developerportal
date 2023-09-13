@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HOW to visualize the point cloud with RVIZ &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/clipboard.min.js"></script>
+        <script src="../../../../_static/copybutton.js"></script>
+        <script src="../../../../_static/js/versionwarning.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>HOW to visualize the point cloud with RVIZ</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/ROS/ifm3d-ros/ifm3d_ros_driver/doc/visualization.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="how-to-visualize-the-point-cloud-with-rviz">
+<h1>HOW to visualize the point cloud with RVIZ<a class="headerlink" href="#how-to-visualize-the-point-cloud-with-rviz" title="Permalink to this headline"></a></h1>
+<p>The included launch file <code class="docutils literal notranslate"><span class="pre">camera.launch</span></code> will publish and remap all topics and services to <code class="docutils literal notranslate"><span class="pre">/ifm3d_ros_driver/xxx</span></code>, for example the point cloud topic will be remapped to <code class="docutils literal notranslate"><span class="pre">/ifm3d_ros_driver/camera/cloud</span></code>.</p>
+<p>When you open RVIZ for the first time and subscribe the point cloud topic to it, it will not be displayed as the transformation chain between the different reference frames is not complete.</p>
+<p>The first option is to use a “dummy” a static transform publisher to fix the missing link in the pose transformation chain:</p>
+<p>Open a new shell and run this simple <code class="docutils literal notranslate"><span class="pre">static_transform_publisher</span></code> to map the <code class="docutils literal notranslate"><span class="pre">ifm3d/camera_link</span></code> to the <code class="docutils literal notranslate"><span class="pre">map</span></code> frame.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rosrun</span> <span class="n">tf2_ros</span> <span class="n">static_transform_publisher</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="nb">map</span> <span class="n">ifm3d</span><span class="o">/</span><span class="n">camera_link</span>
+</pre></div>
+</div>
+<p>The second option is to pick a different reference frame in the Rviz options:</p>
+<p><img alt="Choose reference frame in the global options of Rviz" src="../../../../_images/rviz_ref_frame.png" /></p>
+<div class="section" id="change-axis-directions-to-suit-your-interpretation-of-a-robot-coordinate-reference-system">
+<h2>Change axis directions to suit your interpretation of a robot coordinate reference system<a class="headerlink" href="#change-axis-directions-to-suit-your-interpretation-of-a-robot-coordinate-reference-system" title="Permalink to this headline"></a></h2>
+<p>We have removed the rotation parameter which have been part of the <code class="docutils literal notranslate"><span class="pre">nodelet.launch</span></code> launch file which move the axis directions around. This decision was reached because we believe there should be only one place to change the extrinsic parameters to keep things unambiguous.<br />
+We suggest changing the extrinsic parameters via our JSON interface (see ifm3d) and the mapped dump and config ROS services for this. The extrinsic parameters are applied to every measurement (distance image, and point cloud).</p>
+<p>If you would still like to add a <code class="docutils literal notranslate"><span class="pre">tf</span> <span class="pre">publisher</span></code> which switches the X-, and Z-axis please see the example below. Afterwards the Z-axis will measure positive values in the direction of the center optical ray of each camera.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="o">&lt;</span><span class="n">node</span> <span class="n">pkg</span><span class="o">=</span><span class="s2">&quot;tf2_ros&quot;</span>
+        <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;static_transform_publisher&quot;</span>
+        <span class="n">name</span><span class="o">=</span><span class="s2">&quot;$(arg camera)_tf&quot;</span>
+        <span class="n">args</span><span class="o">=</span><span class="s2">&quot;0 0 0 -1.5707963267948966 0 -1.5707963267948966 $(arg frame_id_base)_link $(arg frame_id_base)_optical_link&quot;</span>
+        <span class="n">respawn</span><span class="o">=</span><span class="s2">&quot;$(arg respawn)&quot;</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="../_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+ 
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.robotics@ifm.com">support.robotics@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

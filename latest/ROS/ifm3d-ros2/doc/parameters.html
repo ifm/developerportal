@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parameters &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../documentation/FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Parameters</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/ROS/ifm3d-ros2/doc/parameters.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="parameters">
+<h1>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline"></a></h1>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Data Type</p></th>
+<th class="head"><p>Default Value</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>~/buffer_id_list</p></td>
+<td><p>string array</p></td>
+<td><p>{“CONFIDENCE_IMAGE”,”EXTRINSIC_CALIB”,”JPEG_IMAGE” “NORM_AMPLITUDE_IMAGE”,”RADIAL_DISTANCE_IMAGE”,”RGB_INFO”,”XYZ”}</p></td>
+<td><p>List of buffer_id strings denoting the wanted buffers.</p></td>
+</tr>
+<tr class="row-odd"><td><p>~/ip</p></td>
+<td><p>string</p></td>
+<td><p>192.168.0.69</p></td>
+<td><p>The ip address of the camera.</p></td>
+</tr>
+<tr class="row-even"><td><p>~/log_level</p></td>
+<td><p>string</p></td>
+<td><p>warning</p></td>
+<td><p>ifm3d-ros2 node logging level.</p></td>
+</tr>
+<tr class="row-odd"><td><p>~/tf.cloud_link.frame_name</p></td>
+<td><p>string</p></td>
+<td><p>&lt;node_name&gt;_optical_link</p></td>
+<td><p>Name for the point cloud frame.</p></td>
+</tr>
+<tr class="row-even"><td><p>~/tf.cloud_link.publish_transform</p></td>
+<td><p>bool</p></td>
+<td><p>true</p></td>
+<td><p>Whether the transform from the cameras mounting point to the point cloud center should be published.</p></td>
+</tr>
+<tr class="row-odd"><td><p>~/tf.mounting_link.frame_name</p></td>
+<td><p>string</p></td>
+<td><p>&lt;node_name&gt;_mounting_link</p></td>
+<td><p>Name for the mounting point frame.</p></td>
+</tr>
+<tr class="row-even"><td><p>~/tf.optical_link.frame_name</p></td>
+<td><p>string</p></td>
+<td><p>&lt;node_name&gt;_optical_link</p></td>
+<td><p>Name for the point optical frame.</p></td>
+</tr>
+<tr class="row-odd"><td><p>~/tf.optical_link.publish_transform</p></td>
+<td><p>bool</p></td>
+<td><p>true</p></td>
+<td><p>Whether the transform from the cameras mounting point to the point optical center should be published.</p></td>
+</tr>
+<tr class="row-even"><td><p>~/tf.optical_link.transform</p></td>
+<td><p>double array</p></td>
+<td><p>[0, 0, 0, 0, 0, 0]</p></td>
+<td><p>Static transform from mounting link to optical link, as [x, y, z, rot_x, rot_y, rot_z]</p></td>
+</tr>
+<tr class="row-odd"><td><p>~/buffer_id_list</p></td>
+<td><p>string array</p></td>
+<td><p>{“NORM_AMPLITUDE_IMAGE”, “CONFIDENCE_IMAGE”, JPEG_IMAGE”, “RADIAL_DISTANCE_IMAGE”, “XYZ”, “EXTRINSIC_CALIB”, }</p></td>
+<td><p>List of buffer_id strings denoting the wanted buffers.</p></td>
+</tr>
+<tr class="row-even"><td><p>~/diag_mode</p></td>
+<td><p>string: “async” or “periodic”</p></td>
+<td><p>“async”</p></td>
+<td><p>Diagnostic mode: asynchronous monitoring (“async”) or periodic polling (“periodic”).</p></td>
+</tr>
+<tr class="row-odd"><td><p>~/xmlrpc_port</p></td>
+<td><p>unint</p></td>
+<td><p>50010</p></td>
+<td><p>TCP port the on-camera xmlrpc server is listening on</p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="details-on-the-published-transforms">
+<h2>Details on the published transforms<a class="headerlink" href="#details-on-the-published-transforms" title="Permalink to this headline"></a></h2>
+<p>The ifm3d-ros2 node published three transforms: the <code class="docutils literal notranslate"><span class="pre">cloud_link</span></code>, the <code class="docutils literal notranslate"><span class="pre">mounting_link</span></code> and the <code class="docutils literal notranslate"><span class="pre">optical_link</span></code>. To clarify which frame each of these transform refers to, consider the drawings below:</p>
+<p><img alt="Description of the cloud, mounting and optical frames" src="../../../_images/transforms-1.png" /></p>
+<p>The reference of the mounting frame is at the back of the O3R camera head housing (scale drawings can be found on ifm.com in the download section of the specific article). The reference for the cloud frame is defined by the extrinsic parameters set in the JSON configuration of the O3R platform (<code class="docutils literal notranslate"><span class="pre">extrinsicHeadToUser</span></code>). Generally, the cloud is configured to have for origin the center of the robot coordinate system. When no extrinsic parameter is set, the origin of the point cloud is the back of the camera head. In this case, the cloud link and the mounting link are the same.</p>
+<p><img alt="Focused description of the optical and mounting frames" src="../../../_images/transforms-2.png" /></p>
+<p>The optical frame refers to the reference point of the optical system (lens, chip, etc). A static transform is published between the mounting link and the optical link, that corresponds to the intrinsic calibration parameters of the camera. Each set of intrinsic parameters is unique to a specific camera head and set in production. These parameters are not expected to change over time.
+Note that the intrinsic parameters are split into <code class="docutils literal notranslate"><span class="pre">ExtrinsicOpticToUser</span></code> (rotations and translations of the optical system in the housing) and <code class="docutils literal notranslate"><span class="pre">Intrinsics</span></code> (specific parameters of the lens, chip, etc). For more details on the calibrations, refer to the <a class="reference external" href="https://ifm3d.com/documentation/SoftwareInterfaces/Toolbox/IntroToCalibrations/README.html">calibration documentation</a>.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="../_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+ 
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.robotics@ifm.com">support.robotics@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

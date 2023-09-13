@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to stream data &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="How to monitor the diagnostic" href="diagnostic.html" />
+    <link rel="prev" title="How to configure ODS" href="ods_config.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index_ods.html">ODS</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Mounting/mounting.html">Mounting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Instantiation/instantiation.html">Instantiation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Configuration/configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Zones/zones.html">Zones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OccupancyGrid/occupancy_grid.html">Occupancy grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Recording/ods_data_recording.html">Recording</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ChangingViews/changing_views.html">Changing views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OverhangingLoads/overhanging_loads.html">Overhanging loads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NegativeObstacles/negative_obstacles.html">Negative Obstacles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DustMitigation/dust_mitigation.html">Dust artifact mitigation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ExtrinsicCalibration/index_extrinsic_calibration.html">Extrinsic calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../FieldTest/index_field_test.html">Field test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DeviceVerification/index_device_verification.html">Device verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../iVA/index_ifmODS_iVA.html">ifmVisionAssistant</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index_ifmODS_python.html">Python</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="how_to_use_examples.html">How to use these examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ods_config.html">How to configure ODS</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">How to stream data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="diagnostic.html">How to monitor the diagnostic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ods_demo.html">Full example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Cpp/index_ifmODS_cpp.html">C++</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index_ods.html">ODS (Obstacle Detection System)</a> &raquo;</li>
+          <li><a href="index_ifmODS_python.html">Python examples</a> &raquo;</li>
+      <li>How to stream data</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/documentation/ODS/Python/ods_stream.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="how-to-stream-data">
+<h1>How to stream data<a class="headerlink" href="#how-to-stream-data" title="Permalink to this headline"></a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#############################################</span>
+<span class="c1"># Copyright 2021-present ifm electronic, gmbh</span>
+<span class="c1"># SPDX-License-Identifier: Apache-2.0</span>
+<span class="c1">#############################################</span>
+<span class="c1"># This example showcases how to start the ODS</span>
+<span class="c1"># data stream and add the received frame to a</span>
+<span class="c1"># queue using ifm3dpy.</span>
+<span class="c1">#############################################</span>
+<span class="c1"># %%</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">perf_counter</span><span class="p">,</span> <span class="n">sleep</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">ifm3dpy</span> <span class="kn">import</span> <span class="n">O3R</span><span class="p">,</span> <span class="n">FrameGrabber</span><span class="p">,</span> <span class="n">buffer_id</span>
+
+<span class="kn">from</span> <span class="nn">ods_queue</span> <span class="kn">import</span> <span class="n">ODSDataQueue</span>
+
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2">:</span><span class="si">%(filename)-10s</span><span class="s2">:</span><span class="si">%(levelname)-8s</span><span class="s2">:</span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="n">datefmt</span><span class="o">=</span><span class="s2">&quot;%y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">ODSStream</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Provides functions showcasing how to receive data from the O3R platform.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">o3r</span><span class="p">:</span> <span class="n">O3R</span><span class="p">,</span>
+        <span class="n">app_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;app0&quot;</span><span class="p">,</span>
+        <span class="n">stream_zones</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">stream_occupancy_grid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">buffer_length</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">timeout</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ods_data_queue</span> <span class="o">=</span> <span class="n">ODSDataQueue</span><span class="p">(</span><span class="n">buffer_length</span><span class="o">=</span><span class="n">buffer_length</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">buffer_ids</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">stream_zones</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">buffer_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">buffer_id</span><span class="o">.</span><span class="n">O3R_ODS_INFO</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">stream_occupancy_grid</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">buffer_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">buffer_id</span><span class="o">.</span><span class="n">O3R_ODS_OCCUPANCY_GRID</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">ods_fg</span> <span class="o">=</span> <span class="n">FrameGrabber</span><span class="p">(</span>
+            <span class="n">o3r</span><span class="p">,</span>
+            <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;/applications/instances/</span><span class="si">{</span><span class="n">app_name</span><span class="si">}</span><span class="s2">/data/pcicTCPPort&quot;</span><span class="p">])[</span>
+                <span class="s2">&quot;applications&quot;</span>
+            <span class="p">][</span><span class="s2">&quot;instances&quot;</span><span class="p">][</span><span class="n">app_name</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;pcicTCPPort&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Initialized ODS Stream&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">start_ods_stream</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Start the data stream and register a callback</span>
+<span class="sd">        to add received frames to a queue.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Starting framegrabber&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ods_fg</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer_ids</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Waiting 1 second after framegrabber start&quot;</span><span class="p">)</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ods_fg</span><span class="o">.</span><span class="n">on_new_frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ods_data_queue</span><span class="o">.</span><span class="n">add_frame</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">stop_ods_stream</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ods_fg</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">get_zones</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieve deserialized data from the queue.</span>
+
+<span class="sd">        :raises TimeoutError: if no data is received within specified timeout.</span>
+<span class="sd">        :return: the zones info</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span>
+        <span class="k">while</span> <span class="n">perf_counter</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">-</span> <span class="n">start</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ods_data_queue</span><span class="o">.</span><span class="n">ods_info_queue</span><span class="p">):</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ods_data_queue</span><span class="o">.</span><span class="n">zones</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Timeout waiting for zone data&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TimeoutError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_occupancy_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieve deserialized data from the queue.</span>
+<span class="sd">        return: the occupancy grid data</span>
+<span class="sd">        raises: a timeout if no data is received within specified timeout.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">perf_counter</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span>
+        <span class="k">while</span> <span class="n">perf_counter</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span> <span class="o">-</span> <span class="n">start</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Waiting for occupcancy grid data&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ods_data_queue</span><span class="o">.</span><span class="n">occupancy_grid_queue</span><span class="p">):</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ods_data_queue</span><span class="o">.</span><span class="n">occupancy_grid</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Timeout waiting for occupancy grid data&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">TimeoutError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">IP</span> <span class="o">=</span> <span class="s2">&quot;192.168.0.69&quot;</span>
+    <span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">(</span><span class="n">IP</span><span class="p">)</span>
+
+    <span class="c1">###################################</span>
+    <span class="c1"># Performing a reset to make sure</span>
+    <span class="c1"># we start with an empty configuration</span>
+    <span class="c1">###################################</span>
+    <span class="n">o3r</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;/applications&quot;</span><span class="p">)</span>
+    <span class="c1"># Instantiating the ODSStream object.</span>
+    <span class="c1"># We are expecting an app in app0.</span>
+    <span class="c1"># This will fail as no ODS application exists on the device.</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">ods_stream</span> <span class="o">=</span> <span class="n">ODSStream</span><span class="p">(</span>
+            <span class="n">o3r</span><span class="p">,</span> <span class="s2">&quot;app0&quot;</span><span class="p">,</span> <span class="n">stream_zones</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stream_occupancy_grid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">500</span>
+        <span class="p">)</span>
+    <span class="c1"># Failing silently to continue with the example</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="c1">###################################</span>
+    <span class="c1"># Configure an ODS application for</span>
+    <span class="c1"># the example. Assume 3D port in</span>
+    <span class="c1"># port 2. Change the config file if</span>
+    <span class="c1"># needed.</span>
+    <span class="c1">###################################</span>
+    <span class="kn">from</span> <span class="nn">ods_config</span> <span class="kn">import</span> <span class="n">load_config_from_file</span><span class="p">,</span> <span class="n">validate_json</span>
+
+    <span class="c1"># Assuming a camera facing forward, label up,</span>
+    <span class="c1"># 60 cm above the floor.</span>
+    <span class="c1"># We keep the extrinsic calibration and the ODS configuration</span>
+    <span class="c1"># separate for clarity. You can keep all configurations</span>
+    <span class="c1"># in one file if necessary.</span>
+    <span class="n">schema</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get_schema</span><span class="p">()</span>
+    <span class="n">config_snippet</span> <span class="o">=</span> <span class="n">validate_json</span><span class="p">(</span>
+        <span class="n">schema</span><span class="p">,</span> <span class="n">load_config_from_file</span><span class="p">(</span><span class="s2">&quot;configs/extrinsic_one_head.json&quot;</span><span class="p">))</span>
+    <span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">config_snippet</span><span class="p">)</span>
+    <span class="n">config_snippet</span> <span class="o">=</span> <span class="n">validate_json</span><span class="p">(</span>
+        <span class="n">schema</span><span class="p">,</span> <span class="n">load_config_from_file</span><span class="p">(</span><span class="s2">&quot;configs/ods_one_head_config.json&quot;</span><span class="p">))</span>
+    <span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">config_snippet</span><span class="p">)</span>
+    <span class="c1"># We did not start the application when configuring it,</span>
+    <span class="c1"># so we need to start it now (change state to &quot;RUN&quot;)</span>
+    <span class="n">config_snippet</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="p">{</span><span class="s2">&quot;applications&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;instances&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;app0&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;RUN&quot;</span><span class="p">}}}})</span>
+    <span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">config_snippet</span><span class="p">)</span>
+
+    <span class="c1">###################################</span>
+    <span class="c1"># Start streaming ODS data and get</span>
+    <span class="c1"># zone and occupancy grid output</span>
+    <span class="c1"># Expect an app in &quot;app0&quot;.</span>
+    <span class="c1">###################################</span>
+    <span class="n">ods_stream</span> <span class="o">=</span> <span class="n">ODSStream</span><span class="p">(</span><span class="n">o3r</span><span class="p">,</span> <span class="s2">&quot;app0&quot;</span><span class="p">,</span> <span class="n">stream_zones</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                           <span class="n">stream_occupancy_grid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ods_stream</span><span class="o">.</span><span class="n">start_ods_stream</span><span class="p">()</span>
+
+    <span class="n">zones</span> <span class="o">=</span> <span class="n">ods_stream</span><span class="o">.</span><span class="n">get_zones</span><span class="p">()</span>
+    <span class="n">ods_stream</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Current zone id used: </span><span class="si">{</span><span class="n">zones</span><span class="o">.</span><span class="n">zone_config_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">ods_stream</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Zones occupancy: </span><span class="si">{</span><span class="n">zones</span><span class="o">.</span><span class="n">zone_occupied</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">ods_stream</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Zones info timestamp: </span><span class="si">{</span><span class="n">zones</span><span class="o">.</span><span class="n">timestamp_ns</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">occupancy_grid</span> <span class="o">=</span> <span class="n">ods_stream</span><span class="o">.</span><span class="n">get_occupancy_grid</span><span class="p">()</span>
+    <span class="n">ods_stream</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Occupancy grid (first row): </span><span class="si">{</span><span class="n">occupancy_grid</span><span class="o">.</span><span class="n">image</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">ods_stream</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Occupancy grid timestamp: </span><span class="si">{</span><span class="n">occupancy_grid</span><span class="o">.</span><span class="n">timestamp_ns</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">ods_stream</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Center of cell to user transformation matrix: </span><span class="si">{</span><span class="n">occupancy_grid</span><span class="o">.</span><span class="n">transform_cell_center_to_user</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">ods_stream</span><span class="o">.</span><span class="n">stop_ods_stream</span><span class="p">()</span>
+    <span class="n">ods_stream</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;You reached the end of the ODSStream tutorial!&quot;</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+
+<span class="c1"># %%</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#############################################</span>
+<span class="c1"># Copyright 2021-present ifm electronic, gmbh</span>
+<span class="c1"># SPDX-License-Identifier: Apache-2.0</span>
+<span class="c1">#############################################</span>
+
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">ifm3dpy.framegrabber</span> <span class="kn">import</span> <span class="n">buffer_id</span>
+<span class="kn">from</span> <span class="nn">ifm3dpy.deserialize</span> <span class="kn">import</span> <span class="n">ODSInfoV1</span><span class="p">,</span> <span class="n">ODSOccupancyGridV1</span>
+
+<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2">:</span><span class="si">%(filename)-10s</span><span class="s2">:</span><span class="si">%(levelname)-8s</span><span class="s2">:</span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="n">datefmt</span><span class="o">=</span><span class="s2">&quot;%y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">ODSDataQueue</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This class provides facilities to handle data queues in an ODS application.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buffer_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_buffer_length</span> <span class="o">=</span> <span class="n">buffer_length</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">occupancy_grid_queue</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">deque</span><span class="p">(</span>
+            <span class="n">maxlen</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_buffer_length</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ods_info_queue</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">deque</span><span class="p">(</span><span class="n">maxlen</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_buffer_length</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">add_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a received frame to a queue.</span>
+<span class="sd">        We use two separate queues for the occupancy grid and the zone info.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Adding frame if available&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">frame</span><span class="o">.</span><span class="n">has_buffer</span><span class="p">(</span><span class="n">buffer_id</span><span class="o">.</span><span class="n">O3R_ODS_OCCUPANCY_GRID</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">occupancy_grid_queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">frame</span><span class="o">.</span><span class="n">get_buffer</span><span class="p">(</span><span class="n">buffer_id</span><span class="o">.</span><span class="n">O3R_ODS_OCCUPANCY_GRID</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Added occ grid&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">frame</span><span class="o">.</span><span class="n">has_buffer</span><span class="p">(</span><span class="n">buffer_id</span><span class="o">.</span><span class="n">O3R_ODS_INFO</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ods_info_queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">frame</span><span class="o">.</span><span class="n">get_buffer</span><span class="p">(</span><span class="n">buffer_id</span><span class="o">.</span><span class="n">O3R_ODS_INFO</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Added zone&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">occupancy_grid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns: the deserialized occupancy grid data, which contains the width,</span>
+<span class="sd">        height, image (the occupancy grid), timestamp and transform_cell_center_to_user matrix.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;About to pop occupancy grid&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ODSOccupancyGridV1</span><span class="p">()</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">occupancy_grid_queue</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">zones</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns: the deserialized zone data, which contains the timestamp,</span>
+<span class="sd">        zone_config_id and zone_occupied.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;About to pop zone occupied&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ODSInfoV1</span><span class="p">()</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ods_info_queue</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="../_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+ 
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.robotics@ifm.com">support.robotics@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

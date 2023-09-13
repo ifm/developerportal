@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ifm3d_ros_msgs: Dump and Config &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/clipboard.min.js"></script>
+        <script src="../../../../_static/copybutton.js"></script>
+        <script src="../../../../_static/js/versionwarning.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> O3R
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../documentation/FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>ifm3d_ros_msgs: Dump and Config</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/ROS/ifm3d-ros/ifm3d_ros_driver/doc/dump_and_config.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="ifm3d-ros-msgs-dump-and-config">
+<h1>ifm3d_ros_msgs: Dump and Config<a class="headerlink" href="#ifm3d-ros-msgs-dump-and-config" title="Permalink to this headline"></a></h1>
+<p>The ifm3d_ros_msgs package allows us to configure the O3R camera platform via two separate ways:</p>
+<ol class="simple">
+<li><p>Use ROS native service calls</p></li>
+<li><p>Use dump and config service proxies</p></li>
+</ol>
+<div class="section" id="ros-native-service-calls">
+<h2>1. ROS native service calls<a class="headerlink" href="#ros-native-service-calls" title="Permalink to this headline"></a></h2>
+<p>Per camera head connected to the visual processing unit (VPU) of the O3R platform these services are available:</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Service Definition</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Dump</p></td>
+<td><p>ifm3d/Dump</p></td>
+<td><p>Dumps the state of the camera system as a JSON (formatted as a string)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Config</p></td>
+<td><p>ifm3d/Config</p></td>
+<td><p>Provides a means to configure the VPU and Heads (imager settings), declaratively from a JSON (string) encoding of the desired settings.</p></td>
+</tr>
+<tr class="row-even"><td><p>SoftOff</p></td>
+<td><p>ifm3d/SoftOff</p></td>
+<td><p>Sets the active application of the camera into software triggered mode which will turn off the active illumination reducing both power and heat.</p></td>
+</tr>
+<tr class="row-odd"><td><p>SoftOn</p></td>
+<td><p>ifm3d/SoftOn</p></td>
+<td><p>Sets the active application of the camera into free-running mode. Its intention is to act as the inverse of <code class="docutils literal notranslate"><span class="pre">SoftOff</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p>Trigger</p></td>
+<td><p>ifm3d/Trigger</p></td>
+<td><p>Requests the driver to software trigger the imager for data acquisition.</p></td>
+</tr>
+</tbody>
+</table>
+<p>As you can see the two services <code class="docutils literal notranslate"><span class="pre">Dump</span></code> and <code class="docutils literal notranslate"><span class="pre">Config</span></code> are also part of this list.</p>
+<div class="section" id="dump">
+<h3>Dump<a class="headerlink" href="#dump" title="Permalink to this headline"></a></h3>
+<p>Calling the native rosservice <code class="docutils literal notranslate"><span class="pre">/ifm3d_ros_examples/camera/Dump</span></code> for a certain <code class="docutils literal notranslate"><span class="pre">camera</span></code> will return a string containing with the camera configuration as a JSON string. Please notice the use of backslashes (<code class="docutils literal notranslate"><span class="pre">\</span></code> before each <code class="docutils literal notranslate"><span class="pre">&quot;</span></code>) to esacpe each upper quotation mark. This is necessary to allow us to keep the JSON syntax native to the underlying API (ifm3d).</p>
+<blockquote>
+<div><p>Note: We have mapped some camera configurations to native rosservice calls to make their handling easier, e.g. <code class="docutils literal notranslate"><span class="pre">rosservice</span> <span class="pre">call</span> <span class="pre">/ifm3d_ros_examples/camera/SoftOn</span></code>. If you think you will benefit from similar rosservices, please let us know so we can add more comfort handling.</p>
+</div></blockquote>
+<p>Call this service via, e.g. for camera:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rosservice call /ifm3d_ros_examples/camera/Dump 
+status: 0
+config: &quot;{\&quot;device\&quot;:{\&quot;clock\&quot;:{\&quot;currentTime\&quot;:1581287336449588512},\&quot;diagnostic\&quot;:{\&quot;temperatures\&quot;\
+  :[],\&quot;upTime\&quot;:196692000000000},\&quot;info\&quot;:{\&quot;device\&quot;:\&quot;0301\&quot;,\&quot;deviceTreeBinaryBlob\&quot;\
+  :\&quot;tegra186-quill-p3310-1000-c03-00-base.dtb\&quot;,\&quot;features\&quot;:{},\&quot;name\&quot;:\&quot;test\&quot;\
+  ,\&quot;partNumber\&quot;:\&quot;M03975\&quot;,\&quot;productionState\&quot;:\&quot;AA\&quot;,\&quot;serialNumber\&quot;:\&quot;000201234160\&quot;\
+  ,\&quot;vendor\&quot;:\&quot;0001\&quot;},\&quot;network\&quot;:{\&quot;authorized_keys\&quot;:\&quot;\&quot;,\&quot;ipAddressConfig\&quot;\
+  :0,\&quot;macEth0\&quot;:\&quot;00:04:4B:EA:9F:0E\&quot;,\&quot;macEth1\&quot;:\&quot;00:02:01:23:41:60\&quot;,\&quot;networkSpeed\&quot;\
+  :1000,\&quot;staticIPv4Address\&quot;:\&quot;192.168.0.69\&quot;,\&quot;staticIPv4Gateway\&quot;:\&quot;192.168.0.201\&quot;\
+  ,\&quot;staticIPv4SubNetMask\&quot;:\&quot;255.255.255.0\&quot;,\&quot;useDHCP\&quot;:false},\&quot;state\&quot;:{\&quot;errorMessage\&quot;\
+  :\&quot;\&quot;,\&quot;errorNumber\&quot;:\&quot;\&quot;},\&quot;swVersion\&quot;:{\&quot;kernel\&quot;:\&quot;4.9.140-l4t-r32.4+gc35f5eb9d1d9\&quot;\
+  ,\&quot;l4t\&quot;:\&quot;r32.4.3\&quot;,\&quot;os\&quot;:\&quot;0.13.13-221\&quot;,\&quot;schema\&quot;:\&quot;v0.1.0\&quot;,\&quot;swu\&quot;:\&quot;0.15.12\&quot;\
+  }},\&quot;ports\&quot;:{\&quot;port0\&quot;:{\&quot;acquisition\&quot;:{\&quot;framerate\&quot;:10.0,\&quot;version\&quot;:{\&quot;major\&quot;\
+  :0,\&quot;minor\&quot;:0,\&quot;patch\&quot;:0}},\&quot;data\&quot;:{\&quot;algoDebugConfig\&quot;:{},\&quot;availablePCICOutput\&quot;\
+  :[],\&quot;pcicTCPPort\&quot;:50010},\&quot;info\&quot;:{\&quot;device\&quot;:\&quot;2301\&quot;,\&quot;deviceTreeBinaryBlobOverlay\&quot;\
+  :\&quot;001-ov9782.dtbo\&quot;,\&quot;features\&quot;:{\&quot;fov\&quot;:{\&quot;horizontal\&quot;:127,\&quot;vertical\&quot;:80},\&quot;\
+  resolution\&quot;:{\&quot;height\&quot;:800,\&quot;width\&quot;:1280},\&quot;type\&quot;:\&quot;2D\&quot;},\&quot;name\&quot;:\&quot;\&quot;,\&quot;partNumber\&quot;\
+  :\&quot;M03969\&quot;,\&quot;productionState\&quot;:\&quot;AA\&quot;,\&quot;sensor\&quot;:\&quot;OV9782\&quot;,\&quot;sensorID\&quot;:\&quot;OV9782_127x80_noIllu_Csample\&quot;\
+  ,\&quot;serialNumber\&quot;:\&quot;000000000382\&quot;,\&quot;vendor\&quot;:\&quot;0001\&quot;},\&quot;mode\&quot;:\&quot;experimental_autoexposure2D\&quot;\
+  ,\&quot;processing\&quot;:{\&quot;extrinsicHeadToUser\&quot;:{\&quot;rotX\&quot;:0.0,\&quot;rotY\&quot;:0.0,\&quot;rotZ\&quot;:0.0,\&quot;\
+  transX\&quot;:0.0,\&quot;transY\&quot;:0.0,\&quot;transZ\&quot;:0.0},\&quot;version\&quot;:{\&quot;major\&quot;:0,\&quot;minor\&quot;:0,\&quot;\
+  patch\&quot;:0}},\&quot;state\&quot;:\&quot;RUN\&quot;},\&quot;port2\&quot;:{\&quot;acquisition\&quot;:{\&quot;exposureLong\&quot;:5000,\&quot;\
+  exposureShort\&quot;:400,\&quot;framerate\&quot;:10.0,\&quot;offset\&quot;:0.0,\&quot;version\&quot;:{\&quot;major\&quot;:0,\&quot;\
+  minor\&quot;:0,\&quot;patch\&quot;:0}},\&quot;data\&quot;:{\&quot;algoDebugConfig\&quot;:{},\&quot;availablePCICOutput\&quot;\
+  :[],\&quot;pcicTCPPort\&quot;:50012},\&quot;info\&quot;:{\&quot;device\&quot;:\&quot;3101\&quot;,\&quot;deviceTreeBinaryBlobOverlay\&quot;\
+  :\&quot;001-irs2381c.dtbo\&quot;,\&quot;features\&quot;:{\&quot;fov\&quot;:{\&quot;horizontal\&quot;:105,\&quot;vertical\&quot;:78},\&quot;\
+  resolution\&quot;:{\&quot;height\&quot;:172,\&quot;width\&quot;:224},\&quot;type\&quot;:\&quot;3D\&quot;},\&quot;name\&quot;:\&quot;\&quot;,\&quot;partNumber\&quot;\
+  :\&quot;M03969\&quot;,\&quot;productionState\&quot;:\&quot;AA\&quot;,\&quot;sensor\&quot;:\&quot;IRS2381C\&quot;,\&quot;sensorID\&quot;:\&quot;IRS2381C_105x78_4x2W_110x90_C7\&quot;\
+  ,\&quot;serialNumber\&quot;:\&quot;000000000382\&quot;,\&quot;vendor\&quot;:\&quot;0001\&quot;},\&quot;mode\&quot;:\&quot;standard_range2m\&quot;\
+  ,\&quot;processing\&quot;:{\&quot;diParam\&quot;:{\&quot;anfFilterSizeDiv2\&quot;:2,\&quot;enableDynamicSymmetry\&quot;\
+  :true,\&quot;enableStraylight\&quot;:true,\&quot;enableTemporalFilter\&quot;:true,\&quot;excessiveCorrectionThreshAmp\&quot;\
+  :0.3,\&quot;excessiveCorrectionThreshDist\&quot;:0.08,\&quot;maxDistNoise\&quot;:0.02,\&quot;maxSymmetry\&quot;\
+  :0.4,\&quot;medianSizeDiv2\&quot;:0,\&quot;minAmplitude\&quot;:20.0,\&quot;minReflectivity\&quot;:0.0,\&quot;mixedPixelFilterMode\&quot;\
+  :1,\&quot;mixedPixelThresholdRad\&quot;:0.15},\&quot;extrinsicHeadToUser\&quot;:{\&quot;rotX\&quot;:0.0,\&quot;rotY\&quot;\
+  :0.0,\&quot;rotZ\&quot;:0.0,\&quot;transX\&quot;:0.0,\&quot;transY\&quot;:0.0,\&quot;transZ\&quot;:0.0},\&quot;version\&quot;:{\&quot;\
+  major\&quot;:0,\&quot;minor\&quot;:0,\&quot;patch\&quot;:0}},\&quot;state\&quot;:\&quot;RUN\&quot;}}}&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="config">
+<h2>Config<a class="headerlink" href="#config" title="Permalink to this headline"></a></h2>
+<p>Below you can see an example on how to configure your camera via a rosservice call. The JSON string can be a partial JSON string. It only needs to follow basic JSON syntax.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rosservice call /ifm3d_ros_examples/camera/Config &quot;json: &#39;{\&quot;ports\&quot;:{\&quot;port2\&quot;:{\&quot;mode\&quot;:\&quot;standard_range2m\&quot;}}}&#39;&quot; 
+status: 0
+msg: &quot;OK&quot;
+</pre></div>
+</div>
+<p>This is equivalent to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rosservice call /ifm3d_ros_examples/camera/Config &#39;&quot;{\&quot;ports\&quot;:{\&quot;port2\&quot;:{\&quot;mode\&quot;:\&quot;standard_range2m\&quot;}}}&quot;&#39;
+status: 0
+msg: &quot;OK&quot;
+
+</pre></div>
+</div>
+</div>
+<div class="section" id="dump-and-config-service-proxies">
+<h2>2. dump and config service proxies<a class="headerlink" href="#dump-and-config-service-proxies" title="Permalink to this headline"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ifm3d-ros</span></code> provides access to each camera parameter via the <code class="docutils literal notranslate"><span class="pre">Dump</span></code> and <code class="docutils literal notranslate"><span class="pre">Config</span></code> services exposed by the <code class="docutils literal notranslate"><span class="pre">camera_nodelet</span></code>.</p>
+<p>Additionally, command-line scripts called <code class="docutils literal notranslate"><span class="pre">dump</span></code> and <code class="docutils literal notranslate"><span class="pre">config</span></code> are provided as wrapper interfaces to the native API <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code>. This gives a feel similar to using the underlying C++ API’s command-line tool, from the ROS-independent driver except proxying the calls through the ROS network.
+They are part of the <code class="docutils literal notranslate"><span class="pre">ifm3d_ros_msgs</span></code> subpackage, so if you can’t access them please make sure it is installed on your client.</p>
+<p>For example, to dump the state of the camera:<br />
+(exemplary output from an O3R perception platform with one camera head connected is shown)</p>
+<blockquote>
+<div><p>Note: The service proxying only works on the <code class="docutils literal notranslate"><span class="pre">/ifm3d_ros_examples/camera/</span></code> namespace at the moment.</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ roslaunch ifm3d_ros_examples camera.launch &amp;
+$ rosrun ifm3d_ros_msgs dump
+{
+  &quot;device&quot;: {
+    &quot;clock&quot;: {
+      &quot;currentTime&quot;: 1581193835185485800
+    },
+    &quot;diagnostic&quot;: {
+      &quot;temperatures&quot;: [],
+      &quot;upTime&quot;: 103190000000000
+    },
+    &quot;info&quot;: {
+      &quot;device&quot;: &quot;0301&quot;,
+      &quot;deviceTreeBinaryBlob&quot;: &quot;tegra186-quill-p3310-1000-c03-00-base.dtb&quot;,
+      &quot;features&quot;: {},
+      &quot;name&quot;: &quot;&quot;,
+      &quot;  partNumber&quot;: &quot;M03975&quot;,
+      &quot;productionState&quot;: &quot;AA&quot;,
+      &quot;serialNumber&quot;: &quot;000201234160&quot;,
+      &quot;vendor&quot;: &quot;0001&quot;
+    },
+    &quot;network&quot;: {
+      &quot;authorized_keys&quot;: &quot;&quot;,
+      &quot;ipAddressConfig&quot;: 0,
+      &quot;macEth0&quot;: &quot;00:04:4B:EA:9F:0E&quot;,
+      &quot;macEth1&quot;: &quot;00:02:01:23:41:60&quot;,
+      &quot;networkSpeed&quot;: 1000,
+      &quot;staticIPv4Address&quot;: &quot;192.168.0.69&quot;,
+      &quot;staticIPv4Gateway&quot;: &quot;192.168.0.201&quot;,
+      &quot;staticIPv4SubNetMask&quot;: &quot;255.255.255.0&quot;,
+      &quot;useDHCP&quot;: false
+    },
+    &quot;state&quot;: {
+      &quot;errorMessage&quot;: &quot;&quot;,
+      &quot;errorNumber&quot;: &quot;&quot;
+    },
+    &quot;swVersion&quot;: {
+      &quot;kernel&quot;: &quot;4.9.140-l4t-r32.4+gc35f5eb9d1d9&quot;,
+      &quot;l4t&quot;: &quot;r32.4.3&quot;,
+      &quot;os&quot;: &quot;0.13.13-221&quot;,
+      &quot;schema&quot;: &quot;v0.1.0&quot;,
+      &quot;swu&quot;: &quot;0.15.12&quot;
+    }
+  },
+  &quot;ports&quot;: {
+    &quot;port0&quot;: {
+      &quot;acquisition&quot;: {
+        &quot;framerate&quot;: 10,
+        &quot;version&quot;: {
+          &quot;major&quot;: 0,
+          &quot;minor&quot;: 0,
+          &quot;patch&quot;: 0
+        }
+      },
+      &quot;data&quot;: {
+        &quot;algoDebugConfig&quot;: {},
+        &quot;availablePCICOutput&quot;: [],
+        &quot;pcicTCPPort&quot;: 50010
+      },
+      &quot;info&quot;: {
+        &quot;device&quot;: &quot;2301&quot;,
+        &quot;deviceTreeBinaryBlobOverlay&quot;: &quot;001-ov9782.dtbo&quot;,
+        &quot;features&quot;: {
+          &quot;fov&quot;: {
+            &quot;horizontal&quot;: 127,
+            &quot;vertical&quot;: 80
+          },
+          &quot;  resolution&quot;: {
+            &quot;height&quot;: 800,
+            &quot;width&quot;: 1280
+          },
+          &quot;type&quot;: &quot;2D&quot;
+        },
+        &quot;name&quot;: &quot;&quot;,
+        &quot;partNumber&quot;: &quot;M03969&quot;,
+        &quot;productionState&quot;: &quot;AA&quot;,
+        &quot;sensor&quot;: &quot;OV9782&quot;,
+        &quot;sensorID&quot;: &quot;OV9782_127x80_noIllu_Csample&quot;,
+        &quot;serialNumber&quot;: &quot;000000000382&quot;,
+        &quot;vendor&quot;: &quot;0001&quot;
+      },
+      &quot;mode&quot;: &quot;experimental_autoexposure2D&quot;,
+      &quot;processing&quot;: {
+        &quot;extrinsicHeadToUser&quot;: {
+          &quot;rotX&quot;: 0,
+          &quot;rotY&quot;: 0,
+          &quot;rotZ&quot;: 0,
+          &quot;  transX&quot;: 0,
+          &quot;transY&quot;: 0,
+          &quot;transZ&quot;: 0
+        },
+        &quot;version&quot;: {
+          &quot;major&quot;: 0,
+          &quot;minor&quot;: 0,
+          &quot;  patch&quot;: 0
+        }
+      },
+      &quot;state&quot;: &quot;RUN&quot;
+    },
+    &quot;port2&quot;: {
+      &quot;acquisition&quot;: {
+        &quot;exposureLong&quot;: 5000,
+        &quot;  exposureShort&quot;: 400,
+        &quot;framerate&quot;: 10,
+        &quot;offset&quot;: 0,
+        &quot;version&quot;: {
+          &quot;major&quot;: 0,
+          &quot;  minor&quot;: 0,
+          &quot;patch&quot;: 0
+        }
+      },
+      &quot;data&quot;: {
+        &quot;algoDebugConfig&quot;: {},
+        &quot;availablePCICOutput&quot;: [],
+        &quot;pcicTCPPort&quot;: 50012
+      },
+      &quot;info&quot;: {
+        &quot;device&quot;: &quot;3101&quot;,
+        &quot;deviceTreeBinaryBlobOverlay&quot;: &quot;001-irs2381c.dtbo&quot;,
+        &quot;features&quot;: {
+          &quot;fov&quot;: {
+            &quot;horizontal&quot;: 105,
+            &quot;vertical&quot;: 78
+          },
+          &quot;  resolution&quot;: {
+            &quot;height&quot;: 172,
+            &quot;width&quot;: 224
+          },
+          &quot;type&quot;: &quot;3D&quot;
+        },
+        &quot;name&quot;: &quot;&quot;,
+        &quot;partNumber&quot;: &quot;M03969&quot;,
+        &quot;productionState&quot;: &quot;AA&quot;,
+        &quot;sensor&quot;: &quot;IRS2381C&quot;,
+        &quot;sensorID&quot;: &quot;IRS2381C_105x78_4x2W_110x90_C7&quot;,
+        &quot;serialNumber&quot;: &quot;000000000382&quot;,
+        &quot;vendor&quot;: &quot;0001&quot;
+      },
+      &quot;mode&quot;: &quot;standard_range4m&quot;,
+      &quot;processing&quot;: {
+        &quot;diParam&quot;: {
+          &quot;anfFilterSizeDiv2&quot;: 2,
+          &quot;enableDynamicSymmetry&quot;: true,
+          &quot;enableStraylight&quot;: true,
+          &quot;enableTemporalFilter&quot;: true,
+          &quot;excessiveCorrectionThreshAmp&quot;: 0.3,
+          &quot;excessiveCorrectionThreshDist&quot;: 0.08,
+          &quot;maxDistNoise&quot;: 0.02,
+          &quot;maxSymmetry&quot;: 0.4,
+          &quot;medianSizeDiv2&quot;: 0,
+          &quot;minAmplitude&quot;: 20,
+          &quot;minReflectivity&quot;: 0,
+          &quot;mixedPixelFilterMode&quot;: 1,
+          &quot;mixedPixelThresholdRad&quot;: 0.15
+        },
+        &quot;extrinsicHeadToUser&quot;: {
+          &quot;rotX&quot;: 1,
+          &quot;rotY&quot;: 0,
+          &quot;rotZ&quot;: 0,
+          &quot;transX&quot;: 100,
+          &quot;transY&quot;: 0,
+          &quot;transZ&quot;: 0
+        },
+        &quot;version&quot;: {
+          &quot;  major&quot;: 0,
+          &quot;minor&quot;: 0,
+          &quot;patch&quot;: 0
+        }
+      },
+      &quot;state&quot;: &quot;RUN&quot;
+    }
+  }
+}
+</pre></div>
+</div>
+<p>Chaining together Linux pipelines works just as it does in <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code>. For example, using a combination of <code class="docutils literal notranslate"><span class="pre">dump</span></code> and <code class="docutils literal notranslate"><span class="pre">config</span></code> to set a new name on the camera would look like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rosrun ifm3d dump | jq &#39;.ports.port0.mode=&quot;standard_range2m&quot;&#39; | rosrun ifm3d config 
+$ rosrun ifm3d dump | jq .ports.port0.mode
+&quot;experimental_high_2m&quot;
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>NOTE:</strong> If you do not have <code class="docutils literal notranslate"><span class="pre">jq</span></code> on your system, it can be installed with: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">jq</span></code></p>
+</div></blockquote>
+<p>For the <code class="docutils literal notranslate"><span class="pre">config</span></code> command, one difference between our ROS implementation and the <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> implementation is that we only accept input on <code class="docutils literal notranslate"><span class="pre">stdin</span></code>. So, if you had a file with JSON you wish to configure your camera with, you would simply use the file I/O redirection facilities of your shell (or something like <code class="docutils literal notranslate"><span class="pre">cat</span></code>) to feed the data to <code class="docutils literal notranslate"><span class="pre">stdin</span></code>. For example, in <code class="docutils literal notranslate"><span class="pre">bash</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ rosrun ifm3d dump &gt; dump.json
+$ cat dump.json | jq &#39;.ports.port0.mode=&quot;experimental_high_2m&quot;&#39; &gt; config.json
+$ rosrun ifm3d config &lt; config.json
+</pre></div>
+</div>
+<p>Beyond the requirement of prefacing your command-line with <code class="docutils literal notranslate"><span class="pre">rosrun</span></code> to invoke the ROS version of these tools, they operate the same. To learn more about the functionality and concepts, you can read the docs <a class="reference external" href="https://github.com/ifm/ifm3d/blob/master/doc/configuring.md">here</a>.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="../_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+ 
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.robotics@ifm.com">support.robotics@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
