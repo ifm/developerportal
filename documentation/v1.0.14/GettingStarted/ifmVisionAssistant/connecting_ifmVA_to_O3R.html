@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Starting the ifmVisionAssistant and connecting to the O3R-System &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/js/versionwarning.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="First steps after the first initial connection" href="first_steps_ifmVA.html" />
+    <link rel="prev" title="ifmVisionAssistant on Linux" href="iVA_with_wine.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> O3R
+          </a>
+              <div class="version">
+                v1.0.14
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index_getting_started.html">Getting started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Unboxing/hw_unboxing.html">Hardware unboxing</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index_sw_stack.html">Pick your favorite software stack</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index_iVA.html">ifmVisionAssistant</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="introduction_and_installation.html">Introduction and installation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="iVA_with_wine.html">ifmVisionAssistant on Linux</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Connect to the O3R</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#start-the-ifmvisionassistant">Start the ifmVisionAssistant</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#start-screen-overview">Start screen overview</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#connection">Connection</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#by-using-find-sensor">By using <code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">sensor</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#manual-connection">Manual connection</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#connect-to-recent-systems-by-using-recent">Connect to recent systems by using <code class="docutils literal notranslate"><span class="pre">Recent</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="first_steps_ifmVA.html">First steps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference external" href="https://api.ifm3d.com/html/examples/index.html">Python</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://api.ifm3d.com/html/examples/index.html">C++</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index_getting_started.html">Getting started with the O3R</a> &raquo;</li>
+          <li><a href="../index_sw_stack.html">Pick your favorite software stack</a> &raquo;</li>
+          <li><a href="index_iVA.html">Getting started with the ifm Vision Assistant</a> &raquo;</li>
+      <li>Starting the ifmVisionAssistant and connecting to the O3R-System</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/GettingStarted/ifmVisionAssistant/connecting_ifmVA_to_O3R.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="starting-the-ifmvisionassistant-and-connecting-to-the-o3r-system">
+<h1>Starting the ifmVisionAssistant and connecting to the O3R-System<a class="headerlink" href="#starting-the-ifmvisionassistant-and-connecting-to-the-o3r-system" title="Permalink to this headline"></a></h1>
+<div class="section" id="start-the-ifmvisionassistant">
+<h2>Start the ifmVisionAssistant<a class="headerlink" href="#start-the-ifmvisionassistant" title="Permalink to this headline"></a></h2>
+<p>After executing the <code class="docutils literal notranslate"><span class="pre">ifmVisionAssistant.exe</span></code>, the ifmVisionAssistant is loading and opening the start screen.</p>
+<p><img alt="starting the ifmVA" src="../../_images/starting_ifmVA.gif" /></p>
+</div>
+<div class="section" id="start-screen-overview">
+<h2>Start screen overview<a class="headerlink" href="#start-screen-overview" title="Permalink to this headline"></a></h2>
+<p>The start screen is separated into three sections: ``Find sensor<code class="docutils literal notranslate"><span class="pre">,</span></code>Recent<code class="docutils literal notranslate"><span class="pre">,</span> <span class="pre">and</span> </code>Replay` sections</p>
+<p><img alt="start screen" src="../../_images/start_screen.png" /></p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Section</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Find sensor</p></td>
+<td><p>Automatically find a ifm vision sensor (O2I, O2D, O3X, O3D, O3R, etc.)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Recent</p></td>
+<td><p>Show all recently connected systems</p></td>
+</tr>
+<tr class="row-even"><td><p>Replay</p></td>
+<td><p>Replay previously recorded data (recorded by the ifmVisionAssistant)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="connection">
+<h2>Connection<a class="headerlink" href="#connection" title="Permalink to this headline"></a></h2>
+<div class="section" id="by-using-find-sensor">
+<h3>By using <code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">sensor</span></code><a class="headerlink" href="#by-using-find-sensor" title="Permalink to this headline"></a></h3>
+<p>To automatically connect the ifmVisionAssistant with the O3R system, a peer to peer connection is necessary. Having a switch and/or a router in between (leaving the broadcast domain), will interfere or make the automatic search impossible.</p>
+<p>In these circumstances, or if the ifmVisionAssistant cannot automatically find the O3R system, a manual connection is necessary.</p>
+<p><img alt="no device found" src="../../_images/no_device_found.gif" /></p>
+</div>
+<div class="section" id="manual-connection">
+<h3>Manual connection<a class="headerlink" href="#manual-connection" title="Permalink to this headline"></a></h3>
+<p>To connect manually to a system, the respective article and IP address of the system is needed. To open up the manual connection dialogue, please press the keyboard shortcut <code class="docutils literal notranslate"><span class="pre">CTRL</span> <span class="pre">+</span> <span class="pre">M</span></code>.
+After choosing the article <code class="docutils literal notranslate"><span class="pre">OVP800</span> <span class="pre">==</span> <span class="pre">O3R</span></code>, the IP address is requested.</p>
+<p><strong>Warning: Both the O3R and the PC need to be in the same network address area. The default IP for the O3R is 192.168.0.69. The PC should not have this IP address.</strong></p>
+<p><img alt="manual connect" src="../../_images/manual_connect.gif" /></p>
+</div>
+<div class="section" id="connect-to-recent-systems-by-using-recent">
+<h3>Connect to recent systems by using <code class="docutils literal notranslate"><span class="pre">Recent</span></code><a class="headerlink" href="#connect-to-recent-systems-by-using-recent" title="Permalink to this headline"></a></h3>
+<p>The ifmVisionAssistant saves former established connections. This could also include other hardware like O2I, O2D, O3X, etc.</p>
+<p>Using the recent connection can save time instead of always using the find/manual connection.</p>
+<p><img alt="recent connections" src="../../_images/recent_connections.gif" /></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="../_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+ 
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.robotics@ifm.com">support.robotics@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

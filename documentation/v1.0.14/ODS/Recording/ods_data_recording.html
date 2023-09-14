@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ODS data recording strategies &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/js/versionwarning.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="How to switch cameras" href="../ChangingViews/changing_views.html" />
+    <link rel="prev" title="Occupancy grid" href="../OccupancyGrid/occupancy_grid.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> O3R
+          </a>
+              <div class="version">
+                v1.0.14
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index_ods.html">ODS</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Mounting/mounting.html">Mounting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Instantiation/instantiation.html">Instantiation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Configuration/configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Zones/zones.html">Zones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OccupancyGrid/occupancy_grid.html">Occupancy grid</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Recording</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#why-record">Why record</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-to-record">What to record</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#recording-types">Recording types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#normal">Normal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#algodebug">AlgoDebug</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#when-to-record">When to record</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#recording-events">Recording events</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-record">How to record</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#recording-format">Recording format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ifmvisionassistant">ifmVisionAssistant</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#record-and-replay">Record and Replay</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#how-to-post-process-the-recorded-data">How to post-process the recorded data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ChangingViews/changing_views.html">Changing views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OverhangingLoads/overhanging_loads.html">Overhanging loads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NegativeObstacles/negative_obstacles.html">Negative Obstacles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DustMitigation/dust_mitigation.html">Dust artifact mitigation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ExtrinsicCalibration/index_extrinsic_calibration.html">Extrinsic calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../FieldTest/index_field_test.html">Field test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DeviceVerification/index_device_verification.html">Device verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../iVA/index_ifmODS_iVA.html">ifmVisionAssistant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Python/index_ifmODS_python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Cpp/index_ifmODS_cpp.html">C++</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index_ods.html">ODS (Obstacle Detection System)</a> &raquo;</li>
+      <li>ODS data recording strategies</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/ODS/Recording/ods_data_recording.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="ods-data-recording-strategies">
+<h1>ODS data recording strategies<a class="headerlink" href="#ods-data-recording-strategies" title="Permalink to this headline"></a></h1>
+<p>The following document shall give an overview of why, when, how and what kind of ODS data to record.</p>
+<div class="section" id="why-record">
+<h2>Why record<a class="headerlink" href="#why-record" title="Permalink to this headline"></a></h2>
+<p>During different phases of the integration/development process, it is necessary to check and verify the ODS and/or O3R capabilities. To do so, the system must be tested with different goals in mind: objects to detect, stability, performance, etc.
+During all testing phases, issues could appear. To improve and verify the system, these issues (or lack of) need to be documented and recorded. This is the reason for the data recording.</p>
+</div>
+<div class="section" id="what-to-record">
+<h2>What to record<a class="headerlink" href="#what-to-record" title="Permalink to this headline"></a></h2>
+<p>All appearing issues, misbehavior or the lack of issues for certain situations are interesting to record. for example:</p>
+<ul class="simple">
+<li><p>Wrongly detected objects (for example wrong distance)</p></li>
+<li><p>Not detected objects</p></li>
+<li><p>False positives (for example dust)</p></li>
+</ul>
+<p>In general, everything which is not as expected, should be recorded.</p>
+</div>
+<div class="section" id="recording-types">
+<h2>Recording types<a class="headerlink" href="#recording-types" title="Permalink to this headline"></a></h2>
+<p>The O3R (ODS system) has two different recording data types: “normal” and “algo-debug.”</p>
+<div class="section" id="normal">
+<h3>Normal<a class="headerlink" href="#normal" title="Permalink to this headline"></a></h3>
+<p>These are all non algo-debug data. for example:</p>
+<ul class="simple">
+<li><p>3D data</p></li>
+<li><p>Amplitude</p></li>
+<li><p>Diagnosis</p></li>
+<li><p>Temperature</p></li>
+</ul>
+<p>These are possible to receive from a customer perspective and could be used for customer specific software. These are (nearly) the same data streams the ifm applications uses. However, these data are not usable for the ifm to improve or verify the ifm applications, filters, etc.</p>
+</div>
+<div class="section" id="algodebug">
+<h3>AlgoDebug<a class="headerlink" href="#algodebug" title="Permalink to this headline"></a></h3>
+<p>“AlgoDebug” records all necessary data for ifm to re-simulate the event as it occurred during live operation.
+This includes the “normal” ifm data streams, e.g amplitude data, distance data, occupancy grid data, etc., and additional information from applications which might be protected because they are considered the intellectual property of ifm. This data is used to replay scenarios and reevaluate algorithmic approaches. Without this data, no feedback can be provided.</p>
+<p>The regular ifm data streams inside an ifm algo-debug dataset can be access by anyone without needing specific tools, that is the same way as a regular non-Algo Debug dataset.</p>
+</div>
+</div>
+<div class="section" id="when-to-record">
+<h2>When to record<a class="headerlink" href="#when-to-record" title="Permalink to this headline"></a></h2>
+<p>Recording data - and especially algo-debug data - can grow rapidly in size and therefore in memory. for example: Two heads and an ODS application running, might lead to 450 MB within 10 sec. Having several GB of algo-debug data is not untypical during several testing phases. Try to avoid unnecessary data. for example:</p>
+<ul class="simple">
+<li><p>Do not record data, if other issues are still active. for example: Active diagnosis errors (Overtemperature, wrong calibration, etc.)</p></li>
+<li><p>Do not record several times the same artifact, if new data wouldn’t show any new information.</p></li>
+<li><p>Seeing the misbehavior in one recording is proof enough</p></li>
+<li><p>Do not record several minutes - some seconds before and after the misbehavior is enough. for example 5 sec. before and after.</p></li>
+<li><p>If reproducible, try to start the recording with an stationary AGV and start driving after some waiting time (~1-2- sec.)</p></li>
+</ul>
+<p>Clear naming and additional information to the recordings will help analyze the data. for example:</p>
+<ul class="simple">
+<li><p>Stating the issue and what was expected</p></li>
+<li><p>Clarify the ambient environment (sunlight, dust, temperature, etc.)</p></li>
+<li><p>Explain how the misbehavior can be reproduced</p></li>
+<li><p>Tell how often the issue is appearing</p></li>
+<li><p>If the issue is not reproducible, more recordings might be beneficial</p></li>
+</ul>
+<p>In general: Unexpected behavior should be recorded. Data is good, more data of the same doesn’t help. However, if in doubt: more data is better than no data.</p>
+<div class="section" id="recording-events">
+<h3>Recording events<a class="headerlink" href="#recording-events" title="Permalink to this headline"></a></h3>
+<p>There might be several events where automatic recording is beneficial. These could be:</p>
+<ul class="simple">
+<li><p>O3R diagnosis errors get activated</p></li>
+<li><p>Customer software errors (exceptions, etc.)</p></li>
+<li><p>Differences of object detection: ODS detects an object, but the LIDAR doesn’t or vice versa</p></li>
+</ul>
+<p>It might be beneficial to establish some kind of “black box” functionality. Record the events within a ring buffer, which might be deleted either through a reboot or a person. This could be especially helpful for end-customers who encounter issues. The recorded data might be hold in RAM and forwarded via different ways (WiFi, etc.) to specific locations. This must however be established by the customer.</p>
+<p>An typical event and recording approach might look like this:</p>
+<!-- TODOO: fix mermaid -->
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>flowchart LR
+    A[AGV start] --&gt; B[ring buffer recording]
+    A --&gt; C[driving]
+    C --&gt; D{obstacle detected}
+    B --&gt; E{Recording event?}
+    D -- yes --&gt; E
+    D -- no --x C
+    E -- yes --o F[Save data]
+    E -- no --x B
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="how-to-record">
+<h2>How to record<a class="headerlink" href="#how-to-record" title="Permalink to this headline"></a></h2>
+<div class="section" id="recording-format">
+<h3>Recording format<a class="headerlink" href="#recording-format" title="Permalink to this headline"></a></h3>
+<p>There is no standardized data stream format. However, is quite common to save 3D data as hdf5 data files.
+For this purposes ifm provides two separate recording formats:</p>
+<p>Namely the ifm openly accessible data (the same as can be accessed via the API) - often called the ifm hdf5 format, and a closed raw data format - called ifm algo-debug hdf5 format.</p>
+<ol class="simple">
+<li><p>normal / open ifm hdf5 format</p></li>
+<li><p>closed source / binary ifm algo-debug format.</p></li>
+</ol>
+<p>ifm algo-debug data is saved in a specific hdf5 format, see the section above.</p>
+<p>To receive and save data in this specific hdf5 data format, ifm tool are provided.</p>
+</div>
+<div class="section" id="ifmvisionassistant">
+<h3>ifmVisionAssistant<a class="headerlink" href="#ifmvisionassistant" title="Permalink to this headline"></a></h3>
+<p>The ifm Vision Assistant is the go-to tool for receiving, saving, and replaying ifm O3R datasets.
+It is capable of recording both hdf5 formats.</p>
+<div class="section" id="record-and-replay">
+<h4>Record and Replay<a class="headerlink" href="#record-and-replay" title="Permalink to this headline"></a></h4>
+<p>To record ODS data, navigate to the <code class="docutils literal notranslate"><span class="pre">Monitor</span></code> window and click on <code class="docutils literal notranslate"><span class="pre">Recording</span></code> on the bottom toolbar. After recording the data, you can replay it for debugging purposes.</p>
+<p>While recording the data there are two Toggle Buttons beside the <code class="docutils literal notranslate"><span class="pre">Start/Stop</span></code> button.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Record the Algo-Debug data when you need technical support from ifm to debug the scenario.</p>
+</div>
+<p><img alt="Record and Replay ODS" src="../../_images/record_replay.gif" /></p>
+</div>
+<div class="section" id="how-to-post-process-the-recorded-data">
+<h4>How to post-process the recorded data<a class="headerlink" href="#how-to-post-process-the-recorded-data" title="Permalink to this headline"></a></h4>
+<p>iVA records data in <strong>Hierarchical Data Format (HDF)</strong> format where the information is stored in form of streams and multi-dimensional arrays. The following example uses the <code class="docutils literal notranslate"><span class="pre">h5py</span></code> Python package to read the data.</p>
+<p>The data analyzed below is recorded by an O3R225 camera head connected to a VPU device:</p>
+<ul class="simple">
+<li><p>the 2D imager is connected to Port 0</p></li>
+<li><p>the 3D imager is connected to Port 2</p></li>
+<li><p>the IMU data is recorded at Port 6</p></li>
+<li><p>one ODS application instance is running</p></li>
+</ul>
+<p><strong>Python snippet to read the data from a recording</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">h5py</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">file_name</span> <span class="o">=</span> <span class="s1">&#39;test_ods.h5&#39;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">File</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Available streams in the recorded data : &#39;</span><span class="p">,</span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;streams&quot;</span><span class="p">]))</span>
+
+<span class="c1"># Expecting a 2D imager and a 3D imager of a head is connected to VPU</span>
+<span class="n">stream_2d</span>   <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;streams&quot;</span><span class="p">][</span><span class="s1">&#39;o3r_rgb_0&#39;</span><span class="p">]</span>
+<span class="n">stream_3d</span>   <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;streams&quot;</span><span class="p">][</span><span class="s1">&#39;o3r_tof_0&#39;</span><span class="p">]</span>
+<span class="n">stream_ods</span>  <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;streams&quot;</span><span class="p">][</span><span class="s1">&#39;o3r_app_ods_0&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># show all available data per stream</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stream_2d</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+
+<span class="c1"># Retrieving first image per data stream</span>
+<span class="n">rgb_encoded</span> <span class="o">=</span> <span class="n">stream_2d</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;jpeg&#39;</span><span class="p">]</span>
+<span class="n">rgb_decoded</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imdecode</span><span class="p">(</span><span class="n">rgb_encoded</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_UNCHANGED</span><span class="p">)</span>
+<span class="n">rgb_image</span>   <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">rgb_decoded</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
+
+<span class="n">distance_image</span>  <span class="o">=</span> <span class="n">stream_3d</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span>
+<span class="n">amplitude_image</span> <span class="o">=</span> <span class="n">stream_3d</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;amplitude&#39;</span><span class="p">]</span>
+<span class="n">occupancy_grid</span>  <span class="o">=</span> <span class="n">stream_ods</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;image&#39;</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">rgb_image</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;RGB Image&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">occupancy_grid</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span><span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Occupancy Grid&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">amplitude_image</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span><span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Amplitude Image&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">distance_image</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">,</span><span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distance Image&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="Images from Recorded Data" src="../../_images/images_from_recorded_data.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The occupancy grid image is 200 x 200 px² image (1px == 50mm) rotated 90° clockwise with respect to the camera’s orientation. The newest data in the robot forward direction is column on the right hand side of the occupancy grid.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="../_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+ 
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.robotics@ifm.com">support.robotics@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagnostics example output &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Boot-up diagnostic" href="diagnostic_bootup_monitoring.html" />
+    <link rel="prev" title="Diagnostic retrieval" href="diagnostic_retrieval.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+              <div class="version">
+                v1.0.14
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../iVA/index_iVA.html">ifm Vision Assistant</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://api.ifm3d.com/stable/">ifm3d/ifm3dpy API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Docker/index_docker.html">Docker</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index_diagnostic.html">Diagnostic</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../diagnostic_sources.html">Diagnostic error codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diagnostic_reaction_strategy.html">Reaction strategies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diagnostic_reaction_strategy.html#handling-strategies-description">Handling strategies description</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index_diagnostic_retrieval.html">Diagnostic retrieval</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="diagnostic_retrieval.html">Tools</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Example output</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#example-diagnostic-output">Example diagnostic output</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#description-id-name">Description / ID / name</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#source">Source</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#state-active-dormant">State: active/dormant</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#stats">Stats</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="diagnostic_bootup_monitoring.html">Bootup diagnostic</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../debugging.html">Debugging with ifm support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../Toolbox/index_toolbox.html">Toolbox</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index_software_interfaces.html">Software Interfaces</a> &raquo;</li>
+          <li><a href="../index_diagnostic.html">O3R Diagnostics: overview</a> &raquo;</li>
+          <li><a href="index_diagnostic_retrieval.html">Diagnostic retrieval</a> &raquo;</li>
+      <li>Diagnostics example output</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/SoftwareInterfaces/ifmDiagnostic/DiagnosticRetrieval/diagnostic_example_output.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="diagnostics-example-output">
+<h1>Diagnostics example output<a class="headerlink" href="#diagnostics-example-output" title="Permalink to this headline"></a></h1>
+<div class="section" id="example-diagnostic-output">
+<h2>Example diagnostic output<a class="headerlink" href="#example-diagnostic-output" title="Permalink to this headline"></a></h2>
+<div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;The extrinsic VPU calibration is implausible&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">105000</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ERROR_ODSAPP_EXTR_VPU_CALIB_IMPLAUSIBLE&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;source&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/applications/instances/app0&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;dormant&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;stats&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;count&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;lastActivated&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;bootid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;lastDeactivated&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;bootid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1e18bc51-bda5-4258-9463-ef03b5c59bdd&quot;</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1581090751720</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="description-id-name">
+<h3>Description / ID / name<a class="headerlink" href="#description-id-name" title="Permalink to this headline"></a></h3>
+<p>These fields are used to identify the error: <a class="reference internal" href="../diagnostic_sources.html"><span class="doc std std-doc">see the complete list of available error codes</span></a>.</p>
+</div>
+<div class="section" id="source">
+<h3>Source<a class="headerlink" href="#source" title="Permalink to this headline"></a></h3>
+<p>This field describes the source of the error code on the embedded device and OS.
+This is used to identify the exact application or process, if multiple similar sources are running in parallel.</p>
+</div>
+<div class="section" id="state-active-dormant">
+<h3>State: active/dormant<a class="headerlink" href="#state-active-dormant" title="Permalink to this headline"></a></h3>
+<p>The O3R system differentiates between active errors - which are currently active, and dormant errors - errors which happened any time between the start of the system and now.</p>
+</div>
+<div class="section" id="stats">
+<h3>Stats<a class="headerlink" href="#stats" title="Permalink to this headline"></a></h3>
+<p>Stats gives you an overview over the count of this specific error, that is how often it has switched states since boot up.
+Last activated and last deactivated gives an overview over the timestamps and boot id of the last activation stages.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="../_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+ 
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.robotics@ifm.com">support.robotics@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minimum Reflectivity &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Adaptive noise bilateral filter" href="bilateralFilter.html" />
+    <link rel="prev" title="Minimum Amplitude" href="minAmplitude.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+              <div class="version">
+                v1.0.14
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index_hardware_interfaces.html">Technology</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../Hardware_Interfaces/hardware_specifications.html">Available hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Hardware_Interfaces/CAD_Drawings.html">CAD drawings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../PortsOverview/ports_overview.html">Ports overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Hardware_Interfaces/camera_heads.html">Camera Heads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2D/2d.html">2D Cameras</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index_3d.html">3D Cameras</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../modes.html">Modes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../AcquisitionParams/index_acquisition_params.html">Acquisition parameters</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index_processing_params.html">Processing parameters</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="processing_params.html">Overview of the processing parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="filteringProcess.html">Filtering process overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="maxDistNoise.html">Maximum distance noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="minAmplitude.html">Minimum amplitude</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Minimum reflectivity</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#related-topics">Related topics</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="bilateralFilter.html">Adaptive noise bilateral filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="median.html">Median filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="temporalFilter.html">Temporal filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mixedPixelFilter.html">Mixed pixel filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="symmetryThreshold.html">Symmetry threshold</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../triggering.html">Synchronization and triggering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ImagesDescription/index_images_description.html">Images description</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../VPU/index_vpu.html">VPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../SystemVerification/index_system_verification.html">System Verification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index_hardware_interfaces.html">Technology</a> &raquo;</li>
+          <li><a href="../index_3d.html">3D Camera Configuration</a> &raquo;</li>
+          <li><a href="index_processing_params.html">Processing parameters</a> &raquo;</li>
+      <li>Minimum Reflectivity</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/Technology/3D/ProcessingParams/minReflectivity.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="minimum-reflectivity">
+<h1>Minimum Reflectivity<a class="headerlink" href="#minimum-reflectivity" title="Permalink to this headline"></a></h1>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline"></a></h2>
+<p>Reflectivity in a near infrared (NIR) spectrum is a characteristic of the material of the object reflecting the light. It depends on its surface material, and the geometric configuration of the scene.
+The minimum reflectivity (<code class="docutils literal notranslate"><span class="pre">minReflectivity</span></code>) filter invalidates pixels with low amounts of received light (that is, pixels on objects with a reflectivity below the minimum threshold).
+The reflectivity is computed from the distance and amplitude images.
+It can be used to discard unwanted pixels in scenes where an object’s reflectivity is known in advance.
+It can also be used to identify highly reflective objects in a scene; a threshold of 200 would invalidate everything but the retro-reflectors.</p>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
+<p>In the image below, we show objects with their measured reflectivity. In this case the reflectivity depends on the material of the object only because their surfaces are seen under the same angle relative to the surface’s normal. The estimated reflectivity might vary for the same object seen under varying angles to surfaces normals. Note that this pertains to reflectivity in the NIR spectrum. Some objects might show a higher or lower reflectivity than expected in the visible spectrum.
+<img alt="Reflectivity RGB image" src="../../../_images/reflectivity_rgb.png" /></p>
+<p>The corresponding reflectivity image is nothing more than a gray-scale image. Darker shades represent lower reflectivity values:</p>
+<p><img alt="Reflectivity image" src="../../../_images/reflectivity_various_objects.png" /></p>
+<p>In the table below, we show the computed distance image for the default settings of the O3R heads with different values for the reflectivity threshold <code class="docutils literal notranslate"><span class="pre">minReflectivity</span></code>:</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Reflectivity</p></th>
+<th class="head"><p>Distance image</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p><img alt="Reflectivity 0" src="../../../_images/ref_0.png" /></p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p><img alt="Reflectivity 5" src="../../../_images/ref_5.png" /></p></td>
+</tr>
+<tr class="row-even"><td><p>10</p></td>
+<td><p><img alt="Reflectivity 10" src="../../../_images/ref_10.png" /></p></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><p>Note: In the first image, some pixels are missing from the side of the object. This area of the object does not reflect enough light, even when a low reflectivity threshold is allowed.</p>
+</div></blockquote>
+</div>
+<div class="section" id="related-topics">
+<h2>Related topics<a class="headerlink" href="#related-topics" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><span class="xref myst">Minimum amplitude</span></p></li>
+<li><p><span class="xref myst">Available images</span></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="../_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+ 
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.robotics@ifm.com">support.robotics@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

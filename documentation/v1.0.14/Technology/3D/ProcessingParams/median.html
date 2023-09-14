@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>(Spatial) Median Filter &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Temporal Filter" href="temporalFilter.html" />
+    <link rel="prev" title="Adaptive noise bilateral filter" href="bilateralFilter.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+              <div class="version">
+                v1.0.14
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index_hardware_interfaces.html">Technology</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../Hardware_Interfaces/hardware_specifications.html">Available hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Hardware_Interfaces/CAD_Drawings.html">CAD drawings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../PortsOverview/ports_overview.html">Ports overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Hardware_Interfaces/camera_heads.html">Camera Heads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2D/2d.html">2D Cameras</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index_3d.html">3D Cameras</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../modes.html">Modes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../AcquisitionParams/index_acquisition_params.html">Acquisition parameters</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index_processing_params.html">Processing parameters</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="processing_params.html">Overview of the processing parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="filteringProcess.html">Filtering process overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="maxDistNoise.html">Maximum distance noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="minAmplitude.html">Minimum amplitude</a></li>
+<li class="toctree-l4"><a class="reference internal" href="minReflectivity.html">Minimum reflectivity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bilateralFilter.html">Adaptive noise bilateral filter</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Median filter</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#abstract">Abstract</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#bilateral-vs-median-filtering">Bilateral vs. median filtering</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#disadvantages-of-the-median-filter">Disadvantages of the median filter</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#bilateral-and-median-filters-combined">Bilateral and median filters combined</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#related-topics">Related topics</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="temporalFilter.html">Temporal filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mixedPixelFilter.html">Mixed pixel filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="symmetryThreshold.html">Symmetry threshold</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../triggering.html">Synchronization and triggering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ImagesDescription/index_images_description.html">Images description</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../VPU/index_vpu.html">VPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../SystemVerification/index_system_verification.html">System Verification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index_hardware_interfaces.html">Technology</a> &raquo;</li>
+          <li><a href="../index_3d.html">3D Camera Configuration</a> &raquo;</li>
+          <li><a href="index_processing_params.html">Processing parameters</a> &raquo;</li>
+      <li>(Spatial) Median Filter</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/Technology/3D/ProcessingParams/median.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="spatial-median-filter">
+<h1>(Spatial) Median Filter<a class="headerlink" href="#spatial-median-filter" title="Permalink to this headline"></a></h1>
+<div class="section" id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline"></a></h2>
+<p>The O3R software supports two spatial filters for improving the distance measurements: the median filter and the <span class="xref myst">bilateral filter</span>.<br />
+<strong>We recommend using the bilateral filter in most cases instead of the median filter because the median filter can have undesirable side effects.</strong></p>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline"></a></h2>
+<p>The median filter is conceptually very similar to a <a class="reference external" href="https://en.wikipedia.org/wiki/Median_filter">median filter applied to RGB 2D images</a>. A median filter is a nonlinear, edge-preserving smoothing filter. It can be thought of as a filter that replaces the value per pixel with the median value of neighboring pixels. The computation is achieved by sliding the filter mask in the spatial domain until it covers the whole image.
+This filtering technique is robust (that is, not affected by outliers) and reduces noise while keeping edge information intact.
+The median filter is applied to the distance image. The distance noise is lowered to heuristically reflect the new noise in the distance image.</p>
+<p>The median filter is controlled by the parameter <code class="docutils literal notranslate"><span class="pre">medianSizeDiv2</span></code>; turn it off with
+<code class="docutils literal notranslate"><span class="pre">medianSizeDiv2</span> <span class="pre">=</span> <span class="pre">0</span></code>.
+<code class="docutils literal notranslate"><span class="pre">medianSizeDiv2</span> <span class="pre">=</span> <span class="pre">1</span></code> sets the filter mask size to a size of 3 x 3 pixels.
+<code class="docutils literal notranslate"><span class="pre">medianSizeDiv2</span> <span class="pre">=</span> <span class="pre">2</span></code> is the highest allowed value. It represents a filter mask size of 5 x 5 pixels.
+Using larger filter mask sizes combines more pixels’ distance measurements into the filterer value. The filter’ effect will be stronger, resulting in a <em>smoother</em> image.</p>
+<blockquote>
+<div><p>Note: Invalid pixels are ignored during the filtering process and therefore have no impact on their surrounding pixels. Invalid pixels remain invalid after the filtering.</p>
+</div></blockquote>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
+<p>Below are images of the same scene with different settings for the median filter. Look more specifically at the distance noise image that shows the amount of noise in the scene—the larger the filter mask size, the lower the noise level. The color red corresponds to negligible noise levels and blue to noise around 1 cm and above. See the <span class="xref myst">bilateral filter</span> example for comparison with the same scene.</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Filter mask size <code class="docutils literal notranslate"><span class="pre">medianSizeDiv2</span></code></p></th>
+<th class="head"><p>Point cloud</p></th>
+<th class="head"><p>Distance (top left), amplitude (top right), distance noise (bottom left), and reflectivity (bottom right) images</p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0 (filter deactivated)</p></td>
+<td><p><img alt="medianSizeDiv2_0_value" src="../../../_images/medianSizeDiv2_0.png" /></p></td>
+<td><p><img alt="medianSizeDiv2_0_value" src="../../../_images/medianSizeDiv2_0_imgs.png" /></p></td>
+<td><p><img alt="color bar for noise image" src="../../../_images/color_bar_noise.png" /></p></td>
+</tr>
+<tr class="row-odd"><td><p>1 (3 x 3 mask size)</p></td>
+<td><p><img alt="medianSizeDiv2_1_value" src="../../../_images/medianSizeDiv2_1.png" /></p></td>
+<td><p><img alt="medianSizeDiv2_0_value" src="../../../_images/medianSizeDiv2_1_imgs.png" /></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>2 (5 x 5 mask size)</p></td>
+<td><p><img alt="medianSizeDiv2_2_value" src="../../../_images/medianSizeDiv2_2.png" /></p></td>
+<td><p><img alt="medianSizeDiv2_0_value" src="../../../_images/medianSizeDiv2_2_imgs.png" /></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="bilateral-vs-median-filtering">
+<h2>Bilateral vs. median filtering<a class="headerlink" href="#bilateral-vs-median-filtering" title="Permalink to this headline"></a></h2>
+<div class="section" id="disadvantages-of-the-median-filter">
+<h3>Disadvantages of the median filter<a class="headerlink" href="#disadvantages-of-the-median-filter" title="Permalink to this headline"></a></h3>
+<p>The median filter is not our spatial filter of choice for two reasons: it does not preserve corners of objects as well as the bilateral filter, and it uses a heuristic method for dealing with the distance noise image. Moreover, the median filter can introduce a bias in the distance image (locally) in some cases, an effect that is not present in the bilateral filter.
+We recommend using the <span class="xref myst">bilateral filter</span> in most cases.</p>
+</div>
+<div class="section" id="bilateral-and-median-filters-combined">
+<h3>Bilateral and median filters combined<a class="headerlink" href="#bilateral-and-median-filters-combined" title="Permalink to this headline"></a></h3>
+<p>A combination of both spatial filters is rarely required, and we recommend increasing the filter mask size as a first step. However, if the filtering is not strong enough, then one can use both the bilateral and median filters at the same time. This will further reduce local noise levels but can result in bias in larger noise patterns.</p>
+<p>To give you an idea, the image below shows the effect of combined bilateral (<code class="docutils literal notranslate"><span class="pre">anfFilterSizeDiv2=3</span></code>) and median (<code class="docutils literal notranslate"><span class="pre">medianFilterSizeDiv2=2</span></code>) filtering for the example scene.
+<img alt="bilateral3_median2" src="../../../_images/bilateral3_median2.png" /></p>
+</div>
+</div>
+<div class="section" id="related-topics">
+<h2>Related topics<a class="headerlink" href="#related-topics" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><span class="xref myst">Bilateral filter</span></p></li>
+<li><p><span class="xref myst">Temporal filter</span></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="../_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+ 
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.robotics@ifm.com">support.robotics@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
