@@ -9,11 +9,12 @@ This website contains all the documentation for the O3R platform. Find the datas
 :::{toctree}
     :maxdepth: 2
 Home <self>
-Getting started <documentation/GettingStarted/index_getting_started>
-Firmware <documentation/Firmware/index>
-Technology <documentation/Technology/index_hardware_interfaces>
+Getting started <GettingStarted/index_getting_started>
+Firmware <Firmware/index>
+Compatibility Matrix <CompatibilityMatrix/compatibility_matrix>
+Technology <Technology/index_hardware_interfaces>
 Software Interfaces <index_software_interfaces>
-ODS <documentation/ODS/index_ods>
-FAQ <documentation/FAQ/FAQ>
+ODS <ODS/index_ods>
+FAQ <FAQ/FAQ>
 History <downloadable/index>
 :::

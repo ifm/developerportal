@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting started with ODS &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/js/versionwarning.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Camera mounting" href="Mounting/mounting.html" />
+    <link rel="prev" title="ODS (Obstacle Detection System)" href="index_ods.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> O3R
+          </a>
+              <div class="version">
+                v1.0.14
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index_ods.html">ODS</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Getting started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-1-extrinsic-calibration">Step 1: Extrinsic calibration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-2-using-iva-for-ods">Step 2: Using iVA for ODS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Mounting/mounting.html">Mounting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Instantiation/instantiation.html">Instantiation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Configuration/configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Zones/zones.html">Zones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OccupancyGrid/occupancy_grid.html">Occupancy grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Recording/ods_data_recording.html">Recording</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ChangingViews/changing_views.html">Changing views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OverhangingLoads/overhanging_loads.html">Overhanging loads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="NegativeObstacles/negative_obstacles.html">Negative Obstacles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DustMitigation/dust_mitigation.html">Dust artifact mitigation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ExtrinsicCalibration/index_extrinsic_calibration.html">Extrinsic calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="FieldTest/index_field_test.html">Field test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DeviceVerification/index_device_verification.html">Device verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iVA/index_ifmODS_iVA.html">ifmVisionAssistant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Python/index_ifmODS_python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Cpp/index_ifmODS_cpp.html">C++</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index_ods.html">ODS (Obstacle Detection System)</a> &raquo;</li>
+      <li>Getting started with ODS</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/ODS/getting_started.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="getting-started-with-ods">
+<h1>Getting started with ODS<a class="headerlink" href="#getting-started-with-ods" title="Permalink to this headline"></a></h1>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline"></a></h2>
+<p>It is expected that there is a running system. Please refer to <a class="reference internal" href="../GettingStarted/index_getting_started.html"><span class="doc std std-doc">the unboxing section</span></a>.</p>
+<p>A typical procedure would be:</p>
+<ul class="simple">
+<li><p>connect M04239-VPU with heads and power supply</p></li>
+<li><p>boot-up the system</p></li>
+<li><p>connect with iVA</p></li>
+<li><p>verify that live images are received</p></li>
+</ul>
+</div>
+<div class="section" id="step-1-extrinsic-calibration">
+<h2>Step 1: Extrinsic calibration<a class="headerlink" href="#step-1-extrinsic-calibration" title="Permalink to this headline"></a></h2>
+<p>The parameters to transform the camera coordinate system into the user coordinate system are called extrinsic calibration parameters. Without the extrinsic calibration parameters ODS will not work properly.
+For a tabletop setup, from which accurate results are not expected, the calibration parameters should be set to the following values:</p>
+<ul class="simple">
+<li><p>transX: 0</p></li>
+<li><p>transY: 0</p></li>
+<li><p>transZ: 0.1</p></li>
+<li><p>rotX: -1.57</p></li>
+<li><p>rotY: 1.57</p></li>
+<li><p>rotZ: 0</p></li>
+</ul>
+</div>
+<div class="section" id="step-2-using-iva-for-ods">
+<h2>Step 2: Using iVA for ODS<a class="headerlink" href="#step-2-using-iva-for-ods" title="Permalink to this headline"></a></h2>
+<p>These are the steps to start ODS in the iVA:</p>
+<ul>
+<li><p>Instantiate the ODS Application</p>
+<ul class="simple">
+<li><p>open application-tab</p></li>
+<li><p>click on the + - symbol -&gt; a list of applications should appear</p></li>
+<li><p>click on ODS  -&gt; ODS parameters should appear</p></li>
+</ul>
+<p>! Oops, that didn’t work ! –&gt; verify a M04239 VPU with ODS license is used.</p>
+</li>
+<li><p>Configure ODS parameters</p>
+<ul class="simple">
+<li><p>(this step is not needed for a table top demonstration)</p></li>
+</ul>
+</li>
+<li><p>Start ODS</p>
+<ul class="simple">
+<li><p>set ODS-state to “RUN” -&gt; the live occupancy grid should appear</p></li>
+</ul>
+<p>! Oops, that didn’t work ! –&gt; change the extrinsic parameters to the suggested values above.</p>
+</li>
+<li><p>Play with display</p>
+<ul class="simple">
+<li><p>the application tab only shows the occupancy grid (white grid pattern marks occupied areas)</p></li>
+<li><p>change to monitor tab -&gt; the point cloud and the occupancy grid are shown</p></li>
+</ul>
+</li>
+</ul>
+<p>watch the video:
+<img alt="Create a new ODS Application instance" src="../_images/start_ods.gif" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For better visualization of the point cloud when using ODS, use the Frame Filter from the <code class="docutils literal notranslate"><span class="pre">View</span> <span class="pre">Options</span></code> in the  <code class="docutils literal notranslate"><span class="pre">Monitor</span></code> window. The frame filter does not change the Mode for any Ports as this is only used for visualization purposes.</p>
+<p><img alt="Frame Filter" src="../_images/frame_filter.png" /></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="../_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+ 
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.robotics@ifm.com">support.robotics@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
