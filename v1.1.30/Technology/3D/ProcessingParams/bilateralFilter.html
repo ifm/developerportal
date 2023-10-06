@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adaptive noise bilateral filter &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="(Spatial) Median Filter" href="median.html" />
+    <link rel="prev" title="Minimum Reflectivity" href="minReflectivity.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+              <div class="version">
+                v1.1.30
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index_hardware_interfaces.html">Technology</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../Hardware_Interfaces/hardware_specifications.html">Available hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Hardware_Interfaces/CAD_Drawings.html">CAD drawings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../PortsOverview/ports_overview.html">Ports overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Hardware_Interfaces/camera_heads.html">Camera Heads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2D/2d.html">2D Cameras</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index_3d.html">3D Cameras</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../modes.html">Modes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../AcquisitionParams/index_acquisition_params.html">Acquisition parameters</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index_processing_params.html">Processing parameters</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="processing_params.html">Overview of the processing parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="filteringProcess.html">Filtering process overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="maxDistNoise.html">Maximum distance noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="minAmplitude.html">Minimum amplitude</a></li>
+<li class="toctree-l4"><a class="reference internal" href="minReflectivity.html">Minimum reflectivity</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Adaptive noise bilateral filter</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#abstract">Abstract</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#description">Description</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#scenes-involving-motion">Scenes involving motion</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#related-topics">Related topics</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="median.html">Median filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="temporalFilter.html">Temporal filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mixedPixelFilter.html">Mixed pixel filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="symmetryThreshold.html">Symmetry threshold</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../triggering.html">Synchronization and triggering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ImagesDescription/index_images_description.html">Images description</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../VPU/index_vpu.html">VPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../SystemVerification/index_system_verification.html">System Verification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index_hardware_interfaces.html">Technology</a> &raquo;</li>
+          <li><a href="../index_3d.html">3D Camera Configuration</a> &raquo;</li>
+          <li><a href="index_processing_params.html">Processing parameters</a> &raquo;</li>
+      <li>Adaptive noise bilateral filter</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/Technology/3D/ProcessingParams/bilateralFilter.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="adaptive-noise-bilateral-filter">
+<h1>Adaptive noise bilateral filter<a class="headerlink" href="#adaptive-noise-bilateral-filter" title="Permalink to this headline"></a></h1>
+<div class="section" id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline"></a></h2>
+<p>The O3R software allows for filtering the distance measurement in the spatial domain. The spatial domain of a 3D image can be thought of as the local neighborhood of a pixel, that is, the neighboring pixels X-, Y-, and Z-coordinates. Radial distance information for a pixel is combined with its neighbors’ information to form a new distance image with reduced noise.</p>
+<p>The bilateral filter is the preferred spatial filter and is enabled by default. It can be applied with different filter mask sizes, which can be set via the parameter <code class="docutils literal notranslate"><span class="pre">anfFilterSizeDiv2</span></code>. Larger filter mask sizes allow for stronger noise reduction.</p>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline"></a></h2>
+<p>This distance bilateral filter is, in its concept, highly similar to a <a class="reference external" href="https://en.wikipedia.org/wiki/Bilateral_filter">bilateral filter applied to RGB 2D images</a>. A bilateral filter is a nonlinear edge-preserving smoothing filter. The idea is to replace the pixel value with a weighted average of the information from nearby pixels. The weighting is a combination of the spatial kernel and the range kernel. The O3R implementation additionally incorporates the distance noise estimation for calculating the filter weights.</p>
+<blockquote>
+<div><p>Note: The weighted average is computed by convolution over the spatial domain. The convolution of the original image and the filter mask returns an image reduced by half the filter size at each image border; that is, with a filter mask of 7x7 pixels, the image is stripped of 7 pixels vertically and horizontally (these pixels are marked as invalid).</p>
+</div></blockquote>
+<p>The bilateral filter is controlled by the parameter <code class="docutils literal notranslate"><span class="pre">anfFilterSizeDiv2</span></code> (turn it off with <code class="docutils literal notranslate"><span class="pre">anfFilterSizeDiv2</span> <span class="pre">=</span> <span class="pre">0</span></code>). <code class="docutils literal notranslate"><span class="pre">anfFilterSizeDiv2</span> <span class="pre">=</span> <span class="pre">3</span></code> sets the filter mask size to a local 7x7 pixel neighborhood.</p>
+<blockquote>
+<div><p>Note: The bilateral filter is preferred over the <a class="reference internal" href="median.html"><span class="doc std std-doc">median filter</span></a> because it preserves edge and corner information better (the median filter tends to <em>round</em> corners). It is also possible to apply the bilateral filter with larger filter masks (up to 7x7 pixel masks) compared to 5x5 pixel masks for the median filter. The size of the mask defines how many neighboring pixels are considered when computing a pixel’s value.</p>
+</div></blockquote>
+<p>Invalid pixels will be ignored during the filtering process and therefore have no impact on the surrounding pixels. Invalid pixels will remain invalid after the filtering.</p>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h3>
+<p>The following pictures give an overview of the capabilities of spatial filtering with the bilateral filter for different filter mask sizes. All other filters (<a class="reference internal" href="temporalFilter.html"><span class="doc std std-doc">temporal</span></a> and <a class="reference internal" href="median.html"><span class="doc std std-doc">median</span></a>) are deactivated for the purpose of illustrating the bilateral filter’s effect. The maximum allowed distance noise is set at 0.2 m for all images. Note that for maximum distance noise values below 0.2 m the point cloud becomes extremely sparse for smaller filter mask sizes (not shown in the following).</p>
+<p>The scene shows a view of our lab, containing various typical objects including a black tote in the center of the room. It is a static scene, which makes it simpler to illustrate the filter’s effect, but these settings (active bilateral filter and inactive temporal filter) are typical for scenes involving motion. Have a look specifically at the distance noise images in the following table. We can see that the distance noise greatly reduces as the filter mask size increases (the color red denotes negligible noise, whereas blue represents noise of around 1 cm and above).</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bilateral filter mask size</p></th>
+<th class="head"><p>Point cloud</p></th>
+<th class="head"><p>Distance (top left), amplitude (top right), distance noise (bottom left), and reflectivity images (bottom right)</p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0 (filter disabled)</p></td>
+<td><p><img alt="anfFilterSizeDiv2_0_value" src="../../../_images/anfFilterSizeDiv2_0.png" /></p></td>
+<td><p><img alt="anfFilterSizeDiv2_0_value" src="../../../_images/anfFilterSizeDiv2_0_imgs.png" /></p></td>
+<td><p><img alt="Color bar" src="../../../_images/color_bar_noise.png" /></p></td>
+</tr>
+<tr class="row-odd"><td><p>1 (3x3 mask size)</p></td>
+<td><p><img alt="anfFilterSizeDiv2_1_value" src="../../../_images/anfFilterSizeDiv2_1.png" /></p></td>
+<td><p><img alt="anfFilterSizeDiv2_1_value" src="../../../_images/anfFilterSizeDiv2_1_imgs.png" /></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>2 (5x5 mask size)</p></td>
+<td><p><img alt="anfFilterSizeDiv2_2_value" src="../../../_images/anfFilterSizeDiv2_2.png" /></p></td>
+<td><p><img alt="anfFilterSizeDiv2_2_value" src="../../../_images/anfFilterSizeDiv2_2_imgs.png" /></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>3 (7x7 mask size)</p></td>
+<td><p><img alt="anfFilterSizeDiv2_3_value" src="../../../_images/anfFilterSizeDiv2_3.png" /></p></td>
+<td><p><img alt="anfFilterSizeDiv2_3_value" src="../../../_images/anfFilterSizeDiv2_3_imgs.png" /></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><p>Note: distance information for the black tote in the middle of the image remains extremely hard to compute even with a <em>strong</em> lateral filtering. For better handling of dark objects, have a look at the <a class="reference internal" href="minAmplitude.html"><span class="doc std std-doc">minimum amplitude</span></a>, <a class="reference internal" href="maxDistNoise.html"><span class="doc std std-doc">maximum distance noise</span></a>, and <a class="reference internal" href="temporalFilter.html"><span class="doc std std-doc">temporal filter</span></a>).</p>
+</div></blockquote>
+</div>
+<div class="section" id="scenes-involving-motion">
+<h3>Scenes involving motion<a class="headerlink" href="#scenes-involving-motion" title="Permalink to this headline"></a></h3>
+<p>The spatial filtering can be performed in scenes where motion is present: only the parts of the images that are not affected by movement will be filtered. This differentiation is possible because the detection of motion is performed before the spatial filter in the processing pipeline. It is perfectly fine and encouraged to use large filter mask sizes.</p>
+<blockquote>
+<div><p>Note: this is not true for <a class="reference internal" href="temporalFilter.html"><span class="doc std std-doc">temporal filtering</span></a>, which is not best suited to in-motion cases.</p>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="related-topics">
+<h2>Related topics<a class="headerlink" href="#related-topics" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="median.html"><span class="doc std std-doc">Median filter</span></a></p></li>
+<li><p><a class="reference internal" href="temporalFilter.html"><span class="doc std std-doc">Temporal filter</span></a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="../_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+ 
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.robotics@ifm.com">support.robotics@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

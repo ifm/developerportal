@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ODS ToF artifacts &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Testing ODS" href="../../DeviceVerification/index_device_verification.html" />
+    <link rel="prev" title="ODS Performance" href="../PerformanceBenchmark/ods_performance_benchmark.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+              <div class="version">
+                v1.1.30
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index_ods.html">ODS</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Mounting/mounting.html">Mounting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Instantiation/instantiation.html">Instantiation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Configuration/configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Zones/zones.html">Zones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../OccupancyGrid/occupancy_grid.html">Occupancy grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Recording/ods_data_recording.html">Recording</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ChangingViews/changing_views.html">Changing views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../OverhangingLoads/overhanging_loads.html">Overhanging loads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../NegativeObstacles/negative_obstacles.html">Negative Obstacles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../DustMitigation/dust_mitigation.html">Dust artifact mitigation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ExtrinsicCalibration/index_extrinsic_calibration.html">Extrinsic calibration</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index_field_test.html">Field test</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../PerformanceVerification/ods_performance_verification.html">Performance evaluation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../PerformanceBenchmark/ods_performance_benchmark.html">Performance benchmark</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Time-of-flight artifacts</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#common-time-of-flight-tof-artifacts">Common Time of Flight (ToF) artifacts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ods-specific-effects-of-tof-artifacts">ODS specific effects of ToF artifacts</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#true-false-positives">True / False positives</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#ods-effects-of-tp-fp-tn-and-fn">ODS effects of TP, FP, TN and FN</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#ods-performance-and-robustness">ODS performance and robustness</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../DeviceVerification/index_device_verification.html">Device verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../iVA/index_ifmODS_iVA.html">ifmVisionAssistant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Python/index_ifmODS_python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Cpp/index_ifmODS_cpp.html">C++</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index_ods.html">ODS (Obstacle Detection System)</a> &raquo;</li>
+          <li><a href="../index_field_test.html">ODS performance</a> &raquo;</li>
+      <li>ODS ToF artifacts</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/ODS/FieldTest/TOFArtifacts/ods_tof_artifacts.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="ods-tof-artifacts">
+<h1>ODS ToF artifacts<a class="headerlink" href="#ods-tof-artifacts" title="Permalink to this headline"></a></h1>
+<p>This paper gives an overview of O3R 3D Time of Flight (ToF) specific artifacts and their effect on ODS.</p>
+<div class="section" id="common-time-of-flight-tof-artifacts">
+<h2>Common Time of Flight (ToF) artifacts<a class="headerlink" href="#common-time-of-flight-tof-artifacts" title="Permalink to this headline"></a></h2>
+<p><strong>Common artifacts associated with 3D Time of Flight (ToF) imaging</strong></p>
+<ol class="simple">
+<li><p>Multi-path Interference: This artifact occurs when the light emitted from the ToF camera reflects off multiple surfaces before returning to the camera. The camera then interprets these multiple reflections as being at different distances, leading to errors in depth calculation.</p></li>
+<li><p>Motion Blur / Motion artifacts: This artifact occurs when the subject or the camera is moving during the time it takes for the ToF camera to capture a complete image. This can lead to blurred or distorted images, as the camera’s depth calculations are based on the assumption that the subject is stationary.</p></li>
+<li><p>Stray light: stray light artifacts are an artifact that occurs when the light emitted by the ToF camera is scattered or reflected by surfaces other than the intended subject, such as the camera’s own housing or nearby objects. When this happens, the camera may receive additional light that can lead to errors in depth calculation. For example, imagine a ToF camera pointed at a scene with a subject in the foreground and a wall in the background. When the camera emits a burst of light, some of the light may reflect off the foreground object and return to the camera, while some may reflect off the wall and return to the camera. However, if the camera’s own housing or nearby objects scatter or reflect some of the emitted light, the camera may receive additional light that can lead to depth measurement errors.</p></li>
+<li><p>Crosstalk between cameras of the same type and cameras and other active sensors in the same near infrared spectrum,</p></li>
+<li><p>Dust: Dust particles in the air may reflect significant amounts back at the camera at close distances. These particles appear to be medium to large objects, because of their close proximity.</p></li>
+<li><p>Low signal-to-noise ratio: pixels affected by this artifacts are discarded by the internal filters such as the <code class="docutils literal notranslate"><span class="pre">minimumAmplitude</span></code>, the <code class="docutils literal notranslate"><span class="pre">minimumReflectivity</span></code> and the <code class="docutils literal notranslate"><span class="pre">distanceNoise</span></code> filters.</p></li>
+<li><p>Pixel saturation: pixel saturation are discarded by the internal filter pipeline</p></li>
+<li><p>Halo effects surrounding bright objects such as retro-reflectors</p></li>
+</ol>
+<p>For further details please see the extended documentation on <a class="reference external" href="https://ifm3d.com/documentation/DeviceConfiguration/index.html">ifm3d.com</a></p>
+</div>
+<div class="section" id="ods-specific-effects-of-tof-artifacts">
+<h2>ODS specific effects of ToF artifacts<a class="headerlink" href="#ods-specific-effects-of-tof-artifacts" title="Permalink to this headline"></a></h2>
+<div class="section" id="true-false-positives">
+<h3>True / False positives<a class="headerlink" href="#true-false-positives" title="Permalink to this headline"></a></h3>
+<p>In the context of binary classification (that is, classifying data into one of two categories), a true positive (TP) is a case where the model correctly predicts the positive class, while a false positive (FP) is a case where the model predicts the positive class, but the true label is actually negative.</p>
+<p>To put it more formally, let’s define:</p>
+<ul class="simple">
+<li><p>TP: The model predicts a positive class, and the true label is positive.</p></li>
+<li><p>FP: The model predicts a positive class, but the true label is negative.</p></li>
+<li><p>(True negative (TN): The model predicts the negative class, and the true label is negative.)</p></li>
+<li><p>(False negative (FN): The model predicts the negative class, but the true label is positive.)</p></li>
+</ul>
+<p>These classification outcomes are typically described in a <a class="reference external" href="https://en.wikipedia.org/wiki/Confusion_matrix">confusion matrix</a>.</p>
+</div>
+<div class="section" id="ods-effects-of-tp-fp-tn-and-fn">
+<h3>ODS effects of TP, FP, TN and FN<a class="headerlink" href="#ods-effects-of-tp-fp-tn-and-fn" title="Permalink to this headline"></a></h3>
+<p>To summarize:</p>
+<ul class="simple">
+<li><p>True Positive (TP): The ODS model correctly predicts a positive case, i.e there is an actual object and the ODS algorithm detected it.</p></li>
+<li><p>False Positive (FP): The model incorrectly predicts a positive case, i.e there is no object and the ODS algorithm falsely detected one.</p></li>
+<li><p>True Negative (TN): The model correctly predicts a negative case, i.e there is no object and the ODS algorithm correctly detected no object.</p></li>
+<li><p>False Negative (FN): The model incorrectly predicts a negative case, i.e there is an actual object and the ODS algorithm falsely detected no object.</p></li>
+</ul>
+</div>
+<div class="section" id="ods-performance-and-robustness">
+<h3>ODS performance and robustness<a class="headerlink" href="#ods-performance-and-robustness" title="Permalink to this headline"></a></h3>
+<p>In the case of ODS ToF artifacts most likely cause an increase in false positive rate (FP) but do not decrease the ODS true positive rate (TP).
+This means the algorithms performance most likely is not reduced but the robustness is reduced.
+This is equivalent to the robot stopping even tough there is no object present - this may lead to downtime but does not cause accidents, that is FN.</p>
+<p>For all possible sources of FPs above, the ODS application is tailored to be as robust as possible:</p>
+<ol class="simple">
+<li><p>Multi-path interference: We use specifically designed acquisition modes in conjunction with internal processing filters to allow us to detect multi-path interference effected scenes and react accordingly.</p></li>
+<li><p>Motion blur / motion artifacts: We use specifically designed acquisition settings in conjunction with internal processing filters to allow us to detect motion artifacts effected part of scenes and react accordingly.</p></li>
+<li><p>Stray light: We use specifically designed internal processing filters to allow us to detect stray light effected scenarios. However such sources of stray light can only be detected if the source of the stray light lies within the inner boundaries of the cameras field of view (FOV).</p>
+<ol class="simple">
+<li><p>Please minimize all sources of possible stray light in close vicinity of the camera mounting: For further details please see the mounting instructions included in this documentation repository and also read the O3R manual.</p></li>
+<li><p>For stray light effects caused by overhanging load, please see the <a class="reference internal" href="../../OverhangingLoads/overhanging_loads.html"><span class="doc std std-doc">overhanging load documentation</span></a>.</p></li>
+</ol>
+</li>
+<li><p>Crosstalk:</p>
+<ol class="simple">
+<li><p>For inter O3R camera crosstalk please use our channel implementation to mitigate inter O3R camera crosstalk. A channel difference of &gt;= 2 between any two cameras will reduce the effects of crosstalk to the same level as typical background noise caused by ambient non-pulsed NIR light sources.</p></li>
+<li><p>For O3R to other active sensor devices crosstalk:</p>
+<ol class="simple">
+<li><p>Please mount the O3R cameras away from laser scanner mounting planes. This reduces the possibility of direct line-of-sights between the cameras and the laser scanner. We recommend at least a vertical offset of 10 cm between the scanner plane and the cameras optical center.</p></li>
+<li><p>Please refer to the laser scanner manuals for their suggested parameter sets for mobile robot applications: These typically state a multi sampling for all mobile robot applications. ifm internal tests have shown that for a correctly parameterized laser scanner in a mobile robot application, the O3R to laser scanner crosstalk does not cause significant amounts blinding events and no false positives.</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Dust: Improvements for dusty environments have been introduced in FW version 1.0.14. Additional to algorithmic mitigation approaches, please clean the O3R cameras regularly - refer to the respective chapter in <a class="reference internal" href="../../../Technology/Hardware_Interfaces/camera_heads.html#cleaning-camera-heads"><span class="std std-doc">the hardware doc</span></a></p></li>
+<li><p>Other ToF artifacts of minor effect strength and frequency of occurrences: All of these are typically handled by internal processing filters - no user parameter fine tuning required.</p>
+<ol class="simple">
+<li><p>Low signal</p></li>
+<li><p>Pixel saturation</p></li>
+<li><p>Halo effects</p></li>
+</ol>
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="../_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+ 
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.robotics@ifm.com">support.robotics@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

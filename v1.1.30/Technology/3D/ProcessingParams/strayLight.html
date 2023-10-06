@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stray Light Filter &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+              <div class="version">
+                v1.1.30
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Stray Light Filter</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/Technology/3D/ProcessingParams/strayLight.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p><em>Disclaimer: As a vendor of industrial equipment, we always try to mitigate physics artifacts to the best of our abilities. The default settings are chosen with this goal in mind: providing the best experience for <strong>most</strong> cases. However, the variety of scenes that mobile robots and other applications can encounter makes a “one-fits-all” configuration impossible. With this in mind, we present the outliers in our documentation, challenging but common cases that might require fine-tuning of the camera configuration.</em></p>
+<div class="tex2jax_ignore mathjax_ignore section" id="stray-light-filter">
+<h1>Stray Light Filter<a class="headerlink" href="#stray-light-filter" title="Permalink to this headline"></a></h1>
+<p>Scenes including highly reflective objects are common in robotics and industrial use cases. These scenes can present challenges because reflectors introduce an artifact known in optical systems as stray light. In this document, we focus on this phenomenon and present the stray light filter available with the O3R. We analyze some challenging cases and give hints on how to handle specific applications.</p>
+<blockquote>
+<div><p>NOTE: the scenes presented here are recreated with the intention of highlighting the specific challenges of mobile robots environments here in our office. We detail our experience of trying to “fool” the system, but we are well aware of the limitations of this approach. We always want to hear from firsthand experience, and we gladly welcome your feedback.</p>
+</div></blockquote>
+<div class="section" id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline"></a></h2>
+<p>Stray light is a phenomenon that exists in any optical system where light reflected from very bright objects is bouncing around in the lens, impacting the measurement. Two main effects of stray light are noticed in 3D point clouds: the creation of a halo around the bright objects, and the apparition of “ghost” pixels in the close range. To mitigate these artifacts, a stray light filter is available (turn it on with <code class="docutils literal notranslate"><span class="pre">diParam.enableStrayLight</span></code>). This filter can be fine-tuned to be more or less conservative, depending on whether the application requires high accuracy or a rich point cloud (adjust <code class="docutils literal notranslate"><span class="pre">diParam.excessiveCorrectionThreshDist</span></code> and <code class="docutils literal notranslate"><span class="pre">diParam.excessiveCorrectionThreshAmp</span></code>).</p>
+<p><strong>Table of Contents:</strong></p>
+<ol class="simple">
+<li><p>The stray light phenomenon + filter intro</p>
+<ol class="simple">
+<li><p>Halo: before/after</p></li>
+<li><p>Ghost pixels: before/after</p></li>
+</ol>
+</li>
+<li><p>Fine-tuning of the stray light</p></li>
+<li><p>Conclusion</p></li>
+</ol>
+</div>
+<div class="section" id="the-stray-light-phenomenon">
+<h2>The stray light phenomenon<a class="headerlink" href="#the-stray-light-phenomenon" title="Permalink to this headline"></a></h2>
+<p>Stray light designates any unwanted light reaching the optical lens of the camera. This light can be reflected light from an object within the field of view or emitted by an object outside the FOV. Stray light exists in any non-perfect optical systems, where an excessive amount of light is reflected on the internal parts of the system (within the lens or other camera components) and eventually reaches a pixel of the imager, interfering with the measurement.
+Common objects found in warehouses and other industrial environments, like reflective cones or safety vests, are sources of stray light interference.</p>
+<p>A typical effect of stray light is to cause a halo of pixels around the reflective object, affecting the measurement of low-signal pixels in the area. But stray light can also affect pixels not in the direct vicinity of the reflector, creating ghosts pixels, typically in the close range, which can make the scene hard to analyze.</p>
+<p>Let’s look at some concrete examples of stray light artifacts. For the purpose of demonstration, we have disabled the built-in O3R stray light filter.</p>
+<div class="section" id="first-case-the-stray-light-halo">
+<h3>First case: The stray light halo<a class="headerlink" href="#first-case-the-stray-light-halo" title="Permalink to this headline"></a></h3>
+<p>A circulation cone with a reflective band is positioned 1 m in front of the camera. We can observe a stray light halo around the cone: pixels are measured where there should not be anything (the background is out of range in this case).
+<img alt="Stray light halo when filter is disabled." src="../../../_images/no_filter_halo.png" /></p>
+<p>A cardboard box is positioned next to the cone, at the same distance from the camera. The halo is still there and affecting part of the background pixels. However, the measurement of the actual box is accurate and is not affected by the reflective object next to it. Stray light affects the low-signal pixels in the scene more strongly, and, in this case, it does not affect the measurement of the box, which reflects enough light.
+<img alt="Stray light impact on box with filter disabled" src="../../../_images/no_filter_halo_box.png" /></p>
+</div>
+<div class="section" id="handling-stray-light-halos">
+<h3>Handling stray light halos<a class="headerlink" href="#handling-stray-light-halos" title="Permalink to this headline"></a></h3>
+<p>The O3R camera comes with a built-in stray light filter that mitigates stray light artifacts. This filter improves the measurements by correcting the undesired effects of the optical system. Additionally, pixels that are overly affected by stray light are filtered according to set distance and amplitude thresholds (the default distance threshold is set to 8 cm: if stray light affects a pixel measurement more than 8 cm, this pixel will be invalidated).</p>
+<p>Let’s look at the first scene again, but this time with the filter activated. We can see that the halo has been greatly reduced around the reflective part of the cone. A similar result is achieved with the box in the scene.
+<img alt="Stray light filter activated" src="../../../_images/filter_cone.png" />
+<img alt="Stray light filter activated with box" src="../../../_images/filter_with_box.png" /></p>
+<p>The stray light filter makes it possible to reduce mis-measured pixels in the vicinity of the reflector.</p>
+</div>
+<div class="section" id="second-case-ghost-pixels">
+<h3>Second case: “Ghost” pixels<a class="headerlink" href="#second-case-ghost-pixels" title="Permalink to this headline"></a></h3>
+<p>Let’s look at a second case of stray light. A reflective cone is placed 1 m in front of the camera. The background is a white wall, at around 2 m. The stray light filter is deactivated.
+<img alt="Stray light filter deactivated, flying pixels appear" src="../../../_images/no_filter_flying_pixels2-edits.png" />
+<img alt="Stray light filter deactivated, flying pixels appear" src="../../../_images/no_filter_flying_pixels1-edits.png" /></p>
+<p>We can see (highlighted in the red circle) that some pixels are measured that do not exist in the real scene (there is no object there). This is a second effect of stray light: nonexistent pixels appear in the close range.
+This could create false positive measurements, for instance when performing obstacle detection and trigger interruption of service.</p>
+</div>
+<div class="section" id="handling-ghost-pixels">
+<h3>Handling “ghost” pixels<a class="headerlink" href="#handling-ghost-pixels" title="Permalink to this headline"></a></h3>
+<p>In the second scene, “ghost” pixels appeared in the close range due to stray light. The filter also mitigates this artifact:
+<img alt="Flying pixels removed by the filter" src="../../../_images/filter_removes_flying_pixels.png" /></p>
+<p>The side effect of this is the removal of additional pixels on the scene, as we can see in the floor area.
+The O3R stray light filter invalidates pixels that are flagged as over-affected by the stray light: pixels whose distance or amplitude measurement is affected over the set threshold. We will see in the next section how to tune this distance threshold.</p>
+</div>
+</div>
+<div class="section" id="fine-tuning-the-stray-light-filter">
+<h2>Fine tuning the stray light filter<a class="headerlink" href="#fine-tuning-the-stray-light-filter" title="Permalink to this headline"></a></h2>
+<p>The default settings of the filter are chosen to properly handle most cases of stray light, but some scenes might require fine-tuning it.
+We focus here on obstacle detection cases that prove challenging with the default settings of the filter.</p>
+<div class="section" id="obstacle-detection">
+<h3>Obstacle detection<a class="headerlink" href="#obstacle-detection" title="Permalink to this headline"></a></h3>
+<p>In cases where obstacle detection is the main application, one can accept that stray light affects the scene such that some pixels will be measured as much as 10 cm off their real position, as long as the obstacle is detected and false negatives are avoided. Let’s focus on scenes where the sources of stray light are limited (a single reflector or smaller reflective surfaces).</p>
+<p>The interesting setting in this case is the <code class="docutils literal notranslate"><span class="pre">excessiveCorrectionThreshDist</span></code>. This setting defines the distance threshold above which a pixel affected by stray light will be discarded.</p>
+<p>Let’s look at a scene with and without stray light. A box (the obstacle) is placed on the floor, and we measure the distance to it.</p>
+<div class="section" id="scene-without-reflector">
+<h4>Scene without reflector:<a class="headerlink" href="#scene-without-reflector" title="Permalink to this headline"></a></h4>
+<p><img alt="A box on the floor with no reflector in the scene" src="../../../_images/box_no_reflector.png" /></p>
+<p>We choose a reference pixel on the side of the box. The distance measured for this pixel is 1.527 m.</p>
+</div>
+<div class="section" id="scene-with-reflector">
+<h4>Scene with reflector:<a class="headerlink" href="#scene-with-reflector" title="Permalink to this headline"></a></h4>
+<p>For the exact same scene, we add a reflector to the side of the field of view.
+<img alt="Part box disappears when a reflector is added to the scene" src="../../../_images/box_disappears_pixel.png" /></p>
+<p>We can see that a whole side of the box disappears. This is due to the stray light that affects the scene: the pixels are marked as invalid by the stray light filter because of their distance measurement being affected.</p>
+</div>
+<div class="section" id="adjusting-the-distance-threshold">
+<h4>Adjusting the distance threshold<a class="headerlink" href="#adjusting-the-distance-threshold" title="Permalink to this headline"></a></h4>
+<p>Let’s adjust the distance threshold setting, <code class="docutils literal notranslate"><span class="pre">excessiveCorrectionThreshDist</span></code>. Its default value is 0.08 m, which means that any pixel affected more than around 8 cm will be discarded. Let’s set it to <code class="docutils literal notranslate"><span class="pre">0.2</span> <span class="pre">m</span></code>.
+<img alt="We can get the box back" src="../../../_images/box_back_0.2.png" /></p>
+<p>We can see that we are able to recover most of the pixels from the side of the box. However, the distance measured for the same pixel is now 1.590 m, when our reference measurement is 1.527 m. The side of the box is measured 6.3 cm off its actual position. This is acceptable because the robot will be able to drive along the reflector and still detect the presence of an obstacle.</p>
+<blockquote>
+<div><p>Note: there are multiple filters activated by default with the O3R, which means pixels might be discarded due to a combination of multiple filters. This explains why the pixel was discarded while being only 6.3 cm off, and not 8 cm, as expected with the correction threshold we set.</p>
+</div></blockquote>
+<p><strong>Warning:</strong>
+Relaxing the distance threshold value affects which stray light pixels are discarded by the filter. By doing so, you risk allowing some ghost pixels in the scene that might create false positive obstacles.</p>
+</div>
+</div>
+<div class="section" id="multiple-reflectors-in-the-scene">
+<h3>Multiple reflectors in the scene<a class="headerlink" href="#multiple-reflectors-in-the-scene" title="Permalink to this headline"></a></h3>
+<p>Scenes involving multiple reflectors can have pretty dramatic stray light artifacts. In these cases, getting rid of all the stray light ghost pixels might require you to strengthen the filter. Let’s analyze a specific example and see how it can be handled.</p>
+<p>The scene is set up with two reflectors along the expected path of the robot, and the left side is actually a glass wall. We imagine that the robot is moving forward, and, therefore, it must detect the floor and potential obstacles.</p>
+<p>Let’s have a look at the scene with the stray light filter deactivated. Pretty dramatic, right? The two reflectors create so much stray light that the whole path of the robot is blocked by ghost pixels (see the highlighted areas in red).</p>
+<p><img alt="Dramatic stray light artifact" src="../../../_images/dramatic_straylight_edited.png" />
+<img alt="Dramatic stray light artifact" src="../../../_images/dramatic_straylight_2_edited.png" /></p>
+<p>Now let’s reactivate the filter and see what we get.
+<img alt="Filter reactivated, stray light considerably reduced." src="../../../_images/dramatic_straylight_reduced_edited.png" />
+The ghost pixels almost completely disappeared, and the path forward is mostly clear. But we can still see remaining ghost pixels in the close range above the robot (denoted by the red circle). A measurement indicates that these pixels are 0.8 m away from the camera, which could be in the path of the robot if it or its payload reaches this height. The robot would therefore be blocked from moving forward by an obstacle detection algorithm, even though the path is clear.</p>
+<p>We can once more adjust the stray light filter to ensure we filter away all the remaining ghost pixels. To do so, we can use the distance threshold, as presented earlier. This time, we are trying to remove extra pixels, so we are going to lower the distance threshold (we set it to 0.05 m). We can see that all the ghost pixels are now gone, and the robot can proceed to its route, obstacle free.
+<img alt="We remove the ghost pixels" src="../../../_images/dramatic_straylight_ghost_removed.png" /></p>
+<blockquote>
+<div><p>NOTE: This scene could also be handled with the amplitude threshold (<code class="docutils literal notranslate"><span class="pre">diParam.excessiveCorrectionThreshAmp</span></code>). This threshold follows the same concept as the distance threshold, invalidating pixels with an amplitude below the set value. Generally, setting the distance threshold suffices, but we encourage you to play with both to select the best configuration possible for your use case.</p>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline"></a></h2>
+<p>As we saw with the examples detailed above, there is no “one-size-fits-all” configuration for handling stray light in robotics applications. Proper configuration needs to be selected after reviewing the scenes the robot is expected to encounter. The number and position of highly reflective surfaces that will enter the field of view at a certain time affects the necessary strength of the filter. Multiple configurations can be stored on board the O3R, and we encourage bringing intelligence to the use of the platform to adapt the cameras’ configurations to the scene where necessary. In scenes where a high accuracy of the ToF measurement is expected, we recommend avoiding placing reflectors in the scene or placing them reasonably far away from the navigation path of the robot.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="../_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+ 
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.robotics@ifm.com">support.robotics@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
