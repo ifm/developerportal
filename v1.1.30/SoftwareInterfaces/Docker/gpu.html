@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enabling GPU usage on the VPU &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/js/versionwarning.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Process pinning" href="cpu.html" />
+    <link rel="prev" title="Autostart a container on the VPU" href="autostart.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> O3R
+          </a>
+              <div class="version">
+                v1.1.30
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index_software_interfaces.html">Software Interfaces</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../iVA/index_iVA.html">ifm Vision Assistant</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://api.ifm3d.com/stable/">ifm3d/ifm3dpy API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://ros.ifm3d.com/latest/">ROS: ifm3d-ros</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://ros.ifm3d.com/latest/">ROS2: ifm3d-ros2</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index_docker.html">Docker</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="docker.html">Docker: Getting started</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#build-and-run-a-docker-container-for-the-o3r-platform">Build and run a docker container for the O3R platform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployVPU.html">Deployment on board</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html">Docker logging configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autostart.html">Autostarting the container</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Enabling GPU usage</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#using-the-gpu-of-the-vpu">Using the GPU of the VPU</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#dockerfile-sample">Dockerfile sample</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#start-the-container-with-the-nvidia-runtime">Start the container with the NVIDIA runtime</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#using-docker-run">Using <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#use-docker-compose-to-specify-the-runtime">Use <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> to specify the runtime</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cpu.html">CPU usage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ifmDiagnostic/index_diagnostic.html">Diagnostic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Toolbox/index_toolbox.html">Toolbox</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index_software_interfaces.html">Software Interfaces</a> &raquo;</li>
+          <li><a href="index_docker.html">Docker on O3R</a> &raquo;</li>
+      <li>Enabling GPU usage on the VPU</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/SoftwareInterfaces/Docker/gpu.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="enabling-gpu-usage-on-the-vpu">
+<h1>Enabling GPU usage on the VPU<a class="headerlink" href="#enabling-gpu-usage-on-the-vpu" title="Permalink to this headline"></a></h1>
+<div class="section" id="using-the-gpu-of-the-vpu">
+<h2>Using the GPU of the VPU<a class="headerlink" href="#using-the-gpu-of-the-vpu" title="Permalink to this headline"></a></h2>
+<p>The VPU provides substantial GPU (Graphical Processing Unit) power to the user. The best way to experience this is using CUDA and the samples from NVIDIA. To do so, we are building a container with the sample files from NVIDIA, push it to the VPU and execute it. This, however is not enough. Docker is not using the GPU power if not specified. We need to activate this too via the right runtime.</p>
+<div class="section" id="dockerfile-sample">
+<h3>Dockerfile sample<a class="headerlink" href="#dockerfile-sample" title="Permalink to this headline"></a></h3>
+<p>The following Dockerfile builds the container with the samples from NVIDIA (see <a class="reference external" href="https://github.com/NVIDIA/cuda-samples/">https://github.com/NVIDIA/cuda-samples/</a>).</p>
+<p>Dockerfile:</p>
+<div class="highlight-Docker notranslate"><div class="highlight"><pre><span></span><span class="c"># Base linux for tegra (l4t) amr64/aarch64 image</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">nvcr.io/nvidia/l4t-base:r32.4.3</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">buildstage</span>
+
+<span class="c"># Install necessary updates + git (for cloning the nvidia samples). Tag v10.2 specifies the right commit. VPU runs CUDA 10.2</span>
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>--no-install-recommends<span class="w"> </span>make<span class="w"> </span>g++<span class="w"> </span>git<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ca-certificates<span class="w"> </span>-y
+<span class="k">RUN</span><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>--depth<span class="w"> </span><span class="m">1</span><span class="w"> </span>--branch<span class="w"> </span>v10.2<span class="w"> </span>https://github.com/NVIDIA/cuda-samples.git<span class="w"> </span>/tmp/
+
+<span class="c"># Change into the right directory and install/make the samples</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/tmp/Samples/deviceQuery</span>
+<span class="k">RUN</span><span class="w"> </span>make<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make
+
+<span class="c"># Multistage build to reduce the image size on the platform</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">nvcr.io/nvidia/l4t-base:r32.4.3</span>
+
+<span class="c"># Copy the samples from the buildstage into the final image</span>
+<span class="k">RUN</span><span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/usr/local/bin
+<span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>buildstage<span class="w"> </span>/tmp/Samples/deviceQuery/deviceQuery<span class="w"> </span>/usr/local/bin
+
+<span class="c"># Execute the deviceQuery and check for CUDA support. Don&#39;t forget the runtime with the docker run command</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/usr/local/bin/deviceQuery&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Building the container:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>image<span class="w"> </span>build<span class="w"> </span>.<span class="w"> </span>-t<span class="w"> </span>cuda-samples
+<span class="go">Sending build context to Docker daemon  875.5MB</span>
+<span class="go">Step 1/9 : FROM nvcr.io/nvidia/l4t-base:r32.4.3 AS buildstage</span>
+<span class="go"> ---&gt; c93fc89026d9</span>
+<span class="go">...</span>
+<span class="go">Successfully tagged cuda-samples:latest</span>
+</pre></div>
+</div>
+<p>After building the container, you can follow the steps from the documentation to test the container on the VPU:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="docker.html#save-a-container"><span class="std std-doc">Save the container</span></a>): <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">save</span> <span class="pre">cuda-samples</span> <span class="pre">&gt;</span> <span class="pre">cuda-samples.tar</span></code></p></li>
+<li><p><span class="xref myst">Transfer the container</span>: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">scp</span> <span class="pre">cuda-samples.tar</span> <span class="pre">oem&#64;192.168.0.69:/home/oem</span></code></p></li>
+<li><p><span class="xref myst">Load the container</span>: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">load</span> <span class="pre">&lt;</span> <span class="pre">cuda-samples.tar</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="start-the-container-with-the-nvidia-runtime">
+<h3>Start the container with the NVIDIA runtime<a class="headerlink" href="#start-the-container-with-the-nvidia-runtime" title="Permalink to this headline"></a></h3>
+<p>To use CUDA and the GPU, you have to specify the NVIDIA runtime, either with the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> command, or within the <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> (see <a class="reference internal" href="autostart.html#autostart-a-container-on-the-vpu"><span class="std std-doc">autostart</span></a>).</p>
+<div class="section" id="using-docker-run">
+<h4>Using <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code><a class="headerlink" href="#using-docker-run" title="Permalink to this headline"></a></h4>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">--runtime</span> <span class="pre">nvidia</span></code> argument when running your container. The output of the running container should look similar to this:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">o3r-vpu-c0:~$ </span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--runtime<span class="w"> </span>nvidia<span class="w"> </span>cuda-samples
+<span class="go">/usr/local/bin/deviceQuery Starting...</span>
+
+<span class="go"> CUDA Device Query (Runtime API) version (CUDART static linking)</span>
+
+<span class="go">Detected 1 CUDA Capable device(s)</span>
+
+<span class="go">Device 0: &quot;NVIDIA Tegra X2&quot;</span>
+<span class="go">  CUDA Driver Version / Runtime Version          10.2 / 10.2</span>
+<span class="go">  CUDA Capability Major/Minor version number:    6.2</span>
+<span class="go">  Total amount of global memory:                 3829 MBytes (4014751744 bytes)</span>
+<span class="go">  ( 2) Multiprocessors, (128) CUDA Cores/MP:     256 CUDA Cores</span>
+<span class="go">  GPU Max Clock rate:                            1300 MHz (1.30 GHz)</span>
+<span class="go">  Memory Clock rate:                             1300 Mhz</span>
+<span class="go">  Memory Bus Width:                              128-bit</span>
+<span class="go">  L2 Cache Size:                                 524288 bytes</span>
+<span class="go">  Maximum Texture Dimension Size (x,y,z)         1D=(131072), 2D=(131072, 65536), 3D=(16384, 16384, 16384)</span>
+<span class="go">  Maximum Layered 1D Texture Size, (num) layers  1D=(32768), 2048 layers</span>
+<span class="go">  Maximum Layered 2D Texture Size, (num) layers  2D=(32768, 32768), 2048 layers</span>
+<span class="go">  Total amount of constant memory:               65536 bytes</span>
+<span class="go">  Total amount of shared memory per block:       49152 bytes</span>
+<span class="go">  Total number of registers available per block: 32768</span>
+<span class="go">  Warp size:                                     32</span>
+<span class="go">  Maximum number of threads per multiprocessor:  2048</span>
+<span class="go">  Maximum number of threads per block:           1024</span>
+<span class="go">  Max dimension size of a thread block (x,y,z): (1024, 1024, 64)</span>
+<span class="go">  Max dimension size of a grid size    (x,y,z): (2147483647, 65535, 65535)</span>
+<span class="go">  Maximum memory pitch:                          2147483647 bytes</span>
+<span class="go">  Texture alignment:                             512 bytes</span>
+<span class="go">  Concurrent copy and kernel execution:          Yes with 1 copy engine(s)</span>
+<span class="go">  Run time limit on kernels:                     No</span>
+<span class="go">  Integrated GPU sharing Host Memory:            Yes</span>
+<span class="go">  Support host page-locked memory mapping:       Yes</span>
+<span class="go">  Alignment requirement for Surfaces:            Yes</span>
+<span class="go">  Device has ECC support:                        Disabled</span>
+<span class="go">  Device supports Unified Addressing (UVA):      Yes</span>
+<span class="go">  Device supports Compute Preemption:            Yes</span>
+<span class="go">  Supports Cooperative Kernel Launch:            Yes</span>
+<span class="go">  Supports MultiDevice Co-op Kernel Launch:      Yes</span>
+<span class="go">  Device PCI Domain ID / Bus ID / location ID:   0 / 0 / 0</span>
+<span class="go">  Compute Mode:</span>
+<span class="go">     &lt; Default (multiple host threads can use ::cudaSetDevice() with device simultaneously) &gt;</span>
+
+<span class="go">deviceQuery, CUDA Driver = CUDART, CUDA Driver Version = 10.2, CUDA Runtime Version = 10.2, NumDevs = 1</span>
+<span class="go">Result = PASS</span>
+</pre></div>
+</div>
+<p>Note that starting the container without the runtime leads to a FAIL:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">o3r-vpu-c0:~$ </span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>cuda
+<span class="go">/usr/local/bin/deviceQuery Starting...</span>
+
+<span class="go"> CUDA Device Query (Runtime API) version (CUDART static linking)</span>
+
+<span class="go">cudaGetDeviceCount returned 35</span>
+<span class="go">-&gt; CUDA driver version is insufficient for CUDA runtime version</span>
+<span class="go">Result = FAIL</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="use-docker-compose-to-specify-the-runtime">
+<h4>Use <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> to specify the runtime<a class="headerlink" href="#use-docker-compose-to-specify-the-runtime" title="Permalink to this headline"></a></h4>
+<p>Specifying the runtime in <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> is possible for versions above <code class="docutils literal notranslate"><span class="pre">version:</span> <span class="pre">&quot;2.3&quot;</span></code> to get the runtime argument.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2.3&quot;</span>
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">cuda</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cuda</span>
+<span class="w">        </span><span class="nt">runtime</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nvidia</span>
+</pre></div>
+</div>
+<p>Start the container using <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">up</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">o3r-vpu-c0:~$ </span>docker-compose<span class="w"> </span>up
+<span class="go">Creating network &quot;oem_default&quot; with the default driver</span>
+<span class="go">Creating oem_cuda_1 ... done</span>
+<span class="go">Attaching to oem_cuda_1</span>
+<span class="go">cuda_1  | /usr/local/bin/deviceQuery Starting...</span>
+<span class="go">cuda_1  |</span>
+<span class="go">cuda_1  |  CUDA Device Query (Runtime API) version (CUDART static linking)</span>
+<span class="go">cuda_1  |</span>
+<span class="go">cuda_1  | Detected 1 CUDA Capable device(s)</span>
+<span class="go">cuda_1  |</span>
+<span class="go">cuda_1  | Device 0: &quot;NVIDIA Tegra X2&quot;</span>
+<span class="go">cuda_1  |   CUDA Driver Version / Runtime Version          10.2 / 10.2</span>
+<span class="go">cuda_1  |   CUDA Capability Major/Minor version number:    6.2</span>
+<span class="go">cuda_1  |   Total amount of global memory:                 3829 MBytes (4014751744 bytes)</span>
+<span class="go">cuda_1  |   ( 2) Multiprocessors, (128) CUDA Cores/MP:     256 CUDA Cores</span>
+<span class="go">cuda_1  |   GPU Max Clock rate:                            1300 MHz (1.30 GHz)</span>
+<span class="go">cuda_1  |   Memory Clock rate:                             1300 Mhz</span>
+<span class="go">cuda_1  |   Memory Bus Width:                              128-bit</span>
+<span class="go">cuda_1  |   L2 Cache Size:                                 524288 bytes</span>
+<span class="go">cuda_1  |   Maximum Texture Dimension Size (x,y,z)         1D=(131072), 2D=(131072, 65536), 3D=(16384, 16384, 16384)</span>
+<span class="go">cuda_1  |   Maximum Layered 1D Texture Size, (num) layers  1D=(32768), 2048 layers</span>
+<span class="go">cuda_1  |   Maximum Layered 2D Texture Size, (num) layers  2D=(32768, 32768), 2048 layers</span>
+<span class="go">cuda_1  |   Total amount of constant memory:               65536 bytes</span>
+<span class="go">cuda_1  |   Total amount of shared memory per block:       49152 bytes</span>
+<span class="go">cuda_1  |   Total number of registers available per block: 32768</span>
+<span class="go">cuda_1  |   Warp size:                                     32</span>
+<span class="go">cuda_1  |   Maximum number of threads per multiprocessor:  2048</span>
+<span class="go">cuda_1  |   Maximum number of threads per block:           1024</span>
+<span class="go">cuda_1  |   Max dimension size of a thread block (x,y,z): (1024, 1024, 64)</span>
+<span class="go">cuda_1  |   Max dimension size of a grid size    (x,y,z): (2147483647, 65535, 65535)</span>
+<span class="go">cuda_1  |   Maximum memory pitch:                          2147483647 bytes</span>
+<span class="go">cuda_1  |   Texture alignment:                             512 bytes</span>
+<span class="go">cuda_1  |   Concurrent copy and kernel execution:          Yes with 1 copy engine(s)</span>
+<span class="go">cuda_1  |   Run time limit on kernels:                     No</span>
+<span class="go">cuda_1  |   Integrated GPU sharing Host Memory:            Yes</span>
+<span class="go">cuda_1  |   Support host page-locked memory mapping:       Yes</span>
+<span class="go">cuda_1  |   Alignment requirement for Surfaces:            Yes</span>
+<span class="go">cuda_1  |   Device has ECC support:                        Disabled</span>
+<span class="go">cuda_1  |   Device supports Unified Addressing (UVA):      Yes</span>
+<span class="go">cuda_1  |   Device supports Compute Preemption:            Yes</span>
+<span class="go">cuda_1  |   Supports Cooperative Kernel Launch:            Yes</span>
+<span class="go">cuda_1  |   Supports MultiDevice Co-op Kernel Launch:      Yes</span>
+<span class="go">cuda_1  |   Device PCI Domain ID / Bus ID / location ID:   0 / 0 / 0</span>
+<span class="go">cuda_1  |   Compute Mode:</span>
+<span class="go">cuda_1  |      &lt; Default (multiple host threads can use ::cudaSetDevice() with device simultaneously) &gt;</span>
+<span class="go">cuda_1  |</span>
+<span class="go">cuda_1  | deviceQuery, CUDA Driver = CUDART, CUDA Driver Version = 10.2, CUDA Runtime Version = 10.2, NumDevs = 1</span>
+<span class="go">cuda_1  | Result = PASS</span>
+<span class="go">oem_cuda_1 exited with code 0</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="../_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+ 
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.robotics@ifm.com">support.robotics@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

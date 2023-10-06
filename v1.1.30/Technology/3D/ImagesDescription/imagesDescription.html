@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Description of the available images &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="The confidence image" href="confidenceImage.html" />
+    <link rel="prev" title="Images description" href="index_images_description.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+              <div class="version">
+                v1.1.30
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index_hardware_interfaces.html">Technology</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../Hardware_Interfaces/hardware_specifications.html">Available hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Hardware_Interfaces/CAD_Drawings.html">CAD drawings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../PortsOverview/ports_overview.html">Ports overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Hardware_Interfaces/camera_heads.html">Camera Heads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2D/2d.html">2D Cameras</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index_3d.html">3D Cameras</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../modes.html">Modes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../AcquisitionParams/index_acquisition_params.html">Acquisition parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ProcessingParams/index_processing_params.html">Processing parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../triggering.html">Synchronization and triggering</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index_images_description.html">Images description</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Overview</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#raw-amplitude-image-and-amplitude-image">Raw Amplitude image and Amplitude image</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#distance-image-radial">Distance image (radial)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#distance-noise-radial">Distance noise (radial)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#confidence">Confidence</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#reflectivity">Reflectivity</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#point-cloud-xyz">Point cloud (XYZ)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#unit-vectors">Unit vectors</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#jpeg-image">JPEG image</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="confidenceImage.html">Confidence Image</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../VPU/index_vpu.html">VPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../SystemVerification/index_system_verification.html">System Verification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index_hardware_interfaces.html">Technology</a> &raquo;</li>
+          <li><a href="../index_3d.html">3D Camera Configuration</a> &raquo;</li>
+          <li><a href="index_images_description.html">Images description</a> &raquo;</li>
+      <li>Description of the available images</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/Technology/3D/ImagesDescription/imagesDescription.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="description-of-the-available-images">
+<h1>Description of the available images<a class="headerlink" href="#description-of-the-available-images" title="Permalink to this headline"></a></h1>
+<p>.. warning::
+ifm3d API version 1.2.x and 1.1.x introduced braking changes compared to previous ifm3d versions:
++ The XYZ image was changed by the API (that is the axes permuted): starting in ifm3d API version 1.1.x this axis permutation was removed - XYZ_IMAGE coordinates were actually ZXY instead of XYZ. Please change your code accordingly.
++ The amplitude, normalized amplitude, reflectivity images were masked based on the confidence image. This masking was removed starting in API version 1.2.x. We suggest to mask these images by yourself based on the content of the confidence image. Please change your code accordingly.</p>
+<p>This document gives a high level overview of the images available for the O3R. Receiving certain images can be turned ON/OFF using the <a class="reference external" href="https://api.ifm3d.com/stable/examples/o3r/getting_data/getting_data.html#set-the-schema-and-start-framegrabber">ifm3d FrameGrabber</a>.</p>
+<blockquote>
+<div><p>Note: For more information about the types, sizes and other implementation aspects, please refer to the <a class="reference external" href="https://api.ifm3d.com">ifm3d API documentation</a>.</p>
+</div></blockquote>
+<div class="section" id="raw-amplitude-image-and-amplitude-image">
+<h2>Raw Amplitude image and Amplitude image<a class="headerlink" href="#raw-amplitude-image-and-amplitude-image" title="Permalink to this headline"></a></h2>
+<p>Each pixel of the amplitude matrix denotes the amount of modulated light (that is, the light from the camera’s active illumination) which is reflected by the appropriate object. Higher values indicate higher signal strengths and thus a lower amount of noise on the corresponding distance measurements. The raw amplitude image is not normalized, which can lead to inhomogeneous image impression if a certain pixel is taken from the short exposure time and some of its neighbors are not. Invalid pixels have a value of zero.</p>
+<p>The amplitude image is the normalized image over the different exposure times.</p>
+</div>
+<div class="section" id="distance-image-radial">
+<h2>Distance image (radial)<a class="headerlink" href="#distance-image-radial" title="Permalink to this headline"></a></h2>
+<p>Each pixel of the distance image denotes the ToF distance measured by the corresponding pixel or group of pixels of the imager, along the respective pixel direction. The distance value is corrected by the camera’s calibration, excluding effects caused by multi-path interference and multiple objects contributions (for example <a class="reference internal" href="../ProcessingParams/mixedPixelFilter.html"><span class="doc std std-doc">mixed pixels</span></a>). The reference point is the center of the back of the camera head’s housing. Invalid pixels have a value of zero.</p>
+<p>.. warning::
+The radial distance image has to be normalized by multiplying each distance value by the global distance normalization factor <code class="docutils literal notranslate"><span class="pre">distanceResolution</span></code>.</p>
+</div>
+<div class="section" id="distance-noise-radial">
+<h2>Distance noise (radial)<a class="headerlink" href="#distance-noise-radial" title="Permalink to this headline"></a></h2>
+<p>The distance noise represent the estimated standard deviation of the distance error, in meters for each pixel.</p>
+</div>
+<div class="section" id="confidence">
+<h2>Confidence<a class="headerlink" href="#confidence" title="Permalink to this headline"></a></h2>
+<p>The confidence image give detail about the validity of each pixel and the reason (if any) why it was invalidated. See details <a class="reference internal" href="confidenceImage.html"><span class="doc std std-doc">here</span></a>.</p>
+</div>
+<div class="section" id="reflectivity">
+<h2>Reflectivity<a class="headerlink" href="#reflectivity" title="Permalink to this headline"></a></h2>
+<p>The reflectivity image represents the estimated reflectivity in the near infrared spectrum of the objects in the scene.
+See also the <a class="reference internal" href="../ProcessingParams/minReflectivity.html"><span class="doc std std-doc">minimum reflectivity filter</span></a>.</p>
+</div>
+<div class="section" id="point-cloud-xyz">
+<h2>Point cloud (XYZ)<a class="headerlink" href="#point-cloud-xyz" title="Permalink to this headline"></a></h2>
+<p>The XYZ image (also called point cloud) is a 3-channel image of the spacial planes X, Y and Z. It uses the Cartesian coordinate system.
+The value 0 denotes an invalid pixel.</p>
+</div>
+<div class="section" id="unit-vectors">
+<h2>Unit vectors<a class="headerlink" href="#unit-vectors" title="Permalink to this headline"></a></h2>
+<p>The unit vectors are vectors of size 1 that represent each pixel’s direction. They are computed from the intrinsic calibration of the camera and the optical model. They are used in combination with the distance image to compute the point cloud.</p>
+</div>
+<div class="section" id="jpeg-image">
+<h2>JPEG image<a class="headerlink" href="#jpeg-image" title="Permalink to this headline"></a></h2>
+<p>This image is the JPEG-encoded RGB image streamed by the 2D imager, when available.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="../_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+ 
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.robotics@ifm.com">support.robotics@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Convert O3R rotation angles to human-readable angles &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script src="../../../_static/js/versionwarning.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Convert data from HDF5 to PCD formats" href="../H5ToPCDConverter/h5_to_pcd_converter.html" />
+    <link rel="prev" title="2D-3D Registration Example" href="../Registration2d3d/README.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html" class="icon icon-home"> O3R
+          </a>
+              <div class="version">
+                v1.0.14
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../iVA/index_iVA.html">ifm Vision Assistant</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://api.ifm3d.com/stable/">ifm3d/ifm3dpy API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://ros.ifm3d.com/latest/">ROS: ifm3d-ros</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://ros.ifm3d.com/latest/">ROS2: ifm3d-ros2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Docker/index_docker.html">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ifmDiagnostic/index_diagnostic.html">Diagnostic</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index_toolbox.html">Toolbox</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../IntroToCalibrations/README.html">Introduction to calibrations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Registration2d3d/collect_calibration_data.html">Collect calibration values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ExtrinsicCalibration/README.html">Extrinsic calibrations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Registration2d3d/README.html">2D/3D registration</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Angle conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../H5ToPCDConverter/h5_to_pcd_converter.html">Data conversions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index_software_interfaces.html">Software Interfaces</a> &raquo;</li>
+          <li><a href="../index_toolbox.html">Toolbox</a> &raquo;</li>
+      <li>Convert O3R rotation angles to human-readable angles</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/SoftwareInterfaces/Toolbox/AngleConverter/angle_converter.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="convert-o3r-rotation-angles-to-human-readable-angles">
+<h1>Convert O3R rotation angles to human-readable angles<a class="headerlink" href="#convert-o3r-rotation-angles-to-human-readable-angles" title="Permalink to this headline"></a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#############################################</span>
+<span class="c1"># Copyright 2023-present ifm electronic, gmbh</span>
+<span class="c1"># SPDX-License-Identifier: Apache-2.0</span>
+<span class="c1">#############################################</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module exports functions for converting the euler</span>
+<span class="sd">calibration angles used in the O3R platform into </span>
+<span class="sd">(heading, elevation, bank) angles that are easier</span>
+<span class="sd">to reason about.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1">#%%</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">ifm3dpy</span>
+
+
+<span class="k">def</span> <span class="nf">rot_mat</span><span class="p">(</span><span class="o">*</span><span class="n">rot_xyz</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates a rotation matrix from the given euler angles.</span>
+
+<span class="sd">    :param rot_xyz: 3 element vector containing rotX, rotY and rotZ in [rad]</span>
+<span class="sd">    :return: 3x3 rotation matrix R</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rot_xyz</span><span class="p">):</span>
+        <span class="n">lr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">lr</span><span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+        <span class="n">lr</span><span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">%</span> <span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">%</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+        <span class="n">lr</span><span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">%</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+        <span class="n">lr</span><span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">%</span> <span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">lr</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">R</span>
+
+
+<span class="k">def</span> <span class="nf">rot_mat_reverse</span><span class="p">(</span><span class="n">R</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculates euler angles from a rotation matrix.</span>
+<span class="sd">    This is the inverse of the rot_mat() function.</span>
+
+<span class="sd">    :param R: 3x3 rotation matrix</span>
+<span class="sd">    :return: rotX, rotY, rotZ in [rad]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">R</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+    <span class="n">c2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">R</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">R</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="o">-</span><span class="n">R</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">c2</span><span class="p">)</span>
+    <span class="n">s1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+    <span class="n">c1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+    <span class="n">gamma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">s1</span> <span class="o">*</span> <span class="n">R</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">c1</span> <span class="o">*</span> <span class="n">R</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">c1</span> <span class="o">*</span> <span class="n">R</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">s1</span> <span class="o">*</span> <span class="n">R</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">rotX</span><span class="p">,</span> <span class="n">rotY</span><span class="p">,</span> <span class="n">rotZ</span> <span class="o">=</span> <span class="o">-</span><span class="n">alpha</span><span class="p">,</span> <span class="o">-</span><span class="n">beta</span><span class="p">,</span> <span class="o">-</span><span class="n">gamma</span>
+    <span class="k">if</span> <span class="n">rotX</span> <span class="o">&lt;</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">rotX</span> <span class="o">&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">rotX</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">rotX</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rotX</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+        <span class="n">rotY</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">-</span> <span class="n">rotY</span>
+        <span class="k">if</span> <span class="n">rotY</span> <span class="o">&lt;</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">:</span>
+            <span class="n">rotY</span> <span class="o">+=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+        <span class="k">if</span> <span class="n">rotY</span> <span class="o">&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">:</span>
+            <span class="n">rotY</span> <span class="o">-=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+        <span class="n">rotZ</span> <span class="o">=</span> <span class="n">rotZ</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+        <span class="k">if</span> <span class="n">rotZ</span> <span class="o">&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">:</span>
+            <span class="n">rotZ</span> <span class="o">-=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+    <span class="k">return</span> <span class="n">rotX</span><span class="p">,</span> <span class="n">rotY</span><span class="p">,</span> <span class="n">rotZ</span>
+
+
+<span class="c1"># It&#39;s easy to reason about rotations relative to a &quot;default head position&quot;.</span>
+<span class="c1"># This is camera facing +x, label facing +z in the ODS coordinate system,</span>
+<span class="c1"># which corresponds to typical robot coordinate system.</span>
+<span class="n">DEFAULT_O3R_HEAD_ROTATION_FOR_ODS</span> <span class="o">=</span> <span class="n">rot_mat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+<span class="c1"># Each intrinsic rotation that is applied requires</span>
+<span class="c1"># a conventional direction designated by &quot;SIGNS&quot;.</span>
+<span class="n">SIGNS</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">human_readable_to_O3R_angles</span><span class="p">(</span><span class="o">*</span><span class="n">heading_elevation_bank</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert (H, E, B) angles to Euler angles in the O3R coordinate system.</span>
+
+<span class="sd">    :returns tuple: rot_xyz the three rotations in the O3R coordinate system</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rot</span> <span class="o">=</span> <span class="n">DEFAULT_O3R_HEAD_ROTATION_FOR_ODS</span>
+    <span class="k">for</span> <span class="n">angle</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">sign</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+        <span class="n">heading_elevation_bank</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]),</span> <span class="n">SIGNS</span>
+    <span class="p">):</span>
+        <span class="n">rot</span> <span class="o">=</span> <span class="n">rot</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">rot_mat</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">sign</span> <span class="o">*</span> <span class="n">axis</span> <span class="o">*</span> <span class="n">angle</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span><span class="p">)))</span>
+    <span class="n">rot_xyz</span> <span class="o">=</span> <span class="n">rot_mat_reverse</span><span class="p">(</span><span class="n">rot</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">rot_xyz</span>
+
+
+<span class="k">def</span> <span class="nf">O3R_angles_to_human_readable</span><span class="p">(</span><span class="o">*</span><span class="n">rot_xyz</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert O3R Euler angles to &quot;human-readable&quot; (H, E, B) angles.</span>
+
+<span class="sd">    :param *rot_xyz (float): o3r_head_rotations</span>
+<span class="sd">    :returns tuple: heading, elevation, and bank angles</span>
+<span class="sd">                    relative to DEFAULT_O3R_HEAD_ROTATION_FOR_ODS</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rot</span> <span class="o">=</span> <span class="n">rot_mat</span><span class="p">(</span><span class="o">*</span><span class="n">rot_xyz</span><span class="p">)</span>  <span class="c1"># the rotated direction of camera view</span>
+    <span class="n">fov_uv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">rot</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="p">)</span>  <span class="c1"># the rotated direction of camera view on x-y plane</span>
+    <span class="n">heading_vector</span> <span class="o">=</span> <span class="n">fov_uv</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># find heading and elevation</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span>
+        <span class="n">heading_vector</span>
+    <span class="p">):</span>  <span class="c1"># Avoid singularities where camera is pointing + or - z</span>
+        <span class="n">heading</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">elevation</span> <span class="o">=</span> <span class="n">SIGNS</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mi">90</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">fov_uv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">heading</span> <span class="o">=</span> <span class="n">SIGNS</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="o">*</span><span class="n">heading_vector</span><span class="p">)</span> <span class="o">*</span> <span class="mi">180</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">-</span> <span class="mi">90</span><span class="p">)</span>
+        <span class="n">elevation</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">SIGNS</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">fov_uv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">fov_uv</span><span class="p">[:</span><span class="mi">2</span><span class="p">]))</span> <span class="o">*</span> <span class="mi">180</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+        <span class="p">)</span>
+    <span class="c1"># Find bank angle</span>
+    <span class="n">heading_elevation</span> <span class="o">=</span> <span class="n">DEFAULT_O3R_HEAD_ROTATION_FOR_ODS</span>
+    <span class="k">for</span> <span class="n">angle</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">sign</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+        <span class="p">(</span><span class="n">heading</span><span class="p">,</span> <span class="n">elevation</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]),</span> <span class="n">SIGNS</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+    <span class="p">):</span>
+        <span class="n">heading_elevation</span> <span class="o">=</span> <span class="n">heading_elevation</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span>
+            <span class="n">rot_mat</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">sign</span> <span class="o">*</span> <span class="n">axis</span> <span class="o">*</span> <span class="n">angle</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">180</span><span class="p">))</span>
+        <span class="p">)</span>
+    <span class="n">x_ax</span> <span class="o">=</span> <span class="n">heading_elevation</span><span class="o">.</span><span class="n">dot</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">y_ax</span> <span class="o">=</span> <span class="n">heading_elevation</span><span class="o">.</span><span class="n">dot</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">x_ax_with_bank_angle</span> <span class="o">=</span> <span class="n">rot</span><span class="o">.</span><span class="n">dot</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">bank</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">SIGNS</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">y_ax</span><span class="p">,</span> <span class="n">x_ax_with_bank_angle</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x_ax</span><span class="p">,</span> <span class="n">x_ax_with_bank_angle</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="o">*</span> <span class="mi">180</span>
+        <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">heading</span><span class="p">,</span> <span class="n">elevation</span><span class="p">,</span> <span class="n">bank</span>
+
+
+<span class="c1">#%%</span>
+
+
+<span class="c1"># Some boilerplate for getting and setting rotations of cameras</span>
+<span class="c1"># so that we can visualize the effect of changing the human-readable angles</span>
+<span class="k">def</span> <span class="nf">set_rotation</span><span class="p">(</span><span class="n">o3r</span><span class="p">:</span> <span class="n">ifm3dpy</span><span class="o">.</span><span class="n">O3R</span><span class="p">,</span> <span class="n">port_ns</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">rot</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">port_n</span> <span class="ow">in</span> <span class="n">port_ns</span><span class="p">:</span>
+        <span class="n">extrinsic_cal_name</span> <span class="o">=</span> <span class="s2">&quot;extrinsicHeadToUser&quot;</span>
+        <span class="k">if</span> <span class="n">port_n</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
+            <span class="n">extrinsic_cal_name</span> <span class="o">=</span> <span class="s2">&quot;extrinsicVPUToUser&quot;</span>
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;euler angles: </span><span class="si">{</span><span class="n">rot</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">ext_dict</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">()[</span><span class="s2">&quot;ports&quot;</span><span class="p">][</span><span class="sa">f</span><span class="s2">&quot;port</span><span class="si">{</span><span class="n">port_n</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">][</span><span class="s2">&quot;processing&quot;</span><span class="p">][</span><span class="n">extrinsic_cal_name</span><span class="p">]</span>
+        <span class="n">ext_dict</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="s2">&quot;rotX&quot;</span><span class="p">,</span> <span class="s2">&quot;rotY&quot;</span><span class="p">,</span> <span class="s2">&quot;rotZ&quot;</span><span class="p">],</span> <span class="n">rot</span><span class="p">)})</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;ports&quot;</span><span class="p">:</span> <span class="p">{</span><span class="sa">f</span><span class="s2">&quot;port</span><span class="si">{</span><span class="n">port_n</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;processing&quot;</span><span class="p">:</span> <span class="p">{</span><span class="n">extrinsic_cal_name</span><span class="p">:</span> <span class="n">ext_dict</span><span class="p">}}}</span>
+        <span class="p">}</span>
+        <span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+
+<span class="n">heading</span><span class="p">,</span> <span class="n">elevation</span><span class="p">,</span> <span class="n">bank</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Before transformation...&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;heading=&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">heading</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;elevation=&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">elevation</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;bank=&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">bank</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">rot_xyz</span> <span class="o">=</span> <span class="n">human_readable_to_O3R_angles</span><span class="p">(</span><span class="n">heading</span><span class="p">,</span> <span class="n">elevation</span><span class="p">,</span> <span class="n">bank</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;o3r calibration angles:&quot;</span><span class="p">,</span> <span class="n">rot_xyz</span><span class="p">)</span>
+<span class="n">set_rotation</span><span class="p">(</span><span class="n">ifm3dpy</span><span class="o">.</span><span class="n">O3R</span><span class="p">(),</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="nb">list</span><span class="p">(</span><span class="n">rot_xyz</span><span class="p">))</span>
+<span class="n">heading</span><span class="p">,</span> <span class="n">elevation</span><span class="p">,</span> <span class="n">bank</span> <span class="o">=</span> <span class="n">O3R_angles_to_human_readable</span><span class="p">(</span><span class="o">*</span><span class="n">rot_xyz</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">After transformation...&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;heading=&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">heading</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;elevation=&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">elevation</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;bank=&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">bank</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="c1"># %%</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="../_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+ 
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.robotics@ifm.com">support.robotics@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

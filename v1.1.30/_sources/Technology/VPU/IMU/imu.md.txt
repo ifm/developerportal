@@ -1,0 +1,7 @@
+# IMU - Inertial Measurement Unit
+
+The VPU version supporting [ODS](../../../ODS/index_ods.md) (currently MO4239) include a built-in IMU.
+
+Future firmware may support third party access to IMU configuration and data acquisition.
+
+<!-- TODO designate timeline? -->

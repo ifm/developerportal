@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zones &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/js/versionwarning.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Occupancy grid" href="../OccupancyGrid/occupancy_grid.html" />
+    <link rel="prev" title="Configuration" href="../Configuration/configuration.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> O3R
+          </a>
+              <div class="version">
+                v1.0.14
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index_ods.html">ODS</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Mounting/mounting.html">Mounting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Instantiation/instantiation.html">Instantiation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Configuration/configuration.html">Configuration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Zones</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#zone-extent">Zone extent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#probability-threshold">Probability threshold</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#number-of-zones">Number of zones</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#output">Output</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#timestamp">Timestamp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#zoneconfigid"><code class="docutils literal notranslate"><span class="pre">zoneConfigID</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#zoneoccupied"><code class="docutils literal notranslate"><span class="pre">zoneOccupied</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#only-one-zone">Only one zone</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#three-zones">Three zones</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#example-output">Example output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../OccupancyGrid/occupancy_grid.html">Occupancy grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Recording/ods_data_recording.html">Recording</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ChangingViews/changing_views.html">Changing views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OverhangingLoads/overhanging_loads.html">Overhanging loads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../NegativeObstacles/negative_obstacles.html">Negative Obstacles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DustMitigation/dust_mitigation.html">Dust artifact mitigation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ExtrinsicCalibration/index_extrinsic_calibration.html">Extrinsic calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../FieldTest/index_field_test.html">Field test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DeviceVerification/index_device_verification.html">Device verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../iVA/index_ifmODS_iVA.html">ifmVisionAssistant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Python/index_ifmODS_python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Cpp/index_ifmODS_cpp.html">C++</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index_ods.html">ODS (Obstacle Detection System)</a> &raquo;</li>
+      <li>Zones</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/ODS/Zones/zones.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="zones">
+<h1>Zones<a class="headerlink" href="#zones" title="Permalink to this headline"></a></h1>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline"></a></h2>
+</div>
+<div class="section" id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline"></a></h2>
+<p>A zone maps the probability information of all grid cells inside the zones extent to a binary values: <code class="docutils literal notranslate"><span class="pre">true</span></code> means that an object is detected, <code class="docutils literal notranslate"><span class="pre">false</span></code> that no object is detected<code class="docutils literal notranslate"><span class="pre">.</span> <span class="pre">This</span> <span class="pre">mapping</span> <span class="pre">is</span> <span class="pre">based</span> <span class="pre">on</span> <span class="pre">the</span> <span class="pre">convex</span> <span class="pre">hull</span> <span class="pre">(2D)</span> </code>zoneCoordinates<code class="docutils literal notranslate"><span class="pre">,</span> <span class="pre">the</span> <span class="pre">parameter</span> </code>maxHeight<code class="docutils literal notranslate"><span class="pre">,</span> <span class="pre">the</span> </code>probabilityThreshold`.</p>
+<p>Additionally, the parameter <code class="docutils literal notranslate"><span class="pre">minObjectHeight</span></code> allows you to edit the expected minimum object height above the floor (Z==0 plane) per camera. The <code class="docutils literal notranslate"><span class="pre">minObjectHeight</span></code> parameter is handled on a per camera basis to allow fine tuning for multi camera setups with different camera mounting heights. For higher cameras the <code class="docutils literal notranslate"><span class="pre">minObjectHeight</span></code> can be lower compared to lower-mounted cameras to allow the user to see further distances and lower objects relative to the floor plane.</p>
+<p>The parameter <code class="docutils literal notranslate"><span class="pre">maxHeight</span></code> is a global parameter for all zones. The 3D extent (maximum) boundaries along the vertical axis is therefore the same for all zones.</p>
+<p><img alt="Zone Configuration" src="../../_images/set_example_zones.gif" /></p>
+<div class="section" id="zone-extent">
+<h3>Zone extent<a class="headerlink" href="#zone-extent" title="Permalink to this headline"></a></h3>
+<p>The 3D zone extent is defined via the 2D (convex) hull of the points in space as defined by the list <code class="docutils literal notranslate"><span class="pre">zoneCoordinates</span></code>. Its volume is handled via the combined <code class="docutils literal notranslate"><span class="pre">maxHeight</span></code> parameter and <code class="docutils literal notranslate"><span class="pre">minObjectHeight</span></code> parameters. If configured, <span class="xref myst">overhanging loads</span> will also be taken into account.</p>
+</div>
+<div class="section" id="probability-threshold">
+<h3>Probability threshold<a class="headerlink" href="#probability-threshold" title="Permalink to this headline"></a></h3>
+<p>The parameter <code class="docutils literal notranslate"><span class="pre">probabilityThreshold</span></code> defines the binarization from a 8 bit scaled probability value per grid cell to a binary (occupation) value per grid cell.
+All binary occupation values of grid cells inside the zone are then combined to form the binary output per zone.</p>
+</div>
+<div class="section" id="number-of-zones">
+<h3>Number of zones<a class="headerlink" href="#number-of-zones" title="Permalink to this headline"></a></h3>
+<p>As of <code class="docutils literal notranslate"><span class="pre">FW</span> <span class="pre">version</span> <span class="pre">1.0.14</span></code> an ODS application is limited to a maximum of three zones.</p>
+</div>
+</div>
+<div class="section" id="output">
+<h2>Output<a class="headerlink" href="#output" title="Permalink to this headline"></a></h2>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">timestamp_ns</span></code></p></td>
+<td><p>uint64</p></td>
+<td><p>timestamp of occupancy grid in [ns] - NTP time if NTP server is synchronized</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">zoneConfigID</span></code></p></td>
+<td><p>uint32</p></td>
+<td><p>the user-defined ID for the zone configuration</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">zoneOccupied</span></code></p></td>
+<td><p>int8[3]</p></td>
+<td><p>a flag for each zone describing whether it is occupied or free</p></td>
+</tr>
+</tbody>
+</table>
+<p>You can also view the zones’ output at the bottom left corner of the <code class="docutils literal notranslate"><span class="pre">Application</span></code> window as shown in the below figure.</p>
+<p><img alt="Zone Output" src="../../_images/zone_output_iVA.png" /></p>
+<div class="section" id="timestamp">
+<h3>Timestamp<a class="headerlink" href="#timestamp" title="Permalink to this headline"></a></h3>
+<p>Every ODS data package (chunk) also contains a timestamp[ns]. If a <code class="docutils literal notranslate"><span class="pre">NTP-server</span></code> is provided, the timestamp[ns] is synchronized.</p>
+</div>
+<div class="section" id="zoneconfigid">
+<h3><code class="docutils literal notranslate"><span class="pre">zoneConfigID</span></code><a class="headerlink" href="#zoneconfigid" title="Permalink to this headline"></a></h3>
+<p>The user-defined ID for the currently used zone configuration.</p>
+</div>
+<div class="section" id="zoneoccupied">
+<h3><code class="docutils literal notranslate"><span class="pre">zoneOccupied</span></code><a class="headerlink" href="#zoneoccupied" title="Permalink to this headline"></a></h3>
+<p>One zone state information for all zones: this is always an array of 3 elements independently of if 3 or less zones have been configured.</p>
+</div>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h2>
+<div class="section" id="only-one-zone">
+<h3>Only one zone<a class="headerlink" href="#only-one-zone" title="Permalink to this headline"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;zoneCoordinates&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[[[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">-1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">-1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">]]]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The JSON shown here is the convex hull of one zone (2D on the ground plane).
+The width (lateral size, that is in Y-direction) is 2 m. The length (longitudinal size, that is in X-direction) is 1 m.</p>
+</div>
+<div class="section" id="three-zones">
+<h3>Three zones<a class="headerlink" href="#three-zones" title="Permalink to this headline"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;zoneCoordinates&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">-1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">-1</span><span class="p">]],</span>
+<span class="w">    </span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">-1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">-1</span><span class="p">]],</span>
+<span class="w">    </span><span class="p">[[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">-1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">-1</span><span class="p">]]</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-output">
+<h3>Example output<a class="headerlink" href="#example-output" title="Permalink to this headline"></a></h3>
+<p>In <code class="docutils literal notranslate"><span class="pre">FW</span> <span class="pre">0.16.23</span></code> and <code class="docutils literal notranslate"><span class="pre">FW</span> <span class="pre">1.0.14</span></code> the configuration and output of zones is limited to three zones.</p>
+<p>The user can set up-to 3 zones at a time. Trying to set 4 zones in the JSON configuration will result it a JSON schema error: ifm3d / ifm3dpy custom error.</p>
+<p>The zone evaluation output is also limited to three zones. Independently of how many zones are configured, one zone output is a vector of three elements.
+The first element pertains to the first zone, the second element to the second zone, etc.</p>
+<p>The example array below shows the output of 10 consecutive frames buffered into one array.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">uint8</span><span class="p">)</span>
+
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="../_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+ 
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.robotics@ifm.com">support.robotics@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
