@@ -71,7 +71,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#description">Description</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#zone-extent">Zone extent</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#probability-threshold">Probability threshold</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#number-of-zones">Number of zones</a></li>
 </ul>
 </li>
@@ -139,7 +138,8 @@
 </div>
 <div class="section" id="parameters">
 <h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline"></a></h2>
-<p>A zone maps the probability information of all grid cells inside the zones extent to a binary values: <code class="docutils literal notranslate"><span class="pre">true</span></code> means that an object is detected, <code class="docutils literal notranslate"><span class="pre">false</span></code> that no object is detected<code class="docutils literal notranslate"><span class="pre">.</span> <span class="pre">This</span> <span class="pre">mapping</span> <span class="pre">is</span> <span class="pre">based</span> <span class="pre">on</span> <span class="pre">the</span> <span class="pre">convex</span> <span class="pre">hull</span> <span class="pre">(2D)</span> </code>zoneCoordinates<code class="docutils literal notranslate"><span class="pre">,</span> <span class="pre">the</span> <span class="pre">parameter</span> </code>maxHeight<code class="docutils literal notranslate"><span class="pre">,</span> <span class="pre">the</span> </code>probabilityThreshold`.</p>
+<p>A zone maps the probability information of all grid cells inside the zones extent to a binary values: <code class="docutils literal notranslate"><span class="pre">true</span></code> means that an object is detected, <code class="docutils literal notranslate"><span class="pre">false</span></code> that no object is detected.
+This mapping is based on the convex hull (2D) <code class="docutils literal notranslate"><span class="pre">zoneCoordinates</span></code> and the parameter <code class="docutils literal notranslate"><span class="pre">maxHeight</span></code>.</p>
 <p>Additionally, the parameter <code class="docutils literal notranslate"><span class="pre">minObjectHeight</span></code> allows you to edit the expected minimum object height above the floor (Z==0 plane) per camera. The <code class="docutils literal notranslate"><span class="pre">minObjectHeight</span></code> parameter is handled on a per camera basis to allow fine tuning for multi camera setups with different camera mounting heights. For higher cameras the <code class="docutils literal notranslate"><span class="pre">minObjectHeight</span></code> can be lower compared to lower-mounted cameras to allow the user to see further distances and lower objects relative to the floor plane.</p>
 <p>The parameter <code class="docutils literal notranslate"><span class="pre">maxHeight</span></code> is a global parameter for all zones. The 3D extent (maximum) boundaries along the vertical axis is therefore the same for all zones.</p>
 <p><img alt="Zone Configuration" src="../../_images/set_example_zones.gif" /></p>
@@ -147,14 +147,9 @@
 <h3>Zone extent<a class="headerlink" href="#zone-extent" title="Permalink to this headline"></a></h3>
 <p>The 3D zone extent is defined via the 2D (convex) hull of the points in space as defined by the list <code class="docutils literal notranslate"><span class="pre">zoneCoordinates</span></code>. Its volume is handled via the combined <code class="docutils literal notranslate"><span class="pre">maxHeight</span></code> parameter and <code class="docutils literal notranslate"><span class="pre">minObjectHeight</span></code> parameters. If configured, <a class="reference internal" href="../OverhangingLoads/overhanging_loads.html"><span class="doc std std-doc">overhanging loads</span></a> will also be taken into account.</p>
 </div>
-<div class="section" id="probability-threshold">
-<h3>Probability threshold<a class="headerlink" href="#probability-threshold" title="Permalink to this headline"></a></h3>
-<p>The parameter <code class="docutils literal notranslate"><span class="pre">probabilityThreshold</span></code> defines the binarization from a 8 bit scaled probability value per grid cell to a binary (occupation) value per grid cell.
-All binary occupation values of grid cells inside the zone are then combined to form the binary output per zone.</p>
-</div>
 <div class="section" id="number-of-zones">
 <h3>Number of zones<a class="headerlink" href="#number-of-zones" title="Permalink to this headline"></a></h3>
-<p>As of <code class="docutils literal notranslate"><span class="pre">FW</span> <span class="pre">version</span> <span class="pre">1.0.14</span></code> an ODS application is limited to a maximum of three zones.</p>
+<p>An ODS application is limited to a maximum of three zones.</p>
 </div>
 </div>
 <div class="section" id="output">
@@ -185,7 +180,7 @@ All binary occupation values of grid cells inside the zone are then combined to 
 <p><img alt="Zone Output" src="../../_images/zone_output_iVA.png" /></p>
 <div class="section" id="timestamp">
 <h3>Timestamp<a class="headerlink" href="#timestamp" title="Permalink to this headline"></a></h3>
-<p>Every ODS data package (chunk) also contains a timestamp[ns]. If a <code class="docutils literal notranslate"><span class="pre">NTP-server</span></code> is provided, the timestamp[ns] is synchronized.</p>
+<p>Every ODS frame also contains a timestamp in nanoseconds. If a <code class="docutils literal notranslate"><span class="pre">NTP-server</span></code> is provided, the timestamp is synchronized. Learn more about timestamps in <a class="reference internal" href="../../Technology/VPU/Timestamps/timestamps.html"><span class="doc std std-doc">the timestamps documentation</span></a>.</p>
 </div>
 <div class="section" id="zoneconfigid">
 <h3><code class="docutils literal notranslate"><span class="pre">zoneConfigID</span></code><a class="headerlink" href="#zoneconfigid" title="Permalink to this headline"></a></h3>

@@ -22,7 +22,7 @@ The `activePorts` parameter can be updated while the application is in state "CO
         "instances": {
             "app0": {
                 "configuration": {
-                    "activePorts": ["port3"],
+                    "activePorts": ["port0"],
                 "ports" : ["port0", "port1", "port2", "port3", "port6"],
                 "state": "RUN"
                 }
@@ -33,7 +33,7 @@ The `activePorts` parameter can be updated while the application is in state "CO
 ```
 
 :::{warning}
-The `set()` function will throw an exception if the number of 3D ports specified in `activePorts` exceeds the `maxNumSimultaneousCameras` specified when the application was initialized or the 3d port was not present in the `ports` parameter of the application. The default maximum number of cameras is set to 2 as a notice to developers to be aware of resource limitations during use of ODS.
+The `set()` function will throw an exception if the number of 3D ports specified in `activePorts` exceeds the `maxNumSimultaneousCameras` specified when the application was initialized or the 3D port was not present in the `ports` parameter of the application. The default maximum number of cameras is set to 2 as a notice to developers to be aware of resource limitations during use of ODS.
 :::
 
 ## Changing views and zones
@@ -49,7 +49,7 @@ Update the app with a new set of active cameras and an updated set of zones:
         "instances": {
             "app0": {
                 "configuration": {
-                    "activePorts": ["port3"],
+                    "activePorts": ["port1", "port2"],
                     "grid": {
                         "maxHeight": 1.4,
                     },

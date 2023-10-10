@@ -75,9 +75,11 @@ A VPU (OVP800) can connect up to 6 3D imager, ranging from `Port 0` to `Port 5`.
             "port6"
           ],
 ```
-Connected heads, which are not defined within the ODS JSON can be used separately/parallel to the ODS application.
+Connected heads, which are not defined within the ODS JSON can be used in parallel to the ODS application.
 `port6` is the `IMU` (Inertial Measurement Unit) and is used by ODS. **`port6` *must always* be provided to an ODS application.**
 
+:::{note} We recommend turning all the unused camera heads to "CONF" mode, to avoid them using up system resources. This is especially true for unused RGB cameras.
+:::
 
 ## Visual odometry 
 
@@ -87,6 +89,6 @@ Provide the port number (head with floor data in the images) to the `vo` attribu
 
 ```json
 "vo": {
-    "portNumber": 2
+    "voPorts": ["port2"]
 }
 ```

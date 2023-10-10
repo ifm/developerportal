@@ -5,8 +5,8 @@
 
 ## Parameters
 
-A zone maps the probability information of all grid cells inside the zones extent to a binary values: `true` means that an object is detected, `false` that no object is detected`.
-This mapping is based on the convex hull (2D) `zoneCoordinates`, the parameter `maxHeight`, the `probabilityThreshold`.
+A zone maps the probability information of all grid cells inside the zones extent to a binary values: `true` means that an object is detected, `false` that no object is detected.
+This mapping is based on the convex hull (2D) `zoneCoordinates` and the parameter `maxHeight`.
 
 Additionally, the parameter `minObjectHeight` allows you to edit the expected minimum object height above the floor (Z==0 plane) per camera. The `minObjectHeight` parameter is handled on a per camera basis to allow fine tuning for multi camera setups with different camera mounting heights. For higher cameras the `minObjectHeight` can be lower compared to lower-mounted cameras to allow the user to see further distances and lower objects relative to the floor plane.
 
@@ -18,13 +18,8 @@ The parameter `maxHeight` is a global parameter for all zones. The 3D extent (ma
 
 The 3D zone extent is defined via the 2D (convex) hull of the points in space as defined by the list `zoneCoordinates`. Its volume is handled via the combined `maxHeight` parameter and `minObjectHeight` parameters. If configured, [overhanging loads](../OverhangingLoads/overhanging_loads.md) will also be taken into account.
 
-### Probability threshold
-
-The parameter `probabilityThreshold` defines the binarization from a 8 bit scaled probability value per grid cell to a binary (occupation) value per grid cell.
-All binary occupation values of grid cells inside the zone are then combined to form the binary output per zone.
-
 ### Number of zones
-As of `FW version 1.0.14` an ODS application is limited to a maximum of three zones.
+An ODS application is limited to a maximum of three zones.
 
 ## Output
 
@@ -40,7 +35,7 @@ You can also view the zones' output at the bottom left corner of the `Applicatio
 
 ### Timestamp
 
-Every ODS data package (chunk) also contains a timestamp[ns]. If a `NTP-server` is provided, the timestamp[ns] is synchronized.
+Every ODS frame also contains a timestamp in nanoseconds. If a `NTP-server` is provided, the timestamp is synchronized. Learn more about timestamps in [the timestamps documentation](../../Technology/VPU/Timestamps/timestamps.md).
 
 ### `zoneConfigID`
 

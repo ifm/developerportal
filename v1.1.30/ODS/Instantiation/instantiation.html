@@ -189,15 +189,19 @@ This would mean the camera head is inside the floor (<code class="docutils liter
 <span class="w">          </span><span class="p">],</span>
 </pre></div>
 </div>
-<p>Connected heads, which are not defined within the ODS JSON can be used separately/parallel to the ODS application.
+<p>Connected heads, which are not defined within the ODS JSON can be used in parallel to the ODS application.
 <code class="docutils literal notranslate"><span class="pre">port6</span></code> is the <code class="docutils literal notranslate"><span class="pre">IMU</span></code> (Inertial Measurement Unit) and is used by ODS. <strong><code class="docutils literal notranslate"><span class="pre">port6</span></code> <em>must always</em> be provided to an ODS application.</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We recommend turning all the unused camera heads to “CONF” mode, to avoid them using up system resources. This is especially true for unused RGB cameras.</p>
+</div>
 </div>
 <div class="section" id="visual-odometry">
 <h2>Visual odometry<a class="headerlink" href="#visual-odometry" title="Permalink to this headline"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">vo</span></code> - Visual odometry - is an algorithmic approach to provide - together with the IMU - ego motion data to the ODS algorithm. Images from one head are used together with the IMU data to continuously improve the ODS ego-motion estimation. The best performance is achieved by using a head with (the most) floor data visible in its images. The floors distance range needs to be at least between 1.00m and 1.50m.</p>
 <p>Provide the port number (head with floor data in the images) to the <code class="docutils literal notranslate"><span class="pre">vo</span></code> attribute.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;vo&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;portNumber&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">    </span><span class="nt">&quot;voPorts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;port2&quot;</span><span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
 </div>
