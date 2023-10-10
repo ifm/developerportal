@@ -1,16 +1,16 @@
 
-# Zones 
+# Zones
 
 ## Description
 
 ## Parameters
 
-A zone maps the probability information of all grid cells inside the zones extent to a binary values: `true` means that an object is detected, `false` that no object is detected.
-This mapping is based on the convex hull (2D) `zoneCoordinates` and the parameter `maxHeight`.
+A zone maps the probability information of all grid cells within the zone extent to a binary value: `true` means that an object is detected, `false` that no object is detected.
+This mapping is based on the internally computed convex hull (2D) of the user input `zoneCoordinates` and the `maxHeight` parameter.
 
-Additionally, the parameter `minObjectHeight` allows you to edit the expected minimum object height above the floor (Z==0 plane) per camera. The `minObjectHeight` parameter is handled on a per camera basis to allow fine tuning for multi camera setups with different camera mounting heights. For higher cameras the `minObjectHeight` can be lower compared to lower-mounted cameras to allow the user to see further distances and lower objects relative to the floor plane.
+Additionally, the `minObjectHeight` parameter allows you to edit the expected minimum object height above the ground (`Z==0` plane) per camera. The `minObjectHeight` parameter is handled on a per-camera basis to allow fine tuning for multi-camera setups with different camera mounting heights. For higher mounted cameras the `minObjectHeight` can be lower compared to lower mounted cameras to allow the user to see further away and lower objects relative to the floor plane.
 
-The parameter `maxHeight` is a global parameter for all zones. The 3D extent (maximum) boundaries along the vertical axis is therefore the same for all zones.
+The `maxHeight` parameter is a global parameter for all zones. The 3D extent (maximum) limits along the vertical axis are therefore the same for all zones.
 
 ![Zone Configuration](img/set_example_zones.gif)
 

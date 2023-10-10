@@ -138,10 +138,10 @@
 </div>
 <div class="section" id="parameters">
 <h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline"></a></h2>
-<p>A zone maps the probability information of all grid cells inside the zones extent to a binary values: <code class="docutils literal notranslate"><span class="pre">true</span></code> means that an object is detected, <code class="docutils literal notranslate"><span class="pre">false</span></code> that no object is detected.
-This mapping is based on the convex hull (2D) <code class="docutils literal notranslate"><span class="pre">zoneCoordinates</span></code> and the parameter <code class="docutils literal notranslate"><span class="pre">maxHeight</span></code>.</p>
-<p>Additionally, the parameter <code class="docutils literal notranslate"><span class="pre">minObjectHeight</span></code> allows you to edit the expected minimum object height above the floor (Z==0 plane) per camera. The <code class="docutils literal notranslate"><span class="pre">minObjectHeight</span></code> parameter is handled on a per camera basis to allow fine tuning for multi camera setups with different camera mounting heights. For higher cameras the <code class="docutils literal notranslate"><span class="pre">minObjectHeight</span></code> can be lower compared to lower-mounted cameras to allow the user to see further distances and lower objects relative to the floor plane.</p>
-<p>The parameter <code class="docutils literal notranslate"><span class="pre">maxHeight</span></code> is a global parameter for all zones. The 3D extent (maximum) boundaries along the vertical axis is therefore the same for all zones.</p>
+<p>A zone maps the probability information of all grid cells within the zone extent to a binary value: <code class="docutils literal notranslate"><span class="pre">true</span></code> means that an object is detected, <code class="docutils literal notranslate"><span class="pre">false</span></code> that no object is detected.
+This mapping is based on the internally computed convex hull (2D) of the user input <code class="docutils literal notranslate"><span class="pre">zoneCoordinates</span></code> and the <code class="docutils literal notranslate"><span class="pre">maxHeight</span></code> parameter.</p>
+<p>Additionally, the <code class="docutils literal notranslate"><span class="pre">minObjectHeight</span></code> parameter allows you to edit the expected minimum object height above the ground (<code class="docutils literal notranslate"><span class="pre">Z==0</span></code> plane) per camera. The <code class="docutils literal notranslate"><span class="pre">minObjectHeight</span></code> parameter is handled on a per-camera basis to allow fine tuning for multi-camera setups with different camera mounting heights. For higher mounted cameras the <code class="docutils literal notranslate"><span class="pre">minObjectHeight</span></code> can be lower compared to lower mounted cameras to allow the user to see further away and lower objects relative to the floor plane.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">maxHeight</span></code> parameter is a global parameter for all zones. The 3D extent (maximum) limits along the vertical axis are therefore the same for all zones.</p>
 <p><img alt="Zone Configuration" src="../../_images/set_example_zones.gif" /></p>
 <div class="section" id="zone-extent">
 <h3>Zone extent<a class="headerlink" href="#zone-extent" title="Permalink to this headline"></a></h3>
@@ -261,13 +261,13 @@ The first element pertains to the first zone, the second element to the second z
 	·
 		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
 	·
-		<a href="../_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+		<a href="../latest/_static/privacy-policy.html" target="_blank">Privacy Policy</a>
 
 		</p>
  
 		<p class="footer-company-name">ifm robotics &copy; 2023</p>
 		</div>
- 
+		
 		<div class="footer-center">
  
 		<div>
