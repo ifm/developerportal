@@ -69,22 +69,14 @@
 <li class="toctree-l5"><a class="reference internal" href="#compatible-software-versions">Compatible software versions</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#compatible-video-processing-platforms-vpus">Compatible Video Processing Platforms (VPUs)</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#supported-camera-articles">Supported Camera Articles</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#general">General</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#added">Added</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#changed">Changed</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#fixed">Fixed</a></li>
-</ul>
-</li>
-<li class="toctree-l5"><a class="reference internal" href="#d-camera">3D camera</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#id1">Changed</a></li>
-</ul>
-</li>
-<li class="toctree-l5"><a class="reference internal" href="#id2">2D camera</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#changes">Changes</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#new-features">New features</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#fixes">Fixes</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#known-issues">Known Issues</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#ods-application-specific-release-notes">ODS Application specific release notes:</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#id3">Added</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#changes">Changes</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#fixes">Fixes</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#ods-application">ODS Application</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#id1">New features</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#id2">Changes</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#id3">Fixes</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#id4">Known Issues</a></li>
 </ul>
 </li>
@@ -225,182 +217,63 @@ Please refer to the ifm O3R’s website <a class="reference external" href="http
 </tbody>
 </table>
 </div>
-<div class="section" id="general">
-<h2>General<a class="headerlink" href="#general" title="Permalink to this headline"></a></h2>
-<div class="section" id="added">
-<h3>Added<a class="headerlink" href="#added" title="Permalink to this headline"></a></h3>
+<div class="section" id="changes">
+<h2>Changes<a class="headerlink" href="#changes" title="Permalink to this headline"></a></h2>
 <ul class="simple">
-<li><p>Possibility to configure the Docker daemon for insecure and self signed registries via the JSON configuration: see <a class="reference internal" href="../../../SoftwareInterfaces/Docker/deployVPU.html#option-2-advanced-load-a-container-from-a-docker-registry"><span class="std std-doc">the docker daemon registry configuration</span></a>.</p></li>
+<li><p>The JSON configuration structure was updated to accommodate new parameters. Refer to <a class="reference internal" href="FW_1.1.x_migration_guide.html"><span class="doc std std-doc">the migration guide</span></a> for a full list.</p></li>
+<li><p>The overtemperature threshold was updated from 77°C to 85°C.</p></li>
 </ul>
 </div>
-<div class="section" id="changed">
-<h3>Changed<a class="headerlink" href="#changed" title="Permalink to this headline"></a></h3>
+<div class="section" id="new-features">
+<h2>New features<a class="headerlink" href="#new-features" title="Permalink to this headline"></a></h2>
 <ul class="simple">
-<li><p>Default IP handling for ETH1:</p>
-<ul>
-<li><p>IP address of ETH1 will be changed to static IP in the future: please prepare your deployment and EOL process</p>
-<ul>
-<li><p>static IP address: 192.168.42.69/24</p></li>
-<li><p>Gateway: 192.168.42.201</p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Configuration JSON: data type of clock <code class="docutils literal notranslate"><span class="pre">currentTime</span></code> changed from integer to string</p></li>
+<li><p>It is now possible to configure insecure and self signed Docker registries via the JSON configuration. See <a class="reference internal" href="../../../SoftwareInterfaces/Docker/deployVPU.html#option-2-advanced-load-a-container-from-a-docker-registry"><span class="std std-doc">the docker daemon registry configuration</span></a> for a tutorial on how to do so.</p></li>
 </ul>
 </div>
-<div class="section" id="fixed">
-<h3>Fixed<a class="headerlink" href="#fixed" title="Permalink to this headline"></a></h3>
+<div class="section" id="fixes">
+<h2>Fixes<a class="headerlink" href="#fixes" title="Permalink to this headline"></a></h2>
 <ul class="simple">
-<li><p>Improved JSON boot-up handling when persistent configuration exist on the device:</p>
-<ul>
-<li><p>Get command shall be available when persistent configuration exists but doesn’t match the hardware connectivity</p></li>
+<li><p>Fixed the device being unavailable when the hardware configuration is different from the one specified in the persistent JSON configuration. See <a class="reference internal" href="../../../Technology/configuration.html#persistent-configuration"><span class="std std-doc">the persistent configurations document</span></a> for more details.</p></li>
 </ul>
-</li>
-<li><p>Improved handling of setting persistent JSON configurations - see <a class="reference internal" href="../../../Technology/configuration.html#persistent-configuration"><span class="std std-doc">the persistent configurations document</span></a>.</p></li>
-<li><p>Improved handling of external USB storage devices - see <a class="reference internal" href="../../../Technology/VPU/usb.html"><span class="doc std std-doc">the USB documentation</span></a>.</p></li>
-</ul>
-</div>
-</div>
-<div class="section" id="d-camera">
-<h2>3D camera<a class="headerlink" href="#d-camera" title="Permalink to this headline"></a></h2>
-<div class="section" id="id1">
-<h3>Changed<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
-<ul class="simple">
-<li><p>Changed overtemperature threshold from 77°C to 85°C</p>
-<ul>
-<li><p>Cameras will only switch off for internal temperatures &gt; 85°C (limit)</p></li>
-<li><p>Cameras will become active again (automatically) after they cool down to 80°C</p></li>
-</ul>
-</li>
-<li><p>Reset internal state (for example, for the temporal filter) on RUN/IDLE-&gt;CONF-&gt;RUN/IDLE changes.</p></li>
-<li><p>The amplitude values of suspect pixels is now set to invalid (negative) values.</p></li>
-<li><p>Extrinsic calibration parameters are not required to be fully populated anymore (for example, <code class="docutils literal notranslate"><span class="pre">/ports/portX/processing/extrinsicHeadToUser/transX</span></code> can be set without setting the other calibration members).</p></li>
-</ul>
-</div>
-</div>
-<div class="section" id="id2">
-<h2>2D camera<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h2>
 </div>
 <div class="section" id="known-issues">
 <h2>Known Issues<a class="headerlink" href="#known-issues" title="Permalink to this headline"></a></h2>
 <ul class="simple">
-<li><p>All the settings persistently saved through the <code class="docutils literal notranslate"><span class="pre">save_init</span></code> function will be lost during the firmware update.</p>
-<ul>
-<li><p>Settings that remain after a FW update: Network settings for ETH0</p></li>
-<li><p>Extrinsic parameters must be handled manually</p></li>
-</ul>
-</li>
-<li><p>Connectivity: ports must be connected pairwise with the same head-type: [Port0,Port1]   [Port2,Port3]   [Port4,Port5]</p></li>
-<li><p>Channel values have to be manually selected for each port. Ensure each port is set to a different channel value.</p>
-<ul>
-<li><p>Channel value difference of &gt;=2 improves crosstalk mitigation</p></li>
-</ul>
-</li>
-<li><p>The IPv4 discovery feature for discovering the device in routed networks is not available</p></li>
-<li><p>2D RGB image data:</p>
-<ul>
-<li><p>The framerate of the 2D RGB image stream can not be configured: A parameter change via the JSON interface has no effect on the acquisition framerate.</p></li>
-<li><p>The 2D RGB imager is configured to be “free running,” that is, it is not controlled via the internal hardware trigger mechanisms (as 3D TOF)</p></li>
-<li><p>No software trigger for 2D available</p></li>
-<li><p>RGB data quality: compression artifacts</p></li>
-</ul>
-</li>
-<li><p>Algo-debug recording:</p>
-<ul>
-<li><p>Algo-debug recording (receiving) may not be functional on customer PCs, for example laptops, with high loads / low processing power and result in missed information.</p></li>
-</ul>
-</li>
-<li><p>A ETH0 network connection is required at boot-up:</p>
-<ul>
-<li><p>If no network connection can be established within 2 min during boot-up, following O3R system services such as imager streams may not be functional until rebooted.</p></li>
-<li><p>If no network connection can be established the CAN communication may be available.</p></li>
-</ul>
-</li>
-<li><p>Ethernet and CAN communications are coupled in the Docker container runtime: The CAN interface can only be made available if the complete host network is shared with the container.</p></li>
-<li><p>The ifm3d library converts the <code class="docutils literal notranslate"><span class="pre">AMPLITUDE_COMPRESSED</span></code> <code class="docutils literal notranslate"><span class="pre">buffer_id</span></code> into <code class="docutils literal notranslate"><span class="pre">NORM_AMPLITUDE_IMAGE</span></code> instead. Requesting <code class="docutils literal notranslate"><span class="pre">AMPLITUDE_COMPRESSED</span></code> from the <code class="docutils literal notranslate"><span class="pre">FrameGrabber</span></code> will not result in any data. Use <code class="docutils literal notranslate"><span class="pre">NORM_AMPLITUDE_IMAGE</span></code> instead.</p></li>
-<li><p>Slow receiver connections slow down the embedded O3R system: internally frames are not discarded, as intended, but the system gets slowed down.</p></li>
+<li><p>Ports must be connected pairwise with the same data type: [Port0, Port1] [Port2, Port3] [Port4, Port5], for example [2D 2D] [3D, 3D] [3D, 3D],</p></li>
+<li><p>The framerate or acquisition mode (free running or triggered) cannot be configured for the RGB camera,</p></li>
+<li><p>The IPv4 discovery feature for discovering the device in routed networks does not work,</p></li>
 <li><p>Repeated mechanical disconnects of Ethernet cables can result in refused data connections by the embedded devices.</p></li>
-<li><p>Manually set date and time are not persistent over reboots.</p></li>
-<li><p>The diagnostic messages <code class="docutils literal notranslate"><span class="pre">ERROR_DI_MOTION_COMP_EGO_DATA_TIMESTAMP_MISMATCH</span></code> or <code class="docutils literal notranslate"><span class="pre">ERROR_PORT_FRAME_TIMEOUT</span></code> may become active for 3D heads used by an ODS application instance when switching the ODS instance from <code class="docutils literal notranslate"><span class="pre">RUN</span></code> to <code class="docutils literal notranslate"><span class="pre">CONF</span></code> states or removing a port from the <code class="docutils literal notranslate"><span class="pre">activePorts</span></code> list.</p></li>
-<li><p>O3R camera filer related issues:</p>
-<ul>
-<li><p>Temporal filter:</p>
-<ul>
-<li><p>Temporal filter creates long-term history dependence of point cloud</p></li>
-<li><p>Temporal filter leads to distance drift over temperature</p></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>Software trigger unstable:</p>
-<ul>
-<li><p>A software trigger request may be required to be sent more than once</p></li>
-<li><p>No feedback loop for a software trigger request available at the moment</p></li>
-</ul>
-</li>
-<li><p>Using 5 or more 3D data streams &#64; 20 Hz:</p>
-<ul>
-<li><p>FW 1.1.30 requires a processing filter parameter update that migrates parts of the filter pipeline to the GPU to enable the usage of simultaneous data streams.</p></li>
-<li><p>Migrating parts of the filter pipeline to the GPU may reduce available GPU resources for the OEM user, that is, OEM user GPU processes may be queued at a later stage.</p></li>
-<li><p>Please get in contact with the robotics support via email at <code class="docutils literal notranslate"><span class="pre">support.efector.object-ident&#64;ifm.com</span></code> for a description on how to enable this feature.</p></li>
-</ul>
-</li>
-<li><p>When setting the configuration fails, the device does not revert to the configuration before the <code class="docutils literal notranslate"><span class="pre">Set</span></code> command and a partial configuration might be applied. See details in <a class="reference internal" href="../../../Technology/configuration.html#parameter-configuration-priorities"><span class="std std-doc">the configuration documentation</span></a>.</p></li>
+<li><p>In static scenes (no motion for more than 30 minutes), the temporal filter introduces a distance drift of up to 2 cm.</p></li>
+<li><p>The software trigger for the 3D cameras is unstable: the request might need to be sent more than once for a successful acquisition.</p></li>
 </ul>
 </div>
-<div class="section" id="ods-application-specific-release-notes">
-<h2>ODS Application specific release notes:<a class="headerlink" href="#ods-application-specific-release-notes" title="Permalink to this headline"></a></h2>
-<div class="section" id="id3">
-<h3>Added<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h3>
+<div class="section" id="ods-application">
+<h2>ODS Application<a class="headerlink" href="#ods-application" title="Permalink to this headline"></a></h2>
+<div class="section" id="id1">
+<h3>New features<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
 <ul class="simple">
-<li><p>Negative obstacles are now detected. See <a class="reference internal" href="../../../ODS/NegativeObstacles/negative_obstacles.html"><span class="doc std std-doc">the negative obstacle documentation</span></a> for more details.</p></li>
-<li><p>Only one ODS application instance is required:</p>
-<ul>
-<li><p>Instead of defining one application per view (that is, on application for the camera combination looking “forward,” one for “backwards,” etc), only one application instance is configured.</p></li>
-<li><p>The active input camera data streams , that is, active ports have to be chosen dependent on the driving direction.</p></li>
-<li><p>Please refer to the <a class="reference internal" href="../../../ODS/ChangingViews/changing_views.html"><span class="doc std std-doc">changing ODS views documentation</span></a> and to the changes in the ODS JSON schema (see <a class="reference internal" href="FW_1.1.x_migration_guide.html"><span class="doc std std-doc">the migration guide</span></a>).</p></li>
+<li><p>Negative obstacles can be detected. See <a class="reference internal" href="../../../ODS/NegativeObstacles/negative_obstacles.html"><span class="doc std std-doc">the negative obstacle documentation</span></a> for more details.</p></li>
 </ul>
-</li>
+</div>
+<div class="section" id="id2">
+<h3>Changes<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>Increased detection range for small objects (&lt;=10cm) on the floor beyond the visible floor range. Previous versions limited the detection to areas where floor pixels were visible.</p></li>
+<li><p>The approach for changing views in ODS has been updated. Instead of defining one application per view (that is, on application for the camera combination looking “forward,” one for “backwards,” etc), only one application instance is configured. Refer to the <a class="reference internal" href="../../../ODS/ChangingViews/changing_views.html"><span class="doc std std-doc">changing ODS views documentation</span></a> for more details.</p></li>
 <li><p>Reduced number of false positives in dusty environments (see <a class="reference internal" href="../../../ODS/DustMitigation/dust_mitigation.html"><span class="doc std std-doc">the dust mitigation documentation</span></a>).</p></li>
-<li><p>Reduced number of false positives when retroreflectors are in the camera’s field of view</p></li>
-<li><p>New parameter for max number of simultaneously active cameras in ODS and simultaneous point cloud data streams (see the updated <a class="reference internal" href="../../../ODS/Configuration/configuration.html"><span class="doc std std-doc">ODS configuration document</span></a>).</p></li>
+<li><p>Reduced number of false positives when retroreflectors are in the camera’s field of view.</p></li>
 </ul>
 </div>
-<div class="section" id="changes">
-<h3>Changes<a class="headerlink" href="#changes" title="Permalink to this headline"></a></h3>
+<div class="section" id="id3">
+<h3>Fixes<a class="headerlink" href="#id3" title="Permalink to this headline"></a></h3>
 <ul class="simple">
-<li><p>Changes in the application JSON schema: please refer to <a class="reference internal" href="FW_1.1.x_migration_guide.html"><span class="doc std std-doc">the migration guide</span></a>.</p></li>
-<li><p>Increase detection range for small objects (&lt;=10cm) on the floor beyond the visible floor range.</p></li>
-<li><p>Relaxed the filtering constraints of the 3D camera ports and apply the thresholds internally in ODS. This change might affect point cloud visualization of ODS 3D ports.</p></li>
-</ul>
-</div>
-<div class="section" id="fixes">
-<h3>Fixes<a class="headerlink" href="#fixes" title="Permalink to this headline"></a></h3>
-<ul class="simple">
-<li><p>Object dimensions in occupancy grid are closer to their real size: object size was artificially inflated in previous versions</p></li>
-<li><p>ODS application dependent parameters are correctly (re-) initialized when a RUN-CONF-RUN state change is performed.</p></li>
+<li><p>Object dimensions in the occupancy grid are closer to their real size. Previous versions increased the object size by one cell along all edges.</p></li>
 </ul>
 </div>
 <div class="section" id="id4">
 <h3>Known Issues<a class="headerlink" href="#id4" title="Permalink to this headline"></a></h3>
 <ul class="simple">
-<li><p>False positives:</p>
-<ul>
-<li><p>Stray light caused by retro-reflectors outside the camera’s field of view might cause false positives</p></li>
-<li><p>Direct sun light might lead to performance degradation: the detection range might be limited, objects might be missed or false positives may be seen</p></li>
-<li><p>Approaching or leaving ramps might cause false positive detections</p></li>
-</ul>
-</li>
-<li><p>On floors with not enough visible structure, ego motion might unavailable (visible with diagnostics <code class="docutils literal notranslate"><span class="pre">VELOCTIY_UNAVAILABLE</span></code>).
-This can lead to performance degradations: limited detection range, objects might be missed.</p></li>
-<li><p>(Default) channel value handling:</p>
-<ul>
 <li><p>The channel value of all camera head configurations is reset to 0 when an ODS application instance is created.</p></li>
-<li><p>The default channel value is set to 0 - a manual configuration to a non zero value is required to mitigate inter-camera crosstalk</p></li>
-</ul>
-</li>
-<li><p>Only one ODS application instance is possible</p></li>
 </ul>
 </div>
 </div>
