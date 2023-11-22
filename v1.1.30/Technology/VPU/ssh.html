@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SSH setup &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/js/versionwarning.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> O3R
+          </a>
+              <div class="version">
+                v1.1.30
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>SSH setup</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/Technology/VPU/ssh.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="ssh-setup">
+<h1>SSH setup<a class="headerlink" href="#ssh-setup" title="Permalink to this headline"></a></h1>
+<p>To connect to the VPU through SSH or deploy code to the VPU with SCP, it is necessary to setup a list of authorized keys .</p>
+<div class="section" id="generate-an-ssh-key-pair">
+<h2>Generate an SSH key-pair<a class="headerlink" href="#generate-an-ssh-key-pair" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>Note: the following instructions are tailored towards a bash (Unix shell). When deploying on a Windows based architecture, please modify the instuctions sets for your shell accordingly.
+All user specific SSH keys are located at <code class="docutils literal notranslate"><span class="pre">~/.ssh</span></code>. This is the place where the private key for the connection to the VPU should be stored.</p>
+</div></blockquote>
+<p>To generate an SSH key-pair, use <code class="docutils literal notranslate"><span class="pre">ssh-keygen</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/.ssh/
+$<span class="w"> </span>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>rsa<span class="w"> </span>-b<span class="w"> </span><span class="m">4096</span><span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;&lt;Some comment to remember what the key is for&gt;&quot;</span>
+Generating<span class="w"> </span>public/private<span class="w"> </span>rsa<span class="w"> </span>key<span class="w"> </span>pair.
+Enter<span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span>which<span class="w"> </span>to<span class="w"> </span>save<span class="w"> </span>the<span class="w"> </span>key<span class="w"> </span><span class="o">(</span>~/.ssh/id_rsa<span class="o">)</span>:<span class="w"> </span>id_o3r
+Enter<span class="w"> </span>passphrase<span class="w"> </span><span class="o">(</span>empty<span class="w"> </span><span class="k">for</span><span class="w"> </span>no<span class="w"> </span>passphrase<span class="o">)</span>:
+Enter<span class="w"> </span>same<span class="w"> </span>passphrase<span class="w"> </span>again:
+...
+</pre></div>
+</div>
+<p>A passphrase is also needed. After that command, two new keys are generated within the <code class="docutils literal notranslate"><span class="pre">~/.ssh</span></code> directory. With the example above it would be <code class="docutils literal notranslate"><span class="pre">id_o3r</span></code> and <code class="docutils literal notranslate"><span class="pre">id_o3r.pub</span></code>.</p>
+</div>
+<div class="section" id="upload-the-public-key-to-the-vpu">
+<h2>Upload the public key to the VPU<a class="headerlink" href="#upload-the-public-key-to-the-vpu" title="Permalink to this headline"></a></h2>
+<p>Uploading the public (<code class="docutils literal notranslate"><span class="pre">.pub</span></code>) ssh key to the VPU is achieved via the ifm3d library.
+The device configuration includes a parameter for authorized keys: <code class="docutils literal notranslate"><span class="pre">authorized_keys</span></code>. It is empty by default.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.device.network
+<span class="o">{</span>
+<span class="w">  </span><span class="s2">&quot;authorized_keys&quot;</span>:<span class="w"> </span><span class="s2">&quot;&quot;</span>,
+<span class="w">  </span><span class="s2">&quot;interfaces&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="s2">&quot;eth0&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">      </span><span class="s2">&quot;ipv4&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="s2">&quot;address&quot;</span>:<span class="w"> </span><span class="s2">&quot;192.168.0.69&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;dns&quot;</span>:<span class="w"> </span><span class="s2">&quot;0.0.0.0&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;gateway&quot;</span>:<span class="w"> </span><span class="s2">&quot;192.168.0.201&quot;</span>,
+<span class="w">        </span><span class="s2">&quot;mask&quot;</span>:<span class="w"> </span><span class="m">24</span>
+<span class="w">      </span><span class="o">}</span>,
+<span class="w">      </span><span class="s2">&quot;mac&quot;</span>:<span class="w"> </span><span class="s2">&quot;48:B0:2D:54:F9:46&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;networkSpeed&quot;</span>:<span class="w"> </span><span class="m">1000</span>,
+<span class="w">      </span><span class="s2">&quot;useDHCP&quot;</span>:<span class="w"> </span><span class="nb">false</span>
+<span class="w">    </span><span class="o">}</span>,
+<span class="w">    </span><span class="s2">&quot;eth1&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">      </span><span class="s2">&quot;mac&quot;</span>:<span class="w"> </span><span class="s2">&quot;00:02:01:42:DE:94&quot;</span>,
+<span class="w">      </span><span class="s2">&quot;networkSpeed&quot;</span>:<span class="w"> </span><span class="m">10</span>,
+<span class="w">      </span><span class="s2">&quot;useDHCP&quot;</span>:<span class="w"> </span><span class="nb">true</span>
+<span class="w">    </span><span class="o">}</span>
+<span class="w">  </span><span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>To add a new key, the VPU configuration needs to be changed. This can be done with several ways (see <a class="reference external" href="https://api.ifm3d.com/stable/examples/o3r/configuration/configuration.html">configuring the camera</a>). The easiest way in this case is to use the <code class="docutils literal notranslate"><span class="pre">jq</span></code> command along with the ifm3d API CLI:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>--arg<span class="w"> </span>id<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>&lt;<span class="w"> </span>~/.ssh/id_o3r.pub<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="s1">&#39;.device.network.authorized_keys=$id&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>ifm3d<span class="w"> </span>config
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">jq</span> <span class="pre">--arg</span> <span class="pre">id</span> <span class="pre">&quot;$(&lt;</span> <span class="pre">~/.ssh/id_o3r.pub)&quot;</span></code> - This loads the public key into the variable <code class="docutils literal notranslate"><span class="pre">id</span></code> and provides it to the <code class="docutils literal notranslate"><span class="pre">jq</span></code> command</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'.device.network.authorized_keys=$id'</span></code> - Here the JSON value from <code class="docutils literal notranslate"><span class="pre">authorized_keys</span></code> is changed for the public key within the variable <code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ifm3d</span> <span class="pre">config</span></code> - The new JSON is now used to change the configuration of the VPU via <code class="docutils literal notranslate"><span class="pre">ifm3d</span> <span class="pre">config</span></code></p></li>
+</ul>
+<p>Now, the content of the <code class="docutils literal notranslate"><span class="pre">authorized_keys</span></code> should look something like:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.device.network.authorized_keys
+<span class="s2">&quot;ssh-rsa AAAAB3NzaC.....wZ9l3iSUaPPWOeFVz+xwlw== Some comment&quot;</span>
+</pre></div>
+</div>
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">authorized_keys</span></code> is a persistent parameter: it does not require a call to <a class="reference internal" href="../configuration.html#persistent-settings-without-save-init"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">save_init</span></code></span></a> to be persistent over reboots.</p>
+</div>
+<div class="section" id="connect-to-the-vpu-using-the-passphrase">
+<h2>Connect to the VPU using the passphrase<a class="headerlink" href="#connect-to-the-vpu-using-the-passphrase" title="Permalink to this headline"></a></h2>
+<p>After the key is uploaded, it is possible to connect with <code class="docutils literal notranslate"><span class="pre">ssh</span></code> and the username <code class="docutils literal notranslate"><span class="pre">oem</span></code> to the VPU:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ssh oem@192.168.0.69
+The authenticity of host &#39;192.168.0.69 (192.168.0.69)&#39; can&#39;t be established.
+ECDSA key fingerprint is SHA256:8gjC9za45TTRZNz5JCMwaNJ27BLfsPyDtjBaBQ2vyHw.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added &#39;192.168.0.69&#39; (ECDSA) to the list of known hosts.
+o3r-vpu-c0:~$
+</pre></div>
+</div>
+<p>There will be a prompt for the passphrase, configured during step 1.</p>
+<p>You should now be able to SSH into the VPU using your customer SSH key and passphrase.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="../latest/_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+		
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.robotics@ifm.com">support.robotics@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

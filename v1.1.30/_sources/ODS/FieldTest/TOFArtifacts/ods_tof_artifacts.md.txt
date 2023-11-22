@@ -1,66 +1,52 @@
-# ODS ToF artifacts
+# Artifacts and their impacts
 
-This paper gives an overview of O3R 3D Time of Flight (ToF) specific artifacts and their effect on ODS.
+This paper gives an overview of O3R 3D indirect Time of Flight (iToF) specific artifacts and their effect on ODS.
 
-## Common Time of Flight (ToF) artifacts
+## Common artifacts
 
-**Common artifacts associated with 3D Time of Flight (ToF) imaging**
+The O3R uses iToF and therefore has to handle artifacts related to the physics behind this technology. These are not ifm-specific artifacts but common to all iToF systems. 
 
-1. Multi-path Interference: This artifact occurs when the light emitted from the ToF camera reflects off multiple surfaces before returning to the camera. The camera then interprets these multiple reflections as being at different distances, leading to errors in depth calculation.
-2. Motion Blur / Motion artifacts: This artifact occurs when the subject or the camera is moving during the time it takes for the ToF camera to capture a complete image. This can lead to blurred or distorted images, as the camera's depth calculations are based on the assumption that the subject is stationary.
-3. Stray light: stray light artifacts are an artifact that occurs when the light emitted by the ToF camera is scattered or reflected by surfaces other than the intended subject, such as the camera's own housing or nearby objects. When this happens, the camera may receive additional light that can lead to errors in depth calculation. For example, imagine a ToF camera pointed at a scene with a subject in the foreground and a wall in the background. When the camera emits a burst of light, some of the light may reflect off the foreground object and return to the camera, while some may reflect off the wall and return to the camera. However, if the camera's own housing or nearby objects scatter or reflect some of the emitted light, the camera may receive additional light that can lead to depth measurement errors.
-4. Crosstalk between cameras of the same type and cameras and other active sensors in the same near infrared spectrum,
-5. Dust: Dust particles in the air may reflect significant amounts back at the camera at close distances. These particles appear to be medium to large objects, because of their close proximity.
-6. Low signal-to-noise ratio: pixels affected by this artifacts are discarded by the internal filters such as the `minimumAmplitude`, the `minimumReflectivity` and the `distanceNoise` filters.
-7. Pixel saturation: pixel saturation are discarded by the internal filter pipeline
-8. Halo effects surrounding bright objects such as retro-reflectors
+Below is a list of common artifacts that exist for the O3R and that impact the data and consequently ODS' performance.
 
-For further details please see the extended documentation on [ifm3d.com](https://ifm3d.com/documentation/DeviceConfiguration/index.html)
+1. Multi-Path Interference (MPI): 
+This artifact occurs when the light emitted from the camera reflects off multiple surfaces before returning to the camera. The camera then interprets these multiple reflections as being at different distances, leading to errors in depth calculation. 
+When this phenomenon occur, you would for example see curved walls and floors, especially near corners.
 
-## ODS specific effects of ToF artifacts
+2. Motion Blur: 
+This artifact occurs when the subject or the camera is moving during the short amount of time it takes to capture an image. This can lead to blurred or distorted images, as the camera's depth calculations are based on the assumption that the subject is stationary.
 
-### True / False positives
-In the context of binary classification (that is, classifying data into one of two categories), a true positive (TP) is a case where the model correctly predicts the positive class, while a false positive (FP) is a case where the model predicts the positive class, but the true label is actually negative.
+3. Stray light: 
+Stray light artifacts occur when the light emitted by the camera reflects on highly reflective objects (retro reflectors, very close objects, etc). This intense reflected light is scattered in the optical system and can create a blinding effect, as you would get when pointing your camera to the sun.
+This translates to a halo effect around the reflective object, increasing its measured size. This artifacts also impacts objects with a lower reflectivity, and can make the detection of such objects difficult.
 
-To put it more formally, let's define:
-
-+ TP: The model predicts a positive class, and the true label is positive.
-+ FP: The model predicts a positive class, but the true label is negative.
-+ (True negative (TN): The model predicts the negative class, and the true label is negative.)
-+ (False negative (FN): The model predicts the negative class, but the true label is positive.)
-
-
-These classification outcomes are typically described in a [confusion matrix](https://en.wikipedia.org/wiki/Confusion_matrix).
-
-### ODS effects of TP, FP, TN and FN
-
-To summarize:
-
-+ True Positive (TP): The ODS model correctly predicts a positive case, i.e there is an actual object and the ODS algorithm detected it.
-+ False Positive (FP): The model incorrectly predicts a positive case, i.e there is no object and the ODS algorithm falsely detected one.
-+ True Negative (TN): The model correctly predicts a negative case, i.e there is no object and the ODS algorithm correctly detected no object.
-+ False Negative (FN): The model incorrectly predicts a negative case, i.e there is an actual object and the ODS algorithm falsely detected no object.
-
-### ODS performance and robustness
-
-In the case of ODS ToF artifacts most likely cause an increase in false positive rate (FP) but do not decrease the ODS true positive rate (TP).
-This means the algorithms performance most likely is not reduced but the robustness is reduced.
-This is equivalent to the robot stopping even tough there is no object present - this may lead to downtime but does not cause accidents, that is FN.
-
-For all possible sources of FPs above, the ODS application is tailored to be as robust as possible:
-
-1. Multi-path interference: We use specifically designed acquisition modes in conjunction with internal processing filters to allow us to detect multi-path interference effected scenes and react accordingly.
-2. Motion blur / motion artifacts: We use specifically designed acquisition settings in conjunction with internal processing filters to allow us to detect motion artifacts effected part of scenes and react accordingly.
-3. Stray light: We use specifically designed internal processing filters to allow us to detect stray light effected scenarios. However such sources of stray light can only be detected if the source of the stray light lies within the inner boundaries of the cameras field of view (FOV).
-   1. Please minimize all sources of possible stray light in close vicinity of the camera mounting: For further details please see the mounting instructions included in this documentation repository and also read the O3R manual.
-   2. For stray light effects caused by overhanging load, please see the [overhanging load documentation](../../OverhangingLoads/overhanging_loads.md).
 4. Crosstalk:
-   1. For inter O3R camera crosstalk please use our channel implementation to mitigate inter O3R camera crosstalk. A channel difference of >= 2 between any two cameras will reduce the effects of crosstalk to the same level as typical background noise caused by ambient non-pulsed NIR light sources.
-   2. For O3R to other active sensor devices crosstalk:
-      1. Please mount the O3R cameras away from laser scanner mounting planes. This reduces the possibility of direct line-of-sights between the cameras and the laser scanner. We recommend at least a vertical offset of 10 cm between the scanner plane and the cameras optical center.
-      2. Please refer to the laser scanner manuals for their suggested parameter sets for mobile robot applications: These typically state a multi sampling for all mobile robot applications. ifm internal tests have shown that for a correctly parameterized laser scanner in a mobile robot application, the O3R to laser scanner crosstalk does not cause significant amounts blinding events and no false positives.
-5. Dust: Improvements for dusty environments have been introduced in FW version 1.0.14. Additional to algorithmic mitigation approaches, please clean the O3R cameras regularly - refer to the respective chapter in [the hardware doc](../../../Technology/Hardware_Interfaces/camera_heads.md#cleaning-camera-heads)
-6. Other ToF artifacts of minor effect strength and frequency of occurrences: All of these are typically handled by internal processing filters - no user parameter fine tuning required.
-      1. Low signal
-      2. Pixel saturation
-      3. Halo effects
+Crosstalk exists between cameras of the same type and between cameras and other sensors using active illumination in the same infrared spectrum. The light emitted by the other device can be interpreted by the camera as its own light and this results in ghost pixels along the line from the camera to the other device.
+
+5. Dust: 
+Dust particles in the air, when very close to the camera, may reflect significant amounts of light and appear as an object in their own right. In the image, you would see an effect similar to heavy snow through your windshield.
+
+6. Ambient light:
+Indoor ambient light is typically not an issue as indoor lighting usually does not include the infrared wavelength used by the O3R.
+Sunlight, however, can be more difficult to deal with. The O3R uses 940nm pulsed light, which corresponds to a dip in intensity in the sunlight spectrum. However, there is still enough 940nm light to increase noise levels in the O3R data. 
+In practice, this means that detection ranges might be reduced on objects directly illuminated by sunlight, as a result of high noise filtering. 
+
+## Impact on ODS
+
+Some of these artifacts might induce false positives in ODS: an object is detected where there is none. 
+
+Most iToF artifacts are mitigated in ODS, either through intelligent acquisition methods or through filtering techniques in the algorithms. However, it is impossible to eliminate all possible artifacts, and some false positive may still occur. 
+
+Below are some guidelines on what to prioritize when testing ODS' robustness against false positives:
+1. Stray light artifacts caused by retro-reflectors can be handled when the reflectors are in the field of view of the cameras. When the source of the stray light is not in the field of view, it is more difficult to filter out the artifact. If reflectors are expected in the environment, try the following: drive the vehicle along a realistic path where reflectors are located along the side. Pay close attention to the data when just passing the reflector, both when there is no obstacle in front of the vehicle, and when there is an obstacle. Repeat the test with different obstacles of varying size and reflectivity, and for a density of reflectors in the scene that reflects a realistic use case.
+
+2. Crosstalk:
+   - Crosstalk between ifm cameras is mostly mitigated through the use of different frequencies and synchronization (make sure you use separate [channels](../../Configuration/configuration.md#channel-value)). 
+   - Crosstalk with other devices might occur, and can be difficult to predict. Some safety scanners, for examples, use infrared light at a similar wavelength as the O3R cameras, and might be impacted by the O3R illumination. This creates artifacts similar as how dust would interfere with the scanner. To mitigate this issue:
+      - It is usually sufficient to increase the number of scans the safety scanner requires to identify a pixel as an obstacle, 
+      - Mount the O3R as far away as possible from the safety scanner plane,
+      - Turn the cameras off when the robot is stationery. This has the benefit of saving power, and ensures that the illumination is active only when necessary.
+      
+To thoroughly test crosstalk, we recommend running tests with a full fleet of robots. Crosstalk might occur only in specific geometrical configurations, and these situations are easier to pinpoint when multiple robots are involved, at various distances and angles. 
+
+3. Ambient light:
+In cases where the vehicle is expected to drive along large windows, or partially outside, we recommend validating ODS performances in those conditions as well. Sunlight creates additional noise, which in turns results in slightly reduced range, and it is important to understand how this impact obstacle detection for the user's specific environment and targeted obstacles. 
