@@ -72,7 +72,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../IntroToCalibrations/README.html">Introduction to calibrations</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../Registration2d3d/collect_calibration_data.html">Collect calibration values</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Extrinsic calibrations</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="StaticCameraCalibration/README.html">Checkerboard Static Camera - Calibration Routine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="StaticCameraCalibration/README.html">Static camera calibration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="MCC/multi_frame_calibration.html">In motion camera calibration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="VPUCalibration/README.html">VPU calibration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CameraCalibrationVerification/extrinsic_calibration_verification.html">Calibration verification</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../Registration2d3d/README.html">2D/3D registration</a></li>
@@ -115,15 +118,32 @@
              
   <div class="tex2jax_ignore mathjax_ignore section" id="extrinsic-calibration-routines-camera-to-robot-coordinates">
 <h1>Extrinsic calibration routines: camera to robot coordinates<a class="headerlink" href="#extrinsic-calibration-routines-camera-to-robot-coordinates" title="Permalink to this headline"></a></h1>
-<p>The extrinsic camera calibration specifies where the camera head is positioned in space. Internally at ifm, the following calibration routines were developed to estimate the position and rotation of cameras / IMU respective to the Robot Coordinate System (RCS).</p>
+<p>The extrinsic camera calibration specifies where the camera head is positioned in a reference coordinate system. Internally at ifm, the following calibration routines were developed to estimate the translations and rotations of cameras and VPU respective to a user defined coordinate system, typically the Robot Coordinate System (RCS).</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="StaticCameraCalibration/README.html">Checkerboard Static Camera - Calibration Routine</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="StaticCameraCalibration/README.html">Static camera calibration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="StaticCameraCalibration/README.html#prerequisites">Prerequisites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="StaticCameraCalibration/README.html#shopping-list">Shopping list</a></li>
 <li class="toctree-l2"><a class="reference internal" href="StaticCameraCalibration/README.html#software-setup">Software setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="StaticCameraCalibration/README.html#scene-setup">Scene setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="StaticCameraCalibration/README.html#run-the-calibration">Run the calibration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="MCC/multi_frame_calibration.html">In motion camera calibration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="MCC/multi_frame_calibration.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MCC/multi_frame_calibration.html#tool-description">Tool Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MCC/multi_frame_calibration.html#procedure">Procedure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MCC/multi_frame_calibration.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="VPUCalibration/README.html">VPU calibration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="VPUCalibration/README.html#general-information">General information</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CameraCalibrationVerification/extrinsic_calibration_verification.html">Calibration verification</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CameraCalibrationVerification/extrinsic_calibration_verification.html#concept-of-this-verification-method">Concept of this verification method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CameraCalibrationVerification/extrinsic_calibration_verification.html#applications-of-this-extrinsic-calibration-verification-method">Applications of this extrinsic calibration verification method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CameraCalibrationVerification/extrinsic_calibration_verification.html#example-application-of-the-extrinsic-calibration-verification-tool">Example application of the extrinsic calibration verification tool</a></li>
 </ul>
 </li>
 </ul>
