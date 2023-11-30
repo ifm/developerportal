@@ -12,7 +12,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Device and diagnosis data &mdash; O3R  documentation</title>
+  <title>Manual calibration of ports for vehicle algorithms &mdash; O3R  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -33,8 +33,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Manual calibration of ports for vehicle algorithms" href="manual_calibration.html" />
-    <link rel="prev" title="Configuring/Activating an application" href="configuring_applications.html" /> 
+    <link rel="next" title="Docker on O3R" href="../Docker/index_docker.html" />
+    <link rel="prev" title="Device and diagnosis data" href="device_and_diagnosis_data.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -65,15 +65,8 @@
 <li class="toctree-l2 current"><a class="reference internal" href="index_iVA.html">ifm Vision Assistant</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="changing_parameters.html">Changing parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="configuring_applications.html">Configuring applications</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Device and diagnosis information</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#displaying-the-device-status">Displaying the device status</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#device-details">Device details</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#diagnostic-data">Diagnostic data</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="manual_calibration.html">Manual calibration of ports for vehicle algorithms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="device_and_diagnosis_data.html">Device and diagnosis information</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Manual calibration of ports for vehicle algorithms</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference external" href="https://api.ifm3d.com/stable/">ifm3d/ifm3dpy API</a></li>
@@ -105,9 +98,9 @@
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../index_software_interfaces.html">Software Interfaces</a> &raquo;</li>
           <li><a href="index_iVA.html">ifm Vision Assistant</a> &raquo;</li>
-      <li>Device and diagnosis data</li>
+      <li>Manual calibration of ports for vehicle algorithms</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/SoftwareInterfaces/iVA/device_and_diagnosis_data.md.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/SoftwareInterfaces/iVA/manual_calibration.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -115,34 +108,21 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="device-and-diagnosis-data">
-<h1>Device and diagnosis data<a class="headerlink" href="#device-and-diagnosis-data" title="Permalink to this headline"></a></h1>
-<p>The O3R system provides device information but also a diagnosis data. This date is useful for easier debugging and provides further information about the state of the whole O3R system and applications.</p>
-<div class="section" id="displaying-the-device-status">
-<h2>Displaying the device status<a class="headerlink" href="#displaying-the-device-status" title="Permalink to this headline"></a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">Device</span> <span class="pre">status</span></code> menu is located in the upper right corner.</p>
-<p><img alt="device status" src="../../_images/device_status_menu.png" /></p>
-<p>This menu provides some short but useful hardware information.</p>
-<p><img alt="further information" src="../../_images/further_device_status_menu.png" /></p>
-<div class="section" id="device-details">
-<h3>Device details<a class="headerlink" href="#device-details" title="Permalink to this headline"></a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">Show</span> <span class="pre">device</span> <span class="pre">details</span></code> provides additional hardware/software information. It is also possible to save this information locally.</p>
-<p><strong>Tip: When contacting ifm due to possible issues, the device details are essential for further debugging.</strong></p>
-<p><img alt="device details" src="../../_images/device_details.png" /></p>
-</div>
-<div class="section" id="diagnostic-data">
-<h3>Diagnostic data<a class="headerlink" href="#diagnostic-data" title="Permalink to this headline"></a></h3>
-<p>The diagnostic data contains several important information like temperature values, active and dormant errors.</p>
-<ul class="simple">
-<li><p>Active errors: Errors active during the last system diagnosis information collection.</p></li>
-<li><p>Dormant errors: Errors which occurred during the total uptime of the system but are not active anymore.</p></li>
-</ul>
-<p>It is possible to filter between active and dormant errors to get a better overview about the actual system status.</p>
-<p>It is strongly recommended to monitor the diagnosis information, if the system shows unexpected behavior, for example after connecting new hardware or running new an application.</p>
-<p><img alt="diagnostic data" src="../../_images/diagnostic_data.gif" /></p>
-<p><strong>Tip: When contacting ifm due to possible issues, the list of active errors is essential for further debugging.</strong></p>
-</div>
-</div>
+  <div class="tex2jax_ignore mathjax_ignore section" id="manual-calibration-of-ports-for-vehicle-algorithms">
+<h1>Manual calibration of ports for vehicle algorithms<a class="headerlink" href="#manual-calibration-of-ports-for-vehicle-algorithms" title="Permalink to this headline"></a></h1>
+<p>The ifmVisionAssistant includes a new feature to calibrate the cameras based on the camera’s position and orientation.</p>
+<p><strong>Procedure:</strong></p>
+<ol class="simple">
+<li><p>Click on <code class="docutils literal notranslate"><span class="pre">Manual</span> <span class="pre">calibration</span> <span class="pre">of</span> <span class="pre">ports</span> <span class="pre">for</span> <span class="pre">vehicle</span> <span class="pre">algorithms</span></code> under the <code class="docutils literal notranslate"><span class="pre">Port</span> <span class="pre">settings</span></code> window.</p></li>
+</ol>
+<p><img alt="step1" src="../../_images/step_1_iva_man_calibration.png" /></p>
+<ol class="simple">
+<li><p>Select the port to calibrate</p></li>
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Rotate</span> <span class="pre">like</span> <span class="pre">a</span> <span class="pre">vehicle</span> <span class="pre">front</span> <span class="pre">camera</span></code> to calibrate.</p></li>
+<li><p>Enter the translation parameters, i.e. the translation distances from the user/robot coordinate system to the camera.</p></li>
+<li><p>Select the orientation of the mounted camera when looking from the front of the camera.</p></li>
+</ol>
+<p><img alt="step2_to_step5" src="../../_images/step2_step5.png" /></p>
 </div>
 
 

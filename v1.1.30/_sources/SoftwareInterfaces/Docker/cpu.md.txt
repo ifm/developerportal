@@ -21,3 +21,5 @@ When running an ODS application, the available resources for OEM applications de
 - `maxNumSimultaneousCameras=1`: 2 ARM A57 cores are available, 
 - `maxNumSimultaneousCameras=2`: 1 ARM A57 core is available,
 - `maxNumSimultaneousCameras=3`: the OEM docker containers must limit the CPU usage as much as possible (<20% of an ARM A57 core)
+
+Additional such resource considerations can be found under [Running applications concurrent with obstacle detection system](../../ODS/FieldTest/ConcurrentWorkloads/concurrent_workloads.md). 

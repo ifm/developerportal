@@ -12,7 +12,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Artifacts and their impacts &mdash; O3R  documentation</title>
+  <title>Running workloads concurrent with ODS &mdash; O3R  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -33,8 +33,8 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Running workloads concurrent with ODS" href="../ConcurrentWorkloads/concurrent_workloads.html" />
-    <link rel="prev" title="ODS Performance" href="../PerformanceBenchmark/ods_performance_benchmark.html" /> 
+    <link rel="next" title="Testing ODS" href="../../DeviceVerification/index_device_verification.html" />
+    <link rel="prev" title="Artifacts and their impacts" href="../TOFArtifacts/ods_tof_artifacts.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -78,12 +78,11 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../index_field_test.html">Field test</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../PerformanceVerification/ods_performance_verification.html">Performance evaluation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../PerformanceBenchmark/ods_performance_benchmark.html">Performance benchmark</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Time-of-flight artifacts</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#common-artifacts">Common artifacts</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#impact-on-ods">Impact on ODS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../TOFArtifacts/ods_tof_artifacts.html">Time-of-flight artifacts</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Concurrent workloads</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pcic-streams">PCIC streams</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../ConcurrentWorkloads/concurrent_workloads.html">Concurrent workloads</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../DeviceVerification/index_device_verification.html">Device verification</a></li>
@@ -112,9 +111,9 @@
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../index_ods.html">ODS (Obstacle Detection System)</a> &raquo;</li>
           <li><a href="../index_field_test.html">ODS performance</a> &raquo;</li>
-      <li>Artifacts and their impacts</li>
+      <li>Running workloads concurrent with ODS</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/ODS/FieldTest/TOFArtifacts/ods_tof_artifacts.md.txt" rel="nofollow"> View page source</a>
+            <a href="../../../_sources/ODS/FieldTest/ConcurrentWorkloads/concurrent_workloads.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -122,57 +121,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="artifacts-and-their-impacts">
-<h1>Artifacts and their impacts<a class="headerlink" href="#artifacts-and-their-impacts" title="Permalink to this headline"></a></h1>
-<p>This paper gives an overview of O3R 3D indirect Time of Flight (iToF) specific artifacts and their effect on ODS.</p>
-<div class="section" id="common-artifacts">
-<h2>Common artifacts<a class="headerlink" href="#common-artifacts" title="Permalink to this headline"></a></h2>
-<p>The O3R uses iToF and therefore has to handle artifacts related to the physics behind this technology. These are not ifm-specific artifacts but common to all iToF systems.</p>
-<p>Below is a list of common artifacts that exist for the O3R and that impact the data and consequently ODS’ performance.</p>
-<ol class="simple">
-<li><p>Multi-Path Interference (MPI):
-This artifact occurs when the light emitted from the camera reflects off multiple surfaces before returning to the camera. The camera then interprets these multiple reflections as being at different distances, leading to errors in depth calculation.
-When this phenomenon occur, you would for example see curved walls and floors, especially near corners.</p></li>
-<li><p>Motion Blur:
-This artifact occurs when the subject or the camera is moving during the short amount of time it takes to capture an image. This can lead to blurred or distorted images, as the camera’s depth calculations are based on the assumption that the subject is stationary.</p></li>
-<li><p>Stray light:
-Stray light artifacts occur when the light emitted by the camera reflects on highly reflective objects (retro reflectors, very close objects, etc). This intense reflected light is scattered in the optical system and can create a blinding effect, as you would get when pointing your camera to the sun.
-This translates to a halo effect around the reflective object, increasing its measured size. This artifacts also impacts objects with a lower reflectivity, and can make the detection of such objects difficult.</p></li>
-<li><p>Crosstalk:
-Crosstalk exists between cameras of the same type and between cameras and other sensors using active illumination in the same infrared spectrum. The light emitted by the other device can be interpreted by the camera as its own light and this results in ghost pixels along the line from the camera to the other device.</p></li>
-<li><p>Dust:
-Dust particles in the air, when very close to the camera, may reflect significant amounts of light and appear as an object in their own right. In the image, you would see an effect similar to heavy snow through your windshield.</p></li>
-<li><p>Ambient light:
-Indoor ambient light is typically not an issue as indoor lighting usually does not include the infrared wavelength used by the O3R.
-Sunlight, however, can be more difficult to deal with. The O3R uses 940nm pulsed light, which corresponds to a dip in intensity in the sunlight spectrum. However, there is still enough 940nm light to increase noise levels in the O3R data.
-In practice, this means that detection ranges might be reduced on objects directly illuminated by sunlight, as a result of high noise filtering.</p></li>
-</ol>
-</div>
-<div class="section" id="impact-on-ods">
-<h2>Impact on ODS<a class="headerlink" href="#impact-on-ods" title="Permalink to this headline"></a></h2>
-<p>Some of these artifacts might induce false positives in ODS: an object is detected where there is none.</p>
-<p>Most iToF artifacts are mitigated in ODS, either through intelligent acquisition methods or through filtering techniques in the algorithms. However, it is impossible to eliminate all possible artifacts, and some false positive may still occur.</p>
-<p>Below are some guidelines on what to prioritize when testing ODS’ robustness against false positives:</p>
-<ol class="simple">
-<li><p>Stray light artifacts caused by retro-reflectors can be handled when the reflectors are in the field of view of the cameras. When the source of the stray light is not in the field of view, it is more difficult to filter out the artifact. If reflectors are expected in the environment, try the following: drive the vehicle along a realistic path where reflectors are located along the side. Pay close attention to the data when just passing the reflector, both when there is no obstacle in front of the vehicle, and when there is an obstacle. Repeat the test with different obstacles of varying size and reflectivity, and for a density of reflectors in the scene that reflects a realistic use case.</p></li>
-<li><p>Crosstalk:</p>
-<ul class="simple">
-<li><p>Crosstalk between ifm cameras is mostly mitigated through the use of different frequencies and synchronization (make sure you use separate <a class="reference internal" href="../../Configuration/configuration.html#channel-value"><span class="std std-doc">channels</span></a>).</p></li>
-<li><p>Crosstalk with other devices might occur, and can be difficult to predict. Some safety scanners, for examples, use infrared light at a similar wavelength as the O3R cameras, and might be impacted by the O3R illumination. This creates artifacts similar as how dust would interfere with the scanner. To mitigate this issue:</p>
-<ul>
-<li><p>It is usually sufficient to increase the number of scans the safety scanner requires to identify a pixel as an obstacle,</p></li>
-<li><p>Mount the O3R as far away as possible from the safety scanner plane,</p></li>
-<li><p>Turn the cameras off when the robot is stationery. This has the benefit of saving power, and ensures that the illumination is active only when necessary.</p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<p>To thoroughly test crosstalk, we recommend running tests with a full fleet of robots. Crosstalk might occur only in specific geometrical configurations, and these situations are easier to pinpoint when multiple robots are involved, at various distances and angles.</p>
-<ol class="simple">
-<li><p>Ambient light:
-In cases where the vehicle is expected to drive along large windows, or partially outside, we recommend validating ODS performances in those conditions as well. Sunlight creates additional noise, which in turns results in slightly reduced range, and it is important to understand how this impact obstacle detection for the user’s specific environment and targeted obstacles.</p></li>
-</ol>
+  <div class="tex2jax_ignore mathjax_ignore section" id="running-workloads-concurrent-with-ods">
+<h1>Running workloads concurrent with ODS<a class="headerlink" href="#running-workloads-concurrent-with-ods" title="Permalink to this headline"></a></h1>
+<p>ODS is a high priority process on the VPU. Additional processes may see degraded performance, and may also cause degraded performance for ODS. It is important to qualify that any additional use-cases perform to an acceptable level of performance.</p>
+<div class="section" id="pcic-streams">
+<h2>PCIC streams<a class="headerlink" href="#pcic-streams" title="Permalink to this headline"></a></h2>
+<p>While ODS is running as if in production, connecting to ifmVisionAssistant and streaming point cloud data may not yield perceptible changes in performance but there may be frame-drops in the visualization. This may not be an issue when using iVA for data recording or basic diagnostics, but this is representative of potential performance degradation that could be experienced in alternative examples of concurrent streaming. For example, a separate IPC or docker container is set up to be streaming live point-cloud data from the VPU in production. ODS may not be able to run at full framerate or with minimum possible latency.</p>
+<p>While ODS is running with 0-1 cameras, 3D data streamed externally by PCIC ports should not experience frame drops when 6 3D cameras are running.</p>
+<p>While ODS is running with 2 cameras, 3D data streamed externally by PCIC ports may experience frame-drops when more than 5 3D cameras are running.</p>
+<p>While ODS is running with 3 cameras, 3D data streamed externally by PCIC ports may experience frame-drops when 3 or more 3D cameras are running.</p>
+<p>Note that any additional steps in the network (intermediate switches) will likely exacerbate performance degradation.</p>
+<p>Additional such resource considerations can be found under <a class="reference internal" href="../../../SoftwareInterfaces/Docker/cpu.html"><span class="doc std std-doc">docker CPU usage guide</span></a></p>
 </div>
 </div>
 

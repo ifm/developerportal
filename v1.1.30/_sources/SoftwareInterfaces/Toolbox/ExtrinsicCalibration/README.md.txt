@@ -5,7 +5,7 @@ The extrinsic camera calibration specifies where the camera head is positioned i
 :::{toctree}
 :maxdepth: 2
 Static camera calibration <StaticCameraCalibration/README>
-In motion camera calibration <MCC/multi_frame_calibration>
+Motion camera calibration with ifmVisonAssistant <MCC/mcc_with_iVA>
 VPU calibration <VPUCalibration/README>
 Calibration verification <CameraCalibrationVerification/extrinsic_calibration_verification>
 :::

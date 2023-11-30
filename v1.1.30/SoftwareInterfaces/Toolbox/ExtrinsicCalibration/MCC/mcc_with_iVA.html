@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script>
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Motion Camera Calibration &mdash; O3R  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/clipboard.min.js"></script>
+        <script src="../../../../_static/copybutton.js"></script>
+        <script src="../../../../_static/js/versionwarning.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="VPU extrinsic calibration" href="../VPUCalibration/README.html" />
+    <link rel="prev" title="Checkerboard Static Camera - Calibration Routine" href="../StaticCameraCalibration/README.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html" class="icon icon-home"> O3R
+          </a>
+              <div class="version">
+                v1.1.30
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../index_software_interfaces.html">Software Interfaces</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../iVA/index_iVA.html">ifm Vision Assistant</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://api.ifm3d.com/stable/">ifm3d/ifm3dpy API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://ros.ifm3d.com/latest/">ROS: ifm3d-ros</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://ros.ifm3d.com/latest/">ROS2: ifm3d-ros2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../Docker/index_docker.html">Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ifmDiagnostic/index_diagnostic.html">Diagnostic</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index_toolbox.html">Toolbox</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../IntroToCalibrations/README.html">Introduction to calibrations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../Registration2d3d/collect_calibration_data.html">Collect calibration values</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../README.html">Extrinsic calibrations</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../StaticCameraCalibration/README.html">Static camera calibration</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Motion camera calibration with ifmVisonAssistant</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#pre-requisites">Pre-requisites</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#parameter-overview">Parameter Overview</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#procedure">Procedure</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../VPUCalibration/README.html">VPU calibration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../CameraCalibrationVerification/extrinsic_calibration_verification.html">Calibration verification</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../Registration2d3d/README.html">2D/3D registration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../AngleConverter/angle_converter.html">Angle conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../H5ToPCDConverter/h5_to_pcd_converter.html">Data conversions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../../index_software_interfaces.html">Software Interfaces</a> &raquo;</li>
+          <li><a href="../../index_toolbox.html">Toolbox</a> &raquo;</li>
+          <li><a href="../README.html">Extrinsic calibration routines: camera to robot coordinates</a> &raquo;</li>
+      <li>Motion Camera Calibration</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/SoftwareInterfaces/Toolbox/ExtrinsicCalibration/MCC/mcc_with_iVA.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="tex2jax_ignore mathjax_ignore section" id="motion-camera-calibration">
+<h1>Motion Camera Calibration<a class="headerlink" href="#motion-camera-calibration" title="Permalink to this headline"></a></h1>
+<p>Motion Camera Calibration is a camera calibration software provided by ifm based on a ifm specific checkerboard that estimates the rotational parameters of the camera head with respect to the user coordinate system.</p>
+<p>This application is available free of charge included in the embedded O3R firmware (<code class="docutils literal notranslate"><span class="pre">version&gt;=1.1.30</span></code>) and the GUI ifm Vision Assistant (<code class="docutils literal notranslate"><span class="pre">version</span> <span class="pre">&gt;=2.7.6</span></code>). To use this application, users must install the ifmVisionAssistant tool, which can be downloaded <a class="reference external" href="https://www.ifm.com/us/en/product/OVP800?tab=documents">here</a>. To get started with the ifmVisionAssistant, please refer to this <span class="xref myst">documentation</span>.</p>
+<div class="section" id="pre-requisites">
+<h2>Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permalink to this headline"></a></h2>
+<p>Before starting the <code class="docutils literal notranslate"><span class="pre">mcc</span></code> tool, the user has to print the <a class="reference download internal" download="" href="../../../../_downloads/139b7a75bb633e5807d823876e59032c/MotionCameraCalibrationTarget_600X800.pdf"><code class="xref download docutils literal notranslate"><span class="pre">checkerboard</span></code></a> provided by ifm either directly on a thick aluminum sheet or on matte finish paper and paste it on a flat-board without any air gaps. The checkerboard has to be printed at 100% scale. The resulting total print size is 600 mm by 800 mm. The smaller squares are 100 mm  X 100 mm.</p>
+</div>
+<div class="section" id="parameter-overview">
+<h2>Parameter Overview<a class="headerlink" href="#parameter-overview" title="Permalink to this headline"></a></h2>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ports</span></code></p></td>
+<td><p>The port that is used for calibration</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">state</span></code></p></td>
+<td><p>The current app state</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">configuration/command</span></code></p></td>
+<td><p>The list of commands to trigger the calibration software</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">configuration/drivingDirection</span></code></p></td>
+<td><p>The driving direction of the robot during the acquisition of motion images</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">configuration/takeStaticBufferIndex</span></code></p></td>
+<td><p>Index of a static image</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">extrinsicHeadToUser</span></code></p></td>
+<td><p>Translation parameters of camera with respect to user coordinate system</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">port/mode</span></code></p></td>
+<td><p>To set illumination mode of the camera head</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">target/cellSize</span></code></p></td>
+<td><p>size of checkerboard cell in meters</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="procedure">
+<h2>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline"></a></h2>
+<ol class="simple">
+<li><p>Place the target horizontally (when the camera head is mounted in landscape orientation) or vertically (when the camera is mounted in portrait orientation) so that the reference corner (the larger cell) is at the top.</p></li>
+<li><p>Configure the cell size of the checkerboard target in <code class="docutils literal notranslate"><span class="pre">configuration/target/cellSize</span></code> based on the printed checkerboard. If the checkerboard is printed at 100% scale then the cell size would be equal to <strong>0.1m(default)</strong>.</p></li>
+<li><p>Input the camera translations in <code class="docutils literal notranslate"><span class="pre">configuration/extrinsicHeadToUser</span></code></p></li>
+<li><p>Select the illumination mode based on your ambient light in <code class="docutils literal notranslate"><span class="pre">configuration/port/mode/</span></code></p>
+<ul class="simple">
+<li><p>Default: ambientLightIllumination</p></li>
+<li><p>When there is not enough ambient light, change mode to <code class="docutils literal notranslate"><span class="pre">activeIllumination</span></code></p></li>
+<li><p><strong>Note</strong>: Ambient light and LED have different characteristics, especially when it comes to the Near-Infrared (NIR) spectrum. The sunlight includes a significant portion of NIR light, which is electromagnetic radiation with wavelengths ranging from 780 nm to 3.0 μm but on the other hand, the modern-day lighting and especially the LED lighting provides very little or no Near-Infrared Radiation.</p></li>
+</ul>
+</li>
+</ol>
+<p><img alt="ambientIllu" src="../../../../_images/activeIllu.png" /></p>
+<ol class="simple">
+<li><p>Select the driving direction of your robot. Select</p>
+<ul class="simple">
+<li><p>+x : Moving towards the checkerboard</p></li>
+<li><p>-x: Moving away from the checkerboard</p></li>
+<li><p>+y: Moving from right to left of checkerboard (for the side mounted cameras)</p></li>
+<li><p>-y: Moving from left to right of checkerboard (for the side mounted cameras)</p></li>
+</ul>
+</li>
+<li><p>Change the application state to <strong><code class="docutils literal notranslate"><span class="pre">RUN</span></code></strong></p></li>
+<li><p>Once the application is changed to <code class="docutils literal notranslate"><span class="pre">RUN</span></code> state the live image appears on the right side window.</p></li>
+<li><p>Move the camera(robot) closer to the target such that the target is large in the live image: it should at least ﬁll 50% of the image.</p></li>
+</ol>
+<p><img alt="Start" src="../../../../_images/start_0.png" /></p>
+<ol class="simple">
+<li><p>Once the checkerboard is detected, the corners will become green indicating that you can start the backward motion.</p></li>
+<li><p>Trigger <code class="docutils literal notranslate"><span class="pre">startMotion</span></code> command and move the robot backward in a straight line.</p></li>
+</ol>
+<ul class="simple">
+<li><p>Once you click the <code class="docutils literal notranslate"><span class="pre">startMotion</span></code> the internal algorithm starts to grab images ( Don’t worry about the commands…! The command will automatically return to <code class="docutils literal notranslate"><span class="pre">nop</span></code>)</p></li>
+<li><p><strong>The minimum movement range should be <code class="docutils literal notranslate"><span class="pre">50</span> <span class="pre">cm</span></code> (If you moved the robot less than 50 cm then the calibration will not be successful)</strong></p></li>
+</ul>
+<p><img alt="move_back.gif" src="../../../../_images/move_back.gif" /></p>
+<ol class="simple">
+<li><p>Trigger <code class="docutils literal notranslate"><span class="pre">stopMotion</span></code> command which stops the algorithm from grabbing the images. You can see the captured images in the display window.</p></li>
+</ol>
+<p><img alt="start_stop" src="../../../../_images/motion_3.png" /></p>
+<ol class="simple">
+<li><p>Move the robot orthogonal to the backward motion line and close to the target (ﬁll at least 50% of the image) such that the tool detects all corners of the checkerboard target.</p></li>
+</ol>
+<ul class="simple">
+<li><p>The orthogonal offset should be a minimum of 40 cm.</p></li>
+</ul>
+<p><img alt="capture_fram_1.gif" src="../../../../_images/capture_frame_1.gif" /></p>
+<ol class="simple">
+<li><p>Input <strong>0</strong> in <code class="docutils literal notranslate"><span class="pre">/configuration/takeStaticBufferIndex</span></code> and trigger <code class="docutils literal notranslate"><span class="pre">configuration/command/*takeStaic</span></code> to add this image to the calibration data file.</p></li>
+<li><p>Now move the camera to the other side of the backward motion line and ensure all the checkerboard corners are detected.</p></li>
+</ol>
+<p><img alt="capture-frame-2.gif" src="../../../../_images/capture-frame-2.gif" /></p>
+<ol class="simple">
+<li><p>Input <strong>1</strong> in <code class="docutils literal notranslate"><span class="pre">/configuration/takeStaticBufferIndex</span></code> and trigger <code class="docutils literal notranslate"><span class="pre">configuration/command/*takeStaic</span></code> again to add another static image.</p></li>
+<li><p>Now trigger <code class="docutils literal notranslate"><span class="pre">calibrate</span></code> command to calibrate the cameras. If the calibration is successful then you can see the extrinsic parameters as the JSON string.</p></li>
+<li><p>If the calibration is not successful, then the reason for the calibration failure is displayed as a notification <code class="docutils literal notranslate"><span class="pre">set-RPC</span> <span class="pre">failed</span></code> and the reason for the calibration failure. The following image shows that the calibration failed because the backward motion of the vehicle is not in a straight line as specified.</p></li>
+</ol>
+<p><img alt="Calibration Failure" src="../../../../_images/calibration_failure.png" /></p>
+<ol class="simple">
+<li><p>If the calibration is successful, then the results will be displayed in the results will be displayed as the JSON object below the display window.</p></li>
+</ol>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cellSize</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+<td><p>Size of the marker elements in meters</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">extrinsicHeadToUser</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">extrinsicHeadToUser</span></code></p></td>
+<td><p>6  degrees of freedom of the extrinsic calibration from head to user coordinates (translation=input, rotation=calibration result)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">rmsTotal</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+<td><p>Root mean square error of the back projection for all frames.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">rmsMotion</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+<td><p>Root mean square error of the back projection for motion frames only.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">calibrationState</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">uint8</span></code></p></td>
+<td><p>State of the calibration result. 0 = uncalibrated, 1 = good, 2 = bad</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">inMotionFlag</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">uint8</span></code></p></td>
+<td><p>Flag to mark backwards motion. 0 = static , 1 = motion</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">humanReadableAngles</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">HumanReadableAngles</span></code></p></td>
+<td><p>Yaw, Pitch and Roll in degrees</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">numberOfCurrentMotionImages</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">uint32</span></code></p></td>
+<td><p>Length of the image sequence captured during motion.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">	</span><span class="p">{</span>
+<span class="w">		</span><span class="nt">&quot;cellSize&quot;</span><span class="p">:</span><span class="mf">0.1000</span><span class="p">,</span>
+<span class="w">		</span><span class="nt">&quot;extrinsicHeadToUser&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">			</span><span class="nt">&quot;transX&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.15</span><span class="p">,</span>
+<span class="w">			</span><span class="nt">&quot;transY&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span>
+<span class="w">			</span><span class="nt">&quot;transZ&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.55</span><span class="p">,</span>
+<span class="w">			</span><span class="nt">&quot;rotX&quot;</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="mf">0.00</span><span class="p">,</span>
+<span class="w">			</span><span class="nt">&quot;rotX&quot;</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="mf">-1.57</span><span class="p">,</span>
+<span class="w">			</span><span class="nt">&quot;rotX&quot;</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="mf">1.57</span>
+<span class="w">		</span><span class="p">},</span>
+<span class="w">		</span><span class="nt">&quot;rmsTotal&quot;</span><span class="p">:</span><span class="mf">0.15</span><span class="p">,</span>
+<span class="w">		</span><span class="nt">&quot;rmsMotion&quot;</span><span class="p">:</span><span class="mf">0.12</span><span class="p">,</span>
+<span class="w">		</span><span class="nt">&quot;calibrationState&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">		</span><span class="nt">&quot;inMotionFlag&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">		</span><span class="nt">&quot;humanTeadableAngles&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">			</span><span class="nt">&quot;yaw&quot;</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">			</span><span class="nt">&quot;pitch&quot;</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">			</span><span class="nt">&quot;roll&quot;</span><span class="p">:</span><span class="mf">0.0</span>
+<span class="w">		</span><span class="p">},</span>
+<span class="w">		</span><span class="nt">&quot;numberOfCurrentMotionImages&quot;</span><span class="p">:</span><span class="mi">7</span>
+<span class="w">	</span><span class="p">}</span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>To write the parameters to the device, trigger the <code class="docutils literal notranslate"><span class="pre">writeToDevice</span></code> command.</p></li>
+</ol>
+</div>
+<div class="section" id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline"></a></h2>
+<p>The calibration might not be successful due to the following reasons:</p>
+<ul class="simple">
+<li><p>Backward motion is not in a straight line.</p></li>
+<li><p>If the backward motion path is too short. The minimum path length is 0.4 meters.</p></li>
+<li><p>Due to low signal levels in the images. In this case, try calibrating using <code class="docutils literal notranslate"><span class="pre">activeIllumination</span></code> mode.</p></li>
+<li><p>If the target is too small in the images. Try to move closer to the checkerboard target.</p></li>
+<li><p>If the single images are too close to each other. The offset between the positions of two single images should be at least 0.50 meters.</p></li>
+<li><p>If the distance between a single image and the motion path is less than 0.25 meters.</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="../latest/_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+		
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.robotics@ifm.com">support.robotics@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
