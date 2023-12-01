@@ -12,7 +12,7 @@
     </script>
     
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Images description &mdash; O3R  documentation</title>
+  <title>Intrinsic calibration models &mdash; O3R  documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
@@ -33,8 +33,8 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Description of the available images" href="imagesDescription.html" />
-    <link rel="prev" title="Synchronization and triggering" href="../triggering.html" /> 
+    <link rel="next" title="VPU (Vision Processing Unit)" href="../../VPU/index_vpu.html" />
+    <link rel="prev" title="The confidence image" href="../ImagesDescription/confidenceImage.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -72,12 +72,20 @@
 <li class="toctree-l3"><a class="reference internal" href="../AcquisitionParams/index_acquisition_params.html">Acquisition parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../ProcessingParams/index_processing_params.html">Processing parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../triggering.html">Synchronization and triggering</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Images description</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="imagesDescription.html">Overview</a></li>
-<li class="toctree-l4"><a class="reference internal" href="confidenceImage.html">Confidence Image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ImagesDescription/index_images_description.html">Images description</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Intrinsic calibration models</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#fisheye-model">Fisheye model</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#for-unprojection">For unprojection</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#for-projection">For projection</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../IntrinsicCalib/intrinsic_calib_3d.html">Intrinsic calibration models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bouguet-model">Bouguet model</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#id1">For unprojection</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id2">For projection</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../VPU/index_vpu.html">VPU</a></li>
@@ -106,9 +114,9 @@
       <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../../index_hardware_interfaces.html">Technology</a> &raquo;</li>
           <li><a href="../index_3d.html">3D Camera Configuration</a> &raquo;</li>
-      <li>Images description</li>
+      <li>Intrinsic calibration models</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/Technology/3D/ImagesDescription/index_images_description.md.txt" rel="nofollow"> View page source</a>
+            <a href="../../../_sources/Technology/3D/IntrinsicCalib/intrinsic_calib_3d.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -116,23 +124,57 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="images-description">
-<h1>Images description<a class="headerlink" href="#images-description" title="Permalink to this headline"></a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="imagesDescription.html">Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="imagesDescription.html#raw-amplitude-image-and-amplitude-image">Raw Amplitude image and Amplitude image</a></li>
-<li class="toctree-l2"><a class="reference internal" href="imagesDescription.html#distance-image-radial">Distance image (radial)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="imagesDescription.html#distance-noise-radial">Distance noise (radial)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="imagesDescription.html#confidence">Confidence</a></li>
-<li class="toctree-l2"><a class="reference internal" href="imagesDescription.html#reflectivity">Reflectivity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="imagesDescription.html#point-cloud-xyz">Point cloud (XYZ)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="imagesDescription.html#unit-vectors">Unit vectors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="imagesDescription.html#jpeg-image">JPEG image</a></li>
+  <div class="tex2jax_ignore mathjax_ignore section" id="intrinsic-calibration-models">
+<h1>Intrinsic calibration models<a class="headerlink" href="#intrinsic-calibration-models" title="Permalink to this headline"></a></h1>
+<p>Every camera is individually calibrated in production. We use two different models depending on the field of view of the camera.</p>
+<div class="section" id="fisheye-model">
+<h2>Fisheye model<a class="headerlink" href="#fisheye-model" title="Permalink to this headline"></a></h2>
+<p>This applies to the wide opening angle (O3R225) cameras. For these cameras, we use the fisheye distortion model as described below.</p>
+<div class="section" id="for-unprojection">
+<h3>For unprojection<a class="headerlink" href="#for-unprojection" title="Permalink to this headline"></a></h3>
+<p>This model is used for converting pixel positions to 3D vectors. It corresponds to <code class="docutils literal notranslate"><span class="pre">modelID=2</span></code>. The following formulas show how to apply the model:</p>
+<p><img alt="Fish eye model for unprojection" src="../../../_images/fisheye_unprojection.png" /></p>
+<p>Where</p>
+<ul class="simple">
+<li><p>$\left(\begin{array}{c}i_x \ i_y\end{array}\right)$ are the input coordinates as integer numbers, in pixels,</p></li>
+<li><p>$v = \left(\begin{array}{c}v_x\ v_y\ v_z\end{array}\right)$ is the resulting 3D direction vector in the optical coordinate system,</p></li>
+<li><p>$f_x, f_y, m_x, m_y, \alpha, k_1, k_2, k_3, k_4, \theta^*_{max}$ are the model parameters obtained from the <code class="docutils literal notranslate"><span class="pre">modelParameters</span></code> array.</p></li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="confidenceImage.html">Confidence Image</a></li>
+</div>
+<div class="section" id="for-projection">
+<h3>For projection<a class="headerlink" href="#for-projection" title="Permalink to this headline"></a></h3>
+<p>This model is used for converting directions given as 3D vectors to pixel position. This corresponds to <code class="docutils literal notranslate"><span class="pre">modelID=3</span></code>. The following formulas show how to apply the model:</p>
+<p><img alt="Fish eye model for projection" src="../../../_images/fisheye_projection.png" /></p>
+<p>Where</p>
+<ul class="simple">
+<li><p>$v = \left(\begin{array}{c}v_x\ v_y\ v_z\end{array}\right)$ is the input direction vector in the optical coordinate system,</p></li>
+<li><p>$\left(\begin{array}{c}i_x \ i_y\end{array}\right)$ are the resulting image coordinates (the upper left pixel has coordinates $(0, 0)$),</p></li>
+<li><p>$f_x, f_y, m_x, m_y, \alpha, k_1, k_2, k_3, k_4, \theta_{max}$ are the model parameters obtained from the <code class="docutils literal notranslate"><span class="pre">modelParameters</span></code> array.</p></li>
 </ul>
+</div>
+</div>
+<div class="section" id="bouguet-model">
+<h2>Bouguet model<a class="headerlink" href="#bouguet-model" title="Permalink to this headline"></a></h2>
+<div class="section" id="id1">
+<h3>For unprojection<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
+<p><img alt="Bouguet model for unprojection" src="../../../_images/bouguet_unprojection.png" /></p>
+<p>Where</p>
+<ul class="simple">
+<li><p>$\left(\begin{array}{c}i_x \ i_y\end{array}\right)$ are the input coordinates are integer numbers, in pixels,</p></li>
+<li><p>$v = \left(\begin{array}{c}v_x\ v_y\ v_z\end{array}\right)$ is the resulting 3D direction vector in the optical coordinate system,</p></li>
+<li><p>$f_x, f_y, m_x, m_y, \alpha, k_1, k_2, k_3, k_4, k_5$ are the model parameters obtained from the <code class="docutils literal notranslate"><span class="pre">modelParameters</span></code> array.</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h3>For projection<a class="headerlink" href="#id2" title="Permalink to this headline"></a></h3>
+<p><img alt="Bouguet model for projection" src="../../../_images/bouguet_projection.png" /></p>
+<p>Where</p>
+<ul class="simple">
+<li><p>$v = \left(\begin{array}{c}v_x\ v_y\ v_z\end{array}\right)$ is the input direction vector in the optical coordinate system,</p></li>
+<li><p>$\left(\begin{array}{c}i_x \ i_y\end{array}\right)$ are the resulting image coordinates (the upper left pixel has coordinates $(0, 0)$),</p></li>
+<li><p>$f_x, f_y, m_x, m_y, \alpha, k_1, k_2, k_3, k_4, k_5$ are the model parameters obtained from the <code class="docutils literal notranslate"><span class="pre">modelParameters</span></code> array.</p></li>
+</ul>
+</div>
 </div>
 </div>
 
