@@ -43,6 +43,7 @@ This firmware release supports the following ifm camera articles:
 ## Changes
 - The JSON configuration structure was updated to accommodate new parameters. Refer to [the migration guide](FW_1.1.x_migration_guide.md) for a full list.
 - The overtemperature threshold was updated from 77°C to 85°C.
+- Support for DHCP was removed for the Ethernet interface `eth1`. The device now always uses a static IP address.
 
 ## New features
 - It is now possible to configure insecure and self signed Docker registries via the JSON configuration. See [the docker daemon registry configuration](../../../SoftwareInterfaces/Docker/deployVPU.md#option-2---advanced-load-a-container-from-a-docker-registry) for a tutorial on how to do so.

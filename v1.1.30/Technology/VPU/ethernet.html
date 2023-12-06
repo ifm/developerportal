@@ -120,38 +120,46 @@
   <div class="tex2jax_ignore mathjax_ignore section" id="ethernet-interfaces">
 <h1>Ethernet interfaces<a class="headerlink" href="#ethernet-interfaces" title="Permalink to this headline"></a></h1>
 <p>The O3R has two Ethernet ports, <code class="docutils literal notranslate"><span class="pre">eth0</span></code> and <code class="docutils literal notranslate"><span class="pre">eth1</span></code>. These ports can both be used to communicate with the platform or with external devices (other sensors or computing platforms, displays, etc).</p>
-<p>By default, <code class="docutils literal notranslate"><span class="pre">eth0</span></code> is configured to the static IP <code class="docutils literal notranslate"><span class="pre">192.168.0.69</span></code>, and <code class="docutils literal notranslate"><span class="pre">eth1</span></code> to DHCP with automatic IP assignment.</p>
+<p>By default, both <code class="docutils literal notranslate"><span class="pre">eth0</span></code> and <code class="docutils literal notranslate"><span class="pre">eth1</span></code> are configured to a static IP, respectively <code class="docutils literal notranslate"><span class="pre">192.168.0.69</span></code>, and <code class="docutils literal notranslate"><span class="pre">192.168.42.69</span></code>.</p>
 <p>With the current network setup, we expect <code class="docutils literal notranslate"><span class="pre">eth0</span></code> to be used for communication to and fro a complex network. <code class="docutils literal notranslate"><span class="pre">eth1</span></code> is expected to be used for bringing in external devices and other sensors. You might encounter networking issues if using <code class="docutils literal notranslate"><span class="pre">eth1</span></code> as your primary communication interface, due to the underlying network setting in the O3R VPU linux-based OS.</p>
 <div class="section" id="set-a-static-ip">
 <h2>Set a static IP<a class="headerlink" href="#set-a-static-ip" title="Permalink to this headline"></a></h2>
-<p>To set a static IP to a port, you need to switch the use of DHCP to false. This can be done using the <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> CLI:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.device.network.interfaces.eth1.useDHCP=false&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>ifm3d<span class="w"> </span>config
+<p>If DHCP is activated (only an option for <code class="docutils literal notranslate"><span class="pre">eth0</span></code>), to set a static IP to a port, you first need to switch the use of DHCP to false. This can be done for example using the <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> CLI (or with a similar process in the Vision Assistant or ifm3dpy):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.device.network.interfaces.eth0.useDHCP=false&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>ifm3d<span class="w"> </span>config
 </pre></div>
 </div>
 <p>An IP address will be automatically assigned to the port:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.device.network.interfaces.eth1
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.device.network.interfaces.eth0
 <span class="o">{</span>
-<span class="w">  </span><span class="s2">&quot;ipAddressConfig&quot;</span>:<span class="w"> </span><span class="m">1</span>,
 <span class="w">  </span><span class="s2">&quot;ipv4&quot;</span>:<span class="w"> </span><span class="o">{</span>
-<span class="w">    </span><span class="s2">&quot;address&quot;</span>:<span class="w"> </span><span class="s2">&quot;192.254.1.69&quot;</span>,
-<span class="w">    </span><span class="s2">&quot;dns&quot;</span>:<span class="w"> </span><span class="s2">&quot;192.254.1.255&quot;</span>,
-<span class="w">    </span><span class="s2">&quot;gateway&quot;</span>:<span class="w"> </span><span class="s2">&quot;192.254.1.201&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;address&quot;</span>:<span class="w"> </span><span class="s2">&quot;192.168.0.69&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;dns&quot;</span>:<span class="w"> </span><span class="s2">&quot;0.0.0.0&quot;</span>,
+<span class="w">    </span><span class="s2">&quot;gateway&quot;</span>:<span class="w"> </span><span class="s2">&quot;192.168.0.201&quot;</span>,
 <span class="w">    </span><span class="s2">&quot;mask&quot;</span>:<span class="w"> </span><span class="m">24</span>
 <span class="w">  </span><span class="o">}</span>,
-<span class="w">  </span><span class="s2">&quot;mac&quot;</span>:<span class="w"> </span><span class="s2">&quot;00:02:01:23:41:59&quot;</span>,
-<span class="w">  </span><span class="s2">&quot;networkSpeed&quot;</span>:<span class="w"> </span><span class="m">10</span>,
+<span class="w">  </span><span class="s2">&quot;mac&quot;</span>:<span class="w"> </span><span class="s2">&quot;48:B0:2D:54:F9:46&quot;</span>,
+<span class="w">  </span><span class="s2">&quot;networkSpeed&quot;</span>:<span class="w"> </span><span class="m">1000</span>,
 <span class="w">  </span><span class="s2">&quot;useDHCP&quot;</span>:<span class="w"> </span><span class="nb">false</span>
 <span class="o">}</span>
 </pre></div>
 </div>
-<blockquote>
-<div><p>Note: new network settings will only be applied after reboot. Use for instance <code class="docutils literal notranslate"><span class="pre">ifm3d</span> <span class="pre">reboot</span></code>.</p>
-</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>New network settings will only be applied after reboot. Use for instance <code class="docutils literal notranslate"><span class="pre">ifm3d</span> <span class="pre">reboot</span></code>.</p>
+</div>
 <p>To change the IP address manually once DHCP is disabled, you can for instance do the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.device.network.interfaces.eth1.ipv4.address=&quot;192.254.2.69&quot;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>ifm3d<span class="w"> </span>config
-$<span class="w"> </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.device.network.interfaces.eth1.ipv4.dns=&quot;192.254.2.255&quot;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>ifm3d<span class="w"> </span>config
-$<span class="w"> </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.device.network.interfaces.eth1.ipv4.address=&quot;192.254.2.201&quot;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>ifm3d<span class="w"> </span>config
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.device.network.interfaces.eth0.ipv4.address=&quot;192.254.2.69&quot;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>ifm3d<span class="w"> </span>config
+$<span class="w"> </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.device.network.interfaces.eth0.ipv4.dns=&quot;192.254.2.255&quot;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>ifm3d<span class="w"> </span>config
+$<span class="w"> </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.device.network.interfaces.eth0.ipv4.address=&quot;192.254.2.201&quot;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>ifm3d<span class="w"> </span>config
 </pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Make sure that the netmask of the address matches the one of the gateway.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>DHCP is not supported for <code class="docutils literal notranslate"><span class="pre">eth1</span></code>.</p>
 </div>
 </div>
 </div>
