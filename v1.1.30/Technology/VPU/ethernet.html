@@ -125,7 +125,7 @@
 <div class="section" id="set-a-static-ip">
 <h2>Set a static IP<a class="headerlink" href="#set-a-static-ip" title="Permalink to this headline"></a></h2>
 <p>If DHCP is activated (only an option for <code class="docutils literal notranslate"><span class="pre">eth0</span></code>), to set a static IP to a port, you first need to switch the use of DHCP to false. This can be done for example using the <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> CLI (or with a similar process in the Vision Assistant or ifm3dpy):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.device.network.interfaces.eth0.useDHCP=false&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>ifm3d<span class="w"> </span>config
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.device.network.interfaces.eth0.useDHCP=false&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>ifm3d<span class="w"> </span>config
 </pre></div>
 </div>
 <p>An IP address will be automatically assigned to the port:</p>
@@ -148,9 +148,7 @@
 <p>New network settings will only be applied after reboot. Use for instance <code class="docutils literal notranslate"><span class="pre">ifm3d</span> <span class="pre">reboot</span></code>.</p>
 </div>
 <p>To change the IP address manually once DHCP is disabled, you can for instance do the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.device.network.interfaces.eth0.ipv4.address=&quot;192.254.2.69&quot;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>ifm3d<span class="w"> </span>config
-$<span class="w"> </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.device.network.interfaces.eth0.ipv4.dns=&quot;192.254.2.255&quot;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>ifm3d<span class="w"> </span>config
-$<span class="w"> </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.device.network.interfaces.eth0.ipv4.address=&quot;192.254.2.201&quot;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>ifm3d<span class="w"> </span>config
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.device.network.interfaces.eth0.ipv4.address=&quot;192.254.2.69&quot;|.device.network.interfaces.eth0.ipv4.gateway=&quot;192.254.2.201&quot;|.device.network.interfaces.eth0.ipv4.mask=24&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>ifm3d<span class="w"> </span>config
 </pre></div>
 </div>
 <div class="admonition warning">

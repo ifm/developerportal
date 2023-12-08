@@ -11,7 +11,7 @@ With the current network setup, we expect `eth0` to be used for communication to
 If DHCP is activated (only an option for `eth0`), to set a static IP to a port, you first need to switch the use of DHCP to false. This can be done for example using the `ifm3d` CLI (or with a similar process in the Vision Assistant or ifm3dpy):
 
 ```bash
-$ ifm3d dump | jq '.device.network.interfaces.eth0.useDHCP=false' | ifm3d config
+$ echo {} | jq '.device.network.interfaces.eth0.useDHCP=false' | ifm3d config
 ```
 
 An IP address will be automatically assigned to the port:
@@ -35,9 +35,7 @@ New network settings will only be applied after reboot. Use for instance `ifm3d 
 
 To change the IP address manually once DHCP is disabled, you can for instance do the following:
 ```bash
-$ ifm3d dump | jq '.device.network.interfaces.eth0.ipv4.address="192.254.2.69"' | ifm3d config
-$ ifm3d dump | jq '.device.network.interfaces.eth0.ipv4.dns="192.254.2.255"' | ifm3d config
-$ ifm3d dump | jq '.device.network.interfaces.eth0.ipv4.address="192.254.2.201"' | ifm3d config
+echo {} | jq '.device.network.interfaces.eth0.ipv4.address="192.254.2.69"|.device.network.interfaces.eth0.ipv4.gateway="192.254.2.201"|.device.network.interfaces.eth0.ipv4.mask=24' | ifm3d config
 ```
 
 :::{warning}

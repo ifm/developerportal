@@ -154,6 +154,7 @@ This mapping is based on the internally computed convex hull (2D) of the user in
 </div>
 <div class="section" id="output">
 <h2>Output<a class="headerlink" href="#output" title="Permalink to this headline"></a></h2>
+<p>The Output of the Zones is contained in <code class="docutils literal notranslate"><span class="pre">buffer_id.O3R_ODS_INFO</span></code>, which is formatted as follows:</p>
 <table class="colwidths-auto docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
@@ -166,16 +167,17 @@ This mapping is based on the internally computed convex hull (2D) of the user in
 <td><p>uint64</p></td>
 <td><p>timestamp of occupancy grid in nanoseconds - NTP time if NTP server is synchronized</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">zoneConfigID</span></code></p></td>
-<td><p>uint32</p></td>
-<td><p>the user-defined ID for the zone configuration</p></td>
-</tr>
-<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">zoneOccupied</span></code></p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">zoneOccupied</span></code></p></td>
 <td><p>int8[3]</p></td>
 <td><p>a flag for each zone describing whether it is occupied or free</p></td>
 </tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">zoneConfigID</span></code></p></td>
+<td><p>uint32</p></td>
+<td><p>the user-defined ID for the zone configuration</p></td>
+</tr>
 </tbody>
 </table>
+<p>The output of the zones can be easily deserialized, for more information please visit <a class="reference external" href="https://api.ifm3d.com/stable/examples/o3r/deserialize/deserialize.html">the ifm3d deserializer documentation</a>.</p>
 <p>You can also view the zones’ output at the bottom left corner of the <code class="docutils literal notranslate"><span class="pre">Application</span></code> window as shown in the below figure.</p>
 <p><img alt="Zone Output" src="../../_images/zone_output_iVA.png" /></p>
 <div class="section" id="timestamp">

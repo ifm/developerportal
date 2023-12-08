@@ -22,12 +22,15 @@ The 3D zone extent is defined via the 2D (convex) hull of the points in space as
 An ODS application is limited to a maximum of three zones.
 
 ## Output
+The Output of the Zones is contained in `buffer_id.O3R_ODS_INFO`, which is formatted as follows:
 
 | Name         | Type    | Description                                                                  |
 | ------------ | ------- | ---------------------------------------------------------------------------- |
 | `timestamp_ns` | uint64  | timestamp of occupancy grid in nanoseconds - NTP time if NTP server is synchronized |
-| `zoneConfigID` | uint32  | the user-defined ID for the zone configuration                               |
 | `zoneOccupied` | int8[3] | a flag for each zone describing whether it is occupied or free               |
+| `zoneConfigID` | uint32  | the user-defined ID for the zone configuration                               |
+
+The output of the zones can be easily deserialized, for more information please visit [the ifm3d deserializer documentation](https://api.ifm3d.com/stable/examples/o3r/deserialize/deserialize.html).
 
 You can also view the zones' output at the bottom left corner of the `Application` window as shown in the below figure.
 
