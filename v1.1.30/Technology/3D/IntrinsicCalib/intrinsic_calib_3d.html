@@ -136,9 +136,9 @@
 <p><img alt="Fish eye model for unprojection" src="../../../_images/fisheye_unprojection.png" /></p>
 <p>Where</p>
 <ul class="simple">
-<li><p>$\left(\begin{array}{c}i_x \ i_y\end{array}\right)$ are the input coordinates as integer numbers, in pixels,</p></li>
-<li><p>$v = \left(\begin{array}{c}v_x\ v_y\ v_z\end{array}\right)$ is the resulting 3D direction vector in the optical coordinate system,</p></li>
-<li><p>$f_x, f_y, m_x, m_y, \alpha, k_1, k_2, k_3, k_4, \theta^*_{max}$ are the model parameters obtained from the <code class="docutils literal notranslate"><span class="pre">modelParameters</span></code> array.</p></li>
+<li><p><img class="math" src="../../../_images/math/238e838e35f8e5e2e795ac7f9500ee3b6b62e356.svg" alt="\left(\begin{array}{c}i_x \ i_y\end{array}\right)"/> are the input coordinates as integer numbers, in pixels,</p></li>
+<li><p><img class="math" src="../../../_images/math/c4e891a0413a695cfc4f86b54f601a0d40219290.svg" alt="v = \left(\begin{array}{c}v_x\ v_y\ v_z\end{array}\right)"/> is the resulting 3D direction vector in the optical coordinate system,</p></li>
+<li><p><img class="math" src="../../../_images/math/4e09827202145408fe98322e23515e1004de3e47.svg" alt="f_x, f_y, m_x, m_y, \alpha, k_1, k_2, k_3, k_4, \theta^*_{max}"/> are the model parameters obtained from the <code class="docutils literal notranslate"><span class="pre">modelParameters</span></code> array.</p></li>
 </ul>
 </div>
 <div class="section" id="for-projection">
@@ -147,9 +147,9 @@
 <p><img alt="Fish eye model for projection" src="../../../_images/fisheye_projection.png" /></p>
 <p>Where</p>
 <ul class="simple">
-<li><p>$v = \left(\begin{array}{c}v_x\ v_y\ v_z\end{array}\right)$ is the input direction vector in the optical coordinate system,</p></li>
-<li><p>$\left(\begin{array}{c}i_x \ i_y\end{array}\right)$ are the resulting image coordinates (the upper left pixel has coordinates $(0, 0)$),</p></li>
-<li><p>$f_x, f_y, m_x, m_y, \alpha, k_1, k_2, k_3, k_4, \theta_{max}$ are the model parameters obtained from the <code class="docutils literal notranslate"><span class="pre">modelParameters</span></code> array.</p></li>
+<li><p><img class="math" src="../../../_images/math/c4e891a0413a695cfc4f86b54f601a0d40219290.svg" alt="v = \left(\begin{array}{c}v_x\ v_y\ v_z\end{array}\right)"/> is the input direction vector in the optical coordinate system,</p></li>
+<li><p><img class="math" src="../../../_images/math/238e838e35f8e5e2e795ac7f9500ee3b6b62e356.svg" alt="\left(\begin{array}{c}i_x \ i_y\end{array}\right)"/> are the resulting image coordinates (the upper left pixel has coordinates <img class="math" src="../../../_images/math/3c2e8324aced1ad0d7a217782dbfa41912ce7207.svg" alt="(0, 0)"/>),</p></li>
+<li><p><img class="math" src="../../../_images/math/0e75a72f1511628eff647322d527591b7f0bcfc0.svg" alt="f_x, f_y, m_x, m_y, \alpha, k_1, k_2, k_3, k_4, \theta_{max}"/> are the model parameters obtained from the <code class="docutils literal notranslate"><span class="pre">modelParameters</span></code> array.</p></li>
 </ul>
 </div>
 </div>
@@ -160,9 +160,9 @@
 <p><img alt="Bouguet model for unprojection" src="../../../_images/bouguet_unprojection.png" /></p>
 <p>Where</p>
 <ul class="simple">
-<li><p>$\left(\begin{array}{c}i_x \ i_y\end{array}\right)$ are the input coordinates are integer numbers, in pixels,</p></li>
-<li><p>$v = \left(\begin{array}{c}v_x\ v_y\ v_z\end{array}\right)$ is the resulting 3D direction vector in the optical coordinate system,</p></li>
-<li><p>$f_x, f_y, m_x, m_y, \alpha, k_1, k_2, k_3, k_4, k_5$ are the model parameters obtained from the <code class="docutils literal notranslate"><span class="pre">modelParameters</span></code> array.</p></li>
+<li><p><img class="math" src="../../../_images/math/238e838e35f8e5e2e795ac7f9500ee3b6b62e356.svg" alt="\left(\begin{array}{c}i_x \ i_y\end{array}\right)"/> are the input coordinates are integer numbers, in pixels,</p></li>
+<li><p><img class="math" src="../../../_images/math/c4e891a0413a695cfc4f86b54f601a0d40219290.svg" alt="v = \left(\begin{array}{c}v_x\ v_y\ v_z\end{array}\right)"/> is the resulting 3D direction vector in the optical coordinate system,</p></li>
+<li><p><img class="math" src="../../../_images/math/9c1794239c3d50b0cf27f2033fa13b0db25d1423.svg" alt="f_x, f_y, m_x, m_y, \alpha, k_1, k_2, k_3, k_4, k_5"/> are the model parameters obtained from the <code class="docutils literal notranslate"><span class="pre">modelParameters</span></code> array.</p></li>
 </ul>
 </div>
 <div class="section" id="id2">
@@ -170,9 +170,9 @@
 <p><img alt="Bouguet model for projection" src="../../../_images/bouguet_projection.png" /></p>
 <p>Where</p>
 <ul class="simple">
-<li><p>$v = \left(\begin{array}{c}v_x\ v_y\ v_z\end{array}\right)$ is the input direction vector in the optical coordinate system,</p></li>
-<li><p>$\left(\begin{array}{c}i_x \ i_y\end{array}\right)$ are the resulting image coordinates (the upper left pixel has coordinates $(0, 0)$),</p></li>
-<li><p>$f_x, f_y, m_x, m_y, \alpha, k_1, k_2, k_3, k_4, k_5$ are the model parameters obtained from the <code class="docutils literal notranslate"><span class="pre">modelParameters</span></code> array.</p></li>
+<li><p><img class="math" src="../../../_images/math/c4e891a0413a695cfc4f86b54f601a0d40219290.svg" alt="v = \left(\begin{array}{c}v_x\ v_y\ v_z\end{array}\right)"/> is the input direction vector in the optical coordinate system,</p></li>
+<li><p><img class="math" src="../../../_images/math/238e838e35f8e5e2e795ac7f9500ee3b6b62e356.svg" alt="\left(\begin{array}{c}i_x \ i_y\end{array}\right)"/> are the resulting image coordinates (the upper left pixel has coordinates <img class="math" src="../../../_images/math/3c2e8324aced1ad0d7a217782dbfa41912ce7207.svg" alt="(0, 0)"/>),</p></li>
+<li><p><img class="math" src="../../../_images/math/9c1794239c3d50b0cf27f2033fa13b0db25d1423.svg" alt="f_x, f_y, m_x, m_y, \alpha, k_1, k_2, k_3, k_4, k_5"/> are the model parameters obtained from the <code class="docutils literal notranslate"><span class="pre">modelParameters</span></code> array.</p></li>
 </ul>
 </div>
 </div>
