@@ -134,11 +134,9 @@
 <h1>Minimum Reflectivity<a class="headerlink" href="#minimum-reflectivity" title="Permalink to this headline"></a></h1>
 <div class="section" id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline"></a></h2>
-<p>Reflectivity in a near infrared (NIR) spectrum is a characteristic of the material of the object reflecting the light. It depends on its surface material, and the geometric configuration of the scene.
-The minimum reflectivity (<code class="docutils literal notranslate"><span class="pre">minReflectivity</span></code>) filter invalidates pixels with low amounts of received light (that is, pixels on objects with a reflectivity below the minimum threshold).
-The reflectivity is computed from the distance and amplitude images.
-It can be used to discard unwanted pixels in scenes where an object’s reflectivity is known in advance.
-It can also be used to identify highly reflective objects in a scene; a threshold of 200 would invalidate everything but the retro-reflectors.</p>
+<p>Reflectivity in the near-infrared (NIR) spectrum is a property of the material from which an object reflects light. This characteristic is influenced by both the surface material of the object and the geometric arrangement of the scene.</p>
+<p>The minimum reflectivity (<code class="docutils literal notranslate"><span class="pre">minReflectivity</span></code>) filter serves to invalidates pixels that have received low amounts of light (that is, pixels on objects with a reflectivity below the minimum threshold). The <code class="docutils literal notranslate"><span class="pre">minReflectivity</span></code> filter value represents the percentage threshold for invalidating the pixel, with a range from 0 (minimum) to 100 (maximum).</p>
+<p>The computation of reflectivity involves analyzing the distance and amplitude images. Additionally, this parameter can be employed to identify highly reflective objects within a scene. Setting a higher threshold (eg. 100) would likely invalidate nearly everything except for retro-reflectors.</p>
 </div>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>

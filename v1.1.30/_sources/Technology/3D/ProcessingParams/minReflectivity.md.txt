@@ -2,11 +2,12 @@
 
 ## Description
 
-Reflectivity in a near infrared (NIR) spectrum is a characteristic of the material of the object reflecting the light. It depends on its surface material, and the geometric configuration of the scene.
-The minimum reflectivity (`minReflectivity`) filter invalidates pixels with low amounts of received light (that is, pixels on objects with a reflectivity below the minimum threshold).
-The reflectivity is computed from the distance and amplitude images.
-It can be used to discard unwanted pixels in scenes where an object’s reflectivity is known in advance. 
-It can also be used to identify highly reflective objects in a scene; a threshold of 200 would invalidate everything but the retro-reflectors.
+Reflectivity in the near-infrared (NIR) spectrum is a property of the material from which an object reflects light. This characteristic is influenced by both the surface material of the object and the geometric arrangement of the scene.
+
+The minimum reflectivity (`minReflectivity`) filter serves to invalidates pixels that have received low amounts of light (that is, pixels on objects with a reflectivity below the minimum threshold). The `minReflectivity` filter value represents the percentage threshold for invalidating the pixel, with a range from 0 (minimum) to 100 (maximum).
+
+The computation of reflectivity involves analyzing the distance and amplitude images. Additionally, this parameter can be employed to identify highly reflective objects within a scene. Setting a higher threshold (eg. 100) would likely invalidate nearly everything except for retro-reflectors.
+
 ## Example
 In the image below, we show objects with their measured reflectivity. In this case the reflectivity depends on the material of the object only because their surfaces are seen under the same angle relative to the surface’s normal. The estimated reflectivity might vary for the same object seen under varying angles to surfaces normals. Note that this pertains to reflectivity in the NIR spectrum. Some objects might show a higher or lower reflectivity than expected in the visible spectrum.
 ![Reflectivity RGB image](resources/reflectivity_rgb.png)

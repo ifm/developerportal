@@ -17,7 +17,7 @@ Learn more [here](./maxDistNoise.md).
 |Variable name|Short description|
 |--|--|
 |`minAmplitude`|Defines the minimum amplitude value required for a pixel to be valid|
-|`minReflectivity`|Defines the minimum reflectivity required of the measured object for a pixel to be valid|
+|`minReflectivity`|Defines the minimum reflectivity percentage required of the measured object for a pixel to be valid|
 A pixel is valid if the energy (amplitude) received is above the defined threshold. The measured amplitude is primarily affected by both the reflectivity of the object and its distance to the camera.
 
 When to change the default:
