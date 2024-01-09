@@ -1,13 +1,74 @@
-# Using a USB drive with the VPU
+# USB
 
-The VPU provides two `USB` interfaces, `USB-A` (USB 3.0) and `USB mini`.
-It is possible to increase the VPU memory size by utilizing USB thumb drives or USB SSDs on the `USB-A` interface. To use any USB storage device, it is necessary to mount the drive first.
+The OVP8xx VPU devices have two separate USB interfaces:
+1. USB Type A USB 3 interface
+2. USB Type B USB 2 interface
+
+Only the USB-A interface is available to the user. The USB-B interface is only used for debugging by ifm users.
+
+## USB-A interface use cases
+### USB mass storage devices
+
+The USB Typ A interface can be used by the developer or end user to connect USB mass storage devices such as USB sticks and external USB SSD devices.
+
+**USB Mass Storage Supported File System Formats**
+
+The following file system formats are supported for the external storage devices mentioned above:
++ FAT32
++ EXT4
+
+See the limitations imposed by the [use of EXT4 below](#ext4-format-usb-mounting-preparation)
+
+**Other USB mass storage devices**
+
+Other USB mass storage devices that require the installation of additional drivers may be functional if the drivers are installed within the respective Docker software containers. ifm does not provide official support for these devices - the user may use them in development / production use cases at his own risk. Possible compatibility limitations due to updates of the embedded firmware may require updates of the device drivers in the user's software containers. No continuous compatibility over embedded FW versions is assured.
+
+
+
+### USB hubs
+The use of USB hubs is at the user's own risk.
+
+There is no guarantee of compatibility or support for hubs. They may be functional for standard low power devices.
+Devices with higher power consumption may overload the power available via the USB-A interface and damage the OVP8xx VPU device.
+
+Advanced "USB network topologies" may not be supported by the OVP8xx VPU devices. The USB interface is defined to be used by a single USB client device.
+
+### Other USB devices: USB HID, USB network adapters, ...
+
+Other USB devices such as:
++ USB mice,
++ USB keyboards,
++ Generic USB input devices such as controllers,
++ USB-to-Ethernet network devices
++ USB cameras
++ USB sensors
+are not supported by the OVP8xx VPU device.
+
+These devices may be (partially) functional if their respective drivers are included by default in the embedded Linux OS or are installed in an appropriate Docker software container.
+There is no guarantee of compatibility or support for such external hardware devices.
+
+Access to external HID USB devices such as USB mice, keyboards, controllers, etc. may be restricted based on OEM `oem user groups`.
+The OEM user is not part of the `dialout` group and is therefore restricted on its interactions with such HID and further USB devices. Adding the oem user to other groups is not possible.
+If such access is required, please get in contact with the ifm robotics support team.
+
+The oem users groups are:
+```bash
+$ groups oem
+oem docker systemd-journal
+```
+
+Additional Ethernet interfaces via USB-to-Ethernet adapters are not supported by the OVP8xx VPU devices.
+
+Additional sensor devices, such as generic USB sensors or USB cameras, are not supported by the OVP8x VPU devices.
+
+## Using a USB drive with the VPU
+It is possible to increase the VPU memory size by utilizing USB thumb drives or USB SSDs on the USB-A interface. To use any USB storage device, it is necessary to mount the drive first.
 
 
 .. note::
 The USB auto mount service mounts your USB mass storage device to `/run/media/system/<USB_name>/`. See the details below.
 
-## Preparing the USB drive
+### Preparing the USB drive
 
 The VPU's operating system supports two file formats:
 + FAT32
@@ -15,17 +76,20 @@ The VPU's operating system supports two file formats:
 
 These can be auto-mounted via the `mount` command and its respective daemon.
 
-**FAT32:**
+#### FAT32
+
 For FAT32 formatted devices no additional steps are required. It can be directly mounted via the auto-mount daemon to the VPU.
 
-**EXT4:**
+#### EXT4
+
 For EXT4 formatted devices the user needs to perform additional steps to match the OEM users `uid` and `gid` on the VPU's embedded OS.
 Otherwise only read permissions are granted when mounting the USB storage device. This is a design that is introduced by the handling of access rights to EXT4 formatted devices on Linux systems.
 If you are an experience EXT4 user feel free to skip the following instructions steps:
 
-### EXT4 format USB mounting preparation
+##### Format USB mounting preparation (EXT4 only)
 
 **Option 1:**
+
 "The crude way"
 
 The easiest option is to mount the EXT4 formatted device to your Linux laptop of choice and relax the write and read permissions to be accessible by any user:
@@ -38,6 +102,7 @@ Please be aware that the `chmod` command only affects the existing files within 
 
 
 **Option 2:**
+
 "Setting the VPU's OEM user UID and GID specifically"
 
 Please be aware that setting user specific GID and UID has to be done **PER** user.
@@ -63,7 +128,7 @@ user@laptop:~$ sudo chown 989:987 -R /media/<mount_point>
 Please be aware that changing the GID and UID mount points may result in missing read access on your laptop. To restore read access on your laptop to the USB storage device, change the GID and UID back to match your personal user accounts ones.
 
 
-## Plug in and mounting
+### Plug in and mounting
 
 After plugging in the drive, the mount is started by using the command `mount`
 

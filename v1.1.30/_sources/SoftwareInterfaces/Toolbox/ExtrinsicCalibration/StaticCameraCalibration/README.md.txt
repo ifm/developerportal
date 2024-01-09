@@ -129,38 +129,38 @@ In this section, we edit the `calib_cam.py` Python script to fit the user's conf
 
 1. Enter the camera configuration
 
-Change the `cam_port`, `ip`, `horizontal_mounting` and `upside_down` values to fit your configuration.
+  Change the `cam_port`, `ip`, `horizontal_mounting` and `upside_down` values to fit your configuration.
 
 2. Enter the checkerboard dimensions
 
-If you are using the standard checkerboard provided in the introduction, skip this step. 
-If you are using a checkerboard of a different size, adjust the `frame_size`, `target_width` and `target_height` accordingly.
+  If you are using the standard checkerboard provided in the introduction, skip this step. 
+  If you are using a checkerboard of a different size, adjust the `frame_size`, `target_width` and `target_height` accordingly.
 
 3. Enter the measurements for A, B, C and D
 
-> Note: The values below are examples values: please input the values as measured for your setup.
-```python
-if horizontal_mounting:
-    # A is upper left corner in the image and also in the world
-    X_AB=0.4
-    Z_AB=0.49
-    X_CD=0.08
-    Z_CD=0
-    Y_AC=0.8
-    Y_BD=0
-```
->Note: if the camera is mounted vertically, edit the measurements in the `else` loop:
->    ```python
->    else: 
->    # Camera and target are mounted vertically
->    # A is upper left corner in the image and lower left corner in the world
->    X_AC=1.227-0.057
->    Z_AC=0.0
->    X_BD=1.227
->    Z_BD=0.798
->    Y_AB=0.3
->    Y_CD=-0.3
->    ```
+  > Note: The values below are examples values: please input the values as measured for your setup.
+  ```python
+  if horizontal_mounting:
+      # A is upper left corner in the image and also in the world
+      X_AB=0.4
+      Z_AB=0.49
+      X_CD=0.08
+      Z_CD=0
+      Y_AC=0.8
+      Y_BD=0
+  ```
+  >Note: if the camera is mounted vertically, edit the measurements in the `else` loop:
+  >    ```python
+  >    else: 
+  >    # Camera and target are mounted vertically
+  >    # A is upper left corner in the image and lower left corner in the world
+  >    X_AC=1.227-0.057
+  >    Z_AC=0.0
+  >    X_BD=1.227
+  >    Z_BD=0.798
+  >    Y_AB=0.3
+  >    Y_CD=-0.3
+  >    ```
 
 4. Select your preferred data input source (we recommend using the default `ifm3dpy` input):
     ```python
@@ -172,12 +172,11 @@ if horizontal_mounting:
     ```
 6. Run the script and check the results. If the calibration is successful then the plots will be displayed as shown in below example figure.  
 
-```{image} _resources/successful_calibration.png
-:alt: successful_calibration.png
-:width: 800
-:align: center
-```    
-    <!-- ![successful_calibration.png](_resources/successful_calibration.png) -->
+  ```{image} _resources/successful_calibration.png
+  :alt: successful_calibration.png
+  :width: 800
+  :align: center
+  ```    
 
 7. If the Calibration succeeded then the calibration values are written to the O3R system.
 
