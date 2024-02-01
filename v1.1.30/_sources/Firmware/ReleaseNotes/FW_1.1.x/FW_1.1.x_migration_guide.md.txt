@@ -40,7 +40,7 @@ Consequently, for the camera data use case (that is, no ifm application), the us
 
 Additional solutions are available where CPU intensive point cloud filtering operations are offloaded to the GPU. This frees up CPU resources.
 Such offloading of point cloud processing is required if the 6 `O3R222` or `O3R225` head data streams are to be processed at 20 Hz, that is, full frame rate, without any frames being dropped internally by the software frame.
-Please contact your local ifm support or support.robotics@ifm.com for detailed instructions for this use case.
+Please contact your local ifm support or support.efector.object-ident@ifm.com for detailed instructions for this use case.
 
 ### ODS application use case
 Since ifm applications mainly use the Denver cores in this use case, OEM applications should be pinned to specific ARM cores. When the `UNSTABLE_FRAMERATE` diagnostic occurs more than sporadically, it is necessary to:
