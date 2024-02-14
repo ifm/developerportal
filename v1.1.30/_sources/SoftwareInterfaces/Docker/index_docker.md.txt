@@ -6,6 +6,7 @@ Docker logging configuration <logging>
 Autostarting the container <autostart>
 Enabling GPU usage <gpu>
 CPU usage <cpu>
+TensortRT: DL / ML model deployment <tensorRT/TensorRT_on_a_VPU_hardware>
 :::
 
 This section explains the handling and deployment of customer specific containers for the O3R.
