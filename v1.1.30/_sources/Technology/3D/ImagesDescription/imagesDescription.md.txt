@@ -1,13 +1,10 @@
 # Description of the available images
 
-.. warning::
-    ifm3d API version 1.2.x and 1.1.x introduced braking changes compared to previous ifm3d versions:
-        + The XYZ image was changed by the API (that is the axes permuted): starting in ifm3d API version 1.1.x this axis permutation was removed - XYZ_IMAGE coordinates were actually ZXY instead of XYZ. Please change your code accordingly.
-        + The amplitude, normalized amplitude, reflectivity images were masked based on the confidence image. This masking was removed starting in API version 1.2.x. We suggest to mask these images by yourself based on the content of the confidence image. Please change your code accordingly.
-
 This document gives a high level overview of the images available for the O3R. Receiving certain images can be turned ON/OFF using the [ifm3d FrameGrabber](https://api.ifm3d.com/stable/examples/o3r/getting_data/getting_data.html#set-the-schema-and-start-framegrabber).
 
->Note: For more information about the types, sizes and other implementation aspects, please refer to the [ifm3d API documentation](https://api.ifm3d.com).
+:::{note} 
+For more information about the types, sizes and other implementation aspects, please refer to the [ifm3d API documentation](https://api.ifm3d.com).
+:::
 
 ## Raw Amplitude image and Amplitude image
 
@@ -19,8 +16,9 @@ The amplitude image is the normalized image over the different exposure times.
 
 Each pixel of the distance image denotes the ToF distance measured by the corresponding pixel or group of pixels of the imager, along the respective pixel direction. The distance value is corrected by the camera's calibration, excluding effects caused by multi-path interference and multiple objects contributions (for example [mixed pixels](../ProcessingParams/mixedPixelFilter.md)). The reference point is the center of the back of the camera head's housing. Invalid pixels have a value of zero.
 
-.. warning::
-    The radial distance image has to be normalized by multiplying each distance value by the global distance normalization factor `distanceResolution`.
+:::{warning}
+The radial distance image has to be normalized by multiplying each distance value by the global distance normalization factor `distanceResolution`.
+:::
 
 ## Distance noise (radial)
 
