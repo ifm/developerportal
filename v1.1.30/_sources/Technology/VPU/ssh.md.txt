@@ -3,7 +3,7 @@
 To connect to the VPU through SSH or deploy code to the VPU with SCP, it is necessary to setup a list of authorized keys .
 
 ## Generate an SSH key-pair
->Note: the following instructions are tailored towards a bash (Unix shell). When deploying on a Windows based architecture, please modify the instuctions sets for your shell accordingly.
+>Note: the following instructions are tailored towards a bash (Unix shell). When deploying on a Windows based architecture, please modify the instructions sets for your shell accordingly.
 All user specific SSH keys are located at `~/.ssh`. This is the place where the private key for the connection to the VPU should be stored.
 
 To generate an SSH key-pair, use `ssh-keygen`:

@@ -28,7 +28,7 @@ Since `ifm3d API version 1.3.X` the internal logging of the API has changed: GLO
 More details can be found in the ifm3d API migration guide [here](https://api.ifm3d.com/stable/content/migration_guide/v1_3_0.html).
 
 All changes to the logging feature introduced in ifm3d API 1.3.X are made with backwards compatibility in mind: this means that all errors thrown as exceptions will still be thrown as exceptions.
-All information previously logged to the GLOG logger is now logged to our own logger class. As a result, the Python API in particular may appear more verbose than before.
+All information previously logged to the glog logger is now logged to our own logger class. As a result, the Python API in particular may appear more verbose than before.
 
 ## CPU process allocation
 Updates to the internal handling of ifm processes result in a different CPU resource allocation compared to previous FW versions.

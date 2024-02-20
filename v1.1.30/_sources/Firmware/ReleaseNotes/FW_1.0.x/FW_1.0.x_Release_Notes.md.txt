@@ -211,7 +211,7 @@ The steps outlined there are required to change the device from a A/B redundant 
 * The IPv4 discovery feature for discovering the device in complex networks is not working
 * The framerate of the 2D RGB image stream can not be configured: A parameter change via the JSON interface has no effect on the acquisition framerate.
 * Non supported camera heads, for example O3R prototype heads: start with a `M0xxxx`, cause boot-up issues and may result in a non-functional state.
-* Algo debug recording:
+* Algo-debug recording:
   * Algo-debug recording (receiving) may not be functional on customer PCs, for example laptops, with high loads / low processing power and result in missed information.
 * Configuring multiple applications at once can result in configuration times larger than the ifm3d API default timeout. A `importlib._bootstrap.Error: Lib: XMLRPC Timeout - can you 'ping' the system` error will be shown.
 * If no network connection can be established within 2 min during boot-up, following O3R system services such as imager streams may not be functional until rebooted.

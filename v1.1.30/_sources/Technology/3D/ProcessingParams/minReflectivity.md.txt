@@ -6,7 +6,7 @@ Reflectivity in the near-infrared (NIR) spectrum is a property of the material f
 
 The minimum reflectivity (`minReflectivity`) filter serves to invalidates pixels that have received low amounts of light (that is, pixels on objects with a reflectivity below the minimum threshold). The `minReflectivity` filter value represents the percentage threshold for invalidating the pixel, with a range from 0 (minimum) to 100 (maximum).
 
-The computation of reflectivity involves analyzing the distance and amplitude images. Additionally, this parameter can be employed to identify highly reflective objects within a scene. Setting a higher threshold (eg. 100) would likely invalidate nearly everything except for retro-reflectors.
+The computation of reflectivity involves analyzing the distance and amplitude images. Additionally, this parameter can be employed to identify highly reflective objects within a scene. Setting a higher threshold (for example, 100) would likely invalidate nearly everything except for retro-reflectors.
 
 ## Example
 In the image below, we show objects with their measured reflectivity. In this case the reflectivity depends on the material of the object only because their surfaces are seen under the same angle relative to the surface’s normal. The estimated reflectivity might vary for the same object seen under varying angles to surfaces normals. Note that this pertains to reflectivity in the NIR spectrum. Some objects might show a higher or lower reflectivity than expected in the visible spectrum.

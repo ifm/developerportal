@@ -180,9 +180,9 @@ are not supported by the OVP8xx VPU device.</p></li>
 <p>These devices may be (partially) functional if their respective drivers are included by default in the embedded Linux OS or are installed in an appropriate Docker software container.
 There is no guarantee of compatibility or support for such external hardware devices.</p>
 <p>Access to external HID USB devices such as USB mice, keyboards, controllers, etc. may be restricted based on OEM <code class="docutils literal notranslate"><span class="pre">oem</span> <span class="pre">user</span> <span class="pre">groups</span></code>.
-The OEM user is not part of the <code class="docutils literal notranslate"><span class="pre">dialout</span></code> group and is therefore restricted on its interactions with such HID and further USB devices. Adding the oem user to other groups is not possible.
+The OEM user is not part of the <code class="docutils literal notranslate"><span class="pre">dialout</span></code> group and is therefore restricted on its interactions with such HID and further USB devices. Adding the OEM user to other groups is not possible.
 If such access is required, please get in contact with the ifm robotics support team.</p>
-<p>The oem users groups are:</p>
+<p>The OEM users groups are:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>groups<span class="w"> </span>oem
 oem<span class="w"> </span>docker<span class="w"> </span>systemd-journal
 </pre></div>

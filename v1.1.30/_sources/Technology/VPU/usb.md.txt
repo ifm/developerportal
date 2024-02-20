@@ -48,10 +48,10 @@ These devices may be (partially) functional if their respective drivers are incl
 There is no guarantee of compatibility or support for such external hardware devices.
 
 Access to external HID USB devices such as USB mice, keyboards, controllers, etc. may be restricted based on OEM `oem user groups`.
-The OEM user is not part of the `dialout` group and is therefore restricted on its interactions with such HID and further USB devices. Adding the oem user to other groups is not possible.
+The OEM user is not part of the `dialout` group and is therefore restricted on its interactions with such HID and further USB devices. Adding the OEM user to other groups is not possible.
 If such access is required, please get in contact with the ifm robotics support team.
 
-The oem users groups are:
+The OEM users groups are:
 ```bash
 $ groups oem
 oem docker systemd-journal
