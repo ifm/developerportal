@@ -221,6 +221,7 @@ In the /ports section, changing a “CONF” parameter while the port is “RUN�
 </li>
 </ul>
 </li>
+<li><p>Note that port parameters can be changed subsequently by the application</p></li>
 </ul>
 </li>
 <li><p>applications/classes</p></li>
@@ -228,14 +229,14 @@ In the /ports section, changing a “CONF” parameter while the port is “RUN�
 <ul>
 <li><p>If the current state is “CONF”:</p>
 <ul>
-<li><p>other parameters</p></li>
+<li><p>other parameters: this include port parameters</p></li>
 <li><p>state</p></li>
 </ul>
 </li>
 <li><p>If the current state is “RUN” or “IDLE”:</p>
 <ul>
 <li><p>state</p></li>
-<li><p>other parameters</p></li>
+<li><p>other parameters: this include port parameters</p></li>
 <li><p>if “CONF”-only parameters are requested, an error will be triggered. The application has to be explicitly switched to “CONF” before changing these parameters.</p></li>
 </ul>
 </li>

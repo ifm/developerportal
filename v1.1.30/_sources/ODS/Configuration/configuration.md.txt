@@ -48,6 +48,9 @@ Due to this technical approach, it might happen that two heads are interfering w
     }
 }
 ```
+:::{note}
+Since the application takes ownership of the ports that it uses and is able to reset their parameters, the port parameters relevant to the application have to be set within the port section of the application configuration, and not directly in the top level port settings.
+:::
 
 ## Minimum object height
 

@@ -79,15 +79,15 @@ Order of configuration:
             - mode
             - other parameters
             - state to "RUN" or "IDLE"
-
+    - Note that port parameters can be changed subsequently by the application
 - applications/classes
 - applications/instances
     - If the current state is "CONF":
-        - other parameters
+        - other parameters: this include port parameters
         - state
     - If the current state is "RUN" or "IDLE":
         - state
-        - other parameters
+        - other parameters: this include port parameters
         - if "CONF"-only parameters are requested, an error will be triggered. The application has to be explicitly switched to "CONF" before changing these parameters.
 
 :::{note}
