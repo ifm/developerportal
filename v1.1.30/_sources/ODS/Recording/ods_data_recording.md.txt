@@ -9,7 +9,7 @@ During all testing phases, issues could appear. To improve and verify the system
 
 ## What to record
 
-All appearing issues, misbehavior or the lack of issues for certain situations are interesting to record. for example:
+All appearing issues, misbehavior or the lack of issues for certain situations are interesting to record. For example:
 
 - Wrongly detected objects (for example wrong distance)
 - Not detected objects
@@ -23,7 +23,7 @@ The O3R (ODS system) has two different recording data types: "normal" and "algo-
 
 ### Normal
 
-These are all non algo-debug data. for example:
+These are all non-algo-debug data. for example:
 
 - 3D data
 - Amplitude
@@ -65,11 +65,11 @@ There might be several events where automatic recording is beneficial. These cou
 
 - O3R diagnosis errors get activated
 - Customer software errors (exceptions, etc.)
-- Differences of object detection: ODS detects an object, but the LIDAR doesn't or vice versa
+- Differences in object detection: ODS detects an object, but the LIDAR doesn't or vice versa
 
-It might be beneficial to establish some kind of "black box" functionality. Record the events within a ring buffer, which might be deleted either through a reboot or a person. This could be especially helpful for end-customers who encounter issues. The recorded data might be hold in RAM and forwarded via different ways (WiFi, etc.) to specific locations. This must however be established by the customer.
+It might be beneficial to establish some kind of "black box" functionality. Record the events within a ring buffer, which might be deleted either through a reboot or a person. This could be especially helpful for end-customers who encounter issues. The recorded data might be held in RAM and forwarded via different ways (WiFi, etc.) to specific locations. This must however be established by the customer.
 
-An typical event and recording approach might look like this:
+A typical event and recording approach might look like this:
 
 <!-- TODOO: fix mermaid -->
 ```mermaid
@@ -89,7 +89,7 @@ flowchart LR
 ### Recording format
 
 There is no standardized data stream format. However, is quite common to save 3D data as hdf5 data files.
-For this purposes ifm provides two separate recording formats:
+For this purposes, ifm provides two separate recording formats:
 
 Namely the ifm openly accessible data (the same as can be accessed via the API) - often called the ifm hdf5 format, and a closed raw data format - called ifm algo-debug hdf5 format.
 
@@ -115,8 +115,11 @@ While recording the data there are two Toggle Buttons beside the `Start/Stop` bu
 Record the Algo-Debug data when you need technical support from ifm to debug the scenario.
 :::
 
-![Record and Replay ODS](img/record_replay.gif)
+<img src="img/Record_options.png" alt="Recording Options" style="height:300px; width:1080px;">
 
+**Data Recording**
+
+![Record and Replay ODS](img/record_replay.gif)
 
 #### How to post-process the recorded data
 
@@ -130,6 +133,7 @@ The data analyzed below is recorded by an O3R225 camera head connected to a VPU 
 - one ODS application instance is running
 
 **Python snippet to read the data from a recording**
+
 ```python title="Read O3R h5 data files"
 import h5py
 from matplotlib import pyplot as plt
@@ -143,7 +147,6 @@ stream_2d   = data["streams"]['o3r_rgb_0']
 stream_3d   = data["streams"]['o3r_tof_0']
 stream_ods  = data["streams"]['o3r_app_ods_0']
 ```
-
 
 ```python title="Plot O3R h5 data files contents"
 # show all available data per stream
@@ -172,10 +175,11 @@ plt.subplot(2,2,4)
 plt.imshow(distance_image,cmap='jet',interpolation='none')
 plt.title('Distance Image')
 ```
+
 ![Images from Recorded Data](img/images_from_recorded_data.png)
 
 :::{note}
-The occupancy grid image is 200 x 200 px² image (1px == 50mm) rotated 90° clockwise with respect to the camera's orientation. The newest data in the robot forward direction is column on the right hand side of the occupancy grid.
+The occupancy grid image is 200 x 200 px² image (1px == 50mm) rotated 90° clockwise with respect to the camera's orientation. The newest data in the robot's forward direction is a column on the right-hand side of the occupancy grid.
 :::
 
 See notes on [concurrent workloads](../FieldTest/ConcurrentWorkloads/concurrent_workloads.md) for additional information on performance when running many simultaneous 3D camera streams.
