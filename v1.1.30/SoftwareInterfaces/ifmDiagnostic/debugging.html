@@ -1,26 +1,32 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>O3R information for debugging &mdash; O3R  documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=28a392ea" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/clipboard.min.js"></script>
-        <script src="../../_static/copybutton.js"></script>
-        <script src="../../_static/js/versionwarning.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../_static/design-tabs.js?v=36754332"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -43,14 +49,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> O3R
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            O3R
           </a>
               <div class="version">
                 v1.1.30
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -103,10 +113,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index_software_interfaces.html">Software Interfaces</a> &raquo;</li>
-          <li><a href="index_diagnostic.html">O3R Diagnostics: overview</a> &raquo;</li>
-      <li>O3R information for debugging</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index_software_interfaces.html">Software Interfaces</a></li>
+          <li class="breadcrumb-item"><a href="index_diagnostic.html">O3R Diagnostics: overview</a></li>
+      <li class="breadcrumb-item active">O3R information for debugging</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/SoftwareInterfaces/ifmDiagnostic/debugging.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -116,8 +126,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="o3r-information-for-debugging">
-<h1>O3R information for debugging<a class="headerlink" href="#o3r-information-for-debugging" title="Permalink to this headline"></a></h1>
+  <section id="o3r-information-for-debugging">
+<h1>O3R information for debugging<a class="headerlink" href="#o3r-information-for-debugging" title="Link to this heading"></a></h1>
 <p>When sending the ifm support team a debug request, please include the information below:</p>
 <p><strong>Required O3R system information:</strong></p>
 <ul class="simple">
@@ -142,8 +152,8 @@
 <li><p>Embedded firmware version: three ways to find this out</p>
 <ul>
 <li><p>Via CLI: requires <code class="docutils literal notranslate"><span class="pre">jq</span></code> and <code class="docutils literal notranslate"><span class="pre">ifm3dpy</span></code> libraries, which can be installed from <a class="reference external" href="https://pypi.org/">PyPI</a>.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3dpy<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.device.swVersion.firmware
-</pre></div>
+<div class="shell docutils">
+<p>$ ifm3dpy dump | jq .device.swVersion.firmware</p>
 </div>
 </li>
 <li><p>Via the JSON: use the <code class="docutils literal notranslate"><span class="pre">get</span></code> method to receive the O3R configuration information formatted in JSON. See <a class="reference external" href="http://api.ifm3d.com/html/examples/o3r/configuration/configuration.html">how to receive the camera configuration</a>.</p></li>
@@ -156,22 +166,22 @@
 <li><p>(ifm Vision Assistant version - if iVA is used)</p></li>
 <li><p>(ROS wrapper version)</p></li>
 </ul>
-<div class="section" id="network-interface-and-connectivity">
-<h2>Network interface and connectivity:<a class="headerlink" href="#network-interface-and-connectivity" title="Permalink to this headline"></a></h2>
+<section id="network-interface-and-connectivity">
+<h2>Network interface and connectivity:<a class="headerlink" href="#network-interface-and-connectivity" title="Link to this heading"></a></h2>
 <p>If the connection between the host and the VPU via ifmVisionAssistant cannot be established, then try the following instructions:</p>
 <ul class="simple">
 <li><p>Check the network settings: for instance, try to ping the system on its default / configured IP in a local network.</p></li>
 <li><p>Disconnect all camera heads and reboot the VPU:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>This will allow you to find hardware configuration problems, for example, camera heads connected to the “wrong” ports.
 <a class="reference external" href="https://ifm3d.com/documentation/GettingStarted/Unboxing/hw_unboxing.html">Please double-check the configuration doc for details on the hardware connectivity</a></p></li>
 <li><p>If step 1 (above) worked try to reconnect one cable at a time to the correct ports as described in the doc above. Please be aware that any hardware change, for example connecting a new head, requires a reboot before it will become available.</p></li>
 </ol>
 </li>
 </ul>
-</div>
-<div class="section" id="status-leds-and-port-leds">
-<h2>Status LEDs and port LEDs<a class="headerlink" href="#status-leds-and-port-leds" title="Permalink to this headline"></a></h2>
+</section>
+<section id="status-leds-and-port-leds">
+<h2>Status LEDs and port LEDs<a class="headerlink" href="#status-leds-and-port-leds" title="Link to this heading"></a></h2>
 <p>Starting with firmware version 0.16.x the LEDs at the front of the VPU show the correct system information:</p>
 <ul class="simple">
 <li><p>STATE LED:</p>
@@ -194,27 +204,27 @@
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="how-to-retrieve-diagnosis-information">
-<h2>How to retrieve diagnosis information:<a class="headerlink" href="#how-to-retrieve-diagnosis-information" title="Permalink to this headline"></a></h2>
+</section>
+<section id="how-to-retrieve-diagnosis-information">
+<h2>How to retrieve diagnosis information:<a class="headerlink" href="#how-to-retrieve-diagnosis-information" title="Link to this heading"></a></h2>
 <p>Diagnosis information can be retrieved via:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Via ifm Vision Assistant</p></li>
 </ol>
 <p>The easiest way to debug a new O3R hardware is to use the ifm Vision Assistant: which can be downloaded [here].</p>
-<p>ifmVisionAssistant is a wizard tool provided by the ifm, for configuring and debugging the vision products/sensors. The ifmVisionAssistant tool logs all the diagnosis information required for debugging the system. To get started with the ifmVisionAssistant please refer to this <a class="reference internal" href="../../GettingStarted/ifmVisionAssistant/introduction_and_installation.html"><span class="doc std std-doc">page</span></a> and to retrieve the diagnosis information via ifmVisionAssistant please refer to this <a class="reference internal" href="DiagnosticRetrieval/index_diagnostic_retrieval.html"><span class="doc std std-doc">document</span></a>.</p>
-<ol class="simple">
+<p>ifmVisionAssistant is a wizard tool provided by the ifm, for configuring and debugging the vision products/sensors. The ifmVisionAssistant tool logs all the diagnosis information required for debugging the system. To get started with the ifmVisionAssistant please refer to this <a class="reference internal" href="../../GettingStarted/ifmVisionAssistant/introduction_and_installation.html"><span class="std std-doc">page</span></a> and to retrieve the diagnosis information via ifmVisionAssistant please refer to this <a class="reference internal" href="DiagnosticRetrieval/index_diagnostic_retrieval.html"><span class="std std-doc">document</span></a>.</p>
+<ol class="arabic simple" start="2">
 <li><p>Via ifm3d API</p></li>
 </ol>
-<p>To retrieve the diagnosis information via ifm3d API, please refer <strong>Receiving the diagnostic data</strong> section in this <a class="reference internal" href="DiagnosticRetrieval/diagnostic_retrieval.html"><span class="doc std std-doc">document</span></a>.</p>
-</div>
-<div class="section" id="github-platform">
-<h2>GitHub platform<a class="headerlink" href="#github-platform" title="Permalink to this headline"></a></h2>
+<p>To retrieve the diagnosis information via ifm3d API, please refer <strong>Receiving the diagnostic data</strong> section in this <a class="reference internal" href="DiagnosticRetrieval/diagnostic_retrieval.html"><span class="std std-doc">document</span></a>.</p>
+</section>
+<section id="github-platform">
+<h2>GitHub platform<a class="headerlink" href="#github-platform" title="Link to this heading"></a></h2>
 <p>It is recommended to report any issues you may encounter while using the product on <a class="reference external" href="https://github.com/ifm/ifm3d">ifm GitHub repository</a>. The GitHub platform allows the support and development teams to track and manage the issues efficiently. To report an issue via the GitHub repository, refer to this <a class="reference external" href="https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-an-issue">document</a>.</p>
 <p>As mentioned before, please include the hardware and software information of the system setup for a better understanding of the problem statement. Besides, in the comment section provide a detailed description of the issue, including any error messages you may have received, steps to reproduce the issue, and any other relevant information.</p>
 <p>If possible, please provide screenshots or videos to help illustrate the issue.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

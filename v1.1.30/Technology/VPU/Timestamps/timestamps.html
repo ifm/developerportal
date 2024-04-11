@@ -1,26 +1,32 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Timestamps &mdash; O3R  documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=28a392ea" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/clipboard.min.js"></script>
-        <script src="../../../_static/copybutton.js"></script>
-        <script src="../../../_static/js/versionwarning.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -43,14 +49,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> O3R
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            O3R
           </a>
               <div class="version">
                 v1.1.30
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -108,10 +118,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index_hardware_interfaces.html">Technology</a> &raquo;</li>
-          <li><a href="../index_vpu.html">VPU (Vision Processing Unit)</a> &raquo;</li>
-      <li>Timestamps</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index_hardware_interfaces.html">Technology</a></li>
+          <li class="breadcrumb-item"><a href="../index_vpu.html">VPU (Vision Processing Unit)</a></li>
+      <li class="breadcrumb-item active">Timestamps</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/Technology/VPU/Timestamps/timestamps.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -121,26 +131,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="timestamps">
-<h1>Timestamps<a class="headerlink" href="#timestamps" title="Permalink to this headline"></a></h1>
+  <section id="timestamps">
+<h1>Timestamps<a class="headerlink" href="#timestamps" title="Link to this heading"></a></h1>
 <p>The O3R provides multiple timestamps that correspond to different times in the acquisition and processing of an image.</p>
-<div class="section" id="acquisition-timestamps">
-<h2>Acquisition timestamps<a class="headerlink" href="#acquisition-timestamps" title="Permalink to this headline"></a></h2>
-<p>The acquisition timestamps refer to the center of <a class="reference internal" href="../../3D/AcquisitionParams/index_acquisition_params.html#exposure-times"><span class="std std-doc">each individual HDR exposure time</span></a> (the O3R uses three exposures, a short, a medium, and a long, in that order). For the RGB image, there is only one exposure, so there is only one timestamp.</p>
+<section id="acquisition-timestamps">
+<h2>Acquisition timestamps<a class="headerlink" href="#acquisition-timestamps" title="Link to this heading"></a></h2>
+<p>The acquisition timestamps refer to the center of <a class="reference internal" href="../../3D/AcquisitionParams/index_acquisition_params.html#exposure-times"><span class="std std-ref">each individual HDR exposure time</span></a> (the O3R uses three exposures, a short, a medium, and a long, in that order). For the RGB image, there is only one exposure, so there is only one timestamp.</p>
 <p>These timestamps can be retrieved with the ifm3d library respectively in the <a class="reference external" href="https://api.ifm3d.com/stable/_autosummary/ifm3dpy.deserialize.TOFInfoV4.html#ifm3dpy.deserialize.TOFInfoV4.exposure_timestamps_ns"><code class="docutils literal notranslate"><span class="pre">TOF_INFO</span></code></a> or <a class="reference external" href="https://api.ifm3d.com/stable/_autosummary/ifm3dpy.deserialize.RGBInfoV1.html#ifm3dpy.deserialize.RGBInfoV1.timestamp_ns"><code class="docutils literal notranslate"><span class="pre">RGB_INFO</span></code></a> buffers.</p>
-</div>
-<div class="section" id="receive-timestamps">
-<h2>Receive timestamps<a class="headerlink" href="#receive-timestamps" title="Permalink to this headline"></a></h2>
+</section>
+<section id="receive-timestamps">
+<h2>Receive timestamps<a class="headerlink" href="#receive-timestamps" title="Link to this heading"></a></h2>
 <p>When a frame is received by the end device using the ifm3d API, a timestamp is attached to it (see <a class="reference external" href="https://api.ifm3d.com/stable/_autosummary/ifm3dpy.framegrabber.Frame.html#ifm3dpy.framegrabber.Frame.timestamps">frame documentation</a>). Depending on the network configuration, the difference between the capture time and the reception time may vary. The ifm3d API appends a timestamp corresponding to the local time of the end device. If the ifm3d API runs on the VPU, the local CPU time of the VPU is used. If ifm3d API runs on the user’s machine, a different time zone may be used depending on the local time settings.</p>
 <p>Note that NTP does not take time zones into account, but uses UTC as the reference for all timestamps. The user may need to convert the receive timestamps to UTC to match the NTP-synchronized capture timestamp.</p>
 <p>The ifm3d API provides the timestamp of the frame as an array of two <code class="docutils literal notranslate"><span class="pre">datetime</span></code> objects. The second element of this table is inherited from legacy products that provided multiple timestamps. For the O3R, the user can use the first element of the table.</p>
-</div>
-<div class="section" id="synchronization">
-<h2>Synchronization<a class="headerlink" href="#synchronization" title="Permalink to this headline"></a></h2>
-<p>All timestamps can be synchronized using <a class="reference internal" href="../sntp.html"><span class="doc std std-doc">sNTP</span></a>.</p>
-</div>
-<div class="section" id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h2>
+</section>
+<section id="synchronization">
+<h2>Synchronization<a class="headerlink" href="#synchronization" title="Link to this heading"></a></h2>
+<p>All timestamps can be synchronized using <a class="reference internal" href="../sntp.html"><span class="std std-doc">sNTP</span></a>.</p>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
 <p>The example below displays the acquisition and receive timestamps for 2D and 3D frames.
 It also shows timestamps when NTP synchronization is enabled: this relies on having a NTP server running on the user’s machine.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#############################################</span>
@@ -285,8 +295,8 @@ Current<span class="w"> </span><span class="nb">time</span><span class="w"> </sp
 Last<span class="w"> </span>exposure<span class="w"> </span>acquisition<span class="w"> </span>to<span class="w"> </span>reception<span class="w"> </span>latency:<span class="w"> </span><span class="m">768</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

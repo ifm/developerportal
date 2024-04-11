@@ -1,26 +1,32 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Heat dissipation guidelines &mdash; O3R  documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=28a392ea" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/clipboard.min.js"></script>
-        <script src="../../../_static/copybutton.js"></script>
-        <script src="../../../_static/js/versionwarning.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -43,14 +49,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> O3R
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            O3R
           </a>
               <div class="version">
                 v1.1.30
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -132,10 +142,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index_ods.html">ODS (Obstacle Detection System)</a> &raquo;</li>
-          <li><a href="../index_device_verification.html">Testing ODS</a> &raquo;</li>
-      <li>Heat dissipation guidelines</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index_ods.html">ODS (Obstacle Detection System)</a></li>
+          <li class="breadcrumb-item"><a href="../index_device_verification.html">Testing ODS</a></li>
+      <li class="breadcrumb-item active">Heat dissipation guidelines</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/ODS/DeviceVerification/HeatDissipation/heat_dissipation_guidelines.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -145,8 +155,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="heat-dissipation-guidelines">
-<h1>Heat dissipation guidelines<a class="headerlink" href="#heat-dissipation-guidelines" title="Permalink to this headline"></a></h1>
+  <section id="heat-dissipation-guidelines">
+<h1>Heat dissipation guidelines<a class="headerlink" href="#heat-dissipation-guidelines" title="Link to this heading"></a></h1>
 <div class="admonition-highlights admonition">
 <p class="admonition-title">Highlights</p>
 <ul class="simple">
@@ -155,8 +165,8 @@
 <li><p>Each O3R camera head has a thermal energy power output of about <code class="docutils literal notranslate"><span class="pre">8</span> <span class="pre">W</span></code> under full load, that is, at maximum framerate.</p></li>
 </ul>
 </div>
-<div class="section" id="power-consumption">
-<h2>Power consumption<a class="headerlink" href="#power-consumption" title="Permalink to this headline"></a></h2>
+<section id="power-consumption">
+<h2>Power consumption<a class="headerlink" href="#power-consumption" title="Link to this heading"></a></h2>
 <p>The datasheets for both the O3R VPU and cameras can be found on <a class="reference external" href="https://www.ifm.com/">ifm.com</a> in the respective product pages and gather the power consumption specifications.</p>
 <!-- [O3R VPU specification](https://www.ifm.com/restservices/us/en/assets/c3VwcGxpZXJzL2lmbS9kb2N1bWVudHMvcHJvZHVjdC9PVlA4MDAtMDAvZGF0ZW5ibGFldHRlci9PVlA4MDAtMDBfRU4tVVMucGRm?v=134) -->
 <!-- [O3R222 camera head specification](https://www.ifm.com/restservices/us/en/assets/c3VwcGxpZXJzL2lmbS9kb2N1bWVudHMvcHJvZHVjdC9PM1IyMjItMDAvZGF0ZW5ibGFldHRlci9PM1IyMjItMDBfRU4tVVMucGRm?v=54)
@@ -167,7 +177,7 @@
 <p>The power consumption is dependent on the processing load and the number of connected cameras. It can be calculated with the following formula:
 <code class="docutils literal notranslate"><span class="pre">Power</span> <span class="pre">consumption</span> <span class="pre">[W]</span> <span class="pre">=</span> <span class="pre">7,4</span> <span class="pre">+</span> <span class="pre">n</span> <span class="pre">x</span> <span class="pre">((FPS</span> <span class="pre">x</span> <span class="pre">0,32)</span> <span class="pre">+</span> <span class="pre">2,2);</span> <span class="pre">n</span> <span class="pre">=</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">cameras;</span> <span class="pre">FPS</span> <span class="pre">=</span> <span class="pre">camera</span> <span class="pre">frame</span> <span class="pre">rate</span></code></p>
 <p>Typical load cases are presented below:</p>
-<table class="colwidths-auto docutils align-default">
+<table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Load</p></th>
 <th class="head"><p>Power consumption</p></th>
@@ -193,29 +203,29 @@
 <li><p>For the VPU, the maximum expected thermal energy output under full load is about <code class="docutils literal notranslate"><span class="pre">60</span> <span class="pre">W</span></code>. A typical thermal energy output of the system is between <code class="docutils literal notranslate"><span class="pre">16</span> <span class="pre">W</span> <span class="pre">and</span> <span class="pre">60</span> <span class="pre">W</span></code>.</p></li>
 <li><p>Each ifm O3R camera head has a thermal energy power output of about <code class="docutils literal notranslate"><span class="pre">8</span> <span class="pre">W</span></code> under full load, that is at maximum framerate.</p></li>
 </ul>
-</div>
-<div class="section" id="vpu-mounting-for-heat-dissipation">
-<h2>VPU mounting for heat dissipation<a class="headerlink" href="#vpu-mounting-for-heat-dissipation" title="Permalink to this headline"></a></h2>
+</section>
+<section id="vpu-mounting-for-heat-dissipation">
+<h2>VPU mounting for heat dissipation<a class="headerlink" href="#vpu-mounting-for-heat-dissipation" title="Link to this heading"></a></h2>
 <p>The thermal energy output of the VPU and cameras, as described above, needs to be dissipated.
 This includes:</p>
 <ul class="simple">
 <li><p>A mounting bracket for the VPU device (an additional heat sync is usually not necessary),</p></li>
 <li><p>A combined heat sink and mounting bracket for each O3R camera head</p></li>
 </ul>
-<div class="section" id="vpu-heat-sink">
-<h3>VPU heat sink<a class="headerlink" href="#vpu-heat-sink" title="Permalink to this headline"></a></h3>
+<section id="vpu-heat-sink">
+<h3>VPU heat sink<a class="headerlink" href="#vpu-heat-sink" title="Link to this heading"></a></h3>
 <p>The VPU heat sink design can be fairly minimal. As long as the VPU is rigidly connected with enough clamping force, for example screwed down from the bottom side to a heat-dissipating material, the energy flow from the housing into the mounting plate combined with the heat dissipation via air convection will be adequate under all load scenarios.</p>
 <p>In cases where heat dissipation is insufficient, for example, if air gaps exist between the mounting surfaces, the internal temperatures will exceed normal operation conditions and the CPU and GPU will automatically downclock to cool down.</p>
-</div>
-</div>
-<div class="section" id="camera-mounting-for-heat-dissipation">
-<h2>Camera mounting for heat dissipation<a class="headerlink" href="#camera-mounting-for-heat-dissipation" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+<section id="camera-mounting-for-heat-dissipation">
+<h2>Camera mounting for heat dissipation<a class="headerlink" href="#camera-mounting-for-heat-dissipation" title="Link to this heading"></a></h2>
 <p>The results of internal tests and simulations of heat sink designs are presented in this section.</p>
-<div class="section" id="conditions-of-the-simulation">
-<h3>Conditions of the simulation<a class="headerlink" href="#conditions-of-the-simulation" title="Permalink to this headline"></a></h3>
-<div class="section" id="simulation-parameters">
-<h4>Simulation parameters<a class="headerlink" href="#simulation-parameters" title="Permalink to this headline"></a></h4>
-<table class="colwidths-auto docutils align-default">
+<section id="conditions-of-the-simulation">
+<h3>Conditions of the simulation<a class="headerlink" href="#conditions-of-the-simulation" title="Link to this heading"></a></h3>
+<section id="simulation-parameters">
+<h4>Simulation parameters<a class="headerlink" href="#simulation-parameters" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Simulation boundary values</p></th>
 <th class="head"><p>value</p></th>
@@ -248,47 +258,47 @@ This includes:</p>
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="outcome-of-the-simulation">
-<h4>Outcome of the simulation<a class="headerlink" href="#outcome-of-the-simulation" title="Permalink to this headline"></a></h4>
+</section>
+<section id="outcome-of-the-simulation">
+<h4>Outcome of the simulation<a class="headerlink" href="#outcome-of-the-simulation" title="Link to this heading"></a></h4>
 <p>Simulation test results are comparable to real-world measurements.
 For comparability, the simulation results had to be increased by +5 °C for the maximum internal temperature:</p>
 <ul class="simple">
 <li><p>Real-world testing: maximum internal camera head temperature: 80 °C</p></li>
 <li><p>Simulation testing: maximum internal camera head temperature: 85 °C</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="example-brackets">
-<h3>Example brackets<a class="headerlink" href="#example-brackets" title="Permalink to this headline"></a></h3>
-<div class="section" id="single-camera">
-<h4>Single camera<a class="headerlink" href="#single-camera" title="Permalink to this headline"></a></h4>
+</section>
+</section>
+<section id="example-brackets">
+<h3>Example brackets<a class="headerlink" href="#example-brackets" title="Link to this heading"></a></h3>
+<section id="single-camera">
+<h4>Single camera<a class="headerlink" href="#single-camera" title="Link to this heading"></a></h4>
 <p>Below the simulation results for a single camera mounting bracket with different shapes are shown.
 These example mounting brackets are a representation of the heat dissipation capabilities for different mounting bracket shapes.</p>
 <p>All mounting bracket shapes are simulated under identical external conditions (see simulation conditions above).</p>
 <p><img alt="Aluminum bracket 100x120 mm²" src="../../../_images/bracket-1.jpg" />
 <img alt="Aluminum bracket 100x120 mm²" src="../../../_images/bracket-2.jpg" />
 <img alt="Aluminum bracket 100x120 mm²" src="../../../_images/bracket-3.jpg" /></p>
-</div>
-<div class="section" id="double-camera">
-<h4>Double camera<a class="headerlink" href="#double-camera" title="Permalink to this headline"></a></h4>
+</section>
+<section id="double-camera">
+<h4>Double camera<a class="headerlink" href="#double-camera" title="Link to this heading"></a></h4>
 <p>Below the simulation results for a double camera mounting bracket are shown.
 This simulation shows that if the surface area of the common mounting bracket is large enough and both cameras can dissipate their energy with equal thermal resistance into the mounting bracket, a double mounting bracket can be realized.</p>
 <p><img alt="Aluminum bracket 200x120 mm²" src="../../../_images/bracket-4b.jpg" />
 <img alt="Aluminum bracket 200x120 mm²" src="../../../_images/bracket-4.jpg" /></p>
-</div>
-</div>
-<div class="section" id="simulation-and-testing-results">
-<h3>Simulation and testing results<a class="headerlink" href="#simulation-and-testing-results" title="Permalink to this headline"></a></h3>
+</section>
+</section>
+<section id="simulation-and-testing-results">
+<h3>Simulation and testing results<a class="headerlink" href="#simulation-and-testing-results" title="Link to this heading"></a></h3>
 <p>The simulation results show that per O3R camera head a heat dissipating aluminum bracket area of 120 cm²(10 cm X 12 cm) is required to allow for enough energy transfer via heat convection.
 Bracket material thickness can be neglected. Aluminum brackets with a thickness of 1 mm - 2 mm are sufficient to transfer the thermal energy over the required heat sink area.</p>
 <p>The ambient temperature for all tests was assumed to be 40 °C as stated in the manual.</p>
 <p>Thermal energy distribution inside the mounting bracket only has a minor impact on the heat transfer as long as “good” energy distribution from inside the camera head to the complete surface of the bracket can be assumed.
 Aluminum material is preferable as it has a lower heat conduction resistance.</p>
-</div>
-</div>
-<div class="section" id="additional-resources-theory-of-heat-sink-design">
-<h2>Additional resources: theory of heat sink design<a class="headerlink" href="#additional-resources-theory-of-heat-sink-design" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+<section id="additional-resources-theory-of-heat-sink-design">
+<h2>Additional resources: theory of heat sink design<a class="headerlink" href="#additional-resources-theory-of-heat-sink-design" title="Link to this heading"></a></h2>
 <p>When designing an appropriate heat sink for an O3R hardware please consider the following points:</p>
 <ul class="simple">
 <li><p>Thermal barriers / thermal resistance</p></li>
@@ -303,8 +313,8 @@ Aluminum material is preferable as it has a lower heat conduction resistance.</p
 </ul>
 <p>Heat sink design involves determining the appropriate size and shape of the heat sink based on the amount of heat that needs to be dissipated and the available space for the heat sink. The design must also take into account factors such as the thermal conductivity of the heat sink material, the airflow around the heat sink, and the thermal resistance between the component and the heat sink.</p>
 <p>There are several types of heat sinks available, including passive heat sinks, which rely on natural convection to dissipate heat, and active heat sinks, which use fans or other mechanical means to enhance heat dissipation. Passive heat sinks are simpler.</p>
-<div class="section" id="thermal-barriers-thermal-resistance">
-<h3>Thermal barriers / thermal resistance<a class="headerlink" href="#thermal-barriers-thermal-resistance" title="Permalink to this headline"></a></h3>
+<section id="thermal-barriers-thermal-resistance">
+<h3>Thermal barriers / thermal resistance<a class="headerlink" href="#thermal-barriers-thermal-resistance" title="Link to this heading"></a></h3>
 <p>To use a heat sink, it must be mounted directly onto the component that generates heat.</p>
 <p>The heat transfer resistance between the component and the mounting surface can be determined using the following formula:</p>
 <p><code class="docutils literal notranslate"><span class="pre">R</span> <span class="pre">=</span> <span class="pre">ΔT</span> <span class="pre">/</span> <span class="pre">Q</span></code></p>
@@ -315,9 +325,9 @@ Aluminum material is preferable as it has a lower heat conduction resistance.</p
 <p>Once you have determined the thermal resistance of the component, you can use it to calculate the temperature rise of the component under different operating conditions. For example, if you know the ambient temperature and the heat dissipated by the component, you can calculate the temperature rise of the component as:</p>
 <p><code class="docutils literal notranslate"><span class="pre">ΔT</span> <span class="pre">=</span> <span class="pre">Q</span> <span class="pre">x</span> <span class="pre">R</span></code></p>
 <p>where <code class="docutils literal notranslate"><span class="pre">ΔT</span></code> is the temperature rise (in °C), <code class="docutils literal notranslate"><span class="pre">Q</span></code> is the heat dissipated (in W), and <code class="docutils literal notranslate"><span class="pre">R</span></code> is the thermal resistance (in °C/W).</p>
-</div>
-<div class="section" id="thermal-energy-dissipation-via-air-convection">
-<h3>Thermal energy dissipation via air convection<a class="headerlink" href="#thermal-energy-dissipation-via-air-convection" title="Permalink to this headline"></a></h3>
+</section>
+<section id="thermal-energy-dissipation-via-air-convection">
+<h3>Thermal energy dissipation via air convection<a class="headerlink" href="#thermal-energy-dissipation-via-air-convection" title="Link to this heading"></a></h3>
 <p>Heat transfer by air convection can be determined by using the following formula:</p>
 <p><code class="docutils literal notranslate"><span class="pre">Q</span> <span class="pre">=</span> <span class="pre">hA(Ts</span> <span class="pre">-</span> <span class="pre">T∞)</span></code></p>
 <p>where <code class="docutils literal notranslate"><span class="pre">Q</span></code> is the rate of heat transfer, <code class="docutils literal notranslate"><span class="pre">h</span></code> is the convective heat transfer coefficient, <code class="docutils literal notranslate"><span class="pre">A</span></code> is the surface area of the object, <code class="docutils literal notranslate"><span class="pre">Ts</span></code> is the temperature of the object’s surface, and <code class="docutils literal notranslate"><span class="pre">T∞</span></code> is the temperature of the air surrounding the object.</p>
@@ -327,16 +337,16 @@ Aluminum material is preferable as it has a lower heat conduction resistance.</p
 <li><p>natural convection (that is, where air motion is driven solely by temperature differences)</p></li>
 <li><p>forced convection (that is, where air motion is generated by a fan or other mechanical means)</p></li>
 </ul>
-</div>
-<div class="section" id="thermal-energy-dissipation-via-heat-conduction-and-thermal-energy-capacity">
-<h3>Thermal energy dissipation via heat conduction and thermal energy capacity<a class="headerlink" href="#thermal-energy-dissipation-via-heat-conduction-and-thermal-energy-capacity" title="Permalink to this headline"></a></h3>
+</section>
+<section id="thermal-energy-dissipation-via-heat-conduction-and-thermal-energy-capacity">
+<h3>Thermal energy dissipation via heat conduction and thermal energy capacity<a class="headerlink" href="#thermal-energy-dissipation-via-heat-conduction-and-thermal-energy-capacity" title="Link to this heading"></a></h3>
 <p>Heat dissipation via conduction is the transfer of heat from a region of high temperature to a region of low temperature through a medium or material. Heat conduction occurs when there is a temperature gradient within the material, meaning that the temperature varies across the material in space. The direction of the heat flow is always from higher temperature to lower temperature, and the rate of heat transfer is proportional to the temperature difference.</p>
 <p>This works as long as there is potential difference between different parts of the heat sink.
 Once the heat sink has reached a equilibrium state no additional energy can be dissipated away from the source anymore. For this reason heat dissipation via conduction is only a short term solution.
 Rather then optimizing heat sinks and mounting designs for larger mass, i.e larger capacity, optimize for surface area to allow for energy transfer via air convection.</p>
-</div>
-<div class="section" id="thermal-energy-dissipation-via-radiation">
-<h3>Thermal energy dissipation via radiation<a class="headerlink" href="#thermal-energy-dissipation-via-radiation" title="Permalink to this headline"></a></h3>
+</section>
+<section id="thermal-energy-dissipation-via-radiation">
+<h3>Thermal energy dissipation via radiation<a class="headerlink" href="#thermal-energy-dissipation-via-radiation" title="Link to this heading"></a></h3>
 <p>Thermal energy dissipation via radiation can be determined using the Stefan-Boltzmann Law, which relates the amount of energy radiated by an object to its temperature and surface area.
 The law states that the power emitted per unit area by a blackbody:</p>
 <p><code class="docutils literal notranslate"><span class="pre">P</span> <span class="pre">=</span> <span class="pre">σ</span> <span class="pre">*</span> <span class="pre">A</span> <span class="pre">*</span> <span class="pre">T^4</span></code></p>
@@ -350,9 +360,9 @@ The law states that the power emitted per unit area by a blackbody:</p>
 <p>where:
 <code class="docutils literal notranslate"><span class="pre">ε</span></code> is the emissivity factor, which ranges from 0 to 1.</p>
 <p>As can be seen from the formulas above the energy dissipation via conduction is proportional to the fourth power of its absolute temperature. For this reason it can be disregarded.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

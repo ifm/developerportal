@@ -1,26 +1,32 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>USB &mdash; O3R  documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=28a392ea" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/clipboard.min.js"></script>
-        <script src="../../_static/copybutton.js"></script>
-        <script src="../../_static/js/versionwarning.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../_static/design-tabs.js?v=36754332"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -43,14 +49,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> O3R
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            O3R
           </a>
               <div class="version">
                 v1.1.30
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -122,10 +132,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index_hardware_interfaces.html">Technology</a> &raquo;</li>
-          <li><a href="index_vpu.html">VPU (Vision Processing Unit)</a> &raquo;</li>
-      <li>USB</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index_hardware_interfaces.html">Technology</a></li>
+          <li class="breadcrumb-item"><a href="index_vpu.html">VPU (Vision Processing Unit)</a></li>
+      <li class="breadcrumb-item active">USB</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/Technology/VPU/usb.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -135,18 +145,18 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="usb">
-<h1>USB<a class="headerlink" href="#usb" title="Permalink to this headline"></a></h1>
+  <section id="usb">
+<h1>USB<a class="headerlink" href="#usb" title="Link to this heading"></a></h1>
 <p>The OVP8xx VPU devices have two separate USB interfaces:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>USB Type A USB 3 interface</p></li>
 <li><p>USB Type B USB 2 interface</p></li>
 </ol>
 <p>Only the USB-A interface is available to the user. The USB-B interface is only used for debugging by ifm users.</p>
-<div class="section" id="usb-a-interface-use-cases">
-<h2>USB-A interface use cases<a class="headerlink" href="#usb-a-interface-use-cases" title="Permalink to this headline"></a></h2>
-<div class="section" id="usb-mass-storage-devices">
-<h3>USB mass storage devices<a class="headerlink" href="#usb-mass-storage-devices" title="Permalink to this headline"></a></h3>
+<section id="usb-a-interface-use-cases">
+<h2>USB-A interface use cases<a class="headerlink" href="#usb-a-interface-use-cases" title="Link to this heading"></a></h2>
+<section id="usb-mass-storage-devices">
+<h3>USB mass storage devices<a class="headerlink" href="#usb-mass-storage-devices" title="Link to this heading"></a></h3>
 <p>The USB Typ A interface can be used by the developer or end user to connect USB mass storage devices such as USB sticks and external USB SSD devices.</p>
 <p><strong>USB Mass Storage Supported File System Formats</strong></p>
 <p>The following file system formats are supported for the external storage devices mentioned above:</p>
@@ -154,19 +164,19 @@
 <li><p>FAT32</p></li>
 <li><p>EXT4</p></li>
 </ul>
-<p>See the limitations imposed by the <span class="xref myst">use of EXT4 below</span></p>
+<p>See the limitations imposed by the <a class="reference internal" href="#ext4-format-usb-mounting-preparation"><span class="xref myst">use of EXT4 below</span></a></p>
 <p><strong>Other USB mass storage devices</strong></p>
 <p>Other USB mass storage devices that require the installation of additional drivers may be functional if the drivers are installed within the respective Docker software containers. ifm does not provide official support for these devices - the user may use them in development / production use cases at his own risk. Possible compatibility limitations due to updates of the embedded firmware may require updates of the device drivers in the user’s software containers. No continuous compatibility over embedded FW versions is assured.</p>
-</div>
-<div class="section" id="usb-hubs">
-<h3>USB hubs<a class="headerlink" href="#usb-hubs" title="Permalink to this headline"></a></h3>
+</section>
+<section id="usb-hubs">
+<h3>USB hubs<a class="headerlink" href="#usb-hubs" title="Link to this heading"></a></h3>
 <p>The use of USB hubs is at the user’s own risk.</p>
 <p>There is no guarantee of compatibility or support for hubs. They may be functional for standard low power devices.
 Devices with higher power consumption may overload the power available via the USB-A interface and damage the OVP8xx VPU device.</p>
 <p>Advanced “USB network topologies” may not be supported by the OVP8xx VPU devices. The USB interface is defined to be used by a single USB client device.</p>
-</div>
-<div class="section" id="other-usb-devices-usb-hid-usb-network-adapters">
-<h3>Other USB devices: USB HID, USB network adapters, …<a class="headerlink" href="#other-usb-devices-usb-hid-usb-network-adapters" title="Permalink to this headline"></a></h3>
+</section>
+<section id="other-usb-devices-usb-hid-usb-network-adapters">
+<h3>Other USB devices: USB HID, USB network adapters, …<a class="headerlink" href="#other-usb-devices-usb-hid-usb-network-adapters" title="Link to this heading"></a></h3>
 <p>Other USB devices such as:</p>
 <ul class="simple">
 <li><p>USB mice,</p></li>
@@ -189,36 +199,36 @@ oem<span class="w"> </span>docker<span class="w"> </span>systemd-journal
 </div>
 <p>Additional Ethernet interfaces via USB-to-Ethernet adapters are not supported by the OVP8xx VPU devices.</p>
 <p>Additional sensor devices, such as generic USB sensors or USB cameras, are not supported by the OVP8x VPU devices.</p>
-</div>
-</div>
-<div class="section" id="using-a-usb-drive-with-the-vpu">
-<h2>Using a USB drive with the VPU<a class="headerlink" href="#using-a-usb-drive-with-the-vpu" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+<section id="using-a-usb-drive-with-the-vpu">
+<h2>Using a USB drive with the VPU<a class="headerlink" href="#using-a-usb-drive-with-the-vpu" title="Link to this heading"></a></h2>
 <p>It is possible to increase the VPU memory size by utilizing USB thumb drives or USB SSDs on the USB-A interface. To use any USB storage device, it is necessary to mount the drive first.</p>
 <p>.. note::
 The USB auto mount service mounts your USB mass storage device to <code class="docutils literal notranslate"><span class="pre">/run/media/system/&lt;USB_name&gt;/</span></code>. See the details below.</p>
-<div class="section" id="preparing-the-usb-drive">
-<h3>Preparing the USB drive<a class="headerlink" href="#preparing-the-usb-drive" title="Permalink to this headline"></a></h3>
+<section id="preparing-the-usb-drive">
+<h3>Preparing the USB drive<a class="headerlink" href="#preparing-the-usb-drive" title="Link to this heading"></a></h3>
 <p>The VPU’s operating system supports two file formats:</p>
 <ul class="simple">
 <li><p>FAT32</p></li>
 <li><p>EXT4</p></li>
 </ul>
 <p>These can be auto-mounted via the <code class="docutils literal notranslate"><span class="pre">mount</span></code> command and its respective daemon.</p>
-<div class="section" id="fat32">
-<h4>FAT32<a class="headerlink" href="#fat32" title="Permalink to this headline"></a></h4>
+<section id="fat32">
+<h4>FAT32<a class="headerlink" href="#fat32" title="Link to this heading"></a></h4>
 <p>For FAT32 formatted devices no additional steps are required. It can be directly mounted via the auto-mount daemon to the VPU.</p>
-</div>
-<div class="section" id="ext4">
-<h4>EXT4<a class="headerlink" href="#ext4" title="Permalink to this headline"></a></h4>
+</section>
+<section id="ext4">
+<h4>EXT4<a class="headerlink" href="#ext4" title="Link to this heading"></a></h4>
 <p>For EXT4 formatted devices the user needs to perform additional steps to match the OEM users <code class="docutils literal notranslate"><span class="pre">uid</span></code> and <code class="docutils literal notranslate"><span class="pre">gid</span></code> on the VPU’s embedded OS.
 Otherwise only read permissions are granted when mounting the USB storage device. This is a design that is introduced by the handling of access rights to EXT4 formatted devices on Linux systems.
 If you are an experience EXT4 user feel free to skip the following instructions steps:</p>
-<div class="section" id="format-usb-mounting-preparation-ext4-only">
-<h5>Format USB mounting preparation (EXT4 only)<a class="headerlink" href="#format-usb-mounting-preparation-ext4-only" title="Permalink to this headline"></a></h5>
+<section id="format-usb-mounting-preparation-ext4-only">
+<h5>Format USB mounting preparation (EXT4 only)<a class="headerlink" href="#format-usb-mounting-preparation-ext4-only" title="Link to this heading"></a></h5>
 <p><strong>Option 1:</strong></p>
 <p>“The crude way”</p>
 <p>The easiest option is to mount the EXT4 formatted device to your Linux laptop of choice and relax the write and read permissions to be accessible by any user:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Mount the SSD to your laptop</p></li>
 <li><p>Change the mount point to be accessible by all users:</p></li>
 </ol>
@@ -232,7 +242,7 @@ If you are an experience EXT4 user feel free to skip the following instructions 
 This means, that is has to be done for the OEM user on the VPU to write to the device, as well as any specific users created inside your own Docker container.</p>
 <p>Below an exemplary workflow is shown for setting the VPU’s OEM users UID and GID.</p>
 <p>On the VPU:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Find out the requested users UID and GID on the VPU or inside the Docker container</p></li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>oem@o3r-vpu-c0:~#<span class="w"> </span>id<span class="w"> </span>-u<span class="w"> </span>oem
@@ -242,7 +252,7 @@ oemt@o3r-vpu-c0:~#<span class="w"> </span>id<span class="w"> </span>-g<span clas
 </pre></div>
 </div>
 <p>On your Linux laptop of choice:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Change the USB mount point on your <strong>Linux Laptop</strong> via <code class="docutils literal notranslate"><span class="pre">chown</span></code></p></li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>user@laptop:~$<span class="w"> </span>sudo<span class="w"> </span>chown<span class="w"> </span><span class="m">989</span>:987<span class="w"> </span>-R<span class="w"> </span>/media/&lt;mount_point&gt;
@@ -250,11 +260,11 @@ oemt@o3r-vpu-c0:~#<span class="w"> </span>id<span class="w"> </span>-g<span clas
 </div>
 <p>.. note::
 Please be aware that changing the GID and UID mount points may result in missing read access on your laptop. To restore read access on your laptop to the USB storage device, change the GID and UID back to match your personal user accounts ones.</p>
-</div>
-</div>
-</div>
-<div class="section" id="plug-in-and-mounting">
-<h3>Plug in and mounting<a class="headerlink" href="#plug-in-and-mounting" title="Permalink to this headline"></a></h3>
+</section>
+</section>
+</section>
+<section id="plug-in-and-mounting">
+<h3>Plug in and mounting<a class="headerlink" href="#plug-in-and-mounting" title="Link to this heading"></a></h3>
 <p>After plugging in the drive, the mount is started by using the command <code class="docutils literal notranslate"><span class="pre">mount</span></code></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>o3r-vpu-c0:~$<span class="w"> </span>mount
 proc<span class="w"> </span>on<span class="w"> </span>/proc<span class="w"> </span><span class="nb">type</span><span class="w"> </span>proc<span class="w"> </span><span class="o">(</span>rw,relatime<span class="o">)</span>
@@ -299,9 +309,9 @@ drwxrwxrwx<span class="w"> </span><span class="m">3</span><span class="w"> </spa
 ...
 </pre></div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

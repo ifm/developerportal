@@ -1,26 +1,32 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SSH setup &mdash; O3R  documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=28a392ea" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/clipboard.min.js"></script>
-        <script src="../../_static/copybutton.js"></script>
-        <script src="../../_static/js/versionwarning.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../_static/design-tabs.js?v=36754332"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -43,14 +49,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> O3R
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            O3R
           </a>
               <div class="version">
                 v1.1.30
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -107,10 +117,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index_hardware_interfaces.html">Technology</a> &raquo;</li>
-          <li><a href="index_vpu.html">VPU (Vision Processing Unit)</a> &raquo;</li>
-      <li>SSH setup</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index_hardware_interfaces.html">Technology</a></li>
+          <li class="breadcrumb-item"><a href="index_vpu.html">VPU (Vision Processing Unit)</a></li>
+      <li class="breadcrumb-item active">SSH setup</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/Technology/VPU/ssh.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -120,11 +130,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="ssh-setup">
-<h1>SSH setup<a class="headerlink" href="#ssh-setup" title="Permalink to this headline"></a></h1>
+  <section id="ssh-setup">
+<h1>SSH setup<a class="headerlink" href="#ssh-setup" title="Link to this heading"></a></h1>
 <p>To connect to the VPU through SSH or deploy code to the VPU with SCP, it is necessary to setup a list of authorized keys .</p>
-<div class="section" id="generate-an-ssh-key-pair">
-<h2>Generate an SSH key-pair<a class="headerlink" href="#generate-an-ssh-key-pair" title="Permalink to this headline"></a></h2>
+<section id="generate-an-ssh-key-pair">
+<h2>Generate an SSH key-pair<a class="headerlink" href="#generate-an-ssh-key-pair" title="Link to this heading"></a></h2>
 <blockquote>
 <div><p>Note: the following instructions are tailored towards a bash (Unix shell). When deploying on a Windows based architecture, please modify the instructions sets for your shell accordingly.
 All user specific SSH keys are located at <code class="docutils literal notranslate"><span class="pre">~/.ssh</span></code>. This is the place where the private key for the connection to the VPU should be stored.</p>
@@ -140,9 +150,9 @@ Enter<span class="w"> </span>same<span class="w"> </span>passphrase<span class="
 </pre></div>
 </div>
 <p>A passphrase is also needed. After that command, two new keys are generated within the <code class="docutils literal notranslate"><span class="pre">~/.ssh</span></code> directory. With the example above it would be <code class="docutils literal notranslate"><span class="pre">id_o3r</span></code> and <code class="docutils literal notranslate"><span class="pre">id_o3r.pub</span></code>.</p>
-</div>
-<div class="section" id="upload-the-public-key-to-the-vpu">
-<h2>Upload the public key to the VPU<a class="headerlink" href="#upload-the-public-key-to-the-vpu" title="Permalink to this headline"></a></h2>
+</section>
+<section id="upload-the-public-key-to-the-vpu">
+<h2>Upload the public key to the VPU<a class="headerlink" href="#upload-the-public-key-to-the-vpu" title="Link to this heading"></a></h2>
 <p>Uploading the public (<code class="docutils literal notranslate"><span class="pre">.pub</span></code>) ssh key to the VPU is achieved via the ifm3d library.
 The device configuration includes a parameter for authorized keys: <code class="docutils literal notranslate"><span class="pre">authorized_keys</span></code>. It is empty by default.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.device.network
@@ -183,23 +193,23 @@ The device configuration includes a parameter for authorized keys: <code class="
 <span class="s2">&quot;ssh-rsa AAAAB3NzaC.....wZ9l3iSUaPPWOeFVz+xwlw== Some comment&quot;</span>
 </pre></div>
 </div>
-<p>Note that the <code class="docutils literal notranslate"><span class="pre">authorized_keys</span></code> is a persistent parameter: it does not require a call to <a class="reference internal" href="../configuration.html#persistent-settings-without-save-init"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">save_init</span></code></span></a> to be persistent over reboots.</p>
-</div>
-<div class="section" id="connect-to-the-vpu-using-the-passphrase">
-<h2>Connect to the VPU using the passphrase<a class="headerlink" href="#connect-to-the-vpu-using-the-passphrase" title="Permalink to this headline"></a></h2>
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">authorized_keys</span></code> is a persistent parameter: it does not require a call to <a class="reference internal" href="../configuration.html#persistent-settings-without-save-init"><span class="std std-ref"><code class="docutils literal notranslate"><span class="pre">save_init</span></code></span></a> to be persistent over reboots.</p>
+</section>
+<section id="connect-to-the-vpu-using-the-passphrase">
+<h2>Connect to the VPU using the passphrase<a class="headerlink" href="#connect-to-the-vpu-using-the-passphrase" title="Link to this heading"></a></h2>
 <p>After the key is uploaded, it is possible to connect with <code class="docutils literal notranslate"><span class="pre">ssh</span></code> and the username <code class="docutils literal notranslate"><span class="pre">oem</span></code> to the VPU:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ssh oem@192.168.0.69
-The authenticity of host &#39;192.168.0.69 (192.168.0.69)&#39; can&#39;t be established.
-ECDSA key fingerprint is SHA256:8gjC9za45TTRZNz5JCMwaNJ27BLfsPyDtjBaBQ2vyHw.
-Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-Warning: Permanently added &#39;192.168.0.69&#39; (ECDSA) to the list of known hosts.
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ssh<span class="w"> </span>oem@192.168.0.69
+The<span class="w"> </span>authenticity<span class="w"> </span>of<span class="w"> </span>host<span class="w"> </span><span class="s1">&#39;192.168.0.69 (192.168.0.69)&#39;</span><span class="w"> </span>can<span class="s1">&#39;t be established.</span>
+<span class="s1">ECDSA key fingerprint is SHA256:8gjC9za45TTRZNz5JCMwaNJ27BLfsPyDtjBaBQ2vyHw.</span>
+<span class="s1">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes</span>
+<span class="s1">Warning: Permanently added &#39;</span><span class="m">192</span>.168.0.69<span class="err">&#39;</span><span class="w"> </span><span class="o">(</span>ECDSA<span class="o">)</span><span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>known<span class="w"> </span>hosts.
 o3r-vpu-c0:~$
 </pre></div>
 </div>
 <p>There will be a prompt for the passphrase, configured during step 1.</p>
 <p>You should now be able to SSH into the VPU using your customer SSH key and passphrase.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

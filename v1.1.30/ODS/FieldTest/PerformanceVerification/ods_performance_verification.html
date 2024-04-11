@@ -1,26 +1,32 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ODS Performance evaluation &mdash; O3R  documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=28a392ea" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/clipboard.min.js"></script>
-        <script src="../../../_static/copybutton.js"></script>
-        <script src="../../../_static/js/versionwarning.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -43,14 +49,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> O3R
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            O3R
           </a>
               <div class="version">
                 v1.1.30
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -115,10 +125,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index_ods.html">ODS (Obstacle Detection System)</a> &raquo;</li>
-          <li><a href="../index_field_test.html">ODS performance</a> &raquo;</li>
-      <li>ODS Performance evaluation</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index_ods.html">ODS (Obstacle Detection System)</a></li>
+          <li class="breadcrumb-item"><a href="../index_field_test.html">ODS performance</a></li>
+      <li class="breadcrumb-item active">ODS Performance evaluation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/ODS/FieldTest/PerformanceVerification/ods_performance_verification.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -128,18 +138,18 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="ods-performance-evaluation">
-<h1>ODS Performance evaluation<a class="headerlink" href="#ods-performance-evaluation" title="Permalink to this headline"></a></h1>
+  <section id="ods-performance-evaluation">
+<h1>ODS Performance evaluation<a class="headerlink" href="#ods-performance-evaluation" title="Link to this heading"></a></h1>
 <p>The O3R-ODS performance for an AGV depends upon various factors. This whitepaper gives presents a evaluation strategy for benchmarking</p>
-<div class="section" id="ods-performance-analysis">
-<h2>ODS Performance analysis<a class="headerlink" href="#ods-performance-analysis" title="Permalink to this headline"></a></h2>
-<div class="section" id="how-to-read-the-data">
-<h3>How to read the data<a class="headerlink" href="#how-to-read-the-data" title="Permalink to this headline"></a></h3>
-<p>Please refer to the <a class="reference internal" href="../../Recording/ods_data_recording.html#ifmvisionassistant"><span class="std std-doc">iVA ODS recording documentation</span></a> to find out more details on how to record and import our open source hdf5 data files.</p>
-</div>
+<section id="ods-performance-analysis">
+<h2>ODS Performance analysis<a class="headerlink" href="#ods-performance-analysis" title="Link to this heading"></a></h2>
+<section id="how-to-read-the-data">
+<h3>How to read the data<a class="headerlink" href="#how-to-read-the-data" title="Link to this heading"></a></h3>
+<p>Please refer to the <a class="reference internal" href="../../Recording/ods_data_recording.html#ifmvisionassistant"><span class="std std-ref">iVA ODS recording documentation</span></a> to find out more details on how to record and import our open source hdf5 data files.</p>
+</section>
 <hr class="docutils" />
-<div class="section" id="how-to-analyze-the-data">
-<h3>How to analyze the data<a class="headerlink" href="#how-to-analyze-the-data" title="Permalink to this headline"></a></h3>
+<section id="how-to-analyze-the-data">
+<h3>How to analyze the data<a class="headerlink" href="#how-to-analyze-the-data" title="Link to this heading"></a></h3>
 <p><strong>At which frame the object is detected</strong></p>
 <p>The code snippet below serves as an example to analyze the data recorded during a robots parkour run.
 The following code snippet analyzes the True Positive Test case i.e the maximum distance between the vehicle and the object when it is detected by the ODS system.</p>
@@ -156,7 +166,7 @@ The following code snippet analyzes the True Positive Test case i.e the maximum 
 <p>This is an exemplary test case: please see the mounting guide for suggested mounting positions and heights.</p>
 <p><img alt="Camera Mounting" src="../../../_images/camera_mounting.png" /></p>
 <p>Below you can find an exemplary output of data as streamed and displayed using the iVA.</p>
-<table class="colwidths-auto docutils align-default">
+<table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>RGB STREAM</p></th>
 <th class="head"><p>ODS STREAM</p></th>
@@ -227,9 +237,9 @@ Please find the script to reproduce the following images from the recorded data.
 </div>
 <hr class="docutils" />
 <p><strong>Output:</strong></p>
-</div>
-<div class="section" id="false-positive-evaluation">
-<h3>False positive evaluation<a class="headerlink" href="#false-positive-evaluation" title="Permalink to this headline"></a></h3>
+</section>
+<section id="false-positive-evaluation">
+<h3>False positive evaluation<a class="headerlink" href="#false-positive-evaluation" title="Link to this heading"></a></h3>
 <p><img alt="Distance map output" src="../../../_images/distance_map.png" /></p>
 <p>Above the distance map representation of the recorded ODS data is show.</p>
 <p>This distance map is a representation of closest non zero distance per occupancy grid row (that is movement direction) over time. This representation takes a bit of time to get used to but gives a compact representation of object distance as color information over time per geometric Y-location.</p>
@@ -259,10 +269,10 @@ Please find the script to reproduce the following images from the recorded data.
         <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Frame </span><span class="si">{</span><span class="n">frame</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="output">
-<h2><strong>Output</strong><a class="headerlink" href="#output" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+<section id="output">
+<h2><strong>Output</strong><a class="headerlink" href="#output" title="Link to this heading"></a></h2>
 <p><img alt="ODS object distance tracking" src="../../../_images/distance_tracker.png" /></p>
 <p>The following script shows how to track the distance between the User-Coordinate-System and first object detected in ROI.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#############################################</span>
@@ -533,8 +543,8 @@ Please find the script to reproduce the following images from the recorded data.
 <span class="c1"># %%</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

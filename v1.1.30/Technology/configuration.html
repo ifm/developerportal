@@ -1,27 +1,33 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Configuration &mdash; O3R  documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=28a392ea" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/clipboard.min.js"></script>
-        <script src="../_static/copybutton.js"></script>
-        <script src="../_static/js/versionwarning.js"></script>
-        <script src="../_static/tabs.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../_static/tabs.js?v=3030b3cb"></script>
+        <script src="../_static/design-tabs.js?v=36754332"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -44,14 +50,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> O3R
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            O3R
           </a>
               <div class="version">
                 v1.1.30
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -123,9 +133,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index_hardware_interfaces.html">Technology</a> &raquo;</li>
-      <li>Configuration</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index_hardware_interfaces.html">Technology</a></li>
+      <li class="breadcrumb-item active">Configuration</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/Technology/configuration.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -135,44 +145,56 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="configuration">
-<h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline"></a></h1>
-<p>This document details some aspect of the configuration of the O3R, including using the JSON schema and handling persistent configurations. To learn how to use the ifm3d API to configure the O3R, refer to <a class="reference external" href="https://api.ifm3d.com/stable/examples/o3r/configuration/configuration.html">the configuration “How-to” document</a>. For a detailed list of available parameters, refer to the respective 2D or 3D section of <a class="reference internal" href="index_hardware_interfaces.html"><span class="doc std std-doc">the Technology section</span></a>.</p>
-<div class="section" id="conf-only-parameters">
-<h2>“CONF”-only parameters<a class="headerlink" href="#conf-only-parameters" title="Permalink to this headline"></a></h2>
+  <section id="configuration">
+<h1>Configuration<a class="headerlink" href="#configuration" title="Link to this heading"></a></h1>
+<p>This document details some aspect of the configuration of the O3R, including using the JSON schema and handling persistent configurations. To learn how to use the ifm3d API to configure the O3R, refer to <a class="reference external" href="https://api.ifm3d.com/stable/examples/o3r/configuration/configuration.html">the configuration “How-to” document</a>. For a detailed list of available parameters, refer to the respective 2D or 3D section of <a class="reference internal" href="index_hardware_interfaces.html"><span class="std std-doc">the Technology section</span></a>.</p>
+<section id="conf-only-parameters">
+<h2>“CONF”-only parameters<a class="headerlink" href="#conf-only-parameters" title="Link to this heading"></a></h2>
 <p>Some parameters require that the port or application instance is in “CONF” state to be edited. This is for example the case for the mode, or for enabling the detection of negative obstacles in an ODS application.</p>
 <p>To verify if a parameter requires a change to “CONF,” you can use the JSON schema. For example, let’s see if the framerate parameter for a camera connected to port2 (in this example) requires a change to “CONF”:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-0-Yysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Yysr" name="Yysr" role="tab" tabindex="-1">c++</button><button aria-controls="panel-0-Q0xJ" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Q0xJ" name="Q0xJ" role="tab" tabindex="-1">CLI</button></div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel group-tab" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ifm3dpy</span> <span class="kn">import</span> <span class="n">O3R</span>
-<span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">()</span>
-<span class="n">schema</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get_schema</span><span class="p">()</span>
-<span class="n">schema</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;ports&quot;</span><span class="p">][</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;port2&quot;</span><span class="p">][</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;acquisition&quot;</span><span class="p">][</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;framerate&quot;</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="p">{</span><span class="s1">&#39;attributes&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;conf&#39;</span><span class="p">],</span> <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Framerate of the Imager&#39;</span><span class="p">,</span> <span class="s1">&#39;maximum&#39;</span><span class="p">:</span> <span class="mf">20.0</span><span class="p">,</span> <span class="s1">&#39;minimum&#39;</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">,</span> <span class="s1">&#39;multipleOf&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;readOnly&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;number&#39;</span><span class="p">}</span>
-</pre></div>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-0-Yysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Yysr" name="Yysr" role="tab" tabindex="-1">c++</button><button aria-controls="panel-0-Q0xJ" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Q0xJ" name="Q0xJ" role="tab" tabindex="-1">CLI</button></div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel group-tab" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="python docutils">
+<p>from ifm3dpy import O3R
+o3r = O3R()
+schema = o3r.get_schema()
+schema[“properties”][“ports”][“properties”][“port2”][“properties”][“acquisition”][“properties”][“framerate”]</p>
+<blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><p>{‘attributes’: [‘conf’], ‘default’: 10, ‘description’: ‘Framerate of the Imager’, ‘maximum’: 20.0, ‘minimum’: 10.0, ‘multipleOf’: 0.5, ‘readOnly’: False, ‘type’: ‘number’}</p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
 </div>
-</div><div aria-labelledby="tab-0-Yysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Yysr" name="Yysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ifm3d/device/o3r.hpp&gt;</span>
-<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">ifm3d</span><span class="o">::</span><span class="nn">literals</span><span class="p">;</span>
-<span class="p">...</span>
-<span class="k">auto</span><span class="w"> </span><span class="n">o3r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">O3R</span><span class="o">&gt;</span><span class="p">();</span>
-<span class="k">auto</span><span class="w"> </span><span class="n">schema</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o3r</span><span class="o">-&gt;</span><span class="n">GetSchema</span><span class="p">();</span>
-<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">schema</span><span class="p">[</span><span class="s">&quot;/properties/ports/properties/port2/properties/acquisition/properties/framerate&quot;</span><span class="n">_json_pointer</span><span class="p">];</span>
-<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;attributes&quot;</span><span class="o">:</span><span class="p">[</span><span class="s">&quot;conf&quot;</span><span class="p">],</span><span class="s">&quot;default&quot;</span><span class="o">:</span><span class="mi">10</span><span class="p">,</span><span class="s">&quot;description&quot;</span><span class="o">:</span><span class="s">&quot;Framerate of the Imager&quot;</span><span class="p">,</span><span class="s">&quot;maximum&quot;</span><span class="o">:</span><span class="mf">20.0</span><span class="p">,</span><span class="s">&quot;minimum&quot;</span><span class="o">:</span><span class="mf">10.0</span><span class="p">,</span><span class="s">&quot;multipleOf&quot;</span><span class="o">:</span><span class="mf">0.5</span><span class="p">,</span><span class="s">&quot;readOnly&quot;</span><span class="o">:</span><span class="nb">false</span><span class="p">,</span><span class="s">&quot;type&quot;</span><span class="o">:</span><span class="s">&quot;number&quot;</span><span class="p">}</span>
-</pre></div>
+</div><div aria-labelledby="tab-0-Yysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Yysr" name="Yysr" role="tabpanel" tabindex="0"><div class="cpp docutils">
+<p>#include &lt;ifm3d/device/o3r.hpp&gt;
+using namespace ifm3d::literals;
+…
+auto o3r = std::make_shared<a class="reference external" href="ifm3d::O3R">ifm3d::O3R</a>();
+auto schema = o3r-&gt;GetSchema();
+std::cout &lt;&lt; schema[“/properties/ports/properties/port2/properties/acquisition/properties/framerate”_json_pointer];</p>
+<blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><p>{“attributes”:[“conf”],”default”:10,”description”:”Framerate of the Imager”,”maximum”:20.0,”minimum”:10.0,”multipleOf”:0.5,”readOnly”:false,”type”:”number”}</p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
 </div>
-</div><div aria-labelledby="tab-0-Q0xJ" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Q0xJ" name="Q0xJ" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>jsonschema<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.properties.ports.properties.port2.properties.acquisition.properties.framerate
-<span class="o">{</span>
-<span class="w">  </span><span class="s2">&quot;attributes&quot;</span>:<span class="w"> </span><span class="o">[</span>
-<span class="w">    </span><span class="s2">&quot;conf&quot;</span>
-<span class="w">  </span><span class="o">]</span>,
-<span class="w">  </span><span class="s2">&quot;default&quot;</span>:<span class="w"> </span><span class="m">10</span>,
-<span class="w">  </span><span class="s2">&quot;description&quot;</span>:<span class="w"> </span><span class="s2">&quot;Framerate of the Imager&quot;</span>,
-<span class="w">  </span><span class="s2">&quot;maximum&quot;</span>:<span class="w"> </span><span class="m">20</span>,
-<span class="w">  </span><span class="s2">&quot;minimum&quot;</span>:<span class="w"> </span><span class="m">10</span>,
-<span class="w">  </span><span class="s2">&quot;multipleOf&quot;</span>:<span class="w"> </span><span class="m">0</span>.5,
-<span class="w">  </span><span class="s2">&quot;readOnly&quot;</span>:<span class="w"> </span>false,
-<span class="w">  </span><span class="s2">&quot;type&quot;</span>:<span class="w"> </span><span class="s2">&quot;number&quot;</span>
-<span class="o">}</span>
-</pre></div>
+</div><div aria-labelledby="tab-0-Q0xJ" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Q0xJ" name="Q0xJ" role="tabpanel" tabindex="0"><div class="bash docutils">
+<p>$ ifm3d jsonschema | jq .properties.ports.properties.port2.properties.acquisition.properties.framerate
+{
+“attributes”: [
+“conf”
+],
+“default”: 10,
+“description”: “Framerate of the Imager”,
+“maximum”: 20,
+“minimum”: 10,
+“multipleOf”: 0.5,
+“readOnly”: false,
+“type”: “number”
+}</p>
 </div>
 </div></div>
 <p>The <code class="docutils literal notranslate"><span class="pre">attributes</span></code> section of the parameter schema shows the “conf” keyword if the parameter requires a switch to “CONF” state to be changed. If this keyword does not appear, then the parameter can be changed on-the-fly, and the new parameter will be applied to the next frame. Keep in mind that some parameters might take a couple frames to be fully stable, for instance the temporal filter.
@@ -182,9 +204,9 @@ In the /ports section, changing a “CONF” parameter while the port is “RUN�
 <p class="admonition-title">Warning</p>
 <p>For “CONF”-only application parameters, the user needs to manually switch the application state to “CONF” before requesting a parameter change.</p>
 </div>
-</div>
-<div class="section" id="parameter-configuration-priorities">
-<h2>Parameter configuration priorities<a class="headerlink" href="#parameter-configuration-priorities" title="Permalink to this headline"></a></h2>
+</section>
+<section id="parameter-configuration-priorities">
+<h2>Parameter configuration priorities<a class="headerlink" href="#parameter-configuration-priorities" title="Link to this heading"></a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This section is only valid for O3R firmware &gt;= 1.1.0.</p>
@@ -251,173 +273,185 @@ In the /ports section, changing a “CONF” parameter while the port is “RUN�
 <p class="admonition-title">Warning</p>
 <p>If an error is encountered during the configuration process, the parameters that have already be changed <strong>will maintain their new configuration</strong>. There is no rollback to the previous successful configuration when errors occur during the configuration process.</p>
 </div>
-</div>
-<div class="section" id="sticky-parameters">
-<h2>Sticky parameters<a class="headerlink" href="#sticky-parameters" title="Permalink to this headline"></a></h2>
+</section>
+<section id="sticky-parameters">
+<h2>Sticky parameters<a class="headerlink" href="#sticky-parameters" title="Link to this heading"></a></h2>
 <p>Typically, when changing a parameter that has an effect on the JSON schema, for example the <code class="docutils literal notranslate"><span class="pre">/ports/portX/mode</span></code>, <code class="docutils literal notranslate"><span class="pre">/applications/instances/appX/ports</span></code> and <code class="docutils literal notranslate"><span class="pre">/applications/instances/appX/class</span></code>, all the related parameters are reset to their default value. However, some parameters are “sticky,” meaning they keep their values in these cases.</p>
 <p>This is the case only for properties with an attribute “sticky” in the JSON schema, for example the extrinsic calibration <code class="docutils literal notranslate"><span class="pre">/portX/processing/extrinsicHeadToUser</span></code>.
 For all other parameters, the settings, if different from default, have to be reapplied.</p>
 <p>Sticky parameters are reset with a call to the <code class="docutils literal notranslate"><span class="pre">reset</span></code> function, or with a factory reset.</p>
-</div>
-<div class="section" id="configuration-delays">
-<h2>Configuration delays<a class="headerlink" href="#configuration-delays" title="Permalink to this headline"></a></h2>
+</section>
+<section id="configuration-delays">
+<h2>Configuration delays<a class="headerlink" href="#configuration-delays" title="Link to this heading"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">Set</span></code> command can introduce a certain amount of latency depending on the parameters configured.
 The switch to “CONF” state required by some of the parameters introduces a short delay, as well as the image buffering configuration. We provide some details on these cases below.</p>
-<div class="section" id="buffering">
-<h3>Buffering<a class="headerlink" href="#buffering" title="Permalink to this headline"></a></h3>
+<section id="buffering">
+<h3>Buffering<a class="headerlink" href="#buffering" title="Link to this heading"></a></h3>
 <p>The maximum number of raw images being buffered before the filtering pipeline is three. In addition to these three images, another three images maximum are buffered after the image processing pipeline, before being sent over Ethernet.
 This can result in up to six images being received before the received images show the new configuration.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>To minimize images getting buffered before being sent over Ethernet, ensure a full Gigabit Ethernet connection and ensure the client can handle the data transfer on the Ethernet communication.</p>
 </div>
-<div class="section" id="delays-due-to-image-buffering">
-<h4>Delays due to image buffering<a class="headerlink" href="#delays-due-to-image-buffering" title="Permalink to this headline"></a></h4>
+<section id="delays-due-to-image-buffering">
+<h4>Delays due to image buffering<a class="headerlink" href="#delays-due-to-image-buffering" title="Link to this heading"></a></h4>
 <p>The worst case delay before new data is received can be calculated by the following formula:</p>
 <p><code class="docutils literal notranslate"> <span class="pre">t</span> <span class="pre">=</span> <span class="pre">1/FPS</span> <span class="pre">*</span> <span class="pre">nb_img_in_buffer</span></code></p>
 <p>This however is a worst case estimate for slow receivers and maximum buffer fill levels.
 A typical delay (under regular embedded load and fast receivers) is expected to be 0 - 2 frames.</p>
-</div>
-<div class="section" id="flushing-the-buffers">
-<h4>Flushing the buffers<a class="headerlink" href="#flushing-the-buffers" title="Permalink to this headline"></a></h4>
+</section>
+<section id="flushing-the-buffers">
+<h4>Flushing the buffers<a class="headerlink" href="#flushing-the-buffers" title="Link to this heading"></a></h4>
 <p>The buffers are not flushed automatically when a configuration change occurs. If it is not acceptable for your application to process a couple of image with the old configuration, then you can manually ensure that all the buffers are empty before setting a new configuration:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Set the respective ports states to “CONF,”</p></li>
 <li><p>Keep the FrameGrabber callback alive until no more new images are received,</p></li>
 <li><p>Request the new parameter set,</p></li>
 <li><p>Set the respective ports to “RUN” state.</p></li>
 </ol>
-</div>
-<div class="section" id="verify-the-frame-s-timestamps">
-<h4>Verify the frame’s timestamps<a class="headerlink" href="#verify-the-frame-s-timestamps" title="Permalink to this headline"></a></h4>
+</section>
+<section id="verify-the-frame-s-timestamps">
+<h4>Verify the frame’s timestamps<a class="headerlink" href="#verify-the-frame-s-timestamps" title="Link to this heading"></a></h4>
 <p>To verify that the new frame corresponds to the new parameters, you can use the frame timestamps:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Get the acquisition timestamp of the last image before the parameter change request,</p></li>
 <li><p>Request a new parameter set,</p></li>
 <li><p>Verify the acquisition timestamps over the next 6 images: there shall be a noticeable time delay after the settings have been applied,</p></li>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Make sure to monitor the acquisition timestamps, provided as part of the <code class="docutils literal notranslate"><span class="pre">TOF_INFO</span></code>, <code class="docutils literal notranslate"><span class="pre">RGB_INFO</span></code>, <code class="docutils literal notranslate"><span class="pre">O3R_ODS_INFO</span></code> and <code class="docutils literal notranslate"><span class="pre">O3R_ODS_OCCUPANCY_GRID</span></code> buffers, and not the reception timestamps, attached by ifm3d to the <code class="docutils literal notranslate"><span class="pre">Frame</span></code> object. Refer to the <a class="reference internal" href="VPU/Timestamps/timestamps.html"><span class="doc std std-doc">timestamps documentation</span></a> for more details.</p>
+<p>Make sure to monitor the acquisition timestamps, provided as part of the <code class="docutils literal notranslate"><span class="pre">TOF_INFO</span></code>, <code class="docutils literal notranslate"><span class="pre">RGB_INFO</span></code>, <code class="docutils literal notranslate"><span class="pre">O3R_ODS_INFO</span></code> and <code class="docutils literal notranslate"><span class="pre">O3R_ODS_OCCUPANCY_GRID</span></code> buffers, and not the reception timestamps, attached by ifm3d to the <code class="docutils literal notranslate"><span class="pre">Frame</span></code> object. Refer to the <a class="reference internal" href="VPU/Timestamps/timestamps.html"><span class="std std-doc">timestamps documentation</span></a> for more details.</p>
 </div>
-</div>
-</div>
-<div class="section" id="camera-streams-configuration-delays">
-<h3>Camera streams configuration delays<a class="headerlink" href="#camera-streams-configuration-delays" title="Permalink to this headline"></a></h3>
-<div class="section" id="acquisition-parameters">
-<h4>Acquisition parameters<a class="headerlink" href="#acquisition-parameters" title="Permalink to this headline"></a></h4>
+</section>
+</section>
+<section id="camera-streams-configuration-delays">
+<h3>Camera streams configuration delays<a class="headerlink" href="#camera-streams-configuration-delays" title="Link to this heading"></a></h3>
+<section id="acquisition-parameters">
+<h4>Acquisition parameters<a class="headerlink" href="#acquisition-parameters" title="Link to this heading"></a></h4>
 <p>Configuring acquisition parameters always requires a RUN-CONF-RUN state transition, as indicated by the “CONF” flag in the JSON schema.</p>
 <p>This means that the image acquisition is stopped before the parameter can be set to its new value. Afterwards the imager process is automatically restarted.</p>
-<p>Some images may still be buffered by the embedded system and therefore represent the old configuration state (see <a class="reference internal" href="#buffering"><span class="std std-doc">the section about buffering</span></a>).</p>
-</div>
-<div class="section" id="processing-parameters">
-<h4>Processing parameters<a class="headerlink" href="#processing-parameters" title="Permalink to this headline"></a></h4>
+<p>Some images may still be buffered by the embedded system and therefore represent the old configuration state (see <a class="reference internal" href="#buffering">the section about buffering</a>).</p>
+</section>
+<section id="processing-parameters">
+<h4>Processing parameters<a class="headerlink" href="#processing-parameters" title="Link to this heading"></a></h4>
 <p>Changing processing parameters only impact the image processing pipeline and can be done without the need to stop the image acquisition process: images are acquired without interruption.</p>
 <p>The application of the new parameters is applied immediately in the image processing pipeline. The user might still receive up to three pre-configuration images due to the buffering configuration.</p>
-</div>
-<div class="section" id="acquisition-and-processing-parameters">
-<h4>Acquisition and processing parameters<a class="headerlink" href="#acquisition-and-processing-parameters" title="Permalink to this headline"></a></h4>
+</section>
+<section id="acquisition-and-processing-parameters">
+<h4>Acquisition and processing parameters<a class="headerlink" href="#acquisition-and-processing-parameters" title="Link to this heading"></a></h4>
 <p>In cases where both the acquisition and processing parameters are changed, the possible outcomes can be:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Max 3 images with old acquisition parameter settings,</p></li>
 <li><p>Max 3 images with old acquisition parameters and old processing parameter settings
 being sent after the configuration change request.</p></li>
 </ol>
-</div>
-</div>
-<div class="section" id="application-streams-configuration-delays">
-<h3>Application streams configuration delays<a class="headerlink" href="#application-streams-configuration-delays" title="Permalink to this headline"></a></h3>
+</section>
+</section>
+<section id="application-streams-configuration-delays">
+<h3>Application streams configuration delays<a class="headerlink" href="#application-streams-configuration-delays" title="Link to this heading"></a></h3>
 <p>The application do not automatically change the state to “CONF” when a new “CONF”-only parameter is requested.
 This ensures that no parameter is accidentally changed that could disrupt the functioning of the application.</p>
 <p>To change a “CONF”-only application parameter:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Set the application to “CONF” state,</p></li>
 <li><p>Request a new application parameter set for the application instance,</p></li>
 <li><p>Set the application to “RUN” state.</p></li>
 </ol>
 <p>Once the application state is changed back to “RUN,” the internal processing application pipeline is reconfigured to use the new parameter set. This takes a finite amount of time.</p>
 <p>On top of the small amount of time it takes for the application to be reconfigured, the user might still receive up to three pre-configuration frames due to the internal O3R buffers.</p>
-</div>
-</div>
-<div class="section" id="json-schema">
-<h2>JSON schema<a class="headerlink" href="#json-schema" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+<section id="json-schema">
+<h2>JSON schema<a class="headerlink" href="#json-schema" title="Link to this heading"></a></h2>
 <p>A JSON schema for the current O3R configuration is available and the user can use it to check the configuration before setting it.</p>
 <p>Third-party packages can be used in Python or c++ to validate a configuration. For example:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-1-Qysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel group-tab" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ifm3dpy.device</span> <span class="kn">import</span> <span class="n">O3R</span>
-<span class="kn">import</span> <span class="nn">jsonschema</span>
-<span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">()</span>
-<span class="n">schema</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get_schema</span><span class="p">()</span>
-<span class="n">correct_conf</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;device&quot;</span><span class="p">:{</span><span class="s2">&quot;info&quot;</span><span class="p">:{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;My O3R&quot;</span><span class="p">}}}</span>
-<span class="n">jsonschema</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">conf</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
-<span class="c1"># No return, validation successful</span>
-<span class="n">incorrect_conf</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;device&quot;</span><span class="p">:{</span><span class="s2">&quot;info&quot;</span><span class="p">:{</span><span class="s2">&quot;o3r_name&quot;</span><span class="p">:</span> <span class="s2">&quot;My O3R&quot;</span><span class="p">}}}</span>
-<span class="n">jsonschema</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">incorrect_conf</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
-<span class="c1"># Error raised during the validation</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
-  <span class="n">File</span> <span class="s2">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-  <span class="n">File</span> <span class="s2">&quot;/home/usmasslo/.local/lib/python3.8/site-packages/jsonschema/validators.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">934</span><span class="p">,</span> <span class="ow">in</span> <span class="n">validate</span>
-    <span class="k">raise</span> <span class="n">error</span>
-<span class="n">jsonschema</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">:</span> <span class="n">Additional</span> <span class="n">properties</span> <span class="n">are</span> <span class="ow">not</span> <span class="n">allowed</span> <span class="p">(</span><span class="s1">&#39;o3r_name&#39;</span> <span class="n">was</span> <span class="n">unexpected</span><span class="p">)</span>
-<span class="p">[</span><span class="o">...</span><span class="p">]</span>
-<span class="n">On</span> <span class="n">instance</span><span class="p">[</span><span class="s1">&#39;device&#39;</span><span class="p">][</span><span class="s1">&#39;info&#39;</span><span class="p">]:</span>
-    <span class="p">{</span><span class="s1">&#39;o3r_name&#39;</span><span class="p">:</span> <span class="s1">&#39;My O3R&#39;</span><span class="p">}</span>
-</pre></div>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-1-Qysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel group-tab" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="python docutils">
+<p>from ifm3dpy.device import O3R
+import jsonschema
+o3r = O3R()
+schema = o3r.get_schema()
+correct_conf = {“device”:{“info”:{“name”: “My O3R”}}}
+jsonschema.validate(conf, schema)</p>
+<h1 class="rubric" id="no-return-validation-successful">No return, validation successful</h1>
+<p>incorrect_conf = {“device”:{“info”:{“o3r_name”: “My O3R”}}}
+jsonschema.validate(incorrect_conf, schema)</p>
+<h1 class="rubric" id="error-raised-during-the-validation">Error raised during the validation</h1>
+<blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><p>Traceback (most recent call last):
+File “<stdin>”, line 1, in <module>
+File “/home/usmasslo/.local/lib/python3.8/site-packages/jsonschema/validators.py”, line 934, in validate
+raise error
+jsonschema.exceptions.ValidationError: Additional properties are not allowed (‘o3r_name’ was unexpected)
+[…]
+On instance[‘device’][‘info’]:
+{‘o3r_name’: ‘My O3R’}</p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
 </div>
-</div><div aria-labelledby="tab-1-Qysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">CheckJSONFormat</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">format</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="c1">// This is necessary because &quot;format&quot; is a keyword both used internally by the schema</span>
-<span class="c1">// validator and in the O3R schema.</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">format</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;ipv4&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Simulate IPV4 formatting&quot;</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">logic_error</span><span class="p">(</span><span class="s">&quot;Don&#39;t know how to validate &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">format</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-<span class="kt">int</span>
-<span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">o3r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">O3R</span><span class="o">&gt;</span><span class="p">();</span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">schema</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o3r</span><span class="o">-&gt;</span><span class="n">GetSchema</span><span class="p">();</span>
-<span class="w">    </span><span class="n">nlohmann</span><span class="o">::</span><span class="n">json_schema</span><span class="o">::</span><span class="n">json_validator</span><span class="w"> </span><span class="n">validator</span><span class="p">{</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="n">CheckJSONFormat</span><span class="w"> </span><span class="p">};</span>
-<span class="w">    </span><span class="n">validator</span><span class="p">.</span><span class="n">set_root_schema</span><span class="p">(</span><span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">parse</span><span class="p">(</span><span class="n">schema</span><span class="p">.</span><span class="n">dump</span><span class="p">(</span><span class="mi">0</span><span class="p">)));</span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">correct_conf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">parse</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s">{&quot;device&quot;:{&quot;info&quot;:{&quot;name&quot;: &quot;My O3R&quot;}}}</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="n">validator</span><span class="p">.</span><span class="n">validate</span><span class="p">(</span><span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">parse</span><span class="p">(</span><span class="n">correct_conf</span><span class="p">.</span><span class="n">dump</span><span class="p">(</span><span class="mi">0</span><span class="p">)));</span>
-<span class="w">    </span><span class="c1">// Validation successful: no exception raised</span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">incorrect_conf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">parse</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s">{&quot;device&quot;:{&quot;info&quot;:{&quot;o3r_name&quot;: &quot;My O3R&quot;}}}</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="n">validator</span><span class="p">.</span><span class="n">validate</span><span class="p">(</span><span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">parse</span><span class="p">(</span><span class="n">incorrect_conf</span><span class="p">.</span><span class="n">dump</span><span class="p">(</span><span class="mi">0</span><span class="p">)));</span>
-<span class="w">    </span><span class="c1">// Exception raised during the validation</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
+</div><div aria-labelledby="tab-1-Qysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="cpp docutils">
+<p>static void CheckJSONFormat(const std::string&amp; format, const std::string&amp; value) {
+// This is necessary because “format” is a keyword both used internally by the schema
+// validator and in the O3R schema.
+if (format == “ipv4”) {
+std::clog &lt;&lt; “Simulate IPV4 formatting”;
+}
+else {
+throw std::logic_error(“Don’t know how to validate “ + format);
+}
+}
+int
+main()
+{
+auto o3r = std::make_shared<a class="reference external" href="ifm3d::O3R">ifm3d::O3R</a>();
+auto schema = o3r-&gt;GetSchema();
+nlohmann::json_schema::json_validator validator{ nullptr, CheckJSONFormat };
+validator.set_root_schema(nlohmann::json::parse(schema.dump(0)));
+auto correct_conf = ifm3d::json::parse(R”({“device”:{“info”:{“name”: “My O3R”}}})”);
+validator.validate(nlohmann::json::parse(correct_conf.dump(0)));
+// Validation successful: no exception raised
+auto incorrect_conf = ifm3d::json::parse(R”({“device”:{“info”:{“o3r_name”: “My O3R”}}})”);
+validator.validate(nlohmann::json::parse(incorrect_conf.dump(0)));
+// Exception raised during the validation
+return 0;
+}</p>
 </div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt;<span class="w"> </span>terminate<span class="w"> </span>called<span class="w"> </span>after<span class="w"> </span>throwing<span class="w"> </span>an<span class="w"> </span>instance<span class="w"> </span>of<span class="w"> </span><span class="s1">&#39;std::invalid_argument&#39;</span>
-what<span class="o">()</span>:<span class="w">  </span>At<span class="w"> </span>/device/info<span class="w"> </span>of<span class="w"> </span><span class="o">{</span><span class="s2">&quot;o3r_name&quot;</span>:<span class="s2">&quot;My O3R&quot;</span><span class="o">}</span><span class="w"> </span>-<span class="w"> </span>validation<span class="w"> </span>failed<span class="w"> </span><span class="k">for</span><span class="w"> </span>additional<span class="w"> </span>property<span class="w"> </span><span class="s1">&#39;o3r_name&#39;</span>:<span class="w"> </span>instance<span class="w"> </span>invalid<span class="w"> </span>as<span class="w"> </span>per<span class="w"> </span>false-schema
-</pre></div>
+<div class="bash docutils">
+<blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><p>terminate called after throwing an instance of ‘std::invalid_argument’
+what():  At /device/info of {“o3r_name”:”My O3R”} - validation failed for additional property ‘o3r_name’: instance invalid as per false-schema</p>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
 </div>
 </div></div>
-<p>Note that the schema might change depending on some parameters (see details <a class="reference internal" href="#parameters-impacting-the-json-schema"><span class="std std-doc">below</span></a>). For example, different modes have different allowed offset values. When retrieving the schema using the ifm3d API, the schema for the current set of parameters is provided. It is therefore possible that the schema validation succeeds with the current schema, but the configuration fails because of a change in the schema due to the new configuration.</p>
-<div class="section" id="parameters-impacting-the-json-schema">
-<h3>Parameters impacting the JSON schema<a class="headerlink" href="#parameters-impacting-the-json-schema" title="Permalink to this headline"></a></h3>
+<p>Note that the schema might change depending on some parameters (see details <a class="reference internal" href="#parameters-impacting-the-json-schema">below</a>). For example, different modes have different allowed offset values. When retrieving the schema using the ifm3d API, the schema for the current set of parameters is provided. It is therefore possible that the schema validation succeeds with the current schema, but the configuration fails because of a change in the schema due to the new configuration.</p>
+<section id="parameters-impacting-the-json-schema">
+<h3>Parameters impacting the JSON schema<a class="headerlink" href="#parameters-impacting-the-json-schema" title="Link to this heading"></a></h3>
 <p>The following parameters will change the JSON schema for other parameters:</p>
 <ul class="simple">
 <li><p>The mode: <code class="docutils literal notranslate"><span class="pre">/ports/portX/mode</span></code>,</p></li>
 <li><p>The application class: <code class="docutils literal notranslate"><span class="pre">/applications/instances/appX/class</span></code>,</p></li>
 <li><p>The application ports: <code class="docutils literal notranslate"><span class="pre">/applications/instances/appx/ports</span></code>.</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="persistent-configuration">
-<h2>Persistent configuration<a class="headerlink" href="#persistent-configuration" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+<section id="persistent-configuration">
+<h2>Persistent configuration<a class="headerlink" href="#persistent-configuration" title="Link to this heading"></a></h2>
 <p>The O3R provides a way to persistently save a configuration so that the device reboots with the expected configuration: the <a class="reference external" href="https://api.ifm3d.com/stable/_autosummary/ifm3dpy.device.O3R.html#ifm3dpy.device.O3R.save_init">save_init() function in Python</a>, or <a class="reference external" href="https://api.ifm3d.com/stable/cpp_api/classifm3d_1_1O3R.html#a7316e073bf5625c08d7c11a70e5ce07a">SaveInit() in c++</a>. It allows the user to write as persistent configuration the current configuration of the device.</p>
 <p>If calling the <code class="docutils literal notranslate"><span class="pre">save_init</span></code> function without any argument, the exact configuration will be saved, including the sample numbers of the connected camera heads. For this reason, <strong>we strongly recommend persistently saving only snippets of the configuration</strong> (only available in ifm3d &gt;= 1.4.1).</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">o3r</span><span class="o">.</span><span class="n">save_init</span><span class="p">([</span><span class="s2">&quot;/ports/port2/processing/extrinsicHeadToUser&quot;</span><span class="p">])</span>
-</pre></div>
+<div class="python docutils">
+<p>o3r.save_init([“/ports/port2/processing/extrinsicHeadToUser”])</p>
 </div>
 <p>During the boot-up process the VPU compares the persistent configuration to the current hardware configuration. If there is any mismatch, for instance a camera head was replaced, the respective port will be put to ERROR state and the port LED flashes in red.
 The <code class="docutils literal notranslate"><span class="pre">ERROR_BOOT_SEQUENCE_HEAD_INVALID_SERIALNUMBER</span></code> for the mismatched port will be displayed in the diagnostic.</p>
 <p>When facing this issue, the user can  do the following:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>As a first troubleshooting step, use the <a class="reference external" href="https://api.ifm3d.com/stable/_autosummary/ifm3dpy.device.O3R.html#ifm3dpy.device.O3R.get_init"><code class="docutils literal notranslate"><span class="pre">get_init</span></code> function</a> (<a class="reference external" href="https://api.ifm3d.com/stable/cpp_api/classifm3d_1_1O3R.html#a0d703bc04a0d893733cbb1f5c6983d82"><code class="docutils literal notranslate"><span class="pre">GetInit()</span></code></a> in c++) to assess the current persistent configuration.</p></li>
 <li><p>If a configuration is saved and you want to change it, the only option currently is to perform a factory reset. This is available in all the provide software interfaces (ifm3d and the Vision Assistant) and will reset the setting to the factory settings. The only downside is that it will also erase the whole OEM user space (docker container, application code, etc).</p></li>
 </ol>
@@ -425,8 +459,8 @@ The <code class="docutils literal notranslate"><span class="pre">ERROR_BOOT_SEQU
 <p class="admonition-title">Note</p>
 <p>The <a class="reference external" href="https://api.ifm3d.com/stable/_autosummary/ifm3dpy.device.O3R.html#ifm3dpy.device.O3R.reset"><code class="docutils literal notranslate"><span class="pre">reset</span></code></a> function of the ifm3d API does not remove a persistent configuration from the device. It will only reset a specific set of the configuration to default until the next reboot.</p>
 </div>
-<div class="section" id="persistent-settings-without-save-init">
-<h3>Persistent settings without <code class="docutils literal notranslate"><span class="pre">save_init</span></code><a class="headerlink" href="#persistent-settings-without-save-init" title="Permalink to this headline"></a></h3>
+<section id="persistent-settings-without-save-init">
+<h3>Persistent settings without <code class="docutils literal notranslate"><span class="pre">save_init</span></code><a class="headerlink" href="#persistent-settings-without-save-init" title="Link to this heading"></a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This feature was introduced in FW version 1.1.30</p>
@@ -438,14 +472,14 @@ The <code class="docutils literal notranslate"><span class="pre">ERROR_BOOT_SEQU
 <li><p>SSH OEM keys</p></li>
 <li><p>Docker daemon registry configuration</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="factory-reset">
-<h2>Factory reset<a class="headerlink" href="#factory-reset" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+<section id="factory-reset">
+<h2>Factory reset<a class="headerlink" href="#factory-reset" title="Link to this heading"></a></h2>
 <p>To bring back an O3R platform to factory settings, use the <a class="reference external" href="https://api.ifm3d.com/stable/_autosummary/ifm3dpy.device.O3R.html#ifm3dpy.device.O3R.factory_reset"><code class="docutils literal notranslate"><span class="pre">factory_reset</span></code></a> function (<a class="reference external" href="https://api.ifm3d.com/stable/cpp_api/classifm3d_1_1O3R.html#a51c399c7672a1be536e6b1b81b5a0ddc"><code class="docutils literal notranslate"><span class="pre">FactoryReset()</span></code> in c++</a>).</p>
 <p>The factory reset function allows the user to preserve the network settings. This is useful to reset a device on the network without having to change one’s local IP settings. Simply switch the flag to <code class="docutils literal notranslate"><span class="pre">True</span></code> in the factory reset function: <code class="docutils literal notranslate"><span class="pre">factory_reset(keep_network_settings</span> <span class="pre">=</span> <span class="pre">True)</span></code>.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

@@ -1,26 +1,32 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Using TensorRT &mdash; O3R  documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/tabs.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=28a392ea" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/clipboard.min.js"></script>
-        <script src="../../../_static/copybutton.js"></script>
-        <script src="../../../_static/js/versionwarning.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -43,14 +49,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html" class="icon icon-home"> O3R
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            O3R
           </a>
               <div class="version">
                 v1.1.30
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -125,10 +135,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../index_software_interfaces.html">Software Interfaces</a> &raquo;</li>
-          <li><a href="../index_docker.html">Docker on O3R</a> &raquo;</li>
-      <li>Using TensorRT</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+          <li class="breadcrumb-item"><a href="../index_docker.html">Docker on O3R</a></li>
+      <li class="breadcrumb-item active">Using TensorRT</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/SoftwareInterfaces/Docker/tensorRT/TensorRT_on_a_VPU_hardware.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -138,26 +148,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="using-tensorrt">
-<h1>Using TensorRT<a class="headerlink" href="#using-tensorrt" title="Permalink to this headline"></a></h1>
+  <section id="using-tensorrt">
+<h1>Using TensorRT<a class="headerlink" href="#using-tensorrt" title="Link to this heading"></a></h1>
 <p>This document outlines the general process of AI inference acceleration with TensorRT on an OVP8xx device.</p>
-<div class="section" id="building-a-tensorrt-container">
-<h2>Building a TensorRT container<a class="headerlink" href="#building-a-tensorrt-container" title="Permalink to this headline"></a></h2>
+<section id="building-a-tensorrt-container">
+<h2>Building a TensorRT container<a class="headerlink" href="#building-a-tensorrt-container" title="Link to this heading"></a></h2>
 <p>There are two options:</p>
 <ul class="simple">
 <li><p>Use a base NVIDIA container and import the runtime libraries directly from the firmware. This is the preferred method that we will describe below.</p></li>
 <li><p>Use a complete NVIDIA container that includes the TensorRT libraries directly. This is not recommended since containers sizes will increase dramatically.</p></li>
 </ul>
-<div class="section" id="nvidia-base-containers">
-<h3>NVIDIA base containers<a class="headerlink" href="#nvidia-base-containers" title="Permalink to this headline"></a></h3>
+<section id="nvidia-base-containers">
+<h3>NVIDIA base containers<a class="headerlink" href="#nvidia-base-containers" title="Link to this heading"></a></h3>
 <p>NVIDIA provides L4T-based containers with TensorFlow that can be downloaded directly from <a class="reference external" href="https://ngc.nvidia.com/catalog/containers/nvidia:l4t-tensorflow">their containers catalog</a>.
 TensorFlow should be used with the corresponding recommended version of JetPack.
 The recommendations can be found on the <a class="reference external" href="https://docs.nvidia.com/deeplearning/frameworks/install-tf-jetson-platform-release-notes/tf-jetson-rel.html#tf-jetson-rel">TensorFlow for Jetson website</a>.</p>
 <p>The L4T version on board the OVP80x (which contains the TX2 board) is <a class="reference external" href="https://developer.nvidia.com/embedded/linux-tegra-r32.4.3"><code class="docutils literal notranslate"><span class="pre">r32.4.3</span></code></a>.
 The supported JetPack version is <code class="docutils literal notranslate"><span class="pre">4.4</span></code>. Please see the official table on the <a class="reference external" href="https://docs.nvidia.com/deeplearning/frameworks/install-tf-jetson-platform-release-notes/tf-jetson-rel.html#tf-jetson-rel">NVIDIA docs</a> for up to date compatibility information.</p>
 <p>The underlying structure of the container loads the TensorRT libraries and is handled by NVIDIA and Docker - as long as the versions of the container and JetPack closely match.</p>
-<div class="section" id="verify-the-functionality">
-<h4>Verify the functionality<a class="headerlink" href="#verify-the-functionality" title="Permalink to this headline"></a></h4>
+<section id="verify-the-functionality">
+<h4>Verify the functionality<a class="headerlink" href="#verify-the-functionality" title="Link to this heading"></a></h4>
 <p>For JetPack version 4.4 (L4T R32.4.3), the following versions are available:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">l4t</span><span class="o">-</span><span class="n">tensorflow</span><span class="p">:</span><span class="n">r32</span><span class="mf">.4.3</span><span class="o">-</span><span class="n">tf1</span><span class="mf">.15</span><span class="o">-</span><span class="n">py3</span><span class="p">:</span> <span class="n">TensorFlow</span> <span class="mf">1.15</span>
 <span class="n">l4t</span><span class="o">-</span><span class="n">tensorflow</span><span class="p">:</span><span class="n">r32</span><span class="mf">.4.3</span><span class="o">-</span><span class="n">tf2</span><span class="mf">.2</span><span class="o">-</span><span class="n">py3</span><span class="p">:</span> <span class="n">TensorFlow</span> <span class="mf">2.2</span>
@@ -172,60 +182,60 @@ The supported JetPack version is <code class="docutils literal notranslate"><spa
 </pre></div>
 </div>
 <p>You should then be able to start a Python3 interpreter and import TensorFlow.</p>
-</div>
-<div class="section" id="mounting-directories-from-the-host">
-<h4>Mounting directories from the host<a class="headerlink" href="#mounting-directories-from-the-host" title="Permalink to this headline"></a></h4>
+</section>
+<section id="mounting-directories-from-the-host">
+<h4>Mounting directories from the host<a class="headerlink" href="#mounting-directories-from-the-host" title="Link to this heading"></a></h4>
 <p>To mount scripts, data, etc. from your Jetson’s filesystem to run inside the container, use Docker’s <code class="docutils literal notranslate"><span class="pre">-v</span></code> flag when starting your Docker instance:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--runtime<span class="w"> </span>nvidia<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>-v<span class="w"> </span>/home/user/project:/location/in/container<span class="w"> </span>nvcr.io/nvidia/l4t-tensorflow:r32.4.3-tf1.15-py3
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="dockerfiles">
-<h3>Dockerfiles<a class="headerlink" href="#dockerfiles" title="Permalink to this headline"></a></h3>
-<div class="section" id="nvidia-base-dockerfiles">
-<h4>NVIDIA base Dockerfiles<a class="headerlink" href="#nvidia-base-dockerfiles" title="Permalink to this headline"></a></h4>
+</section>
+</section>
+<section id="dockerfiles">
+<h3>Dockerfiles<a class="headerlink" href="#dockerfiles" title="Link to this heading"></a></h3>
+<section id="nvidia-base-dockerfiles">
+<h4>NVIDIA base Dockerfiles<a class="headerlink" href="#nvidia-base-dockerfiles" title="Link to this heading"></a></h4>
 <p>To access or modify the Dockerfiles and scripts used to build the NVIDIA containers, see this <a class="reference external" href="https://github.com/dusty-nv/jetson-containers">GitHub repository</a>.</p>
-</div>
-<div class="section" id="ifm-example-dockerfiles">
-<h4>ifm example Dockerfiles<a class="headerlink" href="#ifm-example-dockerfiles" title="Permalink to this headline"></a></h4>
+</section>
+<section id="ifm-example-dockerfiles">
+<h4>ifm example Dockerfiles<a class="headerlink" href="#ifm-example-dockerfiles" title="Link to this heading"></a></h4>
 <p>The Dockerfiles for both the <code class="docutils literal notranslate"><span class="pre">o3r-l4t-base</span></code> and the <code class="docutils literal notranslate"><span class="pre">o3r-l4t-tensorrt</span></code> images can be found in the <a class="reference external" href="https://github.com/ifm/ifm3d-examples"><code class="docutils literal notranslate"><span class="pre">ifm3d-examples</span></code> repository on GitHub</a>.
 The <code class="docutils literal notranslate"><span class="pre">o3r-l4t-base</span></code> image provides the bare minimum to install the NVIDIA packages via <code class="docutils literal notranslate"><span class="pre">apt-get</span></code>. It is a stripped down version of the NVIDIA <code class="docutils literal notranslate"><span class="pre">l4t-base</span></code> images with UI libraries removed.
 The <code class="docutils literal notranslate"><span class="pre">o3r-l4t-tensorrt</span></code> image comes with the TensorRT examples from NVIDIA pre-installed and uses a multi stage Docker image build to show how to create smaller images without all the build tools pre-installed.</p>
 <p>The Docker images are not distributed and need to be built locally.</p>
-</div>
-</div>
-</div>
-<div class="section" id="using-tensorrt-in-a-container-on-the-vpu">
-<h2>Using TensorRT in a container on the VPU<a class="headerlink" href="#using-tensorrt-in-a-container-on-the-vpu" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+</section>
+<section id="using-tensorrt-in-a-container-on-the-vpu">
+<h2>Using TensorRT in a container on the VPU<a class="headerlink" href="#using-tensorrt-in-a-container-on-the-vpu" title="Link to this heading"></a></h2>
 <p>TensorRT applications can be memory-intensive. Here’s how you can manage memory effectively:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">l4t-cuda-base</span></code> image and build TensorRT inside the container using Dockerfile. We recommend using Docker’s multistage build feature to reduce the size in the final container.</p></li>
 <li><p>Reduce the container mounting size by using <a class="reference external" href="https://docs.docker.com/engine/reference/builder/#dockerignore-file">.dockerignore file</a>.
 Follow the <a class="reference external" href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Dockerfile best practices</a> to minimize the number of layers and overall size.</p></li>
 </ol>
 <p>Once TensorRT is installed on the VPU, you can proceed as follows:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Run TensorRT models using <code class="docutils literal notranslate"><span class="pre">trtexec</span></code> inside the <code class="docutils literal notranslate"><span class="pre">l4t-base</span></code> container. This container will copy TensorRT from the host.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">trtexec</span></code> runs the model, filing it with random data for testing purposes. This is a first indication whether the adapted model can be run on the final architecture.</p></li>
 <li><p>Adapt the model for the final deployment architecture. This may involve updating the model based on its structure and the operators and layers used. Not all operators and model adaptations may be available in the OVP800 JetPack version. You may need to update your model on your development machine, export a new ONNX model with opset 11 operators, and adapt it again. This could be an iterative process.</p></li>
 </ol>
-<div class="section" id="adaptations-for-the-ovp80x-architecture">
-<h3>Adaptations for the OVP80x architecture<a class="headerlink" href="#adaptations-for-the-ovp80x-architecture" title="Permalink to this headline"></a></h3>
+<section id="adaptations-for-the-ovp80x-architecture">
+<h3>Adaptations for the OVP80x architecture<a class="headerlink" href="#adaptations-for-the-ovp80x-architecture" title="Link to this heading"></a></h3>
 <p>The model has to be exported and adapted to the final deployment architecture.
 Refer to the <a class="reference external" href="https://docs.nvidia.com/deeplearning/tensorrt/quick-start-guide/index.html#basic-workflow">NVIDIA documentation for this process</a>. This adaptation must be done on the final deployment architecture. Compiling on similar architectures, like Jetson evaluation boards, will result in an incompatible instruction set for the OVP800 architecture.</p>
 <p>We recommend exporting the neural network model to an ONNX model. Adapting the model for the deployment architecture may require updates. This could be an iterative process to get the model running on the final architecture. Update your model on your development machine, export a new ONNX model with opset 11 operators, and test this update in Docker.</p>
 <p>For ONNX exports with opset 11 settings and further ONNX operator support, refer to the <a class="reference external" href="https://github.com/onnx/onnx-tensorrt/blob/release/7.1/operators.md">official <code class="docutils literal notranslate"><span class="pre">onnx-tensorrt</span></code> documentation</a>.</p>
-</div>
-<div class="section" id="runtime-inference-cycle-times">
-<h3>Runtime inference cycle times<a class="headerlink" href="#runtime-inference-cycle-times" title="Permalink to this headline"></a></h3>
+</section>
+<section id="runtime-inference-cycle-times">
+<h3>Runtime inference cycle times<a class="headerlink" href="#runtime-inference-cycle-times" title="Link to this heading"></a></h3>
 <p>Adapting the model as described will result in a model with a specific runtime on the TX2 device. You may need to adjust for different model sizes and operations. Remember, the typical cycle time on a development machine may not accurately reflect the expected cycle times on OVP80x TX2 hardware.</p>
-</div>
-</div>
-<div class="section" id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h2>
-<div class="section" id="yolov4-tiny">
-<h3>YOLOv4 Tiny<a class="headerlink" href="#yolov4-tiny" title="Permalink to this headline"></a></h3>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<section id="yolov4-tiny">
+<h3>YOLOv4 Tiny<a class="headerlink" href="#yolov4-tiny" title="Link to this heading"></a></h3>
 <p>This example demonstrates the benchmarking of the YOLOv4 Tiny Object Detection network using the TensorRT tool <a class="reference external" href="https://docs.nvidia.com/deeplearning/tensorrt/developer-guide/index.html#trtexec"><code class="docutils literal notranslate"><span class="pre">trtexec</span></code></a> within a container. The example is applicable for L4T 32.5.1 and has been tested on a TX2 development board. Additional details for TX2 JetPack version 32.4.3 are forthcoming.</p>
 <p>The model was trained on a different machine, converted into ONNX format and then copied to the board.
 When starting the container, a directory with a model can be mounted using <code class="docutils literal notranslate"><span class="pre">-v</span></code> option.</p>
@@ -245,17 +255,17 @@ When starting the container, a directory with a model can be mounted using <code
 <span class="w">   </span>*<span class="w"> </span>Vulkan:<span class="w"> </span><span class="m">1</span>.2.70
 </pre></div>
 </div>
-</div>
-<div class="section" id="deepstream-l4t">
-<h3>Deepstream-l4t<a class="headerlink" href="#deepstream-l4t" title="Permalink to this headline"></a></h3>
+</section>
+<section id="deepstream-l4t">
+<h3>Deepstream-l4t<a class="headerlink" href="#deepstream-l4t" title="Link to this heading"></a></h3>
 <p>The Deepstream-l4t NGC container is used in this example.</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>Pull the Deepstream-l4t NGC container.</p></li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker<span class="w"> </span>pull<span class="w"> </span>nvcr.io/nvidia/deepstream-l4t:5.1-21.02-samples
 </pre></div>
 </div>
-<ol>
+<ol class="arabic" start="2">
 <li><p>Verify the successful pull by listing the Docker images.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker<span class="w"> </span>image<span class="w"> </span>ls
 REPOSITORY<span class="w">                          </span>TAG<span class="w">                         </span>IMAGE<span class="w"> </span>ID<span class="w">             </span>CREATED<span class="w">             </span>SIZE
@@ -355,9 +365,9 @@ Doc<span class="w"> </span>string:
 </div>
 </li>
 </ol>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

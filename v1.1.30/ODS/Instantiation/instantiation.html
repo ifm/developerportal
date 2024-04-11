@@ -1,26 +1,32 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Instantiation &mdash; O3R  documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=28a392ea" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/clipboard.min.js"></script>
-        <script src="../../_static/copybutton.js"></script>
-        <script src="../../_static/js/versionwarning.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../_static/design-tabs.js?v=36754332"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -43,14 +49,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html" class="icon icon-home"> O3R
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            O3R
           </a>
               <div class="version">
                 v1.1.30
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -105,9 +115,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index_ods.html">ODS (Obstacle Detection System)</a> &raquo;</li>
-      <li>Instantiation</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index_ods.html">ODS (Obstacle Detection System)</a></li>
+      <li class="breadcrumb-item active">Instantiation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/ODS/Instantiation/instantiation.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -117,31 +127,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="tex2jax_ignore mathjax_ignore section" id="instantiation">
-<h1>Instantiation<a class="headerlink" href="#instantiation" title="Permalink to this headline"></a></h1>
-<div class="section" id="extrinsic-calibration">
-<h2>Extrinsic calibration<a class="headerlink" href="#extrinsic-calibration" title="Permalink to this headline"></a></h2>
+  <section id="instantiation">
+<h1>Instantiation<a class="headerlink" href="#instantiation" title="Link to this heading"></a></h1>
+<section id="extrinsic-calibration">
+<h2>Extrinsic calibration<a class="headerlink" href="#extrinsic-calibration" title="Link to this heading"></a></h2>
 <p>If no extrinsic calibration is provided, for example the extrinsic calibration parameters are set to their default values, the ODS application will not work!
 This would mean the camera head is inside the floor (<code class="docutils literal notranslate"><span class="pre">transZ</span> <span class="pre">==</span> <span class="pre">0</span></code>) and looking towards to ceiling, which is not a valid ODS extrinsic calibration use case.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Always forward all 6 extrinsic calibration values at the same time. You can edit the full configuration in a file and provide this file to the <code class="docutils literal notranslate"><span class="pre">ifm3d</span> <span class="pre">config</span></code> command.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>{
-    &quot;ports&quot;: {
-        &lt;port_number&gt;: {
-            &quot;processing&quot;: {
-                &quot;extrinsicHeadToUser&quot;: {
-                    &quot;rotX&quot;: &lt;rotX_value&gt;,
-                    &quot;rotY&quot;: &lt;rotY_value&gt;,
-                    &quot;rotZ&quot;: &lt;rotZ_value&gt;,
-                    &quot;transX&quot;: &lt;transX_value&gt;,
-                    &quot;transY&quot;: &lt;transY_value&gt;,
-                    &quot;transZ&quot;: &lt;transZ_value&gt;
-                }
-            }
-        }
-    }
-}
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;ports&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="err">&lt;por</span><span class="kc">t</span><span class="err">_</span><span class="kc">nu</span><span class="err">mber&gt;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;processing&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;extrinsicHeadToUser&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;rotX&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;ro</span><span class="kc">t</span><span class="err">X_value&gt;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;rotY&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;ro</span><span class="kc">t</span><span class="err">Y_value&gt;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;rotZ&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;ro</span><span class="kc">t</span><span class="err">Z_value&gt;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;transX&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;</span><span class="kc">trans</span><span class="err">X_value&gt;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;transY&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;</span><span class="kc">trans</span><span class="err">Y_value&gt;</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;transZ&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;</span><span class="kc">trans</span><span class="err">Z_value&gt;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -173,9 +183,9 @@ This would mean the camera head is inside the floor (<code class="docutils liter
 </pre></div>
 </div>
 <p>Using the viewer of your choice, for example the ifmVisionAssistant, you can see the difference before and after the calibration.</p>
-</div>
-<div class="section" id="ports-selection">
-<h2>Ports selection<a class="headerlink" href="#ports-selection" title="Permalink to this headline"></a></h2>
+</section>
+<section id="ports-selection">
+<h2>Ports selection<a class="headerlink" href="#ports-selection" title="Link to this heading"></a></h2>
 <p>A VPU (OVP800) can connect up to 6 3D imager, ranging from <code class="docutils literal notranslate"><span class="pre">Port</span> <span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">Port</span> <span class="pre">5</span></code>. Providing the port information to the ODS configuration tells the system which heads should be used for the ODS application itself.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -196,9 +206,9 @@ This would mean the camera head is inside the floor (<code class="docutils liter
 <p class="admonition-title">Note</p>
 <p>We recommend turning all the unused camera heads to “CONF” mode, to avoid them using up system resources. This is especially true for unused RGB cameras.</p>
 </div>
-</div>
-<div class="section" id="visual-odometry">
-<h2>Visual odometry<a class="headerlink" href="#visual-odometry" title="Permalink to this headline"></a></h2>
+</section>
+<section id="visual-odometry">
+<h2>Visual odometry<a class="headerlink" href="#visual-odometry" title="Link to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">vo</span></code> - Visual odometry - is an algorithmic approach to provide - together with the IMU - ego motion data to the ODS algorithm. Images from one head are used together with the IMU data to continuously improve the ODS ego-motion estimation. The best performance is achieved by using a head with (the most) floor data visible in its images. The floors distance range needs to be at least between 1.00m and 1.50m.</p>
 <p>Provide the port number (head with floor data in the images) to the <code class="docutils literal notranslate"><span class="pre">vo</span></code> attribute.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;vo&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -206,8 +216,8 @@ This would mean the camera head is inside the floor (<code class="docutils liter
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
