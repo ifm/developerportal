@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Checkerboard Static Camera - Calibration Routine &mdash; O3R  documentation</title>
+  <title>Static camera calibration routine &mdash; O3R  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css?v=eafc0fe6" />
@@ -84,13 +84,17 @@
 <li class="toctree-l3"><a class="reference internal" href="../../Registration2d3d/collect_calibration_data.html">Collect calibration values</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../README.html">Extrinsic calibrations</a><ul class="current">
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Static camera calibration</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#shopping-list">Shopping list</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#software-setup">Software setup</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#scene-setup">Scene setup</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#position-of-the-checkerboard">Position of the checkerboard</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#measurements">Measurements</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#measurements-for-the-above-scene">Measurements for the above scene</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#measurements">Measurements</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#tolerances">Tolerances</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#example-front-centered-camera">Example - front centered camera</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#example-front-camera-shifted">Example - front camera, shifted</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#run-the-calibration">Run the calibration</a></li>
@@ -130,7 +134,7 @@
           <li class="breadcrumb-item"><a href="../../../../index_software_interfaces.html">Software Interfaces</a></li>
           <li class="breadcrumb-item"><a href="../../index_toolbox.html">Toolbox</a></li>
           <li class="breadcrumb-item"><a href="../README.html">Extrinsic calibration routines: camera to robot coordinates</a></li>
-      <li class="breadcrumb-item active">Checkerboard Static Camera - Calibration Routine</li>
+      <li class="breadcrumb-item active">Static camera calibration routine</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/SoftwareInterfaces/Toolbox/ExtrinsicCalibration/StaticCameraCalibration/README.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -140,45 +144,57 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="checkerboard-static-camera-calibration-routine">
-<h1>Checkerboard Static Camera - Calibration Routine<a class="headerlink" href="#checkerboard-static-camera-calibration-routine" title="Link to this heading"></a></h1>
-<p>In this calibration routine, the camera and checkerboard can not be moved/disturbed during the calibration process.</p>
-<section id="prerequisites">
-<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
-<p>Before proceeding to perform the calibration process we assume that the user:</p>
-<ul class="simple">
-<li><p>has already connected the camera head to the VPU.</p></li>
-<li><p>changed the PORT state from “CONF” to “RUN.”</p></li>
-<li><p>is able to receive the 3D Data because this routine uses only the amplitude image/reflectivity image for the calibration.</p></li>
-<li><p>is not running the ifmVisionAssistant in parallel.</p></li>
-<li><p>knows the exact position of a robot coordinate system.</p></li>
-</ul>
-</section>
+  <section id="static-camera-calibration-routine">
+<h1>Static camera calibration routine<a class="headerlink" href="#static-camera-calibration-routine" title="Link to this heading"></a></h1>
+<p>The idea of the static camera calibration (SCC) process is to automatically find out the position and orientation of the camera with respect to the robot coordinate system’s (RCS) origin. To do so, a checkerboard calibration pattern is positioned in front of the camera. The coordinates of the checkerboard corners are measured with respect to the RCS and, from those, the algorithm computes the three rotation values of the camera, and optionally the three translation values.
+In this routine, the camera and checkerboard have to remain static.</p>
 <section id="shopping-list">
 <h2>Shopping list<a class="headerlink" href="#shopping-list" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>A checkerboard of size 800 X 600 mm is printed either directly on a thick aluminum sheet or printed on matte finish paper and pasted to a board. The calibration board can not move during one camera’s complete calibration, due to the design of the process. Please find the checkerboard in PDF format <a class="reference download internal" download="" href="../../../../_downloads/98276827dda1b5c850d9eae3b915ffdd/checkerboard.pdf"><code class="xref download docutils literal notranslate"> <span class="pre">here</span></code></a>,</p></li>
-<li><p>Cardboard edges should not extend past the checkerboard dimensions as this will result in a calibration error.</p></li>
-<li><p>If using a checkerboard of another dimension, make sure to edit the dimensions in the calibration script.</p></li>
+<li><p>An ifm-provided checkerboard of size 800 X 600 mm is printed either directly on a thick aluminum sheet or printed on matte finish paper and pasted to a board. The board is expected to be flat.
+The calibration board must not move during one camera’s complete calibration.
+Please find the checkerboard in PDF format <a class="reference download internal" download="" href="../../../../_downloads/a9faf33e7a60ba0e9e485791d4152aec/checkerboardCalibrationTarget_600X800.pdf"><code class="xref download docutils literal notranslate"> <span class="pre">here</span></code></a>. It is important to print it at scale and to respect the size of the white margins around the checkerboard.</p></li>
+<li><p>Make sure the white margins around the checkerboard come all the way to the edges of the rigid board it is glued on. If the board is visible around the checkerboard, the measurements described below will be wrong.</p></li>
+<li><p>If using a checkerboard of another dimension, make sure to edit the dimensions in the calibration script. Also refer to the <a class="reference internal" href="#tolerances"><span class="xref myst">tolerances</span></a> section for precision requirements.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The checkerboard target has been updated to a checkerboard with a corner larger than the others (denoting the corner A). This is intended to facilitate the identification of the four corners. Running the procedure with the previous checkerboard still works.</p>
+</div>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<p>Before performing the calibration, we assume that the user:</p>
+<ul class="simple">
+<li><p>has already connected the camera head to the VPU,</p></li>
+<li><p>changed the port state from “CONF” to “RUN,” and all the other ports to “CONF,”</p></li>
+<li><p>is able to receive 3D data from the camera, because this routine uses only the amplitude image or the reflectivity image,</p></li>
+<li><p>is not running the ifmVisionAssistant in parallel,</p></li>
+<li><p>knows the exact position of the robot coordinate system (RCS) origin and orientation,</p></li>
+<li><p>know the translation values of the camera in the RCS.</p></li>
 </ul>
 </section>
 <section id="software-setup">
 <h2>Software setup<a class="headerlink" href="#software-setup" title="Link to this heading"></a></h2>
 <ol class="arabic">
-<li><p>Clone the documentation repository.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/ifm/documentation.git
+<li><p>Clone the examples repository.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/ifm/ifm3d-examples.git
 </pre></div>
 </div>
 </li>
-<li><p>Create a virtual environment and install the required packages (run from the extrinsic_calibration/checkerboard_static_camera_calibration folder).</p>
+<li><p>Create a virtual environment (optional) and install the required packages (run from the <code class="docutils literal notranslate"><span class="pre">ovp8xx/python/ovp8xxexamples/toolbox/extrinsic_calibration/static_camera_calibration</span></code> folder).</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv<span class="w">                </span><span class="c1"># create a virtual environment</span>
 $<span class="w"> </span><span class="nb">source</span><span class="w"> </span>venv/bin/activate<span class="w">           </span><span class="c1"># activate the virtual environment</span>
 $<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt<span class="w">    </span><span class="c1"># install the required python packages</span>
-$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>venv/bin/activate<span class="w">           </span><span class="c1"># Activate the virtual environment</span>
+$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>venv/bin/activate<span class="w">           </span><span class="c1"># activate the virtual environment</span>
 </pre></div>
 </div>
 </li>
 </ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For the relevant commands on Windows, please refer to <a class="reference external" href="https://docs.python.org/3/library/venv.html">the official documentation</a>.</p>
+</div>
 </section>
 <section id="scene-setup">
 <h2>Scene setup<a class="headerlink" href="#scene-setup" title="Link to this heading"></a></h2>
@@ -186,12 +202,19 @@ $<span class="w"> </span><span class="nb">source</span><span class="w"> </span>v
 <h3>Position of the checkerboard<a class="headerlink" href="#position-of-the-checkerboard" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Rest the checkerboard on a wall and make sure the checkerboard occupies the maximum field of view of the camera for the most accurate calibration.</p></li>
-<li><p>Move the Robot such that the Y-Axis of a Robot Coordinate System is exactly parallel to the checkerboard.</p></li>
 </ul>
-<a class="reference internal image-reference" href="../../../../_images/TOP_VIEW.png"><img alt="top_view" class="align-center" src="../../../../_images/TOP_VIEW.png" style="width: 400px;" /></a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the camera is vertical, place the checkerboard vertically.</p>
+</div>
 <ul class="simple">
-<li><p>Tilt the board if a reflection of the illumination is seen on the camera image. You can tilt as long as the top edge is fully resting on the wall. Keep in mind that all the edges of the board still have to be visible to the camera after tilting the checkerboard.</p></li>
+<li><p>Move the robot such that the Y-axis of the RCS is exactly parallel to the checkerboard. It is very important that the vehicle should be precisely positioned with respect to the checkerboard (see <a class="reference internal" href="#tolerances"><span class="xref myst">tolerances</span></a> section below).</p></li>
 </ul>
+<a class="reference internal image-reference" href="../../../../_images/TOP_VIEW.png"><img alt="Top view of the robot and the checkerboard" class="align-center" src="../../../../_images/TOP_VIEW.png" style="width: 400px;" /></a>
+<ul>
+<li><p>If a reflection is seen on the camera image, you have two options:</p>
+<ul>
+<li><p>Tilt the board. You can tilt as long as the top edge is fully resting on the wall. Keep in mind that all the black cells of the board still have to be visible to the camera. See image below:</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Good Positioning</p></th>
@@ -204,11 +227,35 @@ $<span class="w"> </span><span class="nb">source</span><span class="w"> </span>v
 </tr>
 </tbody>
 </table>
+</li>
+<li><p>Pick the ambient light mode (<code class="docutils literal notranslate"><span class="pre">mode</span> <span class="pre">=</span> <span class="pre">&quot;extrinsic_calib&quot;</span></code>). See how to edit this in the code <a class="reference internal" href="#run-the-calibration">below</a>.</p></li>
+</ul>
+</li>
+</ul>
 <p>Please see this isometric view of a good scene to get a better understanding of the expected geometric configuration.</p>
-<a class="reference internal image-reference" href="../../../../_images/isometric_view.png"><img alt="isometric_view" class="align-center" src="../../../../_images/isometric_view.png" style="width: 400px;" /></a>
+<a class="reference internal image-reference" href="../../../../_images/isometric_view.png" id="front-centered-cam"><img alt="isometric_view" class="align-center" id="front-centered-cam" src="../../../../_images/isometric_view.png" style="width: 400px;" /></a>
 </section>
 <section id="measurements">
 <h3>Measurements<a class="headerlink" href="#measurements" title="Link to this heading"></a></h3>
+<p>The idea is to provide the (X, Y, Z) coordinates, in the RCS, of the four corners of the checkerboard.
+The coordinates will depend on the scene, and on whether the camera is mounted to the front, side, back, etc.</p>
+<p>It is possible to compute the three translation values for the camera, in addition to the rotations. However, we recommend to input known values for the translations, to increase the robustness of the generated rotation values. These translations can be extracted from CAD drawings of the robot.</p>
+<section id="tolerances">
+<h4>Tolerances<a class="headerlink" href="#tolerances" title="Link to this heading"></a></h4>
+<p>When calibrating a camera for use with <a class="reference internal" href="../../../../ODS/index_ods.html"><span class="std std-doc">ODS</span></a>, it is required that the rotation tolerances do not exceed 1°.</p>
+<p>To achieve this, ensure the following:</p>
+<ul class="simple">
+<li><p>For the narrow opening angle camera, O3R222, the checkerboard should be positioned at around 0.8 meters from the camera. The measurement error for each corner should not exceed 5 mm.</p></li>
+<li><p>For the wide opening angle camera, O3R225, the checkerboard should be positioned at around 0.5 meters from the camera. The measurement error for each corner should not exceed 3 mm.</p></li>
+<li><p>For checkerboards of different dimensions or positioned further or closer to the camera, the maximum measurement error can be scaled up or down from the values above. For example, for an O3R222 camera and for a checkerboard of half the default size, positioned at 40 cm from the camera, each measurement error must not exceed 2.5 mm,</p></li>
+<li><p>The checkerboard should not be placed closer than 25 cm from the camera. This is to avoid a blurry image,</p></li>
+<li><p>Ensure that the provided translation values of the camera are accurate at 5 mm,</p></li>
+<li><p>Ensure that the position of the vehicle is accurate to 0.5°.</p></li>
+</ul>
+</section>
+<section id="example-front-centered-camera">
+<h4>Example - front centered camera<a class="headerlink" href="#example-front-centered-camera" title="Link to this heading"></a></h4>
+<p>For a camera mounted to the center along the Y-axis of the front of the robot, the measurements would be the following (see <a class="reference internal" href="#front-centered-cam">image above</a>):</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Camera Mounting</p></th>
@@ -218,80 +265,50 @@ $<span class="w"> </span><span class="nb">source</span><span class="w"> </span>v
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Horizontal</p></td>
-<td><p><img alt="Horizontal.png" src="../../../../_images/Horizontal.png" /></p></td>
-<td><p>X_AB<br><br>Z_AB<br><br>X_CD<br><br>Z_CD<br><br>Y_AC<br><br>Y_BD</p></td>
+<td><p><img alt="Horizontal.png" src="../../../../_images/checkerboard_horizontal.drawio.svg" /></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">X_AB</span></code><br><code class="docutils literal notranslate"><span class="pre">Z_AB</span></code><br><code class="docutils literal notranslate"><span class="pre">X_CD</span></code><br><code class="docutils literal notranslate"><span class="pre">Z_CD</span></code><br><code class="docutils literal notranslate"><span class="pre">Y_AC</span></code><br><code class="docutils literal notranslate"><span class="pre">Y_BD</span></code></p></td>
 </tr>
 <tr class="row-odd"><td><p>Vertical</p></td>
-<td><p><img alt="Vertical.png" src="../../../../_images/Vertical.png" /></p></td>
-<td><p>X_AC<br><br>Z_AC<br><br>X_BD<br><br>Z_BD<br><br>Y_AB<br><br>Y_CD</p></td>
+<td><p><img alt="Vertical.png" src="../../../../_images/checkerboard_vertical.drawio.svg" /></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">X_AC</span></code><br><code class="docutils literal notranslate"><span class="pre">Z_AC</span></code><br><code class="docutils literal notranslate"><span class="pre">X_BD</span></code><br><code class="docutils literal notranslate"><span class="pre">Z_BD</span></code><br><code class="docutils literal notranslate"><span class="pre">Y_AB</span></code><br><code class="docutils literal notranslate"><span class="pre">Y_CD</span></code></p></td>
 </tr>
 </tbody>
 </table>
-<p><strong>Robot Coordinate System</strong> <strong>(RCS)</strong> is assumed to be a right-handed coordinate system and rests on the ground plane.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The RCS is assumed to be a right-handed coordinate system and rests on the ground plane.</p>
+</div>
 <p>All measurements are in meters from the robot coordinate system to the edges of the checkerboard in a Cartesian coordinate system.
 Rotation angle results are given in radiant.</p>
-<p><strong>Measurements for the camera having an offset along the y-axis respective to the RCS:</strong></p>
-<p><font color=blue>(When the cameras are mounted on the sides of AGV)</font></p>
-<p>In this case, placing the checkerboard exactly in front of the AGV may not capture the whole checkerboard which is not desired and leads to calibration failure.</p>
-<p>Therefore place a robot in such a way that the whole checkerboard is captured and also the Y-Axis of the RCS is exactly parallel to the checkerboard. The measurements along Y-Axis won’t be equal and it is totally fine.</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Y_AC != Y_BD != 0.4m
-</pre></div>
-</div>
-<p>The sample scene setup for a camera mounted on the right side of an AGV gives a better understanding of the above statement.</p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Robot Positioning</p></th>
-<th class="head"><p>Image Captured</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><a class="reference internal image-reference" href="../../../../_images/RCS_CBCS.png"><img alt="RCS_CBCS" src="../../../../_images/RCS_CBCS.png" style="width: 400px;" /></a>
-</td>
-<td><a class="reference internal image-reference" href="../../../../_images/bad_view.png"><img alt="bad_view" src="../../../../_images/bad_view.png" style="width: 400px;" /></a>
-</td>
-</tr>
-<tr class="row-odd"><td><a class="reference internal image-reference" href="../../../../_images/good_configuration.png"><img alt="good_con" src="../../../../_images/good_configuration.png" style="width: 400px;" /></a>
-</td>
-<td><a class="reference internal image-reference" href="../../../../_images/correct_view.png"><img alt="corr_view" src="../../../../_images/correct_view.png" style="width: 400px;" /></a>
-</td>
-</tr>
-</tbody>
-</table>
 </section>
-<section id="measurements-for-the-above-scene">
-<h3>Measurements for the above scene<a class="headerlink" href="#measurements-for-the-above-scene" title="Link to this heading"></a></h3>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Geometric Configuration</p></th>
-<th class="head"><p>Description for Y_AC &amp; Y_BD</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><a class="reference internal image-reference" href="../../../../_images/Measurements.png"><img alt="measurements" src="../../../../_images/Measurements.png" style="width: 500px;" /></a>
-</td>
-<td><p>Y_AC and Y_BD are both positive in this case
-because the checkerboard is moved to the right side
-to capture the whole checkerboard in the amplitude/reflectivity image.</p></td>
-</tr>
-</tbody>
-</table>
+<section id="example-front-camera-shifted">
+<h4>Example - front camera, shifted<a class="headerlink" href="#example-front-camera-shifted" title="Link to this heading"></a></h4>
+<p>When the cameras are mounted to the front of the robot but shifted along the Y-axis, the checkerboard might not be in the field of view of the camera if placed exactly in front of the robot.</p>
+<p>Therefore, place a robot in such a way that the whole checkerboard is captured and also the Y-axis of the RCS is exactly parallel to the checkerboard. The measurements along Y-axis won’t be equal and it is totally fine.</p>
+<p>For this example scene, pictured in the image below, the measurements of Y_AC and Y_BD are both positive.
+This is because the checkerboard is moved to the right side to capture the whole checkerboard in the amplitude/reflectivity image.</p>
+<a class="reference internal image-reference" href="../../../../_images/Measurements.png"><img alt="Measurements for a checkerboard shifted to the right" src="../../../../_images/Measurements.png" style="width: 500px;" /></a>
+</section>
 </section>
 </section>
 <section id="run-the-calibration">
 <h2>Run the calibration<a class="headerlink" href="#run-the-calibration" title="Link to this heading"></a></h2>
-<p>In this section, we edit the <code class="docutils literal notranslate"><span class="pre">calib_cam.py</span></code> Python script to fit the user’s configuration. Please read carefully the instructions below and the commends in the script on how to adjust each variable properly.</p>
-<ol class="arabic simple">
-<li><p>Enter the camera configuration</p></li>
-</ol>
-<p>Change the <code class="docutils literal notranslate"><span class="pre">cam_port</span></code>, <code class="docutils literal notranslate"><span class="pre">ip</span></code>, <code class="docutils literal notranslate"><span class="pre">horizontal_mounting</span></code> and <code class="docutils literal notranslate"><span class="pre">upside_down</span></code> values to fit your configuration.</p>
-<ol class="arabic simple" start="2">
-<li><p>Enter the checkerboard dimensions</p></li>
-</ol>
-<p>If you are using the standard checkerboard provided in the introduction, skip this step.
-If you are using a checkerboard of a different size, adjust the <code class="docutils literal notranslate"><span class="pre">frame_size</span></code>, <code class="docutils literal notranslate"><span class="pre">target_width</span></code> and <code class="docutils literal notranslate"><span class="pre">target_height</span></code> accordingly.</p>
-<ol class="arabic simple" start="3">
-<li><p>Enter the measurements for A, B, C and D</p></li>
-</ol>
+<p>In this section, we edit the <code class="docutils literal notranslate"><span class="pre">calib_cam.py</span></code> Python script to fit the user’s configuration. Please read carefully the instructions below and the commands in the script on how to adjust each variable properly.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Each section that need to be edited by the user is marked with the comment <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">EDIT</span> <span class="pre">HERE</span></code></p>
+</div>
+<ol class="arabic">
+<li><p>Change the <code class="docutils literal notranslate"><span class="pre">cam_port</span></code>, <code class="docutils literal notranslate"><span class="pre">ip</span></code>, <code class="docutils literal notranslate"><span class="pre">horizontal_mounting</span></code> and <code class="docutils literal notranslate"><span class="pre">upside_down</span></code> values to fit your configuration.</p></li>
+<li><p>Provide the values of the translation of the camera. These can be extracted from CAD drawings or measured manually. It is possible to run the calibration without these translation values, but the results will be less precise.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fixed_translation</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>Enter the checkerboard dimensions.
+If you are using the standard checkerboard provided in the introduction, skip this step.
+If you are using a checkerboard of a different size, adjust the <code class="docutils literal notranslate"><span class="pre">frame_size</span></code>, <code class="docutils literal notranslate"><span class="pre">target_width</span></code> and <code class="docutils literal notranslate"><span class="pre">target_height</span></code> accordingly.</p></li>
+<li><p>Enter the measurements for A, B, C and D</p>
 <blockquote>
 <div><p>Note: The values below are examples values: please input the values as measured for your setup.</p>
 </div></blockquote>
@@ -319,22 +336,21 @@ If you are using a checkerboard of a different size, adjust the <code class="doc
 </pre></div>
 </div>
 </div></blockquote>
-<ol class="arabic" start="4">
+</li>
 <li><p>Select your preferred data input source (we recommend using the default <code class="docutils literal notranslate"><span class="pre">ifm3dpy</span></code> input):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;ifm3dpy://</span><span class="si">{</span><span class="n">ip</span><span class="si">}</span><span class="s2">/port</span><span class="si">{</span><span class="n">cam_port</span><span class="si">}</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
 </li>
-<li><p>Select the image (reflectivity or amplitude) to use for calibration. By default, we recommend using the amplitude image. Only to switch to the reflectivity image if necessary to reduce the bright spot created by the camera illumination.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="n">image_selection</span> <span class="o">=</span> <span class="s2">&quot;amplitude&quot;</span>
+<li><p>Select the mode to use for the image. The <code class="docutils literal notranslate"><span class="pre">extrinsic_calib</span></code> mode uses ambient light and mitigates possible reflections from the camera. If there is not enough ambient light, switch to <code class="docutils literal notranslate"><span class="pre">standard_range2m</span></code> which uses infrared illumination.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mode</span> <span class="o">=</span> <span class="s2">&quot;extrinsic_calib&quot;</span>
+<span class="c1"># mode = &quot;standard_range2m&quot;</span>
 </pre></div>
 </div>
 </li>
-<li><p>Run the script and check the results. If the calibration is successful then the plots will be displayed as shown in below example figure.</p></li>
-</ol>
+<li><p>If the calibration succeeded, then the calibration values are written to the O3R system.</p>
 <a class="reference internal image-reference" href="../../../../_images/successful_calibration.png"><img alt="successful_calibration.png" class="align-center" src="../../../../_images/successful_calibration.png" style="width: 800px;" /></a>
-<ol class="arabic simple" start="7">
-<li><p>If the Calibration succeeded then the calibration values are written to the O3R system.</p></li>
+</li>
 <li><p>Assess the plausibility of the generated values: open a viewer of your choice (we recommend the Vision Assistant) and verify that:</p>
 <ul class="simple">
 <li><p>the generated calibration values are applied,</p></li>
