@@ -73,6 +73,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Technology/index_hardware_interfaces.html">Technology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index_ods.html">ODS</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Mounting/mounting.html">Mounting</a></li>
@@ -149,13 +150,6 @@
 
 <span class="kn">from</span> <span class="nn">ods_queue</span> <span class="kn">import</span> <span class="n">ODSDataQueue</span>
 
-
-<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
-    <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2">:</span><span class="si">%(filename)-10s</span><span class="s2">:</span><span class="si">%(levelname)-8s</span><span class="s2">:</span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">,</span>
-    <span class="n">datefmt</span><span class="o">=</span><span class="s2">&quot;%y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-
-
 <span class="k">class</span> <span class="nc">ODSStream</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Provides functions showcasing how to receive data from the O3R platform.&quot;&quot;&quot;</span>
 
@@ -231,10 +225,16 @@
         <span class="k">raise</span> <span class="ne">TimeoutError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">IP</span> <span class="o">=</span> <span class="s2">&quot;192.168.0.69&quot;</span>
-    <span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">(</span><span class="n">IP</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">ip</span><span class="p">,</span> <span class="n">calib_cfg_file</span><span class="p">,</span> <span class="n">ods_cfg_file</span><span class="p">):</span>
+    <span class="c1"># Initializing the basic objects</span>
+    <span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span>
 
+    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+        <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2">:</span><span class="si">%(filename)-10s</span><span class="s2">:</span><span class="si">%(levelname)-8s</span><span class="s2">:</span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">datefmt</span><span class="o">=</span><span class="s2">&quot;%y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
     <span class="c1">###################################</span>
     <span class="c1"># Performing a reset to make sure</span>
     <span class="c1"># we start with an empty configuration</span>
@@ -244,11 +244,14 @@
     <span class="c1"># We are expecting an app in app0.</span>
     <span class="c1"># This will fail as no ODS application exists on the device.</span>
     <span class="k">try</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Attempting to start the ODS stream without an ODS application.&quot;</span><span class="p">)</span>
         <span class="n">ods_stream</span> <span class="o">=</span> <span class="n">ODSStream</span><span class="p">(</span>
             <span class="n">o3r</span><span class="p">,</span> <span class="s2">&quot;app0&quot;</span><span class="p">,</span> <span class="n">stream_zones</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stream_occupancy_grid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">500</span>
         <span class="p">)</span>
     <span class="c1"># Failing silently to continue with the example</span>
     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Failed to start the ODS stream without an ODS application.</span><span class="se">\n</span><span class="s2">&quot;</span>
+                                    <span class="s2">&quot;Continuing with the example...&quot;</span><span class="p">)</span>
         <span class="k">pass</span>
 
     <span class="c1">###################################</span>
@@ -257,7 +260,13 @@
     <span class="c1"># port 2. Change the config file if</span>
     <span class="c1"># needed.</span>
     <span class="c1">###################################</span>
-    <span class="kn">from</span> <span class="nn">ods_config</span> <span class="kn">import</span> <span class="n">load_config_from_file</span><span class="p">,</span> <span class="n">validate_json</span>
+    <span class="k">try</span><span class="p">:</span> 
+        <span class="kn">from</span> <span class="nn">ovp8xxexamples.ods.ods_config</span> <span class="kn">import</span> <span class="n">load_config_from_file</span><span class="p">,</span> <span class="n">validate_json</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">ods_config</span> <span class="kn">import</span> <span class="n">load_config_from_file</span><span class="p">,</span> <span class="n">validate_json</span>
+        <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;Unable to import the configuration functions: we cannot run this example without them.&quot;</span><span class="p">)</span>
 
     <span class="c1"># Assuming a camera facing forward, label up,</span>
     <span class="c1"># 60 cm above the floor.</span>
@@ -266,15 +275,16 @@
     <span class="c1"># in one file if necessary.</span>
     <span class="n">schema</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get_schema</span><span class="p">()</span>
     <span class="n">config_snippet</span> <span class="o">=</span> <span class="n">validate_json</span><span class="p">(</span>
-        <span class="n">schema</span><span class="p">,</span> <span class="n">load_config_from_file</span><span class="p">(</span><span class="s2">&quot;configs/extrinsic_one_head.json&quot;</span><span class="p">))</span>
+        <span class="n">schema</span><span class="p">,</span> <span class="n">load_config_from_file</span><span class="p">(</span><span class="n">calib_cfg_file</span><span class="p">)</span>
+    <span class="p">)</span>
     <span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">config_snippet</span><span class="p">)</span>
     <span class="n">config_snippet</span> <span class="o">=</span> <span class="n">validate_json</span><span class="p">(</span>
-        <span class="n">schema</span><span class="p">,</span> <span class="n">load_config_from_file</span><span class="p">(</span><span class="s2">&quot;configs/ods_one_head_config.json&quot;</span><span class="p">))</span>
+        <span class="n">schema</span><span class="p">,</span> <span class="n">load_config_from_file</span><span class="p">(</span><span class="n">ods_cfg_file</span><span class="p">)</span>
+    <span class="p">)</span>
     <span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">config_snippet</span><span class="p">)</span>
     <span class="c1"># We did not start the application when configuring it,</span>
     <span class="c1"># so we need to start it now (change state to &quot;RUN&quot;)</span>
-    <span class="n">config_snippet</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="p">{</span><span class="s2">&quot;applications&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;instances&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;app0&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;RUN&quot;</span><span class="p">}}}})</span>
+    <span class="n">config_snippet</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;applications&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;instances&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;app0&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;RUN&quot;</span><span class="p">}}}}</span>
     <span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">config_snippet</span><span class="p">)</span>
 
     <span class="c1">###################################</span>
@@ -282,8 +292,7 @@
     <span class="c1"># zone and occupancy grid output</span>
     <span class="c1"># Expect an app in &quot;app0&quot;.</span>
     <span class="c1">###################################</span>
-    <span class="n">ods_stream</span> <span class="o">=</span> <span class="n">ODSStream</span><span class="p">(</span><span class="n">o3r</span><span class="p">,</span> <span class="s2">&quot;app0&quot;</span><span class="p">,</span> <span class="n">stream_zones</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                           <span class="n">stream_occupancy_grid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">ods_stream</span> <span class="o">=</span> <span class="n">ODSStream</span><span class="p">(</span><span class="n">o3r</span><span class="p">,</span> <span class="s2">&quot;app0&quot;</span><span class="p">,</span> <span class="n">stream_zones</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stream_occupancy_grid</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">ods_stream</span><span class="o">.</span><span class="n">start_ods_stream</span><span class="p">()</span>
 
     <span class="n">zones</span> <span class="o">=</span> <span class="n">ods_stream</span><span class="o">.</span><span class="n">get_zones</span><span class="p">()</span>
@@ -292,10 +301,8 @@
     <span class="n">ods_stream</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Zones info timestamp: </span><span class="si">{</span><span class="n">zones</span><span class="o">.</span><span class="n">timestamp_ns</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="n">occupancy_grid</span> <span class="o">=</span> <span class="n">ods_stream</span><span class="o">.</span><span class="n">get_occupancy_grid</span><span class="p">()</span>
-    <span class="n">ods_stream</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-        <span class="sa">f</span><span class="s2">&quot;Occupancy grid (first row): </span><span class="si">{</span><span class="n">occupancy_grid</span><span class="o">.</span><span class="n">image</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">ods_stream</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-        <span class="sa">f</span><span class="s2">&quot;Occupancy grid timestamp: </span><span class="si">{</span><span class="n">occupancy_grid</span><span class="o">.</span><span class="n">timestamp_ns</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">ods_stream</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Occupancy grid (first row):</span><span class="se">\n</span><span class="s2"> </span><span class="si">{</span><span class="n">occupancy_grid</span><span class="o">.</span><span class="n">image</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">ods_stream</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Occupancy grid timestamp: </span><span class="si">{</span><span class="n">occupancy_grid</span><span class="o">.</span><span class="n">timestamp_ns</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="n">ods_stream</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
         <span class="sa">f</span><span class="s2">&quot;Center of cell to user transformation matrix: </span><span class="si">{</span><span class="n">occupancy_grid</span><span class="o">.</span><span class="n">transform_cell_center_to_user</span><span class="si">}</span><span class="s2">&quot;</span>
     <span class="p">)</span>
@@ -305,7 +312,22 @@
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">main</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># If the example python package was build, import the configuration</span>
+        <span class="kn">from</span> <span class="nn">ovp8xxexamples</span> <span class="kn">import</span> <span class="n">config</span>
+        <span class="n">IP</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">IP</span>
+        <span class="n">CALIB_CFG_FILE</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">CALIB_CFG_FILE</span>
+        <span class="n">ODS_CFG_FILE</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">ODS_CFG_FILE</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="c1"># Otherwise, use default values</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">&quot;Unable to import the configuration.</span><span class="se">\n</span><span class="s2">Please run &#39;pip install -e .&#39; from the python root directory&quot;</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Defaulting to the default configuration.&quot;</span><span class="p">)</span>
+        <span class="n">IP</span> <span class="o">=</span> <span class="s2">&quot;192.168.0.69&quot;</span>
+        <span class="n">CALIB_CFG_FILE</span> <span class="o">=</span> <span class="s2">&quot;ods/configs/extrinsic_one_head.json&quot;</span>
+        <span class="n">ODS_CFG_FILE</span> <span class="o">=</span> <span class="s2">&quot;ods/configs/ods_one_head_config.json&quot;</span>
+    <span class="n">main</span><span class="p">(</span><span class="n">ip</span><span class="o">=</span><span class="n">IP</span><span class="p">,</span> <span class="n">calib_cfg_file</span><span class="o">=</span><span class="n">CALIB_CFG_FILE</span><span class="p">,</span> <span class="n">ods_cfg_file</span><span class="o">=</span><span class="n">ODS_CFG_FILE</span><span class="p">)</span>
 
 <span class="c1"># %%</span>
 </pre></div>
@@ -317,7 +339,6 @@
 
 <span class="kn">import</span> <span class="nn">collections</span>
 <span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">ifm3dpy.framegrabber</span> <span class="kn">import</span> <span class="n">buffer_id</span>
 <span class="kn">from</span> <span class="nn">ifm3dpy.deserialize</span> <span class="kn">import</span> <span class="n">ODSInfoV1</span><span class="p">,</span> <span class="n">ODSOccupancyGridV1</span>
 
@@ -334,8 +355,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_buffer_length</span> <span class="o">=</span> <span class="n">buffer_length</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">occupancy_grid_queue</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">deque</span><span class="p">(</span>
-            <span class="n">maxlen</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_buffer_length</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">occupancy_grid_queue</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">deque</span><span class="p">(</span><span class="n">maxlen</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_buffer_length</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ods_info_queue</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">deque</span><span class="p">(</span><span class="n">maxlen</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_buffer_length</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">add_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -348,8 +368,7 @@
             <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Added occ grid&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">frame</span><span class="o">.</span><span class="n">has_buffer</span><span class="p">(</span><span class="n">buffer_id</span><span class="o">.</span><span class="n">O3R_ODS_INFO</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">ods_info_queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                <span class="n">frame</span><span class="o">.</span><span class="n">get_buffer</span><span class="p">(</span><span class="n">buffer_id</span><span class="o">.</span><span class="n">O3R_ODS_INFO</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ods_info_queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">get_buffer</span><span class="p">(</span><span class="n">buffer_id</span><span class="o">.</span><span class="n">O3R_ODS_INFO</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Added zone&quot;</span><span class="p">)</span>
 
     <span class="nd">@property</span>

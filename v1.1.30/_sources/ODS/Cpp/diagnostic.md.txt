@@ -1,9 +1,9 @@
 # How to monitor the diagnostic
 
-:::{literalinclude} Examples/diagnostic.cpp
+:::{literalinclude} /ifm3d-examples/ovp8xx/cpp/core/diagnostic/diagnostic_main.cpp
 :language: cpp
 :::
 
-:::{literalinclude} Examples/diagnostic.h
+:::{literalinclude} /ifm3d-examples/ovp8xx/cpp/core/diagnostic/diagnostic.hpp
 :language: cpp
 :::

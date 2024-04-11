@@ -5,19 +5,23 @@
 We provide a couple of the examples as web pages for you to browse, but we recommend getting the full example folder from git.
 
 The examples are provided as part of the documentation. You can clone them with:
-```shell
-git clone https://github.com/ifm/documentation.git
-```
 
-The examples for ODS can be found in the ODS folder, in /Python for the Python examples.
+```shell
+git clone --branch v1.0.0 https://github.com/ifm/ifm3d-examples.git
+```
+:::{note}
+Refer to [the compatibility matrix](https://github.com/ifm/ifm3d-examples/tree/main?tab=readme-ov-file#compatibility) for the tag corresponding to your preferred version of the API.
+:::
+
+The examples for ODS can be found in the `ods` folder, under `/ovp8xx/python/ovp8xxexamples` for the Python examples.
 
 ### Hardware setup
 For these examples, we expect the following setup:
-- The VPU is of type M04239 (ODS-compatible VPU),
+- The VPU is of type OVP801 or M04239 (ODS-compatible VPU),
 - Two cameras heads are connected to the VPU, with the 2D ports connected to ports 0 and 1 and the 3D ports to port 2 and 3. Note we only use two cameras for the full example `ods_demo.py`. The individual tutorials only rely on one camera, 3D connected to port 2. 
 - In the full `ods_demo.py` example, we set a calibration for the cameras expecting port2 to face forward and port 3 to face backwards, both cameras mounted at 60 cm high. These are artificial calibrations for demonstration purposes. If the cameras are not mounted this way, the examples will still run--just keep in mind that the generated ODS values will not correspond to your physical setup.
 
-You can use any other configuration to use these examples, but you will need to adjust the configuration files.
+You can use any other configuration to use these examples, but you will need to adjust the configuration files. The default configuration files can be found with the examples [in the `configs` folder](https://github.com/ifm/ifm3d-examples/tree/main/ovp8xx/python/ovp8xxexamples/ods/configs).
 
 ## Building blocks
 The example files provided in this mini-library are intended to be used as teaching resources and as building block in more complex applications. 
@@ -37,5 +41,3 @@ In the `ods_demo.py` script, we show how all these pieces can be used together t
 
 The scripts mentioned above do not take into account all that is necessary for a production application to function long term. 
 We de not handle deployment details, for instance using docker, or specific error handling strategies, like turning off cameras if overheating or restarting the data stream if it was interrupted. 
-
-<!-- TODOO: We do provide [here an example of a deployed application](TODOINSERTLINK) that can be accessed and used as inspiration or as is. -->

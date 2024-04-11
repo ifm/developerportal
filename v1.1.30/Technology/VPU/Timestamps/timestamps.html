@@ -100,6 +100,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../ODS/index_ods.html">ODS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../FAQ/FAQ.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
@@ -168,108 +169,133 @@ It also shows timestamps when NTP synchronization is enabled: this relies on hav
 <span class="c1"># 3D camera in port 2</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">from</span> <span class="nn">decimal</span> <span class="kn">import</span> <span class="n">Decimal</span>
 
 <span class="kn">from</span> <span class="nn">ifm3dpy.device</span> <span class="kn">import</span> <span class="n">O3R</span>
 <span class="kn">from</span> <span class="nn">ifm3dpy.framegrabber</span> <span class="kn">import</span> <span class="n">FrameGrabber</span><span class="p">,</span> <span class="n">buffer_id</span>
 <span class="kn">from</span> <span class="nn">ifm3dpy.deserialize</span> <span class="kn">import</span> <span class="n">TOFInfoV4</span><span class="p">,</span> <span class="n">RGBInfoV1</span>
 
-<span class="c1"># IP configuration</span>
-<span class="n">LOCAL_IP</span> <span class="o">=</span> <span class="s2">&quot;192.168.0.111&quot;</span>  <span class="c1"># Used for NTP synchronization</span>
-<span class="n">O3R_IP</span> <span class="o">=</span> <span class="s2">&quot;192.168.0.69&quot;</span>
-<span class="c1"># Change port numbers here for a different setup</span>
-<span class="n">PORT_2D</span> <span class="o">=</span> <span class="s2">&quot;port0&quot;</span>
-<span class="n">PORT_3D</span> <span class="o">=</span> <span class="s2">&quot;port2&quot;</span>
 
-<span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">(</span><span class="n">O3R_IP</span><span class="p">)</span>
-<span class="n">PCIC_PORT_2D</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;/ports/</span><span class="si">{</span><span class="n">PORT_2D</span><span class="si">}</span><span class="s2">/data/pcicTCPPort&quot;</span><span class="p">])[</span><span class="s2">&quot;ports&quot;</span><span class="p">][</span><span class="n">PORT_2D</span><span class="p">][</span>
-    <span class="s2">&quot;data&quot;</span>
-<span class="p">][</span><span class="s2">&quot;pcicTCPPort&quot;</span><span class="p">]</span>
-<span class="n">PCIC_PORT_3D</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;/ports/</span><span class="si">{</span><span class="n">PORT_3D</span><span class="si">}</span><span class="s2">/data/pcicTCPPort&quot;</span><span class="p">])[</span><span class="s2">&quot;ports&quot;</span><span class="p">][</span><span class="n">PORT_3D</span><span class="p">][</span>
-    <span class="s2">&quot;data&quot;</span>
-<span class="p">][</span><span class="s2">&quot;pcicTCPPort&quot;</span><span class="p">]</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">local_ip</span><span class="p">,</span> <span class="n">o3r_ip</span><span class="p">,</span> <span class="n">port_2d</span><span class="p">,</span> <span class="n">port_3d</span><span class="p">):</span>
+    <span class="n">PORT_2D</span> <span class="o">=</span> <span class="n">port_2d</span>
+    <span class="n">PORT_3D</span> <span class="o">=</span> <span class="n">port_3d</span>
+    <span class="n">O3R_IP</span> <span class="o">=</span> <span class="n">o3r_ip</span>
+    <span class="n">LOCAL_IP</span> <span class="o">=</span> <span class="n">local_ip</span>
+    <span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">(</span><span class="n">O3R_IP</span><span class="p">)</span>
+    <span class="n">PCIC_PORT_2D</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;/ports/</span><span class="si">{</span><span class="n">PORT_2D</span><span class="si">}</span><span class="s2">/data/pcicTCPPort&quot;</span><span class="p">])[</span><span class="s2">&quot;ports&quot;</span><span class="p">][</span><span class="n">PORT_2D</span><span class="p">][</span>
+        <span class="s2">&quot;data&quot;</span>
+    <span class="p">][</span><span class="s2">&quot;pcicTCPPort&quot;</span><span class="p">]</span>
+    <span class="n">PCIC_PORT_3D</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;/ports/</span><span class="si">{</span><span class="n">PORT_3D</span><span class="si">}</span><span class="s2">/data/pcicTCPPort&quot;</span><span class="p">])[</span><span class="s2">&quot;ports&quot;</span><span class="p">][</span><span class="n">PORT_3D</span><span class="p">][</span>
+        <span class="s2">&quot;data&quot;</span>
+    <span class="p">][</span><span class="s2">&quot;pcicTCPPort&quot;</span><span class="p">]</span>
 
-<span class="n">fg_2d</span> <span class="o">=</span> <span class="n">FrameGrabber</span><span class="p">(</span><span class="n">o3r</span><span class="p">,</span> <span class="n">pcic_port</span><span class="o">=</span><span class="n">PCIC_PORT_2D</span><span class="p">)</span>
-<span class="n">fg_3d</span> <span class="o">=</span> <span class="n">FrameGrabber</span><span class="p">(</span><span class="n">o3r</span><span class="p">,</span> <span class="n">pcic_port</span><span class="o">=</span><span class="n">PCIC_PORT_3D</span><span class="p">)</span>
+    <span class="n">fg_2d</span> <span class="o">=</span> <span class="n">FrameGrabber</span><span class="p">(</span><span class="n">o3r</span><span class="p">,</span> <span class="n">pcic_port</span><span class="o">=</span><span class="n">PCIC_PORT_2D</span><span class="p">)</span>
+    <span class="n">fg_3d</span> <span class="o">=</span> <span class="n">FrameGrabber</span><span class="p">(</span><span class="n">o3r</span><span class="p">,</span> <span class="n">pcic_port</span><span class="o">=</span><span class="n">PCIC_PORT_3D</span><span class="p">)</span>
 
-<span class="n">epoch</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcfromtimestamp</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">astimezone</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span>
-<span class="n">local_tz</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span><span class="o">.</span><span class="n">astimezone</span><span class="p">()</span><span class="o">.</span><span class="n">tzinfo</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All the timestamps are displayed in nanoseconds since epoch.&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Epoch date in UTC: </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Local time zone: </span><span class="si">{</span><span class="n">local_tz</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;/////////////////////////////////&quot;</span><span class="p">)</span>
-<span class="c1">####################</span>
-<span class="c1"># For the 2D camera</span>
-<span class="c1">####################</span>
-<span class="n">fg_2d</span><span class="o">.</span><span class="n">start</span><span class="p">([</span><span class="n">buffer_id</span><span class="o">.</span><span class="n">RGB_INFO</span><span class="p">])</span>
-<span class="p">[</span><span class="n">ok</span><span class="p">,</span> <span class="n">frame</span><span class="p">]</span> <span class="o">=</span> <span class="n">fg_2d</span><span class="o">.</span><span class="n">wait_for_frame</span><span class="p">()</span><span class="o">.</span><span class="n">wait_for</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="n">epoch</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcfromtimestamp</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">local_tz</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span><span class="o">.</span><span class="n">astimezone</span><span class="p">()</span><span class="o">.</span><span class="n">tzinfo</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;All the timestamps are displayed in nanoseconds since epoch.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Epoch date in UTC: </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Local time zone: </span><span class="si">{</span><span class="n">local_tz</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;/////////////////////////////////&quot;</span><span class="p">)</span>
+    <span class="c1">####################</span>
+    <span class="c1"># For the 2D camera</span>
+    <span class="c1">####################</span>
+    <span class="n">fg_2d</span><span class="o">.</span><span class="n">start</span><span class="p">([</span><span class="n">buffer_id</span><span class="o">.</span><span class="n">RGB_INFO</span><span class="p">])</span>
+    <span class="p">[</span><span class="n">ok</span><span class="p">,</span> <span class="n">frame</span><span class="p">]</span> <span class="o">=</span> <span class="n">fg_2d</span><span class="o">.</span><span class="n">wait_for_frame</span><span class="p">()</span><span class="o">.</span><span class="n">wait_for</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="ow">not</span> <span class="n">ok</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Timeout while waiting for a RGB_INFO.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">ok</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Timeout while waiting for a RGB_INFO.&quot;</span><span class="p">)</span>
 
-<span class="n">fg_2d</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+    <span class="n">fg_2d</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
 
-<span class="c1"># Get the acquisition timestamps</span>
-<span class="n">rgb_info</span> <span class="o">=</span> <span class="n">RGBInfoV1</span><span class="p">()</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">get_buffer</span><span class="p">(</span><span class="n">buffer_id</span><span class="o">.</span><span class="n">RGB_INFO</span><span class="p">))</span>
-<span class="c1"># Convert frame datetime to timestamp since epoch</span>
-<span class="n">frame_ts</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">timestamps</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span>
-<span class="c1"># Display results</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;2D acquisition timestamp:           </span><span class="si">{</span><span class="n">rgb_info</span><span class="o">.</span><span class="n">timestamp_ns</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;2D receive timestamp:               </span><span class="si">{</span><span class="n">frame_ts</span><span class="o">*</span><span class="mf">1e9</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;Acquisition to reception latency:   </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">rgb_info</span><span class="o">.</span><span class="n">timestamp_ns</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">frame_ts</span><span class="o">*</span><span class="mf">1e9</span><span class="p">)</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="p">)</span>
+    <span class="c1"># Get the acquisition timestamps</span>
+    <span class="n">rgb_info</span> <span class="o">=</span> <span class="n">RGBInfoV1</span><span class="p">()</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">get_buffer</span><span class="p">(</span><span class="n">buffer_id</span><span class="o">.</span><span class="n">RGB_INFO</span><span class="p">))</span>
+    <span class="c1"># Convert frame datetime to timestamp since epoch</span>
+    <span class="n">frame_ts</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">timestamps</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span>
+    <span class="c1"># Display results</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;2D acquisition timestamp:           </span><span class="si">{</span><span class="n">rgb_info</span><span class="o">.</span><span class="n">timestamp_ns</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;2D receive timestamp:               </span><span class="si">{</span><span class="n">frame_ts</span><span class="o">*</span><span class="mf">1e9</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Acquisition to reception latency:   </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">rgb_info</span><span class="o">.</span><span class="n">timestamp_ns</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="n">frame_ts</span><span class="o">*</span><span class="mf">1e9</span><span class="p">))</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;/////////////////////////////////&quot;</span><span class="p">)</span>
+    <span class="c1">####################</span>
+    <span class="c1"># For the 3D camera</span>
+    <span class="c1">####################</span>
+    <span class="n">fg_3d</span><span class="o">.</span><span class="n">start</span><span class="p">([</span><span class="n">buffer_id</span><span class="o">.</span><span class="n">TOF_INFO</span><span class="p">])</span>
+    <span class="p">[</span><span class="n">ok</span><span class="p">,</span> <span class="n">frame</span><span class="p">]</span> <span class="o">=</span> <span class="n">fg_3d</span><span class="o">.</span><span class="n">wait_for_frame</span><span class="p">()</span><span class="o">.</span><span class="n">wait_for</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;/////////////////////////////////&quot;</span><span class="p">)</span>
-<span class="c1">####################</span>
-<span class="c1"># For the 3D camera</span>
-<span class="c1">####################</span>
-<span class="n">fg_3d</span><span class="o">.</span><span class="n">start</span><span class="p">([</span><span class="n">buffer_id</span><span class="o">.</span><span class="n">TOF_INFO</span><span class="p">])</span>
-<span class="p">[</span><span class="n">ok</span><span class="p">,</span> <span class="n">frame</span><span class="p">]</span> <span class="o">=</span> <span class="n">fg_3d</span><span class="o">.</span><span class="n">wait_for_frame</span><span class="p">()</span><span class="o">.</span><span class="n">wait_for</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">ok</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Timeout while waiting for a TOF_INFO.&quot;</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="ow">not</span> <span class="n">ok</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Timeout while waiting for a TOF_INFO.&quot;</span><span class="p">)</span>
+    <span class="n">fg_3d</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+    <span class="n">tof_info</span> <span class="o">=</span> <span class="n">TOFInfoV4</span><span class="p">()</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">get_buffer</span><span class="p">(</span><span class="n">buffer_id</span><span class="o">.</span><span class="n">TOF_INFO</span><span class="p">))</span>
+    <span class="n">frame_ts</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">timestamps</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;3D acquisition timestamps:                      </span><span class="si">{</span><span class="n">tof_info</span><span class="o">.</span><span class="n">exposure_timestamps_ns</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;3D reception timestamps:                        </span><span class="si">{</span><span class="n">frame_ts</span><span class="o">*</span><span class="mf">1e9</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Last exposure acquisition to reception latency: </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">tof_info</span><span class="o">.</span><span class="n">exposure_timestamps_ns</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="n">frame_ts</span><span class="o">*</span><span class="mf">1e9</span><span class="p">))</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
 
-<span class="n">fg_3d</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
-<span class="n">tof_info</span> <span class="o">=</span> <span class="n">TOFInfoV4</span><span class="p">()</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">get_buffer</span><span class="p">(</span><span class="n">buffer_id</span><span class="o">.</span><span class="n">TOF_INFO</span><span class="p">))</span>
-<span class="n">frame_ts</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">timestamps</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;3D acquisition timestamps:                      </span><span class="si">{</span><span class="n">tof_info</span><span class="o">.</span><span class="n">exposure_timestamps_ns</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;3D reception timestamps:                        </span><span class="si">{</span><span class="n">frame_ts</span><span class="o">*</span><span class="mf">1e9</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;Last exposure acquisition to reception latency: </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">tof_info</span><span class="o">.</span><span class="n">exposure_timestamps_ns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">frame_ts</span><span class="o">*</span><span class="mf">1e9</span><span class="p">)</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;/////////////////////////////////&quot;</span><span class="p">)</span>
+    <span class="c1">##########################################</span>
+    <span class="c1"># Inspecting timestamps with sNTP enabled</span>
+    <span class="c1">##########################################</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Enabling NTP synchronization on the device.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Make sure you activate the NTP server on your local machine.&quot;</span><span class="p">)</span>
+    <span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">({</span><span class="s2">&quot;device&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;clock&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;sntp&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;availableServers&quot;</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">LOCAL_IP</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]}}}})</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">curr_local_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span> <span class="o">*</span> <span class="mf">1e9</span>
+    <span class="n">curr_time_o3r</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/clock/currentTime&quot;</span><span class="p">])[</span><span class="s2">&quot;device&quot;</span><span class="p">][</span><span class="s2">&quot;clock&quot;</span><span class="p">][</span>
+        <span class="s2">&quot;currentTime&quot;</span>
+    <span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Current local timestamp:    </span><span class="si">{</span><span class="n">curr_local_time</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Current time on device:     </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">curr_time_o3r</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;/////////////////////////////////&quot;</span><span class="p">)</span>
-<span class="c1">##########################################</span>
-<span class="c1"># Inspecting timestamps with sNTP enabled</span>
-<span class="c1">##########################################</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Enabling NTP synchronization on the device.&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Make sure you activate the NTP server on your local machine.&quot;</span><span class="p">)</span>
-<span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">({</span><span class="s2">&quot;device&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;clock&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;sntp&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;availableServers&quot;</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">LOCAL_IP</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]}}}})</span>
-<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">curr_local_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span> <span class="o">*</span> <span class="mf">1e9</span>
-<span class="n">curr_time_o3r</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/clock/currentTime&quot;</span><span class="p">])[</span><span class="s2">&quot;device&quot;</span><span class="p">][</span><span class="s2">&quot;clock&quot;</span><span class="p">][</span><span class="s2">&quot;currentTime&quot;</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Current local timestamp:    </span><span class="si">{</span><span class="n">curr_local_time</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Current time on device:     </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">curr_time_o3r</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">fg_3d</span><span class="o">.</span><span class="n">start</span><span class="p">([</span><span class="n">buffer_id</span><span class="o">.</span><span class="n">TOF_INFO</span><span class="p">])</span>
+    <span class="p">[</span><span class="n">ok</span><span class="p">,</span> <span class="n">frame</span><span class="p">]</span> <span class="o">=</span> <span class="n">fg_3d</span><span class="o">.</span><span class="n">wait_for_frame</span><span class="p">()</span><span class="o">.</span><span class="n">wait_for</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
 
-<span class="n">fg_3d</span><span class="o">.</span><span class="n">start</span><span class="p">([</span><span class="n">buffer_id</span><span class="o">.</span><span class="n">TOF_INFO</span><span class="p">])</span>
-<span class="p">[</span><span class="n">ok</span><span class="p">,</span> <span class="n">frame</span><span class="p">]</span> <span class="o">=</span> <span class="n">fg_3d</span><span class="o">.</span><span class="n">wait_for_frame</span><span class="p">()</span><span class="o">.</span><span class="n">wait_for</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">ok</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Timeout while waiting for a TOF_INFO.&quot;</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="ow">not</span> <span class="n">ok</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Timeout while waiting for a TOF_INFO.&quot;</span><span class="p">)</span>
+    <span class="n">fg_3d</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
 
-<span class="n">fg_3d</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+    <span class="n">tof_info</span> <span class="o">=</span> <span class="n">TOFInfoV4</span><span class="p">()</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">get_buffer</span><span class="p">(</span><span class="n">buffer_id</span><span class="o">.</span><span class="n">TOF_INFO</span><span class="p">))</span>
+    <span class="n">frame_ts</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">timestamps</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;3D acquisition timestamps (with sNTP):          </span><span class="si">{</span><span class="n">tof_info</span><span class="o">.</span><span class="n">exposure_timestamps_ns</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;3D reception timestamps (with sNTP):            </span><span class="si">{</span><span class="n">frame_ts</span><span class="o">*</span><span class="mf">1e9</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Last exposure acquisition to reception latency: </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">tof_info</span><span class="o">.</span><span class="n">exposure_timestamps_ns</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="n">frame_ts</span><span class="o">*</span><span class="mf">1e9</span><span class="p">))</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
 
-<span class="n">tof_info</span> <span class="o">=</span> <span class="n">TOFInfoV4</span><span class="p">()</span><span class="o">.</span><span class="n">deserialize</span><span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">get_buffer</span><span class="p">(</span><span class="n">buffer_id</span><span class="o">.</span><span class="n">TOF_INFO</span><span class="p">))</span>
-<span class="n">frame_ts</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">timestamps</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;3D acquisition timestamps (with sNTP):          </span><span class="si">{</span><span class="n">tof_info</span><span class="o">.</span><span class="n">exposure_timestamps_ns</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;3D reception timestamps (with sNTP):            </span><span class="si">{</span><span class="n">frame_ts</span><span class="o">*</span><span class="mf">1e9</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;Last exposure acquisition to reception latency: </span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">tof_info</span><span class="o">.</span><span class="n">exposure_timestamps_ns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">frame_ts</span><span class="o">*</span><span class="mf">1e9</span><span class="p">)</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># If the example python package was build, import the configuration</span>
+        <span class="kn">from</span> <span class="nn">ovp8xxexamples</span> <span class="kn">import</span> <span class="n">config</span>
+
+        <span class="n">O3R_IP</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">IP</span>
+        <span class="n">LOCAL_IP</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">LOCAL_IP</span>
+        <span class="n">PORT_2D</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">PORT_2D</span>
+        <span class="n">PORT_3D</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">PORT_3D</span>
+
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="c1"># Otherwise, use default values</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">&quot;Unable to import the configuration.</span><span class="se">\n</span><span class="s2">Please run &#39;pip install -e .&#39; from the python root directory&quot;</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Defaulting to the default configuration.&quot;</span><span class="p">)</span>
+        <span class="n">O3R_IP</span> <span class="o">=</span> <span class="s2">&quot;192.168.0.69&quot;</span>
+        <span class="n">LOCAL_IP</span> <span class="o">=</span> <span class="s2">&quot;192.168.0.111&quot;</span>
+        <span class="n">PORT_2D</span> <span class="o">=</span> <span class="s2">&quot;port0&quot;</span>
+        <span class="n">PORT_3D</span> <span class="o">=</span> <span class="s2">&quot;port2&quot;</span>
+
+    <span class="n">main</span><span class="p">(</span><span class="n">local_ip</span><span class="o">=</span><span class="n">LOCAL_IP</span><span class="p">,</span> <span class="n">o3r_ip</span><span class="o">=</span><span class="n">O3R_IP</span><span class="p">,</span> <span class="n">port_2d</span><span class="o">=</span><span class="n">PORT_2D</span><span class="p">,</span> <span class="n">port_3d</span><span class="o">=</span><span class="n">PORT_3D</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Expected output:</p>

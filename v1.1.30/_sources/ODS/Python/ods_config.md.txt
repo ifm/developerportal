@@ -4,7 +4,7 @@
 
 The configuration example uses the following `JSON` for a simple configuration. This configuration expects at least one Head (3D imager) at `port 2`.
 
-:::{literalinclude} examples/configs/ods_one_head_config.json
+:::{literalinclude} /ifm3d-examples/ovp8xx/python/ovp8xxexamples/ods/configs/ods_one_head_config.json
 :language: json
 :::
 
@@ -12,7 +12,8 @@ The configuration example uses the following `JSON` for a simple configuration. 
 `port6` is always part of the "ports" configuration. It refers to the `IMU` and is needed for the ODS algorithm to work properly.
 :::
 ## The configuration example
-:::{literalinclude} examples/ods_config.py
+
+:::{literalinclude} /ifm3d-examples/ovp8xx/python/ovp8xxexamples/ods/ods_config.py
 :language: python
 :::
 

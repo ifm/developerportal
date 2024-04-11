@@ -1,8 +1,9 @@
 # How to stream data
-:::{literalinclude} examples/ods_stream.py
+
+:::{literalinclude} /ifm3d-examples/ovp8xx/python/ovp8xxexamples/ods/ods_stream.py
 :language: python
 :::
 
-:::{literalinclude} examples/ods_queue.py
+:::{literalinclude} /ifm3d-examples/ovp8xx/python/ovp8xxexamples/ods/ods_queue.py
 :language: python
 :::

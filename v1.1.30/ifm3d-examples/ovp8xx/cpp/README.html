@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>C++ examples &mdash; O3R  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=28a392ea" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script> -->
+     
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            O3R
+          </a>
+              <div class="version">
+                v1.1.30
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">C++ examples</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/ifm3d-examples/ovp8xx/cpp/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="c-examples">
+<h1>C++ examples<a class="headerlink" href="#c-examples" title="Link to this heading"></a></h1>
+<section id="pre-requisites">
+<h2>Pre-requisites<a class="headerlink" href="#pre-requisites" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>The <a class="reference external" href="https://api.ifm3d.com/stable/content/installation_instructions/install_binary_package_index.html">ifm3d library &gt;= v1.2.6</a>,</p></li>
+<li><p>Optional:</p>
+<ul>
+<li><p>The <a class="reference external" href="https://github.com/pboettch/json-schema-validator"><code class="docutils literal notranslate"><span class="pre">json-schema-validator</span></code></a> library, which depends on <a class="reference external" href="https://github.com/nlohmann/json"><code class="docutils literal notranslate"><span class="pre">nlohmann-json</span></code> &gt;= 3.8.x</a>. We use this library to validate configurations before attempting to set them. The <code class="docutils literal notranslate"><span class="pre">json-schema-validator</span></code> library provides a more verbose error handling than ifm3d, which allows to identify precisely where the error is in the provided configuration.</p></li>
+<li><p>OpenCV is used to display data and convert data formats. Follow the instructions <a class="reference external" href="https://docs.opencv.org/4.x/d7/d9f/tutorial_linux_install.html">here for Linux</a> and <a class="reference external" href="https://docs.opencv.org/4.x/d3/d52/tutorial_windows_install.html">here for Windows</a> to install it.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="build-the-examples">
+<h2>Build the examples<a class="headerlink" href="#build-the-examples" title="Link to this heading"></a></h2>
+<p>Follow the instructions below to build the examples. The commands might need to be updated to run on Windows.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>cpp
+$<span class="w"> </span>mkdir<span class="w"> </span>build<span class="w"> </span>
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
+$<span class="w"> </span>cmake<span class="w"> </span>..
+$<span class="w"> </span>cmake<span class="w"> </span>--build<span class="w"> </span>.
+</pre></div>
+</div>
+<p>This will create executables for all the examples in the sub-folders:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ls
+CMakeCache.txt<span class="w">  </span>CMakeFiles<span class="w">  </span>cmake_install.cmake<span class="w">  </span>Configs<span class="w">  </span>core<span class="w">  </span>Makefile<span class="w">  </span>ods
+$<span class="w"> </span>ls<span class="w"> </span>core
+2d_data<span class="w">     </span>cmake_install.cmake<span class="w">  </span>deserialize<span class="w">   </span>getting_data_callback<span class="w">  </span>Makefile
+CMakeFiles<span class="w">  </span>configuration<span class="w">        </span>getting_data<span class="w">  </span>ifm3d_playground<span class="w">       </span>multi_head
+$<span class="w"> </span>ls<span class="w"> </span>ods
+bootup_monitor<span class="w">  </span>cmake_install.cmake<span class="w">  </span>libods_config_lib.a<span class="w">  </span>ods_config<span class="w">  </span>ods_get_data
+CMakeFiles<span class="w">      </span>diagnostic<span class="w">           </span>Makefile<span class="w">             </span>ods_demo
+</pre></div>
+</div>
+</section>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading"></a></h2>
+<p>The examples are setup to “try their best” to run with the current configuration of the device. This means that when a port number is needed, the current configuration will be queried and the first available port used. In absence of configuration, the default IP address will be used.</p>
+<p>To change the IP address of the device, you can use an environment variable that will be retrieved in the code:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Edit with the IP address of your OVP8xx</span>
+<span class="c1"># On Linux</span>
+$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">IFM3D_IP</span><span class="o">=</span><span class="s2">&quot;192.168.0.69&quot;</span><span class="w"> </span>
+<span class="c1"># On Windows (standard command prompt)</span>
+$<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="nv">IFM3D_IP</span><span class="o">=</span><span class="m">192</span>.168.0.69
+<span class="c1"># On Windows (PowerShell)</span>
+$<span class="w"> </span><span class="nv">$env</span>:IFM3D_IP<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;192.168.0.69&quot;</span>
+</pre></div>
+</div>
+<p>To change the port used, you need to open up the code and edit the port number manually. The structure is already there to be able to use a hardcoded port number, and you just need to uncomment it and edit with your setup.
+For example, in the <code class="docutils literal notranslate"><span class="pre">getting_data_callback.cpp</span></code> example, you will see the following lines:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">/////////////////////////////////////////////////////////</span>
+<span class="c1">// Alternatively, manually pick the port corresponding</span>
+<span class="c1">// to your 3D camera (uncomment the line below and comment</span>
+<span class="c1">// the block above)</span>
+<span class="c1">/////////////////////////////////////////////////////////</span>
+<span class="c1">// std::string port_nb = &quot;port2&quot;;</span>
+<span class="c1">// if (o3r-&gt;Port(port_nb).type != &quot;3D&quot;) {</span>
+<span class="c1">//   std::cerr &lt;&lt; &quot;Please provide a 3D port number.&quot; &lt;&lt; std::endl;</span>
+<span class="c1">//   return -1;</span>
+<span class="c1">// }</span>
+<span class="c1">// uint16_t pcic_port = o3r-&gt;Port(port_nb).pcic_port;</span>
+<span class="c1">// std::cout &lt;&lt; &quot;Using 3D port: &quot; &lt;&lt; port_nb &lt;&lt; std::endl;</span>
+</pre></div>
+</div>
+<p>Uncomment the lines of code and replace the port number variable string <code class="docutils literal notranslate"><span class="pre">port_nb</span></code>.
+Don’t forget to compile the code again after making these changes.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="../latest/_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+		
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.efector.object-ident@ifm.com">support.efector.object-ident@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

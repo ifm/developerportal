@@ -54,7 +54,5 @@ systemctl --user enable oem-dc@jupyter
 See [Start the container](#autostart-a-container-on-the-vpu) on how to start the container with a `docker-compose.yml file`
 
 ## Save data on consistently on the VPU with a container
-**TODO: move this section to a more appropriate chapter**
-*Coming soon*
 
 Data created and saved within a container is only available for the running instance of the container itself. Restarting the container leads to a loss of the previously saved data. Use `volumes` to avoid this scenario.

@@ -73,6 +73,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Technology/index_hardware_interfaces.html">Technology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index_ods.html">ODS</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Mounting/mounting.html">Mounting</a></li>
@@ -132,135 +133,156 @@
              
   <section id="how-to-monitor-the-diagnostic">
 <h1>How to monitor the diagnostic<a class="headerlink" href="#how-to-monitor-the-diagnostic" title="Link to this heading"></a></h1>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ifm3d/device/o3r.h&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;diagnostic.h&quot;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * Copyright 2022-present ifm electronic, gmbh</span>
+<span class="cm"> * SPDX-License-Identifier: Apache-2.0</span>
+<span class="cm"> */</span>
 
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;diagnostic.hpp&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ifm3d/device/o3r.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thread&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="o">::</span><span class="nn">chrono_literals</span><span class="p">;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">ifm3d</span><span class="o">::</span><span class="nn">literals</span><span class="p">;</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">o3r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">O3R</span><span class="o">&gt;</span><span class="p">();</span>
-<span class="w">    </span><span class="c1">// To log to file, use diagnostic(o3r, true, &quot;file_name&quot;).</span>
-<span class="w">    </span><span class="c1">// Log outputs will be redirected both to the file and </span>
-<span class="w">    </span><span class="c1">// to the console.</span>
-<span class="w">    </span><span class="n">O3RDiagnostic</span><span class="w"> </span><span class="n">diagnostic</span><span class="p">(</span><span class="n">o3r</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">CustomCallback</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">id_</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">message_</span><span class="p">){</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Custom callback: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">id_</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">message_</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span class="w">    </span><span class="c1">////////////////////////////////////////////////</span>
-<span class="w">    </span><span class="c1">// Examples on how to retrieve the diagnostic</span>
-<span class="w">    </span><span class="c1">// active and/or dormant.</span>
-<span class="w">    </span><span class="c1">////////////////////////////////////////////////</span>
-<span class="w">    </span><span class="c1">// Using ifm3d::json::object() </span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;All current diagnostics:</span><span class="se">\n</span><span class="s">&quot;</span>
-<span class="w">              </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">diagnostic</span><span class="p">.</span><span class="n">GetDiagnosticFiltered</span><span class="p">(</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">object</span><span class="p">())</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Get the IP from the environment if defined</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">IP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">getenv</span><span class="p">(</span><span class="s">&quot;IFM3D_IP&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">getenv</span><span class="p">(</span><span class="s">&quot;IFM3D_IP&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">ifm3d</span><span class="o">::</span><span class="n">DEFAULT_IP</span><span class="p">.</span><span class="n">c_str</span><span class="p">();</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;IP: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">IP</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Active diagnostics:</span><span class="se">\n</span><span class="s">&quot;</span>
-<span class="w">              </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">diagnostic</span><span class="p">.</span><span class="n">GetDiagnosticFiltered</span><span class="p">(</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">parse</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s">{&quot;state&quot;: &quot;active&quot;}</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">))</span>
-<span class="w">              </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">o3r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">O3R</span><span class="o">&gt;</span><span class="p">(</span><span class="n">IP</span><span class="p">);</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1">// To log to file, use diagnostic(o3r, true, &quot;file_name&quot;).</span>
+<span class="w">  </span><span class="c1">// Log outputs will be redirected both to the file and</span>
+<span class="w">  </span><span class="c1">// to the console.</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">log_to_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">  </span><span class="n">O3RDiagnostic</span><span class="w"> </span><span class="n">diagnostic</span><span class="p">(</span><span class="n">o3r</span><span class="p">,</span><span class="w"> </span><span class="n">log_to_file</span><span class="p">);</span>
 
-<span class="w">    </span><span class="c1">////////////////////////////////////////////////</span>
-<span class="w">    </span><span class="c1">// Start the asynchronous diagnostic monitoring</span>
-<span class="w">    </span><span class="c1">// and display errors for &quot;d&quot; seconds.</span>
-<span class="w">    </span><span class="c1">////////////////////////////////////////////////</span>
+<span class="w">  </span><span class="c1">////////////////////////////////////////////////</span>
+<span class="w">  </span><span class="c1">// Examples on how to retrieve the diagnostic</span>
+<span class="w">  </span><span class="c1">// active and/or dormant.</span>
+<span class="w">  </span><span class="c1">////////////////////////////////////////////////</span>
+<span class="w">  </span><span class="c1">// Using ifm3d::json::object()</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;All current diagnostics:</span><span class="se">\n</span><span class="s">&quot;</span>
+<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">diagnostic</span><span class="p">.</span><span class="n">GetDiagnosticFiltered</span><span class="p">(</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">object</span><span class="p">()).</span><span class="n">dump</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">diagnostic</span><span class="p">.</span><span class="n">StartAsyncDiag</span><span class="p">();</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Active diagnostics:</span><span class="se">\n</span><span class="s">&quot;</span>
+<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">diagnostic</span><span class="p">.</span><span class="n">GetDiagnosticFiltered</span><span class="p">(</span>
+<span class="w">                   </span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">parse</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s">{&quot;state&quot;: &quot;active&quot;}</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">)).</span><span class="n">dump</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span>
+<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span>
+<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-<span class="w">    </span><span class="c1">// Loop for duration &quot;d&quot;</span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">steady_clock</span><span class="o">::</span><span class="n">now</span><span class="p">(),</span><span class="w"> </span><span class="n">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">start</span><span class="p">;</span><span class="w"> </span><span class="n">now</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">{</span><span class="n">d</span><span class="p">};</span><span class="w"> </span><span class="n">now</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">steady_clock</span><span class="o">::</span><span class="n">now</span><span class="p">())</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// Do nothing, just wait for the specified duration</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="c1">////////////////////////////////////////////////</span>
+<span class="w">  </span><span class="c1">// Start the asynchronous diagnostic monitoring</span>
+<span class="w">  </span><span class="c1">// and display errors for &quot;d&quot; seconds.</span>
+<span class="w">  </span><span class="c1">////////////////////////////////////////////////</span>
 
-<span class="w">    </span><span class="n">diagnostic</span><span class="p">.</span><span class="n">StopAsyncDiag</span><span class="p">();</span>
+<span class="w">  </span><span class="n">diagnostic</span><span class="p">.</span><span class="n">StartAsyncDiag</span><span class="p">(</span><span class="n">CustomCallback</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// You can also call the function without a custom </span>
+<span class="w">  </span><span class="c1">// callback, in which case the default callback will</span>
+<span class="w">  </span><span class="c1">// be used:</span>
+<span class="w">  </span><span class="c1">// diagnostic.StartAsyncDiag();</span>
 
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="mi">20</span><span class="n">s</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">diagnostic</span><span class="p">.</span><span class="n">StopAsyncDiag</span><span class="p">();</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdlib&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * Copyright 2022-present ifm electronic, gmbh</span>
+<span class="cm"> * SPDX-License-Identifier: Apache-2.0</span>
+<span class="cm"> */</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdlib&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;functional&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ifm3d/device/o3r.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ifm3d/fg.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">ifm3d</span><span class="o">::</span><span class="nn">literals</span><span class="p">;</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">O3RDiagnostic</span><span class="w"> </span><span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">    </span><span class="n">ifm3d</span><span class="o">::</span><span class="n">O3R</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">o3r</span><span class="p">;</span>
-<span class="w">    </span><span class="n">ifm3d</span><span class="o">::</span><span class="n">FrameGrabber</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">fg</span><span class="p">;</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">streambuf</span><span class="o">*</span><span class="w"> </span><span class="n">consoleBuffer</span><span class="p">;</span>
-<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">log_to_file</span><span class="p">;</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">ofstream</span><span class="w"> </span><span class="n">logFile</span><span class="p">;</span>
-<span class="w">    </span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="w"> </span><span class="n">diagnostic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">parse</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s">{&quot;id&quot;: &quot;None&quot;, &quot;message&quot;: &quot;None&quot;}</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span>
-
-<span class="w">    </span><span class="n">O3RDiagnostic</span><span class="p">(</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">O3R</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">o3r_</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">log_to_file_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">file_name_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)</span><span class="w"> </span>
-<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="n">o3r</span><span class="p">(</span><span class="n">o3r_</span><span class="p">),</span><span class="w"> </span>
-<span class="w">          </span><span class="n">log_to_file</span><span class="p">(</span><span class="n">log_to_file_</span><span class="p">),</span><span class="w"> </span>
-<span class="w">          </span><span class="n">fg</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">FrameGrabber</span><span class="o">&gt;</span><span class="p">(</span><span class="n">o3r</span><span class="p">,</span><span class="w"> </span><span class="mi">50009</span><span class="p">)),</span>
-<span class="w">          </span><span class="n">consoleBuffer</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="p">.</span><span class="n">rdbuf</span><span class="p">())</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">log_to_file</span><span class="p">){</span>
-<span class="w">            </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">log_file_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">file_name_</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot;O3R_diagnostic.txt&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">file_name_</span><span class="p">;</span>
-<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">log_to_file</span><span class="p">)</span>
-<span class="w">            </span><span class="p">{</span>
-<span class="w">                </span><span class="n">logFile</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">log_file_name</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ios</span><span class="o">::</span><span class="n">app</span><span class="p">);</span><span class="w">  </span><span class="c1">// Open the log file</span>
-<span class="w">                </span><span class="c1">// Check if the file opened successfully</span>
-<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">logFile</span><span class="p">.</span><span class="n">is_open</span><span class="p">())</span>
-<span class="w">                </span><span class="p">{</span>
-<span class="w">                    </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Failed to open log file: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">log_file_name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">                    </span><span class="k">return</span><span class="p">;</span>
-<span class="w">                </span><span class="p">}</span>
-<span class="w">                </span><span class="n">std</span><span class="o">::</span><span class="n">streambuf</span><span class="o">*</span><span class="w"> </span><span class="n">fileBuffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">logFile</span><span class="p">.</span><span class="n">rdbuf</span><span class="p">();</span>
-<span class="w">                </span><span class="c1">// Redirect std::clog to the log file</span>
-<span class="w">                </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="p">.</span><span class="n">rdbuf</span><span class="p">(</span><span class="n">fileBuffer</span><span class="p">);</span>
-<span class="w">            </span><span class="p">}</span>
+<span class="w">  </span><span class="n">O3RDiagnostic</span><span class="p">(</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">O3R</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">o3r</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">log_to_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span>
+<span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">file_name_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)</span>
+<span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="n">o3r_</span><span class="p">(</span><span class="n">o3r</span><span class="p">),</span><span class="w"> </span><span class="n">log_to_file_</span><span class="p">(</span><span class="n">log_to_file</span><span class="p">),</span>
+<span class="w">        </span><span class="n">fg_</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">FrameGrabber</span><span class="o">&gt;</span><span class="p">(</span><span class="n">o3r_</span><span class="p">,</span><span class="w"> </span><span class="mi">50009</span><span class="p">)),</span>
+<span class="w">        </span><span class="n">consoleBuffer_</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="p">.</span><span class="n">rdbuf</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">log_to_file_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">log_file_name</span><span class="w"> </span><span class="o">=</span>
+<span class="w">          </span><span class="p">(</span><span class="n">file_name_</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot;O3R_diagnostic.txt&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">file_name_</span><span class="p">;</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">log_to_file_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">logFile_</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">log_file_name</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ios</span><span class="o">::</span><span class="n">app</span><span class="p">);</span><span class="w"> </span><span class="c1">// Open the log file</span>
+<span class="w">        </span><span class="c1">// Check if the file opened successfully</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">logFile_</span><span class="p">.</span><span class="n">is_open</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Failed to open log file: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">log_file_name</span>
+<span class="w">                    </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">          </span><span class="k">return</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="p">.</span><span class="n">rdbuf</span><span class="p">(</span><span class="n">consoleBuffer</span><span class="p">);</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">streambuf</span><span class="w"> </span><span class="o">*</span><span class="n">fileBuffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">logFile_</span><span class="p">.</span><span class="n">rdbuf</span><span class="p">();</span>
+<span class="w">        </span><span class="c1">// Redirect std::clog to the log file</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="p">.</span><span class="n">rdbuf</span><span class="p">(</span><span class="n">fileBuffer</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="p">.</span><span class="n">rdbuf</span><span class="p">(</span><span class="n">consoleBuffer_</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">    </span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="w"> </span><span class="n">GetDiagnosticFiltered</span><span class="p">(</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="w"> </span><span class="n">filter_mask_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">o3r</span><span class="o">-&gt;</span><span class="n">GetDiagnosticFiltered</span><span class="p">(</span><span class="n">filter_mask_</span><span class="p">);</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(...)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">throw</span><span class="p">;</span>
-<span class="w">        </span><span class="p">}</span>
+<span class="w">  </span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="w"> </span><span class="n">GetDiagnosticFiltered</span><span class="p">(</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="w"> </span><span class="n">filter_mask_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">o3r_</span><span class="o">-&gt;</span><span class="n">GetDiagnosticFiltered</span><span class="p">(</span><span class="n">filter_mask_</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">StartAsyncDiag</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">fg_</span><span class="o">-&gt;</span><span class="n">OnAsyncError</span><span class="p">([</span><span class="k">this</span><span class="p">](</span><span class="kt">int</span><span class="w"> </span><span class="n">id_</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">message_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">AsyncDiagCallback_</span><span class="p">(</span><span class="n">id_</span><span class="p">,</span><span class="w"> </span><span class="n">message_</span><span class="p">);</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="w">    </span><span class="n">fg_</span><span class="o">-&gt;</span><span class="n">Start</span><span class="p">({});</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">StartAsyncDiag</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">callback</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">fg_</span><span class="o">-&gt;</span><span class="n">OnAsyncError</span><span class="p">(</span><span class="n">callback</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fg_</span><span class="o">-&gt;</span><span class="n">Start</span><span class="p">({});</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">StopAsyncDiag</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">fg_</span><span class="o">-&gt;</span><span class="n">Stop</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">  </span><span class="o">~</span><span class="n">O3RDiagnostic</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Stop the frame grabber if it&#39;s still running</span>
+<span class="w">    </span><span class="n">fg_</span><span class="o">-&gt;</span><span class="n">Stop</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Restore the console output stream buffer</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="p">.</span><span class="n">rdbuf</span><span class="p">(</span><span class="n">consoleBuffer_</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Close the log file if it&#39;s open</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">logFile_</span><span class="p">.</span><span class="n">is_open</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">logFile_</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
 <span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">StartAsyncDiag</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">fg</span><span class="o">-&gt;</span><span class="n">OnAsyncError</span><span class="p">([</span><span class="k">this</span><span class="p">](</span><span class="kt">int</span><span class="w"> </span><span class="n">id_</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">message_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">AsyncDiagCallback_</span><span class="p">(</span><span class="n">id_</span><span class="p">,</span><span class="w"> </span><span class="n">message_</span><span class="p">);</span>
-<span class="w">        </span><span class="p">});</span>
-<span class="w">        </span><span class="n">fg</span><span class="o">-&gt;</span><span class="n">Start</span><span class="p">({});</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">StopAsyncDiag</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">fg</span><span class="o">-&gt;</span><span class="n">Stop</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="o">~</span><span class="n">O3RDiagnostic</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// Stop the frame grabber if it&#39;s still running</span>
-<span class="w">        </span><span class="n">fg</span><span class="o">-&gt;</span><span class="n">Stop</span><span class="p">();</span>
-
-<span class="w">        </span><span class="c1">// Restore the console output stream buffer</span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="p">.</span><span class="n">rdbuf</span><span class="p">(</span><span class="n">consoleBuffer</span><span class="p">);</span>
-
-<span class="w">        </span><span class="c1">// Close the log file if it&#39;s open</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">logFile</span><span class="p">.</span><span class="n">is_open</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="n">logFile</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}</span>
 <span class="k">private</span><span class="o">:</span>
-<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">AsyncDiagCallback_</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">id_</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">message_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">diagnostic</span><span class="p">[</span><span class="s">&quot;id&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id_</span><span class="p">;</span>
-<span class="w">        </span><span class="n">diagnostic</span><span class="p">[</span><span class="s">&quot;message&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">message_</span><span class="p">;</span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">//////////////////////////////////&quot;</span>
-<span class="w">                  </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Id: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">diagnostic</span><span class="p">[</span><span class="s">&quot;id&quot;</span><span class="p">]</span>
-<span class="w">                  </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Message: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">diagnostic</span><span class="p">[</span><span class="s">&quot;message&quot;</span><span class="p">]</span>
-<span class="w">                  </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="n">ifm3d</span><span class="o">::</span><span class="n">O3R</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">o3r_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">ifm3d</span><span class="o">::</span><span class="n">FrameGrabber</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">fg_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">streambuf</span><span class="w"> </span><span class="o">*</span><span class="n">consoleBuffer_</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">log_to_file_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">ofstream</span><span class="w"> </span><span class="n">logFile_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="w"> </span><span class="n">diagnostic_</span><span class="w"> </span><span class="o">=</span>
+<span class="w">      </span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">parse</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s">{&quot;id&quot;: &quot;None&quot;, &quot;message&quot;: &quot;None&quot;}</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">AsyncDiagCallback_</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">id_</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">message_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">diagnostic_</span><span class="p">[</span><span class="s">&quot;id&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">diagnostic_</span><span class="p">[</span><span class="s">&quot;message&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">message_</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">//////////////////////////////////&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Id: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">diagnostic_</span><span class="p">[</span><span class="s">&quot;id&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Message: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">diagnostic_</span><span class="p">[</span><span class="s">&quot;message&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">};</span>
 </pre></div>
 </div>

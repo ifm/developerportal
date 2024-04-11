@@ -73,6 +73,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Technology/index_hardware_interfaces.html">Technology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index_ods.html">ODS</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Mounting/mounting.html">Mounting</a></li>
@@ -139,6 +140,7 @@
 
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 
 <span class="kn">from</span> <span class="nn">ifm3dpy.device</span> <span class="kn">import</span> <span class="n">O3R</span>
@@ -179,8 +181,7 @@
 <span class="sd">        :return: the diagnostic, filtered with the filter_mask</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">&quot;Poll O3R diagnostic data with filter </span><span class="si">{</span><span class="n">filter_mask</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Poll O3R diagnostic data with filter </span><span class="si">{</span><span class="n">filter_mask</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_o3r</span><span class="o">.</span><span class="n">get_diagnostic_filtered</span><span class="p">(</span><span class="n">filter_mask</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">ifm3dpy_error</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">&quot;Error when getting diagnostic data.&quot;</span><span class="p">)</span>
@@ -192,7 +193,11 @@
 <span class="sd">        :param id (int): ID of Error Message</span>
 <span class="sd">        :param message (str): Whole Diagnostic Information</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Recieved diagnostic message via callback with id=</span><span class="si">%s</span><span class="s2">, content=</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+            <span class="s2">&quot;Received diagnostic message via callback with id=</span><span class="si">%s</span><span class="s2">, content=</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="nb">id</span><span class="p">,</span>
+            <span class="n">message</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">diagnostic</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="nb">id</span><span class="p">,</span> <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="n">message</span><span class="p">}</span>
         <span class="c1"># Here the user should add custom error handling.</span>
 
@@ -213,15 +218,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_fg</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
 
 
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">IP</span><span class="o">=</span><span class="s2">&quot;192.168.0.69&quot;</span><span class="p">,</span> <span class="n">log_to_file</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="c1">#############################</span>
     <span class="c1"># Configure the objects.</span>
     <span class="c1"># Make sure to edit for your</span>
     <span class="c1"># IP address.</span>
     <span class="c1">#############################</span>
-    <span class="n">IP</span> <span class="o">=</span> <span class="s2">&quot;192.168.0.69&quot;</span>
     <span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">(</span><span class="n">IP</span><span class="p">)</span>
-    <span class="n">o3r_diagnostic</span> <span class="o">=</span> <span class="n">O3RDiagnostic</span><span class="p">(</span><span class="n">o3r</span><span class="p">,</span> <span class="n">log_to_file</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">o3r_diagnostic</span> <span class="o">=</span> <span class="n">O3RDiagnostic</span><span class="p">(</span><span class="n">o3r</span><span class="p">,</span> <span class="n">log_to_file</span><span class="p">)</span>
 
     <span class="c1">#############################</span>
     <span class="c1"># Requesting diagnostic data</span>
@@ -237,13 +241,13 @@
     <span class="c1"># Note that this function should</span>
     <span class="c1"># be customized to handle specific</span>
     <span class="c1"># error handling in the user</span>
-    <span class="c1"># applaition</span>
+    <span class="c1"># application</span>
     <span class="c1">#############################</span>
 
     <span class="n">o3r_diagnostic</span><span class="o">.</span><span class="n">start_async_diag</span><span class="p">()</span>
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="k">pass</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
             <span class="n">o3r_diagnostic</span><span class="o">.</span><span class="n">stop_async_diag</span><span class="p">()</span>
             <span class="n">o3r_diagnostic</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
@@ -253,7 +257,23 @@
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">main</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># If the example python package was build, import the configuration</span>
+        <span class="kn">from</span> <span class="nn">ovp8xxexamples</span> <span class="kn">import</span> <span class="n">config</span>
+
+        <span class="n">IP</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">IP</span>
+        <span class="n">log_to_file</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">LOG_TO_FILE</span>
+
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="c1"># Otherwise, use default values</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="s2">&quot;Unable to import the configuration.</span><span class="se">\n</span><span class="s2">Please run &#39;pip install -e .&#39; from the python root directory&quot;</span>
+        <span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Defaulting to the default configuration.&quot;</span><span class="p">)</span>
+        <span class="n">IP</span> <span class="o">=</span> <span class="s2">&quot;192.168.0.69&quot;</span>
+        <span class="n">log_to_file</span><span class="o">=</span><span class="kc">False</span>
+
+    <span class="n">main</span><span class="p">(</span><span class="n">IP</span><span class="o">=</span><span class="n">IP</span><span class="p">,</span> <span class="n">log_to_file</span><span class="o">=</span><span class="n">log_to_file</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>

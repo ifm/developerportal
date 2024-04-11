@@ -73,6 +73,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Technology/index_hardware_interfaces.html">Technology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index_ods.html">ODS</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Mounting/mounting.html">Mounting</a></li>
@@ -148,10 +149,14 @@
 <h3>Get the examples<a class="headerlink" href="#get-the-examples" title="Link to this heading"></a></h3>
 <p>We provide a couple of the examples as web pages for you to browse, but we recommend getting the full example folder from git.</p>
 <p>The examples are provided as part of the documentation. You can clone them with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/ifm/documentation.git
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span>v1.0.0<span class="w"> </span>https://github.com/ifm/ifm3d-examples.git
 </pre></div>
 </div>
-<p>The examples for ODS can be found in the <code class="docutils literal notranslate"><span class="pre">ODS</span></code> folder, in <code class="docutils literal notranslate"><span class="pre">/Cpp</span></code> for the c++ examples.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Refer to <a class="reference external" href="https://github.com/ifm/ifm3d-examples/tree/main?tab=readme-ov-file#compatibility">the compatibility matrix</a> for the tag corresponding to your preferred version of the API.</p>
+</div>
+<p>The examples for ODS can be found in the <code class="docutils literal notranslate"><span class="pre">ods</span></code> folder, in <code class="docutils literal notranslate"><span class="pre">/ovp9xx/cpp</span></code> for the c++ examples.</p>
 </section>
 <section id="building-the-examples">
 <h3>Building the examples<a class="headerlink" href="#building-the-examples" title="Link to this heading"></a></h3>
@@ -177,11 +182,11 @@ If another path is used, the path to the configuration files need to be updated 
 <h3>Hardware setup<a class="headerlink" href="#hardware-setup" title="Link to this heading"></a></h3>
 <p>For these examples, we expect the following setup:</p>
 <ul class="simple">
-<li><p>The VPU is of type M04239 (ODS-compatible VPU),</p></li>
+<li><p>The VPU is of type OVP801 or M04239 (ODS-compatible VPU),</p></li>
 <li><p>Two cameras heads are connected to the VPU, with the 2D ports connected to ports 0 and 1 and the 3D ports to port 2 and 3. Note we only use two cameras for the full example ods_demo.py. The individual tutorials only rely on one camera, 3D connected to port 2.</p></li>
 <li><p>In the full ods_demo.py example, we set a calibration for the cameras expecting port2 to face forward and port 3 to face backwards, both cameras mounted at 60 cm high. These are artificial calibrations for demonstration purposes. If the cameras are not mounted this way, the examples will still run—just keep in mind that the generated ODS values will not correspond to your physical setup.</p></li>
 </ul>
-<p>You can use any other configuration to use these examples, but you will need to adjust the configuration files use when configuring an application.</p>
+<p>You can use any other configuration to use these examples, but you will need to adjust the configuration files use when configuring an application. The default configuration files can be found with the examples <a class="reference external" href="https://github.com/ifm/ifm3d-examples/tree/main/ovp8xx/cpp/ods/configs">in the <code class="docutils literal notranslate"><span class="pre">configs</span></code> folder</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Additional resources:</p>

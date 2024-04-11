@@ -146,8 +146,3 @@ for i,frame in enumerate (range_occ_grids):
 -------
 
 ![ODS object distance tracking](img/distance_tracker.png)
-
-The following script shows how to track the distance between the User-Coordinate-System and first object detected in ROI.
-
-```{literalinclude} ../../Python/examples/ods_data_analyze.py
-```

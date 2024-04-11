@@ -1,12 +1,12 @@
 # How to update the firmware:
 
-**The following guide is only valid for updating between 1.0.x and 1.0.y versions. For details about the update process between 0.16.23 to 1.0.x please see the [migration guide](../Firmware/ReleaseNotes/FW_1.0.x/FW_1.0.x_migration_guide.md)**
+**The following guide is only valid for updating between 1.X.x and 1.Y.y versions. For details about the update process between 0.16.23 to 1.0.x please see the [migration guide](../Firmware/ReleaseNotes/FW_1.0.x/FW_1.0.x_migration_guide.md)**
 
 
 ## Download the firmware
 The firmware image is available on the [ifm.com](https://www.ifm.com/) website. Navigate to the site and follow the steps below:
 - Create an account (if you do not already have one) and log in.
-- Use the search bar to find OVP800 (VPU). This is also valid if you have pre-release sample units, for example M04239.
+- Use the search bar to find the OVP800. This is also valid if you have pre-release sample units, for example M04239 and OVP801 devices.
 - Navigate to the article page an click on the "Downloads" tab.
 - Select the firmware from the list. It will start downloading the file.
 
@@ -142,6 +142,6 @@ o3r.get(["/device/swVersion/firmware"])
 
 ## The full example script
 
-:::{literalinclude} fw_update_utils.py
+:::{literalinclude} /ifm3d-examples/ovp8xx/python/ovp8xxexamples/core/fw_update_utils.py
 :language: python
 :::

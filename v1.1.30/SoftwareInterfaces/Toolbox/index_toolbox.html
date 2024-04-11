@@ -30,7 +30,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Introduction to ifm camera coordinate systems and their transformations" href="IntroToCalibrations/README.html" />
+    <link rel="next" title="Calibration routines" href="../../CalibrationRoutines/index_calibrations.html" />
     <link rel="prev" title="O3R information for debugging" href="../ifmDiagnostic/debugging.html" />
     <!-- Google tag (gtag.js) -->
     <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
@@ -79,17 +79,10 @@
 <li class="toctree-l2"><a class="reference external" href="https://ros2.ifm3d.com/latest/">ROS2: ifm3d-ros2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Docker/index_docker.html">Docker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ifmDiagnostic/index_diagnostic.html">Diagnostic</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Toolbox</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="IntroToCalibrations/README.html">Introduction to calibrations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Registration2d3d/collect_calibration_data.html">Collect calibration values</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ExtrinsicCalibration/README.html">Extrinsic calibrations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Registration2d3d/README.html">2D/3D registration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="AngleConverter/angle_converter.html">Angle conversion</a></li>
-<li class="toctree-l3"><a class="reference internal" href="H5ToPCDConverter/h5_to_pcd_converter.html">Data conversions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Toolbox</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ODS/index_ods.html">ODS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../downloadable/index.html">History</a></li>
@@ -122,42 +115,14 @@
              
   <section id="toolbox">
 <h1>Toolbox<a class="headerlink" href="#toolbox" title="Link to this heading"></a></h1>
-<p>Find here tools and resources related to the O3R platform.
-The documentation can be browsed on this site.
-To try the code, you can clone it with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/ifm/documentation.git
-</pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The examples of the toolbox section were moved to the <code class="docutils literal notranslate"><span class="pre">ifm3d-examples</span></code> repository.
+Find them at <a class="reference external" href="https://github.com/ifm/ifm3d-examples">https://github.com/ifm/ifm3d-examples</a>.</p>
 </div>
-<p>Navigate to the Toolbox folder to find the example you are looking for.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="IntroToCalibrations/README.html">Introduction to calibrations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="IntroToCalibrations/README.html#sensor-coordinate-system-pixel-coordinate-system">Sensor-coordinate-system / pixel coordinate system:</a></li>
-<li class="toctree-l2"><a class="reference internal" href="IntroToCalibrations/README.html#optics-coordinate-system-optics-space">Optics-coordinate-system (optics space):</a></li>
-<li class="toctree-l2"><a class="reference internal" href="IntroToCalibrations/README.html#defining-where-the-camera-is">Defining where the camera is</a></li>
-<li class="toctree-l2"><a class="reference internal" href="IntroToCalibrations/README.html#using-calibration-data-stored-on-the-camera-head">Using calibration data stored on the camera head:</a></li>
-<li class="toctree-l2"><a class="reference internal" href="IntroToCalibrations/README.html#glossary">Glossary</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="Registration2d3d/collect_calibration_data.html">Collect calibration values</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Registration2d3d/collect_calibration_data.html#procedure">Procedure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Registration2d3d/collect_calibration_data.html#example-output">Example output:</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="ExtrinsicCalibration/README.html">Extrinsic calibrations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ExtrinsicCalibration/StaticCameraCalibration/README.html">Static camera calibration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ExtrinsicCalibration/MCC/mcc_with_iVA.html">Motion camera calibration with ifmVisonAssistant</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ExtrinsicCalibration/VPUCalibration/README.html">VPU calibration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ExtrinsicCalibration/CameraCalibrationVerification/extrinsic_calibration_verification.html">Calibration verification</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="Registration2d3d/README.html">2D/3D registration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Registration2d3d/README.html#procedure">Procedure</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="AngleConverter/angle_converter.html">Angle conversion</a></li>
-<li class="toctree-l1"><a class="reference internal" href="H5ToPCDConverter/h5_to_pcd_converter.html">Data conversions</a></li>
-</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The calibration section was moved to <a class="reference internal" href="../../CalibrationRoutines/index_calibrations.html"><span class="std std-doc">Calibration Routines</span></a>.</p>
 </div>
 </section>
 
