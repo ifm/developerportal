@@ -25,12 +25,12 @@ When the starting firmware is version 1.0.0 and above, a reboot to recovery stat
 
 :::::{tabs}
 ::::{group-tab} CLI
-:::bash
+```bash
 $ ifm3d reboot --recovery
-:::
+```
 ::::
 ::::{group-tab} c++
-:::cpp
+```cpp
 #include <ifm3d/device/o3r.h>
 #include <ifm3d/swupdater/swupdater.h>
 ...
@@ -41,10 +41,10 @@ if (sw->WaitForRecovery()) {
     std::cout << "System in recovery mode" << std::endl;
 }
 ...
-:::
+```
 ::::
 ::::{group-tab} Python
-:::python
+```python
 from ifm3dpy.swupdater import SWUpdater
 from ifm3dpy.device import O3R
 o3r = O3R()
@@ -52,7 +52,7 @@ sw = SWUpdater(o3r)
 sw.reboot_to_recovery()
 if sw.wait_for_recovery():
     print("System in recovery mode)
-:::
+```
 ::::
 :::::
 
@@ -97,24 +97,24 @@ The code below is continued from the "reboot to recovery" section.
 
 :::::{tabs}
 ::::{group-tab} CLI
-:::bash
+```bash
 $ ifm3d swupdate --file=<path/to/firmware_image.swu>
-:::
+```
 ::::
 ::::{group-tab} c++
-:::cpp
+```cpp
 if (sw->FlashFirmware("<path/to/firmware_image.swu>")){
     sw->WaitForProductive();
     std::cout << "System ready!" << std::endl;
 }
-:::
+```
 ::::
 ::::{group-tab} Python
-:::python
+```python
 if sw.flash_firmware('<path/to/firmware_image.swu>'):
     sw.wait_for_productive()
     print("System ready!")
-:::
+```
 ::::
 :::::
 > Note: the code snippets above do not show how to handle exceptions when they occur in the update process.
@@ -124,19 +124,19 @@ Double check the firmware version after the update:
 
 :::::{tabs}
 ::::{group-tab} CLI
-:::bash
+```bash
 $ ifm3d dump | jq .device.swVersion.firmware
-:::
+```
 ::::
 ::::{group-tab} c++
-:::c++
+```c++
 ifm3d::json config = dev->Get({"/device/swVersion/firmware"});
-:::
+```
 ::::
-::::{group-tab} Python
-:::python
+::::{group-tab} python
+```python
 o3r.get(["/device/swVersion/firmware"])
-:::
+```
 ::::
 :::::
 

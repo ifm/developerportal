@@ -154,48 +154,36 @@
 <p>Some parameters require that the port or application instance is in “CONF” state to be edited. This is for example the case for the mode, or for enabling the detection of negative obstacles in an ODS application.</p>
 <p>To verify if a parameter requires a change to “CONF,” you can use the JSON schema. For example, let’s see if the framerate parameter for a camera connected to port2 (in this example) requires a change to “CONF”:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-0-Yysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Yysr" name="Yysr" role="tab" tabindex="-1">c++</button><button aria-controls="panel-0-Q0xJ" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Q0xJ" name="Q0xJ" role="tab" tabindex="-1">CLI</button></div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel group-tab" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="python docutils">
-<p>from ifm3dpy import O3R
-o3r = O3R()
-schema = o3r.get_schema()
-schema[“properties”][“ports”][“properties”][“port2”][“properties”][“acquisition”][“properties”][“framerate”]</p>
-<blockquote>
-<div><blockquote>
-<div><blockquote>
-<div><p>{‘attributes’: [‘conf’], ‘default’: 10, ‘description’: ‘Framerate of the Imager’, ‘maximum’: 20.0, ‘minimum’: 10.0, ‘multipleOf’: 0.5, ‘readOnly’: False, ‘type’: ‘number’}</p>
-</div></blockquote>
-</div></blockquote>
-</div></blockquote>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-0-Yysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Yysr" name="Yysr" role="tab" tabindex="-1">c++</button><button aria-controls="panel-0-Q0xJ" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Q0xJ" name="Q0xJ" role="tab" tabindex="-1">CLI</button></div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel group-tab" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ifm3dpy</span> <span class="kn">import</span> <span class="n">O3R</span>
+<span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">()</span>
+<span class="n">schema</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get_schema</span><span class="p">()</span>
+<span class="n">schema</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;ports&quot;</span><span class="p">][</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;port2&quot;</span><span class="p">][</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;acquisition&quot;</span><span class="p">][</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;framerate&quot;</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="p">{</span><span class="s1">&#39;attributes&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;conf&#39;</span><span class="p">],</span> <span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Framerate of the Imager&#39;</span><span class="p">,</span> <span class="s1">&#39;maximum&#39;</span><span class="p">:</span> <span class="mf">20.0</span><span class="p">,</span> <span class="s1">&#39;minimum&#39;</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">,</span> <span class="s1">&#39;multipleOf&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;readOnly&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;number&#39;</span><span class="p">}</span>
+</pre></div>
 </div>
-</div><div aria-labelledby="tab-0-Yysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Yysr" name="Yysr" role="tabpanel" tabindex="0"><div class="cpp docutils">
-<p>#include &lt;ifm3d/device/o3r.hpp&gt;
-using namespace ifm3d::literals;
-…
-auto o3r = std::make_shared<a class="reference external" href="ifm3d::O3R">ifm3d::O3R</a>();
-auto schema = o3r-&gt;GetSchema();
-std::cout &lt;&lt; schema[“/properties/ports/properties/port2/properties/acquisition/properties/framerate”_json_pointer];</p>
-<blockquote>
-<div><blockquote>
-<div><blockquote>
-<div><p>{“attributes”:[“conf”],”default”:10,”description”:”Framerate of the Imager”,”maximum”:20.0,”minimum”:10.0,”multipleOf”:0.5,”readOnly”:false,”type”:”number”}</p>
-</div></blockquote>
-</div></blockquote>
-</div></blockquote>
+</div><div aria-labelledby="tab-0-Yysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Yysr" name="Yysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ifm3d/device/o3r.hpp&gt;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">ifm3d</span><span class="o">::</span><span class="nn">literals</span><span class="p">;</span>
+<span class="p">...</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">o3r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">O3R</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">schema</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o3r</span><span class="o">-&gt;</span><span class="n">GetSchema</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">schema</span><span class="p">[</span><span class="s">&quot;/properties/ports/properties/port2/properties/acquisition/properties/framerate&quot;</span><span class="n">_json_pointer</span><span class="p">];</span>
+<span class="o">&gt;&gt;&gt;</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;attributes&quot;</span><span class="o">:</span><span class="p">[</span><span class="s">&quot;conf&quot;</span><span class="p">],</span><span class="s">&quot;default&quot;</span><span class="o">:</span><span class="mi">10</span><span class="p">,</span><span class="s">&quot;description&quot;</span><span class="o">:</span><span class="s">&quot;Framerate of the Imager&quot;</span><span class="p">,</span><span class="s">&quot;maximum&quot;</span><span class="o">:</span><span class="mf">20.0</span><span class="p">,</span><span class="s">&quot;minimum&quot;</span><span class="o">:</span><span class="mf">10.0</span><span class="p">,</span><span class="s">&quot;multipleOf&quot;</span><span class="o">:</span><span class="mf">0.5</span><span class="p">,</span><span class="s">&quot;readOnly&quot;</span><span class="o">:</span><span class="nb">false</span><span class="p">,</span><span class="s">&quot;type&quot;</span><span class="o">:</span><span class="s">&quot;number&quot;</span><span class="p">}</span>
+</pre></div>
 </div>
-</div><div aria-labelledby="tab-0-Q0xJ" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Q0xJ" name="Q0xJ" role="tabpanel" tabindex="0"><div class="bash docutils">
-<p>$ ifm3d jsonschema | jq .properties.ports.properties.port2.properties.acquisition.properties.framerate
-{
-“attributes”: [
-“conf”
-],
-“default”: 10,
-“description”: “Framerate of the Imager”,
-“maximum”: 20,
-“minimum”: 10,
-“multipleOf”: 0.5,
-“readOnly”: false,
-“type”: “number”
-}</p>
+</div><div aria-labelledby="tab-0-Q0xJ" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Q0xJ" name="Q0xJ" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>jsonschema<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.properties.ports.properties.port2.properties.acquisition.properties.framerate
+<span class="o">{</span>
+<span class="w">  </span><span class="s2">&quot;attributes&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<span class="w">    </span><span class="s2">&quot;conf&quot;</span>
+<span class="w">  </span><span class="o">]</span>,
+<span class="w">  </span><span class="s2">&quot;default&quot;</span>:<span class="w"> </span><span class="m">10</span>,
+<span class="w">  </span><span class="s2">&quot;description&quot;</span>:<span class="w"> </span><span class="s2">&quot;Framerate of the Imager&quot;</span>,
+<span class="w">  </span><span class="s2">&quot;maximum&quot;</span>:<span class="w"> </span><span class="m">20</span>,
+<span class="w">  </span><span class="s2">&quot;minimum&quot;</span>:<span class="w"> </span><span class="m">10</span>,
+<span class="w">  </span><span class="s2">&quot;multipleOf&quot;</span>:<span class="w"> </span><span class="m">0</span>.5,
+<span class="w">  </span><span class="s2">&quot;readOnly&quot;</span>:<span class="w"> </span>false,
+<span class="w">  </span><span class="s2">&quot;type&quot;</span>:<span class="w"> </span><span class="s2">&quot;number&quot;</span>
+<span class="o">}</span>
+</pre></div>
 </div>
 </div></div>
 <p>The <code class="docutils literal notranslate"><span class="pre">attributes</span></code> section of the parameter schema shows the “conf” keyword if the parameter requires a switch to “CONF” state to be changed. If this keyword does not appear, then the parameter can be changed on-the-fly, and the new parameter will be applied to the next frame. Keep in mind that some parameters might take a couple frames to be fully stable, for instance the temporal filter.
@@ -367,68 +355,56 @@ This ensures that no parameter is accidentally changed that could disrupt the fu
 <p>A JSON schema for the current O3R configuration is available and the user can use it to check the configuration before setting it.</p>
 <p>Third-party packages can be used in Python or c++ to validate a configuration. For example:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-1-Qysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel group-tab" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="python docutils">
-<p>from ifm3dpy.device import O3R
-import jsonschema
-o3r = O3R()
-schema = o3r.get_schema()
-correct_conf = {“device”:{“info”:{“name”: “My O3R”}}}
-jsonschema.validate(conf, schema)</p>
-<h1 class="rubric" id="no-return-validation-successful">No return, validation successful</h1>
-<p>incorrect_conf = {“device”:{“info”:{“o3r_name”: “My O3R”}}}
-jsonschema.validate(incorrect_conf, schema)</p>
-<h1 class="rubric" id="error-raised-during-the-validation">Error raised during the validation</h1>
-<blockquote>
-<div><blockquote>
-<div><blockquote>
-<div><p>Traceback (most recent call last):
-File “<stdin>”, line 1, in <module>
-File “/home/usmasslo/.local/lib/python3.8/site-packages/jsonschema/validators.py”, line 934, in validate
-raise error
-jsonschema.exceptions.ValidationError: Additional properties are not allowed (‘o3r_name’ was unexpected)
-[…]
-On instance[‘device’][‘info’]:
-{‘o3r_name’: ‘My O3R’}</p>
-</div></blockquote>
-</div></blockquote>
-</div></blockquote>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-1-Qysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button><button aria-controls="panel-1-Q0xJ" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-Q0xJ" name="Q0xJ" role="tab" tabindex="-1">CLI</button></div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel group-tab" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ifm3dpy.device</span> <span class="kn">import</span> <span class="n">O3R</span>
+<span class="kn">import</span> <span class="nn">jsonschema</span>
+<span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">()</span>
+<span class="n">schema</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get_schema</span><span class="p">()</span>
+<span class="n">correct_conf</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;device&quot;</span><span class="p">:{</span><span class="s2">&quot;info&quot;</span><span class="p">:{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;My O3R&quot;</span><span class="p">}}}</span>
+<span class="n">jsonschema</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">conf</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
+<span class="c1"># No return, validation successful</span>
+<span class="n">incorrect_conf</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;device&quot;</span><span class="p">:{</span><span class="s2">&quot;info&quot;</span><span class="p">:{</span><span class="s2">&quot;o3r_name&quot;</span><span class="p">:</span> <span class="s2">&quot;My O3R&quot;</span><span class="p">}}}</span>
+<span class="n">jsonschema</span><span class="o">.</span><span class="n">validate</span><span class="p">(</span><span class="n">incorrect_conf</span><span class="p">,</span> <span class="n">schema</span><span class="p">)</span>
+<span class="c1"># Error raised during the validation</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s2">&quot;&lt;stdin&gt;&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+  <span class="n">File</span> <span class="s2">&quot;/home/usmasslo/.local/lib/python3.8/site-packages/jsonschema/validators.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">934</span><span class="p">,</span> <span class="ow">in</span> <span class="n">validate</span>
+    <span class="k">raise</span> <span class="n">error</span>
+<span class="n">jsonschema</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ValidationError</span><span class="p">:</span> <span class="n">Additional</span> <span class="n">properties</span> <span class="n">are</span> <span class="ow">not</span> <span class="n">allowed</span> <span class="p">(</span><span class="s1">&#39;o3r_name&#39;</span> <span class="n">was</span> <span class="n">unexpected</span><span class="p">)</span>
+<span class="p">[</span><span class="o">...</span><span class="p">]</span>
+<span class="n">On</span> <span class="n">instance</span><span class="p">[</span><span class="s1">&#39;device&#39;</span><span class="p">][</span><span class="s1">&#39;info&#39;</span><span class="p">]:</span>
+    <span class="p">{</span><span class="s1">&#39;o3r_name&#39;</span><span class="p">:</span> <span class="s1">&#39;My O3R&#39;</span><span class="p">}</span>
+</pre></div>
 </div>
-</div><div aria-labelledby="tab-1-Qysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="cpp docutils">
-<p>static void CheckJSONFormat(const std::string&amp; format, const std::string&amp; value) {
-// This is necessary because “format” is a keyword both used internally by the schema
-// validator and in the O3R schema.
-if (format == “ipv4”) {
-std::clog &lt;&lt; “Simulate IPV4 formatting”;
-}
-else {
-throw std::logic_error(“Don’t know how to validate “ + format);
-}
-}
-int
-main()
-{
-auto o3r = std::make_shared<a class="reference external" href="ifm3d::O3R">ifm3d::O3R</a>();
-auto schema = o3r-&gt;GetSchema();
-nlohmann::json_schema::json_validator validator{ nullptr, CheckJSONFormat };
-validator.set_root_schema(nlohmann::json::parse(schema.dump(0)));
-auto correct_conf = ifm3d::json::parse(R”({“device”:{“info”:{“name”: “My O3R”}}})”);
-validator.validate(nlohmann::json::parse(correct_conf.dump(0)));
-// Validation successful: no exception raised
-auto incorrect_conf = ifm3d::json::parse(R”({“device”:{“info”:{“o3r_name”: “My O3R”}}})”);
-validator.validate(nlohmann::json::parse(incorrect_conf.dump(0)));
-// Exception raised during the validation
-return 0;
-}</p>
+</div><div aria-labelledby="tab-1-Qysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">CheckJSONFormat</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">format</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="c1">// This is necessary because &quot;format&quot; is a keyword both used internally by the schema</span>
+<span class="c1">// validator and in the O3R schema.</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">format</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;ipv4&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Simulate IPV4 formatting&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">throw</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">logic_error</span><span class="p">(</span><span class="s">&quot;Don&#39;t know how to validate &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">format</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">int</span>
+<span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">o3r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">O3R</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">schema</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o3r</span><span class="o">-&gt;</span><span class="n">GetSchema</span><span class="p">();</span>
+<span class="w">    </span><span class="n">nlohmann</span><span class="o">::</span><span class="n">json_schema</span><span class="o">::</span><span class="n">json_validator</span><span class="w"> </span><span class="n">validator</span><span class="p">{</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="n">CheckJSONFormat</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="n">validator</span><span class="p">.</span><span class="n">set_root_schema</span><span class="p">(</span><span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">parse</span><span class="p">(</span><span class="n">schema</span><span class="p">.</span><span class="n">dump</span><span class="p">(</span><span class="mi">0</span><span class="p">)));</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">correct_conf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">parse</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s">{&quot;device&quot;:{&quot;info&quot;:{&quot;name&quot;: &quot;My O3R&quot;}}}</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">validator</span><span class="p">.</span><span class="n">validate</span><span class="p">(</span><span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">parse</span><span class="p">(</span><span class="n">correct_conf</span><span class="p">.</span><span class="n">dump</span><span class="p">(</span><span class="mi">0</span><span class="p">)));</span>
+<span class="w">    </span><span class="c1">// Validation successful: no exception raised</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">incorrect_conf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">parse</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s">{&quot;device&quot;:{&quot;info&quot;:{&quot;o3r_name&quot;: &quot;My O3R&quot;}}}</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">validator</span><span class="p">.</span><span class="n">validate</span><span class="p">(</span><span class="n">nlohmann</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">parse</span><span class="p">(</span><span class="n">incorrect_conf</span><span class="p">.</span><span class="n">dump</span><span class="p">(</span><span class="mi">0</span><span class="p">)));</span>
+<span class="w">    </span><span class="c1">// Exception raised during the validation</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
 </div>
-<div class="bash docutils">
-<blockquote>
-<div><blockquote>
-<div><blockquote>
-<div><p>terminate called after throwing an instance of ‘std::invalid_argument’
-what():  At /device/info of {“o3r_name”:”My O3R”} - validation failed for additional property ‘o3r_name’: instance invalid as per false-schema</p>
-</div></blockquote>
-</div></blockquote>
-</div></blockquote>
+</div><div aria-labelledby="tab-1-Q0xJ" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-Q0xJ" name="Q0xJ" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt;&gt;&gt;<span class="w"> </span>terminate<span class="w"> </span>called<span class="w"> </span>after<span class="w"> </span>throwing<span class="w"> </span>an<span class="w"> </span>instance<span class="w"> </span>of<span class="w"> </span><span class="s1">&#39;std::invalid_argument&#39;</span>
+what<span class="o">()</span>:<span class="w">  </span>At<span class="w"> </span>/device/info<span class="w"> </span>of<span class="w"> </span><span class="o">{</span><span class="s2">&quot;o3r_name&quot;</span>:<span class="s2">&quot;My O3R&quot;</span><span class="o">}</span><span class="w"> </span>-<span class="w"> </span>validation<span class="w"> </span>failed<span class="w"> </span><span class="k">for</span><span class="w"> </span>additional<span class="w"> </span>property<span class="w"> </span><span class="s1">&#39;o3r_name&#39;</span>:<span class="w"> </span>instance<span class="w"> </span>invalid<span class="w"> </span>as<span class="w"> </span>per<span class="w"> </span>false-schema
+</pre></div>
 </div>
 </div></div>
 <p>Note that the schema might change depending on some parameters (see details <a class="reference internal" href="#parameters-impacting-the-json-schema">below</a>). For example, different modes have different allowed offset values. When retrieving the schema using the ifm3d API, the schema for the current set of parameters is provided. It is therefore possible that the schema validation succeeds with the current schema, but the configuration fails because of a change in the schema due to the new configuration.</p>
@@ -446,8 +422,8 @@ what():  At /device/info of {“o3r_name”:”My O3R”} - validation failed fo
 <h2>Persistent configuration<a class="headerlink" href="#persistent-configuration" title="Link to this heading"></a></h2>
 <p>The O3R provides a way to persistently save a configuration so that the device reboots with the expected configuration: the <a class="reference external" href="https://api.ifm3d.com/stable/_autosummary/ifm3dpy.device.O3R.html#ifm3dpy.device.O3R.save_init">save_init() function in Python</a>, or <a class="reference external" href="https://api.ifm3d.com/stable/cpp_api/classifm3d_1_1O3R.html#a7316e073bf5625c08d7c11a70e5ce07a">SaveInit() in c++</a>. It allows the user to write as persistent configuration the current configuration of the device.</p>
 <p>If calling the <code class="docutils literal notranslate"><span class="pre">save_init</span></code> function without any argument, the exact configuration will be saved, including the sample numbers of the connected camera heads. For this reason, <strong>we strongly recommend persistently saving only snippets of the configuration</strong> (only available in ifm3d &gt;= 1.4.1).</p>
-<div class="python docutils">
-<p>o3r.save_init([“/ports/port2/processing/extrinsicHeadToUser”])</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">o3r</span><span class="o">.</span><span class="n">save_init</span><span class="p">([</span><span class="s2">&quot;/ports/port2/processing/extrinsicHeadToUser&quot;</span><span class="p">])</span>
+</pre></div>
 </div>
 <p>During the boot-up process the VPU compares the persistent configuration to the current hardware configuration. If there is any mismatch, for instance a camera head was replaced, the respective port will be put to ERROR state and the port LED flashes in red.
 The <code class="docutils literal notranslate"><span class="pre">ERROR_BOOT_SEQUENCE_HEAD_INVALID_SERIALNUMBER</span></code> for the mismatched port will be displayed in the diagnostic.</p>

@@ -18,25 +18,25 @@ Diagnostic information can be monitored via two separate ways inside the API:
 Option 1 gives the full set of information, or a filtered subset as specified by the user:
 :::::{tabs}
 ::::{group-tab} Python
-:::python
+```python
 from ifm3dpy.device import O3R
 o3r = O3R()
 o3r.get_diagnostic()
 o3r.get_diagnostic_filtered({"state":"active"})
-:::
+```
 ::::
 ::::{group-tab} c++
-:::cpp
+```cpp
 #include <ifm3d/device/o3r.h>
 auto o3r = std::make_shared<ifm3d::O3R>();
 auto diag = o3r->GetDiagnostic();
 auto diag = o3r->GetDiagnosticFiltered(ifm3d::JSON::parse("{\"state\":\"active\"}"));
-:::
+```
 ::::
 ::::{group-tab} CLI
-:::bash
+```bash
 ifm3d diagnostic
-:::
+```
 ::::
 :::::
 
@@ -48,7 +48,7 @@ Option 2 provides diagnostic updates asynchronously as they occur. For this purp
 
 :::::{tabs}
 ::::{group-tab} Python
-:::python
+```python
 from ifm3dpy.device import O3R
 from ifm3dpy.framegrabber import FrameGrabber
 o3r = O3R()
@@ -56,10 +56,10 @@ fg = FrameGrabber(o3r, 50009)
 fg.on_async_error(lambda id, JSON: print(f"Got error {id} with content: {JSON}"))
 fg.start([])
 
-:::
+```
 ::::
 ::::{group-tab} c++
-:::cpp
+```cpp
 #include <iostream>
 #include <chrono>
 #include <thread>
@@ -85,7 +85,7 @@ main()
   std::this_thread::sleep_for (std::chrono::seconds(10));
   return 0;
 }
-:::
+```
 ::::
 :::::
 

@@ -153,29 +153,29 @@ You can for example do so using the command line interface:</p>
 <h3>Reboot to recovery<a class="headerlink" href="#reboot-to-recovery" title="Link to this heading"></a></h3>
 <p>When the starting firmware is version 1.0.0 and above, a reboot to recovery state is necessary to perform an update.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-Q0xJ" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-Q0xJ" name="Q0xJ" role="tab" tabindex="0">CLI</button><button aria-controls="panel-0-Yysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Yysr" name="Yysr" role="tab" tabindex="-1">c++</button><button aria-controls="panel-0-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-0-Q0xJ" class="sphinx-tabs-panel group-tab" id="panel-0-Q0xJ" name="Q0xJ" role="tabpanel" tabindex="0"><div class="bash docutils">
-<p>$ ifm3d reboot –recovery</p>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-Q0xJ" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-Q0xJ" name="Q0xJ" role="tab" tabindex="0">CLI</button><button aria-controls="panel-0-Yysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Yysr" name="Yysr" role="tab" tabindex="-1">c++</button><button aria-controls="panel-0-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-0-Q0xJ" class="sphinx-tabs-panel group-tab" id="panel-0-Q0xJ" name="Q0xJ" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>reboot<span class="w"> </span>--recovery
+</pre></div>
 </div>
-</div><div aria-labelledby="tab-0-Yysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Yysr" name="Yysr" role="tabpanel" tabindex="0"><div class="cpp docutils">
-<p>#include &lt;ifm3d/device/o3r.h&gt;
-#include &lt;ifm3d/swupdater/swupdater.h&gt;
-…
-auto o3r = std::make_shared<a class="reference external" href="ifm3d::O3R">ifm3d::O3R</a>();
-auto sw = std::make_shared<a class="reference external" href="ifm3d::SWUpdater">ifm3d::SWUpdater</a>(o3r);
-sw-&gt;RebootToRecovery();
-if (sw-&gt;WaitForRecovery()) {
-std::cout &lt;&lt; “System in recovery mode” &lt;&lt; std::endl;
-}
-…</p>
+</div><div aria-labelledby="tab-0-Yysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Yysr" name="Yysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ifm3d/device/o3r.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ifm3d/swupdater/swupdater.h&gt;</span>
+<span class="p">...</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">o3r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">O3R</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">sw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">SWUpdater</span><span class="o">&gt;</span><span class="p">(</span><span class="n">o3r</span><span class="p">);</span>
+<span class="n">sw</span><span class="o">-&gt;</span><span class="n">RebootToRecovery</span><span class="p">();</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sw</span><span class="o">-&gt;</span><span class="n">WaitForRecovery</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;System in recovery mode&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">...</span>
+</pre></div>
 </div>
-</div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="python docutils">
-<p>from ifm3dpy.swupdater import SWUpdater
-from ifm3dpy.device import O3R
-o3r = O3R()
-sw = SWUpdater(o3r)
-sw.reboot_to_recovery()
-if sw.wait_for_recovery():
-print(“System in recovery mode)</p>
+</div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ifm3dpy.swupdater</span> <span class="kn">import</span> <span class="n">SWUpdater</span>
+<span class="kn">from</span> <span class="nn">ifm3dpy.device</span> <span class="kn">import</span> <span class="n">O3R</span>
+<span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">()</span>
+<span class="n">sw</span> <span class="o">=</span> <span class="n">SWUpdater</span><span class="p">(</span><span class="n">o3r</span><span class="p">)</span>
+<span class="n">sw</span><span class="o">.</span><span class="n">reboot_to_recovery</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">sw</span><span class="o">.</span><span class="n">wait_for_recovery</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;System in recovery mode)</span>
+</pre></div>
 </div>
 </div></div>
 </section>
@@ -220,19 +220,19 @@ print(“System in recovery mode)</p>
 In the instructions below, replace <code class="docutils literal notranslate"><span class="pre">&lt;path/to/firmware_image.swu&gt;</span></code> with the path to the firmware file you downloaded from <a class="reference external" href="https://www.ifm.com/">ifm.com</a>.
 The code below is continued from the “reboot to recovery” section.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-Q0xJ" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-Q0xJ" name="Q0xJ" role="tab" tabindex="0">CLI</button><button aria-controls="panel-1-Yysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-Yysr" name="Yysr" role="tab" tabindex="-1">c++</button><button aria-controls="panel-1-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-1-Q0xJ" class="sphinx-tabs-panel group-tab" id="panel-1-Q0xJ" name="Q0xJ" role="tabpanel" tabindex="0"><div class="bash docutils">
-<p>$ ifm3d swupdate –file=&lt;path/to/firmware_image.swu&gt;</p>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-Q0xJ" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-Q0xJ" name="Q0xJ" role="tab" tabindex="0">CLI</button><button aria-controls="panel-1-Yysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-Yysr" name="Yysr" role="tab" tabindex="-1">c++</button><button aria-controls="panel-1-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-1-Q0xJ" class="sphinx-tabs-panel group-tab" id="panel-1-Q0xJ" name="Q0xJ" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>swupdate<span class="w"> </span>--file<span class="o">=</span>&lt;path/to/firmware_image.swu&gt;
+</pre></div>
 </div>
-</div><div aria-labelledby="tab-1-Yysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-Yysr" name="Yysr" role="tabpanel" tabindex="0"><div class="cpp docutils">
-<p>if (sw-&gt;FlashFirmware(“&lt;path/to/firmware_image.swu&gt;”)){
-sw-&gt;WaitForProductive();
-std::cout &lt;&lt; “System ready!” &lt;&lt; std::endl;
-}</p>
+</div><div aria-labelledby="tab-1-Yysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-Yysr" name="Yysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sw</span><span class="o">-&gt;</span><span class="n">FlashFirmware</span><span class="p">(</span><span class="s">&quot;&lt;path/to/firmware_image.swu&gt;&quot;</span><span class="p">)){</span>
+<span class="w">    </span><span class="n">sw</span><span class="o">-&gt;</span><span class="n">WaitForProductive</span><span class="p">();</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;System ready!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
 </div>
-</div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="python docutils">
-<p>if sw.flash_firmware(‘&lt;path/to/firmware_image.swu&gt;’):
-sw.wait_for_productive()
-print(“System ready!”)</p>
+</div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">sw</span><span class="o">.</span><span class="n">flash_firmware</span><span class="p">(</span><span class="s1">&#39;&lt;path/to/firmware_image.swu&gt;&#39;</span><span class="p">):</span>
+    <span class="n">sw</span><span class="o">.</span><span class="n">wait_for_productive</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;System ready!&quot;</span><span class="p">)</span>
+</pre></div>
 </div>
 </div></div>
 <blockquote>
@@ -241,14 +241,14 @@ Please refer to the API documentation for details on the potential exceptions th
 </div></blockquote>
 <p>Double check the firmware version after the update:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-Q0xJ" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-2-Q0xJ" name="Q0xJ" role="tab" tabindex="0">CLI</button><button aria-controls="panel-2-Yysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-Yysr" name="Yysr" role="tab" tabindex="-1">c++</button><button aria-controls="panel-2-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-2-Q0xJ" class="sphinx-tabs-panel group-tab" id="panel-2-Q0xJ" name="Q0xJ" role="tabpanel" tabindex="0"><div class="bash docutils">
-<p>$ ifm3d dump | jq .device.swVersion.firmware</p>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-Q0xJ" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-2-Q0xJ" name="Q0xJ" role="tab" tabindex="0">CLI</button><button aria-controls="panel-2-Yysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-Yysr" name="Yysr" role="tab" tabindex="-1">c++</button><button aria-controls="panel-2-cHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-cHl0aG9u" name="cHl0aG9u" role="tab" tabindex="-1">python</button></div><div aria-labelledby="tab-2-Q0xJ" class="sphinx-tabs-panel group-tab" id="panel-2-Q0xJ" name="Q0xJ" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.device.swVersion.firmware
+</pre></div>
 </div>
-</div><div aria-labelledby="tab-2-Yysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-Yysr" name="Yysr" role="tabpanel" tabindex="0"><div class="c++ docutils">
-<p>ifm3d::json config = dev-&gt;Get({“/device/swVersion/firmware”});</p>
+</div><div aria-labelledby="tab-2-Yysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-Yysr" name="Yysr" role="tabpanel" tabindex="0"><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dev</span><span class="o">-&gt;</span><span class="n">Get</span><span class="p">({</span><span class="s">&quot;/device/swVersion/firmware&quot;</span><span class="p">});</span>
+</pre></div>
 </div>
-</div><div aria-labelledby="tab-2-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="python docutils">
-<p>o3r.get([“/device/swVersion/firmware”])</p>
+</div><div aria-labelledby="tab-2-cHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-cHl0aG9u" name="cHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/swVersion/firmware&quot;</span><span class="p">])</span>
+</pre></div>
 </div>
 </div></div>
 </section>

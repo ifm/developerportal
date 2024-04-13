@@ -8,16 +8,16 @@ Some parameters require that the port or application instance is in "CONF" state
 To verify if a parameter requires a change to "CONF," you can use the JSON schema. For example, let's see if the framerate parameter for a camera connected to port2 (in this example) requires a change to "CONF":
 :::::{tabs}
 ::::{group-tab} Python
-:::python
+```python
 from ifm3dpy import O3R
 o3r = O3R()
 schema = o3r.get_schema()
 schema["properties"]["ports"]["properties"]["port2"]["properties"]["acquisition"]["properties"]["framerate"]
 >>> {'attributes': ['conf'], 'default': 10, 'description': 'Framerate of the Imager', 'maximum': 20.0, 'minimum': 10.0, 'multipleOf': 0.5, 'readOnly': False, 'type': 'number'}
-:::
+```
 ::::
 ::::{group-tab} c++
-:::cpp
+```cpp
 #include <ifm3d/device/o3r.hpp>
 using namespace ifm3d::literals;
 ...
@@ -25,10 +25,10 @@ auto o3r = std::make_shared<ifm3d::O3R>();
 auto schema = o3r->GetSchema();
 std::cout << schema["/properties/ports/properties/port2/properties/acquisition/properties/framerate"_json_pointer];
 >>> {"attributes":["conf"],"default":10,"description":"Framerate of the Imager","maximum":20.0,"minimum":10.0,"multipleOf":0.5,"readOnly":false,"type":"number"}
-:::
+```
 ::::
 ::::{group-tab} CLI
-:::bash
+```bash
 $ ifm3d jsonschema | jq .properties.ports.properties.port2.properties.acquisition.properties.framerate
 {
   "attributes": [
@@ -42,7 +42,7 @@ $ ifm3d jsonschema | jq .properties.ports.properties.port2.properties.acquisitio
   "readOnly": false,
   "type": "number"
 }
-:::
+```
 ::::
 :::::
 
@@ -184,7 +184,7 @@ A JSON schema for the current O3R configuration is available and the user can us
 Third-party packages can be used in Python or c++ to validate a configuration. For example:
 :::::{tabs}
 ::::{group-tab} Python
-:::python
+```python
 from ifm3dpy.device import O3R
 import jsonschema
 o3r = O3R()
@@ -203,10 +203,10 @@ jsonschema.exceptions.ValidationError: Additional properties are not allowed ('o
 [...]
 On instance['device']['info']:
     {'o3r_name': 'My O3R'}
-:::
+```
 ::::
 ::::{group-tab} C++
-:::cpp
+```cpp
 static void CheckJSONFormat(const std::string& format, const std::string& value) {
 // This is necessary because "format" is a keyword both used internally by the schema
 // validator and in the O3R schema.
@@ -232,11 +232,13 @@ main()
     // Exception raised during the validation
     return 0;
 }
-:::
-:::bash
+```
+::::
+::::{group-tab} CLI
+```bash
 >>> terminate called after throwing an instance of 'std::invalid_argument'
 what():  At /device/info of {"o3r_name":"My O3R"} - validation failed for additional property 'o3r_name': instance invalid as per false-schema
-:::
+```
 ::::
 :::::
 
@@ -254,9 +256,9 @@ The O3R provides a way to persistently save a configuration so that the device r
 
 If calling the `save_init` function without any argument, the exact configuration will be saved, including the sample numbers of the connected camera heads. For this reason, **we strongly recommend persistently saving only snippets of the configuration** (only available in ifm3d >= 1.4.1).
 
-:::python
+```python
 o3r.save_init(["/ports/port2/processing/extrinsicHeadToUser"])
-:::
+```
 
 During the boot-up process the VPU compares the persistent configuration to the current hardware configuration. If there is any mismatch, for instance a camera head was replaced, the respective port will be put to ERROR state and the port LED flashes in red.
 The `ERROR_BOOT_SEQUENCE_HEAD_INVALID_SERIALNUMBER` for the mismatched port will be displayed in the diagnostic.

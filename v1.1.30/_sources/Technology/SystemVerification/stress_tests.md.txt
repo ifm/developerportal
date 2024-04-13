@@ -91,7 +91,7 @@ The O3R shows its temperature values in live operation, as part of the read-only
 
 :::::{tabs}
 ::::{group-tab} Python
-:::python
+```python
 #############################################
 # Copyright 2023-present ifm electronic, gmbh
 # SPDX-License-Identifier: Apache-2.0
@@ -130,11 +130,11 @@ def main():
 
 if __name__ == "__main__":
     main()
-:::
+```
 ::::
 ::::{group-tab} CLI
-:::bash
+```bash
 $ ifm3d dump | jq '.device.diagnostic.temperatures'
-:::
+```
 ::::
 :::::
