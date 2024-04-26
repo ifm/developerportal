@@ -114,6 +114,11 @@ Once decoded, the image can be displayed using tools such as OpenCV. The example
 <h2><code class="docutils literal notranslate"><span class="pre">bootup_monitor.py</span></code><a class="headerlink" href="#bootup-monitor-py" title="Link to this heading"></a></h2>
 <p>The script <code class="docutils literal notranslate"><span class="pre">bootup_monitor.py</span></code> checks that the VPU completes it’s boot sequence before attempting to initialize an application.</p>
 </section>
+<section id="can-activate-py">
+<h2><code class="docutils literal notranslate"><span class="pre">can_activate.py</span></code><a class="headerlink" href="#can-activate-py" title="Link to this heading"></a></h2>
+<p>The CAN interface can only be activate through the JSON configuration with firmware version 1.4.X or higher.</p>
+<p>This examples shows how to activate or deactivate the <code class="docutils literal notranslate"><span class="pre">can0</span></code> interface.</p>
+</section>
 <section id="configuration-py">
 <h2><code class="docutils literal notranslate"><span class="pre">configuration.py</span></code><a class="headerlink" href="#configuration-py" title="Link to this heading"></a></h2>
 <p>The O3R has multiple parameters that have an influence on the point cloud. Some of them affect the raw measurement and others modify how the data is converted into x,y,z, etc values. These parameters can be changed to better fit your applications and the script <code class="docutils literal notranslate"><span class="pre">configuration.py</span></code> presents how. You can refer to <a class="reference external" href="https://ifm3d.com/latest/Technology/3D/index_3d.html">this page</a> for a detailed description of each parameter.</p>
@@ -124,6 +129,11 @@ Once decoded, the image can be displayed using tools such as OpenCV. The example
 <p>Some of the data provided by the O3R platform needs to be deserialized to be used.
 For more information on the data structures of each buffer please refer to the <a class="reference external" href="https://api.ifm3d.com/latest/_autosummary/ifm3dpy.deserialize.html">Python API documentation</a>.</p>
 <p>The usage of the deserializer is the same for all the deserializable buffers: create the object, and call the deserialize function. Follow the example code, <code class="docutils literal notranslate"><span class="pre">deserialize_rgb.py</span></code> for an example on deserializing the <code class="docutils literal notranslate"><span class="pre">RGBInfoV1</span></code> buffer.</p>
+</section>
+<section id="deserialize-imu-py-and-imu-data-py">
+<h2><code class="docutils literal notranslate"><span class="pre">deserialize_imu.py</span></code> and <code class="docutils literal notranslate"><span class="pre">imu_data.py</span></code><a class="headerlink" href="#deserialize-imu-py-and-imu-data-py" title="Link to this heading"></a></h2>
+<p>The IMU data can only be accessed with firmware versions 1.4.X or higher, and ifm3d version 1.5.X or higher.</p>
+<p>These two examples show how to retrieve IMU data from the device and how to deserialize it.</p>
 </section>
 <section id="diagnostic-py">
 <h2><code class="docutils literal notranslate"><span class="pre">diagnostic.py</span></code><a class="headerlink" href="#diagnostic-py" title="Link to this heading"></a></h2>

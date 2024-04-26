@@ -255,7 +255,8 @@ Please refer to the API documentation for details on the potential exceptions th
 </section>
 <section id="the-full-example-script">
 <h2>The full example script<a class="headerlink" href="#the-full-example-script" title="Link to this heading"></a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#############################################</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1">#############################################</span>
 <span class="c1"># Copyright 2023-present ifm electronic, gmbh</span>
 <span class="c1"># SPDX-License-Identifier: Apache-2.0</span>
 <span class="c1">#############################################</span>
@@ -267,33 +268,59 @@ Please refer to the API documentation for details on the potential exceptions th
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 
+<span class="kn">import</span> <span class="nn">ifm3dpy</span>
 <span class="kn">from</span> <span class="nn">ifm3dpy.device</span> <span class="kn">import</span> <span class="n">O3R</span>
 <span class="kn">from</span> <span class="nn">ifm3dpy.device</span> <span class="kn">import</span> <span class="n">Error</span> <span class="k">as</span> <span class="n">ifm3dpy_error</span>
 <span class="kn">from</span> <span class="nn">ifm3dpy.swupdater</span> <span class="kn">import</span> <span class="n">SWUpdater</span>
+<span class="kn">from</span> <span class="nn">bootup_monitor</span> <span class="kn">import</span> <span class="n">BootUpMonitor</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 <span class="n">TIMEOUT_MILLIS</span> <span class="o">=</span> <span class="mi">300000</span>
 
 
+<span class="k">def</span> <span class="nf">_setup_logging</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+    
+    <span class="n">logPath</span> <span class="o">=</span> <span class="s2">&quot;./logs&quot;</span>  
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s2">&quot;./logs&quot;</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s2">&quot;./logs&quot;</span><span class="p">)</span>
+    <span class="n">current_datetime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2">_%H-%M-%S&quot;</span><span class="p">)</span>
+    <span class="n">fileName</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;FW_update</span><span class="si">{</span><span class="n">current_datetime</span><span class="si">}</span><span class="s2">.log&quot;</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span> <span class="o">-</span> <span class="n">args</span><span class="o">.</span><span class="n">verbose</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">logFormatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2"> [</span><span class="si">%(threadName)-12.12s</span><span class="s2">] [</span><span class="si">%(levelname)-5.5s</span><span class="s2">]  </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">fileHandler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">/</span><span class="si">{1}</span><span class="s2">.log&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">logPath</span><span class="p">,</span> <span class="n">fileName</span><span class="p">))</span>
+
+    <span class="n">fileHandler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">logFormatter</span><span class="p">)</span>
+    <span class="n">consoleHandler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()</span>
+    <span class="n">consoleHandler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">logFormatter</span><span class="p">)</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">fileHandler</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">consoleHandler</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">logger</span>
+  
 <span class="k">def</span> <span class="nf">_get_firmware_version</span><span class="p">(</span><span class="n">o3r</span><span class="p">:</span> <span class="n">O3R</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">firmware</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/swVersion/firmware&quot;</span><span class="p">])[</span><span class="s2">&quot;device&quot;</span><span class="p">][</span><span class="s2">&quot;swVersion&quot;</span><span class="p">][</span>
-            <span class="s2">&quot;firmware&quot;</span>
-        <span class="p">]</span>
+        <span class="n">firmware</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">o3r</span><span class="o">.</span><span class="n">firmware_version</span><span class="p">())</span>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
         <span class="k">raise</span> <span class="n">err</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;VPU firmware: </span><span class="si">{</span><span class="n">firmware</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">patch</span> <span class="o">=</span> <span class="n">firmware</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
-        <span class="n">patch</span> <span class="o">=</span> <span class="n">patch</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">patch</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">patch</span><span class="p">,</span> <span class="n">build_id</span> <span class="o">=</span> <span class="n">patch</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="n">build_id</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Build id not available.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">patch</span><span class="p">,</span> <span class="n">build_id</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">err</span>
+        <span class="k">raise</span> <span class="n">err</span> 
 
 
-<span class="k">def</span> <span class="nf">_update_firmware_016_to_10x</span><span class="p">(</span><span class="n">o3r</span><span class="p">:</span> <span class="n">O3R</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">_update_firmware_016_to_10x</span><span class="p">(</span><span class="n">o3r</span><span class="p">:</span> <span class="n">O3R</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Update the OVP firmware from 0.16.x to 1.x.x series.</span>
 <span class="sd">    This update requires a specific process: the update has</span>
 <span class="sd">    to be performed twice to install the recovery partition.</span>
@@ -309,7 +336,7 @@ Please refer to the API documentation for details on the potential exceptions th
 
     <span class="c1"># 1st application of FW update</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;First flash FW file&quot;</span><span class="p">)</span>
-    <span class="n">sw_updater</span><span class="o">.</span><span class="n">flash_firmware</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">timeout_millis</span><span class="o">=</span><span class="n">TIMEOUT_MILLIS</span><span class="p">)</span>
+    <span class="n">sw_updater</span><span class="o">.</span><span class="n">flash_firmware</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">filename</span><span class="p">),</span> <span class="n">timeout_millis</span><span class="o">=</span><span class="n">TIMEOUT_MILLIS</span><span class="p">)</span>
 
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Rebooting to recovery&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">sw_updater</span><span class="o">.</span><span class="n">wait_for_recovery</span><span class="p">(</span><span class="mi">120000</span><span class="p">):</span>
@@ -319,7 +346,7 @@ Please refer to the API documentation for details on the potential exceptions th
 
     <span class="c1"># 2nd application of FW update: final flash</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Second flash FW file&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">sw_updater</span><span class="o">.</span><span class="n">flash_firmware</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">timeout_millis</span><span class="o">=</span><span class="n">TIMEOUT_MILLIS</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">sw_updater</span><span class="o">.</span><span class="n">flash_firmware</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">filename</span><span class="p">),</span> <span class="n">timeout_millis</span><span class="o">=</span><span class="n">TIMEOUT_MILLIS</span><span class="p">):</span>
         <span class="n">_reboot_productive</span><span class="p">(</span><span class="n">o3r</span><span class="o">=</span><span class="n">o3r</span><span class="p">)</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Request reboot to productive after second FW flash&quot;</span><span class="p">)</span>
         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Firmware update failed&quot;</span><span class="p">)</span>
@@ -329,7 +356,7 @@ Please refer to the API documentation for details on the potential exceptions th
         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Device failed to boot into productive mode in 2 minutes&quot;</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">_update_firmware_via_recovery</span><span class="p">(</span><span class="n">o3r</span><span class="p">:</span> <span class="n">O3R</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="k">def</span> <span class="nf">_update_firmware_via_recovery</span><span class="p">(</span><span class="n">o3r</span><span class="p">:</span> <span class="n">O3R</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Start FW update with file: </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="n">sw_updater</span> <span class="o">=</span> <span class="n">SWUpdater</span><span class="p">(</span><span class="n">o3r</span><span class="p">)</span>
@@ -340,7 +367,7 @@ Please refer to the API documentation for details on the potential exceptions th
         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Device failed to boot into recovery in 2 minutes&quot;</span><span class="p">)</span>
 
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Boot to recovery mode successful&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">sw_updater</span><span class="o">.</span><span class="n">flash_firmware</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">timeout_millis</span><span class="o">=</span><span class="n">TIMEOUT_MILLIS</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">sw_updater</span><span class="o">.</span><span class="n">flash_firmware</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">filename</span><span class="p">),</span> <span class="n">timeout_millis</span><span class="o">=</span><span class="n">TIMEOUT_MILLIS</span><span class="p">):</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Firmware update failed. Boot to productive mode&quot;</span><span class="p">)</span>
         <span class="n">_reboot_productive</span><span class="p">(</span><span class="n">o3r</span><span class="o">=</span><span class="n">o3r</span><span class="p">)</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Reboot to productive system completed&quot;</span><span class="p">)</span>
@@ -359,8 +386,13 @@ Please refer to the API documentation for details on the potential exceptions th
     <span class="n">sw_updater</span><span class="o">.</span><span class="n">reboot_to_productive</span><span class="p">()</span>
     <span class="n">sw_updater</span><span class="o">.</span><span class="n">wait_for_productive</span><span class="p">(</span><span class="mi">120000</span><span class="p">)</span>
 
-
-<span class="k">def</span> <span class="nf">_reapply_config</span><span class="p">(</span><span class="n">o3r</span><span class="p">,</span> <span class="n">config_file</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_check_ifm3dpy_version</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">ifm3dpy</span><span class="o">.</span><span class="n">__version__</span> <span class="o">&lt;</span> <span class="s2">&quot;1.3.3&quot;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+            <span class="s2">&quot;ifm3dpy version not compatible. </span><span class="se">\n</span><span class="s2">Upgrade via pip install -U ifm3dpy&quot;</span>
+        <span class="p">)</span>
+    
+<span class="k">def</span> <span class="nf">_reapply_config</span><span class="p">(</span><span class="n">o3r</span><span class="p">:</span> <span class="n">O3R</span><span class="p">,</span> <span class="n">config_file</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">config_file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Reapplying pre-update configuration.&quot;</span><span class="p">)</span>
@@ -380,16 +412,22 @@ Please refer to the API documentation for details on the potential exceptions th
 
 
 <span class="c1"># %%</span>
-<span class="k">def</span> <span class="nf">update_fw</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">ip</span><span class="p">):</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">update_fw</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span> <span class="n">ip</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Perform a firmware update on the device with the given IP address.</span>
 
-    <span class="kn">import</span> <span class="nn">ifm3dpy</span>
+<span class="sd">    Parameters:</span>
+<span class="sd">    - filename (str): The name of the firmware file to be used for the update.</span>
+<span class="sd">    - ip (str): The IP address of the device to be updated.</span>
 
-    <span class="k">if</span> <span class="n">ifm3dpy</span><span class="o">.</span><span class="n">__version__</span> <span class="o">&lt;</span> <span class="s2">&quot;1.3.3&quot;</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-            <span class="s2">&quot;ifm3dpy version not compatible. </span><span class="se">\n</span><span class="s2">Upgrade via pip install -U ifm3dpy&quot;</span>
-        <span class="p">)</span>
+<span class="sd">    Returns:</span>
+<span class="sd">    - None: This function does not return anything.</span>
 
+<span class="sd">    Note:</span>
+<span class="sd">    Ensure that the firmware file exists in the specified location before running this function.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Check compatibility of ifm3dpy version</span>
+    <span class="n">_check_ifm3dpy_version</span><span class="p">()</span>
     <span class="c1"># Check that swu file exists</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Provided swu file does not exist&quot;</span><span class="p">)</span>
@@ -401,8 +439,8 @@ Please refer to the API documentation for details on the potential exceptions th
     <span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">(</span><span class="n">ip</span><span class="o">=</span><span class="n">ip</span><span class="p">)</span>
 
     <span class="c1"># check FW 0.16.23</span>
-    <span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">patch</span> <span class="o">=</span> <span class="n">_get_firmware_version</span><span class="p">(</span><span class="n">o3r</span><span class="p">)</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Firmware version before update: </span><span class="si">{</span><span class="p">(</span><span class="n">major</span><span class="p">,</span><span class="w"> </span><span class="n">minor</span><span class="p">,</span><span class="w"> </span><span class="n">patch</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">patch</span><span class="p">,</span> <span class="n">build_id</span> <span class="o">=</span> <span class="n">_get_firmware_version</span><span class="p">(</span><span class="n">o3r</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Firmware version before update: </span><span class="si">{</span><span class="p">(</span><span class="n">major</span><span class="p">,</span><span class="w"> </span><span class="n">minor</span><span class="p">,</span><span class="w"> </span><span class="n">patch</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">major</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">any</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="n">minor</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">patch</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">23</span><span class="p">]):</span>
         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
             <span class="s2">&quot;Update to FW 0.16.23 first before updating to version 1.0.14&quot;</span>
@@ -427,31 +465,79 @@ Please refer to the API documentation for details on the potential exceptions th
         <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Update process: file transfer completed&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;This FW update is not supported&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;FW on the VPU is not supported&quot;</span><span class="p">)</span>
 
-    <span class="c1"># wait for system ready</span>
-    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;VPU fully booted.&quot;</span><span class="p">)</span>
-            <span class="k">break</span>
-        <span class="k">except</span> <span class="n">ifm3dpy_error</span><span class="p">:</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Awaiting data from VPU.&quot;</span><span class="p">)</span>
-            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;FW update via SWU file applied - waiting to reboot&quot;</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">_vpu_ready</span><span class="p">(</span><span class="n">o3r</span><span class="p">:</span><span class="n">O3R</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span> <span class="c1"># vpu addressable</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">config</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">config</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Connected.&quot;</span><span class="p">)</span>
+                    <span class="k">break</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">ifm3dpy_error</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Awaiting data from VPU.&quot;</span><span class="p">)</span>
+
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span> <span class="c1"># check for full boot-up of the VPU via confInitStages</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">fully_booted</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/diagnostic/confInitStages&quot;</span><span class="p">])[</span><span class="s2">&quot;device&quot;</span><span class="p">][</span><span class="s2">&quot;diagnostic&quot;</span><span class="p">][</span><span class="s2">&quot;confInitStages&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="s2">&quot;device&quot;</span><span class="p">,</span> <span class="s2">&quot;ports&quot;</span><span class="p">,</span> <span class="s2">&quot;applications&quot;</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">fully_booted</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;VPU fully booted.&quot;</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="kc">True</span>
+            <span class="k">except</span> <span class="n">ifm3dpy_error</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Awaiting data from VPU.&quot;</span><span class="p">)</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    <span class="c1"># wait for system to be ready</span>
+
 
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;///////////////////////&quot;</span><span class="p">)</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Firmware update complete.&quot;</span><span class="p">)</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;///////////////////////&quot;</span><span class="p">)</span>
 
     <span class="c1"># check firmware version after update</span>
-
-    <span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">patch</span> <span class="o">=</span> <span class="n">_get_firmware_version</span><span class="p">(</span><span class="n">o3r</span><span class="p">)</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Firmware version after update: </span><span class="si">{</span><span class="p">(</span><span class="n">major</span><span class="p">,</span><span class="w"> </span><span class="n">minor</span><span class="p">,</span><span class="w"> </span><span class="n">patch</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">_vpu_ready</span><span class="p">(</span><span class="n">o3r</span><span class="p">)</span>
+    <span class="n">major</span><span class="p">,</span> <span class="n">minor</span><span class="p">,</span> <span class="n">patch</span><span class="p">,</span> <span class="n">build_id</span> <span class="o">=</span> <span class="n">_get_firmware_version</span><span class="p">(</span><span class="n">o3r</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Firmware version after update: </span><span class="si">{</span><span class="p">(</span><span class="n">major</span><span class="p">,</span><span class="w"> </span><span class="n">minor</span><span class="p">,</span><span class="w"> </span><span class="n">patch</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="c1"># reapply configuration after update</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Reapply configuration before FW update&quot;</span><span class="p">)</span>
     <span class="n">_reapply_config</span><span class="p">(</span><span class="n">o3r</span><span class="o">=</span><span class="n">o3r</span><span class="p">,</span> <span class="n">config_file</span><span class="o">=</span><span class="n">config_back_fp</span><span class="p">)</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
+        <span class="n">prog</span><span class="o">=</span><span class="s2">&quot;Firmware update helper&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Update the O3R embedded firmware&quot;</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--filename&quot;</span><span class="p">,</span> 
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;SWU filename in the cwd&quot;</span><span class="p">,</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;-v&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;--verbose&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Increase output verbosity&quot;</span><span class="p">,</span>
+        <span class="n">action</span><span class="o">=</span><span class="s2">&quot;count&quot;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;verbose&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s2">&quot;--log-file&quot;</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The file to save relevant output&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="n">Path</span><span class="p">,</span>
+        <span class="n">required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;deleted_configurations.log&quot;</span><span class="p">),</span>
+        <span class="n">dest</span><span class="o">=</span><span class="s2">&quot;log_file&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+    <span class="c1"># register a stream and file handler for all logging messages</span>
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">_setup_logging</span><span class="p">(</span><span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">)</span>
+
     <span class="k">try</span><span class="p">:</span>
         <span class="c1"># If the example python package was build, import the configuration</span>
         <span class="kn">from</span> <span class="nn">ovp8xxexamples</span> <span class="kn">import</span> <span class="n">config</span>
@@ -466,12 +552,6 @@ Please refer to the API documentation for details on the potential exceptions th
         <span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Defaulting to the default configuration.&quot;</span><span class="p">)</span>
         <span class="n">IP</span> <span class="o">=</span> <span class="s2">&quot;192.168.0.69&quot;</span>
-
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span>
-        <span class="n">prog</span><span class="o">=</span><span class="s2">&quot;Firmware update helper&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Update the O3R embedded firmware&quot;</span>
-    <span class="p">)</span>
-    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;--filename&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;SWU filename in the cwd&quot;</span><span class="p">)</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 
 
     <span class="n">update_fw</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="n">ip</span><span class="o">=</span><span class="n">IP</span><span class="p">)</span>
