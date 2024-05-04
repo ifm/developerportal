@@ -279,9 +279,8 @@ It is capable of recording both hdf5 formats.</p>
 <span class="n">stream_2d</span>   <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;streams&quot;</span><span class="p">][</span><span class="s1">&#39;o3r_rgb_0&#39;</span><span class="p">]</span>
 <span class="n">stream_3d</span>   <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;streams&quot;</span><span class="p">][</span><span class="s1">&#39;o3r_tof_0&#39;</span><span class="p">]</span>
 <span class="n">stream_ods</span>  <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;streams&quot;</span><span class="p">][</span><span class="s1">&#39;o3r_app_ods_0&#39;</span><span class="p">]</span>
-</pre></div>
-</div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># show all available data per stream</span>
+
+<span class="c1"># show all available data per stream</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">stream_2d</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
 
 <span class="c1"># Retrieving first image per data stream</span>
@@ -289,8 +288,8 @@ It is capable of recording both hdf5 formats.</p>
 <span class="n">rgb_decoded</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imdecode</span><span class="p">(</span><span class="n">rgb_encoded</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_UNCHANGED</span><span class="p">)</span>
 <span class="n">rgb_image</span>   <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">rgb_decoded</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">)</span>
 
-<span class="n">distance_image</span>  <span class="o">=</span> <span class="n">stream_3d</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span>
-<span class="n">amplitude_image</span> <span class="o">=</span> <span class="n">stream_3d</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;amplitude&#39;</span><span class="p">]</span>
+<span class="n">distance_image</span>  <span class="o">=</span> <span class="n">stream_3d</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;distance&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">stream_3d</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;distanceResolution&#39;</span><span class="p">]</span>
+<span class="n">amplitude_image</span> <span class="o">=</span> <span class="n">stream_3d</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;amplitude&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">stream_3d</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;amplitudeResolution&#39;</span><span class="p">]</span>
 <span class="n">occupancy_grid</span>  <span class="o">=</span> <span class="n">stream_ods</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;image&#39;</span><span class="p">]</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
