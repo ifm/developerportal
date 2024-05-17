@@ -13,7 +13,7 @@ Which method to calibrate your camera?
 :gutter: 1
 
 :::{grid-item-card}  In the field
-:link: MCC/mcc_with_iVA
+:link: MCC/mcc_with_wizard
 :link-type: doc
 Check out our camera calibration in motion.
 :::
