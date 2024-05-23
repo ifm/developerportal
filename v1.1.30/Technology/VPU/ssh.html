@@ -10,7 +10,7 @@
       <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
-      <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=87e54e7c" />
       <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=28a392ea" />
 
   
@@ -26,7 +26,7 @@
         <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
         <script src="../../_static/copybutton.js?v=d9f55abb"></script>
         <script src="../../_static/js/versionwarning.js?v=d4224a34"></script>
-        <script src="../../_static/design-tabs.js?v=36754332"></script>
+        <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -154,7 +154,7 @@ Enter<span class="w"> </span>same<span class="w"> </span>passphrase<span class="
 </section>
 <section id="upload-the-public-key-to-the-vpu">
 <h2>Upload the public key to the VPU<a class="headerlink" href="#upload-the-public-key-to-the-vpu" title="Link to this heading"></a></h2>
-<p>Uploading the public (<code class="docutils literal notranslate"><span class="pre">.pub</span></code>) ssh key to the VPU is achieved via the ifm3d library.
+<p>Uploading the public (<code class="docutils literal notranslate"><span class="pre">.pub</span></code>) SSH key to the VPU is achieved via the ifm3d library.
 The device configuration includes a parameter for authorized keys: <code class="docutils literal notranslate"><span class="pre">authorized_keys</span></code>. It is empty by default.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.device.network
 <span class="o">{</span>
@@ -198,7 +198,7 @@ The device configuration includes a parameter for authorized keys: <code class="
 </section>
 <section id="connect-to-the-vpu-using-the-passphrase">
 <h2>Connect to the VPU using the passphrase<a class="headerlink" href="#connect-to-the-vpu-using-the-passphrase" title="Link to this heading"></a></h2>
-<p>After the key is uploaded, it is possible to connect with <code class="docutils literal notranslate"><span class="pre">ssh</span></code> and the username <code class="docutils literal notranslate"><span class="pre">oem</span></code> to the VPU:</p>
+<p>After the key is uploaded, it is possible to connect with SSH and the username <code class="docutils literal notranslate"><span class="pre">oem</span></code> to the VPU:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ssh<span class="w"> </span>oem@192.168.0.69
 The<span class="w"> </span>authenticity<span class="w"> </span>of<span class="w"> </span>host<span class="w"> </span><span class="s1">&#39;192.168.0.69 (192.168.0.69)&#39;</span><span class="w"> </span>can<span class="s1">&#39;t be established.</span>
 <span class="s1">ECDSA key fingerprint is SHA256:8gjC9za45TTRZNz5JCMwaNJ27BLfsPyDtjBaBQ2vyHw.</span>

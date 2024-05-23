@@ -22,7 +22,7 @@ A passphrase is also needed. After that command, two new keys are generated with
 
 ## Upload the public key to the VPU
 
-Uploading the public (`.pub`) ssh key to the VPU is achieved via the ifm3d library.
+Uploading the public (`.pub`) SSH key to the VPU is achieved via the ifm3d library.
 The device configuration includes a parameter for authorized keys: `authorized_keys`. It is empty by default.
 
 ```bash
@@ -70,7 +70,7 @@ Note that the `authorized_keys` is a persistent parameter: it does not require a
 
 ## Connect to the VPU using the passphrase
 
-After the key is uploaded, it is possible to connect with `ssh` and the username `oem` to the VPU:
+After the key is uploaded, it is possible to connect with SSH and the username `oem` to the VPU:
 
 ```bash
 $ ssh oem@192.168.0.69
