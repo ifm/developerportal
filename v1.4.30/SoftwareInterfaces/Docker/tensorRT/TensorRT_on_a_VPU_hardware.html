@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Using TensorRT &mdash; O3R  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=87e54e7c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=28a392ea" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="O3R Diagnostics: overview" href="../../ifmDiagnostic/index_diagnostic.html" />
+    <link rel="prev" title="Enabling GPU usage on the VPU" href="../gpu.html" />
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script> -->
+     
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            O3R
+          </a>
+              <div class="version">
+                v1.4.30
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../iVA/index_iVA.html">ifm Vision Assistant</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://api.ifm3d.com/stable/">ifm3d/ifm3dpy API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://ros.ifm3d.com/latest/">ROS: ifm3d-ros</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://ros2.ifm3d.com/latest/">ROS2: ifm3d-ros2</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index_docker.html">Docker</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../docker.html">Docker: Getting started</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker.html#build-and-run-a-docker-container-for-the-o3r-platform">Build and run a Docker container for the O3R platform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../deployVPU.html">Deployment on board</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../logging.html">Docker logging configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../autostart.html">Autostarting the container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../resource_management.html">Resource Management on the VPU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gpu.html">Enabling GPU usage</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">TensortRT: DL / ML model deployment</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#building-a-tensorrt-container">Building a TensorRT container</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#nvidia-base-containers">NVIDIA base containers</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#verify-the-functionality">Verify the functionality</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#mounting-directories-from-the-host">Mounting directories from the host</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#dockerfiles">Dockerfiles</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#nvidia-base-dockerfiles">NVIDIA base Dockerfiles</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#ifm-example-dockerfiles">ifm example Dockerfiles</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#using-tensorrt-in-a-container-on-the-vpu">Using TensorRT in a container on the VPU</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#adaptations-for-the-ovp80x-architecture">Adaptations for the OVP80x architecture</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#runtime-inference-cycle-times">Runtime inference cycle times</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#yolov4-tiny">YOLOv4 Tiny</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#deepstream-l4t">Deepstream-l4t</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../ifmDiagnostic/index_diagnostic.html">Diagnostic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Toolbox/index_toolbox.html">Toolbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Examples/examples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+          <li class="breadcrumb-item"><a href="../index_docker.html">Docker on O3R</a></li>
+      <li class="breadcrumb-item active">Using TensorRT</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/SoftwareInterfaces/Docker/tensorRT/TensorRT_on_a_VPU_hardware.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="using-tensorrt">
+<h1>Using TensorRT<a class="headerlink" href="#using-tensorrt" title="Link to this heading"></a></h1>
+<p>This document outlines the general process of AI inference acceleration with TensorRT on an OVP8xx device.</p>
+<section id="building-a-tensorrt-container">
+<h2>Building a TensorRT container<a class="headerlink" href="#building-a-tensorrt-container" title="Link to this heading"></a></h2>
+<p>There are two options:</p>
+<ul class="simple">
+<li><p>Use a base NVIDIA container and import the runtime libraries directly from the firmware. This is the preferred method that we will describe below.</p></li>
+<li><p>Use a complete NVIDIA container that includes the TensorRT libraries directly. This is not recommended since containers sizes will increase dramatically.</p></li>
+</ul>
+<section id="nvidia-base-containers">
+<h3>NVIDIA base containers<a class="headerlink" href="#nvidia-base-containers" title="Link to this heading"></a></h3>
+<p>NVIDIA provides L4T-based containers with TensorFlow that can be downloaded directly from <a class="reference external" href="https://ngc.nvidia.com/catalog/containers/nvidia:l4t-tensorflow">their containers catalog</a>.
+TensorFlow should be used with the corresponding recommended version of JetPack.
+The recommendations can be found on the <a class="reference external" href="https://docs.nvidia.com/deeplearning/frameworks/install-tf-jetson-platform-release-notes/tf-jetson-rel.html">TensorFlow for Jetson website</a>.</p>
+<p>The L4T version on board the OVP80x (which contains the TX2 board) is <a class="reference external" href="https://developer.nvidia.com/embedded/linux-tegra-r32.4.3"><code class="docutils literal notranslate"><span class="pre">r32.4.3</span></code></a>.
+The supported JetPack version is <code class="docutils literal notranslate"><span class="pre">4.4</span></code>. Please see the official table on the <a class="reference external" href="https://docs.nvidia.com/deeplearning/frameworks/install-tf-jetson-platform-release-notes/tf-jetson-rel.html">NVIDIA docs</a> for up to date compatibility information.</p>
+<p>The underlying structure of the container loads the TensorRT libraries and is handled by NVIDIA and Docker - as long as the versions of the container and JetPack closely match.</p>
+<section id="verify-the-functionality">
+<h4>Verify the functionality<a class="headerlink" href="#verify-the-functionality" title="Link to this heading"></a></h4>
+<p>For JetPack version 4.4 (L4T R32.4.3), the following versions are available:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">l4t</span><span class="o">-</span><span class="n">tensorflow</span><span class="p">:</span><span class="n">r32</span><span class="mf">.4.3</span><span class="o">-</span><span class="n">tf1</span><span class="mf">.15</span><span class="o">-</span><span class="n">py3</span><span class="p">:</span> <span class="n">TensorFlow</span> <span class="mf">1.15</span>
+<span class="n">l4t</span><span class="o">-</span><span class="n">tensorflow</span><span class="p">:</span><span class="n">r32</span><span class="mf">.4.3</span><span class="o">-</span><span class="n">tf2</span><span class="mf">.2</span><span class="o">-</span><span class="n">py3</span><span class="p">:</span> <span class="n">TensorFlow</span> <span class="mf">2.2</span>
+</pre></div>
+</div>
+<p>First pull one of the <code class="docutils literal notranslate"><span class="pre">l4t-tensorflow</span></code> container tags from above, corresponding to the version of L4T that is installed on your Jetson and to the desired TensorFlow version. For example, if you are running the latest JetPack 4.4 (L4T R32.4.3) release and want to use TensorFlow 1.15, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>nvcr.io/nvidia/l4t-tensorflow:r32.4.3-tf1.15-py3
+</pre></div>
+</div>
+<p>Then, to start an interactive session in the container, run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--runtime<span class="w"> </span>nvidia<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>nvcr.io/nvidia/l4t-tensorflow:r32.4.3-tf1.15-py3
+</pre></div>
+</div>
+<p>You should then be able to start a Python3 interpreter and import TensorFlow.</p>
+</section>
+<section id="mounting-directories-from-the-host">
+<h4>Mounting directories from the host<a class="headerlink" href="#mounting-directories-from-the-host" title="Link to this heading"></a></h4>
+<p>To mount scripts, data, etc. from your Jetson’s filesystem to run inside the container, use Docker’s <code class="docutils literal notranslate"><span class="pre">-v</span></code> flag when starting your Docker instance:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--runtime<span class="w"> </span>nvidia<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>-v<span class="w"> </span>/home/user/project:/location/in/container<span class="w"> </span>nvcr.io/nvidia/l4t-tensorflow:r32.4.3-tf1.15-py3
+</pre></div>
+</div>
+</section>
+</section>
+<section id="dockerfiles">
+<h3>Dockerfiles<a class="headerlink" href="#dockerfiles" title="Link to this heading"></a></h3>
+<section id="nvidia-base-dockerfiles">
+<h4>NVIDIA base Dockerfiles<a class="headerlink" href="#nvidia-base-dockerfiles" title="Link to this heading"></a></h4>
+<p>To access or modify the Dockerfiles and scripts used to build the NVIDIA containers, see this <a class="reference external" href="https://github.com/dusty-nv/jetson-containers">GitHub repository</a>.</p>
+</section>
+<section id="ifm-example-dockerfiles">
+<h4>ifm example Dockerfiles<a class="headerlink" href="#ifm-example-dockerfiles" title="Link to this heading"></a></h4>
+<p>The Dockerfiles for both the <code class="docutils literal notranslate"><span class="pre">o3r-l4t-base</span></code> and the <code class="docutils literal notranslate"><span class="pre">o3r-l4t-tensorrt</span></code> images can be found in the <a class="reference external" href="https://github.com/ifm/ifm3d-examples"><code class="docutils literal notranslate"><span class="pre">ifm3d-examples</span></code> repository on GitHub</a>.
+The <code class="docutils literal notranslate"><span class="pre">o3r-l4t-base</span></code> image provides the bare minimum to install the NVIDIA packages via <code class="docutils literal notranslate"><span class="pre">apt-get</span></code>. It is a stripped down version of the NVIDIA <code class="docutils literal notranslate"><span class="pre">l4t-base</span></code> images with UI libraries removed.
+The <code class="docutils literal notranslate"><span class="pre">o3r-l4t-tensorrt</span></code> image comes with the TensorRT examples from NVIDIA pre-installed and uses a multi stage Docker image build to show how to create smaller images without all the build tools pre-installed.</p>
+<p>The Docker images are not distributed and need to be built locally.</p>
+</section>
+</section>
+</section>
+<section id="using-tensorrt-in-a-container-on-the-vpu">
+<h2>Using TensorRT in a container on the VPU<a class="headerlink" href="#using-tensorrt-in-a-container-on-the-vpu" title="Link to this heading"></a></h2>
+<p>TensorRT applications can be memory-intensive. Here’s how you can manage memory effectively:</p>
+<ol class="arabic simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">l4t-cuda-base</span></code> image and build TensorRT inside the container using Dockerfile. We recommend using Docker’s multistage build feature to reduce the size in the final container.</p></li>
+<li><p>Reduce the container mounting size by using <a class="reference external" href="https://docs.docker.com/engine/reference/builder/#dockerignore-file">.dockerignore file</a>.
+Follow the <a class="reference external" href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Dockerfile best practices</a> to minimize the number of layers and overall size.</p></li>
+</ol>
+<p>Once TensorRT is installed on the VPU, you can proceed as follows:</p>
+<ol class="arabic simple">
+<li><p>Run TensorRT models using <code class="docutils literal notranslate"><span class="pre">trtexec</span></code> inside the <code class="docutils literal notranslate"><span class="pre">l4t-base</span></code> container. This container will copy TensorRT from the host.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">trtexec</span></code> runs the model, filing it with random data for testing purposes. This is a first indication whether the adapted model can be run on the final architecture.</p></li>
+<li><p>Adapt the model for the final deployment architecture. This may involve updating the model based on its structure and the operators and layers used. Not all operators and model adaptations may be available in the OVP800 JetPack version. You may need to update your model on your development machine, export a new ONNX model with opset 11 operators, and adapt it again. This could be an iterative process.</p></li>
+</ol>
+<section id="adaptations-for-the-ovp80x-architecture">
+<h3>Adaptations for the OVP80x architecture<a class="headerlink" href="#adaptations-for-the-ovp80x-architecture" title="Link to this heading"></a></h3>
+<p>The model has to be exported and adapted to the final deployment architecture.
+Refer to the <a class="reference external" href="https://docs.nvidia.com/deeplearning/tensorrt/quick-start-guide/index.html#basic-workflow">NVIDIA documentation for this process</a>. This adaptation must be done on the final deployment architecture. Compiling on similar architectures, like Jetson evaluation boards, will result in an incompatible instruction set for the OVP800 architecture.</p>
+<p>We recommend exporting the neural network model to an ONNX model. Adapting the model for the deployment architecture may require updates. This could be an iterative process to get the model running on the final architecture. Update your model on your development machine, export a new ONNX model with opset 11 operators, and test this update in Docker.</p>
+<p>For ONNX exports with opset 11 settings and further ONNX operator support, refer to the <a class="reference external" href="https://github.com/onnx/onnx-tensorrt/blob/release/7.1/operators.md">official <code class="docutils literal notranslate"><span class="pre">onnx-tensorrt</span></code> documentation</a>.</p>
+</section>
+<section id="runtime-inference-cycle-times">
+<h3>Runtime inference cycle times<a class="headerlink" href="#runtime-inference-cycle-times" title="Link to this heading"></a></h3>
+<p>Adapting the model as described will result in a model with a specific runtime on the TX2 device. You may need to adjust for different model sizes and operations. Remember, the typical cycle time on a development machine may not accurately reflect the expected cycle times on OVP80x TX2 hardware.</p>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<section id="yolov4-tiny">
+<h3>YOLOv4 Tiny<a class="headerlink" href="#yolov4-tiny" title="Link to this heading"></a></h3>
+<p>This example demonstrates the benchmarking of the YOLOv4 Tiny Object Detection network using the TensorRT tool <a class="reference external" href="https://docs.nvidia.com/deeplearning/tensorrt/developer-guide/index.html#trtexec"><code class="docutils literal notranslate"><span class="pre">trtexec</span></code></a> within a container. The example is applicable for L4T 32.5.1 and has been tested on a TX2 development board. Additional details for TX2 JetPack version 32.4.3 are forthcoming.</p>
+<p>The model was trained on a different machine, converted into ONNX format and then copied to the board.
+When starting the container, a directory with a model can be mounted using <code class="docutils literal notranslate"><span class="pre">-v</span></code> option.</p>
+<p>To get the hardware and library details of the host, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jetsontx2@jetsontx2-desktop:~/for_container$<span class="w"> </span>jetson_release
+<span class="w"> </span>-<span class="w"> </span>NVIDIA<span class="w"> </span>Jetson<span class="w"> </span>TX2
+<span class="w">   </span>*<span class="w"> </span>Jetpack<span class="w"> </span><span class="m">4</span>.5.1<span class="w"> </span><span class="o">[</span>L4T<span class="w"> </span><span class="m">32</span>.5.1<span class="o">]</span>
+<span class="w">   </span>*<span class="w"> </span>NV<span class="w"> </span>Power<span class="w"> </span>Mode:<span class="w"> </span>MAXP_CORE_ARM<span class="w"> </span>-<span class="w"> </span>Type:<span class="w"> </span><span class="m">3</span>
+<span class="w">   </span>*<span class="w"> </span>jetson_stats.service:<span class="w"> </span>active
+<span class="w"> </span>-<span class="w"> </span>Libraries:
+<span class="w">   </span>*<span class="w"> </span>CUDA:<span class="w"> </span><span class="m">10</span>.2.89
+<span class="w">   </span>*<span class="w"> </span>cuDNN:<span class="w"> </span><span class="m">8</span>.0.0.180
+<span class="w">   </span>*<span class="w"> </span>TensorRT:<span class="w"> </span><span class="m">7</span>.1.3.0
+<span class="w">   </span>*<span class="w"> </span>Visionworks:<span class="w"> </span><span class="m">1</span>.6.0.501
+<span class="w">   </span>*<span class="w"> </span>OpenCV:<span class="w"> </span><span class="m">4</span>.1.1<span class="w"> </span>compiled<span class="w"> </span>CUDA:<span class="w"> </span>YES
+<span class="w">   </span>*<span class="w"> </span>VPI:<span class="w"> </span>ii<span class="w"> </span>libnvvpi1<span class="w"> </span><span class="m">1</span>.0.15<span class="w"> </span>arm64<span class="w"> </span>NVIDIA<span class="w"> </span>Vision<span class="w"> </span>Programming<span class="w"> </span>Interface<span class="w"> </span>library
+<span class="w">   </span>*<span class="w"> </span>Vulkan:<span class="w"> </span><span class="m">1</span>.2.70
+</pre></div>
+</div>
+</section>
+<section id="deepstream-l4t">
+<h3>Deepstream-l4t<a class="headerlink" href="#deepstream-l4t" title="Link to this heading"></a></h3>
+<p>The Deepstream-l4t NGC container is used in this example.</p>
+<ol class="arabic simple">
+<li><p>Pull the Deepstream-l4t NGC container.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker<span class="w"> </span>pull<span class="w"> </span>nvcr.io/nvidia/deepstream-l4t:5.1-21.02-samples
+</pre></div>
+</div>
+<ol class="arabic" start="2">
+<li><p>Verify the successful pull by listing the Docker images.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker<span class="w"> </span>image<span class="w"> </span>ls
+REPOSITORY<span class="w">                          </span>TAG<span class="w">                         </span>IMAGE<span class="w"> </span>ID<span class="w">             </span>CREATED<span class="w">             </span>SIZE
+nvcr.io/nvidia/deepstream-l4t<span class="w">       </span><span class="m">5</span>.1-21.02-samples<span class="w">           </span>0ff77669c10<span class="w">          </span><span class="m">6</span><span class="w"> </span>months<span class="w"> </span>ago<span class="w">        </span><span class="m">2</span>.72GB
+</pre></div>
+</div>
+</li>
+<li><p>Start the container on the VPU: please replace the mounted volume directory with your directory of choice containing the ONNX model</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker<span class="w"> </span>container<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--net<span class="o">=</span>host<span class="w"> </span>--runtime<span class="w"> </span>nvidia<span class="w"> </span>-v<span class="w"> </span>/home/jetsontx2/for_container/:/home/dl_models<span class="w"> </span>nvcr.io/nvidia/deepstream-l4t:5.1-21.02-samples<span class="w"> </span>bash
+</pre></div>
+</div>
+</li>
+<li><p>In the container, navigate to <code class="docutils literal notranslate"><span class="pre">/home/dl_models</span> <span class="pre">directory</span></code> and run <code class="docutils literal notranslate"><span class="pre">trtexec</span></code> with the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>/usr/src/tensorrt/bin/trtexec<span class="w"> </span>--onnx<span class="o">=</span>/home/dl_models/yolov4tiny_relu_best_ops12_fp32.onnx<span class="w"> </span>--fp16<span class="w"> </span>--explicitBatch<span class="o">=</span><span class="m">1</span>
+</pre></div>
+</div>
+</li>
+<li><p>Optimal performance is achieved by using fp16 (floating point 16) precision.
+For TX2 board, the compute capability is 6.2 (that is SM62 architecture), which does not have INT8 feature.
+The output of trtexec for Yolov4 Tiny network and fp16 precision is as below:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root@jetsontx2-desktop:/home/dl_models#<span class="w"> </span>/usr/src/tensorrt/bin/trtexec<span class="w"> </span>--onnx<span class="o">=</span>/home/dl_models/yolov4tiny_relu_best_ops12_fp32.onnx<span class="w"> </span>--fp16<span class="w"> </span>--explicitBatch<span class="o">=</span><span class="m">1</span>
+<span class="o">&amp;&amp;&amp;&amp;</span><span class="w"> </span>RUNNING<span class="w"> </span>TensorRT.trtexec<span class="w"> </span><span class="c1"># /usr/src/tensorrt/bin/trtexec --onnx=/home/dl_models/yolov4tiny_relu_best_ops12_fp32.onnx --fp16 --explicitBatch=1</span>
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span><span class="o">===</span><span class="w"> </span>Model<span class="w"> </span><span class="nv">Options</span><span class="w"> </span><span class="o">===</span>
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Format:<span class="w"> </span>ONNX
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Model:<span class="w"> </span>/home/dl_models/yolov4tiny_relu_best_ops12_fp32.onnx
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Output:
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span><span class="o">===</span><span class="w"> </span>Build<span class="w"> </span><span class="nv">Options</span><span class="w"> </span><span class="o">===</span>
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Max<span class="w"> </span>batch:<span class="w"> </span>explicit
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Workspace:<span class="w"> </span><span class="m">16</span><span class="w"> </span>MB
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>minTiming:<span class="w"> </span><span class="m">1</span>
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>avgTiming:<span class="w"> </span><span class="m">8</span>
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Precision:<span class="w"> </span>FP32+FP16
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Calibration:
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Safe<span class="w"> </span>mode:<span class="w"> </span>Disabled
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Save<span class="w"> </span>engine:
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Load<span class="w"> </span>engine:
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Builder<span class="w"> </span>Cache:<span class="w"> </span>Enabled
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>NVTX<span class="w"> </span>verbosity:<span class="w"> </span><span class="m">0</span>
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Inputs<span class="w"> </span>format:<span class="w"> </span>fp32:CHW
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Outputs<span class="w"> </span>format:<span class="w"> </span>fp32:CHW
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Input<span class="w"> </span>build<span class="w"> </span>shapes:<span class="w"> </span>model
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Input<span class="w"> </span>calibration<span class="w"> </span>shapes:<span class="w"> </span>model
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span><span class="o">===</span><span class="w"> </span>System<span class="w"> </span><span class="nv">Options</span><span class="w"> </span><span class="o">===</span>
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Device:<span class="w"> </span><span class="m">0</span>
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>DLACore:
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Plugins:
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span><span class="o">===</span><span class="w"> </span>Inference<span class="w"> </span><span class="nv">Options</span><span class="w"> </span><span class="o">===</span>
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Batch:<span class="w"> </span>Explicit
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Input<span class="w"> </span>inference<span class="w"> </span>shapes:<span class="w"> </span>model
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Iterations:<span class="w"> </span><span class="m">10</span>
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Duration:<span class="w"> </span>3s<span class="w"> </span><span class="o">(</span>+<span class="w"> </span>200ms<span class="w"> </span>warm<span class="w"> </span>up<span class="o">)</span>
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Sleep<span class="w"> </span>time:<span class="w"> </span>0ms
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Streams:<span class="w"> </span><span class="m">1</span>
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>ExposeDMA:<span class="w"> </span>Disabled
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Spin-wait:<span class="w"> </span>Disabled
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Multithreading:<span class="w"> </span>Disabled
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>CUDA<span class="w"> </span>Graph:<span class="w"> </span>Disabled
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Skip<span class="w"> </span>inference:<span class="w"> </span>Disabled
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Inputs:
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span><span class="o">===</span><span class="w"> </span>Reporting<span class="w"> </span><span class="nv">Options</span><span class="w"> </span><span class="o">===</span>
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Verbose:<span class="w"> </span>Disabled
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Averages:<span class="w"> </span><span class="m">10</span><span class="w"> </span>inferences
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Percentile:<span class="w"> </span><span class="m">99</span>
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Dump<span class="w"> </span>output:<span class="w"> </span>Disabled
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Profile:<span class="w"> </span>Disabled
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Export<span class="w"> </span>timing<span class="w"> </span>to<span class="w"> </span>JSON<span class="w"> </span>file:
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Export<span class="w"> </span>output<span class="w"> </span>to<span class="w"> </span>JSON<span class="w"> </span>file:
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Export<span class="w"> </span>profile<span class="w"> </span>to<span class="w"> </span>JSON<span class="w"> </span>file:
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:45<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span>
+----------------------------------------------------------------
+Input<span class="w"> </span>filename:<span class="w">   </span>/home/dl_models/yolov4tiny_relu_best_ops12_fp32.onnx
+ONNX<span class="w"> </span>IR<span class="w"> </span>version:<span class="w">  </span><span class="m">0</span>.0.6
+Opset<span class="w"> </span>version:<span class="w">    </span><span class="m">12</span>
+Producer<span class="w"> </span>name:<span class="w">    </span>pytorch
+Producer<span class="w"> </span>version:<span class="w"> </span><span class="m">1</span>.8
+Domain:
+Model<span class="w"> </span>version:<span class="w">    </span><span class="m">0</span>
+Doc<span class="w"> </span>string:
+----------------------------------------------------------------
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:47<span class="o">]</span><span class="w"> </span><span class="o">[</span>W<span class="o">]</span><span class="w"> </span><span class="o">[</span>TRT<span class="o">]</span><span class="w"> </span>onnx2trt_utils.cpp:220:<span class="w"> </span>Your<span class="w"> </span>ONNX<span class="w"> </span>model<span class="w"> </span>has<span class="w"> </span>been<span class="w"> </span>generated<span class="w"> </span>with<span class="w"> </span>INT64<span class="w"> </span>weights,<span class="w"> </span><span class="k">while</span><span class="w"> </span>TensorRT<span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>natively<span class="w"> </span>support<span class="w"> </span>INT64.<span class="w"> </span>Attempting<span class="w"> </span>to<span class="w"> </span>cast<span class="w"> </span>down<span class="w"> </span>to<span class="w"> </span>INT32.
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:47<span class="o">]</span><span class="w"> </span><span class="o">[</span>W<span class="o">]</span><span class="w"> </span><span class="o">[</span>TRT<span class="o">]</span><span class="w"> </span>onnx2trt_utils.cpp:246:<span class="w"> </span>One<span class="w"> </span>or<span class="w"> </span>more<span class="w"> </span>weights<span class="w"> </span>outside<span class="w"> </span>the<span class="w"> </span>range<span class="w"> </span>of<span class="w"> </span>INT32<span class="w"> </span>was<span class="w"> </span>clamped
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:47<span class="o">]</span><span class="w"> </span><span class="o">[</span>W<span class="o">]</span><span class="w"> </span><span class="o">[</span>TRT<span class="o">]</span><span class="w"> </span>onnx2trt_utils.cpp:246:<span class="w"> </span>One<span class="w"> </span>or<span class="w"> </span>more<span class="w"> </span>weights<span class="w"> </span>outside<span class="w"> </span>the<span class="w"> </span>range<span class="w"> </span>of<span class="w"> </span>INT32<span class="w"> </span>was<span class="w"> </span>clamped
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:47<span class="o">]</span><span class="w"> </span><span class="o">[</span>W<span class="o">]</span><span class="w"> </span><span class="o">[</span>TRT<span class="o">]</span><span class="w"> </span>onnx2trt_utils.cpp:246:<span class="w"> </span>One<span class="w"> </span>or<span class="w"> </span>more<span class="w"> </span>weights<span class="w"> </span>outside<span class="w"> </span>the<span class="w"> </span>range<span class="w"> </span>of<span class="w"> </span>INT32<span class="w"> </span>was<span class="w"> </span>clamped
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:47<span class="o">]</span><span class="w"> </span><span class="o">[</span>W<span class="o">]</span><span class="w"> </span><span class="o">[</span>TRT<span class="o">]</span><span class="w"> </span>onnx2trt_utils.cpp:246:<span class="w"> </span>One<span class="w"> </span>or<span class="w"> </span>more<span class="w"> </span>weights<span class="w"> </span>outside<span class="w"> </span>the<span class="w"> </span>range<span class="w"> </span>of<span class="w"> </span>INT32<span class="w"> </span>was<span class="w"> </span>clamped
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:47<span class="o">]</span><span class="w"> </span><span class="o">[</span>W<span class="o">]</span><span class="w"> </span><span class="o">[</span>TRT<span class="o">]</span><span class="w"> </span>Output<span class="w"> </span><span class="nb">type</span><span class="w"> </span>must<span class="w"> </span>be<span class="w"> </span>INT32<span class="w"> </span><span class="k">for</span><span class="w"> </span>shape<span class="w"> </span>outputs
+<span class="o">[</span><span class="m">09</span>/23/2021-10:20:56<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span><span class="o">[</span>TRT<span class="o">]</span><span class="w"> </span>Some<span class="w"> </span>tactics<span class="w"> </span><span class="k">do</span><span class="w"> </span>not<span class="w"> </span>have<span class="w"> </span>sufficient<span class="w"> </span>workspace<span class="w"> </span>memory<span class="w"> </span>to<span class="w"> </span>run.<span class="w"> </span>Increasing<span class="w"> </span>workspace<span class="w"> </span>size<span class="w"> </span>may<span class="w"> </span>increase<span class="w"> </span>performance,<span class="w"> </span>please<span class="w"> </span>check<span class="w"> </span>verbose<span class="w"> </span>output.
+<span class="o">[</span><span class="m">09</span>/23/2021-10:24:32<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span><span class="o">[</span>TRT<span class="o">]</span><span class="w"> </span>Detected<span class="w"> </span><span class="m">1</span><span class="w"> </span>inputs<span class="w"> </span>and<span class="w"> </span><span class="m">6</span><span class="w"> </span>output<span class="w"> </span>network<span class="w"> </span>tensors.
+<span class="o">[</span><span class="m">09</span>/23/2021-10:24:33<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Starting<span class="w"> </span>inference<span class="w"> </span>threads
+<span class="o">[</span><span class="m">09</span>/23/2021-10:24:36<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Warmup<span class="w"> </span>completed<span class="w"> </span><span class="m">0</span><span class="w"> </span>queries<span class="w"> </span>over<span class="w"> </span><span class="m">200</span><span class="w"> </span>ms
+<span class="o">[</span><span class="m">09</span>/23/2021-10:24:36<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Timing<span class="w"> </span>trace<span class="w"> </span>has<span class="w"> </span><span class="m">0</span><span class="w"> </span>queries<span class="w"> </span>over<span class="w"> </span><span class="m">3</span>.01861<span class="w"> </span>s
+<span class="o">[</span><span class="m">09</span>/23/2021-10:24:36<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Trace<span class="w"> </span>averages<span class="w"> </span>of<span class="w"> </span><span class="m">10</span><span class="w"> </span>runs:
+<span class="o">[</span><span class="m">09</span>/23/2021-10:24:36<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Average<span class="w"> </span>on<span class="w"> </span><span class="m">10</span><span class="w"> </span>runs<span class="w"> </span>-<span class="w"> </span>GPU<span class="w"> </span>latency:<span class="w"> </span><span class="m">11</span>.6003<span class="w"> </span>ms<span class="w"> </span>-<span class="w"> </span>Host<span class="w"> </span>latency:<span class="w"> </span><span class="m">11</span>.7851<span class="w"> </span>ms<span class="w"> </span><span class="o">(</span>end<span class="w"> </span>to<span class="w"> </span>end<span class="w"> </span><span class="m">11</span>.8375<span class="w"> </span>ms,<span class="w"> </span>enqueue<span class="w"> </span><span class="m">6</span>.83557<span class="w"> </span>ms<span class="o">)</span>
+<span class="o">[</span><span class="m">09</span>/23/2021-10:24:36<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Average<span class="w"> </span>on<span class="w"> </span><span class="m">10</span><span class="w"> </span>runs<span class="w"> </span>-<span class="w"> </span>GPU<span class="w"> </span>latency:<span class="w"> </span><span class="m">11</span>.0905<span class="w"> </span>ms<span class="w"> </span>-<span class="w"> </span>Host<span class="w"> </span>latency:<span class="w"> </span><span class="m">11</span>.2746<span class="w"> </span>ms<span class="w"> </span><span class="o">(</span>end<span class="w"> </span>to<span class="w"> </span>end<span class="w"> </span><span class="m">11</span>.2852<span class="w"> </span>ms,<span class="w"> </span>enqueue<span class="w"> </span><span class="m">6</span>.02471<span class="w"> </span>ms<span class="o">)</span>
+<span class="o">[</span><span class="m">09</span>/23/2021-10:24:36<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Average<span class="w"> </span>on<span class="w"> </span><span class="m">10</span><span class="w"> </span>runs<span class="w"> </span>-<span class="w"> </span>GPU<span class="w"> </span>latency:<span class="w"> </span><span class="m">11</span>.0689<span class="w"> </span>ms<span class="w"> </span>-<span class="w"> </span>Host<span class="w"> </span>latency:<span class="w"> </span><span class="m">11</span>.2532<span class="w"> </span>ms<span class="w"> </span><span class="o">(</span>end<span class="w"> </span>to<span class="w"> </span>end<span class="w"> </span><span class="m">11</span>.2637<span class="w"> </span>ms,<span class="w"> </span>enqueue<span class="w"> </span><span class="m">5</span>.55458<span class="w"> </span>ms<span class="o">)</span>
+<span class="o">[</span><span class="m">09</span>/23/2021-10:24:36<span class="o">]</span><span class="w"> </span><span class="o">[</span>I<span class="o">]</span><span class="w"> </span>Average<span class="w"> </span>on<span class="w"> </span><span class="m">10</span><span class="w"> </span>runs<span class="w"> </span>-<span class="w"> </span>GPU<span class="w"> </span>latency:<span class="w"> </span><span class="m">11</span>.1319<span class="w"> </span>ms<span class="w"> </span>-<span class="w"> </span>Host<span class="w"> </span>latency:<span class="w"> </span><span class="m">11</span>.3166<span class="w"> </span>ms<span class="w"> </span><span class="o">(</span>end<span class="w"> </span>to<span class="w"> </span>end<span class="w"> </span><span class="m">11</span>.3275<span class="w"> </span>ms,<span class="w"> </span>enqueue<span class="w"> </span><span class="m">6</span>.30752<span class="w"> </span>ms<span class="o">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="../latest/_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+		
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.efector.object-ident@ifm.com">support.efector.object-ident@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

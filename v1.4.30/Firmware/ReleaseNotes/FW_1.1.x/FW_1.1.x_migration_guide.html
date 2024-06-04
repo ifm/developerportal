@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FW 1.1.30 migration guide &mdash; O3R  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=87e54e7c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=28a392ea" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Firmware 1.4.30" href="../FW_1.4.x/index.html" />
+    <link rel="prev" title="FIRMWARE 1.1.30 RELEASE NOTES" href="FW_1.1.x_Release_Notes.html" />
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script> -->
+     
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            O3R
+          </a>
+              <div class="version">
+                v1.4.30
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Firmware</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Release notes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../FW_0.14.x/Firmware_0.14.x_Release_Notes.html">Version 0.14.23</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../FW_0.16.x/FW_0.16.x_Release_Notes.html">Version 0.16.23</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../FW_1.0.x/index.html">Version 1.0.14</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Version 1.1.30</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="FW_1.1.x_Release_Notes.html">Version 1.1.30</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Migration Guide: 1.0.14 to 1.1.30</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#changes-to-the-json-schema">Changes to the JSON schema</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#changes-to-the-ods-json-schema">Changes to the ODS JSON schema</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#changes-in-persistent-configuration-handling">Changes in persistent configuration handling</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#logging">Logging</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#cpu-process-allocation">CPU process allocation</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#camera-use-only-6-heads-20hz">Camera use only: 6 heads &#64; 20Hz</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#ods-application-use-case">ODS application use case</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../FW_1.4.x/index.html">Version 1.4.30</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../fw_update.html">How to update</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Technology/index_hardware_interfaces.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">O3R firmware</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Release notes</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Firmware 1.1.30</a></li>
+      <li class="breadcrumb-item active">FW 1.1.30 migration guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/Firmware/ReleaseNotes/FW_1.1.x/FW_1.1.x_migration_guide.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="fw-1-1-30-migration-guide">
+<h1>FW 1.1.30 migration guide<a class="headerlink" href="#fw-1-1-30-migration-guide" title="Link to this heading"></a></h1>
+<section id="changes-to-the-json-schema">
+<h2>Changes to the JSON schema<a class="headerlink" href="#changes-to-the-json-schema" title="Link to this heading"></a></h2>
+<p>The type of “/device/clock/currentTime: changed from integer to string. This can cause issues when applying a full configuration (for instance saved with <code class="docutils literal notranslate"><span class="pre">ifm3d</span> <span class="pre">dump</span></code>) that was valid with FW 1.0.14, to a device using FW 1.1.30. To mitigate this, we recommend to only apply relevant snippet of configuration. For example, only re-apply the ports configuration or the network settings instead of the whole JSON.</p>
+<section id="changes-to-the-ods-json-schema">
+<h3>Changes to the ODS JSON schema<a class="headerlink" href="#changes-to-the-ods-json-schema" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>New property /applications/instances/appX/activePorts defines the camera ports currently active that will be used to generate the occupancy grid and zone data. By default, the first two available 3D ports will be selected.</p></li>
+<li><p>/applications/instances/appX/vo/portNumber is now /applications/instances/appX/vo/voPorts.</p></li>
+<li><p>New property /applications/instances/appX/portY/negObst: configure the negative obstacle detection (see <a class="reference internal" href="../../../ODS/NegativeObstacles/negative_obstacles.html"><span class="std std-doc">detailed documentation about negative obstacles</span></a>).</p></li>
+<li><p>New property <code class="docutils literal notranslate"><span class="pre">/applications/instances/appX/maxNumSimultaneousCameras</span></code> for defining the maximum number of active cameras in <code class="docutils literal notranslate"><span class="pre">/applications/instances/appX/activePorts</span></code>. The default for this property is 2, if you need to run 3 cameras in parallel you should increase it. This parameter can only be changed in “CONF” mode. For Firmware 1.1.30, a setting of 3 reduces the bandwidth for algo-debug recordings.</p></li>
+<li><p>Review the <a class="reference internal" href="../../../ODS/Configuration/configuration.html"><span class="std std-doc">updated ODS configuration document</span></a> for a list of all the ODS parameters.</p></li>
+</ul>
+</section>
+</section>
+<section id="changes-in-persistent-configuration-handling">
+<h2>Changes in persistent configuration handling<a class="headerlink" href="#changes-in-persistent-configuration-handling" title="Link to this heading"></a></h2>
+<p>Settings can be saved on the VPU with the <code class="docutils literal notranslate"><span class="pre">save_init</span></code> function so that they are persistent over a reboot. In firmware 1.1.30, a new approach is used in handling the persistent configuration at boot up. Due to this change, settings persistently saved will be lost in a firmware update.</p>
+<p>If you want to save and reuse the configuration of your device, save it first locally, for example with the Vision Assistant (in the VPU settings tab &gt; Settings &gt; Export).</p>
+<p>After the update to the new firmware, re-apply the configuration (VPU Settings &gt; Settings &gt; Import).</p>
+<p>Keep in mind that due to some changes to the JSON schema, not all the settings can be re-applied.</p>
+<p>For more details on saving persistent configurations, refer to the <a class="reference internal" href="../../../Technology/configuration.html#persistent-configuration"><span class="std std-ref">configuration documentation</span></a>.</p>
+</section>
+<section id="logging">
+<h2>Logging<a class="headerlink" href="#logging" title="Link to this heading"></a></h2>
+<p>The firmware release of <code class="docutils literal notranslate"><span class="pre">FW</span> <span class="pre">1.1.X</span></code> is coupled with the <code class="docutils literal notranslate"><span class="pre">ifm3d</span> <span class="pre">/</span> <span class="pre">ifm3dpy</span> <span class="pre">API</span> <span class="pre">release</span> <span class="pre">1.4.3</span></code>.
+Since <code class="docutils literal notranslate"><span class="pre">ifm3d</span> <span class="pre">API</span> <span class="pre">version</span> <span class="pre">1.3.X</span></code> the internal logging of the API has changed: glog logging is no longer used. Please update your code accordingly.
+More details can be found in the ifm3d API migration guide <a class="reference external" href="https://api.ifm3d.com/stable/content/migration_guide/v1_3_0.html">here</a>.</p>
+<p>All changes to the logging feature introduced in ifm3d API 1.3.X are made with backwards compatibility in mind: this means that all errors thrown as exceptions will still be thrown as exceptions.
+All information previously logged to the glog logger is now logged to our own logger class. As a result, the Python API in particular may appear more verbose than before.</p>
+</section>
+<section id="cpu-process-allocation">
+<h2>CPU process allocation<a class="headerlink" href="#cpu-process-allocation" title="Link to this heading"></a></h2>
+<p>Updates to the internal handling of ifm processes result in a different CPU resource allocation compared to previous FW versions.</p>
+<section id="camera-use-only-6-heads-20hz">
+<h3>Camera use only: 6 heads &#64; 20Hz<a class="headerlink" href="#camera-use-only-6-heads-20hz" title="Link to this heading"></a></h3>
+<p>In FW versions <code class="docutils literal notranslate"><span class="pre">0.16.23</span></code>, <code class="docutils literal notranslate"><span class="pre">1.0.14</span></code> and <code class="docutils literal notranslate"><span class="pre">1.1.30</span></code> the ifm camera data retrieval and filter as well as additional processes are pinned to the CPUs ARM A57 cores: cores [0,3,4,5].
+Consequently, for the camera data use case (that is, no ifm application), the user processes shall be pinned to the DENVER cores.</p>
+<p>Additional solutions are available where CPU intensive point cloud filtering operations are offloaded to the GPU. This frees up CPU resources.
+Such offloading of point cloud processing is required if the 6 <code class="docutils literal notranslate"><span class="pre">O3R222</span></code> or <code class="docutils literal notranslate"><span class="pre">O3R225</span></code> head data streams are to be processed at 20 Hz, that is, full frame rate, without any frames being dropped internally by the software frame.
+Please contact your local ifm support or support.efector.object-ident&#64;ifm.com for detailed instructions for this use case.</p>
+</section>
+<section id="ods-application-use-case">
+<h3>ODS application use case<a class="headerlink" href="#ods-application-use-case" title="Link to this heading"></a></h3>
+<p>Since ifm applications mainly use the Denver cores in this use case, OEM applications should be pinned to specific ARM cores. When the <code class="docutils literal notranslate"><span class="pre">UNSTABLE_FRAMERATE</span></code> diagnostic occurs more than sporadically, it is necessary to:</p>
+<ul class="simple">
+<li><p>Pin processes launched from an OEM Docker container to the ARM A57 cores of the TX2 unit (using a taskset of 0x39). Note that the Denver cores of the TX2 unit are reserved for the ODS application.</p></li>
+<li><p>Reduce the number of simultaneously active cameras (see /applications/instances/appX/configuration/activePorts)</p></li>
+<li><p>Reduce the workload of OEM Docker containers by optimizing for runtime or offloading to other processing hardware.</p></li>
+</ul>
+<p>Refer to <a class="reference internal" href="#../../../SoftwareInterfaces/Docker/cpu.md"><span class="xref myst">the Docker resources allocation documentation</span></a> for more details.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="../latest/_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+		
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.efector.object-ident@ifm.com">support.efector.object-ident@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
