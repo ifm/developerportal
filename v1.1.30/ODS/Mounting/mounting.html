@@ -91,7 +91,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../NegativeObstacles/negative_obstacles.html">Negative Obstacles</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../DustMitigation/dust_mitigation.html">Dust artifact mitigation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../ExtrinsicCalibration/index_extrinsic_calibration.html">Extrinsic calibration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../FieldTest/index_field_test.html">Field test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Performance/index_performance.html">Performance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../DeviceVerification/index_device_verification.html">Device verification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../iVA/index_ifmODS_iVA.html">ifmVisionAssistant</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Python/index_ifmODS_python.html">Python</a></li>
@@ -132,12 +132,12 @@
 <p>The type of camera and mounting position of the camera will directly influence the performance of ODS.
 However, the ODS detection range is limited to a maximum of 4 m. Based on the camera head chosen, mounting height is the second most important factor for influencing detection range.</p>
 <p>Additionally, visual odometry has to be enabled and functional in firmware 1.0.14 to estimate the AGVs / ARMs egomotion.
-For visual odometry, a large portion of the floor should be present in the field of view of at least one camera. To achieve this, the recommended mounting height is in the range of 250 mm to 700 mm from the ground. To know more about the factors that could influence the performance of ODS and to start benchmarking please refer to this <a class="reference internal" href="../FieldTest/PerformanceBenchmark/ods_performance_benchmark.html"><span class="std std-doc">document</span></a>.</p>
+For visual odometry, a large portion of the floor should be present in the field of view of at least one camera. To achieve this, the recommended mounting height is in the range of 250 mm to 700 mm from the ground. To know more about the factors that could influence the performance of ODS and to start benchmarking please refer to this <a class="reference internal" href="../Performance/PerformanceBenchmark/ods_performance_benchmark.html"><span class="std std-doc">document</span></a>.</p>
 <section id="coordinate-systems">
 <h2>Coordinate systems<a class="headerlink" href="#coordinate-systems" title="Link to this heading"></a></h2>
 <p>For the camera heads and VPU calibration, it is very important to know the position of the coordinate system’s origin of respective hardware components. These coordinate reference frame origins should be considered as a reference to camera heads / VPU while measuring the mounting positions on the AGV / AMR.</p>
 <p>The camera head’s coordinate system origin is in the center of four mounting screws at the mounting plane of the head as shown in the figure below.</p>
-<p><img alt="Head coordinate system" src="../../_images/head_coordinate_system.png" /></p>
+<p><img alt="Head coordinate system" src="../../_images/head_coordinate_system1.png" /></p>
 <p>The VPU’s coordinate system origin lies at the center of the VPU mechanical interface, that is also the center of four mounting screws at the mounting plane.</p>
 <p><img alt="VPU coordinate system" src="../../_images/VPU_coordinate_system.png" /></p>
 </section>

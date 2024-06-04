@@ -24,13 +24,13 @@ Docker keeps the JSON file logging driver (without log-rotation) as a default to
 
 For other situations, the “local” logging driver is recommended as it performs log-rotation by default, and uses a more efficient file format. Refer to the Configure the default logging driver section below to learn how to configure the “local” logging driver as a default, and the local file logging driver page for more details about the “local” logging driver.
 
-### Run a docker container with logging driver configuration
+### Run a Docker container with logging driver configuration
 The following example starts a container with log output in non-blocking mode and a 4 megabyte buffer:
 ```shell
 docker run -it --log-opt mode=non-blocking --log-opt max-buffer-size=4m <IMAGE>
 ```
 
-### Double check the docker logging configuration for a container
+### Double check the Docker logging configuration for a container
 Check the configuration in a new shell:
 ```shell
 $ docker inspect -f '{{.HostConfig.LogConfig}}' <CONTAINER>

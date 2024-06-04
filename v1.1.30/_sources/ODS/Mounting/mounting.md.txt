@@ -5,7 +5,7 @@ The type of camera and mounting position of the camera will directly influence t
 However, the ODS detection range is limited to a maximum of 4 m. Based on the camera head chosen, mounting height is the second most important factor for influencing detection range.
 
 Additionally, visual odometry has to be enabled and functional in firmware 1.0.14 to estimate the AGVs / ARMs egomotion.
-For visual odometry, a large portion of the floor should be present in the field of view of at least one camera. To achieve this, the recommended mounting height is in the range of 250 mm to 700 mm from the ground. To know more about the factors that could influence the performance of ODS and to start benchmarking please refer to this [document](../FieldTest/PerformanceBenchmark/ods_performance_benchmark.md).
+For visual odometry, a large portion of the floor should be present in the field of view of at least one camera. To achieve this, the recommended mounting height is in the range of 250 mm to 700 mm from the ground. To know more about the factors that could influence the performance of ODS and to start benchmarking please refer to this [document](../Performance/PerformanceBenchmark/ods_performance_benchmark.md).
 
 ## Coordinate systems
 

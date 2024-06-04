@@ -1,26 +1,47 @@
-# How to update the firmware:
+# How to update the firmware
 
-**The following guide is only valid for updating between 1.X.x and 1.Y.y versions. For details about the update process between 0.16.23 to 1.0.x please see the [migration guide](../Firmware/ReleaseNotes/FW_1.0.x/FW_1.0.x_migration_guide.md)**
-
+:::{warning}
+The following guide is only valid for updating between 1.X.x and 1.Y.y versions. For details about the update process between 0.16.23 to 1.0.x please see the [migration guide](../Firmware/ReleaseNotes/FW_1.0.x/FW_1.0.x_migration_guide.md).
+:::
 
 ## Download the firmware
 The firmware image is available on the [ifm.com](https://www.ifm.com/) website. Navigate to the site and follow the steps below:
 - Create an account (if you do not already have one) and log in.
-- Use the search bar to find the OVP800. This is also valid if you have pre-release sample units, for example M04239 and OVP801 devices.
+- Use the search bar to find the article number (OVP80x or OVP81x). This is also valid if you have pre-release sample units, for example M04239.
 - Navigate to the article page an click on the "Downloads" tab.
 - Select the firmware from the list. It will start downloading the file.
 
 ## Starting firmware is version < 1.0.0
 When updating to a firmware version 1.0.0 or above, starting with a firmware version below 1.0.0, please refer to [the migration guide](../Firmware/ReleaseNotes/FW_1.0.x/FW_1.0.x_migration_guide.md).
-## Starting firmware is version>= 1.0.0
+
+## Starting firmware is version >= 1.0.0
 
 ### (Optional) Save the current configuration
-The configuration of the device will be erased when updating from FW 1.0.14 to FW 1.1.30. If you want to reuse the same configuration after updating, make sure you save it locally on your machine before updating.
+Depending on the starting and target firmware versions, the configuration might not be fully preserved after an update. To make sure you do not lose your configuration, we recommend saving it locally before performing the update.
+
 You can for example do so using the command line interface:
 ```bash
 ifm3d dump > config_save.json
 ```
-### Reboot to recovery
+
+### With the ifmVisionAssistant
+
+Download the ifmVisionAssistant from https://www.ifm.com/us/en/product/OVP800?tab=documents.
+
+:::{note}
+Updating the firmware from 0.16.xx to 1.0.xx is currently not possible with the ifmVisionAssistant.
+:::
+
+In the instructions below, we expect that the user extracted the downloaded ZIP containing the firmware file.
+
+- Open the Vision Assistant and connect to the OVP8xx,
+- Navigate to the `VPU Settings` window and click `Update` under the `Firmware Update` section. The version beside the `Update` button refers to the current version running on VPU.
+- Select the file and the update process will start.
+- Once the update is complete, the device will reboot.
+
+### With the ifm3d API or the web interface
+
+#### Reboot to recovery
 When the starting firmware is version 1.0.0 and above, a reboot to recovery state is necessary to perform an update.
 
 :::::{tabs}
@@ -56,7 +77,13 @@ if sw.wait_for_recovery():
 ::::
 :::::
 
-### With the web interface
+:::{note}
+If you happen to be stuck in recovery mode, the device will not be "ping-able." To reboot to productive, you have two options:
+- You can update the system again. If the update is successful, the system will reboot to productive, or,
+- You can use the ifm3d API to reboot to productive without updating. With the command line interface, you can use `ifm3d swupdate -r`. In Python you can use the [`reboot_to_productive` function](https://api.ifm3d.com/stable/_autosummary/ifm3dpy.swupdater.SWUpdater.html#ifm3dpy.swupdater.SWUpdater.reboot_to_productive) and in C++ the [`RebootToProductive` function](https://api.ifm3d.com/stable/cpp_api/classifm3d_1_1SWUpdater.html#a5ed7d927b9ff35a6808394345bdced8e).
+:::
+
+#### With the web interface
 
 Once the device is in recovery mode (see section above), you can open the web interface:
 
@@ -65,31 +92,7 @@ Once the device is in recovery mode (see section above), you can open the web in
 
 The system will automatically reboot in productive mode. The web interface will not be available anymore (it is only available in recovery mode).
 
-### With ifmVisionAssistant
-
-Download the ifmVisionAssistant from https://www.ifm.com/us/en/product/OVP800?tab=documents
-
->Note: Updating the firmware from 0.16.xx to 1.0.xx is currently not possible with the ifmVisionAssistant.
-
->Note: Updating the firmware from 1.0.xx to 1.0.xx via ifmVisionAssistant(v2.6.12) is currently supported on a Windows machine only. The Debian package of ifmVisionAssistant supporting Linux distributions will be released soon.
-
-In the instructions below, we expect that the user extracted the ZIP file and is executing the following commands in the same directory:
-
-- Open the command prompt and run the ifmVisionAssistant executable
-```sh
-C:\Users\Desktop\iVA_2_6_12 $ ifmVisionAssistant.exe
-```
-To get the logs during firmware update, execute the above command with `-log` flag as shown below.
-```sh
-C:\Users\Desktop\iVA_2_6_12 $ ifmVisionAssistant.exe -log
-```
-The log file is saved in `C:\Users\<UserName>\AppData\Roaming\ifm electronic\ifmVisionAssistant\logs`
-
-- Connect to the VPU and navigate to the VPU Settings window and click Update under the `Firmware Update` section. The version beside the `Update` button refers to the current version running on VPU.
-
-- Select the File and the update process will start.
-
-### With ifm3d
+#### With ifm3d
 
 Once the device is in recovery mode, you can use ifm3d to update the firmware.
 In the instructions below, replace `<path/to/firmware_image.swu>` with the path to the firmware file you downloaded from [ifm.com](https://www.ifm.com/).
@@ -117,8 +120,11 @@ if sw.flash_firmware('<path/to/firmware_image.swu>'):
 ```
 ::::
 :::::
-> Note: the code snippets above do not show how to handle exceptions when they occur in the update process.
-> Please refer to the API documentation for details on the potential exceptions thrown by each function.
+
+:::{note}
+The code snippets above do not show how to handle exceptions when they occur in the update process.
+Please refer to the API documentation for details on the potential exceptions thrown by each function.
+:::
 
 Double check the firmware version after the update:
 
@@ -128,20 +134,18 @@ Double check the firmware version after the update:
 $ ifm3d dump | jq .device.swVersion.firmware
 ```
 ::::
-::::{group-tab} c++
+::::{group-tab} C++
 ```c++
 ifm3d::json config = dev->Get({"/device/swVersion/firmware"});
 ```
 ::::
-::::{group-tab} python
+::::{group-tab} Python
 ```python
 o3r.get(["/device/swVersion/firmware"])
 ```
 ::::
 :::::
 
-## The full example script
+#### The full example script
 
-:::{literalinclude} /ifm3d-examples/ovp8xx/python/ovp8xxexamples/core/fw_update_utils.py
-:language: python
-:::
+We provide a full Python script to help you update the firmware using the API. You can find this script [in the `ifm3d-examples` repository](https://github.com/ifm/ifm3d-examples/blob/main/ovp8xx/python/ovp8xxexamples/core/fw_update_utils.py).

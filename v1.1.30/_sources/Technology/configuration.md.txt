@@ -252,7 +252,7 @@ The following parameters will change the JSON schema for other parameters:
 
 ## Persistent configuration
 
-The O3R provides a way to persistently save a configuration so that the device reboots with the expected configuration: the [save_init() function in Python](https://api.ifm3d.com/stable/_autosummary/ifm3dpy.device.O3R.html#ifm3dpy.device.O3R.save_init), or [SaveInit() in c++](https://api.ifm3d.com/stable/cpp_api/classifm3d_1_1O3R.html#a7316e073bf5625c08d7c11a70e5ce07a). It allows the user to write as persistent configuration the current configuration of the device.
+The O3R provides a way to persistently save a configuration so that the device reboots with the expected configuration: the [save_init() function in Python](https://api.ifm3d.com/stable/_autosummary/ifm3dpy.device.O3R.html#ifm3dpy.device.O3R.save_init), or [SaveInit() in C++](https://api.ifm3d.com/stable/cpp_api/classifm3d_1_1O3R.html#a314f79eb3f3d0fffe469fb276376cf91). It allows the user to write as persistent configuration the current configuration of the device.
 
 If calling the `save_init` function without any argument, the exact configuration will be saved, including the sample numbers of the connected camera heads. For this reason, **we strongly recommend persistently saving only snippets of the configuration** (only available in ifm3d >= 1.4.1).
 
@@ -265,7 +265,7 @@ The `ERROR_BOOT_SEQUENCE_HEAD_INVALID_SERIALNUMBER` for the mismatched port will
 
 When facing this issue, the user can  do the following:
 1. As a first troubleshooting step, use the [`get_init` function](https://api.ifm3d.com/stable/_autosummary/ifm3dpy.device.O3R.html#ifm3dpy.device.O3R.get_init) ([`GetInit()`](https://api.ifm3d.com/stable/cpp_api/classifm3d_1_1O3R.html#a0d703bc04a0d893733cbb1f5c6983d82) in c++) to assess the current persistent configuration.
-1. If a configuration is saved and you want to change it, the only option currently is to perform a factory reset. This is available in all the provide software interfaces (ifm3d and the Vision Assistant) and will reset the setting to the factory settings. The only downside is that it will also erase the whole OEM user space (docker container, application code, etc).
+1. If a configuration is saved and you want to change it, the only option currently is to perform a factory reset. This is available in all the provide software interfaces (ifm3d and the Vision Assistant) and will reset the setting to the factory settings. The only downside is that it will also erase the whole OEM user space (Docker container, application code, etc).
 
 
 :::{note}

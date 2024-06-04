@@ -19,7 +19,7 @@ It is required to use this firmware release with the following software package 
 | Software | Version |
 | -------- | ------- |
 | ifmVisionAssistant | >= 2.6.24 |
-| ifm3d library | >= 1.4.2 |
+| ifm3d library | >= 1.4.3 |
 | ifm3d-ros ROS(1) wrapper | 1.1.2 |
 | ifm3d-ros2 ROS2 wrapper | 1.1.2 |
 
@@ -46,7 +46,7 @@ This firmware release supports the following ifm camera articles:
 - Support for DHCP was removed for the Ethernet interface `eth1`. The device now always uses a static IP address.
 
 ## New features
-- It is now possible to configure insecure and self signed Docker registries via the JSON configuration. See [the docker daemon registry configuration](../../../SoftwareInterfaces/Docker/deployVPU.md#option-2---advanced-load-a-container-from-a-docker-registry) for a tutorial on how to do so.
+- It is now possible to configure insecure and self signed Docker registries via the JSON configuration. See [the Docker daemon registry configuration](../../../SoftwareInterfaces/Docker/deployVPU.md#option-2---advanced-load-a-container-from-a-docker-registry) for a tutorial on how to do so.
 
 ## Fixes
 - Fixed the device being unavailable when the hardware configuration is different from the one specified in the persistent JSON configuration. See [the persistent configurations document](../../../Technology/configuration.md#persistent-configuration) for more details.
@@ -58,6 +58,7 @@ This firmware release supports the following ifm camera articles:
 - Repeated mechanical disconnects of Ethernet cables can result in refused data connections by the embedded devices.
 - In static scenes (no motion for more than 30 minutes), the temporal filter introduces a distance drift of up to 2 cm.
 - The software trigger for the 3D cameras is unstable: the request might need to be sent more than once for a successful acquisition.
+- In some cases, the PCIC port does not correspond to the physical port to which the camera is connected. Is it recommended to check the PCIC port corresponding to the physical port, for example with [the `port()` function in Python](https://api.ifm3d.com/stable/_autosummary/ifm3dpy.device.O3R.html#ifm3dpy.device.O3R.port) or [`Port()` in C++](https://api.ifm3d.com/stable/cpp_api/classifm3d_1_1O3R.html#ace851644d8586ad20a68865f80860f89).
 
 ## ODS Application
 ### New features

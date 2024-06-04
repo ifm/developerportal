@@ -43,7 +43,7 @@ Overhanging loads <OverhangingLoads/overhanging_loads>
 Negative Obstacles <NegativeObstacles/negative_obstacles>
 Dust artifact mitigation <DustMitigation/dust_mitigation>
 Extrinsic calibration <ExtrinsicCalibration/index_extrinsic_calibration>
-Field test <FieldTest/index_field_test>
+Performance <Performance/index_performance>
 Device verification <DeviceVerification/index_device_verification>
 ifmVisionAssistant <iVA/index_ifmODS_iVA>
 Python <Python/index_ifmODS_python>

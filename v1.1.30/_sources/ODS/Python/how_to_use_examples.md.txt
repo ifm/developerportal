@@ -40,4 +40,4 @@ In the `ods_demo.py` script, we show how all these pieces can be used together t
 ## Additional considerations
 
 The scripts mentioned above do not take into account all that is necessary for a production application to function long term. 
-We de not handle deployment details, for instance using docker, or specific error handling strategies, like turning off cameras if overheating or restarting the data stream if it was interrupted. 
+We de not handle deployment details, for instance using Docker, or specific error handling strategies, like turning off cameras if overheating or restarting the data stream if it was interrupted. 

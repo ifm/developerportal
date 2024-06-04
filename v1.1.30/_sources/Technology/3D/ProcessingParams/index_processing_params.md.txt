@@ -12,5 +12,5 @@ Median filter <median>
 Temporal filter <temporalFilter>
 Mixed pixel filter <mixedPixelFilter>
 Symmetry threshold <symmetryThreshold>
+CUDA point cloud processing <use_cuda>
 :::
-

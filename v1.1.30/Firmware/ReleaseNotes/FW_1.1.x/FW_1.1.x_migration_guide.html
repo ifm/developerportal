@@ -30,7 +30,7 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="How to update the firmware:" href="../../fw_update.html" />
+    <link rel="next" title="Firmware 1.4.30" href="../FW_1.4.x/index.html" />
     <link rel="prev" title="FIRMWARE 1.1.30 RELEASE NOTES" href="FW_1.1.x_Release_Notes.html" />
     <!-- Google tag (gtag.js) -->
     <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
@@ -92,6 +92,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../FW_1.4.x/index.html">Version 1.4.30</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../fw_update.html">How to update</a></li>
@@ -159,8 +160,8 @@
 </section>
 <section id="logging">
 <h2>Logging<a class="headerlink" href="#logging" title="Link to this heading"></a></h2>
-<p>The firmware release of <code class="docutils literal notranslate"><span class="pre">FW</span> <span class="pre">1.1.X</span></code> is coupled with the <code class="docutils literal notranslate"><span class="pre">ifm3d</span> <span class="pre">/</span> <span class="pre">ifm3dpy</span> <span class="pre">API</span> <span class="pre">release</span> <span class="pre">1.4.2</span></code>.
-Since <code class="docutils literal notranslate"><span class="pre">ifm3d</span> <span class="pre">API</span> <span class="pre">version</span> <span class="pre">1.3.X</span></code> the internal logging of the API has changed: GLOG logging is no longer used. Please update your code accordingly.
+<p>The firmware release of <code class="docutils literal notranslate"><span class="pre">FW</span> <span class="pre">1.1.X</span></code> is coupled with the <code class="docutils literal notranslate"><span class="pre">ifm3d</span> <span class="pre">/</span> <span class="pre">ifm3dpy</span> <span class="pre">API</span> <span class="pre">release</span> <span class="pre">1.4.3</span></code>.
+Since <code class="docutils literal notranslate"><span class="pre">ifm3d</span> <span class="pre">API</span> <span class="pre">version</span> <span class="pre">1.3.X</span></code> the internal logging of the API has changed: glog logging is no longer used. Please update your code accordingly.
 More details can be found in the ifm3d API migration guide <a class="reference external" href="https://api.ifm3d.com/stable/content/migration_guide/v1_3_0.html">here</a>.</p>
 <p>All changes to the logging feature introduced in ifm3d API 1.3.X are made with backwards compatibility in mind: this means that all errors thrown as exceptions will still be thrown as exceptions.
 All information previously logged to the glog logger is now logged to our own logger class. As a result, the Python API in particular may appear more verbose than before.</p>
@@ -180,11 +181,11 @@ Please contact your local ifm support or support.efector.object-ident&#64;ifm.co
 <h3>ODS application use case<a class="headerlink" href="#ods-application-use-case" title="Link to this heading"></a></h3>
 <p>Since ifm applications mainly use the Denver cores in this use case, OEM applications should be pinned to specific ARM cores. When the <code class="docutils literal notranslate"><span class="pre">UNSTABLE_FRAMERATE</span></code> diagnostic occurs more than sporadically, it is necessary to:</p>
 <ul class="simple">
-<li><p>Pin processes launched from an OEM docker container to the ARM A57 cores of the TX2 unit (using a taskset of 0x39). Note that the Denver cores of the TX2 unit are reserved for the ODS application.</p></li>
+<li><p>Pin processes launched from an OEM Docker container to the ARM A57 cores of the TX2 unit (using a taskset of 0x39). Note that the Denver cores of the TX2 unit are reserved for the ODS application.</p></li>
 <li><p>Reduce the number of simultaneously active cameras (see /applications/instances/appX/configuration/activePorts)</p></li>
 <li><p>Reduce the workload of OEM Docker containers by optimizing for runtime or offloading to other processing hardware.</p></li>
 </ul>
-<p>Refer to <a class="reference internal" href="../../../SoftwareInterfaces/Docker/cpu.html"><span class="std std-doc">the docker resources allocation documentation</span></a> for more details.</p>
+<p>Refer to <a class="reference internal" href="#../../../SoftwareInterfaces/Docker/cpu.md"><span class="xref myst">the Docker resources allocation documentation</span></a> for more details.</p>
 </section>
 </section>
 </section>

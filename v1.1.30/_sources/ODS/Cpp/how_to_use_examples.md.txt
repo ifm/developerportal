@@ -64,9 +64,9 @@ In ods_demo_client.cpp, we show how all these pieces can be used together to for
 - In parallel, we display the diagnostic messages as they are received from the O3R.
 
 :::{note}
-To explore general usage of the ifm3d API, refer to the following examples: [](https://api.ifm3d.com/latest/examples/index.html)
+To explore general usage of the ifm3d API, refer to the [`ifm3d-examples` repository](https://github.com/ifm/ifm3d-examples).
 :::
 
 ## Additional considerations
 
-The scripts mentioned above do not take into account all that is necessary for a production application to function long term. We de not handle deployment details, for instance using docker, or specific error handling strategies, like turning off cameras if overheating or restarting the data stream if it was interrupted.
+The scripts mentioned above do not take into account all that is necessary for a production application to function long term. We de not handle deployment details, for instance using Docker, or specific error handling strategies, like turning off cameras if overheating or restarting the data stream if it was interrupted.

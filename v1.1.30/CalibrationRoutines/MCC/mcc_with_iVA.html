@@ -30,8 +30,6 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="VPU extrinsic calibration" href="../OVPCalibration/README.html" />
-    <link rel="prev" title="Static camera calibration routine" href="../SCC/README.html" />
     <!-- Google tag (gtag.js) -->
     <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
     <script>
@@ -66,26 +64,14 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Firmware/index.html">Firmware</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Technology/index_hardware_interfaces.html">Technology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../index_software_interfaces.html">Software Interfaces</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../index_calibrations.html">Calibration Routines</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../IntroToCalibrations/README.html">Introduction to calibration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../SCC/README.html">Static Camera Calibration</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Motion Camera Calibration</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#pre-requisites">Pre-requisites</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#parameter-overview">Parameter Overview</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#procedure">Procedure</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../OVPCalibration/README.html">OVP8xx calibration</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../index_calibrations.html">Calibration Routines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ODS/index_ods.html">ODS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../downloadable/index.html">History</a></li>
@@ -105,7 +91,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index_calibrations.html">Calibration routines</a></li>
       <li class="breadcrumb-item active">Motion Camera Calibration</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/CalibrationRoutines/MCC/mcc_with_iVA.md.txt" rel="nofollow"> View page source</a>
@@ -118,11 +103,11 @@
              
   <section id="motion-camera-calibration">
 <h1>Motion Camera Calibration<a class="headerlink" href="#motion-camera-calibration" title="Link to this heading"></a></h1>
-<p>Motion Camera Calibration is a camera calibration software provided by ifm based on a ifm specific checkerboard that estimates the rotational parameters of the camera head with respect to the user coordinate system.</p>
-<p>This application is available free of charge included in the embedded O3R firmware (<code class="docutils literal notranslate"><span class="pre">version&gt;=1.1.30</span></code>) and the GUI ifm Vision Assistant (<code class="docutils literal notranslate"><span class="pre">version</span> <span class="pre">&gt;=2.7.6</span></code>). To use this application, users must install the ifmVisionAssistant tool, which can be downloaded <a class="reference external" href="https://www.ifm.com/us/en/product/OVP800?tab=documents">here</a>. To get started with the ifmVisionAssistant, please refer to this <a class="reference internal" href="#index_iVA.md"><span class="xref myst">documentation</span></a>.</p>
+<p>Motion Camera Calibration is a camera calibration software provided by ifm based on an ifm specific checkerboard that estimates the rotational parameters of the camera head with respect to the user coordinate system.</p>
+<p>This application is available free of charge and included in the embedded O3R firmware (<code class="docutils literal notranslate"><span class="pre">version</span> <span class="pre">&gt;=</span> <span class="pre">1.1.30</span></code>) and the GUI ifm Vision Assistant (<code class="docutils literal notranslate"><span class="pre">version</span> <span class="pre">&gt;=</span> <span class="pre">2.7.6</span></code>). To use this application, users must install the ifmVisionAssistant tool, which can be downloaded <a class="reference external" href="https://www.ifm.com/us/en/product/OVP800?tab=documents">here</a>. To get started with the ifmVisionAssistant, please refer to this <a class="reference internal" href="#index_iVA.md"><span class="xref myst">documentation</span></a>.</p>
 <section id="pre-requisites">
 <h2>Pre-requisites<a class="headerlink" href="#pre-requisites" title="Link to this heading"></a></h2>
-<p>Before starting the <code class="docutils literal notranslate"><span class="pre">mcc</span></code> tool, the user has to print the <a class="reference download internal" download="" href="../../_downloads/8f8ed1cb48a81d1cb1560837134603de/MotionCameraCalibrationTarget_600X800.pdf"><code class="xref download docutils literal notranslate"><span class="pre">checkerboard</span></code></a> provided by ifm either directly on a thick aluminum sheet or on matte finish paper and paste it on a flat-board without any air gaps. The checkerboard has to be printed at 100% scale. The resulting total print size is 600 mm by 800 mm. The smaller squares are 100 mm  X 100 mm.</p>
+<p>Before starting the MCC tool, the user has to print the <a class="reference download internal" download="" href="../../_downloads/8f8ed1cb48a81d1cb1560837134603de/MotionCameraCalibrationTarget_600X800.pdf"><code class="xref download docutils literal notranslate"><span class="pre">checkerboard</span></code></a> provided by ifm either directly on a thick aluminum sheet or on matte finish paper and paste it on a flat board without any air gaps. The checkerboard has to be printed at 100% scale. The resulting total print size is 600 mm by 800 mm. The smaller squares are 100 mm  X 100 mm.</p>
 </section>
 <section id="parameter-overview">
 <h2>Parameter Overview<a class="headerlink" href="#parameter-overview" title="Link to this heading"></a></h2>
@@ -164,13 +149,13 @@
 <h2>Procedure<a class="headerlink" href="#procedure" title="Link to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>Place the target horizontally (when the camera head is mounted in landscape orientation) or vertically (when the camera is mounted in portrait orientation) so that the reference corner (the larger cell) is at the top.</p></li>
-<li><p>Configure the cell size of the checkerboard target in <code class="docutils literal notranslate"><span class="pre">configuration/target/cellSize</span></code> based on the printed checkerboard. If the checkerboard is printed at 100% scale then the cell size would be equal to <strong>0.1m(default)</strong>.</p></li>
+<li><p>Configure the cell size of the checkerboard target in <code class="docutils literal notranslate"><span class="pre">configuration/target/cellSize</span></code> based on the printed checkerboard. If the checkerboard is printed at 100% scale then the cell size would be equal to 0.1m (default).</p></li>
 <li><p>Input the camera translations in <code class="docutils literal notranslate"><span class="pre">configuration/extrinsicHeadToUser</span></code></p></li>
-<li><p>Select the illumination mode based on your ambient light in <code class="docutils literal notranslate"><span class="pre">configuration/port/mode/</span></code></p>
+<li><p>Select the illumination mode based on your ambient light in <code class="docutils literal notranslate"><span class="pre">configuration/port/mode</span></code></p>
 <ul class="simple">
-<li><p>Default: ambientLightIllumination</p></li>
+<li><p>Default: <code class="docutils literal notranslate"><span class="pre">ambientLightIllumination</span></code></p></li>
 <li><p>When there is not enough ambient light, change mode to <code class="docutils literal notranslate"><span class="pre">activeIllumination</span></code></p></li>
-<li><p><strong>Note</strong>: Ambient light and LED have different characteristics, especially when it comes to the Near-Infrared (NIR) spectrum. The sunlight includes a significant portion of NIR light, which is electromagnetic radiation with wavelengths ranging from 780 nm to 3.0 μm but on the other hand, the modern-day lighting and especially the LED lighting provides very little or no Near-Infrared Radiation.</p></li>
+<li><p>Note: Ambient light and LED have different characteristics, especially when it comes to the near-infrared (NIR) spectrum. The sunlight includes a significant portion of NIR light, which is electromagnetic radiation with wavelengths ranging from 780 nm to 3.0 μm but on the other hand, the modern-day lighting and especially the LED lighting provides very little or no near-infrared radiation.</p></li>
 </ul>
 </li>
 </ol>
@@ -186,7 +171,7 @@
 </li>
 <li><p>Change the application state to <strong><code class="docutils literal notranslate"><span class="pre">RUN</span></code></strong></p></li>
 <li><p>Once the application is changed to <code class="docutils literal notranslate"><span class="pre">RUN</span></code> state the live image appears on the right side window.</p></li>
-<li><p>Move the camera(robot) closer to the target such that the target is large in the live image: it should at least ﬁll 50% of the image.</p></li>
+<li><p>Move the camera (robot) closer to the target such that the target is large in the live image: it should at least ﬁll 50% of the image.</p></li>
 </ol>
 <p><img alt="Start" src="../../_images/start_0.png" /></p>
 <ol class="arabic simple" start="9">
@@ -194,8 +179,8 @@
 <li><p>Trigger <code class="docutils literal notranslate"><span class="pre">startMotion</span></code> command and move the robot backward in a straight line.</p></li>
 </ol>
 <ul class="simple">
-<li><p>Once you click the <code class="docutils literal notranslate"><span class="pre">startMotion</span></code> the internal algorithm starts to grab images ( Don’t worry about the commands…! The command will automatically return to <code class="docutils literal notranslate"><span class="pre">nop</span></code>)</p></li>
-<li><p><strong>The minimum movement range should be <code class="docutils literal notranslate"><span class="pre">50</span> <span class="pre">cm</span></code> (If you moved the robot less than 50 cm then the calibration will not be successful)</strong></p></li>
+<li><p>Once you click <code class="docutils literal notranslate"><span class="pre">startMotion</span></code>, the internal algorithm starts to grab images. Don’t worry about the commands! The command will automatically return to <code class="docutils literal notranslate"><span class="pre">nop</span></code>.</p></li>
+<li><p><strong>The minimum movement range should be <code class="docutils literal notranslate"><span class="pre">50</span> <span class="pre">cm</span></code>. If you moved the robot less than 50 cm then the calibration will not be successful.</strong></p></li>
 </ul>
 <p><img alt="move_back.gif" src="../../_images/move_back.gif" /></p>
 <ol class="arabic simple" start="12">
@@ -203,25 +188,25 @@
 </ol>
 <p><img alt="start_stop" src="../../_images/motion_3.png" /></p>
 <ol class="arabic simple" start="13">
-<li><p>Move the robot orthogonal to the backward motion line and close to the target (ﬁll at least 50% of the image) such that the tool detects all corners of the checkerboard target.</p></li>
+<li><p>Move the robot orthogonal to the backward motion line and close to the target (ﬁll at least 50% of the image) such that the tool detects all corners of the checkerboard cells.</p></li>
 </ol>
 <ul class="simple">
 <li><p>The orthogonal offset should be a minimum of 40 cm.</p></li>
 </ul>
 <p><img alt="capture_fram_1.gif" src="../../_images/capture_frame_1.gif" /></p>
 <ol class="arabic simple" start="14">
-<li><p>Input <strong>0</strong> in <code class="docutils literal notranslate"><span class="pre">/configuration/takeStaticBufferIndex</span></code> and trigger <code class="docutils literal notranslate"><span class="pre">configuration/command/*takeStaic</span></code> to add this image to the calibration data file.</p></li>
+<li><p>Input <strong>0</strong> in <code class="docutils literal notranslate"><span class="pre">/configuration/takeStaticBufferIndex</span></code> and trigger <code class="docutils literal notranslate"><span class="pre">configuration/command/*takeStatic</span></code> to add this image to the calibration data file.</p></li>
 <li><p>Now move the camera to the other side of the backward motion line and ensure all the checkerboard corners are detected.</p></li>
 </ol>
 <p><img alt="capture-frame-2.gif" src="../../_images/capture-frame-2.gif" /></p>
 <ol class="arabic simple" start="16">
-<li><p>Input <strong>1</strong> in <code class="docutils literal notranslate"><span class="pre">/configuration/takeStaticBufferIndex</span></code> and trigger <code class="docutils literal notranslate"><span class="pre">configuration/command/*takeStaic</span></code> again to add another static image.</p></li>
-<li><p>Now trigger <code class="docutils literal notranslate"><span class="pre">calibrate</span></code> command to calibrate the cameras. If the calibration is successful then you can see the extrinsic parameters as the JSON string.</p></li>
-<li><p>If the calibration is not successful, then the reason for the calibration failure is displayed as a notification <code class="docutils literal notranslate"><span class="pre">set-RPC</span> <span class="pre">failed</span></code> and the reason for the calibration failure. The following image shows that the calibration failed because the backward motion of the vehicle is not in a straight line as specified.</p></li>
+<li><p>Input <strong>1</strong> in <code class="docutils literal notranslate"><span class="pre">/configuration/takeStaticBufferIndex</span></code> and trigger <code class="docutils literal notranslate"><span class="pre">configuration/command/*takeStatic</span></code> again to add another static image.</p></li>
+<li><p>Now trigger the <code class="docutils literal notranslate"><span class="pre">calibrate</span></code> command to calibrate the cameras. If the calibration is successful then you can see the extrinsic parameters as the JSON string.</p></li>
+<li><p>If the calibration is not successful, then the reason for the calibration failure is displayed as a notification <code class="docutils literal notranslate"><span class="pre">set-RPC</span> <span class="pre">failed</span></code>. The following image shows that the calibration failed because the backward motion of the vehicle is not in a straight line as specified.</p></li>
 </ol>
 <p><img alt="Calibration Failure" src="../../_images/calibration_failure.png" /></p>
 <ol class="arabic simple" start="19">
-<li><p>If the calibration is successful, then the results will be displayed in the results will be displayed as the JSON object below the display window.</p></li>
+<li><p>If the calibration is successful, then the results will be displayed as a JSON object below the display window.</p></li>
 </ol>
 <table class="docutils align-default">
 <thead>
@@ -257,7 +242,7 @@
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">humanReadableAngles</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">HumanReadableAngles</span></code></p></td>
-<td><p>Yaw, Pitch and Roll in degrees</p></td>
+<td><p>Yaw, pitch and roll in degrees</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">numberOfCurrentMotionImages</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">uint32</span></code></p></td>
@@ -297,10 +282,10 @@
 <p>The calibration might not be successful due to the following reasons:</p>
 <ul class="simple">
 <li><p>Backward motion is not in a straight line.</p></li>
-<li><p>If the backward motion path is too short. The minimum path length is 0.4 meters.</p></li>
+<li><p>If the backward motion path is too short. The minimum path length is 0.5 meters.</p></li>
 <li><p>Due to low signal levels in the images. In this case, try calibrating using <code class="docutils literal notranslate"><span class="pre">activeIllumination</span></code> mode.</p></li>
 <li><p>If the target is too small in the images. Try to move closer to the checkerboard target.</p></li>
-<li><p>If the single images are too close to each other. The offset between the positions of two single images should be at least 0.50 meters.</p></li>
+<li><p>If the single images are too close to each other. The offset between the positions of two single images should be at least 0.40 meters.</p></li>
 <li><p>If the distance between a single image and the motion path is less than 0.25 meters.</p></li>
 </ul>
 </section>

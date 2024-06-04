@@ -86,22 +86,12 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">USB</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#usb-a-interface-use-cases">USB-A interface use cases</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#usb-mass-storage-devices">USB mass storage devices</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#usb-cameras">USB Cameras</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#usb-hubs">USB hubs</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#other-usb-devices-usb-hid-usb-network-adapters">Other USB devices: USB HID, USB network adapters, …</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#using-a-usb-drive-with-the-vpu">Using a USB drive with the VPU</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#preparing-the-usb-drive">Preparing the USB drive</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#fat32">FAT32</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#ext4">EXT4</a><ul>
-<li class="toctree-l7"><a class="reference internal" href="#format-usb-mounting-preparation-ext4-only">Format USB mounting preparation (EXT4 only)</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l5"><a class="reference internal" href="#plug-in-and-mounting">Plug in and mounting</a></li>
-</ul>
-</li>
+<li class="toctree-l4"><a class="reference internal" href="#using-a-usb-drive-with-the-vpu">Using a USB drive with the VPU</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="sntp.html">NTP</a></li>
@@ -165,9 +155,38 @@
 <li><p>FAT32</p></li>
 <li><p>EXT4</p></li>
 </ul>
-<p>See the limitations imposed by the <a class="reference internal" href="#ext4-format-usb-mounting-preparation"><span class="xref myst">use of EXT4 below</span></a></p>
+<p>See the limitations imposed by the <a class="reference internal" href="#ext4"><span class="xref myst">use of EXT4 below</span></a></p>
 <p><strong>Other USB mass storage devices</strong></p>
 <p>Other USB mass storage devices that require the installation of additional drivers may be functional if the drivers are installed within the respective Docker software containers. ifm does not provide official support for these devices - the user may use them in development / production use cases at his own risk. Possible compatibility limitations due to updates of the embedded firmware may require updates of the device drivers in the user’s software containers. No continuous compatibility over embedded FW versions is assured.</p>
+</section>
+<section id="usb-cameras">
+<h3>USB Cameras<a class="headerlink" href="#usb-cameras" title="Link to this heading"></a></h3>
+<p>From the firmware version 1.4.30 and above, the USB cameras will be assigned to <code class="docutils literal notranslate"><span class="pre">/dev/video0</span></code> node by the VPU. USB cameras like webcams are only tested which uses the default <code class="docutils literal notranslate"><span class="pre">v4l2</span></code> framework on linux kernel. It should be noted that user cannot access the <strong>V4L</strong> devices or <code class="docutils literal notranslate"><span class="pre">/dev/video0</span></code> node directly on the VPU without Docker container. To make use of the nodes, please pass the respective video device node to the Docker container using the flag <code class="docutils literal notranslate"><span class="pre">--device</span></code>.</p>
+<p>If the USB camera device needs any special drivers, they should be installed in a Docker container and should be tested.</p>
+<p><strong>Example: How to use USB web camera on VPU using Docker container</strong></p>
+<ul class="simple">
+<li><p>Install <code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code> and <code class="docutils literal notranslate"><span class="pre">v4l-utils</span></code> in the Docker container by copying the following lines in your Dockerfile.</p></li>
+</ul>
+<div class="highlight-docker notranslate"><div class="highlight"><pre><span></span><span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>ffmpeg<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>v4l-utils
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Run the Docker container in the interactive mode</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-ti<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/home/ifm/<span class="w"> </span>--device<span class="o">=</span>/dev/video0:/dev/video0:rwm<span class="w"> </span>&lt;docker-image-name&gt;
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Capture a frame using <code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code> tool inside Docker container</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>root@&lt;docker_id&gt;$<span class="w"> </span>ffmpeg<span class="w"> </span>-f<span class="w"> </span>v4l2<span class="w"> </span>-video_size<span class="w"> </span>1280x720<span class="w"> </span>-i<span class="w"> </span>/dev/video0<span class="w"> </span>-frames<span class="w"> </span><span class="m">1</span><span class="w"> </span>out.jpg
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>A image <strong>out.png</strong> will be created in the home folder.</p></li>
+</ul>
 </section>
 <section id="usb-hubs">
 <h3>USB hubs<a class="headerlink" href="#usb-hubs" title="Link to this heading"></a></h3>
@@ -180,11 +199,10 @@ Devices with higher power consumption may overload the power available via the U
 <h3>Other USB devices: USB HID, USB network adapters, …<a class="headerlink" href="#other-usb-devices-usb-hid-usb-network-adapters" title="Link to this heading"></a></h3>
 <p>Other USB devices such as:</p>
 <ul class="simple">
-<li><p>USB mice,</p></li>
+<li><p>USB mice</p></li>
 <li><p>USB keyboards,</p></li>
 <li><p>Generic USB input devices such as controllers,</p></li>
 <li><p>USB-to-Ethernet network devices</p></li>
-<li><p>USB cameras</p></li>
 <li><p>USB sensors
 are not supported by the OVP8xx VPU device.</p></li>
 </ul>
@@ -199,33 +217,29 @@ oem<span class="w"> </span>docker<span class="w"> </span>systemd-journal
 </pre></div>
 </div>
 <p>Additional Ethernet interfaces via USB-to-Ethernet adapters are not supported by the OVP8xx VPU devices.</p>
-<p>Additional sensor devices, such as generic USB sensors or USB cameras, are not supported by the OVP8x VPU devices.</p>
+<p>Additional sensor devices, such as generic USB sensors are not supported by the OVP8x VPU devices.</p>
 </section>
 </section>
 <section id="using-a-usb-drive-with-the-vpu">
 <h2>Using a USB drive with the VPU<a class="headerlink" href="#using-a-usb-drive-with-the-vpu" title="Link to this heading"></a></h2>
 <p>It is possible to increase the VPU memory size by utilizing USB thumb drives or USB SSDs on the USB-A interface. To use any USB storage device, it is necessary to mount the drive first.</p>
-<p>.. note::
-The USB auto mount service mounts your USB mass storage device to <code class="docutils literal notranslate"><span class="pre">/run/media/system/&lt;USB_name&gt;/</span></code>. See the details below.</p>
-<section id="preparing-the-usb-drive">
-<h3>Preparing the USB drive<a class="headerlink" href="#preparing-the-usb-drive" title="Link to this heading"></a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The USB auto mount service mounts your USB mass storage device to <code class="docutils literal notranslate"><span class="pre">/run/media/system/&lt;USB_name&gt;/</span></code>. See the details below.</p>
+<h3 class="rubric" id="preparing-the-usb-drive">Preparing the USB drive</h3>
 <p>The VPU’s operating system supports two file formats:</p>
 <ul class="simple">
 <li><p>FAT32</p></li>
 <li><p>EXT4</p></li>
 </ul>
 <p>These can be auto-mounted via the <code class="docutils literal notranslate"><span class="pre">mount</span></code> command and its respective daemon.</p>
-<section id="fat32">
-<h4>FAT32<a class="headerlink" href="#fat32" title="Link to this heading"></a></h4>
+<h4 class="rubric" id="fat32">FAT32</h4>
 <p>For FAT32 formatted devices no additional steps are required. It can be directly mounted via the auto-mount daemon to the VPU.</p>
-</section>
-<section id="ext4">
-<h4>EXT4<a class="headerlink" href="#ext4" title="Link to this heading"></a></h4>
+<h4 class="rubric" id="ext4">EXT4</h4>
 <p>For EXT4 formatted devices the user needs to perform additional steps to match the OEM users <code class="docutils literal notranslate"><span class="pre">uid</span></code> and <code class="docutils literal notranslate"><span class="pre">gid</span></code> on the VPU’s embedded OS.
 Otherwise only read permissions are granted when mounting the USB storage device. This is a design that is introduced by the handling of access rights to EXT4 formatted devices on Linux systems.
 If you are an experience EXT4 user feel free to skip the following instructions steps:</p>
-<section id="format-usb-mounting-preparation-ext4-only">
-<h5>Format USB mounting preparation (EXT4 only)<a class="headerlink" href="#format-usb-mounting-preparation-ext4-only" title="Link to this heading"></a></h5>
+<h5 class="rubric" id="format-usb-mounting-preparation-ext4-only">Format USB mounting preparation (EXT4 only)</h5>
 <p><strong>Option 1:</strong></p>
 <p>“The crude way”</p>
 <p>The easiest option is to mount the EXT4 formatted device to your Linux laptop of choice and relax the write and read permissions to be accessible by any user:</p>
@@ -261,11 +275,7 @@ oemt@o3r-vpu-c0:~#<span class="w"> </span>id<span class="w"> </span>-g<span clas
 </div>
 <p>.. note::
 Please be aware that changing the GID and UID mount points may result in missing read access on your laptop. To restore read access on your laptop to the USB storage device, change the GID and UID back to match your personal user accounts ones.</p>
-</section>
-</section>
-</section>
-<section id="plug-in-and-mounting">
-<h3>Plug in and mounting<a class="headerlink" href="#plug-in-and-mounting" title="Link to this heading"></a></h3>
+<h3 class="rubric" id="plug-in-and-mounting">Plug in and mounting</h3>
 <p>After plugging in the drive, the mount is started by using the command <code class="docutils literal notranslate"><span class="pre">mount</span></code></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>o3r-vpu-c0:~$<span class="w"> </span>mount
 proc<span class="w"> </span>on<span class="w"> </span>/proc<span class="w"> </span><span class="nb">type</span><span class="w"> </span>proc<span class="w"> </span><span class="o">(</span>rw,relatime<span class="o">)</span>
@@ -310,7 +320,7 @@ drwxrwxrwx<span class="w"> </span><span class="m">3</span><span class="w"> </spa
 ...
 </pre></div>
 </div>
-</section>
+</div>
 </section>
 </section>
 

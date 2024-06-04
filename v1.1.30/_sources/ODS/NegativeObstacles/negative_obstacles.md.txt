@@ -25,7 +25,7 @@ We are using here the "robot" coordinate system: the X axis is pointing in the r
 Negative obstacles will not be detected equally well in all mounting positions. Due to the angle at which light is reflected from the ground, more or less range can be achieved for ground detection. Negative obstacle detection relies in part on being able to see pixels that belong to the ground, so in cases where range is limited, performance will be reduced. Also note that the visibility of pixels below ground is sacrificed by low camera mountings.
 For more details on mounting recommendations, refer to the [mounting documentation](../Mounting/mounting.md).
 
-Due to the variability in true positive detections depending on the mounting position and the environment, we strongly encourage the user to perform tests in their facility. Take a look at our documentation about [performance verification](../FieldTest/PerformanceVerification/ods_performance_verification.md) and about the possible [iToF artifacts](../FieldTest/TOFArtifacts/ods_tof_artifacts.md) you can encounter.
+Due to the variability in true positive detections depending on the mounting position and the environment, we strongly encourage the user to perform tests in their facility. Take a look at our documentation about [performance verification](../Performance/PerformanceVerification/ods_performance_verification.md) and about the possible [iToF artifacts](../Performance/TOFArtifacts/ods_tof_artifacts.md) you can encounter.
 
 Typically, negative obstacles are not detected as far as positive obstacles of a similar size. Consequently, we recommend that the user limits the robot travel speed to a known safe value in environments known to contain negative obstacles.
 

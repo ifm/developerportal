@@ -139,26 +139,143 @@
 </section>
 <section id="software">
 <h2>Software<a class="headerlink" href="#software" title="Link to this heading"></a></h2>
-<p>The CAN interface is supported since firmware version 0.14.1 with no further configuration needed. Note that the CAN interface is only accessible in Docker when using <code class="docutils literal notranslate"><span class="pre">--network</span> <span class="pre">host</span></code>.</p>
+<p>The CAN interface is supported starting from firmware version 0.14.1. Configuring the CAN interface through the JSON configuration is only possible for firmware version 1.4.30 and above.</p>
+<p>Please note that the CAN interface is only accessible within Docker when using the <code class="docutils literal notranslate"><span class="pre">--network</span> <span class="pre">host</span></code> option.</p>
+<p>Before utilizing the CAN interface, it needs to be set up. To verify whether the CAN interface is active and with which bitrate it operates, there are two possible methods: using the <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> CLI or Python scripts.</p>
+<ol class="arabic">
+<li><p>Using the  <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> CLI:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.device.network.interfaces.can0
+<span class="o">{</span>
+<span class="s2">&quot;active&quot;</span>:<span class="w"> </span>false,
+<span class="s2">&quot;bitrate&quot;</span>:<span class="w"> </span><span class="s2">&quot;125K&quot;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Using Python script: see the script below or download it from <a class="reference external" href="https://github.com/ifm/ifm3d-examples/tree/main/ovp8xx/python/ovp8xxexamples/core/can_activate.py">ifm3d-examples</a>.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1">#############################################</span>
+<span class="c1"># Copyright 2024-present ifm electronic, gmbh</span>
+<span class="c1"># SPDX-License-Identifier: Apache-2.0</span>
+<span class="c1">#############################################</span>
+<span class="c1"># The CAN interface can only be activated with firmware</span>
+<span class="c1"># versions 1.4.X or higher</span>
+<span class="kn">from</span> <span class="nn">ifm3dpy.device</span> <span class="kn">import</span> <span class="n">O3R</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_check_can_availability</span><span class="p">(</span><span class="n">o3r</span><span class="p">)</span><span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s2">&quot;can0&quot;</span> <span class="ow">in</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/network/interfaces&quot;</span><span class="p">])[</span><span class="s2">&quot;device&quot;</span><span class="p">][</span><span class="s2">&quot;network&quot;</span><span class="p">][</span><span class="s2">&quot;interfaces&quot;</span><span class="p">]:</span>
+        <span class="c1"># Get the can0 information: active status and bitrate</span>
+        <span class="n">can_info</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/network/interfaces/can0&quot;</span><span class="p">])[</span><span class="s2">&quot;device&quot;</span><span class="p">][</span><span class="s2">&quot;network&quot;</span><span class="p">][</span><span class="s2">&quot;interfaces&quot;</span><span class="p">][</span><span class="s2">&quot;can0&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">can_info</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;CAN interface not available in current firmware version.&quot;</span><span class="p">)</span>
+        
+        
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">ip</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span>
+    <span class="n">can_info</span> <span class="o">=</span> <span class="n">_check_can_availability</span><span class="p">(</span><span class="n">o3r</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">can_info</span><span class="p">[</span><span class="s2">&quot;active&quot;</span><span class="p">]:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;activating can0 interface ...&quot;</span><span class="p">)</span>
+        <span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">({</span>
+            <span class="s2">&quot;device&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;network&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;interfaces&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;can0&quot;</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s2">&quot;active&quot;</span><span class="p">:</span> <span class="kc">True</span>
+                            <span class="c1">#&quot;bitrate&quot;: &#39;125K&#39; # here set the bitrate &#39;250K&#39;, &#39;500K&#39; ...</span>
+
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">})</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Rebooting the device...&quot;</span><span class="p">)</span>
+        <span class="n">o3r</span><span class="o">.</span><span class="n">reboot</span><span class="p">()</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
+        <span class="c1"># For the sake of simplicity we assume that the boot-up process is not timing out,</span>
+        <span class="c1"># and we simply check that the boot sequence has completed.</span>
+        <span class="c1"># For a fool proof boot-up monitoring, review the bootup_monitor.py example.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/diagnostic/confInitStages&quot;</span><span class="p">])[</span><span class="s2">&quot;device&quot;</span><span class="p">][</span><span class="s2">&quot;diagnostic&quot;</span><span class="p">][</span><span class="s2">&quot;confInitStages&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="s2">&quot;device&quot;</span><span class="p">,</span> <span class="s2">&quot;ports&quot;</span><span class="p">,</span> <span class="s2">&quot;applications&quot;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;VPU not properly booted&quot;</span><span class="p">)</span>
+
+    <span class="n">can_info</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/network/interfaces/can0&quot;</span><span class="p">])[</span><span class="s2">&quot;device&quot;</span><span class="p">][</span><span class="s2">&quot;network&quot;</span><span class="p">][</span><span class="s2">&quot;interfaces&quot;</span><span class="p">][</span><span class="s2">&quot;can0&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">can_info</span><span class="p">[</span><span class="s2">&quot;active&quot;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Activating the can0 interface failed.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The can0 interface is active!&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># If the example python package was build, import the configuration</span>
+        <span class="kn">from</span> <span class="nn">ovp8xxexamples</span> <span class="kn">import</span> <span class="n">config</span>
+
+        <span class="n">IP</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">IP</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="c1"># Otherwise, use default values</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+            <span class="s2">&quot;Unable to import the configuration.</span><span class="se">\n</span><span class="s2">Please run &#39;pip install -e .&#39; from the python root directory&quot;</span>
+        <span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Defaulting to the default configuration.&quot;</span><span class="p">)</span>
+        <span class="n">IP</span> <span class="o">=</span> <span class="s2">&quot;192.168.0.69&quot;</span>
+    
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Device IP: </span><span class="si">{</span><span class="n">IP</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">main</span><span class="p">(</span><span class="n">IP</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>New network settings will only be applied after reboot. The Python script performs a reboot.
+Using the <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> CLI a reboot can be performed by <code class="docutils literal notranslate"><span class="pre">ifm3d</span> <span class="pre">reboot</span></code>.</p>
+</div>
+<p>After activating the CAN interface and rebooting the VPU, we can verify the status of the CAN interface again using the <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> CLI as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.device.network.interfaces.can0
+<span class="o">{</span>
+<span class="w">  </span><span class="s2">&quot;active&quot;</span>:<span class="w"> </span>true,
+<span class="w">  </span><span class="s2">&quot;bitrate&quot;</span>:<span class="w"> </span><span class="s2">&quot;125K&quot;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
 </section>
 <section id="example-interfacing-with-the-dtm425-rfid-antenna-using-docker">
 <h2>Example: Interfacing with the <a class="reference external" href="https://www.ifm.com/de/en/product/DTM425">DTM425</a> RFID antenna using Docker<a class="headerlink" href="#example-interfacing-with-the-dtm425-rfid-antenna-using-docker" title="Link to this heading"></a></h2>
 <p><strong>Step 1</strong>: Connect the DTM425 to the O3R and both to power.</p>
-<p><strong>Step 2</strong>: Create a minimal Docker file (filename: <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>), as shown below:</p>
-<div class="highlight-Docker notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="w"> </span><span class="s">arm64v8/alpine</span>
+<p><strong>Step 2</strong>: Create a minimal Dockerfile (filename: <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>) like shown below (the example can be downloaded <a class="reference external" href="https://github.com/ifm/ifm3d-examples/tree/main/ovp8xx/docker/can/Dockerfile">here</a>):</p>
+<div class="highlight-docker notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="w"> </span><span class="s">arm64v8/alpine</span>
 
-<span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>add<span class="w"> </span>python3<span class="w"> </span>py3-pip
-<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>canopen
+<span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>add<span class="w"> </span>--no-cache<span class="w"> </span>python3<span class="w"> </span>py3-pip
 
-<span class="k">COPY</span><span class="w"> </span>can_example.py<span class="w"> </span>/usr/local/bin
+<span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>/home/ifm/
+<span class="c"># Create a venv and install python dependencies</span>
+<span class="k">RUN</span><span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>/home/ifm/venv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>/home/ifm/venv/bin/pip<span class="w"> </span>install<span class="w"> </span>--requirement<span class="w"> </span>/home/ifm/requirements.txt
+
+<span class="c"># Copy the can_example.py example.</span>
+<span class="k">COPY</span><span class="w"> </span>can_example.py<span class="w"> </span>/home/ifm/
+<span class="c"># Copy the eds file to the container</span>
+<span class="c"># You can download the DTM425.eds file from https://www.ifm.com/us/en/product/DTM425?tab=documents</span>
 <span class="k">COPY</span><span class="w"> </span>DTM425.eds<span class="w"> </span>/usr/local/share
 
-<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;can_example.py&quot;</span><span class="p">]</span>
+<span class="c"># Make the script executable</span>
+<span class="k">RUN</span><span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>/home/ifm/can_example.py
+
+<span class="c"># Activate virtual environment and run the script</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/home/ifm/venv/bin/python&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/home/ifm/can_example.py&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>This Docker file installs Python and the CANopen library for Python. The example script is then installed into the image and set to automatically execute when the container is run.</p>
-<p><strong>Step 3</strong>: Create the example Python script (filename: <code class="docutils literal notranslate"><span class="pre">can_example.py</span></code>; see below) and download the required <a class="reference external" href="https://www.ifm.com/de/en/product/DTM425?tab=documents">EDS file</a> (filename <code class="docutils literal notranslate"><span class="pre">DTM425.eds</span></code>). Place the files in the same location as the Docker file. Make sure that the script has the executable permission set.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<p>This Dockerfile installs Python and the CANopen library for Python. The example script is then installed into the image and set to automatically execute when the container is run.</p>
+<p><strong>Step 3</strong>: Use the example Python script below (or download the script <a class="reference external" href="https://github.com/ifm/ifm3d-examples/tree/main/ovp8xx/docker/can/can_example.py">here</a>) and download the required <a class="reference external" href="https://www.ifm.com/de/en/product/DTM425?tab=documents">EDS file</a> (filename <code class="docutils literal notranslate"><span class="pre">DTM425.eds</span></code>). Place the files in the same location as the Dockerfile.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#############################################</span>
+<span class="c1"># Copyright 2024-present ifm electronic, gmbh</span>
+<span class="c1"># SPDX-License-Identifier: Apache-2.0</span>
+<span class="c1">#############################################</span>
+<span class="c1">#!/usr/bin/env python3</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">canopen</span>
 
@@ -178,7 +295,7 @@
 
 <span class="k">def</span> <span class="nf">disconnect</span><span class="p">(</span><span class="n">nw</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
     <span class="n">device</span><span class="o">.</span><span class="n">nmt</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;PRE-OPERATIONAL&quot;</span>
-    <span class="n">nw</span><span class="o">.</span><span class="n">disconnect</span>
+    <span class="n">nw</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
 
 
 <span class="k">def</span> <span class="nf">write_tag</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
@@ -208,12 +325,16 @@
     <span class="k">return</span> <span class="n">data</span>
 
 
-<span class="n">nw</span><span class="p">,</span> <span class="n">device</span> <span class="o">=</span> <span class="n">connect</span><span class="p">()</span>
-<span class="n">data</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\xDE\xAD\xBE\xEF</span><span class="s1">&#39;</span>
-<span class="n">write_tag</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Writing tag:&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reading tag:&quot;</span><span class="p">,</span> <span class="n">read_tag</span><span class="p">(</span><span class="n">device</span><span class="p">))</span>
-<span class="n">disconnect</span><span class="p">(</span><span class="n">nw</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">nw</span><span class="p">,</span> <span class="n">device</span> <span class="o">=</span> <span class="n">connect</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\xDE\xAD\xBE\xEF</span><span class="s1">&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Writing tag:&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="n">write_tag</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reading tag:&quot;</span><span class="p">,</span> <span class="n">read_tag</span><span class="p">(</span><span class="n">device</span><span class="p">))</span>
+    <span class="n">disconnect</span><span class="p">(</span><span class="n">nw</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>The script writes the hex-value <code class="docutils literal notranslate"><span class="pre">0xdeadbeef</span></code> to the RFID tag and reads the data from the tag. When scanning for the device, it is assumed that the RFID antenna is the only CAN device on the bus, besides the VPU itself.</p>

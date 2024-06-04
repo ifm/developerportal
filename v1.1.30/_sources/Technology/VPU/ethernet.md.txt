@@ -43,5 +43,5 @@ Make sure that the netmask of the address matches the one of the gateway.
 :::
 
 :::{note}
-DHCP is not supported for `eth1`.
+DHCP is not supported for `eth1`. `eth1` is always setup with a static IP address, with the default `192.168.42.69`, netmask `255.255.255.0` and gateway `0.0.0.0`. The gateway is read-only and cannot be changed.
 :::

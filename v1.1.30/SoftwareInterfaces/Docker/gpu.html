@@ -30,8 +30,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Process pinning" href="cpu.html" />
-    <link rel="prev" title="Autostart a container on the VPU" href="autostart.html" />
+    <link rel="next" title="Using TensorRT" href="tensorRT/TensorRT_on_a_VPU_hardware.html" />
+    <link rel="prev" title="Resource management" href="resource_management.html" />
     <!-- Google tag (gtag.js) -->
     <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
     <script>
@@ -79,10 +79,11 @@
 <li class="toctree-l2"><a class="reference external" href="https://ros2.ifm3d.com/latest/">ROS2: ifm3d-ros2</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index_docker.html">Docker</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="docker.html">Docker: Getting started</a></li>
-<li class="toctree-l3"><a class="reference internal" href="docker.html#build-and-run-a-docker-container-for-the-o3r-platform">Build and run a docker container for the O3R platform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#build-and-run-a-docker-container-for-the-o3r-platform">Build and run a Docker container for the O3R platform</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deployVPU.html">Deployment on board</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging.html">Docker logging configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="autostart.html">Autostarting the container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="resource_management.html">Resource Management on the VPU</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Enabling GPU usage</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#using-the-gpu-of-the-vpu">Using the GPU of the VPU</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#dockerfile-sample">Dockerfile sample</a></li>
@@ -95,12 +96,12 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="cpu.html">CPU usage</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tensorRT/TensorRT_on_a_VPU_hardware.html">TensortRT: DL / ML model deployment</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../ifmDiagnostic/index_diagnostic.html">Diagnostic</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Toolbox/index_toolbox.html">Toolbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Examples/examples.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
@@ -178,8 +179,8 @@
 <p>After building the container, you can follow the steps from the documentation to test the container on the VPU:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="docker.html#save-a-container"><span class="std std-ref">Save the container</span></a>): <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">save</span> <span class="pre">cuda-samples</span> <span class="pre">&gt;</span> <span class="pre">cuda-samples.tar</span></code></p></li>
-<li><p><a class="reference internal" href="#./deployVPU#scp"><span class="xref myst">Transfer the container</span></a>: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">scp</span> <span class="pre">cuda-samples.tar</span> <span class="pre">oem&#64;192.168.0.69:/home/oem</span></code></p></li>
-<li><p><a class="reference internal" href="#./docker#load-and-start-a-container"><span class="xref myst">Load the container</span></a>: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">load</span> <span class="pre">&lt;</span> <span class="pre">cuda-samples.tar</span></code></p></li>
+<li><p><a class="reference internal" href="deployVPU.html#using-scp"><span class="std std-ref">Transfer the container</span></a>: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">scp</span> <span class="pre">cuda-samples.tar</span> <span class="pre">oem&#64;192.168.0.69:/home/oem</span></code></p></li>
+<li><p><a class="reference internal" href="docker.html#load-and-start-a-container"><span class="std std-ref">Load the container</span></a>: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">load</span> <span class="pre">&lt;</span> <span class="pre">cuda-samples.tar</span></code></p></li>
 </ul>
 </section>
 <section id="start-the-container-with-the-nvidia-runtime">

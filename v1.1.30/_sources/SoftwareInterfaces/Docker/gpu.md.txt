@@ -46,8 +46,8 @@ Successfully tagged cuda-samples:latest
 
 After building the container, you can follow the steps from the documentation to test the container on the VPU:
 - [Save the container](./docker.md#save-a-container)): ```$ docker save cuda-samples > cuda-samples.tar```
-- [Transfer the container](./deployVPU#scp): ```$ scp cuda-samples.tar oem@192.168.0.69:/home/oem```
-- [Load the container](./docker#load-and-start-a-container): ```$ docker load < cuda-samples.tar```
+- [Transfer the container](./deployVPU.md#using-scp): ```$ scp cuda-samples.tar oem@192.168.0.69:/home/oem```
+- [Load the container](./docker.md#load-and-start-a-container): ```$ docker load < cuda-samples.tar```
 
 ### Start the container with the NVIDIA runtime
 

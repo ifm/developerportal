@@ -9,4 +9,5 @@ ROS2: ifm3d-ros2 <https://ros2.ifm3d.com/latest/>
 Docker <SoftwareInterfaces/Docker/index_docker>
 Diagnostic <SoftwareInterfaces/ifmDiagnostic/index_diagnostic>
 Toolbox <SoftwareInterfaces/Toolbox/index_toolbox>
+Examples <SoftwareInterfaces/Examples/examples>
 :::

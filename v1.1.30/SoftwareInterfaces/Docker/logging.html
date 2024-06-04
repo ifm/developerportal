@@ -79,26 +79,27 @@
 <li class="toctree-l2"><a class="reference external" href="https://ros2.ifm3d.com/latest/">ROS2: ifm3d-ros2</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index_docker.html">Docker</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="docker.html">Docker: Getting started</a></li>
-<li class="toctree-l3"><a class="reference internal" href="docker.html#build-and-run-a-docker-container-for-the-o3r-platform">Build and run a docker container for the O3R platform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#build-and-run-a-docker-container-for-the-o3r-platform">Build and run a Docker container for the O3R platform</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deployVPU.html">Deployment on board</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Docker logging configuration</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#docker-default-logging">Docker default logging</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#docker-logging-drivers">Docker logging drivers</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#docker-logging-configuration">Docker logging configuration</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#run-a-docker-container-with-logging-driver-configuration">Run a docker container with logging driver configuration</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#double-check-the-docker-logging-configuration-for-a-container">Double check the docker logging configuration for a container</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#run-a-docker-container-with-logging-driver-configuration">Run a Docker container with logging driver configuration</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#double-check-the-docker-logging-configuration-for-a-container">Double check the Docker logging configuration for a container</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="autostart.html">Autostarting the container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="resource_management.html">Resource Management on the VPU</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gpu.html">Enabling GPU usage</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpu.html">CPU usage</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tensorRT/TensorRT_on_a_VPU_hardware.html">TensortRT: DL / ML model deployment</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../ifmDiagnostic/index_diagnostic.html">Diagnostic</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Toolbox/index_toolbox.html">Toolbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Examples/examples.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
@@ -158,14 +159,14 @@ Please be aware that if the system wide systemD logging is set to persistent ins
 <p>For other situations, the “local” logging driver is recommended as it performs log-rotation by default, and uses a more efficient file format. Refer to the Configure the default logging driver section below to learn how to configure the “local” logging driver as a default, and the local file logging driver page for more details about the “local” logging driver.</p>
 </section>
 <section id="run-a-docker-container-with-logging-driver-configuration">
-<h3>Run a docker container with logging driver configuration<a class="headerlink" href="#run-a-docker-container-with-logging-driver-configuration" title="Link to this heading"></a></h3>
+<h3>Run a Docker container with logging driver configuration<a class="headerlink" href="#run-a-docker-container-with-logging-driver-configuration" title="Link to this heading"></a></h3>
 <p>The following example starts a container with log output in non-blocking mode and a 4 megabyte buffer:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--log-opt<span class="w"> </span><span class="nv">mode</span><span class="o">=</span>non-blocking<span class="w"> </span>--log-opt<span class="w"> </span>max-buffer-size<span class="o">=</span>4m<span class="w"> </span>&lt;IMAGE&gt;
 </pre></div>
 </div>
 </section>
 <section id="double-check-the-docker-logging-configuration-for-a-container">
-<h3>Double check the docker logging configuration for a container<a class="headerlink" href="#double-check-the-docker-logging-configuration-for-a-container" title="Link to this heading"></a></h3>
+<h3>Double check the Docker logging configuration for a container<a class="headerlink" href="#double-check-the-docker-logging-configuration-for-a-container" title="Link to this heading"></a></h3>
 <p>Check the configuration in a new shell:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker<span class="w"> </span>inspect<span class="w"> </span>-f<span class="w"> </span><span class="s1">&#39;{{.HostConfig.LogConfig}}&#39;</span><span class="w"> </span>&lt;CONTAINER&gt;
 

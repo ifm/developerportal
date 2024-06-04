@@ -117,9 +117,11 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="DiagnosticRetrieval/index_diagnostic_retrieval.html">Diagnostic retrieval</a></li>
 <li class="toctree-l3"><a class="reference internal" href="debugging.html">Debugging with ifm support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ServiceReport/service_report.html">Service report</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../Toolbox/index_toolbox.html">Toolbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Examples/examples.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
@@ -734,7 +736,7 @@
 <td><p>ERROR_ODSAPP_INTR_IMU_CALIB_IMPLAUSIBLE</p></td>
 <td><p>Implausible intrinsic IMU calibration</p></td>
 <td><p>Warning</p></td>
-<td><p>The app checks performs repeated IMU standstill calibration during live operation. If the estimated calibration values differ more than the internal threshold from their expected values this error will be activated. <br> This is an internal error - no internal escalation strategy will be applied. It will be automatically be reset by the application at the next possible instance. Please check the suggestions <a class="reference internal" href="#mounting-setup">Mounting setup</a>. If the error persists and has only occurred during operation, the IMU may be defective: please verify IMU functionality using the provided <a class="reference internal" href="#../../ODS/ExtrinsicCalibration/VPUCalibration/README.md"><span class="xref myst">IMU extrinsic calibration verification strategy</span></a>.</p></td>
+<td><p>The app checks performs repeated IMU standstill calibration during live operation. If the estimated calibration values differ more than the internal threshold from their expected values this error will be activated. <br> This is an internal error - no internal escalation strategy will be applied. It will be automatically be reset by the application at the next possible instance. Please check the suggestions <a class="reference internal" href="#mounting-setup">Mounting setup</a>. If the error persists and has only occurred during operation, the IMU may be defective: please verify IMU functionality using the provided <a class="reference internal" href="../../CalibrationRoutines/OVPCalibration/README.html"><span class="std std-doc">IMU extrinsic calibration verification strategy</span></a>.</p></td>
 </tr>
 <tr class="row-even"><td><p>105006</p></td>
 <td><p>ERROR_ODSAPP_UNSTABLE_FRAMERATES</p></td>
@@ -806,7 +808,7 @@
 </section>
 <section id="flash-firmware-anew">
 <h2>Flash firmware anew<a class="headerlink" href="#flash-firmware-anew" title="Link to this heading"></a></h2>
-<p>Update the firmware again. For backward compatibility, see the <a class="reference external" href="https://ifm3d.com/documentation/Firmware/index.html">firmware release notes</a>.</p>
+<p>Update the firmware again. For backward compatibility, see the <a class="reference internal" href="../../Firmware/index.html"><span class="std std-doc">firmware release notes</span></a>.</p>
 </section>
 <section id="camera-head-connectivity">
 <h2>Camera head connectivity<a class="headerlink" href="#camera-head-connectivity" title="Link to this heading"></a></h2>
@@ -898,9 +900,9 @@ Short-term outages of visual odometry signal, while the vehicle is still moving 
 <p>This error can be caused by high resource load (CPU / GPU) scenarios on the embedded device. If additional resource heavy software components are run simultaneously this can cause system overload.</p>
 <p><strong>Solution strategy:</strong></p>
 <ul class="simple">
-<li><p>Pin user processes started from an OEM docker container to the ARM A57 cores of the TX2 unit (by using a taskset of 0x39). Note that the DENVER cores of the TX2 unit are reserved for the ODS application and can not be used by OEM user application.</p></li>
+<li><p>Pin user processes started from an OEM Docker container to the ARM A57 cores of the TX2 unit (by using a taskset of 0x39). Note that the DENVER cores of the TX2 unit are reserved for the ODS application and can not be used by OEM user application.</p></li>
 <li><p>Reduce the number of simultaneously active cameras (see <code class="docutils literal notranslate"><span class="pre">/applications/instances/appX/configuration/activePorts</span></code>)</p></li>
-<li><p>Reduce workload of OEM docker containers by optimizing for runtime or offloading to other processing hardware.</p></li>
+<li><p>Reduce workload of OEM Docker containers by optimizing for runtime or offloading to other processing hardware.</p></li>
 </ul>
 </section>
 <section id="ethernet-connection-issues">

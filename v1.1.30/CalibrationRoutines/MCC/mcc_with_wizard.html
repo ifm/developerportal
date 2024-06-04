@@ -30,6 +30,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="VPU extrinsic calibration" href="../OVPCalibration/README.html" />
+    <link rel="prev" title="Static camera calibration routine" href="../SCC/README.html" />
     <!-- Google tag (gtag.js) -->
     <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
     <script>
@@ -64,14 +66,32 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Firmware/index.html">Firmware</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Technology/index_hardware_interfaces.html">Technology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../index_software_interfaces.html">Software Interfaces</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../index_calibrations.html">Calibration Routines</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index_calibrations.html">Calibration Routines</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../IntroToCalibrations/README.html">Introduction to calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../SCC/README.html">Static Camera Calibration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Motion Camera Calibration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-0-create-a-calibration-wizard">Step 0: Create a Calibration Wizard</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-1-overview">Step 1: Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-2-setup-calibration">Step 2: Setup calibration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-3-axis-parallel-movement">Step 3: Axis-parallel movement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-4-side-views">Step 4: Side Views</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-5-review">Step 5: Review</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#example-for-the-cameras-mounted-on-the-sides-of-robot">Example for the cameras mounted on the sides of robot</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../OVPCalibration/README.html">OVP8xx calibration</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../ODS/index_ods.html">ODS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../downloadable/index.html">History</a></li>
@@ -91,6 +111,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index_calibrations.html">Calibration routines</a></li>
       <li class="breadcrumb-item active">Motion Camera Calibration Wizard</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/CalibrationRoutines/MCC/mcc_with_wizard.md.txt" rel="nofollow"> View page source</a>
@@ -107,7 +128,7 @@
 <section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>Install the latest ifm Vision Assistant software from <a class="reference external" href="https://www.ifm.com/de/de/product/OVP811?tab=documents">ifm.com</a>.</p></li>
+<li><p>Install the ifm Vision Assistant software (download it on <a class="reference external" href="https://www.ifm.com">ifm.com</a>).</p></li>
 <li><p>Print the checkerboard provided by ifm at 100 % scale and fix it to a flat surface without air gaps. The print size should be 600 mm by 800 mm, meaning the smaller squares measure 100 mm by 100 mm. Please find the checkerboard in PDF format <a class="reference download internal" download="" href="../../_downloads/8f8ed1cb48a81d1cb1560837134603de/MotionCameraCalibrationTarget_600X800.pdf"><code class="xref download docutils literal notranslate"> <span class="pre">here</span></code></a></p></li>
 </ul>
 <div class="admonition note">
@@ -120,15 +141,17 @@
 </section>
 <section id="step-0-create-a-calibration-wizard">
 <h2>Step 0: Create a Calibration Wizard<a class="headerlink" href="#step-0-create-a-calibration-wizard" title="Link to this heading"></a></h2>
-<p>Create a <code class="docutils literal notranslate"><span class="pre">Calibration</span> <span class="pre">Wizard(MCC)</span></code> from the applications in the <code class="docutils literal notranslate"><span class="pre">Application</span></code> window by clicking on the <img alt="add_app" src="../../_images/add_app.png" /> icon.</p>
-<a class="reference internal image-reference" href="../../_images/step_0.png"><img alt="Step 0" class="align-center" src="../../_images/step_0.png" style="width: 400px; height: 500px;" /></a>
+<ul class="simple">
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">Calibration</span> <span class="pre">Wizard(MCC)</span></code> from the applications in the <code class="docutils literal notranslate"><span class="pre">Application</span></code> window by clicking on the <img alt="add_app" src="../../_images/add_app.png" /> icon.</p></li>
+</ul>
+<p><img alt="step_0" src="../../_images/step_0.png" /></p>
 </section>
 <section id="step-1-overview">
 <h2>Step 1: Overview<a class="headerlink" href="#step-1-overview" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><p>After the successful creation of the calibration wizard, a new window pops up with an overview of the extrinsic calibration process and the steps involved.</p></li>
 </ul>
-<a class="reference internal image-reference" href="../../_images/step_1.png"><img alt="Step 1" class="align-center" src="../../_images/step_1.png" style="width: 800px; height: 500px;" /></a>
+<p><img alt="step_1" src="../../_images/step_1.png" /></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Click on the arrow in the bottom right corner of the pop-up window to navigate through the calibration procedure steps.</p>
@@ -147,11 +170,11 @@
 <li><p>Enter the translation parameters of the camera head with respect to the origin of the robot coordinate system. These can be derived from the CAD drawings of the vehicle.</p></li>
 <li><p>Configure the cell size of the checkerboard target in <code class="docutils literal notranslate"><span class="pre">Checkerboard</span> <span class="pre">pattern</span> <span class="pre">square</span> <span class="pre">size</span></code> based on the printed checkerboard. If the checkerboard is printed at 100 % scale then the cell size would be equal to 0.1m.</p></li>
 </ul>
-<a class="reference internal image-reference" href="../../_images/step_2.png"><img alt="Step 2" class="align-center" src="../../_images/step_2.png" style="width: 800px; height: 500px;" /></a>
+<p><img alt="step_2" src="../../_images/step_2.png" /></p>
 <ul class="simple">
 <li><p>After selecting the port to calibrate, the live view starts.</p></li>
 </ul>
-<a class="reference internal image-reference" href="../../_images/live_view.png"><img alt="Live View" class="align-center" src="../../_images/live_view.png" style="width: 800px; height: 500px;" /></a>
+<p><img alt="live_view" src="../../_images/live_view.png" /></p>
 </section>
 <section id="step-3-axis-parallel-movement">
 <h2>Step 3: Axis-parallel movement<a class="headerlink" href="#step-3-axis-parallel-movement" title="Link to this heading"></a></h2>
@@ -170,9 +193,9 @@
 <p class="admonition-title">Note</p>
 <p>The algorithm checks if there was enough motion since the last frame. So you can‘t be too slow. When you move too fast there could be issues with motion blur. We recommend a speed of 0.5 m/s.</p>
 </div>
-<a class="reference internal image-reference" href="../../_images/step_7.png"><img alt="Step 3" class="align-center" src="../../_images/step_7.png" style="width: 800px; height: 500px;" /></a>
+<p><img alt="step_3" src="../../_images/step_7.png" /></p>
 <p>As an example, you can look at the images below where we start in front of the checkerboard and we drive in <code class="docutils literal notranslate"><span class="pre">-x</span></code> away from the checkerboard.</p>
-<a class="reference internal image-reference" href="../../_images/move_back.gif"><img alt="Live View" class="align-center" src="../../_images/move_back.gif" style="width: 800px; height: 500px;" /></a>
+<p><img alt="move_back" src="../../_images/move_back.gif" /></p>
 </section>
 <section id="step-4-side-views">
 <h2>Step 4: Side Views<a class="headerlink" href="#step-4-side-views" title="Link to this heading"></a></h2>
@@ -184,21 +207,17 @@
 <p class="admonition-title">Note</p>
 <p>The offset to the first motion line should be a minimum of 25 cm.</p>
 </div>
-<a class="reference internal image-reference" href="../../_images/capture_frame_1.gif"><img alt="Capture static frame 1" class="align-center" src="../../_images/capture_frame_1.gif" style="width: 800px; height: 500px;" /></a>
-<ul class="simple">
-<li><p>Pose of the robot while taking the snapshot.</p></li>
-</ul>
-<a class="reference internal image-reference" href="../../_images/pose_right.png"><img alt="Right Pose" class="align-center" src="../../_images/pose_right.png" style="width: 800px; height: 500px;" /></a>
-<a class="reference internal image-reference" href="../../_images/step_8.1.png"><img alt="Step 4.1" class="align-center" src="../../_images/step_8.1.png" style="width: 800px; height: 500px;" /></a>
+<p><img alt="right_gif" src="../../_images/capture_frame_1.gif" /></p>
+<p>Pose of the robot while taking the snapshot.</p>
+<p><img alt="right_pose" src="../../_images/pose_right.png" /></p>
+<p><img alt="step_4" src="../../_images/step_8.1.png" /></p>
 <ul class="simple">
 <li><p>Repeat the previous step now to the left of the first line of motion. Click on <code class="docutils literal notranslate"><span class="pre">Left</span> <span class="pre">image</span> <span class="pre">button</span></code> to capture the checkerboard from the left side .</p></li>
 </ul>
-<a class="reference internal image-reference" href="../../_images/capture-frame-2.gif"><img alt="Capture static frame 2" class="align-center" src="../../_images/capture-frame-2.gif" style="width: 800px; height: 500px;" /></a>
-<ul class="simple">
-<li><p>Pose of the robot while taking the snapshot.</p></li>
-</ul>
-<a class="reference internal image-reference" href="../../_images/pose_left.png"><img alt="Left Pose" class="align-center" src="../../_images/pose_left.png" style="width: 800px; height: 500px;" /></a>
-<a class="reference internal image-reference" href="../../_images/step_8.2.png"><img alt="Step 4.2" class="align-center" src="../../_images/step_8.2.png" style="width: 800px; height: 500px;" /></a>
+<p><img alt="left_pose" src="../../_images/capture-frame-2.gif" /></p>
+<p>Pose of the robot while taking the snapshot.</p>
+<p><img alt="left_pose" src="../../_images/pose_left.png" /></p>
+<p><img alt="step_4" src="../../_images/step_8.2.png" /></p>
 </section>
 <section id="step-5-review">
 <h2>Step 5: Review<a class="headerlink" href="#step-5-review" title="Link to this heading"></a></h2>
@@ -206,16 +225,16 @@
 <li><p>The algorithm estimates the rotational parameters of the camera head with respect to the robot coordinate system. After reviewing the output, the calibration result is displayed.</p></li>
 <li><p>If the calibration is successful, the output is displayed as shown in the image below.</p></li>
 </ul>
-<a class="reference internal image-reference" href="../../_images/good_calibration.png"><img alt="Step 5 Successful" class="align-center" src="../../_images/good_calibration.png" style="width: 800px; height: 500px;" /></a>
+<p><img alt="step_5" src="../../_images/good_calibration.png" /></p>
 <ul class="simple">
 <li><p>Click the checkmark button in the bottom right-hand corner to write the generated calibration values to the device.</p></li>
 <li><p>If the calibration is unsuccessful, then the reason for the calibration failure is displayed as a notification pop-up.</p></li>
 </ul>
-<a class="reference internal image-reference" href="../../_images/step_9.png"><img alt="Step 5 Unsuccesssful" class="align-center" src="../../_images/step_9.png" style="width: 800px; height: 500px;" /></a>
+<p><img alt="step_5" src="../../_images/step_9.png" /></p>
 <section id="example-for-the-cameras-mounted-on-the-sides-of-robot">
 <h3>Example for the cameras mounted on the sides of robot<a class="headerlink" href="#example-for-the-cameras-mounted-on-the-sides-of-robot" title="Link to this heading"></a></h3>
 <p>If the robots are not omnidirectional, then the motion to perform for side cameras should follow the GIF below.</p>
-<a class="reference internal image-reference" href="../../_images/side_mounted_cameras.gif"><img alt="Side mounted cameras" class="align-center" src="../../_images/side_mounted_cameras.gif" style="width: 800px; height: 500px;" /></a>
+<p><img alt="side_mounted cameras" src="../../_images/side_mounted_cameras.gif" /></p>
 </section>
 </section>
 </section>

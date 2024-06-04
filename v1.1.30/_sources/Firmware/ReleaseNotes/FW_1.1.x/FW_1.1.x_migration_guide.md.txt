@@ -23,8 +23,8 @@ Keep in mind that due to some changes to the JSON schema, not all the settings c
 For more details on saving persistent configurations, refer to the [configuration documentation](../../../Technology/configuration.md#persistent-configuration).
 
 ## Logging
-The firmware release of `FW 1.1.X` is coupled with the `ifm3d / ifm3dpy API release 1.4.2`.
-Since `ifm3d API version 1.3.X` the internal logging of the API has changed: GLOG logging is no longer used. Please update your code accordingly.
+The firmware release of `FW 1.1.X` is coupled with the `ifm3d / ifm3dpy API release 1.4.3`.
+Since `ifm3d API version 1.3.X` the internal logging of the API has changed: glog logging is no longer used. Please update your code accordingly.
 More details can be found in the ifm3d API migration guide [here](https://api.ifm3d.com/stable/content/migration_guide/v1_3_0.html).
 
 All changes to the logging feature introduced in ifm3d API 1.3.X are made with backwards compatibility in mind: this means that all errors thrown as exceptions will still be thrown as exceptions.
@@ -44,8 +44,8 @@ Please contact your local ifm support or support.efector.object-ident@ifm.com fo
 
 ### ODS application use case
 Since ifm applications mainly use the Denver cores in this use case, OEM applications should be pinned to specific ARM cores. When the `UNSTABLE_FRAMERATE` diagnostic occurs more than sporadically, it is necessary to:
-+ Pin processes launched from an OEM docker container to the ARM A57 cores of the TX2 unit (using a taskset of 0x39). Note that the Denver cores of the TX2 unit are reserved for the ODS application.
++ Pin processes launched from an OEM Docker container to the ARM A57 cores of the TX2 unit (using a taskset of 0x39). Note that the Denver cores of the TX2 unit are reserved for the ODS application.
 + Reduce the number of simultaneously active cameras (see /applications/instances/appX/configuration/activePorts)
 + Reduce the workload of OEM Docker containers by optimizing for runtime or offloading to other processing hardware.
 
-Refer to [the docker resources allocation documentation](../../../SoftwareInterfaces/Docker/cpu.md) for more details.
+Refer to [the Docker resources allocation documentation](../../../SoftwareInterfaces/Docker/cpu.md) for more details.

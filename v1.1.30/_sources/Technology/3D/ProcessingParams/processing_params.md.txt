@@ -1,5 +1,51 @@
 
 # 3D processing parameters overview
+
+This document gives a short overview of the available processing parameters for the O3R 3D cameras.
+Since type and default values can change depending on the firmware version, we recommend using the schema to read out the type and default value for specific parameters. For example, to check the type and default value of the `maxDistNoise` for the `port0` you can use:
+
+::::{tabs}
+:::{group-tab} CLI
+```bash
+$ ifm3d jsonschema | jq .properties.ports.properties.port0.properties.processing.properties.diParam.properties.maxDistNoise
+{
+  "default": 0.05,
+  "description": "Maximum distance noise, given as the standard deviation in [m]. (0.0: disable check).",
+  "maximum": 1,
+  "minimum": 0,
+  "type": "number"
+}
+```
+:::
+
+:::{group-tab} Python
+```python
+from ifm3dpy.device import O3R
+o3r = O3R("192.168.0.69")
+o3r.get_schema()["properties"]["ports"]["properties"]["port0"]["properties"]["processing"]["properties"]["diParam"]["properties"]["maxDistNoise"]
+{'default': 0.05, 'description': 'Maximum distance noise, given as the standard deviation in [m]. (0.0: disable check).', 'maximum': 1.0, 'minimum': 0.0, 'type': 'number'}
+```
+:::
+
+:::{group-tab} C++
+```cpp
+// Note that this example does not include the necessary imports.
+auto dev = std::make_shared<ifm3d::O3R>();
+ifm3d::json o3r_schema;
+o3r_schema = dev->GetSchema()["properties"]["ports"]["properties"]["port0"]["properties"]["processing"]["properties"]["diParam"]["properties"]["maxDistNoise"];
+// Printing out the o3r_schema would give:
+//{
+//  "default": 0.05,
+//  "description": "Maximum distance noise, given as the standard deviation in [m]. (0.0: disable check).",
+//  "maximum": 1.0,
+//  "minimum": 0.0,
+//  "type": "number"
+//}
+```
+:::
+::::
+
+
 ## Maximum Distance Noise
 |Variable name|Short description|
 |--|--|
@@ -27,7 +73,7 @@ It is recommended to enable a noise filter (temporal or adaptive filter) when lo
 
 Learn more about the minimum amplitude [here](./minAmplitude.md).
 
-Learn more about the minimum reflectivity [here](./minReflectivity.md)
+Learn more about the minimum reflectivity [here](./minReflectivity.md).
 
 ## Adaptive Noise Bilateral Filter and Median Filter
 |Variable name|Short description|Min/max values|
@@ -41,7 +87,7 @@ The adaptive bilateral noise filter reduces distance noise while also preserving
 
 The median filter does not preserve edges as well as the bilateral filter and tends to produce round corners, but being more computationally efficient, could be utilized with “in-motion” use cases (for example obstacle detection on mobile robots).
 
-Learn more [here](./bilateralFilter.md)
+Learn more [here](./bilateralFilter.md).
 
 ## Temporal Filter
 |Variable name|Short description|
@@ -52,7 +98,7 @@ The temporal filter mitigates distance noise by integrating pixel information ov
 
 Although the O3R temporal filter can be used for “in-motion” use cases, it is best suited for static scenes.
 
-Learn more [here](./temporalFilter.md)
+Learn more [here](./temporalFilter.md).
 
 ## Mixed Pixel Filtering
 |Variable name|Short description|Min/max values|
@@ -66,7 +112,7 @@ The mixed pixel filter removes the mixed pixels from the image.
 When to change the default:
 Mixed pixels fall on the edges of targets. Use cases, such as negative obstacle detection, could take advantage of the additional information provided by these mixed pixels, requiring the filter to be disabled.
 
-Learn more [here](./mixedPixelFilter.md)
+Learn more [here](./mixedPixelFilter.md).
 
 ## Symmetry Threshold
 |Variable name|Short description|
@@ -78,4 +124,14 @@ The raw modulated signal used to perform the distance measurement is designed to
 
 > Note: adjusting this filter for faster motion, or allowing less symmetry, will increase overall distance noise.
 
-Learn more [here](./symmetryThreshold.md)
+Learn more [here](./symmetryThreshold.md).
+
+## CUDA processing
+
+|Variable name|Short description|
+|--|--|
+|`useCuda`| Defines whether to process the data on the GPU (`useCuda = true`) or CPU (`useCuda = false`). |
+
+Starting with firmware version 1.4.30, all 3D data is processed by default on the GPU using a CUDA-based implementation. The `useCuda` parameter determines where the distance data is computed: set it to true for GPU processing and false for CPU processing. We generally recommend keeping CUDA processing enabled.
+
+Learn more [here](./use_cuda.md).

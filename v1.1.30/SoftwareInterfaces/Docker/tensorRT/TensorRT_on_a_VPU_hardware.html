@@ -31,7 +31,7 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="O3R Diagnostics: overview" href="../../ifmDiagnostic/index_diagnostic.html" />
-    <link rel="prev" title="Process pinning" href="../cpu.html" />
+    <link rel="prev" title="Enabling GPU usage on the VPU" href="../gpu.html" />
     <!-- Google tag (gtag.js) -->
     <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
     <script>
@@ -79,12 +79,12 @@
 <li class="toctree-l2"><a class="reference external" href="https://ros2.ifm3d.com/latest/">ROS2: ifm3d-ros2</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index_docker.html">Docker</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../docker.html">Docker: Getting started</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../docker.html#build-and-run-a-docker-container-for-the-o3r-platform">Build and run a docker container for the O3R platform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../docker.html#build-and-run-a-docker-container-for-the-o3r-platform">Build and run a Docker container for the O3R platform</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../deployVPU.html">Deployment on board</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../logging.html">Docker logging configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../autostart.html">Autostarting the container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../resource_management.html">Resource Management on the VPU</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../gpu.html">Enabling GPU usage</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../cpu.html">CPU usage</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">TensortRT: DL / ML model deployment</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#building-a-tensorrt-container">Building a TensorRT container</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#nvidia-base-containers">NVIDIA base containers</a><ul>
@@ -115,6 +115,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../ifmDiagnostic/index_diagnostic.html">Diagnostic</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../Toolbox/index_toolbox.html">Toolbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Examples/examples.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
@@ -163,9 +164,9 @@
 <h3>NVIDIA base containers<a class="headerlink" href="#nvidia-base-containers" title="Link to this heading"></a></h3>
 <p>NVIDIA provides L4T-based containers with TensorFlow that can be downloaded directly from <a class="reference external" href="https://ngc.nvidia.com/catalog/containers/nvidia:l4t-tensorflow">their containers catalog</a>.
 TensorFlow should be used with the corresponding recommended version of JetPack.
-The recommendations can be found on the <a class="reference external" href="https://docs.nvidia.com/deeplearning/frameworks/install-tf-jetson-platform-release-notes/tf-jetson-rel.html#tf-jetson-rel">TensorFlow for Jetson website</a>.</p>
+The recommendations can be found on the <a class="reference external" href="https://docs.nvidia.com/deeplearning/frameworks/install-tf-jetson-platform-release-notes/tf-jetson-rel.html">TensorFlow for Jetson website</a>.</p>
 <p>The L4T version on board the OVP80x (which contains the TX2 board) is <a class="reference external" href="https://developer.nvidia.com/embedded/linux-tegra-r32.4.3"><code class="docutils literal notranslate"><span class="pre">r32.4.3</span></code></a>.
-The supported JetPack version is <code class="docutils literal notranslate"><span class="pre">4.4</span></code>. Please see the official table on the <a class="reference external" href="https://docs.nvidia.com/deeplearning/frameworks/install-tf-jetson-platform-release-notes/tf-jetson-rel.html#tf-jetson-rel">NVIDIA docs</a> for up to date compatibility information.</p>
+The supported JetPack version is <code class="docutils literal notranslate"><span class="pre">4.4</span></code>. Please see the official table on the <a class="reference external" href="https://docs.nvidia.com/deeplearning/frameworks/install-tf-jetson-platform-release-notes/tf-jetson-rel.html">NVIDIA docs</a> for up to date compatibility information.</p>
 <p>The underlying structure of the container loads the TensorRT libraries and is handled by NVIDIA and Docker - as long as the versions of the container and JetPack closely match.</p>
 <section id="verify-the-functionality">
 <h4>Verify the functionality<a class="headerlink" href="#verify-the-functionality" title="Link to this heading"></a></h4>

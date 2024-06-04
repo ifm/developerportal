@@ -30,7 +30,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Enabling GPU usage on the VPU" href="gpu.html" />
+    <link rel="next" title="Resource management" href="resource_management.html" />
     <link rel="prev" title="How to handle verbose logging for Docker containers" href="logging.html" />
     <!-- Google tag (gtag.js) -->
     <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
@@ -79,7 +79,7 @@
 <li class="toctree-l2"><a class="reference external" href="https://ros2.ifm3d.com/latest/">ROS2: ifm3d-ros2</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index_docker.html">Docker</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="docker.html">Docker: Getting started</a></li>
-<li class="toctree-l3"><a class="reference internal" href="docker.html#build-and-run-a-docker-container-for-the-o3r-platform">Build and run a docker container for the O3R platform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#build-and-run-a-docker-container-for-the-o3r-platform">Build and run a Docker container for the O3R platform</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deployVPU.html">Deployment on board</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging.html">Docker logging configuration</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Autostarting the container</a><ul>
@@ -92,13 +92,14 @@
 <li class="toctree-l4"><a class="reference internal" href="#consistently-save-data-on-the-vpu-within-a-container">Consistently save data on the VPU within a container</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="resource_management.html">Resource Management on the VPU</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gpu.html">Enabling GPU usage</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpu.html">CPU usage</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tensorRT/TensorRT_on_a_VPU_hardware.html">TensortRT: DL / ML model deployment</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../ifmDiagnostic/index_diagnostic.html">Diagnostic</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Toolbox/index_toolbox.html">Toolbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Examples/examples.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
@@ -153,7 +154,7 @@ For auto-starting a container, <code class="docutils literal notranslate"><span 
 </pre></div>
 </div>
 <blockquote>
-<div><p>Note: The Docker version on the VPU expects the docker-compose.yml to be either version 2.2 or 3.3. Fur further information refer to <a class="reference external" href="https://docs.docker.com/compose/gettingstarted/">docker compose</a>.</p>
+<div><p>Note: The Docker version on the VPU expects the <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> to be either version 2.2 or 3.3. For further information refer to <a class="reference external" href="https://docs.docker.com/compose/gettingstarted/">Docker compose</a>.</p>
 </div></blockquote>
 </section>
 </section>

@@ -9,27 +9,26 @@ This will guide you to your fist steps on how to get started with Docker, that i
 
 For the O3R system specifics please see / follow the documentation provided below.
 This documentation includes:
-+ How to build and run docker containers on the O3R platform
++ How to build and run Docker containers on the O3R platform
 + Configuring logging on edge devices such as the O3R VPU (additional document)
 + Deploying on the O3R VPU (additional document)
 + Autostart Docker containers (additional document)
 + Utilizing the GPU on the O3R VPU device (additional document)
 
-# Build and run a docker container for the O3R platform
+# Build and run a Docker container for the O3R platform
 
 In this document we guide you through building a container from scratch. We start by building a small container. This container will increase in size and complexity the further we go. We will use a Python base image and install the ifm3d (ifm3dpy) library.
 
-If you want to use any of our available docker images or directly build on top of our Dockerfiles, you can jump directly to [this section](#building-on-top-of-the-ifm-base-image) or check out the list of [docker images officially supported by ifm](https://github.com/ifm/ifm3d/pkgs/container/ifm3d).
+If you want to use any of our available Docker images or directly build on top of our Dockerfiles, you can jump directly to [this section](#building-on-top-of-the-ifm-base-image) or check out the list of [Docker images officially supported by ifm](https://github.com/ifm/ifm3d/pkgs/container/ifm3d).
 
 Note that the O3R VPU (Video Processing Unit) is based on an NVIDIA Jetson system (TX2), which is arm64/aarch64 based.
-Building containers without the right base image will not run on the VPU, an arm64/aarch64 base image is needed. Please read carefully the instructions at the [NVIDIA -> GitHub repository](https://github.com/NVIDIA/nvidia-docker/wiki/NVIDIA-Container-Runtime-on-Jetson) for set-up instruction. For running an aarch64 container on a x86-64 host the section [Running or building a container on x86](https://github.com/NVIDIA/nvidia-docker/wiki/NVIDIA-Container-Runtime-on-Jetson#enabling-jetson-containers-on-an-x86-workstation-using-qemu) is highly recommended.
+Building containers without the right base image will not run on the VPU, an arm64/aarch64 base image is needed. 
+To build the container for an architecture different than the host's, [QEMU](https://www.qemu.org/) can be used.
 
-:::{contents}
-:::
 ## A basic container
 
 Every Docker container image is built by Docker using a Dockerfile.
-A docker file contains all the necessary information for building a container image. Most of the Dockerfiles are starting with a base image that is retrieved from the Docker Hub during the build process. Docker will automatically fetch the image for the architecture hosting the build (arm64/aarch64). When building a container for an architecture other than the hosts', the destination architecture needs to be specified in the Dockerfile.
+A Dockerfile contains all the necessary information for building a container image. Most of the Dockerfiles are starting with a base image that is retrieved from the Docker Hub during the build process. Docker will automatically fetch the image for the architecture hosting the build (arm64/aarch64). When building a container for an architecture other than the hosts', the destination architecture needs to be specified in the Dockerfile.
 The Dockerfile is just a text file named `Dockerfile` without any file extension (watch out, it is case sensitive). You can use `docker build [path to Dockerfile]` to start the build process.
 
 Our first container will use `arm64v8/python:3.9.6-slim-buster` as the base image. Let's build the first container with that base image.
@@ -42,14 +41,14 @@ FROM arm64v8/python:3.9.6-slim-buster
 ```
 ### Build the container
 Building:
-To build a container use `docker build [path/to/Dockerfile]`. If an image tag (name) is needed, you can specify it within the docker build command.
+To build a container use `docker build [path/to/Dockerfile]`. If an image tag (name) is needed, you can specify it within the `docker build` command.
 
 ```Docker
 # Assuming the Dockerfile is located within the same directory:
 $ docker build . -t ifm3d
 ```
 
->Note: For further information about `docker build` refer to the official [docker documentation](<https://docs.docker.com/engine/reference/commandline/build/>)
+>Note: For further information about `docker build` refer to the official [Docker documentation](<https://docs.docker.com/engine/reference/commandline/build/>)
 
 Build process:
 
@@ -73,14 +72,14 @@ ifm3d                     latest              4770e646d0be   5 weeks ago     108
 
 #### Troubleshooting: proxies
 
-Depending on the network infrastructure, docker might need the proxy information for building the container. You can input them directly when running the command:
+Depending on the network infrastructure, Docker might need the proxy information for building the container. You can input them directly when running the command:
 
 ```Docker
 #$HTTP_PROXY & $HTTPS_PROXY are variables containing the proxy address. for example: HTTPS_PROXY=https//[PROXY ADDRESS]
 $ docker image build --build-arg http_proxy=$HTTP_PROXY --build-arg https_proxy=$HTTPS_PROXY -t jupyter .
 ```
 
-You can also define the proxies in the `config.json` file. You should find the file within the home directory of the user executing docker, in a directory called `.docker`, which contains `config.json`. For example `~/.docker/config.json`. If not available, create and save a `config.json` file containing the following:
+You can also define the proxies in the `config.json` file. You should find the file within the home directory of the user executing Docker, in a directory called `.docker`, which contains `config.json`. For example `~/.docker/config.json`. If not available, create and save a `config.json` file containing the following:
 
 ```json
 {
@@ -98,9 +97,7 @@ You can also define the proxies in the `config.json` file. You should find the f
 
 ### Run a container
 
->Note: To run a container built for another chip architecture than the host system, you need to use `qemu` to handle the virtualization. For further information see:
->- [Docker multi-CPU architecture](https://docs.docker.com/desktop/multi-arch/)
->- [NVIDIA container runtime using QEMU](https://github.com/NVIDIA/nvidia-docker/wiki/NVIDIA-Container-Runtime-on-Jetson#enabling-jetson-containers-on-an-x86-workstation-using-qemu)
+>Note: To run a container built for another chip architecture than the host system, you need to use [QEMU](https://www.qemu.org/) to handle the virtualization. For further information see: [Docker multi-CPU architecture](https://docs.docker.com/desktop/multi-arch/)
 
 To run the container, we use `docker run`. We can specify the run command through several arguments: we want to start the container interactively (`-it`) and with a bash interface (`/bin/bash`), so we can play around inside the container.
 
@@ -147,13 +144,13 @@ To reload the content of a previously saved image, use:
 $ docker load < ifm3d.tar
 ```
 
-Start the docker container like this on every other device:
+Start the Docker container like this on every other device:
 
 ```console
 $ docker run ifm3d
 ```
 
->Note: The image name might be different than the saved container name. After `docker load`, docker will show the name of the loaded image
+>Note: The image name might be different than the saved container name. After `docker load`, Docker will show the name of the loaded image
 
 
 
@@ -231,7 +228,7 @@ numpy==1.21.1
 
 ## Install ifm3d in the container
 
-`ifm3dpy` is the Python binding for the ifm3d library. You can install it from source (download it [here](https://github.com/ifm/ifm3d)) or use the [docker image](https://github.com/ifm/ifm3d/pkgs/container/ifm3d) provided by ifm which can be used on the VPU and contains the ifm3d and ifm3dpy libraries.
+`ifm3dpy` is the Python binding for the ifm3d library. You can install it from source (download it [here](https://github.com/ifm/ifm3d)) or use the [Docker image](https://github.com/ifm/ifm3d/pkgs/container/ifm3d) provided by ifm which can be used on the VPU and contains the ifm3d and ifm3dpy libraries.
 
 The Dockerfile could look similar to this:
 

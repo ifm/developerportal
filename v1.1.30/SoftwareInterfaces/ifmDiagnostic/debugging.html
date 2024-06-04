@@ -30,7 +30,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Toolbox" href="../Toolbox/index_toolbox.html" />
+    <link rel="next" title="Service report" href="ServiceReport/service_report.html" />
     <link rel="prev" title="Boot-up diagnostic" href="DiagnosticRetrieval/diagnostic_bootup_monitoring.html" />
     <!-- Google tag (gtag.js) -->
     <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
@@ -84,15 +84,23 @@
 <li class="toctree-l3"><a class="reference internal" href="diagnostic_reaction_strategy.html#handling-strategies-description">Handling strategies description</a></li>
 <li class="toctree-l3"><a class="reference internal" href="DiagnosticRetrieval/index_diagnostic_retrieval.html">Diagnostic retrieval</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Debugging with ifm support</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#network-interface-and-connectivity">Network interface and connectivity:</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#status-leds-and-port-leds">Status LEDs and port LEDs</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#how-to-retrieve-diagnosis-information">How to retrieve diagnosis information:</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#github-platform">GitHub platform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reporting-an-issue">Reporting an issue</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#what-to-provide">What to provide</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#github-issue-tracker">GitHub issue tracker</a></li>
 </ul>
 </li>
+<li class="toctree-l4"><a class="reference internal" href="#troubleshooting-guide">Troubleshooting guide</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#network-interface-and-connectivity">Network interface and connectivity</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#status-leds-and-port-leds">Status LEDs and port LEDs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ServiceReport/service_report.html">Service report</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../Toolbox/index_toolbox.html">Toolbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Examples/examples.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
@@ -129,57 +137,52 @@
              
   <section id="o3r-information-for-debugging">
 <h1>O3R information for debugging<a class="headerlink" href="#o3r-information-for-debugging" title="Link to this heading"></a></h1>
+<section id="reporting-an-issue">
+<h2>Reporting an issue<a class="headerlink" href="#reporting-an-issue" title="Link to this heading"></a></h2>
+<section id="what-to-provide">
+<h3>What to provide<a class="headerlink" href="#what-to-provide" title="Link to this heading"></a></h3>
 <p>When sending the ifm support team a debug request, please include the information below:</p>
-<p><strong>Required O3R system information:</strong></p>
 <ul class="simple">
-<li><p>VPU (IPC) hardware information: OVP800, M04239</p></li>
-<li><p>O3R camera hardware:</p>
+<li><p>A precise description of the issue,</p></li>
+<li><p>The service report (see <a class="reference internal" href="ServiceReport/service_report.html"><span class="std std-doc">the documentation on how to download it</span></a>),</p></li>
+<li><p>The local host’s OS version</p></li>
+<li><p>Depending on the situation:</p>
 <ul>
-<li><p>O3R225: add serial number</p></li>
-<li><p>O3R222: add serial number</p></li>
+<li><p>The ifm3d or ifm3dpy API version</p></li>
+<li><p>The ifm Vision Assistant version</p></li>
+<li><p>The ifm3d-ros(2) ROS wrapper version</p></li>
 </ul>
 </li>
-<li><p>Any additional hardware connected:</p>
+<li><p>If possible, also include:</p>
 <ul>
-<li><p>USB thumb drives / SSD</p></li>
-<li><p>CAN hardware</p></li>
-<li><p>….</p></li>
+<li><p>A minimal reproducible example</p></li>
+<li><p>A recording or video of the issue</p></li>
 </ul>
 </li>
-<li><p>The complete JSON configuration</p></li>
 </ul>
-<p><strong>Required Software version information:</strong></p>
-<ul>
-<li><p>Embedded firmware version: three ways to find this out</p>
-<ul>
-<li><p>Via CLI: requires <code class="docutils literal notranslate"><span class="pre">jq</span></code> and <code class="docutils literal notranslate"><span class="pre">ifm3dpy</span></code> libraries, which can be installed from <a class="reference external" href="https://pypi.org/">PyPI</a>.</p>
-<div class="shell docutils">
-<p>$ ifm3dpy dump | jq .device.swVersion.firmware</p>
-</div>
-</li>
-<li><p>Via the JSON: use the <code class="docutils literal notranslate"><span class="pre">get</span></code> method to receive the O3R configuration information formatted in JSON. See <a class="reference external" href="http://api.ifm3d.com/html/examples/o3r/configuration/configuration.html">how to receive the camera configuration</a>.</p></li>
-<li><p>Via the Vision Assistant: click the “Device Status” button in the top right-hand corner.
-<img alt="055afc8c3b028c996ec20567e877b775.png" src="../../_images/2688a88ba71f432ca0cb99bd7acf2526.png" /></p></li>
-</ul>
-</li>
-<li><p>Local host’s (Laptop / Computer) OS: OS and version</p></li>
-<li><p>ifm3d / ifm3dpy API version</p></li>
-<li><p>(ifm Vision Assistant version - if iVA is used)</p></li>
-<li><p>(ROS wrapper version)</p></li>
-</ul>
+</section>
+<section id="github-issue-tracker">
+<h3>GitHub issue tracker<a class="headerlink" href="#github-issue-tracker" title="Link to this heading"></a></h3>
+<p>It is recommended to report any issues you may encounter while using the product on <a class="reference external" href="https://github.com/ifm/ifm3d">GitHub</a>. The GitHub platform allows the support and development teams to track and manage the issues efficiently. To report an issue via the GitHub repository, refer to this <a class="reference external" href="https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-an-issue">document</a>.</p>
+<p>When creating the issue, provide the information listed above.</p>
+</section>
+</section>
+<section id="troubleshooting-guide">
+<h2>Troubleshooting guide<a class="headerlink" href="#troubleshooting-guide" title="Link to this heading"></a></h2>
 <section id="network-interface-and-connectivity">
-<h2>Network interface and connectivity:<a class="headerlink" href="#network-interface-and-connectivity" title="Link to this heading"></a></h2>
+<h3>Network interface and connectivity<a class="headerlink" href="#network-interface-and-connectivity" title="Link to this heading"></a></h3>
 <p>If the connection between the host and the VPU via ifmVisionAssistant cannot be established, then try the following instructions:</p>
 <ul class="simple">
 <li><p>Check the network settings: for instance, try to ping the system on its default / configured IP in a local network.</p></li>
 <li><p>Disconnect all camera heads and reboot the VPU:</p>
 <ol class="arabic simple">
 <li><p>This will allow you to find hardware configuration problems, for example, camera heads connected to the “wrong” ports.
-<a class="reference external" href="https://ifm3d.com/documentation/GettingStarted/Unboxing/hw_unboxing.html">Please double-check the configuration doc for details on the hardware connectivity</a></p></li>
+<a class="reference internal" href="../../GettingStarted/Unboxing/hw_unboxing.html"><span class="std std-doc">Please double-check the configuration doc for details on the hardware connectivity</span></a></p></li>
 <li><p>If step 1 (above) worked try to reconnect one cable at a time to the correct ports as described in the doc above. Please be aware that any hardware change, for example connecting a new head, requires a reboot before it will become available.</p></li>
 </ol>
 </li>
 </ul>
+</section>
 </section>
 <section id="status-leds-and-port-leds">
 <h2>Status LEDs and port LEDs<a class="headerlink" href="#status-leds-and-port-leds" title="Link to this heading"></a></h2>
@@ -205,25 +208,6 @@
 </ul>
 </li>
 </ul>
-</section>
-<section id="how-to-retrieve-diagnosis-information">
-<h2>How to retrieve diagnosis information:<a class="headerlink" href="#how-to-retrieve-diagnosis-information" title="Link to this heading"></a></h2>
-<p>Diagnosis information can be retrieved via:</p>
-<ol class="arabic simple">
-<li><p>Via ifm Vision Assistant</p></li>
-</ol>
-<p>The easiest way to debug a new O3R hardware is to use the ifm Vision Assistant: which can be downloaded [here].</p>
-<p>ifmVisionAssistant is a wizard tool provided by the ifm, for configuring and debugging the vision products/sensors. The ifmVisionAssistant tool logs all the diagnosis information required for debugging the system. To get started with the ifmVisionAssistant please refer to this <a class="reference internal" href="../../GettingStarted/ifmVisionAssistant/introduction_and_installation.html"><span class="std std-doc">page</span></a> and to retrieve the diagnosis information via ifmVisionAssistant please refer to this <a class="reference internal" href="DiagnosticRetrieval/index_diagnostic_retrieval.html"><span class="std std-doc">document</span></a>.</p>
-<ol class="arabic simple" start="2">
-<li><p>Via ifm3d API</p></li>
-</ol>
-<p>To retrieve the diagnosis information via ifm3d API, please refer <strong>Receiving the diagnostic data</strong> section in this <a class="reference internal" href="DiagnosticRetrieval/diagnostic_retrieval.html"><span class="std std-doc">document</span></a>.</p>
-</section>
-<section id="github-platform">
-<h2>GitHub platform<a class="headerlink" href="#github-platform" title="Link to this heading"></a></h2>
-<p>It is recommended to report any issues you may encounter while using the product on <a class="reference external" href="https://github.com/ifm/ifm3d">ifm GitHub repository</a>. The GitHub platform allows the support and development teams to track and manage the issues efficiently. To report an issue via the GitHub repository, refer to this <a class="reference external" href="https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-an-issue">document</a>.</p>
-<p>As mentioned before, please include the hardware and software information of the system setup for a better understanding of the problem statement. Besides, in the comment section provide a detailed description of the issue, including any error messages you may have received, steps to reproduce the issue, and any other relevant information.</p>
-<p>If possible, please provide screenshots or videos to help illustrate the issue.</p>
 </section>
 </section>
 

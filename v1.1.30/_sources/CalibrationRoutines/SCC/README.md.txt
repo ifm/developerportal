@@ -85,7 +85,7 @@ It is possible to compute the three translation values for the camera, in additi
 
 #### Tolerances
 
-When calibrating a camera for use with [ODS](../../../../ODS/index_ods.md), it is required that the rotation tolerances do not exceed 1°.
+When calibrating a camera for use with [ODS](../../ODS/index_ods.md), it is required that the rotation tolerances do not exceed 1°.
 
 To achieve this, ensure the following:
 - For the narrow opening angle camera, O3R222, the checkerboard should be positioned at around 0.8 meters from the camera. The measurement error for each corner should not exceed 5 mm. 
@@ -98,8 +98,8 @@ To achieve this, ensure the following:
 #### Example - front centered camera
 For a camera mounted to the center along the Y-axis of the front of the robot, the measurements would be the following (see [image above](#front_centered_cam)):
 
-| Camera Mounting | Checkerboard Positioning                     | Measurements                                                     |
-| --------------- | -------------------------------------------- | ---------------------------------------------------------------- |
+| Camera Mounting | Checkerboard Positioning                                         | Measurements                                             |
+| --------------- | ---------------------------------------------------------------- | -------------------------------------------------------- |
 | Horizontal      | ![Horizontal.png](_resources/checkerboard_horizontal.drawio.svg) | `X_AB`<br>`Z_AB`<br>`X_CD`<br>`Z_CD`<br>`Y_AC`<br>`Y_BD` |
 | Vertical        | ![Vertical.png](_resources/checkerboard_vertical.drawio.svg)     | `X_AC`<br>`Z_AC`<br>`X_BD`<br>`Z_BD`<br>`Y_AB`<br>`Y_CD` |
 

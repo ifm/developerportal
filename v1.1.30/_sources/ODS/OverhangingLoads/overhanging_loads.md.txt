@@ -18,7 +18,7 @@ A reasonable accuracy in the [extrinsic calibration](../ExtrinsicCalibration/ind
 
 ## Limitations: impact of stray light artifacts
 
-[Stray light](../FieldTest/TOFArtifacts/ods_tof_artifacts.md) designates light that is reflected on bright surfaces and scattered around the optical system, impacting the TOF measurements. Stray light is typically caused by objects in the close range or very bright objects just on the edges of the field of view. While the O3R has a very robust embedded stray light filter that mitigates most of the stray light artifacts, some disturbances can still be seen, and can occur when using overhanging loads. 
+[Stray light](../Performance/TOFArtifacts/ods_tof_artifacts.md) designates light that is reflected on bright surfaces and scattered around the optical system, impacting the TOF measurements. Stray light is typically caused by objects in the close range or very bright objects just on the edges of the field of view. While the O3R has a very robust embedded stray light filter that mitigates most of the stray light artifacts, some disturbances can still be seen, and can occur when using overhanging loads. 
 One can think of this as the camera being partially blinded by the light reflecting on the load.
 
 What this means, in terms of ODS measurements, is that "difficult objects," that is low reflectivity, small, or far away objects, will be detected with degraded performances compared to a setup with no overhanging load. This is especially true if the load is relatively close to the camera.

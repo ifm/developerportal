@@ -52,11 +52,10 @@ For details see [intrinsic calibration](#intrinsic-calibration) and [inverse int
 ### Optics space rectified
 The **optical-coordinate-system** is a way of representing position in real space as a 3 dimensional vector relative to the camera sensor.
 
-The convention used by O3R is a right-handed Cartesian coordinate system where (0,0,0) is the center of the camera optics. The z direction is directly pointing out of the sensor (that is orthogonal to the front face), x direction is pointing in the opposite direction from the FAKRA-connector, and y direction is pointing "up" (extending the two other directions conforming with the definition of a right handed coordinate system).
+The convention used by O3R is a right-handed Cartesian coordinate system where (0,0,0) is the center of the camera optics. The z direction is directly pointing out of the sensor (that is, orthogonal to the front face), x direction is pointing in the opposite direction from the FAKRA-connector, and y direction is pointing "downwards" (opposite to the label).
+![camera_coordinates](./img/head_coordinate_system.png)
 
-The difference between this optics coordinate frame and the head coordinate frame is the their respective origin. The optics coordinate frame and head coordinate frame are offset in two directions: `trans_Z` and `trans_X`.
-<!-- 
-TODO: Check is there a difference in the angle parameters - misalignment of the optics module relative to the head. -->
+The difference between this optics coordinate frame and the head coordinate frame is their respective origin. The optics coordinate frame and head coordinate frame are offset in two directions: `trans_Z` and `trans_X`, and the angle parameters adjust for any misalignment of the optics module relative to the head.
 
 ### Head-coordinate-system (head space):
 The **head-coordinate-system** is a way of representing position in real space as a 3 dimensional vector relative to the camera head.
@@ -69,7 +68,7 @@ The z direction is directly pointing out of front of the camera (that is orthogo
 ### User-coordinate-system:
 Often roboticists will refer to the this as the robot-coordinate-system, it is a way of representing positions relative to whatever feature is most convenient to measure from on their machinery.
 
-In order to receive point clouds in the **user-coordinate-system** directly from the O3R VPU, The user needs to define where the camera head is positioned within the **user-coordinate-system**, this is called the **extrinsic calibration**. Specifically this is called the "extHeadToUser" parameter which can be configured for each port of the O3R system.
+In order to receive point clouds in the **user-coordinate-system** directly from the O3R VPU, the user needs to define where the camera head is positioned within the **user-coordinate-system**, this is called the **extrinsic calibration**. Specifically this is called the `extrinsicHeadToUser` parameter which can be configured for each port of the O3R system.
 
 ### Extrinsic calibration:
 **Extrinsic calibration** data takes the form of 6 degrees of freedom pose, x-y-z translation and roll, pitch, yaw (x-y-z rotations). These can be used to translate from one coordinate system to another.
@@ -102,7 +101,7 @@ In essence, intrinsic projection turns a point in **sensor space** into a direct
 
 There are various ways of compensating for the distortion caused by camera optics. These are called optical models. O3R currently uses 2 optical models and provides a model ID corresponding to the optical model used for a given sensor.
 
-The intrinsic_projection() function can take a set of intrinsic parameters and a modelID and return unit vectors corresponding to the path that light took to arrive at that point.
+The `intrinsic_projection()` function can take a set of intrinsic parameters and a modelID and return unit vectors corresponding to the path that light took to arrive at that pixel.
 
 ### Inverse-Intrinsic calibration:
 
@@ -110,4 +109,4 @@ Inverse-intrinsic are used to determine where on a sensor a given ray of light w
 
 In essence, inverse-intrinsic projection turns a point in the **optical-coordinate-system** into a point in the **sensor space**.
 
-Inverse-intrinsic parameters, like intrinsic parameters, also use two separate optical models. In the calibration examples provided, the function inv_intrinsic_projection() applies inverse-intrinsic data to a point or point cloud to define positions in **sensor space**.
+Inverse-intrinsic parameters, like intrinsic parameters, also use two separate optical models. In the calibration examples provided, the function `inv_intrinsic_projection()` applies inverse-intrinsic data to a point or point cloud to define positions in **sensor space**.

@@ -76,7 +76,7 @@ This firmware release supports the following ifm camera articles:
   Access to the embedded Linux operating system is enabled through the `oem` user.
 * Docker containers:
   Docker containers can be used to deploy code embedded on the image processing platform.
-  Management of docker containers, like upload, download, autostart, delete is handled through SSH access and Docker compose by the OEM user.
+  Management of Docker containers, like upload, download, autostart, delete is handled through SSH access and Docker compose by the OEM user.
 
 
 ## ifm Camera Usage

@@ -10,4 +10,5 @@ Diagnostic error codes <diagnostic_sources>
 Reaction strategies <diagnostic_reaction_strategy>
 Diagnostic retrieval <DiagnosticRetrieval/index_diagnostic_retrieval>
 Debugging with ifm support <debugging>
+Service report <ServiceReport/service_report>
 :::

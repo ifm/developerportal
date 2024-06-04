@@ -142,7 +142,7 @@ This firmware release supports the following ifm camera articles:
 * No backward compatibility: once a camera heads is attached to a VPU running FW 0.16.23 it will be updated and no longer work on a VPU running FW 0.14.23
 * Loss of extrinsic calibration information of all heads, if the head connectivity is changed (any head added or removed)
 * The IPv4 discovery feature for discovering a device on the local network is not working
-* ODS must not be used together with user-defined docker containers
+* ODS must not be used together with user-defined Docker containers
 * ODS startup time high (~5s)
 * ODS in pre-series state (refer to ODS documentation)
 

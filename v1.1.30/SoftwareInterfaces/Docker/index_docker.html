@@ -79,17 +79,18 @@
 <li class="toctree-l2"><a class="reference external" href="https://ros2.ifm3d.com/latest/">ROS2: ifm3d-ros2</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Docker</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="docker.html">Docker: Getting started</a></li>
-<li class="toctree-l3"><a class="reference internal" href="docker.html#build-and-run-a-docker-container-for-the-o3r-platform">Build and run a docker container for the O3R platform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#build-and-run-a-docker-container-for-the-o3r-platform">Build and run a Docker container for the O3R platform</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deployVPU.html">Deployment on board</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging.html">Docker logging configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="autostart.html">Autostarting the container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="resource_management.html">Resource Management on the VPU</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gpu.html">Enabling GPU usage</a></li>
-<li class="toctree-l3"><a class="reference internal" href="cpu.html">CPU usage</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tensorRT/TensorRT_on_a_VPU_hardware.html">TensortRT: DL / ML model deployment</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../ifmDiagnostic/index_diagnostic.html">Diagnostic</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Toolbox/index_toolbox.html">Toolbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Examples/examples.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
@@ -128,7 +129,7 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="docker.html">Docker: Getting started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="docker.html#build-and-run-a-docker-container-for-the-o3r-platform">Build and run a docker container for the O3R platform</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="docker.html#build-and-run-a-docker-container-for-the-o3r-platform">Build and run a Docker container for the O3R platform</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="docker.html#a-basic-container">A basic container</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="docker.html#build-the-container">Build the container</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="docker.html#troubleshooting-proxies">Troubleshooting: proxies</a></li>
@@ -157,8 +158,8 @@
 <li class="toctree-l2"><a class="reference internal" href="logging.html#docker-default-logging">Docker default logging</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="logging.html#docker-logging-drivers">Docker logging drivers</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging.html#docker-logging-configuration">Docker logging configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="logging.html#run-a-docker-container-with-logging-driver-configuration">Run a docker container with logging driver configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="logging.html#double-check-the-docker-logging-configuration-for-a-container">Double check the docker logging configuration for a container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#run-a-docker-container-with-logging-driver-configuration">Run a Docker container with logging driver configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#double-check-the-docker-logging-configuration-for-a-container">Double check the Docker logging configuration for a container</a></li>
 </ul>
 </li>
 </ul>
@@ -173,6 +174,20 @@
 <li class="toctree-l2"><a class="reference internal" href="autostart.html#consistently-save-data-on-the-vpu-within-a-container">Consistently save data on the VPU within a container</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="resource_management.html">Resource Management on the VPU</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="resource_management.html#resources-availability-for-user-code">Resources availability for user code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="resource_management.html#available-ram">Available RAM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="resource_management.html#cpu-and-gpu-resources">CPU and GPU resources</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="resource_management.html#cameras-only-no-ifm-application">Cameras only, no ifm application</a></li>
+<li class="toctree-l4"><a class="reference internal" href="resource_management.html#ods-application">ODS application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="resource_management.html#process-pinning">Process pinning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resource_management.html#docker-quotas">Docker quotas</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="gpu.html">Enabling GPU usage</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="gpu.html#using-the-gpu-of-the-vpu">Using the GPU of the VPU</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="gpu.html#dockerfile-sample">Dockerfile sample</a></li>
@@ -183,10 +198,6 @@
 </li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="cpu.html">CPU usage</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cpu.html#available-resources">Available resources</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tensorRT/TensorRT_on_a_VPU_hardware.html">TensortRT: DL / ML model deployment</a><ul>

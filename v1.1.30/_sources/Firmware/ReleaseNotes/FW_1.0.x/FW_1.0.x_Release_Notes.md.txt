@@ -147,7 +147,7 @@ The steps outlined there are required to change the device from a A/B redundant 
 + All cached information regarding prev. connected hardware and hardware calibration are erased
   + Next boot-up process will take longer as all calibration files are downloaded again
 + All existing logs are deleted, systemD journal configuration reset to volatile
-+ All docker containers are stopped and deleted. A Docker system prune is performed.
++ All Docker containers are stopped and deleted. A Docker system prune is performed.
 
 
 ## ODS Application specific release notes:

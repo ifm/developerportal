@@ -109,6 +109,7 @@
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">o3r-l4t-base</span></code> provides a base Dockerfile to build an image based on Ubuntu 18.04 containing the necessary libraries to enable GPU acceleration with CUDA. The <code class="docutils literal notranslate"><span class="pre">o3r-l4t-base</span></code> container is intended to be run on board the OVP8xx.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">o3r-l4t-tensorrt</span></code> builds on top of the base L4T image and includes the TensorRT examples provided by NVIDIA ready to be run. The <code class="docutils literal notranslate"><span class="pre">o3r-l4t-tensorrt</span></code> container is intended to be run on board the OVP8xx.</p></li>
+<li><p>Under the <code class="docutils literal notranslate"><span class="pre">can</span></code> directory, there is a Dockerfile with a Python example demonstrating how to deploy a Python script on the VPU using the CAN interface of the VPU. Another Dockerfile can be found in the subfolder <code class="docutils literal notranslate"><span class="pre">sample-point</span></code>, where the example showcases how to change the CAN bitrate and sample point of the CAN interface on the VPU.</p></li>
 </ul>
 </section>
 <section id="exclusion-of-liability">

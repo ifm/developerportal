@@ -94,7 +94,7 @@
 <li class="toctree-l5"><a class="reference internal" href="#abstract">Abstract</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#description">Description</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#angle-based-validation-method">Angle based validation method</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#distance-based-validation-method-will-be-deprecated">Distance based validation method (will be deprecated)</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#distance-based-validation-method">Distance based validation method</a></li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#examples">Examples</a><ul>
@@ -104,6 +104,7 @@
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="symmetryThreshold.html">Symmetry threshold</a></li>
+<li class="toctree-l4"><a class="reference internal" href="use_cuda.html">CUDA point cloud processing</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../triggering.html">Synchronization and triggering</a></li>
@@ -153,7 +154,7 @@
 <h1>Mixed Pixel Filter<a class="headerlink" href="#mixed-pixel-filter" title="Link to this heading"></a></h1>
 <section id="abstract">
 <h2>Abstract<a class="headerlink" href="#abstract" title="Link to this heading"></a></h2>
-<p>We call “mixed pixels” pixels resulting from a mixed signal from foreground and background planes (typically, the pixel “lands” partially on an object and partially on its background). Such pixels don’t represent the distance measurement to either object and lie somewhere in between (they appear to be <em>flying</em>, and we sometimes refer to them as <em>flying pixels</em>). The mixed-pixel filter invalidates these pixels. The <code class="docutils literal notranslate"><span class="pre">mixedPixelFilterMode</span></code> setting defines whether this filter is activated and which validation methods is used. <code class="docutils literal notranslate"><span class="pre">mixedPixelFilterMode</span> <span class="pre">=</span> <span class="pre">1</span></code> switches to angle validation check (adjust it with <code class="docutils literal notranslate"><span class="pre">mixedPixelThresholdRad</span></code>). <code class="docutils literal notranslate"><span class="pre">mixedPixelFilterMode</span> <span class="pre">=</span> <span class="pre">2</span></code> switches to distance based validation check (this mode is inherited from previous algorithm versions and will most likely be deprecated in the future). <code class="docutils literal notranslate"><span class="pre">mixedPixelFilterMode</span> <span class="pre">=</span> <span class="pre">0</span></code> switches the filter off completely.</p>
+<p>We call “mixed pixels” pixels resulting from a mixed signal from foreground and background planes (typically, the pixel “lands” partially on an object and partially on its background). Such pixels don’t represent the distance measurement to either object and lie somewhere in between (they appear to be <em>flying</em>, and we sometimes refer to them as <em>flying pixels</em>). The mixed-pixel filter invalidates these pixels. The <code class="docutils literal notranslate"><span class="pre">mixedPixelFilterMode</span></code> setting defines whether this filter is activated and which validation methods is used. <code class="docutils literal notranslate"><span class="pre">mixedPixelFilterMode</span> <span class="pre">=</span> <span class="pre">1</span></code> switches to angle validation check (adjust it with <code class="docutils literal notranslate"><span class="pre">mixedPixelThresholdRad</span></code>). <code class="docutils literal notranslate"><span class="pre">mixedPixelFilterMode</span> <span class="pre">=</span> <span class="pre">2</span></code> switches to distance based validation check. <code class="docutils literal notranslate"><span class="pre">mixedPixelFilterMode</span> <span class="pre">=</span> <span class="pre">0</span></code> switches the filter off completely.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>We recommend either disabling the filter (more precision on objects’ edges) or using the angle based validation method (<code class="docutils literal notranslate"><span class="pre">mixedPixelFilterMode</span> <span class="pre">=</span> <span class="pre">1</span></code>) to remove pixels between objects and their backgrounds.</p>
@@ -167,8 +168,8 @@
 <p>The angle based mixed pixel filtering (<code class="docutils literal notranslate"><span class="pre">mixedPixelFilterMode</span> <span class="pre">=</span> <span class="pre">1</span></code>) is based on the idea of estimating, for each pixel, the angle between the optical and an approximate tangent plane on the object (at this exact pixel coordinate). If the angle difference is larger than the allowed angle threshold, the pixel is invalidated.<br />
 The angle threshold of this mode is controlled by the parameter <code class="docutils literal notranslate"><span class="pre">mixedPixelThresholdRad</span></code> (angle in radians).</p>
 </section>
-<section id="distance-based-validation-method-will-be-deprecated">
-<h3>Distance based validation method (will be deprecated)<a class="headerlink" href="#distance-based-validation-method-will-be-deprecated" title="Link to this heading"></a></h3>
+<section id="distance-based-validation-method">
+<h3>Distance based validation method<a class="headerlink" href="#distance-based-validation-method" title="Link to this heading"></a></h3>
 <p>The second version of the mixed pixel (<code class="docutils literal notranslate"><span class="pre">mixedPixelFilterMode</span> <span class="pre">=</span> <span class="pre">2</span></code>) filter is centered around the idea of comparing distances in the local neighborhood of a pixel. The distance of the pixel is compared in horizontal and vertical direction against its neighboring pixels’ distance values. If the distance differences are outside a threshold (set internally), the pixel is invalidated.</p>
 </section>
 </section>

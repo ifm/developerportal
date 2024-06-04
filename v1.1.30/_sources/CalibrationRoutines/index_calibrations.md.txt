@@ -50,6 +50,6 @@ Need a refresher?
 :hidden:
 Introduction to calibration <IntroToCalibrations/README>
 Static Camera Calibration <SCC/README>
-Motion Camera Calibration <MCC/mcc_with_iVA>
+Motion Camera Calibration <MCC/mcc_with_wizard>
 OVP8xx calibration <OVPCalibration/README>
 :::

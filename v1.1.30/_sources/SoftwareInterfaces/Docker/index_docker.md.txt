@@ -4,8 +4,8 @@ Getting started with Docker <docker>
 Deployment on board <deployVPU>
 Docker logging configuration <logging>
 Autostarting the container <autostart>
+Resource Management on the VPU <resource_management>
 Enabling GPU usage <gpu>
-CPU usage <cpu>
 TensortRT: DL / ML model deployment <tensorRT/TensorRT_on_a_VPU_hardware>
 :::
 

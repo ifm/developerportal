@@ -1,6 +1,6 @@
 # Description of the available images
 
-This document gives a high level overview of the images available for the O3R. Receiving certain images can be turned ON/OFF using the [ifm3d FrameGrabber](https://api.ifm3d.com/stable/examples/o3r/getting_data/getting_data.html#set-the-schema-and-start-framegrabber).
+This document gives a high level overview of the images available for the O3R. Receiving certain images can be turned ON/OFF using the [ifm3d FrameGrabber](https://api.ifm3d.com/stable/examples/o3r/getting_data/getting_data.html#set-the-schema-and-start-the-framegrabber).
 
 :::{note} 
 For more information about the types, sizes and other implementation aspects, please refer to the [ifm3d API documentation](https://api.ifm3d.com).

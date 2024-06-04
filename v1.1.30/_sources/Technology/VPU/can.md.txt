@@ -6,88 +6,61 @@ The O3R has a built-in CAN-bus interface, with the CAN-High and CAN-Low lines on
 
 ## Software
 
-The CAN interface is supported since firmware version 0.14.1 with no further configuration needed. Note that the CAN interface is only accessible in Docker when using `--network host`.
+The CAN interface is supported starting from firmware version 0.14.1. Configuring the CAN interface through the JSON configuration is only possible for firmware version 1.4.30 and above.
+
+Please note that the CAN interface is only accessible within Docker when using the `--network host` option.
+
+Before utilizing the CAN interface, it needs to be set up. To verify whether the CAN interface is active and with which bitrate it operates, there are two possible methods: using the `ifm3d` CLI or Python scripts.
+
+1. Using the  `ifm3d` CLI:
+    ```bash
+    $ ifm3d dump | jq .device.network.interfaces.can0
+    {
+    "active": false,
+    "bitrate": "125K"
+    }
+    ```
+
+2. Using Python script: see the script below or download it from [ifm3d-examples](https://github.com/ifm/ifm3d-examples/tree/main/ovp8xx/python/ovp8xxexamples/core/can_activate.py).
+
+:::{literalinclude} /ifm3d-examples/ovp8xx/python/ovp8xxexamples/core/can_activate.py
+  :language: python
+:::
+
+:::{note}
+New network settings will only be applied after reboot. The Python script performs a reboot. 
+Using the `ifm3d` CLI a reboot can be performed by `ifm3d reboot`.
+:::
+
+After activating the CAN interface and rebooting the VPU, we can verify the status of the CAN interface again using the `ifm3d` CLI as follows:
+
+```bash
+$ ifm3d dump | jq .device.network.interfaces.can0
+{
+  "active": true,
+  "bitrate": "125K"
+}
+```
 
 ## Example: Interfacing with the [DTM425](https://www.ifm.com/de/en/product/DTM425) RFID antenna using Docker
 
 **Step 1**: Connect the DTM425 to the O3R and both to power.
 
-**Step 2**: Create a minimal Docker file (filename: `Dockerfile`), as shown below:
+**Step 2**: Create a minimal Dockerfile (filename: `Dockerfile`) like shown below (the example can be downloaded [here](https://github.com/ifm/ifm3d-examples/tree/main/ovp8xx/docker/can/Dockerfile)):
 
-```Docker
-FROM arm64v8/alpine
-
-RUN apk add python3 py3-pip
-RUN pip install canopen
-
-COPY can_example.py /usr/local/bin
-COPY DTM425.eds /usr/local/share
-
-CMD ["can_example.py"]
-```
-
-This Docker file installs Python and the CANopen library for Python. The example script is then installed into the image and set to automatically execute when the container is run.
-
-**Step 3**: Create the example Python script (filename: `can_example.py`; see below) and download the required [EDS file](https://www.ifm.com/de/en/product/DTM425?tab=documents) (filename `DTM425.eds`). Place the files in the same location as the Docker file. Make sure that the script has the executable permission set.
-
-```python
-#!/usr/bin/env python3
-import time
-import canopen
+:::{literalinclude} /ifm3d-examples/ovp8xx/docker/can/Dockerfile
+  :language: docker
+:::
 
 
-def connect():
-    nw = canopen.Network()
-    nw.connect(channel="can0", bustype="socketcan")
-    nw.scanner.search()
-    time.sleep(0.05)
+This Dockerfile installs Python and the CANopen library for Python. The example script is then installed into the image and set to automatically execute when the container is run.
 
-    device = nw.add_node(nw.scanner.nodes[0], "/usr/local/share/DTM425.eds")
-    device.nmt.state = "OPERATIONAL"
-    time.sleep(0.05)
-
-    return (nw, device)
+**Step 3**: Use the example Python script below (or download the script [here](https://github.com/ifm/ifm3d-examples/tree/main/ovp8xx/docker/can/can_example.py)) and download the required [EDS file](https://www.ifm.com/de/en/product/DTM425?tab=documents) (filename `DTM425.eds`). Place the files in the same location as the Dockerfile.
 
 
-def disconnect(nw, device):
-    device.nmt.state = "PRE-OPERATIONAL"
-    nw.disconnect
-
-
-def write_tag(device, data):
-    memory_size = device.sdo[0x2182][0x4].raw
-
-    if len(data) < memory_size:
-        data = data + b'\x00' * (memory_size - len(data))
-
-    for offset in range(0, memory_size, 8):
-        length = (8 if offset + 8 <= memory_size else
-                  memory_size - offset)
-        device.sdo[0x2380].raw = offset
-        device.sdo[0x2381].raw = length
-        device.sdo[0x2382].raw = data[offset:offset + length]
-
-
-def read_tag(device):
-    memory_size = device.sdo[0x2182][0x4].raw
-    data = b""
-
-    for offset in range(0, memory_size, 8):
-        length = 8 if offset + 8 <= memory_size else memory_size - offset
-        device.sdo[0x2280].raw = offset
-        device.sdo[0x2281].raw = length
-        data = data + device.sdo[0x2282].raw
-
-    return data
-
-
-nw, device = connect()
-data = b'\xDE\xAD\xBE\xEF'
-write_tag(device, data)
-print("Writing tag:", data)
-print("Reading tag:", read_tag(device))
-disconnect(nw, device)
-```
+:::{literalinclude} /ifm3d-examples/ovp8xx/docker/can/can_example.py
+  :language: python
+:::
 
 The script writes the hex-value `0xdeadbeef` to the RFID tag and reads the data from the tag. When scanning for the device, it is assumed that the RFID antenna is the only CAN device on the bus, besides the VPU itself.
 

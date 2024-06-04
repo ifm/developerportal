@@ -1,7 +1,7 @@
 # Mixed Pixel Filter
 ## Abstract
 
-We call "mixed pixels" pixels resulting from a mixed signal from foreground and background planes (typically, the pixel "lands" partially on an object and partially on its background). Such pixels don't represent the distance measurement to either object and lie somewhere in between (they appear to be *flying*, and we sometimes refer to them as *flying pixels*). The mixed-pixel filter invalidates these pixels. The `mixedPixelFilterMode` setting defines whether this filter is activated and which validation methods is used. `mixedPixelFilterMode = 1` switches to angle validation check (adjust it with `mixedPixelThresholdRad`). `mixedPixelFilterMode = 2` switches to distance based validation check (this mode is inherited from previous algorithm versions and will most likely be deprecated in the future). `mixedPixelFilterMode = 0` switches the filter off completely.
+We call "mixed pixels" pixels resulting from a mixed signal from foreground and background planes (typically, the pixel "lands" partially on an object and partially on its background). Such pixels don't represent the distance measurement to either object and lie somewhere in between (they appear to be *flying*, and we sometimes refer to them as *flying pixels*). The mixed-pixel filter invalidates these pixels. The `mixedPixelFilterMode` setting defines whether this filter is activated and which validation methods is used. `mixedPixelFilterMode = 1` switches to angle validation check (adjust it with `mixedPixelThresholdRad`). `mixedPixelFilterMode = 2` switches to distance based validation check. `mixedPixelFilterMode = 0` switches the filter off completely.
 
 :::{note}
 We recommend either disabling the filter (more precision on objects' edges) or using the angle based validation method (`mixedPixelFilterMode = 1`) to remove pixels between objects and their backgrounds.
@@ -15,7 +15,7 @@ The `mixedPixelFilterMode` controls two different methods for invalidation mixed
 The angle based mixed pixel filtering (`mixedPixelFilterMode = 1`) is based on the idea of estimating, for each pixel, the angle between the optical and an approximate tangent plane on the object (at this exact pixel coordinate). If the angle difference is larger than the allowed angle threshold, the pixel is invalidated.  
 The angle threshold of this mode is controlled by the parameter `mixedPixelThresholdRad` (angle in radians).
 
-### Distance based validation method (will be deprecated)
+### Distance based validation method
 The second version of the mixed pixel (`mixedPixelFilterMode = 2`) filter is centered around the idea of comparing distances in the local neighborhood of a pixel. The distance of the pixel is compared in horizontal and vertical direction against its neighboring pixels' distance values. If the distance differences are outside a threshold (set internally), the pixel is invalidated.
 
 ## Examples

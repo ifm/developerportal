@@ -12,10 +12,10 @@ There are two options:
 
 NVIDIA provides L4T-based containers with TensorFlow that can be downloaded directly from [their containers catalog](https://ngc.nvidia.com/catalog/containers/nvidia:l4t-tensorflow).
 TensorFlow should be used with the corresponding recommended version of JetPack.
-The recommendations can be found on the [TensorFlow for Jetson website](https://docs.nvidia.com/deeplearning/frameworks/install-tf-jetson-platform-release-notes/tf-jetson-rel.html#tf-jetson-rel).
+The recommendations can be found on the [TensorFlow for Jetson website](https://docs.nvidia.com/deeplearning/frameworks/install-tf-jetson-platform-release-notes/tf-jetson-rel.html).
 
 The L4T version on board the OVP80x (which contains the TX2 board) is [`r32.4.3`](https://developer.nvidia.com/embedded/linux-tegra-r32.4.3).
-The supported JetPack version is `4.4`. Please see the official table on the [NVIDIA docs](https://docs.nvidia.com/deeplearning/frameworks/install-tf-jetson-platform-release-notes/tf-jetson-rel.html#tf-jetson-rel) for up to date compatibility information.
+The supported JetPack version is `4.4`. Please see the official table on the [NVIDIA docs](https://docs.nvidia.com/deeplearning/frameworks/install-tf-jetson-platform-release-notes/tf-jetson-rel.html) for up to date compatibility information.
 
 The underlying structure of the container loads the TensorRT libraries and is handled by NVIDIA and Docker - as long as the versions of the container and JetPack closely match.
 

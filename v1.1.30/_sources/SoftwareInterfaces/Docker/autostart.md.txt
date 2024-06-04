@@ -22,7 +22,7 @@ services:
             - 8888:8888
 ```
 
-> Note: The Docker version on the VPU expects the docker-compose.yml to be either version 2.2 or 3.3. Fur further information refer to [docker compose](<https://docs.docker.com/compose/gettingstarted/>).
+> Note: The Docker version on the VPU expects the `docker-compose.yml` to be either version 2.2 or 3.3. For further information refer to [Docker compose](<https://docs.docker.com/compose/gettingstarted/>).
 
 ## Start the container
 

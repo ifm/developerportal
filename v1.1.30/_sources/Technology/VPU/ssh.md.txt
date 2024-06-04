@@ -52,9 +52,18 @@ $ ifm3d dump | jq .device.network
 
 To add a new key, the VPU configuration needs to be changed. This can be done with several ways (see [configuring the camera](https://api.ifm3d.com/stable/examples/o3r/configuration/configuration.html)). The easiest way in this case is to use the `jq` command along with the ifm3d API CLI:
 
-```bash
+:::::{tabs}
+::::{group-tab} Linux
+:::bash
 $ echo {} | jq --arg id "$(< ~/.ssh/id_o3r.pub)" '.device.network.authorized_keys=$id' | ifm3d config
-```
+:::
+::::
+::::{group-tab} Windows
+:::powershell
+>$publicKey = Get-Content -Raw <path\to\id_o3r.pub>
+>echo "{}" | jq --arg id "$publicKey" '.device.network.authorized_keys=$id' | ifm3d config
+:::
+::::
 
 - `jq --arg id "$(< ~/.ssh/id_o3r.pub)"` - This loads the public key into the variable `id` and provides it to the `jq` command
 - `'.device.network.authorized_keys=$id'` - Here the JSON value from `authorized_keys` is changed for the public key within the variable `id`
