@@ -85,6 +85,10 @@
 <li class="toctree-l4"><a class="reference internal" href="#hardware">Hardware</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#software">Software</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#example-interfacing-with-the-dtm425-rfid-antenna-using-docker">Example: Interfacing with the DTM425 RFID antenna using Docker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sample-point">Sample point</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#changing-the-sample-point">Changing the sample point</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="ethernet.html">Ethernet</a></li>
@@ -351,6 +355,70 @@ ssh<span class="w"> </span>oem@192.168.0.69<span class="w"> </span>docker<span c
 </pre></div>
 </div>
 <p>For more information on necessary setup steps for <a class="reference internal" href="../../SoftwareInterfaces/Docker/docker.html#build-and-run-a-docker-container-for-the-o3r-platform"><span class="std std-ref">building</span></a> and <a class="reference internal" href="../../SoftwareInterfaces/Docker/deployVPU.html"><span class="std std-doc">deployment</span></a>, please see the linked pages.</p>
+</section>
+<section id="sample-point">
+<h2>Sample point<a class="headerlink" href="#sample-point" title="Link to this heading"></a></h2>
+<p>As defined by the CAN standards, the sample point is where the CAN signal is evaluated as dominant (0) or recessive (1).
+For example, if the sample point is set to 0.5, this means that the signal sample is taken at 50 % of the bit width.
+The bit width is equivalent to the inverse of the bitrate, meaning at a bitrate of <code class="docutils literal notranslate"><span class="pre">250</span> <span class="pre">kbps</span></code>, the bit width is <code class="docutils literal notranslate"><span class="pre">(1/250kbps)</span> <span class="pre">=</span> <span class="pre">4</span> <span class="pre">us</span></code>.
+With a sample point of 0.5, the measurements will be taken at half the width of the 4us bit, which will be at <code class="docutils literal notranslate"><span class="pre">(2us</span> <span class="pre">+</span> <span class="pre">4us*n)</span></code>, where <code class="docutils literal notranslate"><span class="pre">n</span></code> represents the bit count (0 for the first bit, 1 for the second bit, and so on).</p>
+<p>The sample point does not have to be at the 50 % mark of the bit time; its optimal position depends on the characteristics of the signal. However, placing the sample point in the middle of the bit time is often more stable. At the beginning of the bit time, the signal may not have fully settled, and towards the end, the signal may start to transition to the next bit. Therefore, sampling in the middle helps in capturing a more stable and accurate signal.</p>
+<p>Typically, a default sample point of 0.875 (or 87.5 % of the bit time) works well for most signals. However, if the signal is noisy, meaning the rising and falling edges are not clean, or other signal degradations are visible on the signal scope, adjusting the sample point might be necessary to ensure accurate data reception.</p>
+<section id="changing-the-sample-point">
+<h3>Changing the sample point<a class="headerlink" href="#changing-the-sample-point" title="Link to this heading"></a></h3>
+<p>To demonstrate how to change the CAN sample point on the VPU using a Docker container, we will provide an example of a simple Docker container. This example will show how to modify the bitrate and sample point, run the container on the VPU, and check if the modified parameter are correctly set from within the Docker container. The steps are outlined below.</p>
+<ol class="arabic simple">
+<li><p>Create a Dockerfile:</p></li>
+</ol>
+<div class="highlight-docker notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="w"> </span><span class="s">arm64v8/alpine</span>
+<span class="c"># Install required packages </span>
+<span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>add<span class="w"> </span>--no-cache<span class="w"> </span>iproute2<span class="w"> </span>can-utils
+<span class="c"># Create a script to change sample-point and bitrate</span>
+<span class="k">RUN</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;#!/bin/ash \</span>
+<span class="s2">    ip link set can0 down \</span>
+<span class="s2">    ip link set can0 type can bitrate 250000 sample-point 0.5 \</span>
+<span class="s2">    ip link set can0 up&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/usr/local/bin/setup_can0.sh
+<span class="c"># Make the script executable</span>
+<span class="k">RUN</span><span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>/usr/local/bin/setup_can0.sh
+<span class="c"># Run the script when the container starts</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/usr/local/bin/setup_can0.sh&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Build, and copy the Docker image into the VPU:</p></li>
+</ol>
+<div class="highlight-Shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>can0_setup<span class="w"> </span>.
+docker<span class="w"> </span>save<span class="w"> </span>can0_setup<span class="w"> </span><span class="p">|</span><span class="w"> </span>ssh<span class="w"> </span>-C<span class="w"> </span>oem@192.168.0.69<span class="w"> </span>docker<span class="w"> </span>load
+</pre></div>
+</div>
+<p>For more information’s on how to create a Docker container, please follow the <a class="reference internal" href="../../SoftwareInterfaces/Docker/docker.html"><span class="std std-doc">Docker getting started documentation</span></a></p>
+<ol class="arabic simple" start="3">
+<li><p>SSH to the VPU and run the Docker image:</p></li>
+</ol>
+<div class="highlight-Shell notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>oem@192.168.0.69<span class="w"> </span>
+docker<span class="w"> </span>run<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>--cap-add<span class="w"> </span>NET_ADMIN<span class="w"> </span>-it<span class="w"> </span>can0_setup<span class="w"> </span>sh
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">--network</span> <span class="pre">host</span></code> <em>is required</em> to access the CAN interface, and <code class="docutils literal notranslate"><span class="pre">--cap-add</span> <span class="pre">NET_ADMIN</span></code> <em>is required</em> to interact with the network stack, allowing for changes to the bitrate and sample-point.</p>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>In the Docker container check if the sample point is set correctly:</p></li>
+</ol>
+<div class="highlight-Shell notranslate"><div class="highlight"><pre><span></span>./usr/local/bin/setup_can0.sh
+ip<span class="w"> </span>-details<span class="w"> </span>-statistics<span class="w"> </span>link<span class="w"> </span>show<span class="w"> </span>can0
+</pre></div>
+</div>
+<p>The expected output should look like this:</p>
+<div class="highlight-Shell notranslate"><div class="highlight"><pre><span></span><span class="m">5</span>:<span class="w"> </span>can0:<span class="w"> </span>&lt;NOARP,UP,LOWER_UP,ECHO&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">72</span><span class="w"> </span>qdisc<span class="w"> </span>pfifo_fast<span class="w"> </span>state<span class="w"> </span>UNKNOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">10</span>
+<span class="w">    </span>link/can<span class="w">  </span>promiscuity<span class="w"> </span><span class="m">0</span><span class="w"> </span>
+<span class="w">    </span>can<span class="w"> </span>state<span class="w"> </span>ERROR-ACTIVE<span class="w"> </span><span class="o">(</span>berr-counter<span class="w"> </span>tx<span class="w"> </span><span class="m">0</span><span class="w"> </span>rx<span class="w"> </span><span class="m">0</span><span class="o">)</span><span class="w"> </span>restart-ms<span class="w"> </span><span class="m">100</span><span class="w"> </span>
+<span class="w">    </span>bitrate<span class="w"> </span><span class="m">250000</span><span class="w"> </span>sample-point<span class="w"> </span><span class="m">0</span>.5<span class="w"> </span>
+<span class="w">    </span>tq<span class="w"> </span><span class="m">125</span><span class="w"> </span>prop-seg<span class="w"> </span><span class="m">6</span><span class="w"> </span>phase-seg1<span class="w"> </span><span class="m">7</span><span class="w"> </span>phase-seg2<span class="w"> </span><span class="m">2</span><span class="w"> </span>sjw<span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 
