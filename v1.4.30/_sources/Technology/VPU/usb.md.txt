@@ -92,6 +92,7 @@ It is possible to increase the VPU memory size by utilizing USB thumb drives or 
 
 :::{note}
 The USB auto mount service mounts your USB mass storage device to `/run/media/system/<USB_name>/`. See the details below.
+:::
 
 ### Preparing the USB drive
 
@@ -135,23 +136,22 @@ This means, that is has to be done for the OEM user on the VPU to write to the d
 
 Below an exemplary workflow is shown for setting the VPU's OEM users UID and GID.
 
-On the VPU:
-1. Find out the requested users UID and GID on the VPU or inside the Docker container
-```bash
-oem@o3r-vpu-c0:~# id -u oem
-989
-oemt@o3r-vpu-c0:~# id -g oem
-987
-```
-On your Linux laptop of choice:
-1. Change the USB mount point on your **Linux Laptop** via `chown`
-```bash
-user@laptop:~$ sudo chown 989:987 -R /media/<mount_point>
-```
+1. On the VPU: Find out the requested users UID and GID on the VPU or inside the Docker container
+    ```bash
+    oem@o3r-vpu-c0:~# id -u oem
+    989
+    oemt@o3r-vpu-c0:~# id -g oem
+    987
+    ```
 
-.. note::
+2. On your Linux laptop of choice: Change the USB mount point on your **Linux Laptop** via `chown`
+    ```bash
+    user@laptop:~$ sudo chown 989:987 -R /media/<mount_point>
+    ```
+
+:::{note}
 Please be aware that changing the GID and UID mount points may result in missing read access on your laptop. To restore read access on your laptop to the USB storage device, change the GID and UID back to match your personal user accounts ones.
-
+:::
 
 ### Plug in and mounting
 

@@ -1,8 +1,7 @@
-# Firmware 1.4.30 pre-release release notes
+# Firmware 1.4.30 release notes
 The following release note provides an overview of the features of the Firmware **1.4.30** version.
-This firmware is a pre-release intended only for early adopters of the OVP81x. It is expected that users will update to the final firmware version of the 1.4 series when it is available.
 
-The firmware update file for the OVP81x devices is available upon request to the ifm sales or support team.
+The firmware update file for the OVP81x devices is available on [ifm.com](https://www.ifm.com).
 
 :::{admonition} News!
 The firmware 1.4.30 is released along with a new hardware version for the OVP processing platform. This new platform, OVP81x, is built with the NVIDIA TX2 NX board instead of the TX2 board that was used for the OVP80x series.

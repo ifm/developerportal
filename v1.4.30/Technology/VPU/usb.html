@@ -91,7 +91,18 @@
 <li class="toctree-l5"><a class="reference internal" href="#other-usb-devices-usb-hid-usb-network-adapters">Other USB devices: USB HID, USB network adapters, …</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#using-a-usb-drive-with-the-vpu">Using a USB drive with the VPU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-a-usb-drive-with-the-vpu">Using a USB drive with the VPU</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#preparing-the-usb-drive">Preparing the USB drive</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#fat32">FAT32</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#ext4">EXT4</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#format-usb-mounting-preparation-ext4-only">Format USB mounting preparation (EXT4 only)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#plug-in-and-mounting">Plug in and mounting</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="sntp.html">NTP</a></li>
@@ -226,20 +237,26 @@ oem<span class="w"> </span>docker<span class="w"> </span>systemd-journal
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The USB auto mount service mounts your USB mass storage device to <code class="docutils literal notranslate"><span class="pre">/run/media/system/&lt;USB_name&gt;/</span></code>. See the details below.</p>
-<h3 class="rubric" id="preparing-the-usb-drive">Preparing the USB drive</h3>
+</div>
+<section id="preparing-the-usb-drive">
+<h3>Preparing the USB drive<a class="headerlink" href="#preparing-the-usb-drive" title="Link to this heading"></a></h3>
 <p>The VPU’s operating system supports two file formats:</p>
 <ul class="simple">
 <li><p>FAT32</p></li>
 <li><p>EXT4</p></li>
 </ul>
 <p>These can be auto-mounted via the <code class="docutils literal notranslate"><span class="pre">mount</span></code> command and its respective daemon.</p>
-<h4 class="rubric" id="fat32">FAT32</h4>
+<section id="fat32">
+<h4>FAT32<a class="headerlink" href="#fat32" title="Link to this heading"></a></h4>
 <p>For FAT32 formatted devices no additional steps are required. It can be directly mounted via the auto-mount daemon to the VPU.</p>
-<h4 class="rubric" id="ext4">EXT4</h4>
+</section>
+<section id="ext4">
+<h4>EXT4<a class="headerlink" href="#ext4" title="Link to this heading"></a></h4>
 <p>For EXT4 formatted devices the user needs to perform additional steps to match the OEM users <code class="docutils literal notranslate"><span class="pre">uid</span></code> and <code class="docutils literal notranslate"><span class="pre">gid</span></code> on the VPU’s embedded OS.
 Otherwise only read permissions are granted when mounting the USB storage device. This is a design that is introduced by the handling of access rights to EXT4 formatted devices on Linux systems.
 If you are an experience EXT4 user feel free to skip the following instructions steps:</p>
-<h5 class="rubric" id="format-usb-mounting-preparation-ext4-only">Format USB mounting preparation (EXT4 only)</h5>
+<section id="format-usb-mounting-preparation-ext4-only">
+<h5>Format USB mounting preparation (EXT4 only)<a class="headerlink" href="#format-usb-mounting-preparation-ext4-only" title="Link to this heading"></a></h5>
 <p><strong>Option 1:</strong></p>
 <p>“The crude way”</p>
 <p>The easiest option is to mount the EXT4 formatted device to your Linux laptop of choice and relax the write and read permissions to be accessible by any user:</p>
@@ -256,26 +273,30 @@ If you are an experience EXT4 user feel free to skip the following instructions 
 <p>Please be aware that setting user specific GID and UID has to be done <strong>PER</strong> user.
 This means, that is has to be done for the OEM user on the VPU to write to the device, as well as any specific users created inside your own Docker container.</p>
 <p>Below an exemplary workflow is shown for setting the VPU’s OEM users UID and GID.</p>
-<p>On the VPU:</p>
-<ol class="arabic simple">
-<li><p>Find out the requested users UID and GID on the VPU or inside the Docker container</p></li>
-</ol>
+<ol class="arabic">
+<li><p>On the VPU: Find out the requested users UID and GID on the VPU or inside the Docker container</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>oem@o3r-vpu-c0:~#<span class="w"> </span>id<span class="w"> </span>-u<span class="w"> </span>oem
 <span class="m">989</span>
 oemt@o3r-vpu-c0:~#<span class="w"> </span>id<span class="w"> </span>-g<span class="w"> </span>oem
 <span class="m">987</span>
 </pre></div>
 </div>
-<p>On your Linux laptop of choice:</p>
-<ol class="arabic simple">
-<li><p>Change the USB mount point on your <strong>Linux Laptop</strong> via <code class="docutils literal notranslate"><span class="pre">chown</span></code></p></li>
-</ol>
+</li>
+<li><p>On your Linux laptop of choice: Change the USB mount point on your <strong>Linux Laptop</strong> via <code class="docutils literal notranslate"><span class="pre">chown</span></code></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>user@laptop:~$<span class="w"> </span>sudo<span class="w"> </span>chown<span class="w"> </span><span class="m">989</span>:987<span class="w"> </span>-R<span class="w"> </span>/media/&lt;mount_point&gt;
 </pre></div>
 </div>
-<p>.. note::
-Please be aware that changing the GID and UID mount points may result in missing read access on your laptop. To restore read access on your laptop to the USB storage device, change the GID and UID back to match your personal user accounts ones.</p>
-<h3 class="rubric" id="plug-in-and-mounting">Plug in and mounting</h3>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please be aware that changing the GID and UID mount points may result in missing read access on your laptop. To restore read access on your laptop to the USB storage device, change the GID and UID back to match your personal user accounts ones.</p>
+</div>
+</section>
+</section>
+</section>
+<section id="plug-in-and-mounting">
+<h3>Plug in and mounting<a class="headerlink" href="#plug-in-and-mounting" title="Link to this heading"></a></h3>
 <p>After plugging in the drive, the mount is started by using the command <code class="docutils literal notranslate"><span class="pre">mount</span></code></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>o3r-vpu-c0:~$<span class="w"> </span>mount
 proc<span class="w"> </span>on<span class="w"> </span>/proc<span class="w"> </span><span class="nb">type</span><span class="w"> </span>proc<span class="w"> </span><span class="o">(</span>rw,relatime<span class="o">)</span>
@@ -320,7 +341,7 @@ drwxrwxrwx<span class="w"> </span><span class="m">3</span><span class="w"> </spa
 ...
 </pre></div>
 </div>
-</div>
+</section>
 </section>
 </section>
 

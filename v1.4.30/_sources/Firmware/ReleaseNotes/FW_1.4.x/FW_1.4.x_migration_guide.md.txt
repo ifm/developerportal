@@ -1,4 +1,4 @@
-# Firmware 1.4.30 pre-release migration guide
+# Firmware 1.4.30 migration guide
 
 ## JSON Configuration
 :::{note}

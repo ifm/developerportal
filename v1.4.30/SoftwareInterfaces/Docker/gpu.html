@@ -78,8 +78,7 @@
 <li class="toctree-l2"><a class="reference external" href="https://ros.ifm3d.com/latest/">ROS: ifm3d-ros</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://ros2.ifm3d.com/latest/">ROS2: ifm3d-ros2</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index_docker.html">Docker</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="docker.html">Docker: Getting started</a></li>
-<li class="toctree-l3"><a class="reference internal" href="docker.html#build-and-run-a-docker-container-for-the-o3r-platform">Build and run a Docker container for the O3R platform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html">Getting started with Docker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deployVPU.html">Deployment on board</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging.html">Docker logging configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="autostart.html">Autostarting the container</a></li>
@@ -178,7 +177,7 @@
 </div>
 <p>After building the container, you can follow the steps from the documentation to test the container on the VPU:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="docker.html#save-a-container"><span class="std std-ref">Save the container</span></a>): <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">save</span> <span class="pre">cuda-samples</span> <span class="pre">&gt;</span> <span class="pre">cuda-samples.tar</span></code></p></li>
+<li><p><a class="reference internal" href="docker.html#save-a-container"><span class="std std-ref">Save the container</span></a>: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">save</span> <span class="pre">cuda-samples</span> <span class="pre">&gt;</span> <span class="pre">cuda-samples.tar</span></code></p></li>
 <li><p><a class="reference internal" href="deployVPU.html#using-scp"><span class="std std-ref">Transfer the container</span></a>: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">scp</span> <span class="pre">cuda-samples.tar</span> <span class="pre">oem&#64;192.168.0.69:/home/oem</span></code></p></li>
 <li><p><a class="reference internal" href="docker.html#load-and-start-a-container"><span class="std std-ref">Load the container</span></a>: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">load</span> <span class="pre">&lt;</span> <span class="pre">cuda-samples.tar</span></code></p></li>
 </ul>

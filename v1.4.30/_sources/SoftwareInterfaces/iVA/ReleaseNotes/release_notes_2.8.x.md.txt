@@ -1,5 +1,5 @@
-# iVA 2.8.x release notes
-The following release note provides an overview of the features of the iVA **2.8.x** version.
+# iVA 2.8.7 release notes
+The following release note provides an overview of the features of the iVA **2.8.7** version.
 Please refer to the ifm O3R's website [ifm3d.com](http://www.ifm3d.com) for further information.
 
 The software is available for windows and Linux (Ubuntu20.04 and Ubuntu22.04). The file can be downloaded from [ifm.com](https://www.ifm.com/us/en/product/OVP800?tab=documents).

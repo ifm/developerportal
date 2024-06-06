@@ -198,24 +198,20 @@ For reference, below is the application number to PCIC port correspondence.</p>
 <p>To retrieve the PCIC port number for any port, one can use the ifm3d API. The following code snippet serves as an example to retrieve the TCP/IP port for Port 2:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ifm3dpy.device</span>   <span class="kn">import</span> <span class="n">O3R</span>
 <span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">()</span>
-<span class="n">pcic_port</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/ports/port2/data/pcicTCPPort&quot;</span><span class="p">])[</span><span class="s2">&quot;ports&quot;</span><span class="p">][</span><span class="s2">&quot;port2&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;pcicTCPPort&quot;</span><span class="p">]</span>
+<span class="n">pcic_port</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">port</span><span class="p">(</span><span class="s2">&quot;port2&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">pcic_port</span>
 <span class="o">&gt;&gt;&gt;</span><span class="mi">50012</span>
 </pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">o3r.get</span></code> command shown above is provided as a subset of the JSON configuration. This is done to optimize the <code class="docutils literal notranslate"><span class="pre">get</span></code> process: only the necessary information is retrieved instead of the whole configuration.</p>
 </div>
 <p>The following code snippet shows how to retrieve the TCP/IP port of the first application instance:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ifm3dpy.device</span> <span class="kn">import</span> <span class="n">O3R</span>
 <span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">()</span>
-<span class="n">app_port</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/applications/instances/app0/data/pcicTCPPort&quot;</span><span class="p">])[</span><span class="s2">&quot;applications&quot;</span><span class="p">][</span><span class="s2">&quot;instances&quot;</span><span class="p">][</span><span class="s2">&quot;app0&quot;</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;pcicTCPPort&quot;</span><span class="p">]</span>
+<span class="n">app_port</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">port</span><span class="p">(</span><span class="s2">&quot;app0&quot;</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span><span class="mi">51010</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>With firmware versions 0.16.23 or higher, it is possible to receive the list of all  available ports on the O3R platform. Use the ifm3d helper function <code class="docutils literal notranslate"><span class="pre">ports</span></code> <a class="reference external" href="https://api.ifm3d.com/html/_autosummary/ifm3dpy.device.O3R.html#ifm3dpy.device.O3R.ports">in Python</a> or <a class="reference external" href="https://api.ifm3d.com/html/cpp_api/classifm3d_1_1O3R.html#ab82367443890c0526f2da7c79147e6b5">c++</a>.</p>
+<p>With firmware versions 0.16.23 or higher, it is possible to receive the list of all available ports on the O3R platform. Use the ifm3d helper function <code class="docutils literal notranslate"><span class="pre">ports</span></code> <a class="reference external" href="https://api.ifm3d.com/html/_autosummary/ifm3dpy.device.O3R.html#ifm3dpy.device.O3R.ports">in Python</a> or <a class="reference external" href="https://api.ifm3d.com/html/cpp_api/classifm3d_1_1O3R.html#ab82367443890c0526f2da7c79147e6b5">c++</a>.</p>
 </div>
 </section>
 </section>

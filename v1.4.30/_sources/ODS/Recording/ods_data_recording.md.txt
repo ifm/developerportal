@@ -115,7 +115,7 @@ While recording the data there are two Toggle Buttons beside the `Start/Stop` bu
 Record the Algo-Debug data when you need technical support from ifm to debug the scenario.
 :::
 
-<img src="img/Record_options.png" alt="Recording Options" style="height:300px; width:1080px;">
+![Recording options](img/Record_options.png)
 
 **Data Recording**
 

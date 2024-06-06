@@ -1,5 +1,10 @@
 # FAQ
 
+## Firmware documentation
+**Q: Where can I find the documentation for older firmware versions?**
+
+A: The website is always built on the latest FW version. To view previous versions of the documentation, please check [Previous versions of the documentation](../downloadable/index.md)
+
 ## Hardware (connectivity)
 **Q: Why is the status LED blinking but not turning red for an under-voltage error?**
 

@@ -1,4 +1,4 @@
-# Docker: Getting started
+# Getting started with Docker
 For a general introduction to the Docker software container technology please have a look at the [official Docker documentation website](https://docs.docker.com/get-started/).
 
 This will guide you to your fist steps on how to get started with Docker, that is:
@@ -15,7 +15,7 @@ This documentation includes:
 + Autostart Docker containers (additional document)
 + Utilizing the GPU on the O3R VPU device (additional document)
 
-# Build and run a Docker container for the O3R platform
+## Build and run a Docker container for the O3R platform
 
 In this document we guide you through building a container from scratch. We start by building a small container. This container will increase in size and complexity the further we go. We will use a Python base image and install the ifm3d (ifm3dpy) library.
 
@@ -25,7 +25,7 @@ Note that the O3R VPU (Video Processing Unit) is based on an NVIDIA Jetson syste
 Building containers without the right base image will not run on the VPU, an arm64/aarch64 base image is needed. 
 To build the container for an architecture different than the host's, [QEMU](https://www.qemu.org/) can be used.
 
-## A basic container
+### A basic container
 
 Every Docker container image is built by Docker using a Dockerfile.
 A Dockerfile contains all the necessary information for building a container image. Most of the Dockerfiles are starting with a base image that is retrieved from the Docker Hub during the build process. Docker will automatically fetch the image for the architecture hosting the build (arm64/aarch64). When building a container for an architecture other than the hosts', the destination architecture needs to be specified in the Dockerfile.
@@ -39,20 +39,11 @@ Dockerfile:
 #arm64v8 is the pre-requisite for running the container on the VPU.
 FROM arm64v8/python:3.9.6-slim-buster
 ```
-### Build the container
-Building:
+#### Build the container
 To build a container use `docker build [path/to/Dockerfile]`. If an image tag (name) is needed, you can specify it within the `docker build` command.
 
-```Docker
-# Assuming the Dockerfile is located within the same directory:
-$ docker build . -t ifm3d
-```
-
->Note: For further information about `docker build` refer to the official [Docker documentation](<https://docs.docker.com/engine/reference/commandline/build/>)
-
-Build process:
-
 ```bash
+# Assuming the Dockerfile is located within the same directory:
 $ docker build . -t ifm3d
 Sending build context to Docker daemon  2.048kB
 Step 1/1 : FROM arm64v8/python:3.9.6-slim-buster
@@ -69,8 +60,11 @@ REPOSITORY                TAG                 IMAGE ID       CREATED         SIZ
 ifm3d                     latest              4770e646d0be   5 weeks ago     108MB
 ```
 
+:::{note}
+For further information about `docker build` refer to the official [Docker documentation](<https://docs.docker.com/engine/reference/commandline/build/>)
+:::
 
-#### Troubleshooting: proxies
+##### Troubleshooting: proxies
 
 Depending on the network infrastructure, Docker might need the proxy information for building the container. You can input them directly when running the command:
 
@@ -95,9 +89,11 @@ You can also define the proxies in the `config.json` file. You should find the f
 }
 ```
 
-### Run a container
+#### Run a container
 
->Note: To run a container built for another chip architecture than the host system, you need to use [QEMU](https://www.qemu.org/) to handle the virtualization. For further information see: [Docker multi-CPU architecture](https://docs.docker.com/desktop/multi-arch/)
+:::{note}
+To run a container built for another chip architecture than the host system, you need to use [QEMU](https://www.qemu.org/) to handle the virtualization. For further information see: [Docker multi-CPU architecture](https://docs.docker.com/desktop/multi-arch/)
+:::
 
 To run the container, we use `docker run`. We can specify the run command through several arguments: we want to start the container interactively (`-it`) and with a bash interface (`/bin/bash`), so we can play around inside the container.
 
@@ -107,7 +103,9 @@ WARNING: The requested image’s platform (linux/arm64) does not match the detec
 root@ee24eff3c797:/#
 ```
 
->Note: For further information about `docker run`, refer to the [official documentation](<https://docs.docker.com/engine/reference/run/>)
+:::{note}
+For further information about `docker run`, refer to the [official documentation](<https://docs.docker.com/engine/reference/run/>)
+:::
 
 Now we are within the container. The warning tells us that the base image was build for an arm64/aarch64 architecture, which is different from the architecture of the host (amd64).
 
@@ -125,10 +123,9 @@ Python 3.9.6 (default, Jun 29 2021, 19:34:26)
 Type "help", "copyright", "credits" or "license" for more information.
 >>> print("hello")
 hello
->>>
 ```
 
-### Save a container
+#### Save a container
 
 The container is working, let's save it so we can share it around. Docker already provides us with the right tool: `docker save`.
 
@@ -136,7 +133,7 @@ The container is working, let's save it so we can share it around. Docker alread
 $ docker save ifm3d > ifm3d.tar
 ```
 
-## Load and start a container
+### Load and start a container
 
 To reload the content of a previously saved image, use:
 
@@ -150,11 +147,11 @@ Start the Docker container like this on every other device:
 $ docker run ifm3d
 ```
 
->Note: The image name might be different than the saved container name. After `docker load`, Docker will show the name of the loaded image
+:::{note}
+The image name might be different than the saved container name. After `docker load`, Docker will show the name of the loaded image
+:::
 
-
-
-## Add features to the container
+### Add features to the container
 
 Until now, our container is not really useful. Let's update the container's kernel, install Python packages and create a user (this will improve security). To do that, we need to improve the Dockerfile:
 
@@ -215,7 +212,9 @@ Successfully built 14db5d89303f
 Successfully tagged ifm3d:latest
 ```
 
->Note: For easier readability, the build process output was shortened.
+:::{note}
+For easier readability, the build process output was shortened.
+:::
 
 The build process  contains several layers and `intermediate` container builds (that we use for debugging). You can start the container with the typical commands and check if NumPy was installed:
 
@@ -226,7 +225,7 @@ pythonuser@319eb5ea67e0:/$ pip freeze
 numpy==1.21.1
 ```
 
-## Install ifm3d in the container
+### Install ifm3d in the container
 
 `ifm3dpy` is the Python binding for the ifm3d library. You can install it from source (download it [here](https://github.com/ifm/ifm3d)) or use the [Docker image](https://github.com/ifm/ifm3d/pkgs/container/ifm3d) provided by ifm which can be used on the VPU and contains the ifm3d and ifm3dpy libraries.
 
@@ -309,7 +308,9 @@ RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y && apt-get clean
 ```
 
->Note: You should leverage the layering from Docker to improve the build speed if you need to build again. QEMU emulates a ARM64 CPU in software on a x86 System which is slow. In case you are planning to build large application from source please consider to run this on a ARM64 based host.
+:::{note}
+You should leverage the layering from Docker to improve the build speed if you need to build again. QEMU emulates a ARM64 CPU in software on a x86 System which is slow. In case you are planning to build large application from source please consider to run this on a ARM64 based host.
+:::
 
 We provide up-to-date images containing the ifm3d library, both on the DockerHub [here](https://hub.docker.com/r/ifmrobotics/ifm3d) and on GitHub [here](https://github.com/ifm/ifm3d/pkgs/container/ifm3d).
 We recommend using the image available on GitHub, as it does not come with rate limits. You can simply pull it like so:
@@ -324,7 +325,9 @@ ghcr.io/ifm/ifm3d:stable
 
 ```
 
->Note: Due to easier readability, the pull process output was shortened
+:::{note}
+Due to easier readability, the pull process output was shortened
+:::
 
 Let's try the image and see if we can connect to a (physically connected) VPU:
 
@@ -351,7 +354,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 {'device': {'clock': {'currentTime': ...
 ```
 
-## Building on top of the ifm base image
+### Building on top of the ifm base image
 
 Now you want your own container, with your Python script to run. Base your Dockerfile simply on the `ghcr.io/ifm/ifm3d:stable` image:
 

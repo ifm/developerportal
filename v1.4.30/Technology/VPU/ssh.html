@@ -91,6 +91,7 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">SSH</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#generate-an-ssh-key-pair">Generate an SSH key-pair</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#upload-the-public-key-to-the-vpu">Upload the public key to the VPU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#connect-to-the-vpu-using-the-passphrase">Connect to the VPU using the passphrase</a></li>
 </ul>
 </li>
 </ul>
@@ -136,10 +137,11 @@
 <p>To connect to the VPU through SSH or deploy code to the VPU with SCP, it is necessary to setup a list of authorized keys .</p>
 <section id="generate-an-ssh-key-pair">
 <h2>Generate an SSH key-pair<a class="headerlink" href="#generate-an-ssh-key-pair" title="Link to this heading"></a></h2>
-<blockquote>
-<div><p>Note: the following instructions are tailored towards a bash (Unix shell). When deploying on a Windows based architecture, please modify the instructions sets for your shell accordingly.
-All user specific SSH keys are located at <code class="docutils literal notranslate"><span class="pre">~/.ssh</span></code>. This is the place where the private key for the connection to the VPU should be stored.</p>
-</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following instructions are tailored towards a bash (Unix shell). When deploying on a Windows based architecture, please modify the instructions sets for your shell accordingly.</p>
+</div>
+<p>All user specific SSH keys are located at <code class="docutils literal notranslate"><span class="pre">~/.ssh</span></code>. This is the place where the private key for the connection to the VPU should be stored.</p>
 <p>To generate an SSH key-pair, use <code class="docutils literal notranslate"><span class="pre">ssh-keygen</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>~/.ssh/
 $<span class="w"> </span>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>rsa<span class="w"> </span>-b<span class="w"> </span><span class="m">4096</span><span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;&lt;Some comment to remember what the key is for&gt;&quot;</span>
@@ -182,16 +184,15 @@ The device configuration includes a parameter for authorized keys: <code class="
 </div>
 <p>To add a new key, the VPU configuration needs to be changed. This can be done with several ways (see <a class="reference external" href="https://api.ifm3d.com/stable/examples/o3r/configuration/configuration.html">configuring the camera</a>). The easiest way in this case is to use the <code class="docutils literal notranslate"><span class="pre">jq</span></code> command along with the ifm3d API CLI:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-0-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-0-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-0-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="bash docutils">
-<p>$ echo {} | jq –arg id “<img class="math" src="../../_images/math/0ceb1d4b52c479edc274a8eb3621866156683f08.svg" alt="(&lt; ~/.ssh/id_o3r.pub)&quot; '.device.network.authorized_keys="/>id’ | ifm3d config</p>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-TGludXg=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-TGludXg=" name="TGludXg=" role="tab" tabindex="0">Linux</button><button aria-controls="panel-0-V2luZG93cw==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="-1">Windows</button></div><div aria-labelledby="tab-0-TGludXg=" class="sphinx-tabs-panel group-tab" id="panel-0-TGludXg=" name="TGludXg=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>--arg<span class="w"> </span>id<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>&lt;<span class="w"> </span>~/.ssh/id_o3r.pub<span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span><span class="s1">&#39;.device.network.authorized_keys=$id&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>ifm3d<span class="w"> </span>config
+</pre></div>
 </div>
-</div><div aria-labelledby="tab-0-V2luZG93cw==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-V2luZG93cw==" name="V2luZG93cw==" role="tabpanel" tabindex="0"><div class="powershell docutils">
-<blockquote>
-<div><p>$publicKey = Get-Content -Raw &lt;path\to\id_o3r.pub&gt;
-echo “{}” | jq –arg id “<img class="math" src="../../_images/math/95167931ca4b5d765cde1321968eb3a4cd0b19b3.svg" alt="publicKey&quot; '.device.network.authorized_keys="/>id’ | ifm3d config</p>
-</div></blockquote>
+</div><div aria-labelledby="tab-0-V2luZG93cw==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-V2luZG93cw==" name="V2luZG93cw==" role="tabpanel" tabindex="0"><div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="p">&gt;</span><span class="nv">$publicKey</span> <span class="p">=</span> <span class="nb">Get-Content</span> <span class="n">-Raw</span> <span class="p">&lt;</span><span class="n">path</span><span class="p">\</span><span class="n">to</span><span class="p">\</span><span class="n">id_o3r</span><span class="p">.</span><span class="n">pub</span><span class="p">&gt;</span>
+<span class="p">&gt;</span><span class="nb">echo </span><span class="s2">&quot;{}&quot;</span> <span class="p">|</span> <span class="n">jq</span> <span class="p">-</span><span class="n">-arg</span> <span class="n">id</span> <span class="s2">&quot;$publicKey&quot;</span> <span class="s1">&#39;.device.network.authorized_keys=$id&#39;</span> <span class="p">|</span> <span class="n">ifm3d</span> <span class="n">config</span>
+</pre></div>
 </div>
-</div><ul class="simple">
+</div></div>
+<ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">jq</span> <span class="pre">--arg</span> <span class="pre">id</span> <span class="pre">&quot;$(&lt;</span> <span class="pre">~/.ssh/id_o3r.pub)&quot;</span></code> - This loads the public key into the variable <code class="docutils literal notranslate"><span class="pre">id</span></code> and provides it to the <code class="docutils literal notranslate"><span class="pre">jq</span></code> command</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">'.device.network.authorized_keys=$id'</span></code> - Here the JSON value from <code class="docutils literal notranslate"><span class="pre">authorized_keys</span></code> is changed for the public key within the variable <code class="docutils literal notranslate"><span class="pre">id</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ifm3d</span> <span class="pre">config</span></code> - The new JSON is now used to change the configuration of the VPU via <code class="docutils literal notranslate"><span class="pre">ifm3d</span> <span class="pre">config</span></code></p></li>
@@ -202,7 +203,9 @@ echo “{}” | jq –arg id “<img class="math" src="../../_images/math/951679
 </pre></div>
 </div>
 <p>Note that the <code class="docutils literal notranslate"><span class="pre">authorized_keys</span></code> is a persistent parameter: it does not require a call to <a class="reference internal" href="../configuration.html#persistent-settings-without-save-init"><span class="std std-ref"><code class="docutils literal notranslate"><span class="pre">save_init</span></code></span></a> to be persistent over reboots.</p>
-<h2 class="rubric" id="connect-to-the-vpu-using-the-passphrase">Connect to the VPU using the passphrase</h2>
+</section>
+<section id="connect-to-the-vpu-using-the-passphrase">
+<h2>Connect to the VPU using the passphrase<a class="headerlink" href="#connect-to-the-vpu-using-the-passphrase" title="Link to this heading"></a></h2>
 <p>After the key is uploaded, it is possible to connect with SSH and the username <code class="docutils literal notranslate"><span class="pre">oem</span></code> to the VPU:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ssh<span class="w"> </span>oem@192.168.0.69
 The<span class="w"> </span>authenticity<span class="w"> </span>of<span class="w"> </span>host<span class="w"> </span><span class="s1">&#39;192.168.0.69 (192.168.0.69)&#39;</span><span class="w"> </span>can<span class="s1">&#39;t be established.</span>
@@ -214,7 +217,6 @@ o3r-vpu-c0:~$
 </div>
 <p>There will be a prompt for the passphrase, configured during step 1.</p>
 <p>You should now be able to SSH into the VPU using your customer SSH key and passphrase.</p>
-</div>
 </section>
 </section>
 
