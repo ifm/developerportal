@@ -12,7 +12,7 @@ Home <self>
 Getting started <GettingStarted/index_getting_started>
 Firmware <Firmware/index>
 Compatibility Matrix <CompatibilityMatrix/compatibility_matrix>
-Technology <Technology/index_hardware_interfaces>
+Technology <Technology/index_technology>
 Software Interfaces <index_software_interfaces>
 Calibration Routines <CalibrationRoutines/index_calibrations>
 ODS <ODS/index_ods>

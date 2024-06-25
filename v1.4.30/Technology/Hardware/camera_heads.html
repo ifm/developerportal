@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Camera heads &mdash; O3R  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=87e54e7c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=28a392ea" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Ports overview" href="../PortsOverview/ports_overview.html" />
+    <link rel="prev" title="Clearance area requirements" href="Mounting/clearance_area.html" />
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script> -->
+     
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            O3R
+          </a>
+              <div class="version">
+                v1.4.30
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index_technology.html">Technology</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index_hardware.html">Hardware</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="hardware_specifications.html">Available hardware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wiring.html">Wiring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Mounting/index_mounting.html">Mounting</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Maintenance</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#operational-conditions">Operational conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cleaning-camera-heads">Cleaning camera heads</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#use-cases">Use-cases</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../PortsOverview/ports_overview.html">Ports overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2D/2d.html">2D Cameras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3D/index_3d.html">3D Cameras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../VPU/index_vpu.html">VPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../SystemVerification/index_system_verification.html">System Verification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index_technology.html">Technology</a></li>
+          <li class="breadcrumb-item"><a href="index_hardware.html">O3R platform hardware</a></li>
+      <li class="breadcrumb-item active">Camera heads</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/Technology/Hardware/camera_heads.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="camera-heads">
+<h1>Camera heads<a class="headerlink" href="#camera-heads" title="Link to this heading"></a></h1>
+<section id="operational-conditions">
+<h2>Operational conditions<a class="headerlink" href="#operational-conditions" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">O3R2xx</span></code> camera heads are <code class="docutils literal notranslate"><span class="pre">IP54</span></code> rated, which means that with regular maintenance and cleaning, they can be used in some harsher environments, such as dusty conditions and mixed indoor/outdoor conditions. In all operating conditions, the cameras must be cleaned regularly to prevent dust or particles from building up on the surface of the camera head, which will gradually degrade the camera’s measurement performance (review the <a class="reference internal" href="#cleaning-camera-heads">cleaning instructions below</a>).</p>
+<p>Please note that all O3R camera heads (O3R222 and O3R225) are designed for indoor use. Outdoor conditions may work depending on the application requirements but must be benchmarked by the customer.</p>
+<p>Mixed indoor - outdoor conditions are understood by ifm to be conditions that are mainly indoors but may include bright illumination patterns of overhead skylights and windows on the floor and objects.</p>
+</section>
+<section id="cleaning-camera-heads">
+<h2>Cleaning camera heads<a class="headerlink" href="#cleaning-camera-heads" title="Link to this heading"></a></h2>
+<p>It is important to clean the camera heads regularly because any dirt, dust, or fingerprints on the lens or front of the camera housing can interfere with the accuracy of the camera’s measurements. The camera heads work by emitting a light signal and measuring the time it takes for the signal to reflect back to the sensor. If there is dirt or dust on the lens or illumination module, it can scatter the light signal and cause inaccuracies in the measurements. This can impact the performance of any systems that rely on that data, such as ODS.</p>
+<p>Regular cleaning can help to ensure that they are operating at their best performance and producing accurate and reliable data. The best practices to clean the cameras are as follows:</p>
+<ul class="simple">
+<li><p>Use a clean, lint-free cloth: When cleaning the camera, it is important to use a clean, lint-free cloth that will not scratch or damage the lens or sensor. Microfiber cloth is a good choice.</p></li>
+<li><p>Use compressed air or a blower brush to gently blow away any debris from the lens and sensor.</p></li>
+<li><p>Avoid using water or harsh chemicals as this can damage the lens or sensor.</p></li>
+<li><p>Clean regularly: To maintain optimal performance, it is recommended to clean the camera heads regularly. It is advised to clean the cameras heads at least once per week. Depending on the environment shorter cleaning intervals may be required. We recommend to implement a weekly cleaning maintenance for non-dusty environments. For dusty environments a daily cleaning maintenance schedule is advised.</p></li>
+</ul>
+</section>
+<section id="use-cases">
+<h2>Use-cases<a class="headerlink" href="#use-cases" title="Link to this heading"></a></h2>
+<p>Different camera heads are available for the O3R platform and they are best suited for different use cases:</p>
+<ul class="simple">
+<li><p>The O3R222 has a narrow field of view which is ideal for applications focussing on detecting smaller objects, edges and objects at longer ranges.</p></li>
+<li><p>The O3R225 camera head has a wider field of view which is ideal for the applications focussing on perceiving the larger areas and minimizing dead zones.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="/latest/_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+		
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.efector.object-ident@ifm.com">support.efector.object-ident@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

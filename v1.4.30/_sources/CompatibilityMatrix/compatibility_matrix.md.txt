@@ -13,7 +13,7 @@
 Other combinations of versions than the ones listed in the table above could work but are not officially supported by ifm.
 :::
 
-To review hardware specifications, refer to the [available hardware documentation](../Technology/Hardware_Interfaces/hardware_specifications.md).
+To review hardware specifications, refer to the [available hardware documentation](../Technology/Hardware/hardware_specifications.md).
 
 ## ifm3d-ros and ifm3d-ros2 version compatibility
 

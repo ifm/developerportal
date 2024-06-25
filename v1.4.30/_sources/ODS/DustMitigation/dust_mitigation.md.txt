@@ -15,7 +15,7 @@ Heavier dust conditions can still cause false positives or ghost objects in the 
 :::
 
 An O3R camera exposed to dust will degrade its performance. Please clean the head regularly in dusty conditions, even if there is no visually noticeable amount of dust on the camera head itself.
-Suggestions for cleaning intervals and procedures can be found in this separate document [O3R Cleaning Instructions](../../Technology/Hardware_Interfaces/camera_heads.md#cleaning-camera-heads).
+Suggestions for cleaning intervals and procedures can be found in this separate document [O3R Cleaning Instructions](../../Technology/Hardware/camera_heads.md#cleaning-camera-heads).
 
 
 ## Configuration

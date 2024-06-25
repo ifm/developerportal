@@ -1,6 +1,6 @@
 
 # Configuration
-This document details some aspect of the configuration of the O3R, including using the JSON schema and handling persistent configurations. To learn how to use the ifm3d API to configure the O3R, refer to [the configuration "How-to" document](https://api.ifm3d.com/stable/examples/o3r/configuration/configuration.html). For a detailed list of available parameters, refer to the respective 2D or 3D section of [the Technology section](index_hardware_interfaces.md).
+This document details some aspect of the configuration of the O3R, including using the JSON schema and handling persistent configurations. To learn how to use the ifm3d API to configure the O3R, refer to [the configuration "How-to" document](https://api.ifm3d.com/stable/examples/o3r/configuration/configuration.html). For a detailed list of available parameters, refer to the respective 2D or 3D section of [the Technology section](index_technology.md).
 
 ## "CONF"-only parameters
 Some parameters require that the port or application instance is in "CONF" state to be edited. This is for example the case for the mode, or for enabling the detection of negative obstacles in an ODS application.

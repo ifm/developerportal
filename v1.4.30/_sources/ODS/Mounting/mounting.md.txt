@@ -35,5 +35,5 @@ The FAKRA connector to the VPU housing is rated at `IP50` - the same as the VPU 
 It's important to note that while IP54-rated cables offer some level of protection against dust and water, they may not be suitable for use in extremely wet or dusty environments. Please see the respective norms as a part of the cable specification sheets [online](https://www.ifm.com)
 
 :::{note}
-The section about camera head maintenance and cleaning was moved to [the technology section of the website](../../Technology/Hardware_Interfaces/camera_heads.md#cleaning-camera-heads).
+The section about camera head maintenance and cleaning was moved to [the technology section of the website](../../Technology/Hardware/camera_heads.md#cleaning-camera-heads).
 :::
