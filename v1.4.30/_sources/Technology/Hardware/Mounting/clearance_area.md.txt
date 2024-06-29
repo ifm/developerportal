@@ -44,11 +44,19 @@ This is because of the diffuse quality of light: light reaches a wider angle tha
 This means that objects in the area to the edges of the illumination field of view can still impact the measurements.
 The defined clearance area takes this into account.
 :::
-<!-- 
+
 ## Examples
 
 Considering the clearance area requirements listed above, below are two examples of mounting positions:
-| Correct mounting                                             | Incorrect mounting                                                                                                                     |
-| ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
-| With this mounting position, the clearance area is respected | With this mounting position, the clearance area is not respected.<br>The vehicle body is obstructing the corner of the clearance area. |
-| TODO good mounting picture                                   | TODO bad mounting picture                                                                                                              | -->
+
+| Correct mounting                                                              | Incorrect mounting                                                                                                                       |
+| ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| With this mounting position, the clearance area is respected                  | With these mounting positions, the clearance area is not respected.<br>The vehicle body is obstructing the corner of the clearance area. |
+| ![Correct mounting position: clearance area respected](img/good_mounting.png) | ![Incorrect mounting position: obstruction in the clearance area](img/bad_mounting.png)                                                  |
+|                                                                               | ![Another example of poor mounting position where the clearance area is not respected](img/bad_mounting_2.png)                           |
+| | ![Example of bad mounting position where the the clearane area is obstructed along the horizontal axis](img/bad_mounting_side.png) |
+
+:::{warning}
+Pay particular attention to parts of the vehicle that could obstruct the clearance area in corners, or further away than the direct robot shell.
+Especially for the O3R225 camera, the clearance area is larger than one would expect instinctively, and special care is required in the design of the mounting position.
+:::
