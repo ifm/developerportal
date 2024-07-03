@@ -27,12 +27,13 @@ The defined clearance area takes this into account.
 
 ## O3R222
 
-For the O3R222, the clearance area is defined as shown in the diagram below:
-![Top view of the clearance area for an O3R222 camera](img/222_clearance_area_horizontal.jpg)
+For the O3R222, the clearance area is the same as the one for the O3R225: 
 
-![Side view of the clearance area for an O3R222 camera](img/222_clearance_area_vertical.jpg)
+![Top view of the clearance area for an O3R225 camera](img/225_clearance_area_horizontal.jpg)
 
-The clearance area is 80 degrees along the horizontal angle and 80 degrees along the vertical angle. 
+![Side view of the clearance area for an O3R225 camera](img/225_clearance_area_vertical.jpg)
+
+The clearance area is 150 degrees along the horizontal angle and 140 degrees along the vertical angle. 
 
 The clearance area shall be kept free of any permanent obstructions, like the vehicle's chassis or other overhanging parts. It is especially important to respect these requirements for the first 50 cm in front of the camera.
 
@@ -57,6 +58,5 @@ Considering the clearance area requirements listed above, below are two examples
 | | ![Example of bad mounting position where the the clearane area is obstructed along the horizontal axis](img/bad_mounting_side.png) |
 
 :::{warning}
-Pay particular attention to parts of the vehicle that could obstruct the clearance area in corners, or further away than the direct robot shell.
-Especially for the O3R225 camera, the clearance area is larger than one would expect instinctively, and special care is required in the design of the mounting position.
+Pay particular attention to parts of the vehicle that could obstruct the clearance area in corners, or further away than the robot shell itself.
 :::
