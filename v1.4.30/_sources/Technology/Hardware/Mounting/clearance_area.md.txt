@@ -12,7 +12,8 @@ For the O3R225, the clearance area is defined as shown in the diagram below:
 
 ![Side view of the clearance area for an O3R225 camera](img/225_clearance_area_vertical.jpg)
 
-The clearance area is 150 degrees along the horizontal angle and 140 degrees along the vertical angle. 
+The clearance area is 160 degrees along both the horizontal and the vertical axis.
+For more information about how the clearance area is defined, reach out to the support team at support.efector.object-ident@ifm.com. 
 
 The clearance area shall be kept free of any permanent obstructions, like the vehicle's chassis or other overhanging parts. It is especially important to respect these requirements for the first 50 cm in front of the camera.
 
@@ -27,13 +28,14 @@ The defined clearance area takes this into account.
 
 ## O3R222
 
-For the O3R222, the clearance area is the same as the one for the O3R225: 
+For the O3R222, the clearance area is the same as the one for the O3R225, even though the field of view is narrower: 
 
-![Top view of the clearance area for an O3R225 camera](img/225_clearance_area_horizontal.jpg)
+![Top view of the clearance area for an O3R222 camera](img/222_clearance_area_horizontal.jpg)
 
-![Side view of the clearance area for an O3R225 camera](img/225_clearance_area_vertical.jpg)
+![Side view of the clearance area for an O3R222 camera](img/222_clearance_area_vertical.jpg)
 
-The clearance area is 150 degrees along the horizontal angle and 140 degrees along the vertical angle. 
+The clearance area is 160 degrees along both the horizontal and the vertical axis.
+For more information about how the clearance area is defined, reach out to the support team at support.efector.object-ident@ifm.com.
 
 The clearance area shall be kept free of any permanent obstructions, like the vehicle's chassis or other overhanging parts. It is especially important to respect these requirements for the first 50 cm in front of the camera.
 
