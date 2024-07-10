@@ -84,13 +84,13 @@
 <li class="toctree-l3"><a class="reference internal" href="../ImagesDescription/index_images_description.html">Images description</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Intrinsic calibration models</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#fisheye-model">Fisheye model</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#for-unprojection">For unprojection</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#for-projection">For projection</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#for-unprojection-intrinisc-calibration-model">For unprojection: intrinisc calibration model</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#for-projection-inverse-intrinsic-calibration-model">For projection: inverse intrinsic calibration model</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#bouguet-model">Bouguet model</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#id1">For unprojection</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#id2">For projection</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id1">For unprojection: intrinisc calibration model</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id2">For projection: inverse intrinsic calibration model</a></li>
 </ul>
 </li>
 </ul>
@@ -140,8 +140,8 @@
 <section id="fisheye-model">
 <h2>Fisheye model<a class="headerlink" href="#fisheye-model" title="Link to this heading"></a></h2>
 <p>This applies to the wide opening angle (O3R225) cameras. For these cameras, we use the fisheye distortion model as described below.</p>
-<section id="for-unprojection">
-<h3>For unprojection<a class="headerlink" href="#for-unprojection" title="Link to this heading"></a></h3>
+<section id="for-unprojection-intrinisc-calibration-model">
+<h3>For unprojection: intrinisc calibration model<a class="headerlink" href="#for-unprojection-intrinisc-calibration-model" title="Link to this heading"></a></h3>
 <p>This model is used for converting pixel positions to 3D vectors. It corresponds to <code class="docutils literal notranslate"><span class="pre">modelID=2</span></code>. The following formulas show how to apply the model:</p>
 <p><img alt="Fish eye model for unprojection" src="../../../_images/fisheye_unprojection.png" /></p>
 <p>Where</p>
@@ -151,8 +151,8 @@
 <li><p><img class="math" src="../../../_images/math/4e09827202145408fe98322e23515e1004de3e47.svg" alt="f_x, f_y, m_x, m_y, \alpha, k_1, k_2, k_3, k_4, \theta^*_{max}"/> are the model parameters obtained from the <code class="docutils literal notranslate"><span class="pre">modelParameters</span></code> array.</p></li>
 </ul>
 </section>
-<section id="for-projection">
-<h3>For projection<a class="headerlink" href="#for-projection" title="Link to this heading"></a></h3>
+<section id="for-projection-inverse-intrinsic-calibration-model">
+<h3>For projection: inverse intrinsic calibration model<a class="headerlink" href="#for-projection-inverse-intrinsic-calibration-model" title="Link to this heading"></a></h3>
 <p>This model is used for converting directions given as 3D vectors to pixel position. This corresponds to <code class="docutils literal notranslate"><span class="pre">modelID=3</span></code>. The following formulas show how to apply the model:</p>
 <p><img alt="Fish eye model for projection" src="../../../_images/fisheye_projection.png" /></p>
 <p>Where</p>
@@ -166,7 +166,8 @@
 <section id="bouguet-model">
 <h2>Bouguet model<a class="headerlink" href="#bouguet-model" title="Link to this heading"></a></h2>
 <section id="id1">
-<h3>For unprojection<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<h3>For unprojection: intrinisc calibration model<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>This model is used for converting pixel positions to 3D vectors. It corresponds to <code class="docutils literal notranslate"><span class="pre">modelID=0</span></code>. The following formulas show how to apply the model:</p>
 <p><img alt="Bouguet model for unprojection" src="../../../_images/bouguet_unprojection.png" /></p>
 <p>Where</p>
 <ul class="simple">
@@ -176,7 +177,8 @@
 </ul>
 </section>
 <section id="id2">
-<h3>For projection<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<h3>For projection: inverse intrinsic calibration model<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<p>This model is used for converting directions given as 3D vectors to pixel position. This corresponds to <code class="docutils literal notranslate"><span class="pre">modelID=1</span></code>. The following formulas show how to apply the model:</p>
 <p><img alt="Bouguet model for projection" src="../../../_images/bouguet_projection.png" /></p>
 <p>Where</p>
 <ul class="simple">
