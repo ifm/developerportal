@@ -12,35 +12,9 @@ The following factors have to be taken into consideration when integrating ODS i
 + Latencies.
 
 ## Mounting position
+The mounting position of the ODS cameras is very important to ensure optimal performance for the specific use case.
 
-The positioning of the cameras on the AGV has a great impact on the performance of ODS.
-
-Below are some things to take into account.
-
-### Mounting height
-
-The amount of light reflected from a surface in a diffuse reflection depends on the angle of incidence. The more light reaches the camera, the more robust the computed distance measurement.
-This means that, assuming that the camera is facing straight out, the higher the camera is mounted, the larger the angle of incidence on the floor plane, the more light is reflected from the floor back to the camera. This in turn leads to more robust distance measurements. 
-
-On the other hand, the lowest the camera is mounted, the less light is available which makes is more difficult to detect objects at long distances.
-In addition, if the camera is too close to the ground, reflection artifacts may occur and negatively impact measurement ranges.
-
-Another aspect to the mounting height is the distance from the camera to the object to detect. If the camera is mounted at a 2 meter height on a vehicle, it is already two meters away from any object on the floor. While this might be a good mounting position to detect cantilever objects that might collide with the top part of the vehicle, this would considerably decrease the ability to detect the floor and small objects on the floor.
-
-In general, we recommend mounting the cameras in a range of **250 mm to 700 mm** (vertically) from the ground. This is a good compromise to maximize the angle of incidence of light while ensuring that the camera is not mounted too far from potential object on the floor.
-
-### Dead zones
-
-Depending on the mounting position, dead zones might exist. ODS does not retain a memory of objects that have disappeared from the field of view into a dead zone. 
-It is important to take this into account and define a strategy to either cover the dead zones with additional cameras, or to incorporate these dead zones into the effective breaking distance calculation. 
-
-### Visual odometry
-
-The visual odometry is used in ODS along with IMU data to calculate the velocity of the vehicle. 
-For a fully functional system, the visual odometry needs to be available for at least one camera.
-Typically, visual odometry requires that pixels belonging to the floor be visible up to about 1 meter  under typical driving conditions.
-
-This might require the camera to be angle down is such a way to be able to see the floor in front or to the side (angled to the main driving direction) of the vehicle.
+We outline our mounting recommendations in [the ODS mounting documentation](../../Mounting/mounting.md).
 
 ## Type of cameras
 

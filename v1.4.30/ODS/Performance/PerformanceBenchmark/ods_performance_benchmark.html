@@ -90,12 +90,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../index_performance.html">Performance</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../PerformanceVerification/ods_performance_verification.html">Performance evaluation</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Performance benchmark</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#mounting-position">Mounting position</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#mounting-height">Mounting height</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#dead-zones">Dead zones</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#visual-odometry">Visual odometry</a></li>
-</ul>
-</li>
+<li class="toctree-l4"><a class="reference internal" href="#mounting-position">Mounting position</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#type-of-cameras">Type of cameras</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#floor-types">Floor types</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#movement-speed">Movement speed</a></li>
@@ -162,29 +157,8 @@
 </ul>
 <section id="mounting-position">
 <h2>Mounting position<a class="headerlink" href="#mounting-position" title="Link to this heading"></a></h2>
-<p>The positioning of the cameras on the AGV has a great impact on the performance of ODS.</p>
-<p>Below are some things to take into account.</p>
-<section id="mounting-height">
-<h3>Mounting height<a class="headerlink" href="#mounting-height" title="Link to this heading"></a></h3>
-<p>The amount of light reflected from a surface in a diffuse reflection depends on the angle of incidence. The more light reaches the camera, the more robust the computed distance measurement.
-This means that, assuming that the camera is facing straight out, the higher the camera is mounted, the larger the angle of incidence on the floor plane, the more light is reflected from the floor back to the camera. This in turn leads to more robust distance measurements.</p>
-<p>On the other hand, the lowest the camera is mounted, the less light is available which makes is more difficult to detect objects at long distances.
-In addition, if the camera is too close to the ground, reflection artifacts may occur and negatively impact measurement ranges.</p>
-<p>Another aspect to the mounting height is the distance from the camera to the object to detect. If the camera is mounted at a 2 meter height on a vehicle, it is already two meters away from any object on the floor. While this might be a good mounting position to detect cantilever objects that might collide with the top part of the vehicle, this would considerably decrease the ability to detect the floor and small objects on the floor.</p>
-<p>In general, we recommend mounting the cameras in a range of <strong>250 mm to 700 mm</strong> (vertically) from the ground. This is a good compromise to maximize the angle of incidence of light while ensuring that the camera is not mounted too far from potential object on the floor.</p>
-</section>
-<section id="dead-zones">
-<h3>Dead zones<a class="headerlink" href="#dead-zones" title="Link to this heading"></a></h3>
-<p>Depending on the mounting position, dead zones might exist. ODS does not retain a memory of objects that have disappeared from the field of view into a dead zone.
-It is important to take this into account and define a strategy to either cover the dead zones with additional cameras, or to incorporate these dead zones into the effective breaking distance calculation.</p>
-</section>
-<section id="visual-odometry">
-<h3>Visual odometry<a class="headerlink" href="#visual-odometry" title="Link to this heading"></a></h3>
-<p>The visual odometry is used in ODS along with IMU data to calculate the velocity of the vehicle.
-For a fully functional system, the visual odometry needs to be available for at least one camera.
-Typically, visual odometry requires that pixels belonging to the floor be visible up to about 1 meter  under typical driving conditions.</p>
-<p>This might require the camera to be angle down is such a way to be able to see the floor in front or to the side (angled to the main driving direction) of the vehicle.</p>
-</section>
+<p>The mounting position of the ODS cameras is very important to ensure optimal performance for the specific use case.</p>
+<p>We outline our mounting recommendations in <a class="reference internal" href="../../Mounting/mounting.html"><span class="std std-doc">the ODS mounting documentation</span></a>.</p>
 </section>
 <section id="type-of-cameras">
 <h2>Type of cameras<a class="headerlink" href="#type-of-cameras" title="Link to this heading"></a></h2>
@@ -217,7 +191,7 @@ Due to this fact, greater detection ranges, especially for small objects are ach
 Even though the O3R cameras utilize the infrared spectrum, a good rule of thumbs is that a floors that appear “reflective” for the human eye will most likely also be reflective in infrared.</p>
 <p>Three main things are impacted by the reflectivity and surface type of the floor:</p>
 <ul class="simple">
-<li><p>Floors that are very smooth without visible marks, like freshly painted floors, can be challenging for the <a class="reference internal" href="#visual-odometry">visual odometry</a> estimation.</p></li>
+<li><p>Floors that are very smooth without visible marks, like freshly painted floors, can be challenging for the <a class="reference internal" href="#visual-odometry"><span class="xref myst">visual odometry</span></a> estimation.</p></li>
 <li><p>Highly reflective floors can create stray light artifacts when the camera is mounted low. In this case, stray light can negatively impact the detection of small or low reflectivity objects.</p></li>
 <li><p>To reliably detect small objects (smaller than 10cm) on the floor, ODS relies partially on detecting the floor in the vicinity of the object. For highly reflective floors, the visible floor range is typically smaller. This means that performance detection for small objects might be degraded on highly reflective floors. For objects larger than 10 cm (vertically), this limitation does not apply.</p></li>
 </ul>

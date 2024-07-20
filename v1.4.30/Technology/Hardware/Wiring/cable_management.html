@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mounting instructions &mdash; O3R  documentation</title>
+  <title>Cable management &mdash; O3R  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
@@ -30,8 +30,6 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Coordinate systems" href="coordinate_systems.html" />
-    <link rel="prev" title="Available hardware" href="../hardware_specifications.html" />
     <!-- Google tag (gtag.js) -->
     <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
     <script>
@@ -66,31 +64,12 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../GettingStarted/index_getting_started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../Firmware/index.html">Firmware</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../index_technology.html">Technology</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="../index_hardware.html">Hardware</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../hardware_specifications.html">Available hardware</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Mounting</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="coordinate_systems.html">    Coordinate systems</a></li>
-<li class="toctree-l4"><a class="reference internal" href="heat_dissipation_guidelines.html">    Heat dissipation guidelines</a></li>
-<li class="toctree-l4"><a class="reference internal" href="clearance_area.html">    Clearance area requirements</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../camera_heads.html">Maintenance</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../PortsOverview/ports_overview.html">Ports overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../configuration.html">Configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../2D/2d.html">2D Cameras</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../3D/index_3d.html">3D Cameras</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../VPU/index_vpu.html">VPU</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../SystemVerification/index_system_verification.html">System Verification</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../index_technology.html">Technology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../ODS/index_ods.html">ODS</a></li>
@@ -112,11 +91,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../index_technology.html">Technology</a></li>
-          <li class="breadcrumb-item"><a href="../index_hardware.html">O3R platform hardware</a></li>
-      <li class="breadcrumb-item active">Mounting instructions</li>
+      <li class="breadcrumb-item active">Cable management</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/Technology/Hardware/Mounting/index_mounting.md.txt" rel="nofollow"> View page source</a>
+            <a href="../../../_sources/Technology/Hardware/Wiring/cable_management.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -124,27 +101,35 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="mounting-instructions">
-<h1>Mounting instructions<a class="headerlink" href="#mounting-instructions" title="Link to this heading"></a></h1>
-<p>When installing an O3R platform on a system, it is crucial to pay attention to two main aspects: ensuring proper heat dissipation to avoid overheating, and providing enough empty space in front of and around the camera to avoid unwanted artifacts.</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="coordinate_systems.html">    Coordinate systems</a></li>
-<li class="toctree-l1"><a class="reference internal" href="heat_dissipation_guidelines.html">    Heat dissipation guidelines</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="heat_dissipation_guidelines.html#power-consumption">Power consumption</a></li>
-<li class="toctree-l2"><a class="reference internal" href="heat_dissipation_guidelines.html#vpu-mounting-for-heat-dissipation">VPU mounting for heat dissipation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="heat_dissipation_guidelines.html#camera-mounting-for-heat-dissipation">Camera mounting for heat dissipation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="heat_dissipation_guidelines.html#additional-resources-theory-of-heat-sink-design">Additional resources: theory of heat sink design</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="clearance_area.html">    Clearance area requirements</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="clearance_area.html#o3r225">O3R225</a></li>
-<li class="toctree-l2"><a class="reference internal" href="clearance_area.html#o3r222">O3R222</a></li>
-<li class="toctree-l2"><a class="reference internal" href="clearance_area.html#examples">Examples</a></li>
-</ul>
-</li>
-</ul>
-</div>
+  <section id="cable-management">
+<h1>Cable management<a class="headerlink" href="#cable-management" title="Link to this heading"></a></h1>
+<p>Cable management is essential to improved safety, reliability, efficiency, and maintenance. Therefore we recommend the following tips for cable management.</p>
+<section id="cable-type-and-size">
+<h2>Cable type and size<a class="headerlink" href="#cable-type-and-size" title="Link to this heading"></a></h2>
+<p>Using the right length and type of cable is an effective way to keep the cables organized.
+ifm provides multiple standard cable length: 1, 2, 5, 10 and 15 meters.</p>
+<p>The 10 m and 15 m cables are drag chain compatible and should be used when high flex is required.
+The drag chain compatible cables should be used with the adapters ifm E3R112.</p>
+</section>
+<section id="ip-rating">
+<h2>IP rating<a class="headerlink" href="#ip-rating" title="Link to this heading"></a></h2>
+<p>The cables have an IP rating of <code class="docutils literal notranslate"><span class="pre">IP54</span></code>, which means they are protected against limited ingress of dust and water, but are not completely waterproof.
+This IP rating applies to both ends of the cable, meaning that liquid ingress is reduced both at the head connector itself and at the connector to the OVP (VPU) to reduce capillary effects.
+The FAKRA connector to the OVP VPU housing is rated at <code class="docutils literal notranslate"><span class="pre">IP50</span></code> - the same as the OVP itself.</p>
+<p>It’s important to note that while IP54-rated cables offer some level of protection against dust and water, they may not be suitable for use in extremely wet or dusty environments. Please see the respective norms as a part of the cable specification sheets <a class="reference external" href="https://www.ifm.com">online</a></p>
+</section>
+<section id="preventing-ground-loops">
+<h2>Preventing ground loops<a class="headerlink" href="#preventing-ground-loops" title="Link to this heading"></a></h2>
+<p>The VPU-camera-head system is tested for international electromagnetic conformance standards and immunity to the effects of surrounding signals and electrostatic discharge.
+Nonetheless, care must be taken in the integration of the system to prevent the formation of ground loops.</p>
+<p>Ground loops are openings in the ground plane which enable surrounding electrical noise to be coupled into the ground plane.
+A ground loop can be formed with the O3R platform via the connection loop camera - OVP - vehicle - bracket - camera.
+Preventing ground loops contributes to signal integrity throughout the electrical assembly.</p>
+<p>For most camera mounting positions on a vehicle, an aluminum or steel bracket is required for heat dissipation.
+When mounted directly to the vehicle chassis, this result can result in an electrical bond.
+The electrical bond formed by the contact between the mounting screws and the mounting bracket can be eliminated by using insulating bushings, ifm E3R200.
+These bushings combined with the insulating exterior coating on the camera heads can electrically isolate the head from its mounting while preserving the thermal bond.</p>
+</section>
 </section>
 
 

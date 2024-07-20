@@ -4,6 +4,7 @@ When installing an O3R platform on a system, it is crucial to pay attention to t
 
 :::{toctree}
     :maxdepth: 2
-Heat dissipation guidelines <heat_dissipation_guidelines>
-Clearance area requirements <clearance_area>
+    Coordinate systems <coordinate_systems>
+    Heat dissipation guidelines <heat_dissipation_guidelines>
+    Clearance area requirements <clearance_area>
 :::

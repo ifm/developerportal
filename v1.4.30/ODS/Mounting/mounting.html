@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Camera mounting &mdash; O3R  documentation</title>
+  <title>Camera mounting for ODS &mdash; O3R  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
@@ -77,8 +77,13 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../index_ods.html">ODS</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Mounting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#coordinate-systems">Coordinate systems</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cable-management">Cable management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mounting-position">Mounting position</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mounting-height-recommendations">Mounting height recommendations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#visual-odometry">Visual odometry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#clearance-area">Clearance area</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dead-zones">Dead zones</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../Instantiation/instantiation.html">Instantiation</a></li>
@@ -117,7 +122,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index_ods.html">ODS (Obstacle Detection System)</a></li>
-      <li class="breadcrumb-item active">Camera mounting</li>
+      <li class="breadcrumb-item active">Camera mounting for ODS</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/ODS/Mounting/mounting.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -127,36 +132,51 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="camera-mounting">
-<h1>Camera mounting<a class="headerlink" href="#camera-mounting" title="Link to this heading"></a></h1>
-<p>The type of camera and mounting position of the camera will directly influence the performance of ODS.
-However, the ODS detection range is limited to a maximum of 4 m. Based on the camera head chosen, mounting height is the second most important factor for influencing detection range.</p>
-<p>Additionally, visual odometry has to be enabled and functional in firmware 1.0.14 to estimate the AGVs / ARMs egomotion.
-For visual odometry, a large portion of the floor should be present in the field of view of at least one camera. To achieve this, the recommended mounting height is in the range of 250 mm to 700 mm from the ground. To know more about the factors that could influence the performance of ODS and to start benchmarking please refer to this <a class="reference internal" href="../Performance/PerformanceBenchmark/ods_performance_benchmark.html"><span class="std std-doc">document</span></a>.</p>
-<section id="coordinate-systems">
-<h2>Coordinate systems<a class="headerlink" href="#coordinate-systems" title="Link to this heading"></a></h2>
-<p>For the camera heads and VPU calibration, it is very important to know the position of the coordinate system’s origin of respective hardware components. These coordinate reference frame origins should be considered as a reference to camera heads / VPU while measuring the mounting positions on the AGV / AMR.</p>
-<p>The camera head’s coordinate system origin is in the center of four mounting screws at the mounting plane of the head as shown in the figure below.</p>
-<p><img alt="Head coordinate system" src="../../_images/head_coordinate_system1.png" /></p>
-<p>The VPU’s coordinate system origin lies at the center of the VPU mechanical interface, that is also the center of four mounting screws at the mounting plane.</p>
-<p><img alt="VPU coordinate system" src="../../_images/VPU_coordinate_system.png" /></p>
-</section>
-<section id="cable-management">
-<h2>Cable management<a class="headerlink" href="#cable-management" title="Link to this heading"></a></h2>
-<p>Cable management is essential for AGVs / AMRs for improved safety, reliability, efficiency, and maintenance. Therefore we recommend the following tips for cable management.</p>
-<ul class="simple">
-<li><p>Before installing the cables, plan the layout of the cables and the paths. Take considering of the power source, control units or any other interfaces used in AGV / AMRs. This reduces the of damage to the cables and EMC &amp; ESD interference.</p></li>
-<li><p>Using the right size and type of cable is an effective way to keep the cables organized: please get in touch with your ifm sales engineer for more information about drag chain compatible HFM cables and HFM / FAKRA cable adapters and different cable lengths.</p></li>
-<li><p>Labeling the cables is very important to keep track of what they are and where they end up. This helps to troubleshoot any issues that can arise and makes it easier to perform maintenance / repairs. ifm’s HFM cables (E3R1xx) cables come pre-labeled for their respective 2D and 3D imager data stream cables.</p></li>
-<li><p>Strain relief can help to prevent damage to your cables by reducing the amount of tension or pulling force that is applied to them. This is especially important in areas where the cables may be subjected to movement and / or vibration.</p></li>
-</ul>
-<p>These cables have an IP rating of <code class="docutils literal notranslate"><span class="pre">IP54</span></code>, that is the O3R camera head connector FAKRA plug, which is protected against limited ingress of dust and water but is not completely waterproof.
-The FAKRA connector to the VPU housing is rated at <code class="docutils literal notranslate"><span class="pre">IP50</span></code> - the same as the VPU itself.</p>
-<p>It’s important to note that while IP54-rated cables offer some level of protection against dust and water, they may not be suitable for use in extremely wet or dusty environments. Please see the respective norms as a part of the cable specification sheets <a class="reference external" href="https://www.ifm.com">online</a></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The section about camera head maintenance and cleaning was moved to <a class="reference internal" href="../../Technology/Hardware/camera_heads.html#cleaning-camera-heads"><span class="std std-ref">the technology section of the website</span></a>.</p>
+  <section id="camera-mounting-for-ods">
+<h1>Camera mounting for ODS<a class="headerlink" href="#camera-mounting-for-ods" title="Link to this heading"></a></h1>
+<div class="admonition-highlights admonition">
+<p class="admonition-title">Highlights</p>
+<p>Review the general mounting instructions to comply with <a class="reference internal" href="../../Technology/Hardware/Mounting/heat_dissipation_guidelines.html"><span class="std std-doc">heat dissipation guidelines</span></a> and <a class="reference internal" href="../../Technology/Hardware/Mounting/clearance_area.html"><span class="std std-doc">clearance area requirements</span></a>.</p>
+<p>Generally, we recommend mounting the lowest camera at a height in the range of 250 to 700 mm from the ground.</p>
+<p>Additionally, at least one of the active cameras should have the floor in its field of view,  with visible floor up to 1 m, to allow for optimal performance in motion.</p>
 </div>
+<p>The positioning of the cameras on the AGV has a great impact on the performance of ODS.
+When defining the mounting position one or several cameras in this context, multiple things have to be taken into account.</p>
+<p>First, review <a class="reference internal" href="../../Technology/Hardware/Mounting/index_mounting.html"><span class="std std-doc">the general mounting instructions</span></a> to ensure that the heat dissipation and clearance area guidelines are respected.</p>
+<p>Then, there are a couple additional things to take into account specifically for ODS cameras.</p>
+<section id="mounting-position">
+<h2>Mounting position<a class="headerlink" href="#mounting-position" title="Link to this heading"></a></h2>
+<section id="mounting-height-recommendations">
+<h3>Mounting height recommendations<a class="headerlink" href="#mounting-height-recommendations" title="Link to this heading"></a></h3>
+<p>Mounting height is important for all cameras, but it is especially critical for cameras that will be used to detect small objects on the floor.</p>
+<p>The amount of light reflected from a surface in a diffuse reflection depends on the angle of incidence. The higher the angle of incidence, the more light typically reaches the camera and the more robust the computed distance measurement.
+This means that, the more the camera is tilted towards the floor, the larger the angle of incidence on the floor plane, the more light is reflected from the floor back to the camera. This in turn leads to more robust distance measurements.</p>
+<p>On the other hand, if the camera is too close to the ground, reflection artifacts can occur and negatively affect the measurement ranges.</p>
+<p>Another aspect of mounting height is the distance from the camera to the object to be detected. If the camera is mounted on a vehicle at a height of 2 meters, it is already 2 meters away from any object on the ground. While this may be a good mounting position to detect cantilevered objects that might collide with the top of the vehicle, it would significantly reduce the ability to detect the ground and small objects on the ground.</p>
+<p>With these three considerations in mind, we recommend that the lowest cameras be mounted within a range of <strong>250mm to 700mm</strong> (vertically) from the floor, and possibly tilted down up to 20 degrees. This is a good compromise to maximize the angle of incidence of the light while ensuring that the camera is not too far from the potential object on the ground and is not overly affected by artifacts.</p>
+<p>For cameras that are only used to detect cantilevered objects and are not expected to segment small objects from the ground, the mounting requirements are relaxed and the camera can be mounted higher and pointed upward.</p>
+<!-- 
+#### Examples
+TODO add example images. -->
+</section>
+</section>
+<section id="visual-odometry">
+<h2>Visual odometry<a class="headerlink" href="#visual-odometry" title="Link to this heading"></a></h2>
+<p>Visual odometry is used in ODS along with IMU data to calculate the ego motion (linear velocity, angular velocity) of the vehicle.
+For a fully functional system, the visual odometry information needs to be available for at least one active camera at all times.
+Typically, visual odometry requires that pixels associated with the ground be visible up to about 1 meter under typical driving conditions.</p>
+<p>This may require angling the camera down to see the ground in front of or to the side of the vehicle.</p>
+</section>
+<section id="clearance-area">
+<h2>Clearance area<a class="headerlink" href="#clearance-area" title="Link to this heading"></a></h2>
+<p>It is worth repeating that special attention should be paid to the clearance requirements for each camera.
+Any object obstructing the field of view or the clearance area will have a noticeable negative impact on ODS performance.</p>
+<p>Refer to the <a class="reference internal" href="../../Technology/Hardware/Mounting/clearance_area.html"><span class="std std-doc">clearance area guidelines</span></a>.</p>
+</section>
+<section id="dead-zones">
+<h2>Dead zones<a class="headerlink" href="#dead-zones" title="Link to this heading"></a></h2>
+<p>Depending on the mounting position, dead zones may exist. ODS does not retain a memory of objects that have disappeared from the field of view into a dead zone.
+It is important to take this into account and define a strategy to either cover the dead zones with additional cameras, or to incorporate these dead zones into the effective breaking distance calculation.</p>
 </section>
 </section>
 

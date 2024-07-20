@@ -1,39 +1,59 @@
 
-# Camera mounting
+# Camera mounting for ODS
 
-The type of camera and mounting position of the camera will directly influence the performance of ODS.
-However, the ODS detection range is limited to a maximum of 4 m. Based on the camera head chosen, mounting height is the second most important factor for influencing detection range.
+:::{admonition} Highlights
+Review the general mounting instructions to comply with [heat dissipation guidelines](../../Technology/Hardware/Mounting/heat_dissipation_guidelines.md) and [clearance area requirements](../../Technology/Hardware/Mounting/clearance_area.md).
 
-Additionally, visual odometry has to be enabled and functional in firmware 1.0.14 to estimate the AGVs / ARMs egomotion.
-For visual odometry, a large portion of the floor should be present in the field of view of at least one camera. To achieve this, the recommended mounting height is in the range of 250 mm to 700 mm from the ground. To know more about the factors that could influence the performance of ODS and to start benchmarking please refer to this [document](../Performance/PerformanceBenchmark/ods_performance_benchmark.md).
+Generally, we recommend mounting the lowest camera at a height in the range of 250 to 700 mm from the ground.
 
-## Coordinate systems
-
-For the camera heads and VPU calibration, it is very important to know the position of the coordinate system's origin of respective hardware components. These coordinate reference frame origins should be considered as a reference to camera heads / VPU while measuring the mounting positions on the AGV / AMR.
-
-The camera head's coordinate system origin is in the center of four mounting screws at the mounting plane of the head as shown in the figure below.
-
-![Head coordinate system](img/head_coordinate_system.png)
-
-The VPU's coordinate system origin lies at the center of the VPU mechanical interface, that is also the center of four mounting screws at the mounting plane.
-
-![VPU coordinate system](img/VPU_coordinate_system.png)
-
-## Cable management
-
-Cable management is essential for AGVs / AMRs for improved safety, reliability, efficiency, and maintenance. Therefore we recommend the following tips for cable management.
-
-- Before installing the cables, plan the layout of the cables and the paths. Take considering of the power source, control units or any other interfaces used in AGV / AMRs. This reduces the of damage to the cables and EMC & ESD interference.
-- Using the right size and type of cable is an effective way to keep the cables organized: please get in touch with your ifm sales engineer for more information about drag chain compatible HFM cables and HFM / FAKRA cable adapters and different cable lengths.
-- Labeling the cables is very important to keep track of what they are and where they end up. This helps to troubleshoot any issues that can arise and makes it easier to perform maintenance / repairs. ifm's HFM cables (E3R1xx) cables come pre-labeled for their respective 2D and 3D imager data stream cables.
-- Strain relief can help to prevent damage to your cables by reducing the amount of tension or pulling force that is applied to them. This is especially important in areas where the cables may be subjected to movement and / or vibration.
-
-
-These cables have an IP rating of `IP54`, that is the O3R camera head connector FAKRA plug, which is protected against limited ingress of dust and water but is not completely waterproof.
-The FAKRA connector to the VPU housing is rated at `IP50` - the same as the VPU itself.
-
-It's important to note that while IP54-rated cables offer some level of protection against dust and water, they may not be suitable for use in extremely wet or dusty environments. Please see the respective norms as a part of the cable specification sheets [online](https://www.ifm.com)
-
-:::{note}
-The section about camera head maintenance and cleaning was moved to [the technology section of the website](../../Technology/Hardware/camera_heads.md#cleaning-camera-heads).
+Additionally, at least one of the active cameras should have the floor in its field of view,  with visible floor up to 1 m, to allow for optimal performance in motion. 
 :::
+
+The positioning of the cameras on the AGV has a great impact on the performance of ODS.
+When defining the mounting position one or several cameras in this context, multiple things have to be taken into account.
+
+First, review [the general mounting instructions](../../Technology/Hardware/Mounting/index_mounting.md) to ensure that the heat dissipation and clearance area guidelines are respected.
+
+Then, there are a couple additional things to take into account specifically for ODS cameras.
+
+### Mounting position
+
+#### Mounting height recommendations
+
+Mounting height is important for all cameras, but it is especially critical for cameras that will be used to detect small objects on the floor.
+
+The amount of light reflected from a surface in a diffuse reflection depends on the angle of incidence. The higher the angle of incidence, the more light typically reaches the camera and the more robust the computed distance measurement.
+This means that, the more the camera is tilted towards the floor, the larger the angle of incidence on the floor plane, the more light is reflected from the floor back to the camera. This in turn leads to more robust distance measurements. 
+
+On the other hand, if the camera is too close to the ground, reflection artifacts can occur and negatively affect the measurement ranges.
+
+Another aspect of mounting height is the distance from the camera to the object to be detected. If the camera is mounted on a vehicle at a height of 2 meters, it is already 2 meters away from any object on the ground. While this may be a good mounting position to detect cantilevered objects that might collide with the top of the vehicle, it would significantly reduce the ability to detect the ground and small objects on the ground.
+
+With these three considerations in mind, we recommend that the lowest cameras be mounted within a range of **250mm to 700mm** (vertically) from the floor, and possibly tilted down up to 20 degrees. This is a good compromise to maximize the angle of incidence of the light while ensuring that the camera is not too far from the potential object on the ground and is not overly affected by artifacts.
+
+For cameras that are only used to detect cantilevered objects and are not expected to segment small objects from the ground, the mounting requirements are relaxed and the camera can be mounted higher and pointed upward. 
+
+<!-- 
+#### Examples
+TODO add example images. -->
+
+
+### Visual odometry
+
+Visual odometry is used in ODS along with IMU data to calculate the ego motion (linear velocity, angular velocity) of the vehicle. 
+For a fully functional system, the visual odometry information needs to be available for at least one active camera at all times.
+Typically, visual odometry requires that pixels associated with the ground be visible up to about 1 meter under typical driving conditions.
+
+This may require angling the camera down to see the ground in front of or to the side of the vehicle.
+
+### Clearance area
+
+It is worth repeating that special attention should be paid to the clearance requirements for each camera. 
+Any object obstructing the field of view or the clearance area will have a noticeable negative impact on ODS performance.
+
+Refer to the [clearance area guidelines](../../Technology/Hardware/Mounting/clearance_area.md).
+
+### Dead zones
+
+Depending on the mounting position, dead zones may exist. ODS does not retain a memory of objects that have disappeared from the field of view into a dead zone. 
+It is important to take this into account and define a strategy to either cover the dead zones with additional cameras, or to incorporate these dead zones into the effective breaking distance calculation. 

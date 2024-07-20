@@ -57,7 +57,7 @@ Considering the clearance area requirements listed above, below are two examples
 | With this mounting position, the clearance area is respected                  | With these mounting positions, the clearance area is not respected.<br>The vehicle body is obstructing the corner of the clearance area. |
 | ![Correct mounting position: clearance area respected](img/good_mounting.png) | ![Incorrect mounting position: obstruction in the clearance area](img/bad_mounting.png)                                                  |
 |                                                                               | ![Another example of poor mounting position where the clearance area is not respected](img/bad_mounting_2.png)                           |
-| | ![Example of bad mounting position where the the clearane area is obstructed along the horizontal axis](img/bad_mounting_side.png) |
+| | ![Example of bad mounting position where the clearance area is obstructed along the horizontal axis](img/bad_mounting_side.png) |
 
 :::{warning}
 Pay particular attention to parts of the vehicle that could obstruct the clearance area in corners, or further away than the robot shell itself.
