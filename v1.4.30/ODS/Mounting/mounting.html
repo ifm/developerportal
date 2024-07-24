@@ -79,6 +79,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Mounting</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#mounting-position">Mounting position</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#mounting-height-recommendations">Mounting height recommendations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#visual-odometry">Visual odometry</a></li>
@@ -155,9 +156,47 @@ This means that, the more the camera is tilted towards the floor, the larger the
 <p>Another aspect of mounting height is the distance from the camera to the object to be detected. If the camera is mounted on a vehicle at a height of 2 meters, it is already 2 meters away from any object on the ground. While this may be a good mounting position to detect cantilevered objects that might collide with the top of the vehicle, it would significantly reduce the ability to detect the ground and small objects on the ground.</p>
 <p>With these three considerations in mind, we recommend that the lowest cameras be mounted within a range of <strong>250mm to 700mm</strong> (vertically) from the floor, and possibly tilted down up to 20 degrees. This is a good compromise to maximize the angle of incidence of the light while ensuring that the camera is not too far from the potential object on the ground and is not overly affected by artifacts.</p>
 <p>For cameras that are only used to detect cantilevered objects and are not expected to segment small objects from the ground, the mounting requirements are relaxed and the camera can be mounted higher and pointed upward.</p>
-<!-- 
-#### Examples
-TODO add example images. -->
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h3>
+<p>Below are two examples of mounting positions for ODS.</p>
+<p>The first example shows a typical AMR platform, with one camera on each side.
+In this example, each camera is an O3R225, which has a wide opening angle and minimizes the blind spots around the vehicle. The four cameras create 3D obstacle awareness around the vehicle.
+<img alt="Full view of the AMR with front and side cameras" src="../../_images/o3r-mounting-amr-2.png" /></p>
+<p>All cameras are mounted at 30 cm above the ground plane, and are facing straight out, perpendicular to the side on which they are mounted.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><img alt="O3R mounting, front AMR camera" src="../../_images/o3r-mounting-amr-1.png" /></p></td>
+<td><p><img alt="O3R mounting, side AMR camera" src="../../_images/o3r-mounting-amr-3.png" /></p></td>
+</tr>
+</tbody>
+</table>
+<p>The second example shows a typical fork truck, where two cameras are mounted on the front of the vehicle.
+Due to the size of the vehicle, two cameras are needed to minimize blind spots in the vertical axis.
+The lower camera is an O3R222, which is the narrow field of view camera. It is tilted down and is used to detect small objects on the floor at longer distances.
+The higher camera is an O3R225, which is the wide field of view camera. It is tilted up and is used to detect overhanging obstacles that could damage the top part of the vehicle.
+Both cameras are mounted at around 70 cm height.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><img alt="Example of camera mounting on a fork truck, general view" src="../../_images/fork-lift-1.png" /></p></td>
+<td><p><img alt="Example of camera mounting on a fork truck, close up view" src="../../_images/fork-lift-2.png" /></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These images are intended as examples only and do not represent an actual at-scale model.</p>
+</div>
 </section>
 </section>
 <section id="visual-odometry">

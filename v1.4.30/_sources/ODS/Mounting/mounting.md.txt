@@ -33,10 +33,33 @@ With these three considerations in mind, we recommend that the lowest cameras be
 
 For cameras that are only used to detect cantilevered objects and are not expected to segment small objects from the ground, the mounting requirements are relaxed and the camera can be mounted higher and pointed upward. 
 
-<!-- 
-#### Examples
-TODO add example images. -->
 
+#### Examples
+Below are two examples of mounting positions for ODS.
+
+The first example shows a typical AMR platform, with one camera on each side.
+In this example, each camera is an O3R225, which has a wide opening angle and minimizes the blind spots around the vehicle. The four cameras create 3D obstacle awareness around the vehicle.
+![Full view of the AMR with front and side cameras](img/o3r-mounting-amr-2.png)
+
+All cameras are mounted at 30 cm above the ground plane, and are facing straight out, perpendicular to the side on which they are mounted.
+
+|                                                               |                                                              |
+| ------------------------------------------------------------- | ------------------------------------------------------------ |
+| ![O3R mounting, front AMR camera](img/o3r-mounting-amr-1.png) | ![O3R mounting, side AMR camera](img/o3r-mounting-amr-3.png) |
+
+The second example shows a typical fork truck, where two cameras are mounted on the front of the vehicle.
+Due to the size of the vehicle, two cameras are needed to minimize blind spots in the vertical axis. 
+The lower camera is an O3R222, which is the narrow field of view camera. It is tilted down and is used to detect small objects on the floor at longer distances.
+The higher camera is an O3R225, which is the wide field of view camera. It is tilted up and is used to detect overhanging obstacles that could damage the top part of the vehicle.
+Both cameras are mounted at around 70 cm height.
+
+|                                                                                     |                                                                                    |
+| ----------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| ![Example of camera mounting on a fork truck, general view](./img/fork-lift-1.png) | ![Example of camera mounting on a fork truck, close up view](./img/fork-lift-2.png) |
+
+:::{note}
+These images are intended as examples only and do not represent an actual at-scale model.
+:::
 
 ### Visual odometry
 
