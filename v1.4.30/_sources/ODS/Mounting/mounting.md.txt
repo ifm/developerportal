@@ -50,7 +50,7 @@ All cameras are mounted at 30 cm above the ground plane, and are facing straight
 The second example shows a typical fork truck, where two cameras are mounted on the front of the vehicle.
 Due to the size of the vehicle, two cameras are needed to minimize blind spots in the vertical axis. 
 The lower camera is an O3R222, which is the narrow field of view camera. It is tilted down and is used to detect small objects on the floor at longer distances.
-The higher camera is an O3R225, which is the wide field of view camera. It is tilted up and is used to detect overhanging obstacles that could damage the top part of the vehicle.
+The upper camera is an O3R225, which is the wide field of view camera. It is tilted up and is used to detect overhanging obstacles that could damage the top part of the vehicle.
 Both cameras are mounted at around 70 cm height.
 
 |                                                                                     |                                                                                    |
