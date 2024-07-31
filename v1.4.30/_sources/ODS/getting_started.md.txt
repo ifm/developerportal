@@ -1,55 +1,64 @@
 # Getting started with ODS
 
+<!-- To get started with ODS, we recommend reviewing our "How to" video:
+
+TODO: import ODS getting started video -->
+
+This document briefly outlines the main steps for getting started with the ifm ODS solution on the O3R perception platform.
+
 ## Prerequisites
 
-It is expected that there is a running system. Please refer to [the unboxing section](../GettingStarted/index_getting_started).
+- An OVP801 or OVP811 device (this comes with the required ODS app pre-installed),
+- One or more cameras, O3R222 or O3R225,
+- An Ethernet cable, FAKRA cable and power supply as specified in [the wiring instructions](../GettingStarted/Unboxing/hw_unboxing.md),
+- The ifm Vision Assistant, which is the standard GUI from ifm used to interface with all 3D cameras (download the latest version on [ifm.com](https://www.ifm.com)),
 
-A typical procedure would be:
-- connect M04239-VPU with heads and power supply
-- boot-up the system
-- connect with iVA
-- verify that live images are received
+## Step 0: Setup
 
+First, make sure to properly wire the O3R perception platform. You can follow [the wiring instructions](../GettingStarted/Unboxing/hw_unboxing.md).
 
+Once the OVP8xx and cameras are wired, open up the ifm Vision Assistant and make sure you can connect to the O3R platform and are able to receive data. 
 
 ## Step 1: Extrinsic calibration
-The parameters to transform the camera coordinate system into the user coordinate system are called extrinsic calibration parameters. Without the extrinsic calibration parameters ODS will not work properly.
-For a tabletop setup, from which accurate results are not expected, the calibration parameters should be set to the following values:
-- transX: 0
-- transY: 0
-- transZ: 0.1
-- rotX: -1.57
-- rotY: 1.57
-- rotZ: 0
+
+Use the calibration wizard in the ifm Vision Assistant to calibrate each camera.
+
+![Open the Vision Assistant calibration wizard](img/open_iVA_calib_wizard.png)
+
+![Calibrate the 3D camera like a vehicle from camera](img/calibrate_3D_cam.png)
+
+The calibration steps shown assume that the camera is positioned horizontally, facing forward, at a height of 50 cm from the floor. If your setup is different, adjust the rotation and translation values.
 
 
-## Step 2: Using iVA for ODS
+## Step 2: Create an ODS application
 
-These are the steps to start ODS in the iVA:
-- Instantiate the ODS Application
-  - open application-tab
-  - click on the + - symbol -> a list of applications should appear
-  - click on ODS  -> ODS parameters should appear
+In the "Application" tab, create an ODS application instance.
+![Create an ODS application](img/create_ods_app.png)
 
-  ! Oops, that didn't work ! --> verify a M04239 VPU with ODS license is used.
+An application instance is created with default settings. By default, all connected 3D ports are added to the list of ports for the ODS app to use.
+![Default ODS application](img/default_ods_app.png)
 
-- Configure ODS parameters
-  - (this step is not needed for a table top demonstration)
+:::{note}
+When first instantiating the application, diagnostic messages may appear at the bottom of the screen. 
+The ODS application performs some checks related to the motion of the vehicle, which may take some time to succeed while the application is running. Typically, these will disappear after the ODS has been able to initialize properly.
+:::
 
-- Start ODS
-  - set ODS-state to "RUN" -> the live occupancy grid should appear
+## Step 3: Start ODS
 
-  ! Oops, that didn't work ! --> change the extrinsic parameters to the suggested values above.
+To start ODS, you can simply set the `state` parameter to `"RUN"`:
+![Start the ODS applications. The occupancy grid appears.](img/start_ods.png)
 
-- Play with display
-  - the application tab only shows the occupancy grid (white grid pattern marks occupied areas)
-  - change to monitor tab -> the point cloud and the occupancy grid are shown
+Once the application is running, objects identified as obstacles will appear in the occupancy grid.
 
-watch the video:
+
+You can also activate the default zones, by clicking on the "Set Example Zones" button:
+![Activate three example zones](img/zones.png)
+
+Watch the video:
 ![Create a new ODS Application instance](img/start_ods.gif)
 
 :::{note}
-For better visualization of the point cloud when using ODS, use the Frame Filter from the `View Options` in the  `Monitor` window. The frame filter does not change the Mode for any Ports as this is only used for visualization purposes.
+If you notice that the point cloud appears to flicker in the visualization, you can use the frame filter. The frame filter does not change the parameters of any port and is used for visualization purposes only.
 
   ![Frame Filter](img/frame_filter.png)
 :::

@@ -77,8 +77,10 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index_ods.html">ODS</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Getting started</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-0-setup">Step 0: Setup</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#step-1-extrinsic-calibration">Step 1: Extrinsic calibration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#step-2-using-iva-for-ods">Step 2: Using iVA for ODS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-2-create-an-ods-application">Step 2: Create an ODS application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#step-3-start-ods">Step 3: Start ODS</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="Mounting/mounting.html">Mounting</a></li>
@@ -130,65 +132,55 @@
              
   <section id="getting-started-with-ods">
 <h1>Getting started with ODS<a class="headerlink" href="#getting-started-with-ods" title="Link to this heading"></a></h1>
+<!-- To get started with ODS, we recommend reviewing our "How to" video:
+
+TODO: import ODS getting started video -->
+<p>This document briefly outlines the main steps for getting started with the ifm ODS solution on the O3R perception platform.</p>
 <section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
-<p>It is expected that there is a running system. Please refer to <a class="reference internal" href="../GettingStarted/index_getting_started.html"><span class="doc std std-doc">the unboxing section</span></a>.</p>
-<p>A typical procedure would be:</p>
 <ul class="simple">
-<li><p>connect M04239-VPU with heads and power supply</p></li>
-<li><p>boot-up the system</p></li>
-<li><p>connect with iVA</p></li>
-<li><p>verify that live images are received</p></li>
+<li><p>An OVP801 or OVP811 device (this comes with the required ODS app pre-installed),</p></li>
+<li><p>One or more cameras, O3R222 or O3R225,</p></li>
+<li><p>An Ethernet cable, FAKRA cable and power supply as specified in <a class="reference internal" href="../GettingStarted/Unboxing/hw_unboxing.html"><span class="std std-doc">the wiring instructions</span></a>,</p></li>
+<li><p>The ifm Vision Assistant, which is the standard GUI from ifm used to interface with all 3D cameras (download the latest version on <a class="reference external" href="https://www.ifm.com">ifm.com</a>),</p></li>
 </ul>
+</section>
+<section id="step-0-setup">
+<h2>Step 0: Setup<a class="headerlink" href="#step-0-setup" title="Link to this heading"></a></h2>
+<p>First, make sure to properly wire the O3R perception platform. You can follow <a class="reference internal" href="../GettingStarted/Unboxing/hw_unboxing.html"><span class="std std-doc">the wiring instructions</span></a>.</p>
+<p>Once the OVP8xx and cameras are wired, open up the ifm Vision Assistant and make sure you can connect to the O3R platform and are able to receive data.</p>
 </section>
 <section id="step-1-extrinsic-calibration">
 <h2>Step 1: Extrinsic calibration<a class="headerlink" href="#step-1-extrinsic-calibration" title="Link to this heading"></a></h2>
-<p>The parameters to transform the camera coordinate system into the user coordinate system are called extrinsic calibration parameters. Without the extrinsic calibration parameters ODS will not work properly.
-For a tabletop setup, from which accurate results are not expected, the calibration parameters should be set to the following values:</p>
-<ul class="simple">
-<li><p>transX: 0</p></li>
-<li><p>transY: 0</p></li>
-<li><p>transZ: 0.1</p></li>
-<li><p>rotX: -1.57</p></li>
-<li><p>rotY: 1.57</p></li>
-<li><p>rotZ: 0</p></li>
-</ul>
+<p>Use the calibration wizard in the ifm Vision Assistant to calibrate each camera.</p>
+<p><img alt="Open the Vision Assistant calibration wizard" src="../_images/open_iVA_calib_wizard.png" /></p>
+<p><img alt="Calibrate the 3D camera like a vehicle from camera" src="../_images/calibrate_3D_cam.png" /></p>
+<p>The calibration steps shown assume that the camera is positioned horizontally, facing forward, at a height of 50 cm from the floor. If your setup is different, adjust the rotation and translation values.</p>
 </section>
-<section id="step-2-using-iva-for-ods">
-<h2>Step 2: Using iVA for ODS<a class="headerlink" href="#step-2-using-iva-for-ods" title="Link to this heading"></a></h2>
-<p>These are the steps to start ODS in the iVA:</p>
-<ul>
-<li><p>Instantiate the ODS Application</p>
-<ul class="simple">
-<li><p>open application-tab</p></li>
-<li><p>click on the + - symbol -&gt; a list of applications should appear</p></li>
-<li><p>click on ODS  -&gt; ODS parameters should appear</p></li>
-</ul>
-<p>! Oops, that didn’t work ! –&gt; verify a M04239 VPU with ODS license is used.</p>
-</li>
-<li><p>Configure ODS parameters</p>
-<ul class="simple">
-<li><p>(this step is not needed for a table top demonstration)</p></li>
-</ul>
-</li>
-<li><p>Start ODS</p>
-<ul class="simple">
-<li><p>set ODS-state to “RUN” -&gt; the live occupancy grid should appear</p></li>
-</ul>
-<p>! Oops, that didn’t work ! –&gt; change the extrinsic parameters to the suggested values above.</p>
-</li>
-<li><p>Play with display</p>
-<ul class="simple">
-<li><p>the application tab only shows the occupancy grid (white grid pattern marks occupied areas)</p></li>
-<li><p>change to monitor tab -&gt; the point cloud and the occupancy grid are shown</p></li>
-</ul>
-</li>
-</ul>
-<p>watch the video:
+<section id="step-2-create-an-ods-application">
+<h2>Step 2: Create an ODS application<a class="headerlink" href="#step-2-create-an-ods-application" title="Link to this heading"></a></h2>
+<p>In the “Application” tab, create an ODS application instance.
+<img alt="Create an ODS application" src="../_images/create_ods_app.png" /></p>
+<p>An application instance is created with default settings. By default, all connected 3D ports are added to the list of ports for the ODS app to use.
+<img alt="Default ODS application" src="../_images/default_ods_app.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When first instantiating the application, diagnostic messages may appear at the bottom of the screen.
+The ODS application performs some checks related to the motion of the vehicle, which may take some time to succeed while the application is running. Typically, these will disappear after the ODS has been able to initialize properly.</p>
+</div>
+</section>
+<section id="step-3-start-ods">
+<h2>Step 3: Start ODS<a class="headerlink" href="#step-3-start-ods" title="Link to this heading"></a></h2>
+<p>To start ODS, you can simply set the <code class="docutils literal notranslate"><span class="pre">state</span></code> parameter to <code class="docutils literal notranslate"><span class="pre">&quot;RUN&quot;</span></code>:
+<img alt="Start the ODS applications. The occupancy grid appears." src="../_images/start_ods.png" /></p>
+<p>Once the application is running, objects identified as obstacles will appear in the occupancy grid.</p>
+<p>You can also activate the default zones, by clicking on the “Set Example Zones” button:
+<img alt="Activate three example zones" src="../_images/zones.png" /></p>
+<p>Watch the video:
 <img alt="Create a new ODS Application instance" src="../_images/start_ods.gif" /></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>For better visualization of the point cloud when using ODS, use the Frame Filter from the <code class="docutils literal notranslate"><span class="pre">View</span> <span class="pre">Options</span></code> in the  <code class="docutils literal notranslate"><span class="pre">Monitor</span></code> window. The frame filter does not change the Mode for any Ports as this is only used for visualization purposes.</p>
+<p>If you notice that the point cloud appears to flicker in the visualization, you can use the frame filter. The frame filter does not change the parameters of any port and is used for visualization purposes only.</p>
 <p><img alt="Frame Filter" src="../_images/frame_filter.png" /></p>
 </div>
 </section>
