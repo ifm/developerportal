@@ -1,7 +1,7 @@
 # How to update the firmware
 
 :::{warning}
-The following guide is only valid for updating between 1.X.x and 1.Y.y versions. For details about the update process between 0.16.23 to 1.0.x please see the [migration guide](../Firmware/ReleaseNotes/FW_1.0.x/FW_1.0.x_migration_guide.md).
+The firmware update should only be performed when connected to the VPU via the ETH0 interface and using a static IP address. It is recommended to use the default static IP address `192.168.0.69`.
 :::
 
 ## Download the firmware
