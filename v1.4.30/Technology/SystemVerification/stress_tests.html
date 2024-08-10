@@ -249,30 +249,36 @@ If this can be assured the external temperature values are only of secondary imp
 <p><strong>Temperature Monitoring</strong></p>
 <p>The O3R shows its temperature values in live operation, as part of the read-only values of the JSON configuration string.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-0-Q0xJ" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Q0xJ" name="Q0xJ" role="tab" tabindex="-1">CLI</button></div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel group-tab" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#############################################</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-0-Q0xJ" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Q0xJ" name="Q0xJ" role="tab" tabindex="-1">CLI</button></div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel group-tab" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1">#############################################</span>
 <span class="c1"># Copyright 2023-present ifm electronic, gmbh</span>
 <span class="c1"># SPDX-License-Identifier: Apache-2.0</span>
 <span class="c1">#############################################</span>
+<span class="sd">&quot;&quot;&quot;_summary_</span>
+<span class="sd">This examples shows how to retrieve the internal</span>
+<span class="sd">temperature values from the O3R platform, for</span>
+<span class="sd">the VPU, the IMU and any connected camera.</span>
 
-<span class="kn">from</span> <span class="nn">ifm3dpy</span> <span class="kn">import</span> <span class="n">O3R</span>
+<span class="sd">:raises RuntimeError: If overtemperature is reached.</span>
+<span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">ifm3dpy</span> <span class="kn">import</span> <span class="n">O3R</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">ip</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="n">dt_string</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y_%m_</span><span class="si">%d</span><span class="s2">-%H_%M_%S&quot;</span><span class="p">)</span>
     <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
         <span class="n">filename</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;temperature_test_</span><span class="si">{</span><span class="n">dt_string</span><span class="si">}</span><span class="s2">.log&quot;</span><span class="p">,</span>
-        <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
+        <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
         <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(asctime)s</span><span class="s2">.</span><span class="si">%(msecs)03d</span><span class="s2"> </span><span class="si">%(levelname)s</span><span class="s2">: </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">,</span>
         <span class="n">datefmt</span><span class="o">=</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">,</span>
     <span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;IP: </span><span class="si">{</span><span class="n">ip</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
-    <span class="n">IP</span> <span class="o">=</span> <span class="s2">&quot;192.168.0.69&quot;</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;IP: </span><span class="si">{</span><span class="n">IP</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-    <span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">(</span><span class="n">IP</span><span class="p">)</span>
+    <span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">(</span><span class="n">ip</span><span class="o">=</span><span class="n">ip</span><span class="p">)</span>
     <span class="n">temperatures</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/diagnostic/temperatures&quot;</span><span class="p">])[</span><span class="s2">&quot;device&quot;</span><span class="p">][</span><span class="s2">&quot;diagnostic&quot;</span><span class="p">][</span>
         <span class="s2">&quot;temperatures&quot;</span>
     <span class="p">]</span>
@@ -281,12 +287,25 @@ If this can be assured the external temperature values are only of secondary imp
     <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">temperatures</span><span class="p">:</span>
         <span class="c1"># test for tuple: (&#39;overtemperature&#39;, True)</span>
         <span class="k">if</span> <span class="p">(</span><span class="s2">&quot;overtemperature&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
-            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;overtemperature reached: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;overtemperature reached: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;overtemperature reached: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">RuntimeWarning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;overtemperature reached: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">main</span><span class="p">()</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># If the example python package was build, import the configuration</span>
+        <span class="kn">from</span> <span class="nn">ovp8xxexamples</span> <span class="kn">import</span> <span class="n">config</span>
+
+        <span class="n">IP</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">IP</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="c1"># Otherwise, use default values</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+            <span class="s2">&quot;Unable to import the configuration.</span><span class="se">\n</span><span class="s2">Please run &#39;pip install -e .&#39; from the python root directory&quot;</span>
+        <span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Defaulting to the default configuration.&quot;</span><span class="p">)</span>
+        <span class="n">IP</span> <span class="o">=</span> <span class="s2">&quot;192.168.0.69&quot;</span>
+    <span class="n">main</span><span class="p">(</span><span class="n">ip</span><span class="o">=</span><span class="n">IP</span><span class="p">)</span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-0-Q0xJ" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Q0xJ" name="Q0xJ" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.device.diagnostic.temperatures&#39;</span>

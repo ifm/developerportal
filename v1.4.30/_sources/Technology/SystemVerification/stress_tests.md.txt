@@ -91,46 +91,9 @@ The O3R shows its temperature values in live operation, as part of the read-only
 
 :::::{tabs}
 ::::{group-tab} Python
-```python
-#############################################
-# Copyright 2023-present ifm electronic, gmbh
-# SPDX-License-Identifier: Apache-2.0
-#############################################
-
-from ifm3dpy import O3R
-import logging
-from datetime import datetime
-
-logger = logging.getLogger(__name__)
-
-def main():
-    dt_string = datetime.now().strftime("%Y_%m_%d-%H_%M_%S")
-    logging.basicConfig(
-        filename=f"temperature_test_{dt_string}.log",
-        level=logging.DEBUG,
-        format="%(asctime)s.%(msecs)03d %(levelname)s: %(message)s",
-        datefmt="%Y-%m-%d %H:%M:%S",
-    )
-
-    IP = "192.168.0.69"
-    logger.info(f"IP: {IP}")
-
-    o3r = O3R(IP)
-    temperatures = o3r.get(["/device/diagnostic/temperatures"])["device"]["diagnostic"][
-        "temperatures"
-    ]
-    logger.info(f"{temperatures}")
-
-    for e in temperatures:
-        # test for tuple: ('overtemperature', True)
-        if ("overtemperature", True) in list(e.items()):
-            logger.error(f"overtemperature reached: {e}")
-            raise RuntimeError(f"overtemperature reached: {e}")
-
-
-if __name__ == "__main__":
-    main()
-```
+:::{literalinclude} /ifm3d-examples/ovp8xx/python/ovp8xxexamples/toolbox/get_temperature.py
+:language: python
+:::
 ::::
 ::::{group-tab} CLI
 ```bash
