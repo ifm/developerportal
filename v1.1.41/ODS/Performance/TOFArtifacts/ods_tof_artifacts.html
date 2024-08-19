@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artifacts and their impacts &mdash; O3R  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=28a392ea" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Running workloads concurrent with ODS" href="../ConcurrentWorkloads/concurrent_workloads.html" />
+    <link rel="prev" title="ODS Performance" href="../PerformanceBenchmark/ods_performance_benchmark.html" />
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script> -->
+     
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            O3R
+          </a>
+              <div class="version">
+                v1.1.41
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Technology/index_technology.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index_ods.html">ODS</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Mounting/mounting.html">Mounting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Instantiation/instantiation.html">Instantiation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Configuration/configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Zones/zones.html">Zones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../OccupancyGrid/occupancy_grid.html">Occupancy grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Recording/ods_data_recording.html">Recording</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ChangingViews/changing_views.html">Changing views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../OverhangingLoads/overhanging_loads.html">Overhanging loads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../NegativeObstacles/negative_obstacles.html">Negative Obstacles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../DustMitigation/dust_mitigation.html">Dust artifact mitigation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ExtrinsicCalibration/index_extrinsic_calibration.html">Extrinsic calibration</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index_performance.html">Performance</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../PerformanceVerification/ods_performance_verification.html">Performance evaluation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../PerformanceBenchmark/ods_performance_benchmark.html">Performance benchmark</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Time-of-flight artifacts</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#common-artifacts">Common artifacts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#impact-on-ods">Impact on ODS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../ConcurrentWorkloads/concurrent_workloads.html">Concurrent workloads</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../DeviceVerification/index_device_verification.html">Device verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../iVA/index_ifmODS_iVA.html">ifmVisionAssistant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Python/index_ifmODS_python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Cpp/index_ifmODS_cpp.html">C++</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index_ods.html">ODS (Obstacle Detection System)</a></li>
+          <li class="breadcrumb-item"><a href="../index_performance.html">ODS performance</a></li>
+      <li class="breadcrumb-item active">Artifacts and their impacts</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/ODS/Performance/TOFArtifacts/ods_tof_artifacts.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="artifacts-and-their-impacts">
+<h1>Artifacts and their impacts<a class="headerlink" href="#artifacts-and-their-impacts" title="Link to this heading"></a></h1>
+<p>This paper gives an overview of O3R 3D indirect Time of Flight (iToF) specific artifacts and their effect on ODS.</p>
+<section id="common-artifacts">
+<h2>Common artifacts<a class="headerlink" href="#common-artifacts" title="Link to this heading"></a></h2>
+<p>The O3R uses iToF and therefore has to handle artifacts related to the physics behind this technology. These are not ifm-specific artifacts but common to all iToF systems.</p>
+<p>Below is a list of common artifacts that exist for the O3R and that impact the data and consequently ODS’ performance.</p>
+<ol class="arabic simple">
+<li><p>Multi-Path Interference (MPI):
+This artifact occurs when the light emitted from the camera reflects off multiple surfaces before returning to the camera. The camera then interprets these multiple reflections as being at different distances, leading to errors in depth calculation.
+When this phenomenon occur, you would for example see curved walls and floors, especially near corners.</p></li>
+<li><p>Motion Blur:
+This artifact occurs when the subject or the camera is moving during the short amount of time it takes to capture an image. This can lead to blurred or distorted images, as the camera’s depth calculations are based on the assumption that the subject is stationary.</p></li>
+<li><p>Stray light:
+Stray light artifacts occur when the light emitted by the camera reflects on highly reflective objects (retro reflectors, very close objects, etc). This intense reflected light is scattered in the optical system and can create a blinding effect, as you would get when pointing your camera to the sun.
+This translates to a halo effect around the reflective object, increasing its measured size. This artifacts also impacts objects with a lower reflectivity, and can make the detection of such objects difficult.</p></li>
+<li><p>Crosstalk:
+Crosstalk exists between cameras of the same type and between cameras and other sensors using active illumination in the same infrared spectrum. The light emitted by the other device can be interpreted by the camera as its own light and this results in ghost pixels along the line from the camera to the other device.</p></li>
+<li><p>Dust:
+Dust particles in the air, when very close to the camera, may reflect significant amounts of light and appear as an object in their own right. In the image, you would see an effect similar to heavy snow through your windshield.</p></li>
+<li><p>Ambient light:
+Indoor ambient light is typically not an issue as indoor lighting usually does not include the infrared wavelength used by the O3R.
+Sunlight, however, can be more difficult to deal with. The O3R uses 940nm pulsed light, which corresponds to a dip in intensity in the sunlight spectrum. However, there is still enough 940nm light to increase noise levels in the O3R data.
+In practice, this means that detection ranges might be reduced on objects directly illuminated by sunlight, as a result of high noise filtering.</p></li>
+</ol>
+</section>
+<section id="impact-on-ods">
+<h2>Impact on ODS<a class="headerlink" href="#impact-on-ods" title="Link to this heading"></a></h2>
+<p>Some of these artifacts might induce false positives in ODS: an object is detected where there is none.</p>
+<p>Most iToF artifacts are mitigated in ODS, either through intelligent acquisition methods or through filtering techniques in the algorithms. However, it is impossible to eliminate all possible artifacts, and some false positive may still occur.</p>
+<p>Below are some guidelines on what to prioritize when testing ODS’ robustness against false positives:</p>
+<ol class="arabic simple">
+<li><p>Stray light artifacts caused by retro-reflectors can be handled when the reflectors are in the field of view of the cameras. When the source of the stray light is not in the field of view, it is more difficult to filter out the artifact. If reflectors are expected in the environment, try the following: drive the vehicle along a realistic path where reflectors are located along the side. Pay close attention to the data when just passing the reflector, both when there is no obstacle in front of the vehicle, and when there is an obstacle. Repeat the test with different obstacles of varying size and reflectivity, and for a density of reflectors in the scene that reflects a realistic use case.</p></li>
+<li><p>Crosstalk:</p>
+<ul class="simple">
+<li><p>Crosstalk between ifm cameras is mostly mitigated through the use of different frequencies and synchronization (make sure you use separate <a class="reference internal" href="../../Configuration/configuration.html#channel-value"><span class="std std-ref">channels</span></a>).</p></li>
+<li><p>Crosstalk with other devices might occur, and can be difficult to predict. Some safety scanners, for examples, use infrared light at a similar wavelength as the O3R cameras, and might be impacted by the O3R illumination. This creates artifacts similar as how dust would interfere with the scanner. To mitigate this issue:</p>
+<ul>
+<li><p>It is usually sufficient to increase the number of scans the safety scanner requires to identify a pixel as an obstacle,</p></li>
+<li><p>Mount the O3R as far away as possible from the safety scanner plane,</p></li>
+<li><p>Turn the cameras off when the robot is stationery. This has the benefit of saving power, and ensures that the illumination is active only when necessary.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>To thoroughly test crosstalk, we recommend running tests with a full fleet of robots. Crosstalk might occur only in specific geometrical configurations, and these situations are easier to pinpoint when multiple robots are involved, at various distances and angles.</p>
+<ol class="arabic simple" start="3">
+<li><p>Ambient light:
+In cases where the vehicle is expected to drive along large windows, or partially outside, we recommend validating ODS performances in those conditions as well. Sunlight creates additional noise, which in turns results in slightly reduced range, and it is important to understand how this impact obstacle detection for the user’s specific environment and targeted obstacles.</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="/latest/_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+		
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.efector.object-ident@ifm.com">support.efector.object-ident@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

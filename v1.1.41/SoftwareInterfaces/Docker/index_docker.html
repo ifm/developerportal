@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Docker on O3R &mdash; O3R  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=28a392ea" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Getting started with Docker" href="docker.html" />
+    <link rel="prev" title="Manual calibration of ports for vehicle algorithms" href="../iVA/manual_calibration.html" />
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script> -->
+     
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            O3R
+          </a>
+              <div class="version">
+                v1.1.41
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Technology/index_technology.html">Technology</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index_software_interfaces.html">Software Interfaces</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../iVA/index_iVA.html">ifm Vision Assistant</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://api.ifm3d.com/stable/">ifm3d/ifm3dpy API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://ros.ifm3d.com/latest/">ROS: ifm3d-ros</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://ros2.ifm3d.com/latest/">ROS2: ifm3d-ros2</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Docker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docker.html">Getting started with Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployVPU.html">Deployment on board</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html">Docker logging configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autostart.html">Autostarting the container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="resource_management.html">Resource Management on the VPU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gpu.html">Enabling GPU usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tensorRT/TensorRT_on_a_VPU_hardware.html">TensortRT: DL / ML model deployment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ifmDiagnostic/index_diagnostic.html">Diagnostic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Toolbox/index_toolbox.html">Toolbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Examples/examples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index_software_interfaces.html">Software Interfaces</a></li>
+      <li class="breadcrumb-item active">Docker on O3R</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/SoftwareInterfaces/Docker/index_docker.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="docker-on-o3r">
+<h1>Docker on O3R<a class="headerlink" href="#docker-on-o3r" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="docker.html">Getting started with Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="docker.html#build-and-run-a-docker-container-for-the-o3r-platform">Build and run a Docker container for the O3R platform</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#a-basic-container">A basic container</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="docker.html#build-the-container">Build the container</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="docker.html#troubleshooting-proxies">Troubleshooting: proxies</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="docker.html#run-a-container">Run a container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="docker.html#save-a-container">Save a container</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#load-and-start-a-container">Load and start a container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#add-features-to-the-container">Add features to the container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#install-ifm3d-in-the-container">Install ifm3d in the container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html#building-on-top-of-the-ifm-base-image">Building on top of the ifm base image</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deployVPU.html">Deployment on board</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="deployVPU.html#using-scp">Using SCP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deployVPU.html#using-a-docker-registry">Using a Docker registry</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="deployVPU.html#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployVPU.html#create-a-local-docker-registry">Create a local Docker registry</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="logging.html">Docker logging configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="logging.html#docker-default-logging">Docker default logging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#docker-logging-drivers">Docker logging drivers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#docker-logging-configuration">Docker logging configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#run-a-docker-container-with-logging-driver-configuration">Run a Docker container with logging driver configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html#double-check-the-docker-logging-configuration-for-a-container">Double check the Docker logging configuration for a container</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="autostart.html">Autostarting the container</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="autostart.html#docker-compose">Docker compose</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autostart.html#sample-docker-compose-yml">Sample docker-compose.yml</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="autostart.html#start-the-container">Start the container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autostart.html#auto-start-the-container-after-a-reboot-of-the-vpu">Auto start the container after a reboot of the VPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autostart.html#consistently-save-data-on-the-vpu-within-a-container">Consistently save data on the VPU within a container</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="resource_management.html">Resource Management on the VPU</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="resource_management.html#resources-availability-for-user-code">Resources availability for user code</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="resource_management.html#available-ram">Available RAM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="resource_management.html#cpu-and-gpu-resources">CPU and GPU resources</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="resource_management.html#cameras-only-no-ifm-application">Cameras only, no ifm application</a></li>
+<li class="toctree-l4"><a class="reference internal" href="resource_management.html#ods-application">ODS application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="resource_management.html#process-pinning">Process pinning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resource_management.html#docker-quotas">Docker quotas</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gpu.html">Enabling GPU usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gpu.html#using-the-gpu-of-the-vpu">Using the GPU of the VPU</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gpu.html#dockerfile-sample">Dockerfile sample</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gpu.html#start-the-container-with-the-nvidia-runtime">Start the container with the NVIDIA runtime</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="gpu.html#using-docker-run">Using <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="gpu.html#use-docker-compose-to-specify-the-runtime">Use <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> to specify the runtime</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tensorRT/TensorRT_on_a_VPU_hardware.html">TensortRT: DL / ML model deployment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tensorRT/TensorRT_on_a_VPU_hardware.html#building-a-tensorrt-container">Building a TensorRT container</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tensorRT/TensorRT_on_a_VPU_hardware.html#nvidia-base-containers">NVIDIA base containers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tensorRT/TensorRT_on_a_VPU_hardware.html#verify-the-functionality">Verify the functionality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tensorRT/TensorRT_on_a_VPU_hardware.html#mounting-directories-from-the-host">Mounting directories from the host</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tensorRT/TensorRT_on_a_VPU_hardware.html#dockerfiles">Dockerfiles</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tensorRT/TensorRT_on_a_VPU_hardware.html#nvidia-base-dockerfiles">NVIDIA base Dockerfiles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="tensorRT/TensorRT_on_a_VPU_hardware.html#ifm-example-dockerfiles">ifm example Dockerfiles</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tensorRT/TensorRT_on_a_VPU_hardware.html#using-tensorrt-in-a-container-on-the-vpu">Using TensorRT in a container on the VPU</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tensorRT/TensorRT_on_a_VPU_hardware.html#adaptations-for-the-ovp80x-architecture">Adaptations for the OVP80x architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tensorRT/TensorRT_on_a_VPU_hardware.html#runtime-inference-cycle-times">Runtime inference cycle times</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tensorRT/TensorRT_on_a_VPU_hardware.html#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tensorRT/TensorRT_on_a_VPU_hardware.html#yolov4-tiny">YOLOv4 Tiny</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tensorRT/TensorRT_on_a_VPU_hardware.html#deepstream-l4t">Deepstream-l4t</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<p>This section explains the handling and deployment of customer specific containers for the O3R.</p>
+</section>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="/latest/_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+		
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.efector.object-ident@ifm.com">support.efector.object-ident@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

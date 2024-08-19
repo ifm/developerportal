@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ODS Performance evaluation &mdash; O3R  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=28a392ea" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="ODS Performance" href="../PerformanceBenchmark/ods_performance_benchmark.html" />
+    <link rel="prev" title="ODS performance" href="../index_performance.html" />
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script> -->
+     
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            O3R
+          </a>
+              <div class="version">
+                v1.1.41
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Technology/index_technology.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index_ods.html">ODS</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Mounting/mounting.html">Mounting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Instantiation/instantiation.html">Instantiation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Configuration/configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Zones/zones.html">Zones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../OccupancyGrid/occupancy_grid.html">Occupancy grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Recording/ods_data_recording.html">Recording</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ChangingViews/changing_views.html">Changing views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../OverhangingLoads/overhanging_loads.html">Overhanging loads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../NegativeObstacles/negative_obstacles.html">Negative Obstacles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../DustMitigation/dust_mitigation.html">Dust artifact mitigation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ExtrinsicCalibration/index_extrinsic_calibration.html">Extrinsic calibration</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index_performance.html">Performance</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Performance evaluation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ods-performance-analysis">ODS Performance analysis</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#how-to-read-the-data">How to read the data</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#how-to-analyze-the-data">How to analyze the data</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#false-positive-evaluation">False positive evaluation</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#output"><strong>Output</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../PerformanceBenchmark/ods_performance_benchmark.html">Performance benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../TOFArtifacts/ods_tof_artifacts.html">Time-of-flight artifacts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ConcurrentWorkloads/concurrent_workloads.html">Concurrent workloads</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../DeviceVerification/index_device_verification.html">Device verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../iVA/index_ifmODS_iVA.html">ifmVisionAssistant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Python/index_ifmODS_python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Cpp/index_ifmODS_cpp.html">C++</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index_ods.html">ODS (Obstacle Detection System)</a></li>
+          <li class="breadcrumb-item"><a href="../index_performance.html">ODS performance</a></li>
+      <li class="breadcrumb-item active">ODS Performance evaluation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/ODS/Performance/PerformanceVerification/ods_performance_verification.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ods-performance-evaluation">
+<h1>ODS Performance evaluation<a class="headerlink" href="#ods-performance-evaluation" title="Link to this heading"></a></h1>
+<p>The O3R-ODS performance for an AGV depends upon various factors. This whitepaper gives presents a evaluation strategy for benchmarking</p>
+<section id="ods-performance-analysis">
+<h2>ODS Performance analysis<a class="headerlink" href="#ods-performance-analysis" title="Link to this heading"></a></h2>
+<section id="how-to-read-the-data">
+<h3>How to read the data<a class="headerlink" href="#how-to-read-the-data" title="Link to this heading"></a></h3>
+<p>Please refer to the <a class="reference internal" href="../../Recording/ods_data_recording.html#ifmvisionassistant"><span class="std std-ref">iVA ODS recording documentation</span></a> to find out more details on how to record and import our open source hdf5 data files.</p>
+</section>
+<hr class="docutils" />
+<section id="how-to-analyze-the-data">
+<h3>How to analyze the data<a class="headerlink" href="#how-to-analyze-the-data" title="Link to this heading"></a></h3>
+<p><strong>At which frame the object is detected</strong></p>
+<p>The code snippet below serves as an example to analyze the data recorded during a robots parkour run.
+The following code snippet analyzes the True Positive Test case i.e the maximum distance between the vehicle and the object when it is detected by the ODS system.</p>
+<p><strong>Test Scenario:</strong></p>
+<ul class="simple">
+<li><p>Place an object of interest at a distance of 5 m - 7 m from the robot: that is enough free space wo an object in front of the camera</p></li>
+<li><p>Launch the ODS application instance via ifm Vision Assistant (iVA)</p></li>
+<li><p>and start recording</p></li>
+<li><p>Driving the robot towards the object at the desired speed: testing multiple speeds, especially for smaller objects close to the floor might be beneficial for understanding the ODS performance limits.</p></li>
+</ul>
+<p><strong>Test Scenario</strong></p>
+<p><img alt="Test scenario" src="../../../_images/test_scenario_edited.png" /></p>
+<p><strong>Camera Mounting Height</strong></p>
+<p>This is an exemplary test case: please see the mounting guide for suggested mounting positions and heights.</p>
+<p><img alt="Camera Mounting" src="../../../_images/camera_mounting.png" /></p>
+<p>Below you can find an exemplary output of data as streamed and displayed using the iVA.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>RGB STREAM</p></th>
+<th class="head"><p>ODS STREAM</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><img alt="RGB stream" src="../../../_images/rgb_stream.gif" /></p></td>
+<td><p><img alt="ODS stream" src="../../../_images/ods_stream.gif" /></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Question:</strong></p>
+<p>In the recorded data, at which frame does ODS detect the obstacle. Provide the distance from user coordinate-system origin (that is robot location) to the object.
+Please find the script to reproduce the following images from the recorded data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">## create a distance map based on the recorded data occupancy grid data</span>
+
+<span class="k">def</span> <span class="nf">get_distance_map_data</span><span class="p">(</span><span class="n">stream_ods</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Input: ODS data stream</span>
+<span class="sd">    Output: Distance Map (Time vs Distance), Frames where the Object is detected in ROI</span>
+<span class="sd">    This function reads the ods data stream from recorded data and</span>
+<span class="sd">    outputs an image</span>
+<span class="sd">        - where each column represents the each occupancy grid in a stream</span>
+<span class="sd">        - Each row in a column of distance map represents the first non-zero value</span>
+<span class="sd">                (if exists) along the each row in a Occupancy Grid</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1">#  Array of all Occupancy grids in a stream_ods</span>
+    <span class="n">occupancy_grids_array</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">stream_ods</span><span class="p">[:][</span><span class="s1">&#39;image&#39;</span><span class="p">])</span>
+    <span class="n">total_occupancy_grids</span>   <span class="o">=</span> <span class="n">occupancy_grids_array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">rows_in_occupancy_grid</span>  <span class="o">=</span> <span class="n">occupancy_grids_array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1">#  We are interested in frame when the object is detected in ROI</span>
+    <span class="n">frames</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">distance_map</span>            <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">occupancy_grids</span><span class="p">[:,</span><span class="mi">0</span><span class="p">,:]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">occupancy_grid</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">total_occupancy_grids</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rows_in_occupancy_grid</span><span class="p">):</span>
+
+            <span class="c1"># check for  a non-zero value in each row</span>
+            <span class="n">idx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nonzero</span><span class="p">(</span><span class="n">occupancy_grids_array</span><span class="p">[</span><span class="n">occupancy_grid</span><span class="p">,</span><span class="n">row</span><span class="p">,:]</span><span class="o">&gt;</span><span class="mi">127</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="n">idx</span><span class="o">.</span><span class="n">size</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span> <span class="c1"># No non-zero value found in a row of occupancy grid</span>
+                <span class="n">distance_map</span><span class="p">[</span><span class="n">occupancy_grid</span><span class="p">,</span><span class="n">row</span><span class="p">]</span><span class="o">=</span><span class="mi">200</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">distance_map</span><span class="p">[</span><span class="n">occupancy_grid</span><span class="p">,</span><span class="n">row</span><span class="p">]</span><span class="o">=</span><span class="n">idx</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="k">if</span> <span class="p">(</span><span class="mi">85</span> <span class="o">&lt;=</span> <span class="n">row</span> <span class="o">&lt;=</span> <span class="mi">115</span><span class="p">):</span> <span class="c1"># ROI is considered as 85 to 115 rows in occupancy grid</span>
+                    <span class="n">frames</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">occupancy_grid</span><span class="p">)</span>
+
+    <span class="n">distance_map</span>    <span class="o">=</span> <span class="o">-</span><span class="n">distance_map</span>
+
+    <span class="k">return</span> <span class="n">distance_map</span>
+
+
+<span class="n">distance_map</span> <span class="o">=</span> <span class="n">get_distance_map_data</span><span class="p">(</span><span class="n">stream_ods</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">distance_map</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;jet&#39;</span><span class="p">,</span><span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="c1"># Plot ROI</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">85</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;dashed&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">115</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;dashed&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Distance&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distance Map of Recorded Data&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p><strong>Output:</strong></p>
+</section>
+<section id="false-positive-evaluation">
+<h3>False positive evaluation<a class="headerlink" href="#false-positive-evaluation" title="Link to this heading"></a></h3>
+<p><img alt="Distance map output" src="../../../_images/distance_map.png" /></p>
+<p>Above the distance map representation of the recorded ODS data is show.</p>
+<p>This distance map is a representation of closest non zero distance per occupancy grid row (that is movement direction) over time. This representation takes a bit of time to get used to but gives a compact representation of object distance as color information over time per geometric Y-location.</p>
+<p>If high color differences (for example “color contrasts”) appear, this is equivalent to quick change of object distance at that location. Non-continuous color changes indicate that the detected object distance changes quickly over frame counter, i.e:</p>
+<ul class="simple">
+<li><p>the object detection was “just picked up on”</p></li>
+<li><p>the object detection was lost, for example the object left the field of view</p></li>
+<li><p>the object might not be a true positive, but a false positive, for example a point cloud or occupancy grid artifact</p></li>
+</ul>
+<p><strong>Example evaluation of this distance map and occupancy grid</strong></p>
+<p>From output above, we can say that the object started to appear in the occupancy grid from frames between 125 to 140. We see there are no non-zero values in the Region of Interest (<code class="docutils literal notranslate"><span class="pre">ROI</span></code>) until the obstacle is detected and this can deduce that there are no false positives detected in the data. The following snippet plots the 16 occupancy grids (8 Occupancy grids before and after object detection in <code class="docutils literal notranslate"><span class="pre">ROI</span></code>)</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span>
+<span class="c1"># create an empty figure object</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+
+<span class="n">range_occ_grids</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">frames</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span><span class="n">frames</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">8</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">frame</span> <span class="ow">in</span> <span class="nb">enumerate</span> <span class="p">(</span><span class="n">range_occ_grids</span><span class="p">):</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">stream_ods</span><span class="p">[</span><span class="n">frame</span><span class="p">][</span><span class="s1">&#39;image&#39;</span><span class="p">],</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span><span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">85</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;dashed&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">115</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;dashed&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">frame</span> <span class="o">==</span> <span class="n">frames</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Object detected in frame </span><span class="si">{</span><span class="n">frame</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Frame </span><span class="si">{</span><span class="n">frame</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="output">
+<h2><strong>Output</strong><a class="headerlink" href="#output" title="Link to this heading"></a></h2>
+<p><img alt="ODS object distance tracking" src="../../../_images/distance_tracker.png" /></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="/latest/_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+		
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.efector.object-ident@ifm.com">support.efector.object-ident@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

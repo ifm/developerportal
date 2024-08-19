@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting started with Docker &mdash; O3R  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=28a392ea" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Deploying a container to the VPU" href="deployVPU.html" />
+    <link rel="prev" title="Docker on O3R" href="index_docker.html" />
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script> -->
+     
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            O3R
+          </a>
+              <div class="version">
+                v1.1.41
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Technology/index_technology.html">Technology</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index_software_interfaces.html">Software Interfaces</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../iVA/index_iVA.html">ifm Vision Assistant</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://api.ifm3d.com/stable/">ifm3d/ifm3dpy API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://ros.ifm3d.com/latest/">ROS: ifm3d-ros</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://ros2.ifm3d.com/latest/">ROS2: ifm3d-ros2</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index_docker.html">Docker</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Getting started with Docker</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#build-and-run-a-docker-container-for-the-o3r-platform">Build and run a Docker container for the O3R platform</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#a-basic-container">A basic container</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#build-the-container">Build the container</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#troubleshooting-proxies">Troubleshooting: proxies</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="#run-a-container">Run a container</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#save-a-container">Save a container</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#load-and-start-a-container">Load and start a container</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#add-features-to-the-container">Add features to the container</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#install-ifm3d-in-the-container">Install ifm3d in the container</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#building-on-top-of-the-ifm-base-image">Building on top of the ifm base image</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="deployVPU.html">Deployment on board</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html">Docker logging configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autostart.html">Autostarting the container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="resource_management.html">Resource Management on the VPU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gpu.html">Enabling GPU usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tensorRT/TensorRT_on_a_VPU_hardware.html">TensortRT: DL / ML model deployment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ifmDiagnostic/index_diagnostic.html">Diagnostic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Toolbox/index_toolbox.html">Toolbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Examples/examples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index_software_interfaces.html">Software Interfaces</a></li>
+          <li class="breadcrumb-item"><a href="index_docker.html">Docker on O3R</a></li>
+      <li class="breadcrumb-item active">Getting started with Docker</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/SoftwareInterfaces/Docker/docker.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="getting-started-with-docker">
+<h1>Getting started with Docker<a class="headerlink" href="#getting-started-with-docker" title="Link to this heading"></a></h1>
+<p>For a general introduction to the Docker software container technology please have a look at the <a class="reference external" href="https://docs.docker.com/get-started/">official Docker documentation website</a>.</p>
+<p>This will guide you to your fist steps on how to get started with Docker, that is:</p>
+<ul class="simple">
+<li><p>Build and run an image as a container</p></li>
+<li><p>Share images using Docker Hub</p></li>
+<li><p>Deploy Docker applications using multiple containers with a database</p></li>
+<li><p>Run applications using Docker Compose</p></li>
+</ul>
+<p>For the O3R system specifics please see / follow the documentation provided below.
+This documentation includes:</p>
+<ul class="simple">
+<li><p>How to build and run Docker containers on the O3R platform</p></li>
+<li><p>Configuring logging on edge devices such as the O3R VPU (additional document)</p></li>
+<li><p>Deploying on the O3R VPU (additional document)</p></li>
+<li><p>Autostart Docker containers (additional document)</p></li>
+<li><p>Utilizing the GPU on the O3R VPU device (additional document)</p></li>
+</ul>
+<section id="build-and-run-a-docker-container-for-the-o3r-platform">
+<h2>Build and run a Docker container for the O3R platform<a class="headerlink" href="#build-and-run-a-docker-container-for-the-o3r-platform" title="Link to this heading"></a></h2>
+<p>In this document we guide you through building a container from scratch. We start by building a small container. This container will increase in size and complexity the further we go. We will use a Python base image and install the ifm3d (ifm3dpy) library.</p>
+<p>If you want to use any of our available Docker images or directly build on top of our Dockerfiles, you can jump directly to <a class="reference internal" href="#building-on-top-of-the-ifm-base-image">this section</a> or check out the list of <a class="reference external" href="https://github.com/ifm/ifm3d/pkgs/container/ifm3d">Docker images officially supported by ifm</a>.</p>
+<p>Note that the O3R VPU (Video Processing Unit) is based on an NVIDIA Jetson system (TX2), which is arm64/aarch64 based.
+Building containers without the right base image will not run on the VPU, an arm64/aarch64 base image is needed.
+To build the container for an architecture different than the host’s, <a class="reference external" href="https://www.qemu.org/">QEMU</a> can be used.</p>
+<section id="a-basic-container">
+<h3>A basic container<a class="headerlink" href="#a-basic-container" title="Link to this heading"></a></h3>
+<p>Every Docker container image is built by Docker using a Dockerfile.
+A Dockerfile contains all the necessary information for building a container image. Most of the Dockerfiles are starting with a base image that is retrieved from the Docker Hub during the build process. Docker will automatically fetch the image for the architecture hosting the build (arm64/aarch64). When building a container for an architecture other than the hosts’, the destination architecture needs to be specified in the Dockerfile.
+The Dockerfile is just a text file named <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> without any file extension (watch out, it is case sensitive). You can use <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">build</span> <span class="pre">[path</span> <span class="pre">to</span> <span class="pre">Dockerfile]</span></code> to start the build process.</p>
+<p>Our first container will use <code class="docutils literal notranslate"><span class="pre">arm64v8/python:3.9.6-slim-buster</span></code> as the base image. Let’s build the first container with that base image.</p>
+<p>Dockerfile:</p>
+<div class="highlight-Docker notranslate"><div class="highlight"><pre><span></span><span class="c">#arm64v8 is the pre-requisite for running the container on the VPU.</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">arm64v8/python:3.9.6-slim-buster</span>
+</pre></div>
+</div>
+<section id="build-the-container">
+<h4>Build the container<a class="headerlink" href="#build-the-container" title="Link to this heading"></a></h4>
+<p>To build a container use <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">build</span> <span class="pre">[path/to/Dockerfile]</span></code>. If an image tag (name) is needed, you can specify it within the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">build</span></code> command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assuming the Dockerfile is located within the same directory:</span>
+$<span class="w"> </span>docker<span class="w"> </span>build<span class="w"> </span>.<span class="w"> </span>-t<span class="w"> </span>ifm3d
+Sending<span class="w"> </span>build<span class="w"> </span>context<span class="w"> </span>to<span class="w"> </span>Docker<span class="w"> </span>daemon<span class="w">  </span><span class="m">2</span>.048kB
+Step<span class="w"> </span><span class="m">1</span>/1<span class="w"> </span>:<span class="w"> </span>FROM<span class="w"> </span>arm64v8/python:3.9.6-slim-buster
+<span class="w"> </span>---&gt;<span class="w"> </span>4770e646d0be
+Successfully<span class="w"> </span>built<span class="w"> </span>4770e646d0be
+Successfully<span class="w"> </span>tagged<span class="w"> </span>ifm3d:latest
+</pre></div>
+</div>
+<p>If the build was successful, you should be able to use <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">image</span> <span class="pre">ls</span></code> to display all built images:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker<span class="w"> </span>image<span class="w"> </span>ls
+REPOSITORY<span class="w">                </span>TAG<span class="w">                 </span>IMAGE<span class="w"> </span>ID<span class="w">       </span>CREATED<span class="w">         </span>SIZE
+ifm3d<span class="w">                     </span>latest<span class="w">              </span>4770e646d0be<span class="w">   </span><span class="m">5</span><span class="w"> </span>weeks<span class="w"> </span>ago<span class="w">     </span>108MB
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For further information about <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">build</span></code> refer to the official <a class="reference external" href="https://docs.docker.com/engine/reference/commandline/build/">Docker documentation</a></p>
+</div>
+<section id="troubleshooting-proxies">
+<h5>Troubleshooting: proxies<a class="headerlink" href="#troubleshooting-proxies" title="Link to this heading"></a></h5>
+<p>Depending on the network infrastructure, Docker might need the proxy information for building the container. You can input them directly when running the command:</p>
+<div class="highlight-Docker notranslate"><div class="highlight"><pre><span></span><span class="c">#$HTTP_PROXY &amp; $HTTPS_PROXY are variables containing the proxy address. for example: HTTPS_PROXY=https//[PROXY ADDRESS]</span>
+$<span class="w"> </span>docker<span class="w"> </span>image<span class="w"> </span>build<span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">http_proxy</span><span class="o">=</span><span class="nv">$HTTP_PROXY</span><span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">https_proxy</span><span class="o">=</span><span class="nv">$HTTPS_PROXY</span><span class="w"> </span>-t<span class="w"> </span>jupyter<span class="w"> </span>.
+</pre></div>
+</div>
+<p>You can also define the proxies in the <code class="docutils literal notranslate"><span class="pre">config.json</span></code> file. You should find the file within the home directory of the user executing Docker, in a directory called <code class="docutils literal notranslate"><span class="pre">.docker</span></code>, which contains <code class="docutils literal notranslate"><span class="pre">config.json</span></code>. For example <code class="docutils literal notranslate"><span class="pre">~/.docker/config.json</span></code>. If not available, create and save a <code class="docutils literal notranslate"><span class="pre">config.json</span></code> file containing the following:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w"> </span><span class="nt">&quot;proxies&quot;</span><span class="p">:</span>
+<span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="nt">&quot;default&quot;</span><span class="p">:</span>
+<span class="w">   </span><span class="p">{</span>
+<span class="w">     </span><span class="nt">&quot;httpProxy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://192.168.1.12:3128&quot;</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;httpsProxy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://192.168.1.12:3128&quot;</span><span class="p">,</span>
+<span class="w">     </span><span class="nt">&quot;noProxy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;*.test.example.com,.example2.com,127.0.0.0/8&quot;</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="run-a-container">
+<h4>Run a container<a class="headerlink" href="#run-a-container" title="Link to this heading"></a></h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To run a container built for another chip architecture than the host system, you need to use <a class="reference external" href="https://www.qemu.org/">QEMU</a> to handle the virtualization. For further information see: <a class="reference external" href="https://docs.docker.com/desktop/multi-arch/">Docker multi-CPU architecture</a></p>
+</div>
+<p>To run the container, we use <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code>. We can specify the run command through several arguments: we want to start the container interactively (<code class="docutils literal notranslate"><span class="pre">-it</span></code>) and with a bash interface (<code class="docutils literal notranslate"><span class="pre">/bin/bash</span></code>), so we can play around inside the container.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>ifm3d<span class="w"> </span>/bin/bash
+WARNING:<span class="w"> </span>The<span class="w"> </span>requested<span class="w"> </span>image’s<span class="w"> </span>platform<span class="w"> </span><span class="o">(</span>linux/arm64<span class="o">)</span><span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>match<span class="w"> </span>the<span class="w"> </span>detected<span class="w"> </span>host<span class="w"> </span>platform<span class="w"> </span><span class="o">(</span>linux/amd64<span class="o">)</span><span class="w"> </span>and<span class="w"> </span>no<span class="w"> </span>specific<span class="w"> </span>platform<span class="w"> </span>was<span class="w"> </span>requested
+root@ee24eff3c797:/#
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For further information about <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code>, refer to the <a class="reference external" href="https://docs.docker.com/engine/reference/run/">official documentation</a></p>
+</div>
+<p>Now we are within the container. The warning tells us that the base image was build for an arm64/aarch64 architecture, which is different from the architecture of the host (amd64).</p>
+<p>We should be able to ask for the Python version and start a REPL:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root@ee24eff3c797:/$<span class="w"> </span>python<span class="w"> </span>--version
+Python<span class="w"> </span><span class="m">3</span>.9.6
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root@ee24eff3c797:/$<span class="w"> </span>python
+Python<span class="w"> </span><span class="m">3</span>.9.6<span class="w"> </span><span class="o">(</span>default,<span class="w"> </span>Jun<span class="w"> </span><span class="m">29</span><span class="w"> </span><span class="m">2021</span>,<span class="w"> </span><span class="m">19</span>:34:26<span class="o">)</span>
+<span class="o">[</span>GCC<span class="w"> </span><span class="m">8</span>.3.0<span class="o">]</span><span class="w"> </span>on<span class="w"> </span>linux
+Type<span class="w"> </span><span class="s2">&quot;help&quot;</span>,<span class="w"> </span><span class="s2">&quot;copyright&quot;</span>,<span class="w"> </span><span class="s2">&quot;credits&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="s2">&quot;license&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>more<span class="w"> </span>information.
+&gt;&gt;&gt;<span class="w"> </span>print<span class="o">(</span><span class="s2">&quot;hello&quot;</span><span class="o">)</span>
+hello
+</pre></div>
+</div>
+</section>
+<section id="save-a-container">
+<h4>Save a container<a class="headerlink" href="#save-a-container" title="Link to this heading"></a></h4>
+<p>The container is working, let’s save it so we can share it around. Docker already provides us with the right tool: <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">save</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker<span class="w"> </span>save<span class="w"> </span>ifm3d<span class="w"> </span>&gt;<span class="w"> </span>ifm3d.tar
+</pre></div>
+</div>
+</section>
+</section>
+<section id="load-and-start-a-container">
+<h3>Load and start a container<a class="headerlink" href="#load-and-start-a-container" title="Link to this heading"></a></h3>
+<p>To reload the content of a previously saved image, use:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>load<span class="w"> </span>&lt;<span class="w"> </span>ifm3d.tar
+</pre></div>
+</div>
+<p>Start the Docker container like this on every other device:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>docker<span class="w"> </span>run<span class="w"> </span>ifm3d
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The image name might be different than the saved container name. After <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">load</span></code>, Docker will show the name of the loaded image</p>
+</div>
+</section>
+<section id="add-features-to-the-container">
+<h3>Add features to the container<a class="headerlink" href="#add-features-to-the-container" title="Link to this heading"></a></h3>
+<p>Until now, our container is not really useful. Let’s update the container’s kernel, install Python packages and create a user (this will improve security). To do that, we need to improve the Dockerfile:</p>
+<p>Dockerfile:</p>
+<div class="highlight-Docker notranslate"><div class="highlight"><pre><span></span><span class="c"># This Dockerfile is a documentation example and might not build after a copy/paste process</span>
+
+<span class="c">#arm64v8 is the pre-requisite for running the container on the VPU.</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">arm64v8/python:3.9.6-slim-buster</span>
+
+<span class="c">#Security updates</span>
+<span class="k">ARG</span><span class="w"> </span><span class="nv">DEBIAN_FRONTEND</span><span class="o">=</span>noninteractive
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>-y<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>-y<span class="w"> </span>upgrade
+
+<span class="c">#Create and activate virtual environment. This is not needed right now, but useful for multistage builds.</span>
+<span class="k">RUN</span><span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>/opt/venv
+<span class="k">ENV</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/opt/venv/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+
+<span class="c"># Your normal pip installation, within the venv. We also update pip.</span>
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>pip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>numpy
+
+<span class="c">#For security reasons, using a &quot;user&quot; is recommended</span>
+<span class="k">RUN</span><span class="w"> </span>useradd<span class="w"> </span>--create-home<span class="w"> </span>pythonuser
+<span class="k">USER</span><span class="w"> </span><span class="s">pythonuser</span>
+
+<span class="c">#Easier to debug the container if issues are happening</span>
+<span class="k">ENV</span><span class="w"> </span><span class="nv">PYTHONFAULTHANDLER</span><span class="o">=</span><span class="m">1</span>
+</pre></div>
+</div>
+<p>Build process:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker<span class="w"> </span>build<span class="w"> </span>.<span class="w"> </span>-t<span class="w"> </span>ifm3d
+Sending<span class="w"> </span>build<span class="w"> </span>context<span class="w"> </span>to<span class="w"> </span>Docker<span class="w"> </span>daemon<span class="w">  </span><span class="m">113</span>.1MB
+Step<span class="w"> </span><span class="m">1</span>/9<span class="w"> </span>:<span class="w"> </span>FROM<span class="w"> </span>arm64v8/python:3.9.6-slim-buster
+<span class="w"> </span>---&gt;<span class="w"> </span>4770e646d0be
+...
+Step<span class="w"> </span><span class="m">6</span>/9<span class="w"> </span>:<span class="w"> </span>RUN<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>pip<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>numpy
+<span class="w"> </span>---&gt;<span class="w"> </span><span class="o">[</span>Warning<span class="o">]</span><span class="w"> </span>The<span class="w"> </span>requested<span class="w"> </span>image<span class="s1">&#39;s platform (linux/arm64) does not match the detected host platform (linux/amd64) and no specific platform was requested</span>
+<span class="s1"> ---&gt; Running in bb51c405bbdb</span>
+<span class="s1">Requirement already satisfied: pip in /opt/venv/lib/python3.9/site-packages (21.1.3)</span>
+<span class="s1">Collecting pip</span>
+<span class="s1">  Downloading pip-21.2.2-py3-none-any.whl (1.6 MB)</span>
+<span class="s1">Installing collected packages: pip</span>
+<span class="s1">  Attempting uninstall: pip</span>
+<span class="s1">    Found existing installation: pip 21.1.3</span>
+<span class="s1">    Uninstalling pip-21.1.3:</span>
+<span class="s1">      Successfully uninstalled pip-21.1.3</span>
+<span class="s1">Successfully installed pip-21.2.2</span>
+<span class="s1">...</span>
+<span class="s1">Step 9/9 : ENV PYTHONFAULTHANDLER=1</span>
+<span class="s1"> ---&gt; [Warning] The requested image&#39;</span>s<span class="w"> </span>platform<span class="w"> </span><span class="o">(</span>linux/arm64<span class="o">)</span><span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>match<span class="w"> </span>the<span class="w"> </span>detected<span class="w"> </span>host<span class="w"> </span>platform<span class="w"> </span><span class="o">(</span>linux/amd64<span class="o">)</span><span class="w"> </span>and<span class="w"> </span>no<span class="w"> </span>specific<span class="w"> </span>platform<span class="w"> </span>was<span class="w"> </span>requested
+<span class="w"> </span>---&gt;<span class="w"> </span>Running<span class="w"> </span><span class="k">in</span><span class="w"> </span>4ea430894bc7
+Removing<span class="w"> </span>intermediate<span class="w"> </span>container<span class="w"> </span>4ea430894bc7
+<span class="w"> </span>---&gt;<span class="w"> </span>14db5d89303f
+Successfully<span class="w"> </span>built<span class="w"> </span>14db5d89303f
+Successfully<span class="w"> </span>tagged<span class="w"> </span>ifm3d:latest
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For easier readability, the build process output was shortened.</p>
+</div>
+<p>The build process  contains several layers and <code class="docutils literal notranslate"><span class="pre">intermediate</span></code> container builds (that we use for debugging). You can start the container with the typical commands and check if NumPy was installed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>ifm3d:latest<span class="w"> </span>/bin/bash
+WARNING:<span class="w"> </span>The<span class="w"> </span>requested<span class="w"> </span>image’s<span class="w"> </span>platform<span class="w"> </span><span class="o">(</span>linux/arm64<span class="o">)</span><span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>match<span class="w"> </span>the<span class="w"> </span>detected<span class="w"> </span>host<span class="w"> </span>platform<span class="w"> </span><span class="o">(</span>linux/amd64<span class="o">)</span><span class="w"> </span>and<span class="w"> </span>no<span class="w"> </span>specific<span class="w"> </span>platform<span class="w"> </span>was<span class="w"> </span>requested
+pythonuser@319eb5ea67e0:/$<span class="w"> </span>pip<span class="w"> </span>freeze
+<span class="nv">numpy</span><span class="o">==</span><span class="m">1</span>.21.1
+</pre></div>
+</div>
+</section>
+<section id="install-ifm3d-in-the-container">
+<h3>Install ifm3d in the container<a class="headerlink" href="#install-ifm3d-in-the-container" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">ifm3dpy</span></code> is the Python binding for the ifm3d library. You can install it from source (download it <a class="reference external" href="https://github.com/ifm/ifm3d">here</a>) or use the <a class="reference external" href="https://github.com/ifm/ifm3d/pkgs/container/ifm3d">Docker image</a> provided by ifm which can be used on the VPU and contains the ifm3d and ifm3dpy libraries.</p>
+<p>The Dockerfile could look similar to this:</p>
+<div class="highlight-Docker notranslate"><div class="highlight"><pre><span></span><span class="c"># This Dockerfile is a documentation example and might not be build after a copy/paste process</span>
+
+<span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu:20.04</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s">build</span>
+
+<span class="c"># if defined, we run unit tests when building ifm3d</span>
+<span class="k">ARG</span><span class="w"> </span>run_tests
+
+<span class="c"># if you are running unit tests against a camera at</span>
+<span class="c"># a different IP, set it here.</span>
+<span class="k">ENV</span><span class="w"> </span>IFM3D_IP<span class="w"> </span><span class="m">192</span>.168.0.69
+<span class="k">ENV</span><span class="w"> </span>DEBIAN_FRONTEND<span class="w"> </span>noninteractive
+
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/home/ifm</span>
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>-y<span class="w"> </span>upgrade
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>libboost-all-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">                       </span>git<span class="w"> </span><span class="se">\</span>
+<span class="w">                       </span>libcurl4-openssl-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">                       </span>libgtest-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">                       </span>libgoogle-glog-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">                       </span>libxmlrpc-c++8-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">                       </span>libopencv-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">                       </span>libpcl-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">                       </span>libproj-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">                       </span>python3-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">                       </span>python3-pip<span class="w"> </span><span class="se">\</span>
+<span class="w">                       </span>build-essential<span class="w"> </span><span class="se">\</span>
+<span class="w">                       </span>coreutils<span class="w"> </span><span class="se">\</span>
+<span class="w">                       </span>findutils<span class="w"> </span><span class="se">\</span>
+<span class="w">                       </span>cmake<span class="w"> </span><span class="se">\</span>
+<span class="w">                       </span>locales<span class="w"> </span><span class="se">\</span>
+<span class="w">                       </span>ninja-build
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>clean
+
+<span class="c"># install python</span>
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>--no-install-recommends<span class="w"> </span>build-essential<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>python3-dev
+
+<span class="c">#install(Update) python packages and dependencies separate - improves Docker caching etc.</span>
+<span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--no-cache-dir<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+
+<span class="c"># build pybind11 with cmake - but first clone from the official github repo</span>
+<span class="k">RUN</span><span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span>v2.3.0<span class="w"> </span>https://github.com/pybind/pybind11.git<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">cd</span><span class="w"> </span>/home/ifm/pybind11<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>mkdir<span class="w"> </span>-p<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">cd</span><span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>cmake<span class="w"> </span>-DPYBIND11_TEST<span class="o">=</span>OFF<span class="w"> </span>..<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>make<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>make<span class="w"> </span>install
+
+<span class="c"># First clone ifm3d repo via username and personal access token into the container and than build the ifm3d</span>
+<span class="c"># this build include ifm3d pybind for a python access via pybind11</span>
+<span class="k">ARG</span><span class="w"> </span>IFM3D_CLONE_REPO
+<span class="k">RUN</span><span class="w"> </span>mkdir<span class="w"> </span>src<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">cd</span><span class="w"> </span>src<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>git<span class="w"> </span>clone<span class="w"> </span>--branch<span class="w"> </span>o3r/main<span class="w"> </span><span class="si">${</span><span class="nv">IFM3D_CLONE_REPO</span><span class="si">}</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">cd</span><span class="w"> </span>ifm3d<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Building from current branch&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>mkdir<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="nb">cd</span><span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>cmake<span class="w"> </span>-GNinja<span class="w"> </span>-DCMAKE_INSTALL_PREFIX<span class="o">=</span>/usr<span class="w"> </span>-DBUILD_MODULE_OPENCV<span class="o">=</span>ON<span class="w"> </span>-DBUILD_MODULE_PCICCLIENT<span class="o">=</span>ON<span class="w"> </span>-DBUILD_MODULE_PYBIND11<span class="o">=</span>ON<span class="w"> </span>-DPYTHON_EXECUTABLE<span class="o">=</span>/usr/bin/python3<span class="w"> </span>..<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ninja<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ninja<span class="w"> </span>package<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ninja<span class="w"> </span>repackage
+<span class="k">RUN</span><span class="w"> </span>ls<span class="w"> </span>-1<span class="w"> </span>/home/ifm/src/ifm3d/build/*.deb<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-iv<span class="w"> </span><span class="s1">&#39;unspecified&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>dpkg<span class="w"> </span>-i
+
+<span class="c"># multistage to reduce image size, hide secrets and add ifm user</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu:20.04</span>
+
+<span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>build<span class="w"> </span>/usr<span class="w"> </span>/usr
+
+<span class="k">RUN</span><span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nv">DEBIAN_FRONTEND</span><span class="o">=</span>noninteractive<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>clean
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You should leverage the layering from Docker to improve the build speed if you need to build again. QEMU emulates a ARM64 CPU in software on a x86 System which is slow. In case you are planning to build large application from source please consider to run this on a ARM64 based host.</p>
+</div>
+<p>We provide up-to-date images containing the ifm3d library, both on the DockerHub <a class="reference external" href="https://hub.docker.com/r/ifmrobotics/ifm3d">here</a> and on GitHub <a class="reference external" href="https://github.com/ifm/ifm3d/pkgs/container/ifm3d">here</a>.
+We recommend using the image available on GitHub, as it does not come with rate limits. You can simply pull it like so:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker<span class="w"> </span>pull<span class="w"> </span>ghcr.io/ifm/ifm3d:stable
+stable:<span class="w"> </span>Pulling<span class="w"> </span>from<span class="w"> </span>ifm/ifm3d
+...
+Digest:<span class="w"> </span>sha256:f54a5890d75618c5bd21535dfa71e1cd9b1a8515902fb8e1912e6f586e0685a3
+Status:<span class="w"> </span>Downloaded<span class="w"> </span>newer<span class="w"> </span>image<span class="w"> </span><span class="k">for</span><span class="w"> </span>ghcr.io/ifm/ifm3d:stable
+ghcr.io/ifm/ifm3d:stable
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Due to easier readability, the pull process output was shortened</p>
+</div>
+<p>Let’s try the image and see if we can connect to a (physically connected) VPU:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>ghcr.io/ifm/ifm3d:stable
+ifm@1f21eb1f98d2:/$<span class="w"> </span>ifm3d<span class="w"> </span>dump
+<span class="o">{</span>
+<span class="w">  </span><span class="s2">&quot;device&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="s2">&quot;clock&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">      </span><span class="s2">&quot;currentTime&quot;</span>:<span class="w"> </span><span class="m">1581111542490926304</span>,
+<span class="w">      </span>...
+</pre></div>
+</div>
+<p>If this is working, we can also try the ifm3dpy implementation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ifm@8a167fde9edc:/$<span class="w"> </span>python3
+Python<span class="w"> </span><span class="m">3</span>.6.9<span class="w"> </span><span class="o">(</span>default,<span class="w"> </span>Apr<span class="w"> </span><span class="m">18</span><span class="w"> </span><span class="m">2020</span>,<span class="w"> </span><span class="m">01</span>:56:04<span class="o">)</span>
+<span class="o">[</span>GCC<span class="w"> </span><span class="m">8</span>.4.0<span class="o">]</span><span class="w"> </span>on<span class="w"> </span>linux
+Type<span class="w"> </span><span class="s2">&quot;help&quot;</span>,<span class="w"> </span><span class="s2">&quot;copyright&quot;</span>,<span class="w"> </span><span class="s2">&quot;credits&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="s2">&quot;license&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>more<span class="w"> </span>information.
+&gt;&gt;&gt;<span class="w"> </span>import<span class="w"> </span>ifm3dpy
+&gt;&gt;&gt;<span class="w"> </span><span class="nv">o3r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ifm3dpy.O3RCamera<span class="o">()</span>
+&gt;&gt;&gt;<span class="w"> </span>o3r.to_json<span class="o">()</span>
+<span class="o">{</span><span class="s1">&#39;device&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;clock&#39;</span>:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;currentTime&#39;</span>:<span class="w"> </span>...
+</pre></div>
+</div>
+</section>
+<section id="building-on-top-of-the-ifm-base-image">
+<h3>Building on top of the ifm base image<a class="headerlink" href="#building-on-top-of-the-ifm-base-image" title="Link to this heading"></a></h3>
+<p>Now you want your own container, with your Python script to run. Base your Dockerfile simply on the <code class="docutils literal notranslate"><span class="pre">ghcr.io/ifm/ifm3d:stable</span></code> image:</p>
+<div class="highlight-Dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="w"> </span><span class="s">ghcr.io/ifm/ifm3d:stable</span>
+</pre></div>
+</div>
+<p>You can now include your application code.</p>
+<p>Once the image is built, you can deploy it to the VPU. Read more <a class="reference internal" href="deployVPU.html"><span class="std std-doc">here</span></a>.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="/latest/_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+		
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.efector.object-ident@ifm.com">support.efector.object-ident@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
