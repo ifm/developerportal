@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Autostart a container on the VPU &mdash; O3R  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=28a392ea" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Resource management" href="resource_management.html" />
+    <link rel="prev" title="How to handle verbose logging for Docker containers" href="logging.html" />
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script> -->
+     
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            O3R
+          </a>
+              <div class="version">
+                v1.4.32
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Technology/index_technology.html">Technology</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index_software_interfaces.html">Software Interfaces</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../iVA/index_iVA.html">ifm Vision Assistant</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://api.ifm3d.com/stable/">ifm3d/ifm3dpy API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://ros.ifm3d.com/latest/">ROS: ifm3d-ros</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://ros2.ifm3d.com/latest/">ROS2: ifm3d-ros2</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index_docker.html">Docker</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="docker.html">Getting started with Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployVPU.html">Deployment on board</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html">Docker logging configuration</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Autostarting the container</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#docker-compose">Docker compose</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#sample-docker-compose-yml">Sample docker-compose.yml</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#start-the-container">Start the container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#auto-start-the-container-after-a-reboot-of-the-vpu">Auto start the container after a reboot of the VPU</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#consistently-save-data-on-the-vpu-within-a-container">Consistently save data on the VPU within a container</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="resource_management.html">Resource Management on the VPU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gpu.html">Enabling GPU usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tensorRT/TensorRT_on_a_VPU_hardware.html">TensortRT: DL / ML model deployment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ifmDiagnostic/index_diagnostic.html">Diagnostic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Toolbox/index_toolbox.html">Toolbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Examples/examples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index_software_interfaces.html">Software Interfaces</a></li>
+          <li class="breadcrumb-item"><a href="index_docker.html">Docker on O3R</a></li>
+      <li class="breadcrumb-item active">Autostart a container on the VPU</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/SoftwareInterfaces/Docker/autostart.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="autostart-a-container-on-the-vpu">
+<h1>Autostart a container on the VPU<a class="headerlink" href="#autostart-a-container-on-the-vpu" title="Link to this heading"></a></h1>
+<p>Once the container has been transferred to the VPU, you can set up an autostart service to automatically run the containers as start-up.
+For auto-starting a container, <code class="docutils literal notranslate"><span class="pre">Docker</span> <span class="pre">compose</span></code> is used. The VPU already provides a service <code class="docutils literal notranslate"><span class="pre">.config/systemd/user/oem-dc&#64;.service</span></code> which can be used for auto-starting a service: this is what we will use.</p>
+<section id="docker-compose">
+<h2>Docker compose<a class="headerlink" href="#docker-compose" title="Link to this heading"></a></h2>
+<p>Generate a sample directory and a <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file at following destination: <code class="docutils literal notranslate"><span class="pre">/usr/share/oem/docker/compose/</span></code>. for example <code class="docutils literal notranslate"><span class="pre">/usr/share/oem/docker/compose/jupyter/docker-compose.yml</span></code></p>
+<p>This file should contain the information for starting the container you need.</p>
+<section id="sample-docker-compose-yml">
+<h3>Sample docker-compose.yml<a class="headerlink" href="#sample-docker-compose-yml" title="Link to this heading"></a></h3>
+<p>The following <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file would create a service called <code class="docutils literal notranslate"><span class="pre">jupyter</span></code>, based on the image <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> and bind the container ports 8888 to the host port 8888 on start.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.3&quot;</span>
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">jupyter</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">jupyter</span>
+<span class="w">        </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">            </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8888:8888</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>Note: The Docker version on the VPU expects the <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> to be either version 2.2 or 3.3. For further information refer to <a class="reference external" href="https://docs.docker.com/compose/gettingstarted/">Docker compose</a>.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="start-the-container">
+<h2>Start the container<a class="headerlink" href="#start-the-container" title="Link to this heading"></a></h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> can be started via <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">up</span></code> within the <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> directory.</p>
+<!-- **TODOOO: add example of `docker compose-up`**   -->
+<p>It is also possible to start the service with <code class="docutils literal notranslate"><span class="pre">systemctl</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl<span class="w"> </span>--user<span class="w"> </span>start<span class="w"> </span>oem-dc@jupyter
+</pre></div>
+</div>
+<p>After a few seconds, the service should have started and it is possible to get the status of this service:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl<span class="w"> </span>--user<span class="w"> </span>status<span class="w"> </span>oem-dc@jupyter
+</pre></div>
+</div>
+<!-- TODO: add the result of this cmd -->
+<p>Another way of seeing all running container is <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span></code>.</p>
+</section>
+<section id="auto-start-the-container-after-a-reboot-of-the-vpu">
+<h2>Auto start the container after a reboot of the VPU<a class="headerlink" href="#auto-start-the-container-after-a-reboot-of-the-vpu" title="Link to this heading"></a></h2>
+<p>To restart the container automatically, simply <code class="docutils literal notranslate"><span class="pre">enable</span></code> the service:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>systemctl<span class="w"> </span>--user<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>oem-dc@jupyter
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="#autostart-a-container-on-the-vpu">Start the container</a> on how to start the container with a <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span> <span class="pre">file</span></code></p>
+</section>
+<section id="consistently-save-data-on-the-vpu-within-a-container">
+<h2>Consistently save data on the VPU within a container<a class="headerlink" href="#consistently-save-data-on-the-vpu-within-a-container" title="Link to this heading"></a></h2>
+<p>Data that is created and stored within a container is exclusive to the current running instance of that container.
+If the container is restarted, any data previously saved will be lost.
+To prevent this, consider using Docker <code class="docutils literal notranslate"><span class="pre">volumes</span></code>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="/latest/_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+		
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.efector.object-ident@ifm.com">support.efector.object-ident@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

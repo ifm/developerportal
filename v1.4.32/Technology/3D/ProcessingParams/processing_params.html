@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D processing parameters overview &mdash; O3R  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=28a392ea" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../../_static/tabs.js?v=3030b3cb"></script>
+        <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Filtering Process" href="filteringProcess.html" />
+    <link rel="prev" title="Processing parameters" href="index_processing_params.html" />
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script> -->
+     
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            O3R
+          </a>
+              <div class="version">
+                v1.4.32
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index_technology.html">Technology</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../Hardware/index_hardware.html">Hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../PortsOverview/ports_overview.html">Ports overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2D/2d.html">2D Cameras</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index_3d.html">3D Cameras</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../modes.html">Modes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../AcquisitionParams/index_acquisition_params.html">Acquisition parameters</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index_processing_params.html">Processing parameters</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Overview of the processing parameters</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#maximum-distance-noise">Maximum Distance Noise</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#minimum-amplitude-and-minimum-reflectivity">Minimum Amplitude and minimum reflectivity</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#adaptive-noise-bilateral-filter-and-median-filter">Adaptive Noise Bilateral Filter and Median Filter</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#temporal-filter">Temporal Filter</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#mixed-pixel-filtering">Mixed Pixel Filtering</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#symmetry-threshold">Symmetry Threshold</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#cuda-processing">CUDA processing</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="filteringProcess.html">Filtering process overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="maxDistNoise.html">Maximum distance noise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="minAmplitude.html">Minimum amplitude</a></li>
+<li class="toctree-l4"><a class="reference internal" href="minReflectivity.html">Minimum reflectivity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bilateralFilter.html">Adaptive noise bilateral filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="median.html">Median filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="temporalFilter.html">Temporal filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mixedPixelFilter.html">Mixed pixel filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="symmetryThreshold.html">Symmetry threshold</a></li>
+<li class="toctree-l4"><a class="reference internal" href="use_cuda.html">CUDA point cloud processing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../triggering.html">Synchronization and triggering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ImagesDescription/index_images_description.html">Images description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../IntrinsicCalib/intrinsic_calib_3d.html">Intrinsic calibration models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../VPU/index_vpu.html">VPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../SystemVerification/index_system_verification.html">System Verification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index_technology.html">Technology</a></li>
+          <li class="breadcrumb-item"><a href="../index_3d.html">3D Camera Configuration</a></li>
+          <li class="breadcrumb-item"><a href="index_processing_params.html">Processing parameters</a></li>
+      <li class="breadcrumb-item active">3D processing parameters overview</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/Technology/3D/ProcessingParams/processing_params.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="d-processing-parameters-overview">
+<h1>3D processing parameters overview<a class="headerlink" href="#d-processing-parameters-overview" title="Link to this heading"></a></h1>
+<p>This document gives a short overview of the available processing parameters for the O3R 3D cameras.
+Since type and default values can change depending on the firmware version, we recommend using the schema to read out the type and default value for specific parameters. For example, to check the type and default value of the <code class="docutils literal notranslate"><span class="pre">maxDistNoise</span></code> for the <code class="docutils literal notranslate"><span class="pre">port0</span></code> you can use:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-Q0xJ" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-Q0xJ" name="Q0xJ" role="tab" tabindex="0">CLI</button><button aria-controls="panel-0-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button><button aria-controls="panel-0-Qysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-0-Q0xJ" class="sphinx-tabs-panel group-tab" id="panel-0-Q0xJ" name="Q0xJ" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>jsonschema<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.properties.ports.properties.port0.properties.processing.properties.diParam.properties.maxDistNoise
+<span class="o">{</span>
+<span class="w">  </span><span class="s2">&quot;default&quot;</span>:<span class="w"> </span><span class="m">0</span>.05,
+<span class="w">  </span><span class="s2">&quot;description&quot;</span>:<span class="w"> </span><span class="s2">&quot;Maximum distance noise, given as the standard deviation in [m]. (0.0: disable check).&quot;</span>,
+<span class="w">  </span><span class="s2">&quot;maximum&quot;</span>:<span class="w"> </span><span class="m">1</span>,
+<span class="w">  </span><span class="s2">&quot;minimum&quot;</span>:<span class="w"> </span><span class="m">0</span>,
+<span class="w">  </span><span class="s2">&quot;type&quot;</span>:<span class="w"> </span><span class="s2">&quot;number&quot;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ifm3dpy.device</span> <span class="kn">import</span> <span class="n">O3R</span>
+<span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">(</span><span class="s2">&quot;192.168.0.69&quot;</span><span class="p">)</span>
+<span class="n">o3r</span><span class="o">.</span><span class="n">get_schema</span><span class="p">()[</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;ports&quot;</span><span class="p">][</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;port0&quot;</span><span class="p">][</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;processing&quot;</span><span class="p">][</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;diParam&quot;</span><span class="p">][</span><span class="s2">&quot;properties&quot;</span><span class="p">][</span><span class="s2">&quot;maxDistNoise&quot;</span><span class="p">]</span>
+<span class="p">{</span><span class="s1">&#39;default&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Maximum distance noise, given as the standard deviation in [m]. (0.0: disable check).&#39;</span><span class="p">,</span> <span class="s1">&#39;maximum&#39;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;minimum&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;number&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-Qysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Note that this example does not include the necessary imports.</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">O3R</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="w"> </span><span class="n">o3r_schema</span><span class="p">;</span>
+<span class="n">o3r_schema</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dev</span><span class="o">-&gt;</span><span class="n">GetSchema</span><span class="p">()[</span><span class="s">&quot;properties&quot;</span><span class="p">][</span><span class="s">&quot;ports&quot;</span><span class="p">][</span><span class="s">&quot;properties&quot;</span><span class="p">][</span><span class="s">&quot;port0&quot;</span><span class="p">][</span><span class="s">&quot;properties&quot;</span><span class="p">][</span><span class="s">&quot;processing&quot;</span><span class="p">][</span><span class="s">&quot;properties&quot;</span><span class="p">][</span><span class="s">&quot;diParam&quot;</span><span class="p">][</span><span class="s">&quot;properties&quot;</span><span class="p">][</span><span class="s">&quot;maxDistNoise&quot;</span><span class="p">];</span>
+<span class="c1">// Printing out the o3r_schema would give:</span>
+<span class="c1">//{</span>
+<span class="c1">//  &quot;default&quot;: 0.05,</span>
+<span class="c1">//  &quot;description&quot;: &quot;Maximum distance noise, given as the standard deviation in [m]. (0.0: disable check).&quot;,</span>
+<span class="c1">//  &quot;maximum&quot;: 1.0,</span>
+<span class="c1">//  &quot;minimum&quot;: 0.0,</span>
+<span class="c1">//  &quot;type&quot;: &quot;number&quot;</span>
+<span class="c1">//}</span>
+</pre></div>
+</div>
+</div></div>
+<section id="maximum-distance-noise">
+<h2>Maximum Distance Noise<a class="headerlink" href="#maximum-distance-noise" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable name</p></th>
+<th class="head"><p>Short description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">maxDistNoise</span></code></p></td>
+<td><p>Defines the maximum allowable distance noise. Its value represents the standard deviation of the distance value, in meters.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Typical filters tend to utilize “broad strokes” when making decisions on which pixel to keep and which to filter. These “broad strokes” may eliminate pixels that are critical to the use case. By utilizing the noise value, we only eliminate pixels with the highest noise value (e.g, ambient light) while preserving the maximum amount of usable data. Applying filters in conjunction with the maximum distance noise filter increases the potential for usable pixels in the scene.</p>
+<p>When to change default:</p>
+<ul class="simple">
+<li><p>Lower the max. distance noise value if you are attempting to measure an object with high precision (e.g, box dimensioning).</p></li>
+<li><p>Increase the max. distance noise value if it is more important to evaluate all pixels in the scene, regardless of their noise (for example obstacle detection).</p></li>
+</ul>
+<p>Learn more <a class="reference internal" href="maxDistNoise.html"><span class="std std-doc">here</span></a>.</p>
+</section>
+<section id="minimum-amplitude-and-minimum-reflectivity">
+<h2>Minimum Amplitude and minimum reflectivity<a class="headerlink" href="#minimum-amplitude-and-minimum-reflectivity" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable name</p></th>
+<th class="head"><p>Short description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">minAmplitude</span></code></p></td>
+<td><p>Defines the minimum amplitude value required for a pixel to be valid</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">minReflectivity</span></code></p></td>
+<td><p>Defines the minimum reflectivity percentage required of the measured object for a pixel to be valid</p></td>
+</tr>
+<tr class="row-even"><td><p>A pixel is valid if the energy (amplitude) received is above the defined threshold. The measured amplitude is primarily affected by both the reflectivity of the object and its distance to the camera.</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>When to change the default:</p>
+<p>Lower the default value when the standard targets are known to have low reflectivity (for example &lt;10% like matte black targets). A lower amplitude threshold is also valuable when attempting to detect negative obstacles (for example stairs).
+It is recommended to enable a noise filter (temporal or adaptive filter) when lowering the default minimum amplitude.</p>
+<p>Learn more about the minimum amplitude <a class="reference internal" href="minAmplitude.html"><span class="std std-doc">here</span></a>.</p>
+<p>Learn more about the minimum reflectivity <a class="reference internal" href="minReflectivity.html"><span class="std std-doc">here</span></a>.</p>
+</section>
+<section id="adaptive-noise-bilateral-filter-and-median-filter">
+<h2>Adaptive Noise Bilateral Filter and Median Filter<a class="headerlink" href="#adaptive-noise-bilateral-filter-and-median-filter" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable name</p></th>
+<th class="head"><p>Short description</p></th>
+<th class="head"><p>Min/max values</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">anfFilterSizeDiv2</span></code></p></td>
+<td><p>Adaptive Noise Bilateral Filter. mask size is <em>(2*anfFilterSizeDiv2+1)^2</em>.</p></td>
+<td><p>0: disable the filter <br />1: 3x3 <br />2: 5x5 <br />3: 7x7</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">medianSizeDiv2</span></code></p></td>
+<td><p>Size of the mask for spatial median filtering (the size is <em>(2*medianSizeDiv2+1)^2)</em></p></td>
+<td><p>0: disable the filter <br />1: 3x3 <br />2: 5x5</p></td>
+</tr>
+</tbody>
+</table>
+<p>The adaptive bilateral noise filter reduces distance noise while also preserving object edges. Utilizing a larger number of pixels (for example 7x7) in the mask will, in most cases, result in better image quality.</p>
+<p><strong>We recommend that you typically use the bilateral filter because it is more efficient and has a better incorporation of the noise.</strong></p>
+<p>The median filter does not preserve edges as well as the bilateral filter and tends to produce round corners, but being more computationally efficient, could be utilized with “in-motion” use cases (for example obstacle detection on mobile robots).</p>
+<p>Learn more <a class="reference internal" href="bilateralFilter.html"><span class="std std-doc">here</span></a>.</p>
+</section>
+<section id="temporal-filter">
+<h2>Temporal Filter<a class="headerlink" href="#temporal-filter" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable name</p></th>
+<th class="head"><p>Short description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">enableTemporalFilter</span></code></p></td>
+<td><p>Enables the filter</p></td>
+</tr>
+</tbody>
+</table>
+<p>The temporal filter mitigates distance noise by integrating pixel information over multiple frames. There is no strict limit for the number of frames. Instead, an automatic resetting approach is applied to the pixels.</p>
+<p>Although the O3R temporal filter can be used for “in-motion” use cases, it is best suited for static scenes.</p>
+<p>Learn more <a class="reference internal" href="temporalFilter.html"><span class="std std-doc">here</span></a>.</p>
+</section>
+<section id="mixed-pixel-filtering">
+<h2>Mixed Pixel Filtering<a class="headerlink" href="#mixed-pixel-filtering" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable name</p></th>
+<th class="head"><p>Short description</p></th>
+<th class="head"><p>Min/max values</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mixedPixelFilterMode</span></code></p></td>
+<td><p>Filtering mode (angle or distance)</p></td>
+<td><p>0: disable the filter, 1: mixed pixel filter is on and uses an angle threshold, 2: mixed pixel filter is on and uses an adaptive delta distance threshold</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mixedPixelThresholdRad</span></code></p></td>
+<td><p>Threshold given in [rad] for the minimum angle between the surface tangent and the view vector (used if <code class="docutils literal notranslate"><span class="pre">mixedPixelFilterMode</span></code>=1).</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>Mixed pixels (or “flying pixels”) are pixels that fall partially on a foreground object and partially on an object in the background. Because the physics of indirect ToF do not allow the imager to distinguish partial pixel measurements, the full pixel result is a weighted average distance measurement between the two targets. When viewing the point cloud, these pixels appear “floating”, or not corresponding to any object.
+The mixed pixel filter removes the mixed pixels from the image.</p>
+<p>When to change the default:
+Mixed pixels fall on the edges of targets. Use cases, such as negative obstacle detection, could take advantage of the additional information provided by these mixed pixels, requiring the filter to be disabled.</p>
+<p>Learn more <a class="reference internal" href="mixedPixelFilter.html"><span class="std std-doc">here</span></a>.</p>
+</section>
+<section id="symmetry-threshold">
+<h2>Symmetry Threshold<a class="headerlink" href="#symmetry-threshold" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable name</p></th>
+<th class="head"><p>Short description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">dynamicSymmetryThreshold</span></code></p></td>
+<td><p>The threshold given as a factor of the symmetry’s standard deviation. If set to 0, the filter is disabled.</p></td>
+</tr>
+</tbody>
+</table>
+<p>The raw modulated signal used to perform the distance measurement is designed to be perfectly symmetrical (sent and received). This is true for static applications. If the object is in motion, however, the symmetry of the reflected signal may be altered, leading to “motion blur”. This artifact can be mitigated by allowing “less” symmetry in the measurements.</p>
+<blockquote>
+<div><p>Note: adjusting this filter for faster motion, or allowing less symmetry, will increase overall distance noise.</p>
+</div></blockquote>
+<p>Learn more <a class="reference internal" href="symmetryThreshold.html"><span class="std std-doc">here</span></a>.</p>
+</section>
+<section id="cuda-processing">
+<h2>CUDA processing<a class="headerlink" href="#cuda-processing" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable name</p></th>
+<th class="head"><p>Short description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">useCuda</span></code></p></td>
+<td><p>Defines whether to process the data on the GPU (<code class="docutils literal notranslate"><span class="pre">useCuda</span> <span class="pre">=</span> <span class="pre">true</span></code>) or CPU (<code class="docutils literal notranslate"><span class="pre">useCuda</span> <span class="pre">=</span> <span class="pre">false</span></code>).</p></td>
+</tr>
+</tbody>
+</table>
+<p>Starting with firmware version 1.4.30, all 3D data is processed by default on the GPU using a CUDA-based implementation. The <code class="docutils literal notranslate"><span class="pre">useCuda</span></code> parameter determines where the distance data is computed: set it to true for GPU processing and false for CPU processing. We generally recommend keeping CUDA processing enabled.</p>
+<p>Learn more <a class="reference internal" href="use_cuda.html"><span class="std std-doc">here</span></a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="/latest/_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+		
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.efector.object-ident@ifm.com">support.efector.object-ident@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
