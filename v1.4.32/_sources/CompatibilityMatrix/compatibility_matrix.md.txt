@@ -1,19 +1,33 @@
 # Compatibility matrix
 
-| Firmware Version                                                      | Supported VPU Hardware         | Supported Camera Head Hardware            | ifm3d-library | ifmVisionAssistant |
-| --------------------------------------------------------------------- | ------------------------------ | ------------------------------------------ | ------------- | ------------------ |
-| [1.4.30](../Firmware/ReleaseNotes/FW_1.4.x/FW_1.4.x_release_notes.md) | M04308 <br> OVP810 <br> OVP811 | O3R222AA, O3R222AB, O3R222AC <br> O3R225AB, O3R225AC, O3R225AD | 1.4.3, 1.5.3 | 2.8.7 |
-| [1.1.30](../Firmware/ReleaseNotes/FW_1.1.x/FW_1.1.x_Release_Notes.md) | OVP800 <br> OVP801 <br> M04239 | O3R222 <br> O3R225AB <br> 03R225AC         | 1.4.3         | 2.6.24, 2.7.6     |
-| [1.0.14](../Firmware/ReleaseNotes/FW_1.0.x/FW_1.0.x_Release_Notes.md) | OVP800 <br> M04239             | O3R222 <br> O3R225AB <br> 03R225AC         | 1.2.6         | 2.6.14             |
-| [0.16.23](../Firmware/ReleaseNotes/FW_0.16.x/FW_0.16.x_Release_Notes.md)           | OVP800 <br> M04239             | O3R222 <br> O3R225AB <br> 03R225AC         | 1.1.1         | 2.6.7              |
-| [0.14.23](../Firmware/ReleaseNotes/FW_0.14.x/Firmware_0.14.x_Release_Notes.md)     | OVP800 <br> M03975 <br> MO4239 | O3R222 <br> O3R225 <br> M03933 <br> M03969 | 0.93.x        | NA                 |
 
+## Firmware and Hardware compatibility matrix
+ | Supported VPU Hardware         | Supported Camera Head Hardware | FW version | ifm3d-library | ifmVisionAssistant |
+ | ------------------------------ | ------------------------------ | ---------- | ------------- | ------------------ |
+ | OVP810 <br> OVP811             | O3R222 <br> O3R225             | FW 1.4.30 or FW 1.1.41  | 1.4.3, 1.5.3  | 2.8.7              |
+ | OVP800 <br> OVP801 <br> M04239 | O3R222 <br> 03R225             | FW 1.4.32  | 1.4.3, 1.5.3  | 2.8.7              |
+ | OVP800 <br> OVP801 <br> M04239 | O3R222 <br> 03R225             | FW 1.1.30  | 1.4.3         | 2.6.24, 2.7.6      |
+ | OVP800 <br> M04239             | O3R222 <br> 03R225             | FW 1.0.14  | 1.2.6         | 2.6.14             |
 
 :::{note}
-Other combinations of versions than the ones listed in the table above could work but are not officially supported by ifm.
+- Other combinations of versions than the ones listed in the table above could work but are not officially supported by ifm. [See table below](#suggested-hardware)
+- Newer API versions are aimed to be backward compatible. Please verify via the API release notes and changelog.
 :::
 
 To review hardware specifications, refer to the [available hardware documentation](../Technology/Hardware/hardware_specifications.md).
+
+## Recommended Hardware
+
+The following hardware combination table is recommended from a performance point of view.
+Typically the respective changes regarding ifm internal productions state, e.g. O3R222AA vs. O3R222AB, are minimal. Newer production states may correspond to improved performance, see suggestions in table below. Such performance improvements may include updated calibration routines in the ifm internal production pipeline, etc. Please get in touch with your ifm sales engineer for further details.
+
+| VPU Hardware                   | Recommended Camera Head Hardware                     | Recommended Firmware Version                                                   |
+| ------------------------------ | ---------------------------------------------------- | ------------------------------------------------------------------------------ |
+| OVP810 <br> OVP811             | O3R222AC and later <br> O3R225AC, O3R225AD and later | [1.4.30](../Firmware/ReleaseNotes/FW_1.4.x/FW_1.4.x_release_notes.md) or [1.1.41](../Firmware/ReleaseNotes/FW_1.1.41/FW_1.1.41_Release_Notes.md) |
+| OVP800 <br> OVP801 <br> M04239 | O3R222AA, O3R222AB <br> 03R225AC, O3R225AD and later | [1.1.30](../Firmware/ReleaseNotes/FW_1.1.x/FW_1.1.x_Release_Notes.md) or [1.4.32](../Firmware/ReleaseNotes/FW_1.4.32/FW_1.4.32_release_notes.md) |
+| OVP800 <br> M04239             | O3R222AA <br> O3R225AB, 03R225AC                     | [1.0.14](../Firmware/ReleaseNotes/FW_1.0.x/FW_1.0.x_Release_Notes.md)          |
+
+
 
 ## ifm3d-ros and ifm3d-ros2 version compatibility
 

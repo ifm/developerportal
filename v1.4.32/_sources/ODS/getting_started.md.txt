@@ -1,10 +1,10 @@
 # Getting started with ODS
 
-<!-- To get started with ODS, we recommend reviewing our "How to" video:
+Check out this video to get started with ODS:
+:::{youtube} Icvgb2IczIQ
+:::
 
-TODO: import ODS getting started video -->
-
-This document briefly outlines the main steps for getting started with the ifm ODS solution on the O3R perception platform.
+Alternatively, you can read through the steps below.
 
 ## Prerequisites
 

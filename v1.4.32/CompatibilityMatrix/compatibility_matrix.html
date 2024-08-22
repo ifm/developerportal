@@ -71,6 +71,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../GettingStarted/index_getting_started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Firmware/index.html">Firmware</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Compatibility Matrix</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#firmware-and-hardware-compatibility-matrix">Firmware and Hardware compatibility matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#recommended-hardware">Recommended Hardware</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#ifm3d-ros-and-ifm3d-ros2-version-compatibility">ifm3d-ros and ifm3d-ros2 version compatibility</a></li>
 </ul>
 </li>
@@ -108,53 +110,80 @@
              
   <section id="compatibility-matrix">
 <h1>Compatibility matrix<a class="headerlink" href="#compatibility-matrix" title="Link to this heading"></a></h1>
+<section id="firmware-and-hardware-compatibility-matrix">
+<h2>Firmware and Hardware compatibility matrix<a class="headerlink" href="#firmware-and-hardware-compatibility-matrix" title="Link to this heading"></a></h2>
 <table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="head"><p>Firmware Version</p></th>
-<th class="head"><p>Supported VPU Hardware</p></th>
+<tr class="row-odd"><th class="head"><p>Supported VPU Hardware</p></th>
 <th class="head"><p>Supported Camera Head Hardware</p></th>
+<th class="head"><p>FW version</p></th>
 <th class="head"><p>ifm3d-library</p></th>
 <th class="head"><p>ifmVisionAssistant</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p><a class="reference internal" href="../Firmware/ReleaseNotes/FW_1.4.x/FW_1.4.x_release_notes.html"><span class="std std-doc">1.4.30</span></a></p></td>
-<td><p>M04308 <br> OVP810 <br> OVP811</p></td>
-<td><p>O3R222AA, O3R222AB, O3R222AC <br> O3R225AB, O3R225AC, O3R225AD</p></td>
+<tr class="row-even"><td><p>OVP810 <br> OVP811</p></td>
+<td><p>O3R222 <br> O3R225</p></td>
+<td><p>FW 1.4.30 or FW 1.1.41</p></td>
 <td><p>1.4.3, 1.5.3</p></td>
 <td><p>2.8.7</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../Firmware/ReleaseNotes/FW_1.1.x/FW_1.1.x_Release_Notes.html"><span class="std std-doc">1.1.30</span></a></p></td>
-<td><p>OVP800 <br> OVP801 <br> M04239</p></td>
-<td><p>O3R222 <br> O3R225AB <br> 03R225AC</p></td>
+<tr class="row-odd"><td><p>OVP800 <br> OVP801 <br> M04239</p></td>
+<td><p>O3R222 <br> 03R225</p></td>
+<td><p>FW 1.4.32</p></td>
+<td><p>1.4.3, 1.5.3</p></td>
+<td><p>2.8.7</p></td>
+</tr>
+<tr class="row-even"><td><p>OVP800 <br> OVP801 <br> M04239</p></td>
+<td><p>O3R222 <br> 03R225</p></td>
+<td><p>FW 1.1.30</p></td>
 <td><p>1.4.3</p></td>
 <td><p>2.6.24, 2.7.6</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../Firmware/ReleaseNotes/FW_1.0.x/FW_1.0.x_Release_Notes.html"><span class="std std-doc">1.0.14</span></a></p></td>
-<td><p>OVP800 <br> M04239</p></td>
-<td><p>O3R222 <br> O3R225AB <br> 03R225AC</p></td>
+<tr class="row-odd"><td><p>OVP800 <br> M04239</p></td>
+<td><p>O3R222 <br> 03R225</p></td>
+<td><p>FW 1.0.14</p></td>
 <td><p>1.2.6</p></td>
 <td><p>2.6.14</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="../Firmware/ReleaseNotes/FW_0.16.x/FW_0.16.x_Release_Notes.html"><span class="std std-doc">0.16.23</span></a></p></td>
-<td><p>OVP800 <br> M04239</p></td>
-<td><p>O3R222 <br> O3R225AB <br> 03R225AC</p></td>
-<td><p>1.1.1</p></td>
-<td><p>2.6.7</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="../Firmware/ReleaseNotes/FW_0.14.x/Firmware_0.14.x_Release_Notes.html"><span class="std std-doc">0.14.23</span></a></p></td>
-<td><p>OVP800 <br> M03975 <br> MO4239</p></td>
-<td><p>O3R222 <br> O3R225 <br> M03933 <br> M03969</p></td>
-<td><p>0.93.x</p></td>
-<td><p>NA</p></td>
 </tr>
 </tbody>
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Other combinations of versions than the ones listed in the table above could work but are not officially supported by ifm.</p>
+<ul class="simple">
+<li><p>Other combinations of versions than the ones listed in the table above could work but are not officially supported by ifm. <a class="reference internal" href="#suggested-hardware"><span class="xref myst">See table below</span></a></p></li>
+<li><p>Newer API versions are aimed to be backward compatible. Please verify via the API release notes and changelog.</p></li>
+</ul>
 </div>
 <p>To review hardware specifications, refer to the <a class="reference internal" href="../Technology/Hardware/hardware_specifications.html"><span class="std std-doc">available hardware documentation</span></a>.</p>
+</section>
+<section id="recommended-hardware">
+<h2>Recommended Hardware<a class="headerlink" href="#recommended-hardware" title="Link to this heading"></a></h2>
+<p>The following hardware combination table is recommended from a performance point of view.
+Typically the respective changes regarding ifm internal productions state, e.g. O3R222AA vs. O3R222AB, are minimal. Newer production states may correspond to improved performance, see suggestions in table below. Such performance improvements may include updated calibration routines in the ifm internal production pipeline, etc. Please get in touch with your ifm sales engineer for further details.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>VPU Hardware</p></th>
+<th class="head"><p>Recommended Camera Head Hardware</p></th>
+<th class="head"><p>Recommended Firmware Version</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>OVP810 <br> OVP811</p></td>
+<td><p>O3R222AC and later <br> O3R225AC, O3R225AD and later</p></td>
+<td><p><a class="reference internal" href="../Firmware/ReleaseNotes/FW_1.4.x/FW_1.4.x_release_notes.html"><span class="std std-doc">1.4.30</span></a> or <a class="reference internal" href="../Firmware/ReleaseNotes/FW_1.1.41/FW_1.1.41_Release_Notes.html"><span class="std std-doc">1.1.41</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>OVP800 <br> OVP801 <br> M04239</p></td>
+<td><p>O3R222AA, O3R222AB <br> 03R225AC, O3R225AD and later</p></td>
+<td><p><a class="reference internal" href="../Firmware/ReleaseNotes/FW_1.1.x/FW_1.1.x_Release_Notes.html"><span class="std std-doc">1.1.30</span></a> or <a class="reference internal" href="../Firmware/ReleaseNotes/FW_1.4.32/FW_1.4.32_release_notes.html"><span class="std std-doc">1.4.32</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>OVP800 <br> M04239</p></td>
+<td><p>O3R222AA <br> O3R225AB, 03R225AC</p></td>
+<td><p><a class="reference internal" href="../Firmware/ReleaseNotes/FW_1.0.x/FW_1.0.x_Release_Notes.html"><span class="std std-doc">1.0.14</span></a></p></td>
+</tr>
+</tbody>
+</table>
+</section>
 <section id="ifm3d-ros-and-ifm3d-ros2-version-compatibility">
 <h2>ifm3d-ros and ifm3d-ros2 version compatibility<a class="headerlink" href="#ifm3d-ros-and-ifm3d-ros2-version-compatibility" title="Link to this heading"></a></h2>
 <p>Please refer to the specific packages for ROS compatibility matrices:</p>
