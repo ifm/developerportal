@@ -80,7 +80,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../Instantiation/instantiation.html">Instantiation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Configuration/configuration.html">Configuration</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Zones</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#description">Description</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#zone-extent">Zone extent</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#number-of-zones">Number of zones</a></li>
@@ -145,14 +144,11 @@
              
   <section id="zones">
 <h1>Zones<a class="headerlink" href="#zones" title="Link to this heading"></a></h1>
-<section id="description">
-<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
-</section>
 <section id="parameters">
 <h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
 <p>A zone maps the probability information of all grid cells within the zone extent to a binary value: <code class="docutils literal notranslate"><span class="pre">true</span></code> means that an object is detected, <code class="docutils literal notranslate"><span class="pre">false</span></code> that no object is detected.
 This mapping is based on the internally computed convex hull (2D) of the user input <code class="docutils literal notranslate"><span class="pre">zoneCoordinates</span></code> and the <code class="docutils literal notranslate"><span class="pre">maxHeight</span></code> parameter.</p>
-<p>Additionally, the <code class="docutils literal notranslate"><span class="pre">minObjectHeight</span></code> parameter allows you to edit the expected minimum object height above the ground (<code class="docutils literal notranslate"><span class="pre">Z==0</span></code> plane) per camera. The <code class="docutils literal notranslate"><span class="pre">minObjectHeight</span></code> parameter is handled on a per-camera basis to allow fine tuning for multi-camera setups with different camera mounting heights. For higher mounted cameras the <code class="docutils literal notranslate"><span class="pre">minObjectHeight</span></code> can be lower compared to lower mounted cameras to allow the user to see further away and lower objects relative to the floor plane.</p>
+<p>Additionally, the <code class="docutils literal notranslate"><span class="pre">minObjectHeight</span></code> parameter allows editing the expected minimum object height above the ground (<code class="docutils literal notranslate"><span class="pre">Z==0</span></code> plane) per camera. The <code class="docutils literal notranslate"><span class="pre">minObjectHeight</span></code> parameter is handled on a per-camera basis to allow fine-tuning for multi-camera setups with different camera mounting heights. For higher mounted cameras the <code class="docutils literal notranslate"><span class="pre">minObjectHeight</span></code> can be lower compared to lower mounted cameras to allow the user to see further away and lower objects relative to the floor plane.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">maxHeight</span></code> parameter is a global parameter for all zones. The 3D extent (maximum) limits along the vertical axis are therefore the same for all zones.</p>
 <p><img alt="Zone Configuration" src="../../_images/set_example_zones.gif" /></p>
 <section id="zone-extent">
@@ -202,7 +198,7 @@ This mapping is based on the internally computed convex hull (2D) of the user in
 </section>
 <section id="zoneoccupied">
 <h3><code class="docutils literal notranslate"><span class="pre">zoneOccupied</span></code><a class="headerlink" href="#zoneoccupied" title="Link to this heading"></a></h3>
-<p>One zone state information for all zones: this is always an array of 3 elements independently of if 3 or less zones have been configured.</p>
+<p>The state information for all zones is consistently represented as an array of three elements, regardless of whether three or fewer zones have been configured.</p>
 </section>
 </section>
 <section id="examples">
@@ -214,7 +210,7 @@ This mapping is based on the internally computed convex hull (2D) of the user in
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>The JSON shown here is the convex hull of one zone (2D on the ground plane).
+<p>The JSON shown here is the convex hull of one zone, the red zone presented in the image above (2D on the ground plane).
 The width (lateral size, that is in Y-direction) is 2 m. The length (longitudinal size, that is in X-direction) is 1 m.</p>
 </section>
 <section id="three-zones">
@@ -231,8 +227,8 @@ The width (lateral size, that is in Y-direction) is 2 m. The length (longitudina
 </section>
 <section id="example-output">
 <h3>Example output<a class="headerlink" href="#example-output" title="Link to this heading"></a></h3>
-<p>In <code class="docutils literal notranslate"><span class="pre">FW</span> <span class="pre">0.16.23</span></code> and <code class="docutils literal notranslate"><span class="pre">FW</span> <span class="pre">1.0.14</span></code> the configuration and output of zones is limited to three zones.</p>
-<p>The user can set up-to 3 zones at a time. Trying to set 4 zones in the JSON configuration will result it a JSON schema error: ifm3d / ifm3dpy custom error.</p>
+<p>In current FW versions the configuration and output of zones is limited to three.
+Trying to set 4 zones in the JSON configuration will result in a JSON schema error: ifm3d / ifm3dpy custom error.</p>
 <p>The zone evaluation output is also limited to three zones. Independently of how many zones are configured, one zone output is a vector of three elements.
 The first element pertains to the first zone, the second element to the second zone, etc.</p>
 <p>The example array below shows the output of 10 consecutive frames buffered into one array.</p>

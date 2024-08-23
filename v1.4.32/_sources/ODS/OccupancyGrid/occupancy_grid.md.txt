@@ -1,9 +1,5 @@
 # Occupancy grid
 
-## Description
-
-## Parameters
-
 ## Output
 
 | Name                      | Type           | Description                                                                              |
@@ -24,7 +20,7 @@ Width[int] and height[int] of the occupancy grid (amount of cells within the gri
 
 ### Image
 
-The occupancy grid information as an array[width*height], containing the probability of the cell being occupied. Every ODS application forwards one single occupancy grid. All connected heads are publishing their information into this single grid. The center of the grid corresponds to the center of the reference coordinate frame, that is the robot's coordinate frame defined during the calibration.
+The occupancy grid information is an array[width*height], containing the probability of the cell being occupied. Every ODS application forwards one single occupancy grid. All connected heads are publishing their information into this single grid. The center of the grid corresponds to the center of the reference coordinate frame, that is the robot's coordinate frame defined during the calibration.
 
 We recommend using a probability threshold of 0.5 (127) to assess whether a cell is occupied or not.
 
@@ -46,7 +42,7 @@ This matrix allows to transform the occupancy grid into the user frame. It is a 
 ```
 #### Occupancy grid transformation example
 
-By default the parsed occupancy grid is oriented is such a way that:
+By default the parsed occupancy grid is oriented in such a way that:
 
 + (pixel coordinates) rows correspond to Y-coordinates in the ODS coordinates system
 + (pixel coordinates) columns correspond to X-coordinates in the ODS coordinates system

@@ -1,14 +1,12 @@
 
 # Zones
 
-## Description
-
-## Parameters
+## Parameters 
 
 A zone maps the probability information of all grid cells within the zone extent to a binary value: `true` means that an object is detected, `false` that no object is detected.
 This mapping is based on the internally computed convex hull (2D) of the user input `zoneCoordinates` and the `maxHeight` parameter.
 
-Additionally, the `minObjectHeight` parameter allows you to edit the expected minimum object height above the ground (`Z==0` plane) per camera. The `minObjectHeight` parameter is handled on a per-camera basis to allow fine tuning for multi-camera setups with different camera mounting heights. For higher mounted cameras the `minObjectHeight` can be lower compared to lower mounted cameras to allow the user to see further away and lower objects relative to the floor plane.
+Additionally, the `minObjectHeight` parameter allows editing the expected minimum object height above the ground (`Z==0` plane) per camera. The `minObjectHeight` parameter is handled on a per-camera basis to allow fine-tuning for multi-camera setups with different camera mounting heights. For higher mounted cameras the `minObjectHeight` can be lower compared to lower mounted cameras to allow the user to see further away and lower objects relative to the floor plane.
 
 The `maxHeight` parameter is a global parameter for all zones. The 3D extent (maximum) limits along the vertical axis are therefore the same for all zones.
 
@@ -46,7 +44,7 @@ The user-defined ID for the currently used zone configuration.
 
 ### `zoneOccupied`
 
-One zone state information for all zones: this is always an array of 3 elements independently of if 3 or less zones have been configured.
+The state information for all zones is consistently represented as an array of three elements, regardless of whether three or fewer zones have been configured.
 
 
 ## Examples
@@ -57,7 +55,7 @@ One zone state information for all zones: this is always an array of 3 elements 
 }
 ```
 
-The JSON shown here is the convex hull of one zone (2D on the ground plane).
+The JSON shown here is the convex hull of one zone, the red zone presented in the image above (2D on the ground plane).
 The width (lateral size, that is in Y-direction) is 2 m. The length (longitudinal size, that is in X-direction) is 1 m.
 
 ### Three zones
@@ -71,9 +69,8 @@ The width (lateral size, that is in Y-direction) is 2 m. The length (longitudina
 }
 ```
 ### Example output
-In `FW 0.16.23` and `FW 1.0.14` the configuration and output of zones is limited to three zones.
-
-The user can set up-to 3 zones at a time. Trying to set 4 zones in the JSON configuration will result it a JSON schema error: ifm3d / ifm3dpy custom error.
+In current FW versions the configuration and output of zones is limited to three.
+Trying to set 4 zones in the JSON configuration will result in a JSON schema error: ifm3d / ifm3dpy custom error.
 
 The zone evaluation output is also limited to three zones. Independently of how many zones are configured, one zone output is a vector of three elements.
 The first element pertains to the first zone, the second element to the second zone, etc.

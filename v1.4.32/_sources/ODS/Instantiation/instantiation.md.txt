@@ -43,9 +43,9 @@ ext_calib =
         "port2": {
             "processing": {
                 "extrinsicHeadToUser": {
-                    "rotX": -1.57,
+                    "rotX": 0.0,
                     "rotY": 1.57,
-                    "rotZ": 0.0,
+                    "rotZ": -1.57,
                     "transX": 0.0,
                     "transY": 0.0,
                     "transZ": 0.2
@@ -62,7 +62,7 @@ Using the viewer of your choice, for example the ifmVisionAssistant, you can see
 
 ## Ports selection
 
-A VPU (OVP800) can connect up to 6 3D imager, ranging from `Port 0` to `Port 5`. Providing the port information to the ODS configuration tells the system which heads should be used for the ODS application itself.
+A VPU (OVP8XX) can connect up to 6 3D imager, ranging from `Port 0` to `Port 5`. Providing the port information to the ODS configuration tells the system which heads should be used for the ODS application itself.
 
 :::{warning}
     The current ODS version do not support more than 3 used heads within an ODS application.
@@ -78,12 +78,12 @@ A VPU (OVP800) can connect up to 6 3D imager, ranging from `Port 0` to `Port 5`.
 Connected heads, which are not defined within the ODS JSON can be used in parallel to the ODS application.
 `port6` is the `IMU` (Inertial Measurement Unit) and is used by ODS. **`port6` *must always* be provided to an ODS application.**
 
-:::{note} We recommend turning all the unused camera heads to "CONF" mode, to avoid them using up system resources. This is especially true for unused RGB cameras.
+:::{note} To optimize system performance and conserve resources, it's recommended to switch all unused camera heads, especially RGB heads, to "CONF" mode.
 :::
 
 ## Visual odometry 
 
-`vo` - Visual odometry - is an algorithmic approach to provide - together with the IMU - ego motion data to the ODS algorithm. Images from one head are used together with the IMU data to continuously improve the ODS ego-motion estimation. The best performance is achieved by using a head with (the most) floor data visible in its images. The floors distance range needs to be at least between 1.00m and 1.50m.
+`vo` (Visual odometry) is an algorithmic approach that in combination with the `IMU` provides ego motion data to the ODS algorithm. Images from one head are used together with the IMU data to continuously improve the ODS ego-motion estimation. The best performance is achieved by using a head with (the most) floor data visible in its images. The floors distance range needs to be at least between 1.00m and 1.50m.
 
 Provide the port number (head with floor data in the images) to the `vo` attribute.
 

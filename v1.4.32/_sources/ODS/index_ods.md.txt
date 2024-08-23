@@ -14,7 +14,7 @@ ODS doesn't follow any safety regulations: for example ASIL-level or similar, an
 
 **ODS application properties and building blocks:**
 + ODS uses the O3R cameras as its primary data source: at least one O3R 3D camera stream is required
-+ ODS is capable of estimating the required ego-motion information via an internal algorithm - that is, is not dependent on external ego-motion sources
++ ODS uses an internal algorithm to autonomously estimate ego-motion without relying on any external sources.
 + ODS outputs two kind of information sets:
    + A 2D occupancy grid information: typically used in addition to existing navigation information to avoid and navigate around obstacles
    + (3D) zone information: a typical use case is the direct propagation to the chassis control system to perform braking maneuvers when obstacles are present

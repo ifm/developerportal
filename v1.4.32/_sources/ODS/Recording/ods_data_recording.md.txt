@@ -1,11 +1,11 @@
 # ODS data recording strategies
 
-The following document shall give an overview of why, when, how and what kind of ODS data to record.
+The following page shall give an overview of why, when, how and what kind of ODS data to record.
 
 ## Why record
 
 During different phases of the integration/development process, it is necessary to check and verify the ODS and/or O3R capabilities. To do so, the system must be tested with different goals in mind: objects to detect, stability, performance, etc.
-During all testing phases, issues could appear. To improve and verify the system, these issues (or lack of) need to be documented and recorded. This is the reason for the data recording.
+During all testing phases, issues could appear. To improve and verify the system, these issues (or lack of) need to be documented and recorded. The outcome also allows the internal development of algorithms to This is the reason for the data recording.
 
 ## What to record
 
@@ -37,7 +37,7 @@ These are possible to receive from a customer perspective and could be used for 
 "AlgoDebug" records all necessary data for ifm to re-simulate the event as it occurred during live operation.
 This includes the "normal" ifm data streams, e.g amplitude data, distance data, occupancy grid data, etc., and additional information from applications which might be protected because they are considered the intellectual property of ifm. This data is used to replay scenarios and reevaluate algorithmic approaches. Without this data, no feedback can be provided.
 
-The regular ifm data streams inside an ifm algo-debug dataset can be access by anyone without needing specific tools, that is the same way as a regular non-Algo Debug dataset.
+The regular ifm data streams inside an ifm algo-debug dataset can be accessed by anyone without needing specific tools, that is the same way as a regular non-Algo Debug dataset.
 
 ## When to record
 
@@ -88,17 +88,17 @@ flowchart LR
 
 ### Recording format
 
-There is no standardized data stream format. However, is quite common to save 3D data as hdf5 data files.
-For this purposes, ifm provides two separate recording formats:
+There is no standardized data stream format. However, it is quite common to save 3D data as hdf5 data files.
+For this purposes ifm provides two separate recording formats:
 
 Namely the ifm openly accessible data (the same as can be accessed via the API) - often called the ifm hdf5 format, and a closed raw data format - called ifm algo-debug hdf5 format.
 
 1. normal / open ifm hdf5 format
 2. closed source / binary ifm algo-debug format.
 
-ifm algo-debug data is saved in a specific hdf5 format, see the section above.
+ifm algo-debug data is saved in a specific hdf5 format.
 
-To receive and save data in this specific hdf5 data format, ifm tool are provided.
+To receive and save data in this specific hdf5 data format, a tool is provided by ifm.
 
 ### ifmVisionAssistant
 

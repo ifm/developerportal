@@ -1,6 +1,6 @@
 # ODS Performance evaluation
 
-The O3R-ODS performance for an AGV depends upon various factors. This whitepaper gives presents a evaluation strategy for benchmarking
+The O3R-ODS performance for an AGV depends upon various factors. The following information provides an evaluation strategy for benchmarking.
 
 ## ODS Performance analysis
 
@@ -108,7 +108,7 @@ plt.title('Distance Map of Recorded Data')
 ### False positive evaluation
 ![Distance map output](img/distance_map.png)
 
-Above the distance map representation of the recorded ODS data is show.
+Above, the distance map representation of the recorded ODS data is shown.
 
 This distance map is a representation of closest non zero distance per occupancy grid row (that is movement direction) over time. This representation takes a bit of time to get used to but gives a compact representation of object distance as color information over time per geometric Y-location.
 

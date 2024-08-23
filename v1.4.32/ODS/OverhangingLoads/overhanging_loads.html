@@ -163,7 +163,7 @@ Considering how variable the impact of stray light can be depending on where the
 </section>
 <section id="definition">
 <h2>Definition<a class="headerlink" href="#definition" title="Link to this heading"></a></h2>
-<p>In the context of ODS, and overhanging load is any object that:</p>
+<p>In the context of ODS, an overhanging load is any object that:</p>
 <ul class="simple">
 <li><p>is visible in one of the camera’s FOV,</p></li>
 <li><p>is static with respect to the robot coordinate system (RCS).</p></li>
@@ -206,7 +206,7 @@ A pixel is excluded if and only if the corresponding pixel-camera ray intersects
 <ul class="simple">
 <li><p>The feature has to be activated: <code class="docutils literal notranslate"><span class="pre">{&quot;active&quot;:</span> <span class="pre">true}</span></code>.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">minLoadHeight</span></code> parameter defines the lowest Z value of the region. This parameter should not be confused with the <code class="docutils literal notranslate"><span class="pre">minObjectHeight</span></code> (see <a class="reference internal" href="../Configuration/configuration.html#minimum-object-height"><span class="std std-ref">here</span></a>) that defines a minimum object height for the floor segmentation.
-Setting <code class="docutils literal notranslate"><span class="pre">minLoadHeight</span></code> to zero will result in some ground pixels being excluded, which in turn might results in detecting no usable floor for the visual odometry if the load is too large. In the example above, the bottom of the overhanging load is configured at 40 cm.</p></li>
+Setting <code class="docutils literal notranslate"><span class="pre">minLoadHeight</span></code> to zero will result in some ground pixels being excluded, which in turn might result in detecting no usable floor for the visual odometry if the load is too large. In the example above, the bottom of the overhanging load is configured at 40 cm.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">maxLoadHeight</span></code> defines the maximum Z value of the region. In the example above, the top of the overhanging load is configured at 1 m.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">region</span></code> defines the (x, y) coordinates of the 3 to 6 corners of the convex hull that defines the overhanging load.</p></li>
 </ul>

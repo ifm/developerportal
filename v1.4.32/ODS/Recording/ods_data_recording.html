@@ -147,11 +147,11 @@
              
   <section id="ods-data-recording-strategies">
 <h1>ODS data recording strategies<a class="headerlink" href="#ods-data-recording-strategies" title="Link to this heading"></a></h1>
-<p>The following document shall give an overview of why, when, how and what kind of ODS data to record.</p>
+<p>The following page shall give an overview of why, when, how and what kind of ODS data to record.</p>
 <section id="why-record">
 <h2>Why record<a class="headerlink" href="#why-record" title="Link to this heading"></a></h2>
 <p>During different phases of the integration/development process, it is necessary to check and verify the ODS and/or O3R capabilities. To do so, the system must be tested with different goals in mind: objects to detect, stability, performance, etc.
-During all testing phases, issues could appear. To improve and verify the system, these issues (or lack of) need to be documented and recorded. This is the reason for the data recording.</p>
+During all testing phases, issues could appear. To improve and verify the system, these issues (or lack of) need to be documented and recorded. The outcome also allows the internal development of algorithms to This is the reason for the data recording.</p>
 </section>
 <section id="what-to-record">
 <h2>What to record<a class="headerlink" href="#what-to-record" title="Link to this heading"></a></h2>
@@ -181,7 +181,7 @@ During all testing phases, issues could appear. To improve and verify the system
 <h3>AlgoDebug<a class="headerlink" href="#algodebug" title="Link to this heading"></a></h3>
 <p>“AlgoDebug” records all necessary data for ifm to re-simulate the event as it occurred during live operation.
 This includes the “normal” ifm data streams, e.g amplitude data, distance data, occupancy grid data, etc., and additional information from applications which might be protected because they are considered the intellectual property of ifm. This data is used to replay scenarios and reevaluate algorithmic approaches. Without this data, no feedback can be provided.</p>
-<p>The regular ifm data streams inside an ifm algo-debug dataset can be access by anyone without needing specific tools, that is the same way as a regular non-Algo Debug dataset.</p>
+<p>The regular ifm data streams inside an ifm algo-debug dataset can be accessed by anyone without needing specific tools, that is the same way as a regular non-Algo Debug dataset.</p>
 </section>
 </section>
 <section id="when-to-record">
@@ -231,15 +231,15 @@ This includes the “normal” ifm data streams, e.g amplitude data, distance da
 <h2>How to record<a class="headerlink" href="#how-to-record" title="Link to this heading"></a></h2>
 <section id="recording-format">
 <h3>Recording format<a class="headerlink" href="#recording-format" title="Link to this heading"></a></h3>
-<p>There is no standardized data stream format. However, is quite common to save 3D data as hdf5 data files.
-For this purposes, ifm provides two separate recording formats:</p>
+<p>There is no standardized data stream format. However, it is quite common to save 3D data as hdf5 data files.
+For this purposes ifm provides two separate recording formats:</p>
 <p>Namely the ifm openly accessible data (the same as can be accessed via the API) - often called the ifm hdf5 format, and a closed raw data format - called ifm algo-debug hdf5 format.</p>
 <ol class="arabic simple">
 <li><p>normal / open ifm hdf5 format</p></li>
 <li><p>closed source / binary ifm algo-debug format.</p></li>
 </ol>
-<p>ifm algo-debug data is saved in a specific hdf5 format, see the section above.</p>
-<p>To receive and save data in this specific hdf5 data format, ifm tool are provided.</p>
+<p>ifm algo-debug data is saved in a specific hdf5 format.</p>
+<p>To receive and save data in this specific hdf5 data format, a tool is provided by ifm.</p>
 </section>
 <section id="ifmvisionassistant">
 <h3>ifmVisionAssistant<a class="headerlink" href="#ifmvisionassistant" title="Link to this heading"></a></h3>

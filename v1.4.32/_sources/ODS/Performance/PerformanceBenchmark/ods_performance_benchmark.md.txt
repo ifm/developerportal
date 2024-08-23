@@ -1,6 +1,6 @@
 # ODS Performance
 
-This whitepaper gives an introduction to the factors influencing ODS performance and how the system can be evaluated for a specific application.
+The following information gives an introduction to the factors influencing ODS performance and how the system can be evaluated for a specific application.
 
 The following factors have to be taken into consideration when integrating ODS into a system:
 
@@ -25,15 +25,15 @@ As of now, there are two different types of O3R camera heads available in the ma
 | O3R225       | 105°           | 78°          | 
 | O3R222       | 60°            | 45°          |
 
-The illumination module and the resolution are the same for both camera, which means that for the same amount of light, the O3R225 has to cover around four times the area the O3R222 covers. 
-Due to this fact, greater detection ranges, especially for small objects are achieved with the O3R222 camera.
+The illumination optical power and sensor pixel resolution are identical for both cameras. Consequently, given equivalent amount of light, the O3R225 covers approximately four times the area of the O3R222, attributable to differences in their field of view (FOV) and field of illumination (FOI). 
+As a result, the O3R222 camera achieves greater detection ranges, particularly for small objects.
 
 To benefit from the advantages of both cameras, we suggest to complement a O3R225 camera with a O3R222 camera for long range applications.
 
 ## Floor types 
 
 The reflectivity and type of the floor surface impacts the amount of light reflected back into the camera lens.
-Even though the O3R cameras utilize the infrared spectrum, a good rule of thumbs is that a floors that appear "reflective" for the human eye will most likely also be reflective in infrared.
+Even though the O3R cameras utilize the infrared spectrum, a good rule of thumb is that floors that appear "reflective" for the human eye will most likely also be reflective in infrared.
 
 Three main things are impacted by the reflectivity and surface type of the floor:
 - Floors that are very smooth without visible marks, like freshly painted floors, can be challenging for the [visual odometry](#visual-odometry) estimation.

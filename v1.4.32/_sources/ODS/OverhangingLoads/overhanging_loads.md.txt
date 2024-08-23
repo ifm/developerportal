@@ -28,7 +28,7 @@ Considering how variable the impact of stray light can be depending on where the
 
 ## Definition
 
-In the context of ODS, and overhanging load is any object that:
+In the context of ODS, an overhanging load is any object that:
 - is visible in one of the camera's FOV,
 - is static with respect to the robot coordinate system (RCS).
 
@@ -70,7 +70,7 @@ The user is expected to configure all the necessary loads for the application, a
 For each load, consider the following parameters:
 - The feature has to be activated: `{"active": true}`.
 - The `minLoadHeight` parameter defines the lowest Z value of the region. This parameter should not be confused with the `minObjectHeight` (see [here](../Configuration/configuration.md#minimum-object-height)) that defines a minimum object height for the floor segmentation.
-Setting `minLoadHeight` to zero will result in some ground pixels being excluded, which in turn might results in detecting no usable floor for the visual odometry if the load is too large. In the example above, the bottom of the overhanging load is configured at 40 cm.
+Setting `minLoadHeight` to zero will result in some ground pixels being excluded, which in turn might result in detecting no usable floor for the visual odometry if the load is too large. In the example above, the bottom of the overhanging load is configured at 40 cm.
 - The `maxLoadHeight` defines the maximum Z value of the region. In the example above, the top of the overhanging load is configured at 1 m.
 - The `region` defines the (x, y) coordinates of the 3 to 6 corners of the convex hull that defines the overhanging load.
 

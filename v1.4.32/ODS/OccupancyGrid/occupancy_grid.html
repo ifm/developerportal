@@ -81,8 +81,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../Configuration/configuration.html">Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Zones/zones.html">Zones</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Occupancy grid</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#description">Description</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#output">Output</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#timestamp">Timestamp</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#width-height">Width &amp; Height</a></li>
@@ -140,12 +138,6 @@
              
   <section id="occupancy-grid">
 <h1>Occupancy grid<a class="headerlink" href="#occupancy-grid" title="Link to this heading"></a></h1>
-<section id="description">
-<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
-</section>
-<section id="parameters">
-<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
-</section>
 <section id="output">
 <h2>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h2>
 <table class="docutils align-default">
@@ -188,7 +180,7 @@
 </section>
 <section id="image">
 <h3>Image<a class="headerlink" href="#image" title="Link to this heading"></a></h3>
-<p>The occupancy grid information as an array[width*height], containing the probability of the cell being occupied. Every ODS application forwards one single occupancy grid. All connected heads are publishing their information into this single grid. The center of the grid corresponds to the center of the reference coordinate frame, that is the robot’s coordinate frame defined during the calibration.</p>
+<p>The occupancy grid information is an array[width*height], containing the probability of the cell being occupied. Every ODS application forwards one single occupancy grid. All connected heads are publishing their information into this single grid. The center of the grid corresponds to the center of the reference coordinate frame, that is the robot’s coordinate frame defined during the calibration.</p>
 <p>We recommend using a probability threshold of 0.5 (127) to assess whether a cell is occupied or not.</p>
 </section>
 <section id="transformcellcentertouser-transformation-parameters">
@@ -207,7 +199,7 @@
 </section>
 <section id="occupancy-grid-transformation-example">
 <h4>Occupancy grid transformation example<a class="headerlink" href="#occupancy-grid-transformation-example" title="Link to this heading"></a></h4>
-<p>By default the parsed occupancy grid is oriented is such a way that:</p>
+<p>By default the parsed occupancy grid is oriented in such a way that:</p>
 <ul class="simple">
 <li><p>(pixel coordinates) rows correspond to Y-coordinates in the ODS coordinates system</p></li>
 <li><p>(pixel coordinates) columns correspond to X-coordinates in the ODS coordinates system</p></li>

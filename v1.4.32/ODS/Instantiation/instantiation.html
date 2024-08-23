@@ -169,9 +169,9 @@ This would mean the camera head is inside the floor (<code class="docutils liter
         <span class="s2">&quot;port2&quot;</span><span class="p">:</span> <span class="p">{</span>
             <span class="s2">&quot;processing&quot;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="s2">&quot;extrinsicHeadToUser&quot;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s2">&quot;rotX&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">1.57</span><span class="p">,</span>
+                    <span class="s2">&quot;rotX&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
                     <span class="s2">&quot;rotY&quot;</span><span class="p">:</span> <span class="mf">1.57</span><span class="p">,</span>
-                    <span class="s2">&quot;rotZ&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+                    <span class="s2">&quot;rotZ&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">1.57</span><span class="p">,</span>
                     <span class="s2">&quot;transX&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
                     <span class="s2">&quot;transY&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
                     <span class="s2">&quot;transZ&quot;</span><span class="p">:</span> <span class="mf">0.2</span>
@@ -187,7 +187,7 @@ This would mean the camera head is inside the floor (<code class="docutils liter
 </section>
 <section id="ports-selection">
 <h2>Ports selection<a class="headerlink" href="#ports-selection" title="Link to this heading"></a></h2>
-<p>A VPU (OVP800) can connect up to 6 3D imager, ranging from <code class="docutils literal notranslate"><span class="pre">Port</span> <span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">Port</span> <span class="pre">5</span></code>. Providing the port information to the ODS configuration tells the system which heads should be used for the ODS application itself.</p>
+<p>A VPU (OVP8XX) can connect up to 6 3D imager, ranging from <code class="docutils literal notranslate"><span class="pre">Port</span> <span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">Port</span> <span class="pre">5</span></code>. Providing the port information to the ODS configuration tells the system which heads should be used for the ODS application itself.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The current ODS version do not support more than 3 used heads within an ODS application.
@@ -205,12 +205,12 @@ This would mean the camera head is inside the floor (<code class="docutils liter
 <code class="docutils literal notranslate"><span class="pre">port6</span></code> is the <code class="docutils literal notranslate"><span class="pre">IMU</span></code> (Inertial Measurement Unit) and is used by ODS. <strong><code class="docutils literal notranslate"><span class="pre">port6</span></code> <em>must always</em> be provided to an ODS application.</strong></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>We recommend turning all the unused camera heads to “CONF” mode, to avoid them using up system resources. This is especially true for unused RGB cameras.</p>
+<p>To optimize system performance and conserve resources, it’s recommended to switch all unused camera heads, especially RGB heads, to “CONF” mode.</p>
 </div>
 </section>
 <section id="visual-odometry">
 <h2>Visual odometry<a class="headerlink" href="#visual-odometry" title="Link to this heading"></a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">vo</span></code> - Visual odometry - is an algorithmic approach to provide - together with the IMU - ego motion data to the ODS algorithm. Images from one head are used together with the IMU data to continuously improve the ODS ego-motion estimation. The best performance is achieved by using a head with (the most) floor data visible in its images. The floors distance range needs to be at least between 1.00m and 1.50m.</p>
+<p><code class="docutils literal notranslate"><span class="pre">vo</span></code> (Visual odometry) is an algorithmic approach that in combination with the <code class="docutils literal notranslate"><span class="pre">IMU</span></code> provides ego motion data to the ODS algorithm. Images from one head are used together with the IMU data to continuously improve the ODS ego-motion estimation. The best performance is achieved by using a head with (the most) floor data visible in its images. The floors distance range needs to be at least between 1.00m and 1.50m.</p>
 <p>Provide the port number (head with floor data in the images) to the <code class="docutils literal notranslate"><span class="pre">vo</span></code> attribute.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;vo&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;voPorts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;port2&quot;</span><span class="p">]</span>

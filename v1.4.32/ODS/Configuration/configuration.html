@@ -141,7 +141,7 @@
 <td><p>Providing a custom name for the ODS application</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ports</span></code></p></td>
-<td><p>The ports that can be used by the application (camera heads and IMU)</p></td>
+<td><p>The ports that can be used by the application (camera heads and <code class="docutils literal notranslate"><span class="pre">IMU</span></code>)</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">state</span></code></p></td>
 <td><p>The current app state and dependent camera hardware sates - “RUN” or “CONF”</p></td>
@@ -159,7 +159,7 @@
 <td><p>A static region defined in the vehicle coordinate system which is excluded from the obstacle detection region (see <a class="reference internal" href="../OverhangingLoads/overhanging_loads.html"><span class="std std-doc">the overhanging loads documentation</span></a>).</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">grid/temporalConsistencyConstraint</span></code></p></td>
-<td><p>Ensures that artifacts cause by dust particles are ignored (see <a class="reference internal" href="../DustMitigation/dust_mitigation.html"><span class="std std-doc">the dust mitigation documentation</span></a>).</p></td>
+<td><p>Ensures that artifacts caused by dust particles are ignored (see <a class="reference internal" href="../DustMitigation/dust_mitigation.html"><span class="std std-doc">the dust mitigation documentation</span></a>).</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">portX/acquisition/channelValue</span></code></p></td>
 <td><p>The camera channel value [-100, 100] used for a specific port to mitigate interference. Channel values should differ of at least 2.</p></td>
@@ -174,7 +174,7 @@
 <td><p>Visual odometry - define a port which is the main camera stream for the visual odometry feature. Define multiple ports if a single reference port for visual odometry will not always be active, for example when switching between forward and backward looking cameras.</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">zones</span></code></p></td>
-<td><p>Define the used protection zones - <a class="reference internal" href="../Zones/zones.html"><span class="std std-doc">See <code class="docutils literal notranslate"><span class="pre">ods</span> <span class="pre">zone</span> <span class="pre">definition</span></code> for a complete description</span></a></p></td>
+<td><p>Define protection zones to be used - <a class="reference internal" href="../Zones/zones.html"><span class="std std-doc">See <code class="docutils literal notranslate"><span class="pre">ods</span> <span class="pre">zone</span> <span class="pre">definition</span></code> for a complete description</span></a></p></td>
 </tr>
 </tbody>
 </table>
@@ -184,7 +184,7 @@
 </div>
 <section id="channel-value">
 <h2>Channel value<a class="headerlink" href="#channel-value" title="Link to this heading"></a></h2>
-<p>The 3D imagers use the <code class="docutils literal notranslate"><span class="pre">TOF</span></code> - <a class="reference external" href="https://en.wikipedia.org/wiki/Time-of-flight_camera">TimeOfFlight</a> - technology to estimate 3D data.
+<p>The 3D imagers use the <code class="docutils literal notranslate"><span class="pre">iToF</span></code> - <a class="reference external" href="https://en.wikipedia.org/wiki/Time-of-flight_camera">indirect Time of Flight</a> - technology to estimate 3D data.
 Due to this technical approach, it might happen that two heads are interfering with each other. Providing different channel values (that is, slightly different modulation frequencies), from -100 up to 100 channel value, for each head helps mitigate this issue. Pick channel values at least two digits apart of each other.</p>
 <div class="highlight-JSON notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;applications&quot;</span><span class="p">:{</span>

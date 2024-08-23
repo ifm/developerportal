@@ -50,7 +50,7 @@ The JSON below shows the `enableNegativeObstacles` parameter to consider to enab
 
 The negative obstacle detection is a feature that [requires a switch to "CONF" state](../../Technology/configuration.md#conf-only-parameters) to be enabled, so it is not recommended to switch that function on and off dynamically but to use a static setting during robot operation.
 
-In Python, for example, the feature can be enable with the code below. Note that this code assumes the existence of an `app0` instance using a camera connected to `port0`.
+In Python, for example, the feature can be enabled with the code below. Note that this code assumes the existence of an `app0` instance using a camera connected to `port0`.
 
 ```python
 # 1. Set the application to "CONF" state
