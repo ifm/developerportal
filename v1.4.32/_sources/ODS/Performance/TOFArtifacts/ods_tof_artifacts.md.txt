@@ -34,7 +34,7 @@ In practice, this means that detection ranges might be reduced on objects direct
 
 Some of these artifacts might induce false positives in ODS: an object is detected where there is none. 
 
-Most iToF artifacts are mitigated in ODS, either through intelligent acquisition methods or through filtering techniques in the algorithms. However, it is impossible to eliminate all possible artifacts, and some false positive may still occur. 
+Most iToF artifacts are mitigated in ODS, either through intelligent acquisition methods or through filtering techniques in the algorithms. However, it is impossible to eliminate all potential artifacts, and some false positive may still occur. 
 
 Below are some guidelines on what to prioritize when testing ODS' robustness against false positives:
 1. Stray light artifacts caused by retro-reflectors can be handled when the reflectors are in the field of view of the cameras. When the source of the stray light is not in the field of view, it is more difficult to filter out the artifact. If reflectors are expected in the environment, try the following: drive the vehicle along a realistic path where reflectors are located along the side. Pay close attention to the data when just passing the reflector, both when there is no obstacle in front of the vehicle, and when there is an obstacle. Repeat the test with different obstacles of varying size and reflectivity, and for a density of reflectors in the scene that reflects a realistic use case.
@@ -49,4 +49,4 @@ Below are some guidelines on what to prioritize when testing ODS' robustness aga
 To thoroughly test crosstalk, we recommend running tests with a full fleet of robots. Crosstalk might occur only in specific geometrical configurations, and these situations are easier to pinpoint when multiple robots are involved, at various distances and angles. 
 
 3. Ambient light:
-In cases where the vehicle is expected to drive along large windows, or partially outside, we recommend validating ODS performances in those conditions as well. Sunlight creates additional noise, which in turns results in slightly reduced range, and it is important to understand how this impact obstacle detection for the user's specific environment and targeted obstacles. 
+In cases where the vehicle is expected to drive along large windows, or partially outside, we recommend validating ODS performances in those conditions as well. Sunlight creates additional noise, which in turns results in slightly reduced range, and it is important to understand how this impacts obstacle detection for the user's specific environment and targeted obstacles. 
