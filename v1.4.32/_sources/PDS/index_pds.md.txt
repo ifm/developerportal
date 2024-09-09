@@ -8,7 +8,6 @@ PDS - `Pose Detection System` - provided by [ifm](https://www.ifm.com), is a sof
 
 :::{toctree}
     :maxdepth: 2
-    :hidden:
 Getting started <GettingStarted/index_getting_started>
 Calibration <Calibration/pds_calibration>
 Configuration <Configuration/configuration>
