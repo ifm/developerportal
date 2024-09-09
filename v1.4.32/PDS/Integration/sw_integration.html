@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Manual calibration of ports for vehicle algorithms &mdash; O3R  documentation</title>
+  <title>Software integration guide &mdash; O3R  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
@@ -30,8 +30,6 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Docker on O3R" href="../Docker/index_docker.html" />
-    <link rel="prev" title="Device and diagnosis data" href="device_and_diagnosis_data.html" />
     <!-- Google tag (gtag.js) -->
     <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
     <script>
@@ -66,30 +64,13 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Firmware/index.html">Firmware</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Technology/index_technology.html">Technology</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../index_software_interfaces.html">Software Interfaces</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="index_iVA.html">ifm Vision Assistant</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="ReleaseNotes/index_iVA_release_notes.html">Release notes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="changing_parameters.html">Changing parameters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="configuring_applications.html">Configuring applications</a></li>
-<li class="toctree-l3"><a class="reference internal" href="device_and_diagnosis_data.html">Device and diagnostics information</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Manual calibration of ports for vehicle algorithms</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference external" href="https://api.ifm3d.com/stable/">ifm3d/ifm3dpy API</a></li>
-<li class="toctree-l2"><a class="reference external" href="https://ros.ifm3d.com/latest/">ROS: ifm3d-ros</a></li>
-<li class="toctree-l2"><a class="reference external" href="https://ros2.ifm3d.com/latest/">ROS2: ifm3d-ros2</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Docker/index_docker.html">Docker</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ifmDiagnostic/index_diagnostic.html">Diagnostic</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Toolbox/index_toolbox.html">Toolbox</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Examples/examples.html">Examples</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../index_software_interfaces.html">Software Interfaces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ODS/index_ods.html">ODS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
@@ -110,11 +91,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../../index_software_interfaces.html">Software Interfaces</a></li>
-          <li class="breadcrumb-item"><a href="index_iVA.html">ifm Vision Assistant</a></li>
-      <li class="breadcrumb-item active">Manual calibration of ports for vehicle algorithms</li>
+      <li class="breadcrumb-item active">Software integration guide</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/SoftwareInterfaces/iVA/manual_calibration.md.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/PDS/Integration/sw_integration.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -122,21 +101,27 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="manual-calibration-of-ports-for-vehicle-algorithms">
-<h1>Manual calibration of ports for vehicle algorithms<a class="headerlink" href="#manual-calibration-of-ports-for-vehicle-algorithms" title="Link to this heading"></a></h1>
-<p>The ifmVisionAssistant includes a new feature to calibrate the cameras based on the camera’s position and orientation.</p>
-<p><strong>Procedure:</strong></p>
-<ol class="arabic simple">
-<li><p>Click on <code class="docutils literal notranslate"><span class="pre">Manual</span> <span class="pre">calibration</span> <span class="pre">of</span> <span class="pre">ports</span> <span class="pre">for</span> <span class="pre">vehicle</span> <span class="pre">algorithms</span></code> under the <code class="docutils literal notranslate"><span class="pre">Port</span> <span class="pre">settings</span></code> window.</p></li>
-</ol>
-<p><img alt="step1" src="../../_images/step_1_iva_man_calibration1.png" /></p>
-<ol class="arabic simple" start="2">
-<li><p>Select the port to calibrate</p></li>
-<li><p>Click <code class="docutils literal notranslate"><span class="pre">Rotate</span> <span class="pre">like</span> <span class="pre">a</span> <span class="pre">vehicle</span> <span class="pre">front</span> <span class="pre">camera</span></code> to calibrate.</p></li>
-<li><p>Enter the translation parameters, i.e. the translation distances from the user/robot coordinate system to the camera.</p></li>
-<li><p>Select the orientation of the mounted camera when looking from the front of the camera.</p></li>
-</ol>
-<p><img alt="step2_to_step5" src="../../_images/step2_step5.png" /></p>
+  <section id="software-integration-guide">
+<h1>Software integration guide<a class="headerlink" href="#software-integration-guide" title="Link to this heading"></a></h1>
+<p>PDS’ commands are expected to be triggered from the vehicle’s main IPC, through the ifm3d library. This document explains the infrastructure expected to configure and trigger PDS.</p>
+<section id="states">
+<h2>States<a class="headerlink" href="#states" title="Link to this heading"></a></h2>
+<p>A PDS application can be in two states:</p>
+<ul class="simple">
+<li><p>“CONF” state is used when first initializing the application and configuring it (defining which camera port should be used, etc.),</p></li>
+<li><p>“IDLE” state represents the application ready to receive a command. The application does not produce data when in “IDLE” state until a command is sent.</p></li>
+</ul>
+</section>
+<section id="commands">
+<h2>Commands<a class="headerlink" href="#commands" title="Link to this heading"></a></h2>
+<p>When in “IDLE” state, the PDS application can be triggered using either of the four available commands (<a class="reference internal" href="../GetPallet/getPallet.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">getPallet</span></code></span></a>, <a class="reference internal" href="../GetRack/getRack.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">getRack</span></code></span></a>, <a class="reference internal" href="../GetItem/getItem.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">getItem</span></code></span></a> or <a class="reference internal" href="../VolCheck/volCheck.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">volCheck</span></code></span></a>), along with the command-specific parameters. Once data is processed, the result is published in a frame and can be retrieved using the ifm3d <code class="docutils literal notranslate"><span class="pre">FrameGrabber</span></code> (refer to the Python and C++ examples).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">nop</span></code> command (no operation) is the default command used when the application is in “IDLE” and no specific command was triggered or the triggered command has already completed.</p>
+</section>
+<section id="state-machine">
+<h2>State machine<a class="headerlink" href="#state-machine" title="Link to this heading"></a></h2>
+<p>The diagram below shows the state machine of PDS’ operation.</p>
+<p><img alt="PDS state machine" src="../../_images/state_machine.drawio.svg" /></p>
+</section>
 </section>
 
 
