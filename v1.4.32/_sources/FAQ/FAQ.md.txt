@@ -89,3 +89,9 @@ A: Due to a couple frames being buffered internally, a worst case delay of up to
 A. The diagnostic information can be acquired via ifmVisionAssistant. To get the more detailed information about the diagnostic information please refer [this page](../SoftwareInterfaces/ifmDiagnostic/index_diagnostic.md)
 
 Additionally the system is constantly logging information in the background. You can receive this *trace* with our [ifm3d-library](https://ifm.github.io/ifm3d-docs/html/cli_link.html#ifm3d-command-line-tool). Please include this information when contacting us.
+
+## Applications
+
+**Q. Can I run ODS and PDS with the same camera at the same time?**
+
+A. No, only one application at a time per camera. However, you can switch between applications, taking the switching time into consideration.
