@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ifm3d Examples &mdash; O3R  documentation</title>
+  <title>O3D3xx and O3X1xx examples &mdash; O3R  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
@@ -91,7 +91,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">ifm3d Examples</li>
+      <li class="breadcrumb-item active">O3D3xx and O3X1xx examples</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/ifm3d-examples/o3d3xx-o3x1xx/README.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -101,99 +101,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="ifm3d-examples">
-<h1>ifm3d Examples<a class="headerlink" href="#ifm3d-examples" title="Link to this heading"></a></h1>
-<p>This project is formerly the <code class="docutils literal notranslate"><span class="pre">examples</span></code> sub-module of the
-<a class="reference external" href="https://github.com/ifm/ifm3d">ifm3d</a> project. It has been moved to a
-standalone project to increase its efficacy as a teaching tool. Specifically,
-beyond providing concrete code examples for interfacing to <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> it also
-shows how to integrate <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> into an external project via <code class="docutils literal notranslate"><span class="pre">cmake</span></code>. This
-project relies upon <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> version 1.4.3 or better. The remainder of the old
-<code class="docutils literal notranslate"><span class="pre">README</span></code> now follows – with minor edits.</p>
-<p>This directory contains example programs that utilize <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code>. The
-intention is to create standalone programs that illustrate one very specific
-concept in order to serve the purpose of letting developers ramp up quickly
-with using the library. The build infrastructure in this directory is minimal
-and the programs are intended to be run in place. Additionally, unless
-specifically stated otherwise, things like performance and robust error
-handling are not demonstrated. The purpose is to clearly illustrate the task
-without clouding it with the details of real-world software engineering –
-unless, of course, that was the point of the example.</p>
-<p>It is expected that this library of examples will grow over time in response to
-common themes we see on the issue tracker.</p>
-<section id="prerequisites">
-<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/fmtlib/fmt.git">fmt</a></p></li>
-<li><p><a class="reference external" href="https://opencv.org/releases/">openCV</a></p></li>
-</ul>
-</section>
-<section id="building-the-examples">
-<h2>Building the examples<a class="headerlink" href="#building-the-examples" title="Link to this heading"></a></h2>
-<p>Assuming you are starting from the top-level directory of this source
-distribution:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ mkdir build
-$ cd build
-$ cmake ..
-$ cmake --build .
-</pre></div>
-</div>
-<section id="windows-examples">
-<h3>Windows examples<a class="headerlink" href="#windows-examples" title="Link to this heading"></a></h3>
-<p>For Windows-based target, with Visual Studio 2017, assuming you are starting from the top-level directory of this source
-distribution:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ set IFM3D_CMAKE_GENERATOR=&quot;Visual Studio 17 2022&quot;
-$ cd ifm3d-examples/o3d3xx-o3x1xx
-$ mkdir build
-$ cd build
-# Note: To show images Opencv is used,hence build path to opencv is added into -DCMAKE_PREFIX_PATH
-$ cmake -G %IFM3D_CMAKE_GENERATOR% -DCMAKE_WINDOWS_EXPORT_ALL_SYMBOLS=ON -DCMAKE_PREFIX_PATH=F:\windows\ifm3d_deps\install;F:\opencv-4.9.0-windows\opencv\build  ..
-$ cmake --build . --config Release --target ALL_BUILD
-</pre></div>
-</div>
-<p>At this stage, projects are built and you will find <em>IFM3D_EXAMPLES.sln</em> in build folder.
-Use Release / RelWithDebInfo configuration to run and investigate application examples.
-Please add PATH variable to projects :</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>PATH=%IFM3D_BUILD_DIR%\install\bin;%IFM3D_BUILD_DIR%\install\x64\vc%MSVC_MAJOR_VERSION%.%MSVC_MINOR_VERSION%\bin;%PATH%
-</pre></div>
-</div>
-<p>For instance, you can fill directly in VS <em>Project Properties</em> / <em>Debugging</em> / <em>Environment</em> with                   <code class="docutils literal notranslate"><span class="pre">PATH=C:\ifm3d\install\bin;C:\ifm3d\install\x64\vc14.1\bin;%PATH%</span></code></p>
-</section>
-</section>
-<section id="what-is-included">
-<h2>What is included?<a class="headerlink" href="#what-is-included" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p><a class="reference download internal" download="" href="../../_downloads/a92a90fa4cc887cd33ee8efc1a1ad9b8/ex-file_io.cpp"><span class="xref download myst">ex-file_io</span></a> Shows how to capture data from the camera and
-write the images to disk. In this example, the amplitude image is written out as PNG files.</p></li>
-<li><p><a class="reference download internal" download="" href="../../_downloads/c14aa246df19b1e025dae9cbe278b3ba/ex-getmac.cpp"><span class="xref download myst">ex-getmac</span></a>
-Request the MAC address from the camera. The MAC address can be used as
-a unique identifier.</p></li>
-<li><p><a class="reference download internal" download="" href="../../_downloads/9953aa6817e605bd60d9c4ad14746a68/ex-timestamp.cpp"><span class="xref download myst">ex-timestamp</span></a>
-Request some frames from the camera and write the timestamps to stdout</p></li>
-<li><p><a class="reference download internal" download="" href="../../_downloads/7445f5ae55b9bf3994063bd2b6ae1f45/ex-exposure_times.cpp"><span class="xref download myst">ex-exposure_times</span></a> Shows how to change imager
-exposure times on the fly while streaming in pixel data and validating the
-setting of the exposure times registered to the frame data.</p></li>
-<li><p><a class="reference download internal" download="" href="../../_downloads/f896005c92a2228c1c116ca9808739ab/ex-fast_app_switch.cpp"><span class="xref download myst">ex-fast_app_switch</span></a> Shows how to switch between two
-applications on the camera using PCIC</p></li>
-<li><p><a class="reference download internal" download="" href="../../_downloads/eae508294e14e19e75eef3c717ec1077/ex-pcicclient_async_messages.cpp"><span class="xref download myst">ex-pcicclient_async_messages</span></a> Shows how to
-use the PCICClient module to receive asynchronous notification (and error)
-messages from the camera.</p></li>
-<li><p><a class="reference download internal" download="" href="../../_downloads/3d818fdf7290388c88a700e9c9c898f1/ex-pcicclient_set_io.cpp"><span class="xref download myst">ex-pcicclient_set_io</span></a> Shows how to mutate the digial IO pins
-on the O3D camera by the PCIC interface.</p></li>
-<li><p><a class="reference internal" href="#simpleimage/example/ex-simpleImage_ppm_io.cpp"><span class="xref myst">ex-simpleImage_ppm_io</span></a> Shows how to write your own
-image container which does not depend on PCL nor OpenCV.</p></li>
-<li><p><a class="reference download internal" download="" href="../../_downloads/bec22ebb75b60f844eac11dbe65fc34b/ex-multi_camera_grabber.cpp"><span class="xref download myst">ex-multi_camera_grabber</span></a> demonstrate’s how to acquire frames from multiple ifm 3D camera’s,
-see the example <a class="reference internal" href="doc/ex-multi_camera_grabber.html"><span class="std std-doc">documentation</span></a> for more details.</p></li>
-</ul>
-<section id="note-use-of-device-and-legacydevice-class">
-<h3>Note: Use of <code class="docutils literal notranslate"><span class="pre">Device</span></code> and <code class="docutils literal notranslate"><span class="pre">LegacyDevice</span></code> class<a class="headerlink" href="#note-use-of-device-and-legacydevice-class" title="Link to this heading"></a></h3>
-<p>Please note <code class="docutils literal notranslate"><span class="pre">Device</span></code> is the base class and <code class="docutils literal notranslate"><span class="pre">LegacyDevice</span></code> inherits from the <code class="docutils literal notranslate"><span class="pre">Device</span></code> class. Object from <code class="docutils literal notranslate"><span class="pre">ifm3d::Device</span></code> can be created while accessing the device functionalities and <code class="docutils literal notranslate"><span class="pre">ifm3d::LegacyDevice</span></code> object can be created while using the application specific methods of legacy devices like <code class="docutils literal notranslate"><span class="pre">O3D/O3X</span></code>.</p>
-</section>
-</section>
-<section id="license">
-<h2>LICENSE<a class="headerlink" href="#license" title="Link to this heading"></a></h2>
-<p>Please see the file called <a class="reference internal" href="#LICENSE"><span class="xref myst">LICENSE</span></a>.</p>
-</section>
+  <section id="o3d3xx-and-o3x1xx-examples">
+<h1>O3D3xx and O3X1xx examples<a class="headerlink" href="#o3d3xx-and-o3x1xx-examples" title="Link to this heading"></a></h1>
+<p>This folders container Python and C++ examples for the O3D3xx and O3X1xx series of devices. Head to the <code class="docutils literal notranslate"><span class="pre">cpp</span></code> or to the <code class="docutils literal notranslate"><span class="pre">python</span></code> folder for more details on the individual examples in these languages.</p>
 </section>
 
 
