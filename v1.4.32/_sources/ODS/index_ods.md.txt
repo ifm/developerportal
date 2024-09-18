@@ -1,9 +1,15 @@
 # ODS (Obstacle Detection System)
 
+Unfamiliar with ODS? Check out our presentation video.
+
+:::{youtube} H1wF4GrevtQ
+    :width: 25%
+:::
 :::{toctree}
     :maxdepth: 2
     :hidden:
 Getting started <getting_started>
+The ODS journey <self>
 Mounting <Mounting/mounting>
 Instantiation <Instantiation/instantiation>
 Configuration <Configuration/configuration>
@@ -22,13 +28,11 @@ Python <Python/index_ifmODS_python>
 C++ <Cpp/index_ifmODS_cpp>
 :::
 
-Unfamiliar with ODS? Check out our presentation video.
 
-:::{youtube} H1wF4GrevtQ
-    :width: 25%
+<!-- Have to use raw html so the title does not appear twice in the navigation -->
+:::{raw} html
+<h2>The ODS journey</h2>
 :::
-
-## The ODS journey
 
 A successful integration of ODS on to an automated vehicle has multiple phases. We refer to it here as the ODS journey, to represent the long process of designing a new vehicle and developing and testing its new features.
 
