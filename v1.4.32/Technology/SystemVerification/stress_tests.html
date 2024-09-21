@@ -85,6 +85,7 @@
 <li class="toctree-l5"><a class="reference internal" href="#vibration-and-shock">1. Vibration and Shock</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#emv-testing">2. EMV Testing</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#temperature-testing">3. Temperature Testing</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#temperature-monitoring">Temperature Monitoring</a></li>
 </ul>
 </li>
 </ul>
@@ -232,7 +233,7 @@ Please test the O3R system in its intended mounting place including all surround
 <section id="temperature-testing">
 <h3>3. Temperature Testing<a class="headerlink" href="#temperature-testing" title="Link to this heading"></a></h3>
 <p>A first set of temperature tests is typically run during a proof of concept phase on a component level, that is the O3R system and its intended (prototype) mounting setup are tested in a smaller temperature chamber. This is a good indication of whether the passive cooling capabilities of the camera and VPU mounting are sufficient for the full ambient temperature range.
-Please set all camera heads to their maximum allowed framerate: for example <code class="docutils literal notranslate"><span class="pre">20</span> <span class="pre">Hz</span></code>.</p>
+Please set all 3D camera heads to their maximum allowed framerate: <code class="docutils literal notranslate"><span class="pre">20</span> <span class="pre">Hz</span></code>. Additionally you can change the “exposureShort” from 400 to 1000.</p>
 <p>Load on the VPUs CPU and GPU can be introduced by running a functional ODS application instance, or by artificially introducing CPU and GPU load via tools such as <a class="reference external" href="https://packages.ubuntu.com/search?keywords=stress">stress</a> and <a class="reference external" href="https://github.com/anseeto/jetson-gpu-burn">gpu-burn</a>.</p>
 <p>In a secondary step temperature tests are repeated on a fully assembled machine level, for example the complete AGV / AMR is tested in larger temperature chambers, with all active components in live operation. This may include:</p>
 <ul class="simple">
@@ -246,8 +247,16 @@ Please set all camera heads to their maximum allowed framerate: for example <cod
 This test will determine the operability of the O3R system, based on the effectiveness of the whole cooling concept.</p>
 <p>The external temperature ratings of the O3R system components (VPU and O3R camera heads) are rated for external temperatures up to 40°C ambient temperature. This temperature threshold should only be used as an indication value. The internal temperature of each part (VPU device and one temperature value per camera head) has to stay below their respective threshold values.
 If this can be assured the external temperature values are only of secondary importance, as the device can perform under these ambient temperatures.</p>
-<p><strong>Temperature Monitoring</strong></p>
-<p>The O3R shows its temperature values in live operation, as part of the read-only values of the JSON configuration string.</p>
+</section>
+<section id="temperature-monitoring">
+<h3>Temperature Monitoring<a class="headerlink" href="#temperature-monitoring" title="Link to this heading"></a></h3>
+<p>The O3R cameras provide real-time temperature readings as part of the read-only values in the JSON configuration. These temperatures are measured by a sensor integrated into the ICC (Illumination Control Circuit), which resides within the STM32G071 microcontroller. The ICC is responsible for managing the illumination, automatically shutting it down when overtemperature conditions occur and turning it back on when the temperature falls below a specified threshold.</p>
+<p>For both the O3R-222 and O3R-225 camera heads, the shutdown temperature is set to 85°C, while the restart temperature is 79°C. These thresholds are hardcoded into the ICC firmware.</p>
+<p>While the script below can be used to track temperature values, it’s important to note that the ICC only updates its temperature readings once per minute in the JSON output. Due to this update frequency, the exact shutdown and restart temperatures may not always be reflected in the JSON data at the precise moments these events occur. If an overtemperature event takes place, an error message will be triggered in the diagnostic logs, which will include a reference to “ICC”. For more details about diagnostics, see <a href="https://ifm3d.com/latest/SoftwareInterfaces/ifmDiagnostic/diagnostic_sources.html">Diagnostic error codes</a>.</p>
+<p>In addition to ICC temperatures, you can also read the illumination temperature of O3R devices. However, this value is primarily used for temperature drift calibration and applied to the depth map for distance correction. It is not linked to the ICC, and as such, it neither influences the system shutdown nor matches the ICC temperature values. In fact, the illumination temperature may differ by more than 10°C and typically runs higher than the ICC temperature.</p>
+<blockquote>
+<div><p>Note: The illumination temperature serves a different purpose and does not indicate any operational risks related to system overtemperature.</p>
+</div></blockquote>
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-0-Q0xJ" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Q0xJ" name="Q0xJ" role="tab" tabindex="-1">CLI</button></div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel group-tab" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
 <span class="c1">#############################################</span>

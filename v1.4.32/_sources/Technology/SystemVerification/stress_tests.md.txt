@@ -67,7 +67,7 @@ This may either be done on a recorded dataset in the post or on data retrieved i
 ### 3. Temperature Testing
 
 A first set of temperature tests is typically run during a proof of concept phase on a component level, that is the O3R system and its intended (prototype) mounting setup are tested in a smaller temperature chamber. This is a good indication of whether the passive cooling capabilities of the camera and VPU mounting are sufficient for the full ambient temperature range.
-Please set all camera heads to their maximum allowed framerate: for example `20 Hz`.
+Please set all 3D camera heads to their maximum allowed framerate: `20 Hz`. Additionally you can change the "exposureShort" from 400 to 1000.
 
 Load on the VPUs CPU and GPU can be introduced by running a functional ODS application instance, or by artificially introducing CPU and GPU load via tools such as [stress](https://packages.ubuntu.com/search?keywords=stress) and [gpu-burn](https://github.com/anseeto/jetson-gpu-burn).
 
@@ -85,9 +85,17 @@ This test will determine the operability of the O3R system, based on the effecti
 The external temperature ratings of the O3R system components (VPU and O3R camera heads) are rated for external temperatures up to 40°C ambient temperature. This temperature threshold should only be used as an indication value. The internal temperature of each part (VPU device and one temperature value per camera head) has to stay below their respective threshold values.
 If this can be assured the external temperature values are only of secondary importance, as the device can perform under these ambient temperatures.
 
-**Temperature Monitoring**
+### Temperature Monitoring
 
-The O3R shows its temperature values in live operation, as part of the read-only values of the JSON configuration string.
+The O3R cameras provide real-time temperature readings as part of the read-only values in the JSON configuration. These temperatures are measured by a sensor integrated into the ICC (Illumination Control Circuit), which resides within the STM32G071 microcontroller. The ICC is responsible for managing the illumination, automatically shutting it down when overtemperature conditions occur and turning it back on when the temperature falls below a specified threshold.
+
+For both the O3R-222 and O3R-225 camera heads, the shutdown temperature is set to 85°C, while the restart temperature is 79°C. These thresholds are hardcoded into the ICC firmware.
+
+While the script below can be used to track temperature values, it's important to note that the ICC only updates its temperature readings once per minute in the JSON output. Due to this update frequency, the exact shutdown and restart temperatures may not always be reflected in the JSON data at the precise moments these events occur. If an overtemperature event takes place, an error message will be triggered in the diagnostic logs, which will include a reference to "ICC". For more details about diagnostics, see <a href="https://ifm3d.com/latest/SoftwareInterfaces/ifmDiagnostic/diagnostic_sources.html">Diagnostic error codes</a>.
+
+In addition to ICC temperatures, you can also read the illumination temperature of O3R devices. However, this value is primarily used for temperature drift calibration and applied to the depth map for distance correction. It is not linked to the ICC, and as such, it neither influences the system shutdown nor matches the ICC temperature values. In fact, the illumination temperature may differ by more than 10°C and typically runs higher than the ICC temperature.
+
+>Note: The illumination temperature serves a different purpose and does not indicate any operational risks related to system overtemperature.
 
 :::::{tabs}
 ::::{group-tab} Python
