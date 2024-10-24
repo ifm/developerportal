@@ -1,5 +1,11 @@
 
 # Modes
+
+Check out our video on how to adjust the visible range for the O3R cameras:
+:::{youtube} LhtemnOsJp4
+:::
+
+
 ## Overview
 |Variable name|Short description|Available values|  
 |--|--|--|
