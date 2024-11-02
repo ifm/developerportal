@@ -102,9 +102,6 @@ plt.title('Distance Map of Recorded Data')
 
 -----
 
-**Output:**
-
-
 ### False positive evaluation
 ![Distance map output](img/distance_map.png)
 
@@ -142,7 +139,6 @@ for i,frame in enumerate (range_occ_grids):
 ```
 
 
-**Output**
--------
+**Result**
 
 ![ODS object distance tracking](img/distance_tracker.png)

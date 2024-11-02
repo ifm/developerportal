@@ -8,8 +8,8 @@ Unfamiliar with ODS? Check out our presentation video.
 :::{toctree}
     :maxdepth: 2
     :hidden:
-Getting started <getting_started>
 The ODS journey <self>
+Getting started <getting_started>
 Mounting <Mounting/mounting>
 Instantiation <Instantiation/instantiation>
 Configuration <Configuration/configuration>
@@ -18,7 +18,7 @@ Occupancy grid <OccupancyGrid/occupancy_grid>
 Recording <Recording/ods_data_recording>
 Changing views <ChangingViews/changing_views>
 Overhanging loads <OverhangingLoads/overhanging_loads>
-Negative Obstacles <NegativeObstacles/negative_obstacles>
+Negative obstacles <NegativeObstacles/negative_obstacles>
 Dust artifact mitigation <DustMitigation/dust_mitigation>
 Extrinsic calibration <ExtrinsicCalibration/index_extrinsic_calibration>
 Performance <Performance/index_performance>
