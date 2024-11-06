@@ -1,3 +1,7 @@
+---
+nosearch: true
+---
+
 # Ambient light
 
 Indoor ambient light typically doesn't interfere with ifm's Time-of-Flight cameras like the O3R, as it doesn't emit much in the infrared wavelength used by the camera (940 nm). 

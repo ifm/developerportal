@@ -1,3 +1,7 @@
+---
+nosearch: true
+---
+
 # Motion Blur
 
 In iToF imaging, motion blur occurs when either the object or the camera is moving during the exposure period. 

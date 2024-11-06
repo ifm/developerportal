@@ -1,15 +1,21 @@
-# SSH setup
+# SSH usage
 
-To connect to the VPU through SSH or deploy code to the VPU with SCP, it is necessary to setup a list of authorized keys .
+To connect to the VPU through SSH or deploy software to the VPU with SCP, it is necessary 1. have an ssh key pair, 2. Have the public key copied to the VPU configuration.
 
-## Generate an SSH key-pair
+Follow instructions below to configure ssh on the VPU via either the CLI or via python3
+
+
+## Setup via CLI
+
 :::{note}
-The following instructions are tailored towards a bash (Unix shell). When deploying on a Windows based architecture, please modify the instructions sets for your shell accordingly.
+The following instructions are tailored towards a bash (Unix shell). When deploying on a Windows based architecture, please modify the instructions sets for your shell accordingly, or try the setup instructions for python instead
 :::
+
+### Generate an SSH key-pair
 
 All user specific SSH keys are located at `~/.ssh`. This is the place where the private key for the connection to the VPU should be stored.
 
-To generate an SSH key-pair, use `ssh-keygen`:
+To generate an SSH key-pair, use `ssh-keygen` and follow the prompts:
 
 ```bash
 $ cd ~/.ssh/
@@ -21,9 +27,10 @@ Enter same passphrase again:
 ...
 ```
 
-A passphrase is also needed. After that command, two new keys are generated within the `~/.ssh` directory. With the example above it would be `id_o3r` and `id_o3r.pub`.
+A passphrase is optional. After that command, two new keys are generated within the `~/.ssh` directory. With the example above it would be `id_o3r` and `id_o3r.pub`.
 
-## Upload the public key to the VPU
+
+### Upload the public key to the VPU
 
 Uploading the public (`.pub`) SSH key to the VPU is achieved via the ifm3d library.
 The device configuration includes a parameter for authorized keys: `authorized_keys`. It is empty by default.
@@ -81,12 +88,49 @@ $ ifm3d dump | jq .device.network.authorized_keys
 
 Note that the `authorized_keys` is a persistent parameter: it does not require a call to [`save_init`](../configuration.md#persistent-settings-without-save_init) to be persistent over reboots.
 
-## Connect to the VPU using the passphrase
+
+## Setup via python script
+
+This method will require a python 3 environment with ifm3dpy and paramiko installed via pip
+
+```
+pip install ifm3dpy paramiko
+```
+
+The python script [ssh_key_gen.py](https://github.com/ifm/ifm3d-examples/blob/main/ovp8xx/python/ovp8xxexamples/core/ssh_key_gen.py) can be used on both windows and linux
+
+Run the script with "--help" for optional arguments
+
+``` bash
+python ssh_key_gen.py --help
+usage: ssh_key_gen.py [-h] [--IP IP] [--key_title KEY_TITLE] [--key_size KEY_SIZE] [--target_dir TARGET_DIR] [--log-file LOG_FILE]
+
+ssh key generator script for OVP8xx
+
+options:
+  -h, --help            show this help message and exit
+  --IP IP               IP address to be used, default: 192.168.0.69
+  --key_title KEY_TITLE
+                        Title of the key, default: id_o3r
+  --key_size KEY_SIZE   Size of the key, default: 4096
+  --target_dir TARGET_DIR
+                        Directory to save the key, default: ~/.ssh
+  --log-file LOG_FILE   The file to save relevant output
+```
+
+Running the file will generate the key-pair as specified, if unavailable, copy the public key to the VPU, and run a test command via ssh.
+
+```bash
+2024-10-30 11:49:25,348 [MainThread  ] [INFO ]  Connecting to 192.168.0.69 to verify the keys are set correctly.
+2024-10-30 11:49:25,707 [MainThread  ] [INFO ]  Hello, world! (echoed back from the device)
+```
+
+## Connect to the VPU using the private key
 
 After the key is uploaded, it is possible to connect with SSH and the username `oem` to the VPU:
 
 ```bash
-$ ssh oem@192.168.0.69
+$ ssh oem@192.168.0.69 -i ~/.ssh/id_o3r
 The authenticity of host '192.168.0.69 (192.168.0.69)' can't be established.
 ECDSA key fingerprint is SHA256:8gjC9za45TTRZNz5JCMwaNJ27BLfsPyDtjBaBQ2vyHw.
 Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
@@ -94,6 +138,8 @@ Warning: Permanently added '192.168.0.69' (ECDSA) to the list of known hosts.
 o3r-vpu-c0:~$
 ```
 
-There will be a prompt for the passphrase, configured during step 1.
+The -i "identity" argument is required on some shells for the private key to be used.
 
-You should now be able to SSH into the VPU using your customer SSH key and passphrase.
+There will be a prompt for the passphrase, if this was configured when running ssh-keygen
+
+If successful with the setup, the user will be logged into a shell on the VPU as the oem user.

@@ -1,4 +1,7 @@
 # Time of flight
-:::{note}
+<!-- :::{note}
 This section has moved to [the 3D cameras section](../../../Technology/3D/TOFArtifacts/index_artifacts).
+::: -->
+:::{note}
+This section is under construction.
 :::

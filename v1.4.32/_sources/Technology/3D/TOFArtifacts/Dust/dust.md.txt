@@ -1,3 +1,7 @@
+---
+nosearch: true
+---
+
 # Dust
 
 Dust can cause several issues or artifacts in Time-of-Flight cameras, as these cameras rely on precise infrared light reflections to measure distance and generate depth maps. 

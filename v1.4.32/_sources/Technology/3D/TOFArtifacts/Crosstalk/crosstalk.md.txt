@@ -1,3 +1,7 @@
+---
+nosearch: true
+---
+
 # Crosstalk
 ## Between ifm cameras
 Crosstalk in ToF cameras occurs when multiple cameras operate simultaneously in the same environment, causing interference between their emitted IR signals. 

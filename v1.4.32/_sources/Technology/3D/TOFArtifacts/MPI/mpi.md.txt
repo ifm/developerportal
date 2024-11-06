@@ -1,3 +1,7 @@
+---
+nosearch: true
+---
+
 # Multi-Path Interference (MPI)
 
 This artifact occurs when the light emitted from the camera reaches an object or a wall for example, but instead of taking a single direct path back to the sensor, it reflects off multiple surfaces before returning to the camera. This leads to inaccuracies in distance measurements because the sensor may register an average or a combined value from multiple paths, causing a distorted depth map.

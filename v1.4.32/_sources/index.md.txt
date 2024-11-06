@@ -205,8 +205,8 @@ Explore our software troubleshooting guide, where you will find how to deal with
 :::{grid-item-card} Common point cloud artifacts
     :class-item: homepage-icons
     :img-top: ./resources/ifm3d_landing_point-cloud-analysis.svg
-    :link: Technology/3D/TOFArtifacts/index_artifacts
     :link-type: doc
     :link-alt: Link to the point cloud artifacts documentation
+Coming soon...
 :::
 ::::

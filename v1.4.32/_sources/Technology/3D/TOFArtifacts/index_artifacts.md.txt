@@ -1,3 +1,7 @@
+---
+nosearch: true
+---
+
 # Artifacts and their impacts
 
 The O3R uses an indirect Time-of-Flight (iToF) sensor and therefore has to handle artifacts related to the physics behind this technology. These are not ifm-specific artifacts but common to all iToF systems. 

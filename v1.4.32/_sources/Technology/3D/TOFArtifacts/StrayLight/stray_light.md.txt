@@ -1,3 +1,7 @@
+---
+nosearch: true
+---
+
 # Stray light
 
 Stray light artifacts occur when the light emitted by the camera reflects on highly reflective surfaces (retro reflectors, very close objects, etc). 
