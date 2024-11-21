@@ -103,18 +103,27 @@
              
   <section id="o3r-l4t-tensorrt">
 <h1><code class="docutils literal notranslate"><span class="pre">o3r-l4t-tensorrt</span></code><a class="headerlink" href="#o3r-l4t-tensorrt" title="Link to this heading"></a></h1>
+<section id="dockerfile-content-and-usage-objective">
+<h2>Dockerfile content and usage objective<a class="headerlink" href="#dockerfile-content-and-usage-objective" title="Link to this heading"></a></h2>
+<p>The Dockerfiles provided here serve as a sample code project for using (base) Docker containers on the OVP80x VPU hardware architecture.</p>
+<p>Please use the provided <code class="docutils literal notranslate"><span class="pre">build.sh</span></code>, <code class="docutils literal notranslate"><span class="pre">config.sh</span></code> and <code class="docutils literal notranslate"><span class="pre">run.sh</span></code> helper scripts to build and run the images and containers based on the Dockerfiles.
+The helper files are not intended to be used as a deployment tool, but rather as a centralized text-based documentation tool of versions and dependencies.</p>
+<p>This Docker image provides some of the TensorRT examples provided by NVIDIA. The Dockerfile uses a multistage build which provides a way of separating the build and deploy stages. In the deployed image there are no build tools installed to keep the footprint small.</p>
+</section>
+<section id="testing-the-tensorrt-capabilities">
+<h2>Testing the TensorRT capabilities<a class="headerlink" href="#testing-the-tensorrt-capabilities" title="Link to this heading"></a></h2>
+<p>During the build, the examples are copied to <code class="docutils literal notranslate"><span class="pre">/opt/ifm/tensorrt/</span></code> instead of the default location <code class="docutils literal notranslate"><span class="pre">/usr/src/tensorrt</span></code>, due to the fact that the NVIDIA Docker runtime overloads this folder with the data installed on the VPU, but the OS does not come with the examples preinstalled.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./trtexec<span class="w"> </span>--deploy<span class="o">=</span>/opt/ifm/tensorrt/data/mnist/mnist.prototxt<span class="w"> </span>--model<span class="o">=</span>/opt/ifm/tensorrt/data/mnist/mnist.caffemodel<span class="w"> </span>--output<span class="o">=</span>prob<span class="w"> </span>--batch<span class="o">=</span><span class="m">16</span><span class="w"> </span>--saveEngine<span class="o">=</span>/tmp/mnist16.trt
+./trtexec<span class="w"> </span>--loadEngine<span class="o">=</span>/tmp/mnist16.trt<span class="w"> </span>--batch<span class="o">=</span><span class="m">16</span>
+</pre></div>
+</div>
+</section>
 <section id="exclusion-of-liability">
 <h2>EXCLUSION OF LIABILITY<a class="headerlink" href="#exclusion-of-liability" title="Link to this heading"></a></h2>
 <p><strong>DISCLAIMER</strong>:</p>
 <p>This software and the accompanying files are provided “as is” and without warranties as to performance, merchantability, or any other warranties whether expressed or implied. The user must assume the entire risk of using the software.</p>
 <p><strong>LIABILITY</strong>:</p>
 <p>In no event shall the author or contributors be liable for any special, incidental, indirect, or consequential damages whatsoever (including, without limitation, damages for loss of business profits, business interruption, loss of business information, or any other pecuniary loss) arising out of the use of or inability to use this software, even if the author or contributors have been advised of the possibility of such damages.</p>
-</section>
-<section id="dockerfile-content-and-usage-objective">
-<h2>Dockerfile content and usage objective<a class="headerlink" href="#dockerfile-content-and-usage-objective" title="Link to this heading"></a></h2>
-<p>The Dockerfiles provided here serve as a sample code project for using (base) Docker containers on the OVP80x VPU hardware architecture.</p>
-<p>Please use the provided <code class="docutils literal notranslate"><span class="pre">build.sh</span></code>, <code class="docutils literal notranslate"><span class="pre">config.sh</span></code> and <code class="docutils literal notranslate"><span class="pre">run.sh</span></code> helper scripts to build and run the images and containers based on the Dockerfiles.
-The helper files are not intended to be used as a deployment tool, but rather as a centralized text-based documentation tool of versions and dependencies.</p>
 </section>
 </section>
 
