@@ -66,6 +66,10 @@ Port error codes hold information about data stream drops due to:
 + Camera shut-off due to eye-safety violations or overtemperature at the VCSEL driver.
 + Camera imager resets, etc.
 
+:::{note}
+- Please contact [support](support.efector.object-ident@ifm.com) if diagnostic codes related to camera heads occur repeatedly.
+:::
+
 ```{include} diagnosis_error_codes/FW1.1/section_head.md
 ```
 ## IMU
