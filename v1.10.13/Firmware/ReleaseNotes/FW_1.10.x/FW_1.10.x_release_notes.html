@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Firmware 1.10.13 release notes &mdash; O3R  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5800d392" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Firmware 1.4.30" href="../FW_1.4.x/index.html" />
+    <link rel="prev" title="Release notes" href="../index.html" />
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script> -->
+     
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            O3R
+          </a>
+              <div class="version">
+                v1.10.13
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Firmware</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Release notes</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">OVP81x: version 1.10.x</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#compatibility">Compatibility</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#previous-releases">Previous releases</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#compatible-software-versions">Compatible software versions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#compatible-processing-platforms">Compatible processing platforms</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#supported-camera-articles">Supported camera articles</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#base-device">Base device</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#changed">Changed</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#ods-application">ODS application</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#added">Added</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#id1">Changed</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#known-issues">Known issues</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#pds-application">PDS application</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../FW_1.4.x/index.html">OVP81x: version 1.4.30</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../FW_1.1.41/FW_1.1.41_Release_Notes.html">OVP81x: version 1.1.41</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../FW_1.4.32/FW_1.4.32_release_notes.html">OVP80x: version 1.4.32</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../FW_1.1.x/index.html">OVP80x: version 1.1.30</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../FW_1.0.x/index.html">OVP80x: version 1.0.14</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../fw_update.html">How to update</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Technology/index_technology.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../PDS/index_pds.html">PDS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">O3R firmware</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Release notes</a></li>
+      <li class="breadcrumb-item active">Firmware 1.10.13 release notes</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/Firmware/ReleaseNotes/FW_1.10.x/FW_1.10.x_release_notes.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="firmware-1-10-13-release-notes">
+<h1>Firmware 1.10.13 release notes<a class="headerlink" href="#firmware-1-10-13-release-notes" title="Link to this heading"></a></h1>
+<p>The following release note provides an overview of the features of the <strong>Firmware 1.10.13</strong> version.</p>
+<p>The firmware update file for the OVP81x devices is available on <a class="reference external" href="https://www.ifm.com">ifm.com</a>.</p>
+<section id="compatibility">
+<h2>Compatibility<a class="headerlink" href="#compatibility" title="Link to this heading"></a></h2>
+<section id="previous-releases">
+<h3>Previous releases<a class="headerlink" href="#previous-releases" title="Link to this heading"></a></h3>
+<p>The previous version is v1.4.30.</p>
+</section>
+<section id="compatible-software-versions">
+<h3>Compatible software versions<a class="headerlink" href="#compatible-software-versions" title="Link to this heading"></a></h3>
+<p>This firmware release works with the following software package versions.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Software</p></th>
+<th class="head"><p>Version</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ifmVisionAssistant</p></td>
+<td><p>&gt;= 2.9.9</p></td>
+</tr>
+<tr class="row-odd"><td><p>ifm3d library</p></td>
+<td><p>1.5.3</p></td>
+</tr>
+<tr class="row-even"><td><p>ifm3d-ros ROS(1) wrapper</p></td>
+<td><p>&gt;= 1.1.2</p></td>
+</tr>
+<tr class="row-odd"><td><p>ifm3d-ros2 ROS2 wrapper</p></td>
+<td><p>&gt;= 1.2.0</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="compatible-processing-platforms">
+<h3>Compatible processing platforms<a class="headerlink" href="#compatible-processing-platforms" title="Link to this heading"></a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>FW 1.10.13 does not support the OVP80x family at the moment.
+<strong>Do not update an OVP80x with this firmware. Such a FW update will fail, and the device will reboot to the previous FW version installed.</strong></p>
+</div>
+<p>This firmware release can be applied to the following ifm video processing platforms:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Article</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>OVP810</p></td>
+<td><p>Series product with TX2-NX NVIDIA board.</p></td>
+</tr>
+<tr class="row-odd"><td><p>OVP811</p></td>
+<td><p>Series product with TX2-NX NVIDIA board, including an ODS license.</p></td>
+</tr>
+<tr class="row-even"><td><p>OVP812</p></td>
+<td><p>Series product with TX2-NX NVIDIA board, including a PDS license.</p></td>
+</tr>
+<tr class="row-odd"><td><p>OVP813</p></td>
+<td><p>Series product with TX2-NX NVIDIA board, including ODS and PDS licenses.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="supported-camera-articles">
+<h3>Supported camera articles<a class="headerlink" href="#supported-camera-articles" title="Link to this heading"></a></h3>
+<p>This firmware release supports the following ifm camera articles:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Camera Article</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>O3R222</p></td>
+<td><p>3D: 38k 224x172, 60°x45° IP50 <br> 2D: 1280x800, 127°x80°</p></td>
+</tr>
+<tr class="row-odd"><td><p>O3R225</p></td>
+<td><p>3D: 38k 224x172, 105°x78° IP50 <br> 2D: 1280x800, 127°x80°</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="base-device">
+<h2>Base device<a class="headerlink" href="#base-device" title="Link to this heading"></a></h2>
+<section id="changed">
+<h3>Changed<a class="headerlink" href="#changed" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>The default <code class="docutils literal notranslate"><span class="pre">channelValue</span></code> for 3D port number X [0..5] is changed to 2*X.</p></li>
+<li><p>The L4T kernel version is updated to r32.7.5.</p></li>
+</ul>
+</section>
+</section>
+<section id="ods-application">
+<h2>ODS application<a class="headerlink" href="#ods-application" title="Link to this heading"></a></h2>
+<section id="added">
+<h3>Added<a class="headerlink" href="#added" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Diagnostics for decalibrated camera ports:</strong> A new error, <code class="docutils literal notranslate"><span class="pre">ERROR_ODSAPP_CAMERA_DECALIBRATED</span></code>, is raised if any active camera port is likely to be decalibrated. In this case, the camera calibration should be verified.</p></li>
+<li><p>A new parameter, <code class="docutils literal notranslate"><span class="pre">rangeOfInterest</span></code>, allows users to define the maximum range of vision in meters (in robot coordinates). This setting directly impacts the grid shape, which is always square with each dimension containing (<code class="docutils literal notranslate"><span class="pre">rangeOfInterest</span></code>/0.05) × 2 cells at the default resolution of 5 cm.</p></li>
+<li><p>ODS supports polygons on the zone interface, allowing for the definition of both convex and concave shapes.</p></li>
+<li><p>A preset feature is implemented where the user can load a predefined zone configuration.</p></li>
+</ul>
+</section>
+<section id="id1">
+<h3>Changed<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>The maximum number of points to define a zone is increased from 6 to 16.</p></li>
+<li><p>The ODS diagnosis sources are now attached to the specific camera port rather than the overall ODS application, for the following diagnostic messages:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">ERROR_ODSAPP_FOV_INSUFFICIENT_FOR_NEGATIVE_OBSTACLES</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ERROR_ODSAPP_CAMERA_DECALIBRATED</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ERROR_ODSAPP_EXTR_DI_CALIB_IMPLAUSIBLE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ERROR_ODSAPP_VO_EXTR_DI_CALIB_IMPLAUSIBLE</span></code></p></li>
+</ul>
+</li>
+<li><p>A maximum of one ODS instance is allowed. It is expected to use a single ODS application, which is always in <code class="docutils literal notranslate"><span class="pre">RUN</span></code> mode, and to switch the <code class="docutils literal notranslate"><span class="pre">activePorts</span></code> to change which cameras are used.</p></li>
+<li><p>The conditions for raising the <code class="docutils literal notranslate"><span class="pre">ERROR_ODSAPP_VO_EXTR_DI_CALIB_IMPLAUSIBLE</span></code> diagnostic message were relaxed.</p></li>
+</ul>
+</section>
+<section id="known-issues">
+<h3>Known issues<a class="headerlink" href="#known-issues" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>The diagnostics activated by the ODS application during the <code class="docutils literal notranslate"><span class="pre">RUN</span></code> state will not be deactivated when the application is set to the <code class="docutils literal notranslate"><span class="pre">CONF</span></code> or <code class="docutils literal notranslate"><span class="pre">IDLE</span></code> state.</p></li>
+<li><p>If the negative obstacle feature is enabled, it may happen that the diagnostic message <code class="docutils literal notranslate"><span class="pre">ERROR_ODSAPP_FOV_INSUFFICIENT_FOR_NEGATIVE_OBSTACLES</span></code> is raised even thought the field of view conditions are fulfilled. In this case, negative obstacles will not be properly detected. To fix this, the application should be set to <code class="docutils literal notranslate"><span class="pre">CONF</span></code>, and then to <code class="docutils literal notranslate"><span class="pre">RUN</span></code> again.</p></li>
+</ul>
+</section>
+</section>
+<section id="pds-application">
+<h2>PDS application<a class="headerlink" href="#pds-application" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>A new Pick and Drop System (PDS) application is added. This is a new feature with firmware 1.10.13. Refer to <a class="reference internal" href="../../../PDS/index_pds.html"><span class="std std-doc">the PDS documentation</span></a> for an overview of the available features.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="/latest/_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+		
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.efector.object-ident@ifm.com">support.efector.object-ident@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

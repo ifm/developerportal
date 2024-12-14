@@ -1,0 +1,23 @@
+# 2D camera head configuration
+
+| Article | Image resolution 2D [pix] | Angle of aperture [°] | Framerate [Hz] |
+| --------| ------------------------- | --------------------- | -------------- |
+| O3R222 | 1280x800 | 128x80 | 20 |
+| O3R225 | 1280x800 | 128x80 | 20 |
+
+## Mode
+|Variable name|Short description|
+|--|--|
+|`mode` (for the 2D imager) |This parameter designates the acquisition mode: auto or manual exposure |standard_autoexposure2D, standard_manualexposure2D |
+
+## Exposure time
+|Variable name|Short description|
+|--|--|
+|`exposureTime`| Exposure time used for the acquisition of the RGB image, in ms.|
+
+## Gain
+|Variable name|Short description|
+|--|--|
+|`gain`| Image gain (affects sensibility to light).|
+
+The gain is particularly useful in low light situations, used in combination with the exposure time: increasing the exposure time as well as the gain will result in a brighter image.

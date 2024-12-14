@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CAN interface &mdash; O3R  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5800d392" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Ethernet interfaces" href="ethernet.html" />
+    <link rel="prev" title="Resource management" href="ResourceManagement/index_resource_management.html" />
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script> -->
+     
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            O3R
+          </a>
+              <div class="version">
+                v1.10.13
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index_technology.html">Technology</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Hardware/index_hardware.html">Hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../PortsOverview/ports_overview.html">Ports overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../2D/2d.html">2D Cameras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../3D/index_3d.html">3D Cameras</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index_vpu.html">VPU</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ResourceManagement/index_resource_management.html">Resources management</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">CAN</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#hardware">Hardware</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#software">Software</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#example-interfacing-with-the-dtm425-rfid-antenna-using-docker">Example: Interfacing with the DTM425 RFID antenna using Docker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sample-point">Sample point</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#changing-the-sample-point">Changing the sample point</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ethernet.html">Ethernet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="usb.html">USB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sntp.html">NTP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Timestamps/timestamps.html">Timestamps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="IMU/imu.html">IMU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ssh.html">SSH</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../SystemVerification/index_system_verification.html">System Verification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../PDS/index_pds.html">PDS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index_technology.html">Technology</a></li>
+          <li class="breadcrumb-item"><a href="index_vpu.html">VPU (Vision Processing Unit)</a></li>
+      <li class="breadcrumb-item active">CAN interface</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/Technology/VPU/can.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="can-interface">
+<h1>CAN interface<a class="headerlink" href="#can-interface" title="Link to this heading"></a></h1>
+<section id="hardware">
+<h2>Hardware<a class="headerlink" href="#hardware" title="Link to this heading"></a></h2>
+<p>The O3R has a built-in CAN-bus interface, with the CAN-High and CAN-Low lines on pin 4 and 5 respectively (cf. <a class="reference internal" href="../../GettingStarted/Unboxing/hw_unboxing.html"><span class="std std-doc">hardware diagram</span></a>). Note that cables will need a terminating resistor like the <a class="reference external" href="https://www.ifm.com/de/en/product/E11589">E11589</a>.</p>
+</section>
+<section id="software">
+<h2>Software<a class="headerlink" href="#software" title="Link to this heading"></a></h2>
+<p>The CAN interface is supported starting from firmware version 0.14.1. Configuring the CAN interface through the JSON configuration is only possible for firmware version 1.4.30 and above.</p>
+<p>Please note that the CAN interface is only accessible within Docker when using the <code class="docutils literal notranslate"><span class="pre">--network</span> <span class="pre">host</span></code> option.</p>
+<p>Before utilizing the CAN interface, it needs to be set up. To verify whether the CAN interface is active and with which bitrate it operates, there are two possible methods: using the <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> CLI or Python scripts.</p>
+<ol class="arabic">
+<li><p>Using the  <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> CLI:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.device.network.interfaces.can0
+<span class="o">{</span>
+<span class="s2">&quot;active&quot;</span>:<span class="w"> </span>false,
+<span class="s2">&quot;bitrate&quot;</span>:<span class="w"> </span><span class="s2">&quot;125K&quot;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Using Python script: see the script below or download it from <a class="reference external" href="https://github.com/ifm/ifm3d-examples/tree/main/ovp8xx/python/ovp8xxexamples/core/can_activate.py">ifm3d-examples</a>.</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1">#############################################</span>
+<span class="c1"># Copyright 2024-present ifm electronic, gmbh</span>
+<span class="c1"># SPDX-License-Identifier: Apache-2.0</span>
+<span class="c1">#############################################</span>
+<span class="c1"># The CAN interface can only be activated with firmware</span>
+<span class="c1"># versions 1.4.X or higher</span>
+<span class="kn">from</span> <span class="nn">ifm3dpy.device</span> <span class="kn">import</span> <span class="n">O3R</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_check_can_availability</span><span class="p">(</span><span class="n">o3r</span><span class="p">)</span><span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s2">&quot;can0&quot;</span> <span class="ow">in</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/network/interfaces&quot;</span><span class="p">])[</span><span class="s2">&quot;device&quot;</span><span class="p">][</span><span class="s2">&quot;network&quot;</span><span class="p">][</span><span class="s2">&quot;interfaces&quot;</span><span class="p">]:</span>
+        <span class="c1"># Get the can0 information: active status and bitrate</span>
+        <span class="n">can_info</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/network/interfaces/can0&quot;</span><span class="p">])[</span><span class="s2">&quot;device&quot;</span><span class="p">][</span><span class="s2">&quot;network&quot;</span><span class="p">][</span><span class="s2">&quot;interfaces&quot;</span><span class="p">][</span><span class="s2">&quot;can0&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">can_info</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;CAN interface not available in current firmware version.&quot;</span><span class="p">)</span>
+        
+        
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">ip</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span>
+    <span class="n">can_info</span> <span class="o">=</span> <span class="n">_check_can_availability</span><span class="p">(</span><span class="n">o3r</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">can_info</span><span class="p">[</span><span class="s2">&quot;active&quot;</span><span class="p">]:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;activating can0 interface ...&quot;</span><span class="p">)</span>
+        <span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">({</span>
+            <span class="s2">&quot;device&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;network&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;interfaces&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;can0&quot;</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s2">&quot;active&quot;</span><span class="p">:</span> <span class="kc">True</span>
+                            <span class="c1">#&quot;bitrate&quot;: &#39;125K&#39; # here set the bitrate &#39;250K&#39;, &#39;500K&#39; ...</span>
+
+                        <span class="p">}</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">})</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Rebooting the device...&quot;</span><span class="p">)</span>
+        <span class="n">o3r</span><span class="o">.</span><span class="n">reboot</span><span class="p">()</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
+        <span class="c1"># For the sake of simplicity we assume that the boot-up process is not timing out,</span>
+        <span class="c1"># and we simply check that the boot sequence has completed.</span>
+        <span class="c1"># For a fool proof boot-up monitoring, review the bootup_monitor.py example.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/diagnostic/confInitStages&quot;</span><span class="p">])[</span><span class="s2">&quot;device&quot;</span><span class="p">][</span><span class="s2">&quot;diagnostic&quot;</span><span class="p">][</span><span class="s2">&quot;confInitStages&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="s2">&quot;device&quot;</span><span class="p">,</span> <span class="s2">&quot;ports&quot;</span><span class="p">,</span> <span class="s2">&quot;applications&quot;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;VPU not properly booted&quot;</span><span class="p">)</span>
+
+    <span class="n">can_info</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/network/interfaces/can0&quot;</span><span class="p">])[</span><span class="s2">&quot;device&quot;</span><span class="p">][</span><span class="s2">&quot;network&quot;</span><span class="p">][</span><span class="s2">&quot;interfaces&quot;</span><span class="p">][</span><span class="s2">&quot;can0&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">can_info</span><span class="p">[</span><span class="s2">&quot;active&quot;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Activating the can0 interface failed.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The can0 interface is active!&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># If the example python package was build, import the configuration</span>
+        <span class="kn">from</span> <span class="nn">ovp8xxexamples</span> <span class="kn">import</span> <span class="n">config</span>
+
+        <span class="n">IP</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">IP</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="c1"># Otherwise, use default values</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+            <span class="s2">&quot;Unable to import the configuration.</span><span class="se">\n</span><span class="s2">Please run &#39;pip install -e .&#39; from the python root directory&quot;</span>
+        <span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Defaulting to the default configuration.&quot;</span><span class="p">)</span>
+        <span class="n">IP</span> <span class="o">=</span> <span class="s2">&quot;192.168.0.69&quot;</span>
+    
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Device IP: </span><span class="si">{</span><span class="n">IP</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">main</span><span class="p">(</span><span class="n">IP</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>New network settings will only be applied after reboot. The Python script performs a reboot.
+Using the <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> CLI a reboot can be performed by <code class="docutils literal notranslate"><span class="pre">ifm3d</span> <span class="pre">reboot</span></code>.</p>
+</div>
+<p>After activating the CAN interface and rebooting the VPU, we can verify the status of the CAN interface again using the <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> CLI as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.device.network.interfaces.can0
+<span class="o">{</span>
+<span class="w">  </span><span class="s2">&quot;active&quot;</span>:<span class="w"> </span>true,
+<span class="w">  </span><span class="s2">&quot;bitrate&quot;</span>:<span class="w"> </span><span class="s2">&quot;125K&quot;</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</section>
+<section id="example-interfacing-with-the-dtm425-rfid-antenna-using-docker">
+<h2>Example: Interfacing with the <a class="reference external" href="https://www.ifm.com/de/en/product/DTM425">DTM425</a> RFID antenna using Docker<a class="headerlink" href="#example-interfacing-with-the-dtm425-rfid-antenna-using-docker" title="Link to this heading"></a></h2>
+<p><strong>Step 1</strong>: Connect the DTM425 to the O3R and both to power.</p>
+<p><strong>Step 2</strong>: Create a minimal Dockerfile (filename: <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>) like shown below (the example can be downloaded <a class="reference external" href="https://github.com/ifm/ifm3d-examples/tree/main/ovp8xx/docker/can/Dockerfile">here</a>):</p>
+<div class="highlight-docker notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="w"> </span><span class="s">arm64v8/alpine</span>
+
+<span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>add<span class="w"> </span>--no-cache<span class="w"> </span>python3<span class="w"> </span>py3-pip
+
+<span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>/home/ifm/
+<span class="c"># Create a venv and install python dependencies</span>
+<span class="k">RUN</span><span class="w"> </span>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>/home/ifm/venv<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>/home/ifm/venv/bin/pip<span class="w"> </span>install<span class="w"> </span>--requirement<span class="w"> </span>/home/ifm/requirements.txt
+
+<span class="c"># Copy the can_example.py example.</span>
+<span class="k">COPY</span><span class="w"> </span>can_example.py<span class="w"> </span>/home/ifm/
+<span class="c"># Copy the eds file to the container</span>
+<span class="c"># You can download the DTM425.eds file from https://www.ifm.com/us/en/product/DTM425?tab=documents</span>
+<span class="k">COPY</span><span class="w"> </span>DTM425.eds<span class="w"> </span>/usr/local/share
+
+<span class="c"># Make the script executable</span>
+<span class="k">RUN</span><span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>/home/ifm/can_example.py
+
+<span class="c"># Activate virtual environment and run the script</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/home/ifm/venv/bin/python&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/home/ifm/can_example.py&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>This Dockerfile installs Python and the CANopen library for Python. The example script is then installed into the image and set to automatically execute when the container is run.</p>
+<p><strong>Step 3</strong>: Use the example Python script below (or download the script <a class="reference external" href="https://github.com/ifm/ifm3d-examples/tree/main/ovp8xx/docker/can/can_example.py">here</a>) and download the required <a class="reference external" href="https://www.ifm.com/de/en/product/DTM425?tab=documents">EDS file</a> (filename <code class="docutils literal notranslate"><span class="pre">DTM425.eds</span></code>). Place the files in the same location as the Dockerfile.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#############################################</span>
+<span class="c1"># Copyright 2024-present ifm electronic, gmbh</span>
+<span class="c1"># SPDX-License-Identifier: Apache-2.0</span>
+<span class="c1">#############################################</span>
+<span class="c1">#!/usr/bin/env python3</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">canopen</span>
+
+
+<span class="k">def</span> <span class="nf">connect</span><span class="p">():</span>
+    <span class="n">nw</span> <span class="o">=</span> <span class="n">canopen</span><span class="o">.</span><span class="n">Network</span><span class="p">()</span>
+    <span class="n">nw</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s2">&quot;can0&quot;</span><span class="p">,</span> <span class="n">bustype</span><span class="o">=</span><span class="s2">&quot;socketcan&quot;</span><span class="p">)</span>
+    <span class="n">nw</span><span class="o">.</span><span class="n">scanner</span><span class="o">.</span><span class="n">search</span><span class="p">()</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+
+    <span class="n">device</span> <span class="o">=</span> <span class="n">nw</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">nw</span><span class="o">.</span><span class="n">scanner</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;/usr/local/share/DTM425.eds&quot;</span><span class="p">)</span>
+    <span class="n">device</span><span class="o">.</span><span class="n">nmt</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;OPERATIONAL&quot;</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">nw</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">disconnect</span><span class="p">(</span><span class="n">nw</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
+    <span class="n">device</span><span class="o">.</span><span class="n">nmt</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;PRE-OPERATIONAL&quot;</span>
+    <span class="n">nw</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">write_tag</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="n">memory_size</span> <span class="o">=</span> <span class="n">device</span><span class="o">.</span><span class="n">sdo</span><span class="p">[</span><span class="mh">0x2182</span><span class="p">][</span><span class="mh">0x4</span><span class="p">]</span><span class="o">.</span><span class="n">raw</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">memory_size</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span> <span class="o">*</span> <span class="p">(</span><span class="n">memory_size</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+
+    <span class="k">for</span> <span class="n">offset</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">memory_size</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span> <span class="k">if</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">8</span> <span class="o">&lt;=</span> <span class="n">memory_size</span> <span class="k">else</span>
+                  <span class="n">memory_size</span> <span class="o">-</span> <span class="n">offset</span><span class="p">)</span>
+        <span class="n">device</span><span class="o">.</span><span class="n">sdo</span><span class="p">[</span><span class="mh">0x2380</span><span class="p">]</span><span class="o">.</span><span class="n">raw</span> <span class="o">=</span> <span class="n">offset</span>
+        <span class="n">device</span><span class="o">.</span><span class="n">sdo</span><span class="p">[</span><span class="mh">0x2381</span><span class="p">]</span><span class="o">.</span><span class="n">raw</span> <span class="o">=</span> <span class="n">length</span>
+        <span class="n">device</span><span class="o">.</span><span class="n">sdo</span><span class="p">[</span><span class="mh">0x2382</span><span class="p">]</span><span class="o">.</span><span class="n">raw</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">offset</span><span class="p">:</span><span class="n">offset</span> <span class="o">+</span> <span class="n">length</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">read_tag</span><span class="p">(</span><span class="n">device</span><span class="p">):</span>
+    <span class="n">memory_size</span> <span class="o">=</span> <span class="n">device</span><span class="o">.</span><span class="n">sdo</span><span class="p">[</span><span class="mh">0x2182</span><span class="p">][</span><span class="mh">0x4</span><span class="p">]</span><span class="o">.</span><span class="n">raw</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">offset</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">memory_size</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="mi">8</span> <span class="k">if</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">8</span> <span class="o">&lt;=</span> <span class="n">memory_size</span> <span class="k">else</span> <span class="n">memory_size</span> <span class="o">-</span> <span class="n">offset</span>
+        <span class="n">device</span><span class="o">.</span><span class="n">sdo</span><span class="p">[</span><span class="mh">0x2280</span><span class="p">]</span><span class="o">.</span><span class="n">raw</span> <span class="o">=</span> <span class="n">offset</span>
+        <span class="n">device</span><span class="o">.</span><span class="n">sdo</span><span class="p">[</span><span class="mh">0x2281</span><span class="p">]</span><span class="o">.</span><span class="n">raw</span> <span class="o">=</span> <span class="n">length</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span> <span class="o">+</span> <span class="n">device</span><span class="o">.</span><span class="n">sdo</span><span class="p">[</span><span class="mh">0x2282</span><span class="p">]</span><span class="o">.</span><span class="n">raw</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">nw</span><span class="p">,</span> <span class="n">device</span> <span class="o">=</span> <span class="n">connect</span><span class="p">()</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\xDE\xAD\xBE\xEF</span><span class="s1">&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Writing tag:&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="n">write_tag</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reading tag:&quot;</span><span class="p">,</span> <span class="n">read_tag</span><span class="p">(</span><span class="n">device</span><span class="p">))</span>
+    <span class="n">disconnect</span><span class="p">(</span><span class="n">nw</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The script writes the hex-value <code class="docutils literal notranslate"><span class="pre">0xdeadbeef</span></code> to the RFID tag and reads the data from the tag. When scanning for the device, it is assumed that the RFID antenna is the only CAN device on the bus, besides the VPU itself.</p>
+<p><strong>Step 4</strong>: Build, deploy and run the Docker container:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>build<span class="w"> </span>.<span class="w"> </span>-t<span class="w"> </span>dtm425_example
+docker<span class="w"> </span>save<span class="w"> </span>dtm425_example<span class="w"> </span><span class="p">|</span><span class="w"> </span>ssh<span class="w"> </span>-C<span class="w"> </span>oem@192.168.0.69<span class="w"> </span>docker<span class="w"> </span>load
+ssh<span class="w"> </span>oem@192.168.0.69<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>dtm425_example
+</pre></div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">--network</span> <span class="pre">host</span></code> <em>is required</em> to access the CAN interface.</p>
+<p>The output of the last command should look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Writing</span> <span class="n">tag</span><span class="p">:</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\xde\xad\xbe\xef</span><span class="s1">&#39;</span>
+<span class="n">Reading</span> <span class="n">tag</span><span class="p">:</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\xde\xad\xbe\xef\x00\x00\x00</span><span class="s1">[...]</span><span class="se">\x00\x00\x00</span><span class="s1">&#39;</span>
+</pre></div>
+</div>
+<p>For more information on necessary setup steps for <a class="reference internal" href="../../SoftwareInterfaces/Docker/docker.html#build-and-run-a-docker-container-for-the-o3r-platform"><span class="std std-ref">building</span></a> and <a class="reference internal" href="../../SoftwareInterfaces/Docker/deployVPU.html"><span class="std std-doc">deployment</span></a>, please see the linked pages.</p>
+</section>
+<section id="sample-point">
+<h2>Sample point<a class="headerlink" href="#sample-point" title="Link to this heading"></a></h2>
+<p>As defined by the CAN standards, the sample point is where the CAN signal is evaluated as dominant (0) or recessive (1).
+For example, if the sample point is set to 0.5, this means that the signal sample is taken at 50 % of the bit width.
+The bit width is equivalent to the inverse of the bitrate, meaning at a bitrate of <code class="docutils literal notranslate"><span class="pre">250</span> <span class="pre">kbps</span></code>, the bit width is <code class="docutils literal notranslate"><span class="pre">(1/250kbps)</span> <span class="pre">=</span> <span class="pre">4</span> <span class="pre">us</span></code>.
+With a sample point of 0.5, the measurements will be taken at half the width of the 4us bit, which will be at <code class="docutils literal notranslate"><span class="pre">(2us</span> <span class="pre">+</span> <span class="pre">4us*n)</span></code>, where <code class="docutils literal notranslate"><span class="pre">n</span></code> represents the bit count (0 for the first bit, 1 for the second bit, and so on).</p>
+<p>The sample point does not have to be at the 50 % mark of the bit time; its optimal position depends on the characteristics of the signal. However, placing the sample point in the middle of the bit time is often more stable. At the beginning of the bit time, the signal may not have fully settled, and towards the end, the signal may start to transition to the next bit. Therefore, sampling in the middle helps in capturing a more stable and accurate signal.</p>
+<p>Typically, a default sample point of 0.875 (or 87.5 % of the bit time) works well for most signals. However, if the signal is noisy, meaning the rising and falling edges are not clean, or other signal degradations are visible on the signal scope, adjusting the sample point might be necessary to ensure accurate data reception.</p>
+<section id="changing-the-sample-point">
+<h3>Changing the sample point<a class="headerlink" href="#changing-the-sample-point" title="Link to this heading"></a></h3>
+<p>To demonstrate how to change the CAN sample point on the VPU using a Docker container, we will provide an example of a simple Docker container. This example will show how to modify the bitrate and sample point, run the container on the VPU, and check if the modified parameter are correctly set from within the Docker container. The steps are outlined below.</p>
+<ol class="arabic simple">
+<li><p>Create a Dockerfile:</p></li>
+</ol>
+<div class="highlight-docker notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="w"> </span><span class="s">arm64v8/alpine</span>
+<span class="c"># Install required packages </span>
+<span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>add<span class="w"> </span>--no-cache<span class="w"> </span>iproute2<span class="w"> </span>can-utils
+<span class="c"># Create a script to change sample-point and bitrate</span>
+<span class="k">RUN</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;#!/bin/ash \</span>
+<span class="s2">    ip link set can0 down \</span>
+<span class="s2">    ip link set can0 type can bitrate 250000 sample-point 0.5 \</span>
+<span class="s2">    ip link set can0 up&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/usr/local/bin/setup_can0.sh
+<span class="c"># Make the script executable</span>
+<span class="k">RUN</span><span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>/usr/local/bin/setup_can0.sh
+<span class="c"># Run the script when the container starts</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/usr/local/bin/setup_can0.sh&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Build, and copy the Docker image into the VPU:</p></li>
+</ol>
+<div class="highlight-Shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>can0_setup<span class="w"> </span>.
+docker<span class="w"> </span>save<span class="w"> </span>can0_setup<span class="w"> </span><span class="p">|</span><span class="w"> </span>ssh<span class="w"> </span>-C<span class="w"> </span>oem@192.168.0.69<span class="w"> </span>docker<span class="w"> </span>load
+</pre></div>
+</div>
+<p>For more information’s on how to create a Docker container, please follow the <a class="reference internal" href="../../SoftwareInterfaces/Docker/docker.html"><span class="std std-doc">Docker getting started documentation</span></a></p>
+<ol class="arabic simple" start="3">
+<li><p>SSH to the VPU and run the Docker image:</p></li>
+</ol>
+<div class="highlight-Shell notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>oem@192.168.0.69<span class="w"> </span>
+docker<span class="w"> </span>run<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>--cap-add<span class="w"> </span>NET_ADMIN<span class="w"> </span>-it<span class="w"> </span>can0_setup<span class="w"> </span>sh
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">--network</span> <span class="pre">host</span></code> <em>is required</em> to access the CAN interface, and <code class="docutils literal notranslate"><span class="pre">--cap-add</span> <span class="pre">NET_ADMIN</span></code> <em>is required</em> to interact with the network stack, allowing for changes to the bitrate and sample-point.</p>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>In the Docker container check if the sample point is set correctly:</p></li>
+</ol>
+<div class="highlight-Shell notranslate"><div class="highlight"><pre><span></span>./usr/local/bin/setup_can0.sh
+ip<span class="w"> </span>-details<span class="w"> </span>-statistics<span class="w"> </span>link<span class="w"> </span>show<span class="w"> </span>can0
+</pre></div>
+</div>
+<p>The expected output should look like this:</p>
+<div class="highlight-Shell notranslate"><div class="highlight"><pre><span></span><span class="m">5</span>:<span class="w"> </span>can0:<span class="w"> </span>&lt;NOARP,UP,LOWER_UP,ECHO&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">72</span><span class="w"> </span>qdisc<span class="w"> </span>pfifo_fast<span class="w"> </span>state<span class="w"> </span>UNKNOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">10</span>
+<span class="w">    </span>link/can<span class="w">  </span>promiscuity<span class="w"> </span><span class="m">0</span><span class="w"> </span>
+<span class="w">    </span>can<span class="w"> </span>state<span class="w"> </span>ERROR-ACTIVE<span class="w"> </span><span class="o">(</span>berr-counter<span class="w"> </span>tx<span class="w"> </span><span class="m">0</span><span class="w"> </span>rx<span class="w"> </span><span class="m">0</span><span class="o">)</span><span class="w"> </span>restart-ms<span class="w"> </span><span class="m">100</span><span class="w"> </span>
+<span class="w">    </span>bitrate<span class="w"> </span><span class="m">250000</span><span class="w"> </span>sample-point<span class="w"> </span><span class="m">0</span>.5<span class="w"> </span>
+<span class="w">    </span>tq<span class="w"> </span><span class="m">125</span><span class="w"> </span>prop-seg<span class="w"> </span><span class="m">6</span><span class="w"> </span>phase-seg1<span class="w"> </span><span class="m">7</span><span class="w"> </span>phase-seg2<span class="w"> </span><span class="m">2</span><span class="w"> </span>sjw<span class="w"> </span><span class="m">1</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="/latest/_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+		
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.efector.object-ident@ifm.com">support.efector.object-ident@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
