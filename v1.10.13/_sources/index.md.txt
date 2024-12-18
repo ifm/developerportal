@@ -77,8 +77,11 @@ Learn about the point cloud
     :class-item: homepage-icons
     :width: 20
     :img-top: ./resources/ifm3d_landing_pds.svg
+    :link: PDS/index_pds
+    :link-type: doc
+    :link-alt: Link to the PDS getting started documentation
 +++
-Coming soon...
+Discover the Pick and Drop System (PDS)
 
 :::
 ::::
