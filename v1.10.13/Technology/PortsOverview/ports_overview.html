@@ -5,7 +5,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ports overview &mdash; O3R  documentation</title>
-      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -196,14 +196,14 @@ For reference, below is the application number to PCIC port correspondence.</p>
 <section id="how-to-retrieve-the-pcic-port-number">
 <h2>How to: retrieve the PCIC port number<a class="headerlink" href="#how-to-retrieve-the-pcic-port-number" title="Link to this heading"></a></h2>
 <p>To retrieve the PCIC port number for any port, one can use the ifm3d API. The following code snippet serves as an example to retrieve the TCP/IP port for Port 2:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ifm3dpy.device</span>   <span class="kn">import</span> <span class="n">O3R</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ifm3dpy.device</span><span class="w">   </span><span class="kn">import</span> <span class="n">O3R</span>
 <span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">()</span>
 <span class="n">pcic_port</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">port</span><span class="p">(</span><span class="s2">&quot;port2&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">pcic_port</span>
 <span class="o">&gt;&gt;&gt;</span><span class="mi">50012</span>
 </pre></div>
 </div>
 <p>The following code snippet shows how to retrieve the TCP/IP port of the first application instance:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">ifm3dpy.device</span> <span class="kn">import</span> <span class="n">O3R</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ifm3dpy.device</span><span class="w"> </span><span class="kn">import</span> <span class="n">O3R</span>
 <span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">()</span>
 <span class="n">app_port</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">port</span><span class="p">(</span><span class="s2">&quot;app0&quot;</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span><span class="mi">51010</span>
