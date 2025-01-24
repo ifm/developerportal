@@ -335,8 +335,8 @@
 <tr class="row-odd"><td><p>101011</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">ERROR_BOOT_SEQUENCE_HEAD_ICC_FW_UPDATE</span></code></p></td>
 <td><p>The ICC firmware data is still incorrect after an ICC update</p></td>
-<td><p></p></td>
-<td><p></p></td>
+<td><p>Unrecoverable</p></td>
+<td><p>The illumination controller FW does not match the one required by the device FW. <a class="reference internal" href="#reboot-power-cycle">reboot</a>. If persistent over reboots <a class="reference internal" href="#flash-firmware-anew">re-flash FW</a>.</p></td>
 </tr>
 <tr class="row-even"><td><p>101012</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">ERROR_BOOT_SEQUENCE_HEAD_ICC_FW_INCOMPATIBLE</span></code></p></td>
@@ -344,23 +344,11 @@
 <td><p>Warning</p></td>
 <td><p>The illumination controller FW does not match the one required by the device FW. Wait for the ICC FW update to complete. If persistent over &gt; 5 min <a class="reference internal" href="#reboot-power-cycle">reboot</a>. If persistent over reboots <a class="reference internal" href="#flash-firmware-anew">re-flash FW</a>.</p></td>
 </tr>
-<tr class="row-odd"><td><p>101011</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">ERROR_BOOT_SEQUENCE_HEAD_ICC_FW_UPDATE</span></code></p></td>
-<td><p>The ICC firmware data is still incorrect after an ICC update</p></td>
-<td><p></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p>101013</p></td>
+<tr class="row-odd"><td><p>101013</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">ERROR_BOOT_SEQUENCE_HEAD_ICC_FLASH</span></code></p></td>
 <td><p>Unable to read the ICC flash</p></td>
 <td><p>Unrecoverable</p></td>
-<td><p>The illumination controller FW does not match the one required by the device FW. <a class="reference internal" href="#reboot-power-cycle">reboot</a>. If persistent over reboots <a class="reference internal" href="#flash-firmware-anew">re-flash FW</a>.</p></td>
-</tr>
-<tr class="row-odd"><td><p>101011</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">ERROR_BOOT_SEQUENCE_HEAD_ICC_FW_UPDATE</span></code></p></td>
-<td><p>The ICC firmware data is still incorrect after an ICC update</p></td>
-<td><p>Unrecoverable</p></td>
-<td><p>The illumination controller FW does not match the one required by the device FW. <a class="reference internal" href="#reboot-power-cycle">reboot</a>. If persistent over reboots <a class="reference internal" href="#flash-firmware-anew">re-flash FW</a>.</p></td>
+<td><p>The illumination controller FW does not match the one required by the device FW. Wait for the ICC FW update to complete. If persistent over &gt; 5 min <a class="reference internal" href="#reboot-power-cycle">reboot</a>. If persistent over reboots <a class="reference internal" href="#flash-firmware-anew">re-flash FW</a>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -777,7 +765,7 @@
 <td><p>The app is configured with development features active, for example the overwriting of velocity information status. Such behavior is not expected on devices in operation. To fix this issue please <a class="reference internal" href="#reboot-power-cycle">reboot</a>, <a class="reference internal" href="#flash-firmware-anew">re-flash</a>. If the error persists after a re-flash please reach out to ifm at support.efector.object-ident&#64;ifm.com.</p></td>
 </tr>
 <tr class="row-even"><td><p>105013</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">ERROR_ODSAPP_ERROR_ODSAPP_FOV_INSUFFICIENT_FOR_NEGATIVE_OBSTACLES</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ERROR_ODSAPP_FOV_INSUFFICIENT_FOR_NEGATIVE_OBSTACLES</span></code></p></td>
 <td><p>FOV is insufficient for negative obstacle detection</p></td>
 <td><p>Severe</p></td>
 <td><p>The app detects insufficient amount of floor. No negative obstacles can be detected - the ODS performance is reduced. <br> Please verify an active negative obstacle detection configuration under <code class="docutils literal notranslate"><span class="pre">/applications/instances/appX/configuration/portX/negObst/enableNegativeObstacles</span></code>. <br> A <a class="reference internal" href="../../ODS/Mounting/mounting.html"><span class="std std-doc">different mounting</span></a> setup may be required to enable the negative obstacle detection feature.</p></td>
