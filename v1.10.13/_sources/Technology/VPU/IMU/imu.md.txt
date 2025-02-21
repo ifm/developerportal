@@ -1,41 +1,25 @@
 # Inertial Measurement Unit (IMU)
 
-The VPU includes a built-in Inertial Measurement Unit (IMU) which is always mapped to the virtual port `port 6`. The IMU measures the rotation rates - gyroscope `[rad/sec]` and acceleration - accelerometer `[m/sec]` in three-dimensional space w.r.t to the VPU coordinate frame (extrinsic calibration). The IMU sample rate is `1 KHz` per default.
-
+The VPU includes a built-in Inertial Measurement Unit (IMU) which is always mapped to the port `port 6`.
+The IMU measures the rotation rates - gyroscope `[rad/sec]` and acceleration - accelerometer `[m/sec²]` in three-dimensional space. 
+The IMU is IIM-42652, and [the full datasheet can be found on the official TDK website](https://invensense.tdk.com/download-pdf/iim-42652-datasheet/). 
 Users can access the IMU data in firmware versions 1.4.30 and higher.
 
 ## Configuration
+
+A few of the IMU parameters can be configured in the JSON configuration:
 
 | Parameter                  | Description                                        |
 | -------------------------- | -------------------------------------------------- |
 | `state`                    | Configure the IMU state.                           |
 | `mode`                     | Only one mode is available: `imu_1_khz`            |
-| `acquisition/pollrate`     | The rate at which the data is polled from the IMU. |
 | `data/availablePCICOutput` | The `buffer_id` of the PCIC output.                |
 
-Changing the `pollrate` parameter to a higher value may affect the CPU load. Configuring this value lower than `8` can lead to diagnostic `RECEIVED_IMPLAUSIBLE_IMU_DATA`.
-
-:::{note}
-To check the minimum and maximum limits, as well as the default value for each parameter, the user can refer to the schema. 
-
-For example, use the ifm3d API with:
-```bash
-$ ifm3d jsonschema | jq .properties.ports.properties.port6.properties.acquisition.properties.pollrate
-{
-  "attributes": [
-    "conf"
-  ],
-  "default": 20,
-  "description": "Pollrate of the IMU",
-  "maximum": 200,
-  "minimum": 1,
-  "multipleOf": 1,
-  "readOnly": false,
-  "type": "integer"
-}
-
-```
-:::
+The default mode, `imu_1_khz`, configures the IMU with the following settings, which cannot be edited by the user:
+- The output rate is `1 KHz` for both the gyroscope and acceleration.
+- The full-scale range is set to ± 4 g for accelerometer and to ± 500 degrees per second for gyroscope. 
+- For both accelerometer and gyroscope, the low-noise mode is enabled. 
+- The timestamp resolution is set to 16 µs.
 
 ## Output
 
@@ -50,6 +34,10 @@ Each frame received from the `IMU` contains the following output.
 | Extrinsic calibration parameters IMU with respect to `User`                    | `ExtrinsicCalibrationStructure` |
 | Extrinsic calibration parameters IMU with respect to `VPU`                     | `ExtrinsicCalibrationStructure` |
 | Receive timestamp                                                              | `int`                           |
+
+The IMU output is unfiltered.
+Additionally, the IMU data is not impacted by the extrinsic calibration set for `port6`. Any transformation to a custom coordinate system has to be performed by the user.
+
 
 ### IMUSample
 

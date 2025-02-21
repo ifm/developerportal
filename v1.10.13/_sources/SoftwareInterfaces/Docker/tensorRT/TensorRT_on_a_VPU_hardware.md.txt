@@ -5,6 +5,7 @@ This document outlines the general process of AI inference acceleration with Ten
 ## Building a TensorRT container
 
 There are two options:
+
 - Use a base NVIDIA container and import the runtime libraries directly from the firmware. This is the preferred method that we will describe below.
 - Use a complete NVIDIA container that includes the TensorRT libraries directly. This is not recommended since containers sizes will increase dramatically.
 
@@ -14,51 +15,102 @@ NVIDIA provides L4T-based containers with TensorFlow that can be downloaded dire
 TensorFlow should be used with the corresponding recommended version of JetPack.
 The recommendations can be found on the [TensorFlow for Jetson website](https://docs.nvidia.com/deeplearning/frameworks/install-tf-jetson-platform-release-notes/tf-jetson-rel.html).
 
-The L4T version on board the OVP80x (which contains the TX2 board) is [`r32.4.3`](https://developer.nvidia.com/embedded/linux-tegra-r32.4.3).
-The supported JetPack version is `4.4`. Please see the official table on the [NVIDIA docs](https://docs.nvidia.com/deeplearning/frameworks/install-tf-jetson-platform-release-notes/tf-jetson-rel.html) for up to date compatibility information.
+#### Compatibility Matrix
+
+<table>
+  <thead>
+    <tr>
+      <th>VPU Hardware</th>
+      <th>VPU Firmware</th>
+      <th>L4T Version</th>
+      <th>Jetpack Version</th>
+      <th>Tensorflow</th>
+      <th>Pytorch</th>
+      <th>Machine learning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>OVP81x</td>
+      <td>1.10.13</td>
+      <td><a href="https://developer.nvidia.com/embedded/linux-tegra-r32.7.5">R32.7.5</a></td>
+      <td>4.6.5</td>
+      <td>
+        <br> nvcr.io/nvidia/l4t-tensorflow:r32.7.1-tf2.7-py3 </br>
+        <br> nvcr.io/nvidia/l4t-tensorflow:r32.7.1-tf1.15-py3 </br>
+      </td>
+      <td>
+        <br> nvcr.io/nvidia/l4t-pytorch:r32.7.1-pth1.10-py3 </br>
+        <br> nvcr.io/nvidia/l4t-pytorch:r32.7.1-pth1.9-py3 </br>
+      </td>
+      <td>nvcr.io/nvidia/l4t-ml:r32.7.1-py3</td>
+    </tr>
+    <tr>
+      <td>OVP81x</td>
+      <td>1.4.30</td>
+      <td><a href="https://developer.nvidia.com/embedded/linux-tegra-r32.7.3">R32.7.3</a></td>
+      <td>4.6.3</td>
+      <td>
+        <br> nvcr.io/nvidia/l4t-tensorflow:r32.7.1-tf2.7-py3 </br>
+        <br> nvcr.io/nvidia/l4t-tensorflow:r32.7.1-tf1.15-py3 </br>
+      </td>
+      <td>
+        <br> nvcr.io/nvidia/l4t-pytorch:r32.7.1-pth1.10-py3 </br>
+        <br> nvcr.io/nvidia/l4t-pytorch:r32.7.1-pth1.9-py3 </br>
+      </td>
+      <td>nvcr.io/nvidia/l4t-ml:r32.7.1-py3</td>
+    </tr>
+    <tr>
+      <td>OVP80x</td>
+      <td>1.4.32</td>
+      <td><a href="https://developer.nvidia.com/embedded/linux-tegra-r32.4.3">R32.4.3</a></td>
+      <td>4.4.0</td>
+      <td>
+        <br> nvcr.io/nvidia/l4t-tensorflow:r32.4.3-tf2.2-py3 </br>
+        <br> nvcr.io/nvidia/l4t-tensorflow:r32.4.3-tf1.15-py3 </br>
+      </td>
+      <td>nvcr.io/nvidia/l4t-pytorch:r32.4.3-pth1.6-py3</td>
+      <td>nvcr.io/nvidia/l4t-ml:r32.4.3-py3</td>
+    </tr>
+  </tbody>
+</table>
 
 The underlying structure of the container loads the TensorRT libraries and is handled by NVIDIA and Docker - as long as the versions of the container and JetPack closely match.
 
+:::{note}
+  To access or modify the Dockerfiles and scripts used to build the NVIDIA containers, see this [GitHub repository](https://github.com/dusty-nv/jetson-containers)
+:::
+
 #### Verify the functionality
-For JetPack version 4.4 (L4T R32.4.3), the following versions are available:
 
-```
-l4t-tensorflow:r32.4.3-tf1.15-py3: TensorFlow 1.15
-l4t-tensorflow:r32.4.3-tf2.2-py3: TensorFlow 2.2
-```
-
-First pull one of the `l4t-tensorflow` container tags from above, corresponding to the version of L4T that is installed on your Jetson and to the desired TensorFlow version. For example, if you are running the latest JetPack 4.4 (L4T R32.4.3) release and want to use TensorFlow 1.15, run:
+Start an interactive session in the container and try to import torch in interactive python as shown below.
+This assumes that the containers has previously been deployed on to the VPU.
 
 ```bash
-docker pull nvcr.io/nvidia/l4t-tensorflow:r32.4.3-tf1.15-py3
+ovp81x-fc-6c-6d:~$ docker run -ti --runtime nvidia nvcr.io/nvidia/l4t-ml:r32.7.1-py3
+allow 10 sec for JupyterLab to start @ http://172.17.0.2:8888 (password nvidia)
+JupterLab logging location:  /var/log/jupyter.log  (inside the container)
+root@89e52a1dfd4c:/# python3
+Python 3.6.9 (default, Dec  8 2021, 21:08:43) 
+[GCC 8.4.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import torch
+>>> torch.cuda.is_available()
+True
+>>> torch.cuda.device_count()
+1
+>>> torch.cuda.current_device()
+0
+>>> torch.cuda.get_device_name(0)
+'NVIDIA Tegra X2'
+>>> 
 ```
 
-Then, to start an interactive session in the container, run the following command:
-```bash
-docker run -it --rm --runtime nvidia --network host nvcr.io/nvidia/l4t-tensorflow:r32.4.3-tf1.15-py3
-```
-You should then be able to start a Python3 interpreter and import TensorFlow.
-
-#### Mounting directories from the host
 To mount scripts, data, etc. from your Jetson's filesystem to run inside the container, use Docker's `-v` flag when starting your Docker instance:
+
 ```bash
-docker run -it --rm --runtime nvidia --network host -v /home/user/project:/location/in/container nvcr.io/nvidia/l4t-tensorflow:r32.4.3-tf1.15-py3
+$ docker run -it --rm --runtime nvidia --network host -v /home/user/project:/location/in/container nvidia nvcr.io/nvidia/l4t-ml:r32.7.1-py3
 ```
-
-
-### Dockerfiles
-#### NVIDIA base Dockerfiles
-
-To access or modify the Dockerfiles and scripts used to build the NVIDIA containers, see this [GitHub repository](https://github.com/dusty-nv/jetson-containers).
-
-
-#### ifm example Dockerfiles
-
-The Dockerfiles for both the `o3r-l4t-base` and the `o3r-l4t-tensorrt` images can be found in the [`ifm3d-examples` repository on GitHub](https://github.com/ifm/ifm3d-examples).
-The `o3r-l4t-base` image provides the bare minimum to install the NVIDIA packages via `apt-get`. It is a stripped down version of the NVIDIA `l4t-base` images with UI libraries removed.
-The `o3r-l4t-tensorrt` image comes with the TensorRT examples from NVIDIA pre-installed and uses a multi stage Docker image build to show how to create smaller images without all the build tools pre-installed.
-
-The Docker images are not distributed and need to be built locally.
 
 ## Using TensorRT in a container on the VPU
 
@@ -70,51 +122,67 @@ TensorRT applications can be memory-intensive. Here's how you can manage memory 
 Follow the [Dockerfile best practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/) to minimize the number of layers and overall size.
 
 
-Once TensorRT is installed on the VPU, you can proceed as follows:
+Once the docker container is deployed on the VPU, you can proceed as follows:
 
 1. Run TensorRT models using `trtexec` inside the `l4t-base` container. This container will copy TensorRT from the host.
 2. `trtexec` runs the model, filing it with random data for testing purposes. This is a first indication whether the adapted model can be run on the final architecture.
-3. Adapt the model for the final deployment architecture. This may involve updating the model based on its structure and the operators and layers used. Not all operators and model adaptations may be available in the OVP800 JetPack version. You may need to update your model on your development machine, export a new ONNX model with opset 11 operators, and adapt it again. This could be an iterative process.
+3. Adapt the model for the final deployment architecture. This may involve updating the model based on its structure and the operators and layers used. Not all operators and model adaptations may be available in the OVP8xx JetPack version. You may need to update your model on your development machine, export a new ONNX model with opset 11 operators, and adapt it again. This could be an iterative process.
 
-### Adaptations for the OVP80x architecture
+### Adaptations for the OVP8xx architecture
 
 The model has to be exported and adapted to the final deployment architecture.
-Refer to the [NVIDIA documentation for this process](https://docs.nvidia.com/deeplearning/tensorrt/quick-start-guide/index.html#basic-workflow). This adaptation must be done on the final deployment architecture. Compiling on similar architectures, like Jetson evaluation boards, will result in an incompatible instruction set for the OVP800 architecture.
+Refer to the [NVIDIA documentation for this process](https://docs.nvidia.com/deeplearning/tensorrt/quick-start-guide/index.html#basic-workflow). This adaptation must be done on the final deployment architecture. Compiling on similar architectures, like Jetson evaluation boards, will result in an incompatible instruction set for the OVP8xx architecture.
 
 We recommend exporting the neural network model to an ONNX model. Adapting the model for the deployment architecture may require updates. This could be an iterative process to get the model running on the final architecture. Update your model on your development machine, export a new ONNX model with opset 11 operators, and test this update in Docker.
 
 For ONNX exports with opset 11 settings and further ONNX operator support, refer to the [official `onnx-tensorrt` documentation](https://github.com/onnx/onnx-tensorrt/blob/release/7.1/operators.md).
 
-
 ### Runtime inference cycle times
-Adapting the model as described will result in a model with a specific runtime on the TX2 device. You may need to adjust for different model sizes and operations. Remember, the typical cycle time on a development machine may not accurately reflect the expected cycle times on OVP80x TX2 hardware.
 
-## Examples
-### YOLOv4 Tiny
-This example demonstrates the benchmarking of the YOLOv4 Tiny Object Detection network using the TensorRT tool [`trtexec`](https://docs.nvidia.com/deeplearning/tensorrt/developer-guide/index.html#trtexec) within a container. The example is applicable for L4T 32.5.1 and has been tested on a TX2 development board. Additional details for TX2 JetPack version 32.4.3 are forthcoming.
+Adapting the model as described will result in a model with a specific runtime on the VPU. You may need to adjust for different model sizes and operations. Remember, the typical cycle time on a development machine may not accurately reflect the expected cycle times on OVP8xx (TX2/TX2-NX) hardware.
 
-The model was trained on a different machine, converted into ONNX format and then copied to the board.
-When starting the container, a directory with a model can be mounted using `-v` option.
+## Calculating the inference on OVP81x VPU using YOLOv11 ONNX Model file
 
-To get the hardware and library details of the host, run:
+1. Pull the machine learning base image provided by NVIDIA
+
+:::{bash}
+  $ docker pull nvcr.io/nvidia/l4t-ml:r32.7.1-py3
+:::
+
+2. Create a YOLOv11 ONNX model file using python script
+
+:::{python}
+  from ultralytics import YOLO
+:::
+
+  # Load a pretrained YOLO model (recommended for training)
+  model = YOLO("yolo11n.pt")
+
+  # Export the model to ONNX format
+  model.export(format="onnx", imgsz=[480,640])
+:::
+
+3. Copy the Docker container and ONNX model file to VPU
+4. Run the docker image in interactive mode
+   
+```bash
+$ docker run --runtime nvidia -it --runtime nvidia --gpus all -v /path/to/your/model:/workspace/model nvcr.io/nvidia/l4t-ml:r32.7.1-py3
+```
+### Example runs
+- Run the command inside a docker container to measure inference timings
 
 ```bash
-jetsontx2@jetsontx2-desktop:~/for_container$ jetson_release
- - NVIDIA Jetson TX2
-   * Jetpack 4.5.1 [L4T 32.5.1]
-   * NV Power Mode: MAXP_CORE_ARM - Type: 3
-   * jetson_stats.service: active
- - Libraries:
-   * CUDA: 10.2.89
-   * cuDNN: 8.0.0.180
-   * TensorRT: 7.1.3.0
-   * Visionworks: 1.6.0.501
-   * OpenCV: 4.1.1 compiled CUDA: YES
-   * VPI: ii libnvvpi1 1.0.15 arm64 NVIDIA Vision Programming Interface library
-   * Vulkan: 1.2.70
+$ usr/src/tensorrt/bin/trtexec --onnx=yolov11/yolov11n.onnx --verbose --fp16
 ```
 
-### Deepstream-l4t
+### Inference timings
+
+| Model     | Batch Size | Precision | Inference time |
+| --------- | ---------- | --------- | -------------- |
+| YOLOv11-N | 1          | FP16      | 20.62 ms       |
+| YOLOv11-M | 1          | FP16      | 93.24 ms       |
+
+## Deepstream-l4t
 
 The Deepstream-l4t NGC container is used in this example.
 

@@ -14,8 +14,17 @@
 | O3R225                                                    | Opening angle of 105° by 78°                                | [O3R225](https://www.ifm.com/us/en/product/O3R225)                                                                                                                                                                                                                | --           |
 | HFM Cable (High-speed FAKRA Mini) - dual connection       | Connecting both 2D and 3D output of camera heads to the VPU | 1 meter - [E3R101](https://www.ifm.com/us/en/product/E3R101)<br> 2 meter - [E3R100](https://www.ifm.com/us/en/product/E3R100)<br> 5 meter - [E3R102](https://www.ifm.com/us/en/product/E3R102)                                                                    | --           |
 | HFM Cable (High-speed FAKRA Mini) - single connection     | Connecting one data stream from the camera heads to the VPU | 0.3 meter - [E3R107](https://www.ifm.com/us/en/product/E3R103)<br> 1 meter - [E3R103](https://www.ifm.com/us/en/product/E3R103)<br> 2 meter - [E3R104](https://www.ifm.com/us/en/product/E3R100)<br> 5 meter - [E3R105](https://www.ifm.com/us/en/product/E3R102) | --           |
-| HFM Cable (High-speed FAKRA Mini) - drag chain compatible | Connecting both 2D and 3D output of camera heads to the VPU | Contact Sales Engineer for availability <br>2 meter - E3R106 <br>5 meter - E3R110 <br>10 meter - E3R111                                                                                                                                                           | --           |
+| HFM Cable (High-speed FAKRA) - drag chain compatible | 2x HFM drag chain compatible cables 2D and 3D| 2x 5 meter - [E3R110](https://www.ifm.com/de/en/product/E3R110) <br>2x 10 meter - [E3R111](https://www.ifm.com/de/en/product/E3R111) <br>2x 15 meter - [E3R112](https://www.ifm.com/de/en/product/E3R111)                                                                                                                                                           | --           |
+| Drag Chain connection cable                                     | 2x connectors cable from VPU to the 2x drag chain cables + 1x HFM Y connector from head to the 2x drag chain cables                 |0.3 meter - [E3R106](https://www.ifm.com/de/en/product/E3R106)                                                                                                                              
 | M12 Connector Cable                                       | Connector cable for power supply/CAN to VPU                 | [EVC948](https://www.ifm.com/us/en/product/EVC948)                                                                                                                                                                                                                | --           |
+
+
+:::{Note}
+To connect the drag chain cables to the VPU, you will need the connection cable [E3R106](https://www.ifm.com/de/en/product/E3R106). This cable assembly consists of:
+
+1. **Two identical cables**: These connect the two drag chain cables to two VPU ports.
+2. **One Y connector**: This combines the two ends of the drag chain cables into a single dual Fakra connector, which will be connected to the camera head.
+:::
 
 <!-- TODO: Add the information about adapter cables -->
 

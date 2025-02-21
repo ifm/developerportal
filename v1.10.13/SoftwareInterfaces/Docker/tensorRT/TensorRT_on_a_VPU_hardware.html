@@ -84,32 +84,25 @@
 <li class="toctree-l3"><a class="reference internal" href="../autostart.html">Autostarting the container</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../resource_management.html">Resource Management on the VPU</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../gpu.html">Enabling GPU usage</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">TensortRT: DL / ML model deployment</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Using TensorRT</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#building-a-tensorrt-container">Building a TensorRT container</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#nvidia-base-containers">NVIDIA base containers</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#compatibility-matrix">Compatibility Matrix</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#verify-the-functionality">Verify the functionality</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#mounting-directories-from-the-host">Mounting directories from the host</a></li>
-</ul>
-</li>
-<li class="toctree-l5"><a class="reference internal" href="#dockerfiles">Dockerfiles</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#nvidia-base-dockerfiles">NVIDIA base Dockerfiles</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#ifm-example-dockerfiles">ifm example Dockerfiles</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#using-tensorrt-in-a-container-on-the-vpu">Using TensorRT in a container on the VPU</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#adaptations-for-the-ovp80x-architecture">Adaptations for the OVP80x architecture</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#adaptations-for-the-ovp8xx-architecture">Adaptations for the OVP8xx architecture</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#runtime-inference-cycle-times">Runtime inference cycle times</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#yolov4-tiny">YOLOv4 Tiny</a></li>
-<li class="toctree-l5"><a class="reference internal" href="#deepstream-l4t">Deepstream-l4t</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#calculating-the-inference-on-ovp81x-vpu-using-yolov11-onnx-model-file">Calculating the inference on OVP81x VPU using YOLOv11 ONNX Model file</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#load-a-pretrained-yolo-model-recommended-for-training">Load a pretrained YOLO model (recommended for training)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#export-the-model-to-onnx-format">Export the model to ONNX format</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../ifmDiagnostic/index_diagnostic.html">Diagnostic</a></li>
@@ -165,46 +158,98 @@
 <p>NVIDIA provides L4T-based containers with TensorFlow that can be downloaded directly from <a class="reference external" href="https://ngc.nvidia.com/catalog/containers/nvidia:l4t-tensorflow">their containers catalog</a>.
 TensorFlow should be used with the corresponding recommended version of JetPack.
 The recommendations can be found on the <a class="reference external" href="https://docs.nvidia.com/deeplearning/frameworks/install-tf-jetson-platform-release-notes/tf-jetson-rel.html">TensorFlow for Jetson website</a>.</p>
-<p>The L4T version on board the OVP80x (which contains the TX2 board) is <a class="reference external" href="https://developer.nvidia.com/embedded/linux-tegra-r32.4.3"><code class="docutils literal notranslate"><span class="pre">r32.4.3</span></code></a>.
-The supported JetPack version is <code class="docutils literal notranslate"><span class="pre">4.4</span></code>. Please see the official table on the <a class="reference external" href="https://docs.nvidia.com/deeplearning/frameworks/install-tf-jetson-platform-release-notes/tf-jetson-rel.html">NVIDIA docs</a> for up to date compatibility information.</p>
+<section id="compatibility-matrix">
+<h4>Compatibility Matrix<a class="headerlink" href="#compatibility-matrix" title="Link to this heading"></a></h4>
+<table>
+  <thead>
+    <tr>
+      <th>VPU Hardware</th>
+      <th>VPU Firmware</th>
+      <th>L4T Version</th>
+      <th>Jetpack Version</th>
+      <th>Tensorflow</th>
+      <th>Pytorch</th>
+      <th>Machine learning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>OVP81x</td>
+      <td>1.10.13</td>
+      <td><a href="https://developer.nvidia.com/embedded/linux-tegra-r32.7.5">R32.7.5</a></td>
+      <td>4.6.5</td>
+      <td>
+        <br> nvcr.io/nvidia/l4t-tensorflow:r32.7.1-tf2.7-py3 </br>
+        <br> nvcr.io/nvidia/l4t-tensorflow:r32.7.1-tf1.15-py3 </br>
+      </td>
+      <td>
+        <br> nvcr.io/nvidia/l4t-pytorch:r32.7.1-pth1.10-py3 </br>
+        <br> nvcr.io/nvidia/l4t-pytorch:r32.7.1-pth1.9-py3 </br>
+      </td>
+      <td>nvcr.io/nvidia/l4t-ml:r32.7.1-py3</td>
+    </tr>
+    <tr>
+      <td>OVP81x</td>
+      <td>1.4.30</td>
+      <td><a href="https://developer.nvidia.com/embedded/linux-tegra-r32.7.3">R32.7.3</a></td>
+      <td>4.6.3</td>
+      <td>
+        <br> nvcr.io/nvidia/l4t-tensorflow:r32.7.1-tf2.7-py3 </br>
+        <br> nvcr.io/nvidia/l4t-tensorflow:r32.7.1-tf1.15-py3 </br>
+      </td>
+      <td>
+        <br> nvcr.io/nvidia/l4t-pytorch:r32.7.1-pth1.10-py3 </br>
+        <br> nvcr.io/nvidia/l4t-pytorch:r32.7.1-pth1.9-py3 </br>
+      </td>
+      <td>nvcr.io/nvidia/l4t-ml:r32.7.1-py3</td>
+    </tr>
+    <tr>
+      <td>OVP80x</td>
+      <td>1.4.32</td>
+      <td><a href="https://developer.nvidia.com/embedded/linux-tegra-r32.4.3">R32.4.3</a></td>
+      <td>4.4.0</td>
+      <td>
+        <br> nvcr.io/nvidia/l4t-tensorflow:r32.4.3-tf2.2-py3 </br>
+        <br> nvcr.io/nvidia/l4t-tensorflow:r32.4.3-tf1.15-py3 </br>
+      </td>
+      <td>nvcr.io/nvidia/l4t-pytorch:r32.4.3-pth1.6-py3</td>
+      <td>nvcr.io/nvidia/l4t-ml:r32.4.3-py3</td>
+    </tr>
+  </tbody>
+</table>
 <p>The underlying structure of the container loads the TensorRT libraries and is handled by NVIDIA and Docker - as long as the versions of the container and JetPack closely match.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To access or modify the Dockerfiles and scripts used to build the NVIDIA containers, see this <a class="reference external" href="https://github.com/dusty-nv/jetson-containers">GitHub repository</a></p>
+</div>
+</section>
 <section id="verify-the-functionality">
 <h4>Verify the functionality<a class="headerlink" href="#verify-the-functionality" title="Link to this heading"></a></h4>
-<p>For JetPack version 4.4 (L4T R32.4.3), the following versions are available:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">l4t</span><span class="o">-</span><span class="n">tensorflow</span><span class="p">:</span><span class="n">r32</span><span class="mf">.4.3</span><span class="o">-</span><span class="n">tf1</span><span class="mf">.15</span><span class="o">-</span><span class="n">py3</span><span class="p">:</span> <span class="n">TensorFlow</span> <span class="mf">1.15</span>
-<span class="n">l4t</span><span class="o">-</span><span class="n">tensorflow</span><span class="p">:</span><span class="n">r32</span><span class="mf">.4.3</span><span class="o">-</span><span class="n">tf2</span><span class="mf">.2</span><span class="o">-</span><span class="n">py3</span><span class="p">:</span> <span class="n">TensorFlow</span> <span class="mf">2.2</span>
+<p>Start an interactive session in the container and try to import torch in interactive python as shown below.
+This assumes that the containers has previously been deployed on to the VPU.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ovp81x-fc-6c-6d:~$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-ti<span class="w"> </span>--runtime<span class="w"> </span>nvidia<span class="w"> </span>nvcr.io/nvidia/l4t-ml:r32.7.1-py3
+allow<span class="w"> </span><span class="m">10</span><span class="w"> </span>sec<span class="w"> </span><span class="k">for</span><span class="w"> </span>JupyterLab<span class="w"> </span>to<span class="w"> </span>start<span class="w"> </span>@<span class="w"> </span>http://172.17.0.2:8888<span class="w"> </span><span class="o">(</span>password<span class="w"> </span>nvidia<span class="o">)</span>
+JupterLab<span class="w"> </span>logging<span class="w"> </span>location:<span class="w">  </span>/var/log/jupyter.log<span class="w">  </span><span class="o">(</span>inside<span class="w"> </span>the<span class="w"> </span>container<span class="o">)</span>
+root@89e52a1dfd4c:/#<span class="w"> </span>python3
+Python<span class="w"> </span><span class="m">3</span>.6.9<span class="w"> </span><span class="o">(</span>default,<span class="w"> </span>Dec<span class="w">  </span><span class="m">8</span><span class="w"> </span><span class="m">2021</span>,<span class="w"> </span><span class="m">21</span>:08:43<span class="o">)</span><span class="w"> </span>
+<span class="o">[</span>GCC<span class="w"> </span><span class="m">8</span>.4.0<span class="o">]</span><span class="w"> </span>on<span class="w"> </span>linux
+Type<span class="w"> </span><span class="s2">&quot;help&quot;</span>,<span class="w"> </span><span class="s2">&quot;copyright&quot;</span>,<span class="w"> </span><span class="s2">&quot;credits&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="s2">&quot;license&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>more<span class="w"> </span>information.
+&gt;&gt;&gt;<span class="w"> </span>import<span class="w"> </span>torch
+&gt;&gt;&gt;<span class="w"> </span>torch.cuda.is_available<span class="o">()</span>
+True
+&gt;&gt;&gt;<span class="w"> </span>torch.cuda.device_count<span class="o">()</span>
+<span class="m">1</span>
+&gt;&gt;&gt;<span class="w"> </span>torch.cuda.current_device<span class="o">()</span>
+<span class="m">0</span>
+&gt;&gt;&gt;<span class="w"> </span>torch.cuda.get_device_name<span class="o">(</span><span class="m">0</span><span class="o">)</span>
+<span class="s1">&#39;NVIDIA Tegra X2&#39;</span>
+&gt;&gt;&gt;<span class="w"> </span>
 </pre></div>
 </div>
-<p>First pull one of the <code class="docutils literal notranslate"><span class="pre">l4t-tensorflow</span></code> container tags from above, corresponding to the version of L4T that is installed on your Jetson and to the desired TensorFlow version. For example, if you are running the latest JetPack 4.4 (L4T R32.4.3) release and want to use TensorFlow 1.15, run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>nvcr.io/nvidia/l4t-tensorflow:r32.4.3-tf1.15-py3
-</pre></div>
-</div>
-<p>Then, to start an interactive session in the container, run the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--runtime<span class="w"> </span>nvidia<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>nvcr.io/nvidia/l4t-tensorflow:r32.4.3-tf1.15-py3
-</pre></div>
-</div>
-<p>You should then be able to start a Python3 interpreter and import TensorFlow.</p>
-</section>
-<section id="mounting-directories-from-the-host">
-<h4>Mounting directories from the host<a class="headerlink" href="#mounting-directories-from-the-host" title="Link to this heading"></a></h4>
 <p>To mount scripts, data, etc. from your Jetson’s filesystem to run inside the container, use Docker’s <code class="docutils literal notranslate"><span class="pre">-v</span></code> flag when starting your Docker instance:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--runtime<span class="w"> </span>nvidia<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>-v<span class="w"> </span>/home/user/project:/location/in/container<span class="w"> </span>nvcr.io/nvidia/l4t-tensorflow:r32.4.3-tf1.15-py3
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>--runtime<span class="w"> </span>nvidia<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>-v<span class="w"> </span>/home/user/project:/location/in/container<span class="w"> </span>nvidia<span class="w"> </span>nvcr.io/nvidia/l4t-ml:r32.7.1-py3
 </pre></div>
 </div>
-</section>
-</section>
-<section id="dockerfiles">
-<h3>Dockerfiles<a class="headerlink" href="#dockerfiles" title="Link to this heading"></a></h3>
-<section id="nvidia-base-dockerfiles">
-<h4>NVIDIA base Dockerfiles<a class="headerlink" href="#nvidia-base-dockerfiles" title="Link to this heading"></a></h4>
-<p>To access or modify the Dockerfiles and scripts used to build the NVIDIA containers, see this <a class="reference external" href="https://github.com/dusty-nv/jetson-containers">GitHub repository</a>.</p>
-</section>
-<section id="ifm-example-dockerfiles">
-<h4>ifm example Dockerfiles<a class="headerlink" href="#ifm-example-dockerfiles" title="Link to this heading"></a></h4>
-<p>The Dockerfiles for both the <code class="docutils literal notranslate"><span class="pre">o3r-l4t-base</span></code> and the <code class="docutils literal notranslate"><span class="pre">o3r-l4t-tensorrt</span></code> images can be found in the <a class="reference external" href="https://github.com/ifm/ifm3d-examples"><code class="docutils literal notranslate"><span class="pre">ifm3d-examples</span></code> repository on GitHub</a>.
-The <code class="docutils literal notranslate"><span class="pre">o3r-l4t-base</span></code> image provides the bare minimum to install the NVIDIA packages via <code class="docutils literal notranslate"><span class="pre">apt-get</span></code>. It is a stripped down version of the NVIDIA <code class="docutils literal notranslate"><span class="pre">l4t-base</span></code> images with UI libraries removed.
-The <code class="docutils literal notranslate"><span class="pre">o3r-l4t-tensorrt</span></code> image comes with the TensorRT examples from NVIDIA pre-installed and uses a multi stage Docker image build to show how to create smaller images without all the build tools pre-installed.</p>
-<p>The Docker images are not distributed and need to be built locally.</p>
 </section>
 </section>
 </section>
@@ -216,50 +261,79 @@ The <code class="docutils literal notranslate"><span class="pre">o3r-l4t-tensorr
 <li><p>Reduce the container mounting size by using <a class="reference external" href="https://docs.docker.com/engine/reference/builder/#dockerignore-file">.dockerignore file</a>.
 Follow the <a class="reference external" href="https://docs.docker.com/develop/develop-images/dockerfile_best-practices/">Dockerfile best practices</a> to minimize the number of layers and overall size.</p></li>
 </ol>
-<p>Once TensorRT is installed on the VPU, you can proceed as follows:</p>
+<p>Once the docker container is deployed on the VPU, you can proceed as follows:</p>
 <ol class="arabic simple">
 <li><p>Run TensorRT models using <code class="docutils literal notranslate"><span class="pre">trtexec</span></code> inside the <code class="docutils literal notranslate"><span class="pre">l4t-base</span></code> container. This container will copy TensorRT from the host.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">trtexec</span></code> runs the model, filing it with random data for testing purposes. This is a first indication whether the adapted model can be run on the final architecture.</p></li>
-<li><p>Adapt the model for the final deployment architecture. This may involve updating the model based on its structure and the operators and layers used. Not all operators and model adaptations may be available in the OVP800 JetPack version. You may need to update your model on your development machine, export a new ONNX model with opset 11 operators, and adapt it again. This could be an iterative process.</p></li>
+<li><p>Adapt the model for the final deployment architecture. This may involve updating the model based on its structure and the operators and layers used. Not all operators and model adaptations may be available in the OVP8xx JetPack version. You may need to update your model on your development machine, export a new ONNX model with opset 11 operators, and adapt it again. This could be an iterative process.</p></li>
 </ol>
-<section id="adaptations-for-the-ovp80x-architecture">
-<h3>Adaptations for the OVP80x architecture<a class="headerlink" href="#adaptations-for-the-ovp80x-architecture" title="Link to this heading"></a></h3>
+<section id="adaptations-for-the-ovp8xx-architecture">
+<h3>Adaptations for the OVP8xx architecture<a class="headerlink" href="#adaptations-for-the-ovp8xx-architecture" title="Link to this heading"></a></h3>
 <p>The model has to be exported and adapted to the final deployment architecture.
-Refer to the <a class="reference external" href="https://docs.nvidia.com/deeplearning/tensorrt/quick-start-guide/index.html#basic-workflow">NVIDIA documentation for this process</a>. This adaptation must be done on the final deployment architecture. Compiling on similar architectures, like Jetson evaluation boards, will result in an incompatible instruction set for the OVP800 architecture.</p>
+Refer to the <a class="reference external" href="https://docs.nvidia.com/deeplearning/tensorrt/quick-start-guide/index.html#basic-workflow">NVIDIA documentation for this process</a>. This adaptation must be done on the final deployment architecture. Compiling on similar architectures, like Jetson evaluation boards, will result in an incompatible instruction set for the OVP8xx architecture.</p>
 <p>We recommend exporting the neural network model to an ONNX model. Adapting the model for the deployment architecture may require updates. This could be an iterative process to get the model running on the final architecture. Update your model on your development machine, export a new ONNX model with opset 11 operators, and test this update in Docker.</p>
 <p>For ONNX exports with opset 11 settings and further ONNX operator support, refer to the <a class="reference external" href="https://github.com/onnx/onnx-tensorrt/blob/release/7.1/operators.md">official <code class="docutils literal notranslate"><span class="pre">onnx-tensorrt</span></code> documentation</a>.</p>
 </section>
 <section id="runtime-inference-cycle-times">
 <h3>Runtime inference cycle times<a class="headerlink" href="#runtime-inference-cycle-times" title="Link to this heading"></a></h3>
-<p>Adapting the model as described will result in a model with a specific runtime on the TX2 device. You may need to adjust for different model sizes and operations. Remember, the typical cycle time on a development machine may not accurately reflect the expected cycle times on OVP80x TX2 hardware.</p>
+<p>Adapting the model as described will result in a model with a specific runtime on the VPU. You may need to adjust for different model sizes and operations. Remember, the typical cycle time on a development machine may not accurately reflect the expected cycle times on OVP8xx (TX2/TX2-NX) hardware.</p>
 </section>
 </section>
-<section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
-<section id="yolov4-tiny">
-<h3>YOLOv4 Tiny<a class="headerlink" href="#yolov4-tiny" title="Link to this heading"></a></h3>
-<p>This example demonstrates the benchmarking of the YOLOv4 Tiny Object Detection network using the TensorRT tool <a class="reference external" href="https://docs.nvidia.com/deeplearning/tensorrt/developer-guide/index.html#trtexec"><code class="docutils literal notranslate"><span class="pre">trtexec</span></code></a> within a container. The example is applicable for L4T 32.5.1 and has been tested on a TX2 development board. Additional details for TX2 JetPack version 32.4.3 are forthcoming.</p>
-<p>The model was trained on a different machine, converted into ONNX format and then copied to the board.
-When starting the container, a directory with a model can be mounted using <code class="docutils literal notranslate"><span class="pre">-v</span></code> option.</p>
-<p>To get the hardware and library details of the host, run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jetsontx2@jetsontx2-desktop:~/for_container$<span class="w"> </span>jetson_release
-<span class="w"> </span>-<span class="w"> </span>NVIDIA<span class="w"> </span>Jetson<span class="w"> </span>TX2
-<span class="w">   </span>*<span class="w"> </span>Jetpack<span class="w"> </span><span class="m">4</span>.5.1<span class="w"> </span><span class="o">[</span>L4T<span class="w"> </span><span class="m">32</span>.5.1<span class="o">]</span>
-<span class="w">   </span>*<span class="w"> </span>NV<span class="w"> </span>Power<span class="w"> </span>Mode:<span class="w"> </span>MAXP_CORE_ARM<span class="w"> </span>-<span class="w"> </span>Type:<span class="w"> </span><span class="m">3</span>
-<span class="w">   </span>*<span class="w"> </span>jetson_stats.service:<span class="w"> </span>active
-<span class="w"> </span>-<span class="w"> </span>Libraries:
-<span class="w">   </span>*<span class="w"> </span>CUDA:<span class="w"> </span><span class="m">10</span>.2.89
-<span class="w">   </span>*<span class="w"> </span>cuDNN:<span class="w"> </span><span class="m">8</span>.0.0.180
-<span class="w">   </span>*<span class="w"> </span>TensorRT:<span class="w"> </span><span class="m">7</span>.1.3.0
-<span class="w">   </span>*<span class="w"> </span>Visionworks:<span class="w"> </span><span class="m">1</span>.6.0.501
-<span class="w">   </span>*<span class="w"> </span>OpenCV:<span class="w"> </span><span class="m">4</span>.1.1<span class="w"> </span>compiled<span class="w"> </span>CUDA:<span class="w"> </span>YES
-<span class="w">   </span>*<span class="w"> </span>VPI:<span class="w"> </span>ii<span class="w"> </span>libnvvpi1<span class="w"> </span><span class="m">1</span>.0.15<span class="w"> </span>arm64<span class="w"> </span>NVIDIA<span class="w"> </span>Vision<span class="w"> </span>Programming<span class="w"> </span>Interface<span class="w"> </span>library
-<span class="w">   </span>*<span class="w"> </span>Vulkan:<span class="w"> </span><span class="m">1</span>.2.70
+<section id="calculating-the-inference-on-ovp81x-vpu-using-yolov11-onnx-model-file">
+<h2>Calculating the inference on OVP81x VPU using YOLOv11 ONNX Model file<a class="headerlink" href="#calculating-the-inference-on-ovp81x-vpu-using-yolov11-onnx-model-file" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Pull the machine learning base image provided by NVIDIA</p></li>
+</ol>
+<ol class="arabic simple" start="2">
+<li><p>Create a YOLOv11 ONNX model file using python script</p></li>
+</ol>
+</section>
+</section>
+<section id="load-a-pretrained-yolo-model-recommended-for-training">
+<h1>Load a pretrained YOLO model (recommended for training)<a class="headerlink" href="#load-a-pretrained-yolo-model-recommended-for-training" title="Link to this heading"></a></h1>
+<p>model = YOLO(“yolo11n.pt”)</p>
+</section>
+<section id="export-the-model-to-onnx-format">
+<h1>Export the model to ONNX format<a class="headerlink" href="#export-the-model-to-onnx-format" title="Link to this heading"></a></h1>
+<p>model.export(format=”onnx”, imgsz=[480,640])</p>
+<div class="docutils">
+<ol class="arabic simple" start="3">
+<li><p>Copy the Docker container and ONNX model file to VPU</p></li>
+<li><p>Run the docker image in interactive mode</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--runtime<span class="w"> </span>nvidia<span class="w"> </span>-it<span class="w"> </span>--runtime<span class="w"> </span>nvidia<span class="w"> </span>--gpus<span class="w"> </span>all<span class="w"> </span>-v<span class="w"> </span>/path/to/your/model:/workspace/model<span class="w"> </span>nvcr.io/nvidia/l4t-ml:r32.7.1-py3
 </pre></div>
 </div>
-</section>
-<section id="deepstream-l4t">
-<h3>Deepstream-l4t<a class="headerlink" href="#deepstream-l4t" title="Link to this heading"></a></h3>
+<h3 class="rubric" id="example-runs">Example runs</h3>
+<ul class="simple">
+<li><p>Run the command inside a docker container to measure inference timings</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>usr/src/tensorrt/bin/trtexec<span class="w"> </span>--onnx<span class="o">=</span>yolov11/yolov11n.onnx<span class="w"> </span>--verbose<span class="w"> </span>--fp16
+</pre></div>
+</div>
+<h3 class="rubric" id="inference-timings">Inference timings</h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head"><p>Batch Size</p></th>
+<th class="head"><p>Precision</p></th>
+<th class="head"><p>Inference time</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>YOLOv11-N</p></td>
+<td><p>1</p></td>
+<td><p>FP16</p></td>
+<td><p>20.62 ms</p></td>
+</tr>
+<tr class="row-odd"><td><p>YOLOv11-M</p></td>
+<td><p>1</p></td>
+<td><p>FP16</p></td>
+<td><p>93.24 ms</p></td>
+</tr>
+</tbody>
+</table>
+<h2 class="rubric" id="deepstream-l4t">Deepstream-l4t</h2>
 <p>The Deepstream-l4t NGC container is used in this example.</p>
 <ol class="arabic simple">
 <li><p>Pull the Deepstream-l4t NGC container.</p></li>
@@ -367,8 +441,7 @@ Doc<span class="w"> </span>string:
 </div>
 </li>
 </ol>
-</section>
-</section>
+</div>
 </section>
 
 
