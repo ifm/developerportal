@@ -84,7 +84,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../autostart.html">Autostarting the container</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../resource_management.html">Resource Management on the VPU</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../gpu.html">Enabling GPU usage</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Using TensorRT</a><ul>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">TensortRT: DL / ML model deployment</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#building-a-tensorrt-container">Building a TensorRT container</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#nvidia-base-containers">NVIDIA base containers</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#compatibility-matrix">Compatibility Matrix</a></li>
@@ -98,11 +98,14 @@
 <li class="toctree-l5"><a class="reference internal" href="#runtime-inference-cycle-times">Runtime inference cycle times</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#calculating-the-inference-on-ovp81x-vpu-using-yolov11-onnx-model-file">Calculating the inference on OVP81x VPU using YOLOv11 ONNX Model file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#calculating-the-inference-on-ovp81x-vpu-using-yolov11-onnx-model-file">Calculating the inference on OVP81x VPU using YOLOv11 ONNX Model file</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#example-runs">Example runs</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#inference-timings">Inference timings</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#load-a-pretrained-yolo-model-recommended-for-training">Load a pretrained YOLO model (recommended for training)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#export-the-model-to-onnx-format">Export the model to ONNX format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deepstream-l4t">Deepstream-l4t</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../ifmDiagnostic/index_diagnostic.html">Diagnostic</a></li>
@@ -284,19 +287,19 @@ Refer to the <a class="reference external" href="https://docs.nvidia.com/deeplea
 <ol class="arabic simple">
 <li><p>Pull the machine learning base image provided by NVIDIA</p></li>
 </ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>$<span class="w"> </span>docker<span class="w"> </span>pull<span class="w"> </span>nvcr.io/nvidia/l4t-ml:r32.7.1-py3
+</pre></div>
+</div>
 <ol class="arabic simple" start="2">
 <li><p>Create a YOLOv11 ONNX model file using python script</p></li>
 </ol>
-</section>
-</section>
-<section id="load-a-pretrained-yolo-model-recommended-for-training">
-<h1>Load a pretrained YOLO model (recommended for training)<a class="headerlink" href="#load-a-pretrained-yolo-model-recommended-for-training" title="Link to this heading"></a></h1>
-<p>model = YOLO(“yolo11n.pt”)</p>
-</section>
-<section id="export-the-model-to-onnx-format">
-<h1>Export the model to ONNX format<a class="headerlink" href="#export-the-model-to-onnx-format" title="Link to this heading"></a></h1>
-<p>model.export(format=”onnx”, imgsz=[480,640])</p>
-<div class="docutils">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="kn">from</span><span class="w"> </span><span class="nn">ultralytics</span><span class="w"> </span><span class="kn">import</span> <span class="n">YOLO</span>
+  
+  <span class="n">model</span> <span class="o">=</span> <span class="n">YOLO</span><span class="p">(</span><span class="s2">&quot;yolo11n.pt&quot;</span><span class="p">)</span> <span class="c1"># Load a pretrained YOLO model (recommended for training)</span>
+  
+  <span class="n">model</span><span class="o">.</span><span class="n">export</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s2">&quot;onnx&quot;</span><span class="p">,</span> <span class="n">imgsz</span><span class="o">=</span><span class="p">[</span><span class="mi">480</span><span class="p">,</span><span class="mi">640</span><span class="p">])</span> <span class="c1"># Export the model to ONNX format</span>
+</pre></div>
+</div>
 <ol class="arabic simple" start="3">
 <li><p>Copy the Docker container and ONNX model file to VPU</p></li>
 <li><p>Run the docker image in interactive mode</p></li>
@@ -304,14 +307,17 @@ Refer to the <a class="reference external" href="https://docs.nvidia.com/deeplea
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>--runtime<span class="w"> </span>nvidia<span class="w"> </span>-it<span class="w"> </span>--runtime<span class="w"> </span>nvidia<span class="w"> </span>--gpus<span class="w"> </span>all<span class="w"> </span>-v<span class="w"> </span>/path/to/your/model:/workspace/model<span class="w"> </span>nvcr.io/nvidia/l4t-ml:r32.7.1-py3
 </pre></div>
 </div>
-<h3 class="rubric" id="example-runs">Example runs</h3>
+<section id="example-runs">
+<h3>Example runs<a class="headerlink" href="#example-runs" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Run the command inside a docker container to measure inference timings</p></li>
 </ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>usr/src/tensorrt/bin/trtexec<span class="w"> </span>--onnx<span class="o">=</span>yolov11/yolov11n.onnx<span class="w"> </span>--verbose<span class="w"> </span>--fp16
 </pre></div>
 </div>
-<h3 class="rubric" id="inference-timings">Inference timings</h3>
+</section>
+<section id="inference-timings">
+<h3>Inference timings<a class="headerlink" href="#inference-timings" title="Link to this heading"></a></h3>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Model</p></th>
@@ -333,7 +339,10 @@ Refer to the <a class="reference external" href="https://docs.nvidia.com/deeplea
 </tr>
 </tbody>
 </table>
-<h2 class="rubric" id="deepstream-l4t">Deepstream-l4t</h2>
+</section>
+</section>
+<section id="deepstream-l4t">
+<h2>Deepstream-l4t<a class="headerlink" href="#deepstream-l4t" title="Link to this heading"></a></h2>
 <p>The Deepstream-l4t NGC container is used in this example.</p>
 <ol class="arabic simple">
 <li><p>Pull the Deepstream-l4t NGC container.</p></li>
@@ -441,7 +450,7 @@ Doc<span class="w"> </span>string:
 </div>
 </li>
 </ol>
-</div>
+</section>
 </section>
 
 

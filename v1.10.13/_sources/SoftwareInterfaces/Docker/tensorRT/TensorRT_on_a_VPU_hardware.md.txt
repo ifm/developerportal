@@ -145,22 +145,18 @@ Adapting the model as described will result in a model with a specific runtime o
 
 1. Pull the machine learning base image provided by NVIDIA
 
-:::{bash}
+```bash
   $ docker pull nvcr.io/nvidia/l4t-ml:r32.7.1-py3
-:::
-
+```
 2. Create a YOLOv11 ONNX model file using python script
 
-:::{python}
+```python
   from ultralytics import YOLO
-:::
-
-  # Load a pretrained YOLO model (recommended for training)
-  model = YOLO("yolo11n.pt")
-
-  # Export the model to ONNX format
-  model.export(format="onnx", imgsz=[480,640])
-:::
+  
+  model = YOLO("yolo11n.pt") # Load a pretrained YOLO model (recommended for training)
+  
+  model.export(format="onnx", imgsz=[480,640]) # Export the model to ONNX format
+```
 
 3. Copy the Docker container and ONNX model file to VPU
 4. Run the docker image in interactive mode
