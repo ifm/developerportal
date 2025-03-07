@@ -81,6 +81,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Instantiation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#extrinsic-calibration">Extrinsic calibration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ports-selection">Ports selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#active-ports">Active ports</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#visual-odometry">Visual odometry</a></li>
 </ul>
 </li>
@@ -164,7 +165,7 @@ This would mean the camera head is inside the floor (<code class="docutils liter
 <p class="admonition-title">Note</p>
 <p>The rotation is in rad (radians) - instead of 90°, you provide Pi/2</p>
 </div>
-<p>For one camera, connected to port 2, facing forward (+x) with label up (+z) and shifted 20 cm vertically, the calibration can be set with:</p>
+<p>For one camera, connected to <code class="docutils literal notranslate"><span class="pre">port2</span></code>, facing forward (+x) with label up (+z) and shifted 20 cm vertically, the calibration can be set with:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ifm3dpy.device</span><span class="w"> </span><span class="kn">import</span> <span class="n">O3R</span>
 <span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">()</span>
 <span class="n">ext_calib</span> <span class="o">=</span>
@@ -191,7 +192,7 @@ This would mean the camera head is inside the floor (<code class="docutils liter
 </section>
 <section id="ports-selection">
 <h2>Ports selection<a class="headerlink" href="#ports-selection" title="Link to this heading"></a></h2>
-<p>A VPU (OVP8XX) can connect up to 6 3D imager, ranging from <code class="docutils literal notranslate"><span class="pre">Port</span> <span class="pre">0</span></code> to <code class="docutils literal notranslate"><span class="pre">Port</span> <span class="pre">5</span></code>. Providing the port information to the ODS configuration tells the system which heads should be used for the ODS application itself.</p>
+<p>A VPU (OVP8XX) can connect up to 6 3D imager, ranging from <code class="docutils literal notranslate"><span class="pre">port0</span></code> to <code class="docutils literal notranslate"><span class="pre">port5</span></code>. The <code class="docutils literal notranslate"><span class="pre">ports</span></code> attribute  in the ODS configuration defines which of these ports are available for the ODS application. These ports cannot be changed dynamically and require a transition to the configuration <code class="docutils literal notranslate"><span class="pre">CONF</span></code> state for modifications.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The current ODS version do not support more than 3 used heads within an ODS application.
@@ -201,25 +202,37 @@ This would mean the camera head is inside the floor (<code class="docutils liter
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;ports&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">            </span><span class="s2">&quot;port2&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="s2">&quot;port3&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;port4&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="s2">&quot;port5&quot;</span><span class="p">,</span>
 <span class="w">            </span><span class="s2">&quot;port6&quot;</span>
 <span class="w">          </span><span class="p">],</span>
 </pre></div>
 </div>
-<p>Connected heads, which are not defined within the ODS JSON can be used in parallel to the ODS application.
-<code class="docutils literal notranslate"><span class="pre">port6</span></code> is the <code class="docutils literal notranslate"><span class="pre">IMU</span></code> (Inertial Measurement Unit) and is used by ODS. <strong><code class="docutils literal notranslate"><span class="pre">port6</span></code> <em>must always</em> be provided to an ODS application.</strong></p>
+<p>Any connected heads that are not included in the <code class="docutils literal notranslate"><span class="pre">ports</span></code> list can still be used independently alongside the ODS application.</p>
+<p><code class="docutils literal notranslate"><span class="pre">port6</span></code> is the Inertial Measurement Unit (IMU) and is used by ODS. <strong><code class="docutils literal notranslate"><span class="pre">port6</span></code> <em>must always</em> be provided to an ODS application.</strong></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>To optimize system performance and conserve resources, it’s recommended to switch all unused camera heads, especially RGB heads, to “CONF” mode.</p>
+<p>To optimize system performance and conserve resources, it’s recommended to switch all unused camera heads, especially RGB heads, to <code class="docutils literal notranslate"><span class="pre">CONF</span></code> state.</p>
 </div>
+</section>
+<section id="active-ports">
+<h2>Active ports<a class="headerlink" href="#active-ports" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">activePorts</span></code> list defines which of the pre-configured <code class="docutils literal notranslate"><span class="pre">ports</span></code> will be used by the ODS application. Unlike the <code class="docutils literal notranslate"><span class="pre">ports</span></code> list, <code class="docutils literal notranslate"><span class="pre">activePorts</span></code> can be modified on the fly without requiring a transition to the configuration <code class="docutils literal notranslate"><span class="pre">CONF</span></code> state. This allows for dynamic adjustments while keeping the system in the running <code class="docutils literal notranslate"><span class="pre">RUN</span></code> state.</p>
+<p>Each port in the <code class="docutils literal notranslate"><span class="pre">activePorts</span></code> list must also be included in the <code class="docutils literal notranslate"><span class="pre">ports</span></code> list to ensure it is recognized by the ODS application.</p>
+<p>For ODS operation, at least one active port (excluding the IMU port, <code class="docutils literal notranslate"><span class="pre">port6</span></code>) must be present in the <code class="docutils literal notranslate"><span class="pre">activePorts</span></code> list. The maximum number of active ports allowed is determined by the <code class="docutils literal notranslate"><span class="pre">maxNumSimultaneousCameras</span></code> attribute.</p>
 </section>
 <section id="visual-odometry">
 <h2>Visual odometry<a class="headerlink" href="#visual-odometry" title="Link to this heading"></a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">vo</span></code> (Visual odometry) is an algorithmic approach that in combination with the <code class="docutils literal notranslate"><span class="pre">IMU</span></code> provides ego motion data to the ODS algorithm. Images from one head are used together with the IMU data to continuously improve the ODS ego-motion estimation. The best performance is achieved by using a head with (the most) floor data visible in its images. The floors distance range needs to be at least between 1.00m and 1.50m.</p>
-<p>Provide the port number (head with floor data in the images) to the <code class="docutils literal notranslate"><span class="pre">vo</span></code> attribute.</p>
+<p>Visual odometry is an algorithmic approach that, in combination with the IMU, provides ego-motion data to the ODS algorithm. Images from the cameras used for visual odometry are used alongside IMU data to continuously refine the ODS ego-motion estimation. It is required that the selected camera head(s) capture a significant portion of the floor in their images.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">vo</span></code> parameter expects a list of ports suitable for visual odometry. Visual odometry will be performed using one port that is present in both the <code class="docutils literal notranslate"><span class="pre">voPorts</span></code> list and the <code class="docutils literal notranslate"><span class="pre">activePorts</span></code> list.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;vo&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;voPorts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;port2&quot;</span><span class="p">]</span>
+<span class="w">    </span><span class="nt">&quot;voPorts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;port2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;port3&quot;</span><span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Visual odometry might be unavailable because of insufficient texture on the floor, ambient light, for example sun light, or because only a small portion of the floor is visible, for example when an object covers a large part of the field of view. Short-term outages of visual odometry (up to tens of seconds) should usually be overcome while the vehicle is still moving. In this case, ego motion becomes available again shortly after the first valid visual odometry updates. Long-term outages (of several minutes) probably require the vehicle to be at standstill for the ego motion to become available again.</p>
 </div>
 </section>
 </section>

@@ -205,10 +205,17 @@ Both cameras are mounted at around 70 cm height.</p>
 </section>
 <section id="visual-odometry">
 <h2>Visual odometry<a class="headerlink" href="#visual-odometry" title="Link to this heading"></a></h2>
-<p>Visual odometry is used in ODS along with IMU data to calculate the ego motion (linear velocity, angular velocity) of the vehicle.
-For a fully functional system, the visual odometry information needs to be available for at least one active camera at all times.</p>
+<p>Visual odometry is used in ODS along with IMU data to calculate the ego motion (linear and angular velocity) of the vehicle.
+It is required that the visual odometry is available for one active camera at all times.</p>
+<p>The visual odometry algorithm requires that a sufficient portion of the floor is visible in the camera’s field of view. The diagram below illustrates this requirement:</p>
+<p><img alt="vo" src="../../_images/vo.drawio.svg" /></p>
+<p>The two distances shown define the intersection of the FoV with the floor:</p>
+<ul class="simple">
+<li><p>d_max must be greater than 1.5m.</p></li>
+<li><p>d_min should be approximately less than 1m.</p></li>
+</ul>
 <p>If the camera head which is responsible for visual odometry is not calibrated or doesn’t see enough floor pixels then a diagnostic <code class="docutils literal notranslate"><span class="pre">ERROR_ODSAPP_VO_EXTR_DI_CALIB_IMPLAUSIBLE</span></code> will be raised.</p>
-<p>This may require angling the camera down to see the ground in front of or to the side of the vehicle.</p>
+<p>This may require angling the camera in a way to have more floor pixels in the FoV.</p>
 </section>
 <section id="clearance-area">
 <h2>Clearance area<a class="headerlink" href="#clearance-area" title="Link to this heading"></a></h2>

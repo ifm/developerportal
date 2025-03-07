@@ -63,12 +63,20 @@ These images are intended as examples only and do not represent an actual at-sca
 
 ## Visual odometry
 
-Visual odometry is used in ODS along with IMU data to calculate the ego motion (linear velocity, angular velocity) of the vehicle.
-For a fully functional system, the visual odometry information needs to be available for at least one active camera at all times.
+Visual odometry is used in ODS along with IMU data to calculate the ego motion (linear and angular velocity) of the vehicle.
+It is required that the visual odometry is available for one active camera at all times.
+
+The visual odometry algorithm requires that a sufficient portion of the floor is visible in the camera's field of view. The diagram below illustrates this requirement:
+
+![vo](img/vo.drawio.svg)
+
+The two distances shown define the intersection of the FoV with the floor:
+- d_max must be greater than 1.5m.
+- d_min should be approximately less than 1m.
 
 If the camera head which is responsible for visual odometry is not calibrated or doesn't see enough floor pixels then a diagnostic `ERROR_ODSAPP_VO_EXTR_DI_CALIB_IMPLAUSIBLE` will be raised.
 
-This may require angling the camera down to see the ground in front of or to the side of the vehicle.
+This may require angling the camera in a way to have more floor pixels in the FoV.
 
 ## Clearance area
 
@@ -80,4 +88,4 @@ Refer to the [clearance area guidelines](../../Technology/Hardware/Mounting/clea
 ## Dead zones
 
 Depending on the mounting position, dead zones may exist. ODS does not retain a memory of objects that have disappeared from the field of view into a dead zone. 
-It is important to take this into account and define a strategy to either cover the dead zones with additional cameras, or to incorporate these dead zones into the effective breaking distance calculation. 
+It is important to take this into account and define a strategy to either cover the dead zones with additional cameras, or to incorporate these dead zones into the effective breaking distance calculation.
