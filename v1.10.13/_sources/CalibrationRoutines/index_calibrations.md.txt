@@ -2,6 +2,15 @@
 
 The extrinsic camera calibration specifies where the camera head is positioned in a reference coordinate system. Several calibration routines were developed at ifm to estimate the translations and rotations of cameras and OVP respective to a user defined coordinate system.
 
+First, you need a checkerboard calibration target.
+
+:::{grid-item-card}
+:link: checkerboard
+:link-type: doc
+![Mini checkerboard](resources/mini-checkerboard.png)
+Print the checkerboard
+:::
+
 
 ::::::{grid} 2
 :gutter: 3
@@ -48,6 +57,7 @@ Need a refresher?
 :::{toctree}
 :maxdepth: 1
 :hidden:
+The checkerboard calibration target <checkerboard>
 Introduction to calibration <IntroToCalibrations/README>
 Static Camera Calibration <SCC/README>
 Motion Camera Calibration <MCC/mcc_with_wizard>
