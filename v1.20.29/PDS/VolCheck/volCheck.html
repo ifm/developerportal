@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>volCheck &mdash; O3R  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5800d392" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Code examples" href="../Examples/examples.html" />
+    <link rel="prev" title="getRack" href="../GetRack/getRack.html" />
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script> -->
+     
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            O3R
+          </a>
+              <div class="version">
+                v1.20.29
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Technology/index_technology.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index_pds.html">PDS</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Compatibility/compatibility.html">Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Mounting/mounting.html">Mounting setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Calibration/pds_calibration.html">Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Configuration/configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Results/results.html">Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../GetPallet/getPallet.html">Pallets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../GetRack/getRack.html">Racks</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Volume check</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#use-cases">Use cases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#command-configuration">Command configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#fine-tuning-parameters">Fine-tuning parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#results">Results</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Examples/examples.html">Code examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Recording/recordings_iVA.html">Recording</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Integration/index_integration.html">Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../PLC/index_plc.html">PLC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index_pds.html">PDS (Pick and Drop System)</a></li>
+      <li class="breadcrumb-item active"><code class="docutils literal notranslate"><span class="pre">volCheck</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/PDS/VolCheck/volCheck.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="volcheck">
+<h1><code class="docutils literal notranslate"><span class="pre">volCheck</span></code><a class="headerlink" href="#volcheck" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">volCheck</span></code> (Volume Check) feature in PDS provides a straightforward way to verify if a defined 3D volume of interest (VOI) is free from obstacles. It provides the number of valid pixels within a defined VOI and gives the distance to the nearest pixel within that VOI, allowing the user to specify a threshold for considering an area as occupied.</p>
+<p>This functionality is particularly useful for ensuring a location is clear before placing a load or performing sanity checks, such as confirming the visibility of fork tines in their expected position.</p>
+<section id="use-cases">
+<h2>Use cases<a class="headerlink" href="#use-cases" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">volCheck</span></code> command can be applied in various scenarios to enhance operational safety and decision-making:</p>
+<ul class="simple">
+<li><p>Forkload detection: By comparing the expected pixel count of unloaded forklift tines with the actual count, the system can determine whether the forks are carrying a load.</p></li>
+<li><p>Height validation: Ensure that the ground is at the expected height. If deviations are detected, it may indicate an issue requiring the forklift to stop.</p></li>
+<li><p>Obstacle detection: Checks whether the area in front of the sensor is clear before executing further commands. If an obstacle is present, the forklift can be halted to prevent collisions.</p></li>
+</ul>
+</section>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading"></a></h2>
+<section id="command-configuration">
+<h3>Command configuration<a class="headerlink" href="#command-configuration" title="Link to this heading"></a></h3>
+<p>The input to the <code class="docutils literal notranslate"><span class="pre">volCheck</span></code> command should be provided in JSON.
+Below is an example, assuming an instantiated PDS app <code class="docutils literal notranslate"><span class="pre">app0</span></code>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;applications&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;instances&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;app0&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;customization&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;volCheck&quot;</span><span class="p">,</span>
+<span class="w">                        </span><span class="nt">&quot;volCheck&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                            </span><span class="nt">&quot;xMin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;xMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;yMin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.5</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;yMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;zMin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;zMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4</span><span class="p">,</span>
+<span class="w">                        </span><span class="p">},</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Property</p></th>
+<th class="head text-left"><p>Type</p></th>
+<th class="head text-left"><p>Description</p></th>
+<th class="head text-right"><p>Default</p></th>
+<th class="head text-left"><p>Minimum</p></th>
+<th class="head text-left"><p>Maximum</p></th>
+<th class="head text-left"><p>Enum</p></th>
+<th class="head text-left"><p>Attributes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">xMin</span></code></p></td>
+<td class="text-left"><p>number</p></td>
+<td class="text-left"><p>Bounding box dimension of VOI along X-axis - Minimum</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">xMax</span></code></p></td>
+<td class="text-left"><p>number</p></td>
+<td class="text-left"><p>Bounding box dimension of VOI along X-axis - Maximum</p></td>
+<td class="text-right"><p>3</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">yMin</span></code></p></td>
+<td class="text-left"><p>number</p></td>
+<td class="text-left"><p>Bounding box dimension of VOI along Y-axis - Minimum</p></td>
+<td class="text-right"><p>-0.4</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">yMax</span></code></p></td>
+<td class="text-left"><p>number</p></td>
+<td class="text-left"><p>Bounding box dimension of VOI along Y-axis - Maximum</p></td>
+<td class="text-right"><p>0.4</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">zMin</span></code></p></td>
+<td class="text-left"><p>number</p></td>
+<td class="text-left"><p>Bounding box dimension of VOI along Z-axis - Minimum</p></td>
+<td class="text-right"><p>-0.1</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">zMax</span></code></p></td>
+<td class="text-left"><p>number</p></td>
+<td class="text-left"><p>Bounding box dimension of VOI along Z-axis - Maximum</p></td>
+<td class="text-right"><p>0.4</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="fine-tuning-parameters">
+<h3>Fine-tuning parameters<a class="headerlink" href="#fine-tuning-parameters" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Property</p></th>
+<th class="head text-left"><p>Type</p></th>
+<th class="head text-left"><p>Description</p></th>
+<th class="head text-right"><p>Default</p></th>
+<th class="head text-right"><p>Minimum</p></th>
+<th class="head text-right"><p>Maximum</p></th>
+<th class="head text-left"><p>Enum</p></th>
+<th class="head text-left"><p>Attributes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">nearestXQuantile</span></code></p></td>
+<td class="text-left"><p>number</p></td>
+<td class="text-left"><p>Quantile [0..1] for nearestX</p></td>
+<td class="text-right"><p>0.05</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>1</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="results">
+<h2>Results<a class="headerlink" href="#results" title="Link to this heading"></a></h2>
+<p>The output of a <code class="docutils literal notranslate"><span class="pre">volCheck</span></code> command is formatted in JSON.
+An example JSON result, where 2087 pixels were detected within the specified volume, is shown below:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;volCheck&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;nearestX&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.3</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;numPixels&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2087</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">nearestX</span></code></p></td>
+<td><p>Distance in meters to the closest pixel in the volume.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">numPixels</span></code></p></td>
+<td><p>Number of valid pixels inside the given volume of interest.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="/latest/_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+		
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.efector.object-ident@ifm.com">support.efector.object-ident@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

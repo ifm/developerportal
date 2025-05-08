@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>getPallet &mdash; O3R  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5800d392" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="getRack" href="../GetRack/getRack.html" />
+    <link rel="prev" title="Results" href="../Results/results.html" />
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script> -->
+     
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            O3R
+          </a>
+              <div class="version">
+                v1.20.29
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Technology/index_technology.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index_pds.html">PDS</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Compatibility/compatibility.html">Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Mounting/mounting.html">Mounting setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Calibration/pds_calibration.html">Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Configuration/configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Results/results.html">Results</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Pallets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#usage-guidelines">Usage guidelines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#best-practices">Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#customization-parameters-at-configuration-customization">Customization parameters at <code class="docutils literal notranslate"><span class="pre">configuration/customization</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#custom-pallet-templates">Custom pallet templates</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#detection-pipeline">Detection pipeline</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#volumes-of-interest">Volumes of interest</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#depth-estimation-volume">Depth estimation volume</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#ortho-projection-volume">Ortho-projection volume</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#workflow">Workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#results">Results</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pallet"><code class="docutils literal notranslate"><span class="pre">pallet</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#depthestimationvoi-and-projectionvoi"><code class="docutils literal notranslate"><span class="pre">depthEstimationVoi</span></code> and <code class="docutils literal notranslate"><span class="pre">projectionVoi</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../GetRack/getRack.html">Racks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../VolCheck/volCheck.html">Volume check</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Examples/examples.html">Code examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Recording/recordings_iVA.html">Recording</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Integration/index_integration.html">Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../PLC/index_plc.html">PLC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index_pds.html">PDS (Pick and Drop System)</a></li>
+      <li class="breadcrumb-item active"><code class="docutils literal notranslate"><span class="pre">getPallet</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/PDS/GetPallet/getPallet.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="getpallet">
+<h1><code class="docutils literal notranslate"><span class="pre">getPallet</span></code><a class="headerlink" href="#getpallet" title="Link to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">getPallet</span></code> functionality of PDS is designed to detect the position and orientation of up to 10 pallets in the vicinity of autonomous and semi-autonomous pallet handling vehicles.
+Typically, such a system has a priori knowledge from warehouse management, such as the approximate distance to the pallet and the type of pallet.</p>
+<p><code class="docutils literal notranslate"><span class="pre">getPallet</span></code> supports the picking operation by determining the exact location and orientation of the pallet.</p>
+<section id="usage-guidelines">
+<h2>Usage guidelines<a class="headerlink" href="#usage-guidelines" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">getPallet</span></code> command supports pallets with two pockets, either with broad blocks or thin stringers as vertical support structures, as well as pallets with a single pocket.</p>
+<p>By default, PDS is able to detect pallets with the following characteristics:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pallet name</p></th>
+<th class="head"><p>Dimensions</p></th>
+<th class="head"><p>Image</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Block pallet (<code class="docutils literal notranslate"><span class="pre">palletIndex=0</span></code>)</p></td>
+<td><p>The pockets width should be between 0.24 and 0.44 m <br> The pockets height should be between 0.05 and 0.15 m <br> The blocks should be between 0.05 and 0.40 m.</p></td>
+<td><p><img alt="Block pallet" src="../../_images/block_pallet.png" /></p></td>
+</tr>
+<tr class="row-odd"><td><p>EPAL side pallet (<code class="docutils literal notranslate"><span class="pre">palletIndex</span> <span class="pre">=</span> <span class="pre">2</span></code>)</p></td>
+<td><p>A fixed pocket width of 0.23 m and height 0.1 m <br> The left/right blocks should be between 0.10 and 0.16 m.</p></td>
+<td><p><img alt="EPAL side pallet" src="../../_images/EPAL_side_pallet.png" /></p></td>
+</tr>
+<tr class="row-even"><td><p>Stringer pallet<sup>*</sup> (<code class="docutils literal notranslate"><span class="pre">palletIndex</span> <span class="pre">=</span> <span class="pre">1</span></code>)</p></td>
+<td><p>The pockets width should be between 0.40 and 0.55 m <br> The pockets height should be between 0.0.5 and 0.15 m <br> The stringers should be between 0.02 and 0.08 m.</p></td>
+<td><p><img alt="Stringer pallet" src="../../_images/stringer_pallet.png" /></p></td>
+</tr>
+<tr class="row-odd"><td><p>Wire cage pallet, front (<code class="docutils literal notranslate"><span class="pre">palletIndex</span> <span class="pre">=</span> <span class="pre">3</span></code>)</p></td>
+<td><p>A fixed pocket width of 0.76 m and height 0.09 m. <br> The left/right blocks should be at least 0.15 m</p></td>
+<td><p><img alt="Wire cage front" src="../../_images/wire_cage_front.png" /></p></td>
+</tr>
+<tr class="row-even"><td><p>Wire cage pallet, side (<code class="docutils literal notranslate"><span class="pre">palletIndex</span> <span class="pre">=</span> <span class="pre">4</span></code>)</p></td>
+<td><p>A fixed pocket width of 0.59 m and height 0.09 m. <br> The left/right blocks should be at least 0.1 m</p></td>
+<td><p><img alt="Wire cage side" src="../../_images/wire_cage_side.png" /></p></td>
+</tr>
+</tbody>
+</table>
+<p><sup>*</sup> Stringer pallets generally have thin vertical structures and wider pockets.</p>
+<p>To detect pallets that do not fit the default sizes listed above, a custom template can be configured. Refer to <a class="reference internal" href="#custom-pallet-templates">the custom template documentation</a>.</p>
+<section id="best-practices">
+<h3>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>The range for the pocket dimensions are designed to detect large range of pallets. It is always recommended to lower the interval of to your specific pallets for more robust detections and lower the risk of false-positive detections.</p></li>
+<li><p>Even the <code class="docutils literal notranslate"><span class="pre">palletIndex</span> <span class="pre">==</span> <span class="pre">2</span></code> is standardized for <code class="docutils literal notranslate"><span class="pre">EPAL_SIDE</span></code>, it can also be used for the other pallets without a bottom board if the dimensions are matching to <code class="docutils literal notranslate"><span class="pre">EPAL_SIDE</span></code>.</p></li>
+<li><p>Note that only the dimensions of the center block are important. The size of the side blocks can be different from the one specified above and can be parametrized under <code class="docutils literal notranslate"><span class="pre">configuration/parameter/getPallet/&lt;palletIndex&gt;/stringer</span></code>.</p></li>
+<li><p>Two pocket pallets with different dimensions than the ones stated above will require specific configuration of the algorithm. To adjust the dimensions of the pockets or the stringers, edit the predefined templates from [5…9] as [0…4] are reserved for standard pallets and set the pocket and stringer sizes. See more details at <a class="reference internal" href="#custom-pallet-templates">Custom pallet templates</a>.</p></li>
+</ul>
+</section>
+</section>
+<section id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading"></a></h2>
+<p>To execute the <code class="docutils literal notranslate"><span class="pre">getPallet</span></code> command, the <code class="docutils literal notranslate"><span class="pre">command</span></code> parameter of the JSON configuration has to be set to <code class="docutils literal notranslate"><span class="pre">getPallet</span></code>.
+Additionally, extra parameters can be provided such as the estimated distance to the pallet, <code class="docutils literal notranslate"><span class="pre">depthHint</span></code>, the type of pallet, <code class="docutils literal notranslate"><span class="pre">palletIndex</span></code>, and the order in which the results should be displayed in the list of detected pallets, <code class="docutils literal notranslate"><span class="pre">palletOrder</span></code>.
+An example is provided below in JSON, assuming an instantiated PDS application <code class="docutils literal notranslate"><span class="pre">app0</span></code>.
+Note that when using the ifm Vision Assistant, the same structure is reflected in the application parameters.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;applications&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;instances&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;app0&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nt">&quot;customization&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                            </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;getPallet&quot;</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">&quot;getPallet&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                </span><span class="nt">&quot;depthHint&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                </span><span class="nt">&quot;palletIndex&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                </span><span class="nt">&quot;palletOrder&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;scoreDescending&quot;</span>
+<span class="w">                            </span><span class="p">},</span>
+<span class="w">                        </span><span class="p">}</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only the <code class="docutils literal notranslate"><span class="pre">command</span></code> parameter has to be provided. The other parameters are optional.
+If they are left blank, the algorithm will use the parameters from most recent execution of that command will be applied, or the set of saved settings for the application, if they exist.</p>
+</div>
+<section id="customization-parameters-at-configuration-customization">
+<h3>Customization parameters at <code class="docutils literal notranslate"><span class="pre">configuration/customization</span></code><a class="headerlink" href="#customization-parameters-at-configuration-customization" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Property</p></th>
+<th class="head text-left"><p>Type</p></th>
+<th class="head text-left"><p>Description</p></th>
+<th class="head text-left"><p>Default</p></th>
+<th class="head text-left"><p>Minimum</p></th>
+<th class="head text-left"><p>Maximum</p></th>
+<th class="head text-left"><p>Enum</p></th>
+<th class="head text-left"><p>Attributes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">depthHint</span></code></p></td>
+<td class="text-left"><p>number</p></td>
+<td class="text-left"><p>Estimated distance between pallet and calibrated coordinate system center in meters. Set to &lt;=0 for automatic detection</p></td>
+<td class="text-left"><p>1.5</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">palletIndex</span></code></p></td>
+<td class="text-left"><p>integer</p></td>
+<td class="text-left"><p>Index of the pallet parameters</p></td>
+<td class="text-left"><p>0</p></td>
+<td class="text-left"><p>0</p></td>
+<td class="text-left"><p>9</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">palletOrder</span></code></p></td>
+<td class="text-left"><p>string</p></td>
+<td class="text-left"><p>Set the order in the list of detected pallets</p></td>
+<td class="text-left"><p>scoreDescending</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">['scoreDescending',</span> <span class="pre">'zDescending',</span> <span class="pre">'zAscending',</span> <span class="pre">'yDescending',</span> <span class="pre">'yAscending']</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When detecting multiple pallets simultaneously, the system allows only one <code class="docutils literal notranslate"><span class="pre">palletIndex</span></code> value to be specified, meaning that all pallets must be of the same type.
+This means that all the pallets should have the same pocket and stringer dimensions.
+Alternatively, a relaxed parameter set can be used to encompass multiple types of pallets, using <a class="reference internal" href="#custom-pallet-templates">a custom template</a>. This will ensure finding pallets of different dimensions, but will increase the necessary processing time.</p>
+</div>
+<p>The default values for each parameter can be different depending on the firmware version used. We recommend to check the current default, min and max values for each parameter using <a class="reference internal" href="../../Technology/configuration.html#json-schema"><span class="std std-ref">the schema</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Other variants of pallets, having three or more pockets for example, require adjustments of the PDS settings. Reach out to your ifm representative or to the support team for more details.</p>
+</div>
+</section>
+<section id="custom-pallet-templates">
+<h3>Custom pallet templates<a class="headerlink" href="#custom-pallet-templates" title="Link to this heading"></a></h3>
+<p>By default, PDS provides five pallet templates: block (<code class="docutils literal notranslate"><span class="pre">palletIndex</span> <span class="pre">=</span> <span class="pre">0</span></code>), stringer (<code class="docutils literal notranslate"><span class="pre">palletIndex</span> <span class="pre">=</span> <span class="pre">1</span></code>), EPAL side (<code class="docutils literal notranslate"><span class="pre">palletIndex</span> <span class="pre">=</span> <span class="pre">2</span></code>), wire cage pallet front (<code class="docutils literal notranslate"><span class="pre">palletIndex=3</span></code>) and wire cage pallet side (<code class="docutils literal notranslate"><span class="pre">palletIndex=4</span></code>).
+It is possible for the user to define custom pallet templates for any pallet by modifying the parameters at <code class="docutils literal notranslate"><span class="pre">configuration/parameter/X</span></code>, where <code class="docutils literal notranslate"><span class="pre">X</span></code> is the index chosen for the template number (up to 9).</p>
+<p>Once the template is defined, the corresponding <code class="docutils literal notranslate"><span class="pre">palletIndex</span></code> can be chosen when triggering the <code class="docutils literal notranslate"><span class="pre">getPallet</span></code> command.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Property</p></th>
+<th class="head text-left"><p>Type</p></th>
+<th class="head text-left"><p>Description</p></th>
+<th class="head text-left"><p>Default</p></th>
+<th class="head text-left"><p>Minimum</p></th>
+<th class="head text-left"><p>Maximum</p></th>
+<th class="head text-left"><p>Enum</p></th>
+<th class="head text-left"><p>Attributes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">X.name</span></code></p></td>
+<td class="text-left"><p>string</p></td>
+<td class="text-left"><p>Descriptive name of the recipe</p></td>
+<td class="text-left"><p>Uninitialized</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">X.detectionPipeline</span></code></p></td>
+<td class="text-left"><p>string</p></td>
+<td class="text-left"><p>Pipeline type for detecting pallet features</p></td>
+<td class="text-left"><p>findCorners</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">['findCorners',</span> <span class="pre">'findPockets']</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">X.objectType</span></code></p></td>
+<td class="text-left"><p>string</p></td>
+<td class="text-left"><p>Type of the charge carrier to be detected</p></td>
+<td class="text-left"><p>twoPockets</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">['twoPockets',</span> <span class="pre">'singlePocket']</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">X.pocket.minWidth</span></code></p></td>
+<td class="text-left"><p>number</p></td>
+<td class="text-left"><p>Minimum pocket width in meters</p></td>
+<td class="text-left"><p>0.24</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">X.pocket.maxWidth</span></code></p></td>
+<td class="text-left"><p>number</p></td>
+<td class="text-left"><p>Maximum pocket width in meters (ignored when finding whole pockets)</p></td>
+<td class="text-left"><p>0.44</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">X.pocket.minHeight</span></code></p></td>
+<td class="text-left"><p>number</p></td>
+<td class="text-left"><p>Minimum pocket height in meters</p></td>
+<td class="text-left"><p>0.05</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">X.pocket.maxHeight</span></code></p></td>
+<td class="text-left"><p>number</p></td>
+<td class="text-left"><p>Maximum pocket height in meters (ignored when finding whole pockets)</p></td>
+<td class="text-left"><p>0.15</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">X.stringer.minWidthCenter</span></code></p></td>
+<td class="text-left"><p>number</p></td>
+<td class="text-left"><p>Minimum width of the center stringer in meters</p></td>
+<td class="text-left"><p>0.05</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">X.stringer.maxWidthCenter</span></code></p></td>
+<td class="text-left"><p>number</p></td>
+<td class="text-left"><p>Maximum width of the center stringer in meters</p></td>
+<td class="text-left"><p>0.4</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">X.depthEstimation.minNumPixels</span></code></p></td>
+<td class="text-left"><p>integer</p></td>
+<td class="text-left"><p>minimum number of valid pixels in the VOI</p></td>
+<td class="text-left"><p>10</p></td>
+<td class="text-left"><p>1</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">X.depthEstimation.fallbackDepthHint</span></code></p></td>
+<td class="text-left"><p>number</p></td>
+<td class="text-left"><p>default value for Depth Hint, if auto-discovery fails</p></td>
+<td class="text-left"><p>1.5</p></td>
+<td class="text-left"><p>0.1</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">X.depthEstimation.voi.xMin</span></code></p></td>
+<td class="text-left"><p>number</p></td>
+<td class="text-left"><p>Minmum x-coordinate to estimate depth hint (meters)</p></td>
+<td class="text-left"><p>0.5</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">X.depthEstimation.voi.xMax</span></code></p></td>
+<td class="text-left"><p>number</p></td>
+<td class="text-left"><p>Maximum x-coordinate to estimate depth hint (meters)</p></td>
+<td class="text-left"><p>5.0</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">X.depthEstimation.voi.yMin</span></code></p></td>
+<td class="text-left"><p>number</p></td>
+<td class="text-left"><p>Minmum y-coordinate to estimate depth hint (meters)</p></td>
+<td class="text-left"><p>-0.4</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">X.depthEstimation.voi.yMax</span></code></p></td>
+<td class="text-left"><p>number</p></td>
+<td class="text-left"><p>Maximum y-coordinate to estimate depth hint (meters)</p></td>
+<td class="text-left"><p>0.4</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">X.depthEstimation.voi.zMin</span></code></p></td>
+<td class="text-left"><p>number</p></td>
+<td class="text-left"><p>Minmum z-coordinate to estimate depth hint (meters)</p></td>
+<td class="text-left"><p>-0.1</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">X.depthEstimation.voi.zMax</span></code></p></td>
+<td class="text-left"><p>number</p></td>
+<td class="text-left"><p>Maximum y-coordinate to estimate depth hint (meters)</p></td>
+<td class="text-left"><p>0.4</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">X.orthoProjection.voi.xMin</span></code></p></td>
+<td class="text-left"><p>number</p></td>
+<td class="text-left"><p>Minmum x-coordinate for projection, relative to the depth hint (meters)</p></td>
+<td class="text-left"><p>-0.3</p></td>
+<td class="text-left"><p>-0.5</p></td>
+<td class="text-left"><p>0.5</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">X.orthoProjection.voi.xMax</span></code></p></td>
+<td class="text-left"><p>number</p></td>
+<td class="text-left"><p>Maximum x-coordinate for projection, relative to the depth hint (meters)</p></td>
+<td class="text-left"><p>0.3</p></td>
+<td class="text-left"><p>-0.5</p></td>
+<td class="text-left"><p>0.5</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">X.orthoProjection.voi.yMin</span></code></p></td>
+<td class="text-left"><p>number</p></td>
+<td class="text-left"><p>Minmum y-coordinate for projection in calibrated coordinate system (meters)</p></td>
+<td class="text-left"><p>-1.0</p></td>
+<td class="text-left"><p>-2.0</p></td>
+<td class="text-left"><p>2.0</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">X.orthoProjection.voi.yMax</span></code></p></td>
+<td class="text-left"><p>number</p></td>
+<td class="text-left"><p>Maximum y-coordinate for projection in calibrated coordinate system (meters)</p></td>
+<td class="text-left"><p>1.0</p></td>
+<td class="text-left"><p>-2.0</p></td>
+<td class="text-left"><p>2.0</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">X.orthoProjection.voi.zMin</span></code></p></td>
+<td class="text-left"><p>number</p></td>
+<td class="text-left"><p>Minmum z-coordinate for projection in calibrated coordinate system (meters)</p></td>
+<td class="text-left"><p>-0.6</p></td>
+<td class="text-left"><p>-2.0</p></td>
+<td class="text-left"><p>2.0</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">X.orthoProjection.voi.zMax</span></code></p></td>
+<td class="text-left"><p>number</p></td>
+<td class="text-left"><p>Maximum y-coordinate for projection in calibrated coordinate system (meters)</p></td>
+<td class="text-left"><p>0.6</p></td>
+<td class="text-left"><p>-2.0</p></td>
+<td class="text-left"><p>2.0</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">X.localizePallets.allowPitchEstimation</span></code></p></td>
+<td class="text-left"><p>boolean</p></td>
+<td class="text-left"><p>Whether this pallet template can reliably estimate pitch. Intended for machined, high-quality calibration targets</p></td>
+<td class="text-left"><p>False</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">X.localizePallets.yawTol</span></code></p></td>
+<td class="text-left"><p>number</p></td>
+<td class="text-left"><p>Maximum absolute yaw angle in radians</p></td>
+<td class="text-left"><p>0.4</p></td>
+<td class="text-left"><p>0</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">N/A</span></code></p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+</tbody>
+</table>
+<section id="detection-pipeline">
+<h4>Detection pipeline<a class="headerlink" href="#detection-pipeline" title="Link to this heading"></a></h4>
+<p>When defining a custom pallet template, the user has to chose the proper detection pipeline.
+Two options are available: <code class="docutils literal notranslate"><span class="pre">findPockets</span></code> and <code class="docutils literal notranslate"><span class="pre">findCorners</span></code>. Depending on the use case, one option might be more suitable than the other.</p>
+<p><code class="docutils literal notranslate"><span class="pre">findPocket</span></code> relies on a strict pocket dimension. In this case, only the <code class="docutils literal notranslate"><span class="pre">minWidth</span></code> and <code class="docutils literal notranslate"><span class="pre">minHeight</span></code> pocket parameters are used, and the <code class="docutils literal notranslate"><span class="pre">maxWidth</span></code> and <code class="docutils literal notranslate"><span class="pre">maxHeight</span></code> are ignored.
+It offers limited flexibility in terms of pocket size, but it is the most robust option when shrink wrap is partially covering a pocket. It is also able to detect open pockets, for example in the case of the EPAL side.</p>
+<p><code class="docutils literal notranslate"><span class="pre">findCorners</span></code> can handle a wider variety of pocket sizes, as it relies on finding four corners, rather than a pocket shape. However, it cannot handle open pockets. It will also be typically slower to produce a result.</p>
+<p><img alt=" and  parameters" src="../../_images/pallet_params_1.png" /></p>
+<p><img alt=" and  parameters" src="../../_images/pallet_params_5.png" /></p>
+</section>
+<section id="volumes-of-interest">
+<h4>Volumes of interest<a class="headerlink" href="#volumes-of-interest" title="Link to this heading"></a></h4>
+<p>When searching for a pallet, the PDS algorithm does not explore the entire space, but focuses the search on the <code class="docutils literal notranslate"><span class="pre">orthoProjection</span></code> volume.
+This is done to reduce processing time by limiting the search area.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">orthoProjection</span></code> volume is defined in the parameters (at <code class="docutils literal notranslate"><span class="pre">/applications/instances/appX/configuration/parameter/getPallet/n/orthoProjection</span></code>, where <code class="docutils literal notranslate"><span class="pre">n</span></code> is the pallet template number), or automatically if using the automatic depth hint feature (<code class="docutils literal notranslate"><span class="pre">depthHint</span> <span class="pre">=</span> <span class="pre">-1</span></code>).</p>
+<p>When using the ifm Vision Assistant, the<code class="docutils literal notranslate"><span class="pre">orthoProjection</span></code> volume, and the <code class="docutils literal notranslate"><span class="pre">depthHint</span></code> search volume can be displayed as shown below, where the green box represents the projection volume and the blue box represents the depth estimation volume.
+<img alt="volumes" src="../../_images/pds_volumes_of_interest.png" /></p>
+<section id="depth-estimation-volume">
+<h5>Depth estimation volume<a class="headerlink" href="#depth-estimation-volume" title="Link to this heading"></a></h5>
+<p>The depth estimation volume, <code class="docutils literal notranslate"><span class="pre">depthEstimationVoi</span></code>, defines the volume of interest for automatic depth estimation.
+Within this volume, a search will be conducted to estimate the distance of the pallet’s front face from the reference coordinate system.</p>
+<p>In most cases, we recommend using a predefined depth hint, in which case this volume will not be used.
+Alternatively, the depth estimation volume can be adjusted in the parameters, at <code class="docutils literal notranslate"><span class="pre">/applications/instances/appX/configuration/parameter/getPallet/n/depthEstimation/voi</span></code>.</p>
+<p><img alt=" parameters" src="../../_images/pallet_params_2.png" />
+<img alt=" parameters" src="../../_images/pallet_params_3.png" /></p>
+</section>
+<section id="ortho-projection-volume">
+<h5>Ortho-projection volume<a class="headerlink" href="#ortho-projection-volume" title="Link to this heading"></a></h5>
+<p>The projection volume, <code class="docutils literal notranslate"><span class="pre">orthoProjection/voi</span></code>, defines the volume of interest for detecting the pose of the pallet pockets and center beam.
+This volume is centered around the <code class="docutils literal notranslate"><span class="pre">depthHint</span></code>, estimated or provided by the user, which represents the estimated distance to the front face of the pallet.</p>
+<p>Using the default values for the projection volume is typically sufficient.
+However, to achieve optimal processing speed, it is recommended to tighten</p>
+<p><img alt=" parameters" src="../../_images/pallet_params_4.png" /></p>
+</section>
+</section>
+</section>
+</section>
+<section id="workflow">
+<h2>Workflow<a class="headerlink" href="#workflow" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">getPallet</span></code> command expects the pallet to be in front of the forks and in the field of view of the camera, as illustrated below.</p>
+<p><img alt="expected" src="../../_images/expected.drawio.svg" /></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">getPallet</span></code> command works as follows:</p>
+<ol class="arabic simple">
+<li><p>If the <code class="docutils literal notranslate"><span class="pre">depthHint</span></code> is set to a positive value (this is the recommended option), the user is expected to have a priori knowledge about where the pallet is with respect to the forks coordinate system. In this case, the pallet’s pose estimation is performed inside the ortho-projection volume.</p></li>
+<li><p>If the <code class="docutils literal notranslate"><span class="pre">depthHint</span></code> is set to zero or a negative value, then the pallet will be searched for in the depth estimation volume. The majority of the pixels inside the depth estimation volume should be on the plane of the front face of the pallet. Once the distance to the pallet is estimated, the projection volume is set at this distance including a buffer in X direction on each side. The pixels in the projection volume will be used to estimate the position of the pallet.</p></li>
+<li><p>The algorithm searches for a pallet that fits the template corresponding to the chosen <code class="docutils literal notranslate"><span class="pre">palletIndex</span></code>. If not pallet is found, the user should attempt to relax the settings, to avoid a failed detection and calling for rescue.</p></li>
+</ol>
+<p>For further details of a typical <code class="docutils literal notranslate"><span class="pre">getPallet</span></code> trigger sequence see the flowchart below.</p>
+<p><img alt="flowchart" src="../../_images/getPallet_flowchart.drawio.svg" /></p>
+</section>
+<section id="results">
+<h2>Results<a class="headerlink" href="#results" title="Link to this heading"></a></h2>
+<p>The output of a <code class="docutils literal notranslate"><span class="pre">getPallet</span></code> command is formatted in JSON.
+An example JSON result, where the position of one pallet was identified, is shown below:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;getPallet&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;pallet&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;angles&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;rotX&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.0016640322282910347</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;rotY&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;rotZ&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.02186517044901848</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;center&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.10177253931760788</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;position&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.405822515487671</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.08359906077384949</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;z&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.07647071033716202</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;width&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.12625007331371307</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;left&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.10320165008306503</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;position&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.4106969833374023</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.13937455415725708</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;z&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.07622720301151276</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;width&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.320925772190094</span>
+<span class="w">            </span><span class="p">},</span>
+<span class="w">            </span><span class="nt">&quot;right&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.10034343600273132</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">&quot;position&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.4009480476379395</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.30657267570495605</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">&quot;z&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.07671421766281128</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nt">&quot;width&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3186997175216675</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">&quot;depthEstimationVoi&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;xMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;xMin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;yMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4000000059604645</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;yMin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.4000000059604645</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;zMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4000000059604645</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;zMin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.10000000149011612</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;projectionVoi&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;xMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.600000023841858</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;xMin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.1999999284744263</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;yMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;yMin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;zMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.6000000238418579</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;zMin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.6000000238418579</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">},</span>
+</pre></div>
+</div>
+<p>The output has three main components: <code class="docutils literal notranslate"><span class="pre">pallet</span></code>, <code class="docutils literal notranslate"><span class="pre">depthEstimationVoi</span></code> and <code class="docutils literal notranslate"><span class="pre">projectionVoi</span></code>.</p>
+<section id="pallet">
+<h3><code class="docutils literal notranslate"><span class="pre">pallet</span></code><a class="headerlink" href="#pallet" title="Link to this heading"></a></h3>
+<p>This component of the JSON result lists all the detected pallets (up to 10).
+For each pallet, the following information is provided:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">angles</span></code></p></td>
+<td><p>Rotations components <code class="docutils literal notranslate"><span class="pre">rotX</span></code>, <code class="docutils literal notranslate"><span class="pre">rotY</span></code> and <code class="docutils literal notranslate"><span class="pre">rotZ</span></code> of the pallet, along the three axis of the calibrated coordinate system, in radians.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">center</span></code>, <code class="docutils literal notranslate"><span class="pre">left</span></code> and <code class="docutils literal notranslate"><span class="pre">right</span></code></p></td>
+<td><p>Position and size of the center beam, the left pocket and the right pocket respectively. <br>For each, the width and height is provided, as well as the coordinates of the center of the pocket or beam along the X, Y and Z axis. <br>For single pocket pallets, the <code class="docutils literal notranslate"><span class="pre">center</span></code>, <code class="docutils literal notranslate"><span class="pre">left</span></code> and <code class="docutils literal notranslate"><span class="pre">right</span></code> results are all the same.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Per default the pitch estimation <code class="docutils literal notranslate"><span class="pre">rotY</span></code> is disabled and will always display <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+</div>
+</section>
+<section id="depthestimationvoi-and-projectionvoi">
+<h3><code class="docutils literal notranslate"><span class="pre">depthEstimationVoi</span></code> and <code class="docutils literal notranslate"><span class="pre">projectionVoi</span></code><a class="headerlink" href="#depthestimationvoi-and-projectionvoi" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">depthEstimationVoi</span></code> and <code class="docutils literal notranslate"><span class="pre">projectionVoi</span></code> components provide the volumes that were used internally to detect the pallet:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">depthEstimationVoi</span></code></p></td>
+<td><p>Volume used in the algorithm to approximate the position of the front face of the pallet.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">projectionVoi</span></code></p></td>
+<td><p>Volume where the detection takes place. The pixels outside this area are discarded.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="/latest/_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+		
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.efector.object-ident@ifm.com">support.efector.object-ident@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

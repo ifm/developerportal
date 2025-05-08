@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Static camera calibration routine &mdash; O3R  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5800d392" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Motion Camera Calibration Wizard" href="../MCC/mcc_with_wizard.html" />
+    <link rel="prev" title="Introduction to ifm camera coordinate systems and their transformations" href="../IntroToCalibrations/README.html" />
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script> -->
+     
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            O3R
+          </a>
+              <div class="version">
+                v1.20.29
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Technology/index_technology.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index_calibrations.html">Calibration Routines</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../checkerboard.html">The checkerboard calibration target</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../IntroToCalibrations/README.html">Introduction to calibration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Static Camera Calibration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#shopping-list">Shopping list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#concept">Concept</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#scc-calibration-output">SCC Calibration Output</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#requirements">Requirements</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#scene-requirements">Scene requirements</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#additional-requirements-for-the-ifmvisionassitant-wizard">Additional requirements for the ifmVisionAssitant Wizard</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#tolerances">Tolerances</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#run-the-calibration">Run the calibration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#with-the-wizard">With the wizard</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#with-ifm3d">With ifm3d</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../MCC/mcc_with_wizard.html">Motion Camera Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OVPCalibration/README.html">OVP8xx calibration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../PDS/index_pds.html">PDS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../PLC/index_plc.html">PLC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index_calibrations.html">Calibration routines</a></li>
+      <li class="breadcrumb-item active">Static camera calibration routine</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/CalibrationRoutines/SCC/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="static-camera-calibration-routine">
+<h1>Static camera calibration routine<a class="headerlink" href="#static-camera-calibration-routine" title="Link to this heading"></a></h1>
+<p>The goal of the Static Camera Calibration (SCC) process is to automatically determine the position and orientation of a camera relative to the Robot Coordinate System (RCS) origin. To do this, a checkerboard calibration pattern is placed in front of the camera. The coordinates of the checkerboard corners are measured with respect to the RCS, and based on these, the algorithm calculates the camera’s three rotation values, and optionally, its three translation values.</p>
+<p>During this routine, both the camera and the checkerboard must remain static.</p>
+<section id="shopping-list">
+<h2>Shopping list<a class="headerlink" href="#shopping-list" title="Link to this heading"></a></h2>
+<p>First, you will need to print the checkerboard target. You can find all the instructions related to the checkerboard on <a class="reference internal" href="../checkerboard.html"><span class="std std-doc">this page</span></a>.</p>
+</section>
+<section id="concept">
+<h2>Concept<a class="headerlink" href="#concept" title="Link to this heading"></a></h2>
+<p>For this calibration routine, a checkerboard has to be positioned in front of each camera that should be calibrated covering at least 25% of the field of view.
+The position of the checkerboard must be precisely known relative to the RCS.<br />
+Specifically, the translation coordinates (X, Y, Z) of the four corners (A, B, C, and D) must be accurately measured and provided in the RCS.</p>
+<p>Example measurements for points A and D:</p>
+<p><img alt="SCC measurements" src="../../_images/scc_measurements.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The RCS is assumed to be a right-handed coordinate system.</p>
+</div>
+<p>Consider the example below of an AGV with four cameras, one on each side.
+In this example, four checkerboards are used.</p>
+<ul class="simple">
+<li><p>Top view:</p></li>
+</ul>
+<p><img alt="Top view of the calibration setup" src="../../_images/SCC_concept_top_view.jpg" /></p>
+<ul class="simple">
+<li><p>Side view:</p></li>
+</ul>
+<p><img alt="Side view of the calibration setup" src="../../_images/SCC_concept_side_view.jpg" /></p>
+<p>In the example below, a fork truck is equipped with two cameras facing forward. In this case, two checkerboards should be used, one for each camera.</p>
+<p><img alt="Side view of the calibration setup for a fork truck" src="../../_images/SCC_concept_side_view_truck.jpg" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the case where two cameras have a sufficiently overlapping field of view, it can be possible to use the same checkerboard in the same position for both.
+Just ensure that the <a class="reference internal" href="#scene-setup"><span class="xref myst">checkerboard position requirements</span></a> are followed for both cameras.</p>
+</div>
+<section id="scc-calibration-output">
+<h3>SCC Calibration Output<a class="headerlink" href="#scc-calibration-output" title="Link to this heading"></a></h3>
+<p>The output of the SCC calibration routine includes:</p>
+<ul class="simple">
+<li><p>Rotation of the camera in the RCS: rotX, rotY, rotZ</p></li>
+<li><p>Translation of the camera in the RCS: transX, transY, transZ (if not provided)</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is recommended to provide known translation values (e.g., from CAD drawings) to improve the robustness of the computed rotation values, if the translation values are precisly known.</p>
+</div>
+</section>
+</section>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
+<p>Below are the requirements for performing the SCC routine correctly.</p>
+<section id="scene-requirements">
+<h3>Scene requirements<a class="headerlink" href="#scene-requirements" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Place the checkerboard to fill as much of the field of view as possible (minimum 25%) and the full board must be visible.</p></li>
+<li><p>The checkerboard must be positioned between <strong>0.5 m and 3.5 m</strong> from the camera.</p></li>
+<li><p>Mount it securely—either on a wall or on a rig fixed to the robot.</p></li>
+<li><p>Ensure the vehicle is precisely positioned relative to the checkerboard.</p></li>
+<li><p>It’s best if the checkerboard is perpendicular to one axis of the RCS.</p></li>
+</ul>
+<p><strong>If there are reflections in the image:</strong></p>
+<ul class="simple">
+<li><p>Try tilting the checkerboard.</p></li>
+<li><p>Make sure all black squares are visible.</p></li>
+</ul>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Good positioning</p></th>
+<th class="head"><p>Bad positioning</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><img alt="Good" src="../../_images/Goodimage.png" /></p></td>
+<td><p><img alt="Bad" src="../../_images/badimage.png" /></p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>Alternatively, if there is sufficent infrared ambient light available then change to the ambient illumination mode (<code class="docutils literal notranslate"><span class="pre">&quot;/configuration/port/mode&quot;</span></code>).</p></li>
+</ul>
+<section id="additional-requirements-for-the-ifmvisionassitant-wizard">
+<h4>Additional requirements for the ifmVisionAssitant Wizard<a class="headerlink" href="#additional-requirements-for-the-ifmvisionassitant-wizard" title="Link to this heading"></a></h4>
+<p>The ifmVisionAssistant Wizard reduces the number of required measurements but introduces stricter setup conditions:</p>
+<ul class="simple">
+<li><p>The large black square must be at the <strong>top-left</strong> (horizontal setup) or <strong>top-right</strong> (vertical setup).</p></li>
+<li><p>The checkerboard must be perpendicular to either the X-axis or Y-axis of the RCS.</p></li>
+</ul>
+<p>Allowed rotation:</p>
+<ul class="simple">
+<li><p>If perpendicular to X-axis → only rotation around RCS Y-axis is allowed</p></li>
+<li><p>If perpendicular to Y-axis → only rotation around RCS X-axis is allowed</p></li>
+</ul>
+<blockquote>
+<div><p><strong>Benefit:</strong> When following these conditions, only <strong>6 measurements</strong> are needed.</p>
+</div></blockquote>
+<p><strong>Example - front centered camera</strong></p>
+<p>For a camera mounted to the center of the front of the robot, the measurements would be the following:</p>
+<p><img alt="Example measurements for a centered front camera" src="../../_images/example_front_cam.jpg" /></p>
+<p>All measurements are in meters from the Robot Coordinate System’s origin to the edges of the checkerboard parallel to the Robot Coordinate System axes.</p>
+<p><strong>Example - side camera</strong></p>
+<p>For a camera mounted vertically to the side of the robot, in the +Y direction, the measurements would be the following:</p>
+<p><img alt="Example measurements for a side camera" src="../../_images/example_side_cam.jpg" /></p>
+</section>
+</section>
+<section id="tolerances">
+<h3>Tolerances<a class="headerlink" href="#tolerances" title="Link to this heading"></a></h3>
+<p>When calibrating a camera for use with <a class="reference internal" href="../../ODS/index_ods.html"><span class="std std-doc">ODS</span></a>, it is required that the rotation tolerances do not exceed 1°.</p>
+<p>To achieve this, ensure the following:</p>
+<ul class="simple">
+<li><p>For the narrow opening angle camera, O3R222, the checkerboard should be positioned at around 0.8 meters from the camera. The measurement error for each corner should not exceed 5 mm.</p></li>
+<li><p>For the wide opening angle camera, O3R225, the checkerboard should be positioned at around 0.5 meters from the camera. The measurement error for each corner should not exceed 3 mm.</p></li>
+<li><p>For checkerboards of different dimensions or positioned further or closer to the camera, the maximum measurement error can be scaled up or down from the values above. For example, for an O3R222 camera and for a checkerboard of half the default size, positioned at 40 cm from the camera, each measurement error must not exceed 2.5 mm,</p></li>
+<li><p>The checkerboard should not be placed closer than 50 cm from the camera.</p></li>
+<li><p>Ensure that the provided translation values of the camera are accurate at 5 mm,</p></li>
+<li><p>Ensure that the position of the vehicle is accurate to 0.5°.</p></li>
+</ul>
+</section>
+</section>
+<section id="run-the-calibration">
+<h2>Run the calibration<a class="headerlink" href="#run-the-calibration" title="Link to this heading"></a></h2>
+<p>You can either run the calibration using the wizard in the Vision Assistant, or using the embedded application and the Python or C++ API.</p>
+<section id="with-the-wizard">
+<h3>With the wizard<a class="headerlink" href="#with-the-wizard" title="Link to this heading"></a></h3>
+<p>We recommend to use this option when testing this calibration routine for the first time.
+It provides useful visual clues and instructions.</p>
+<p>The wizard can be used by going to the <strong>Applications</strong> window and then press on the <strong>+</strong> button and then select <strong>Wizard: Static camera calibration</strong>.</p>
+<p><img alt="alt text" src="../../_images/iva_scc_app.png" /></p>
+<p>The instructions in the wizard will guide you through the entire calibration process.</p>
+<p><img alt="alt text" src="../../_images/iva_scc_wizard.png" /></p>
+</section>
+<section id="with-ifm3d">
+<h3>With ifm3d<a class="headerlink" href="#with-ifm3d" title="Link to this heading"></a></h3>
+<p>Using the ifm3d API can be more efficient when calibrating robots in a production end-of-line context.
+Once all the measurements are known, a script can be used to automate the calibration process.
+All the cameras can be simultaneously calibrated using different SCC application instances, or sequentially one after the other using the same application instance by changing the port under the <code class="docutils literal notranslate"><span class="pre">ports</span></code> parameter.</p>
+<p>For example scripts, refer to the python based example below.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="/latest/_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+		
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.efector.object-ident@ifm.com">support.efector.object-ident@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

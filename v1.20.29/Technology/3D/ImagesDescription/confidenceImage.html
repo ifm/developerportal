@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The confidence image &mdash; O3R  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5800d392" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Intrinsic calibration models" href="../IntrinsicCalib/intrinsic_calib_3d.html" />
+    <link rel="prev" title="Description of the available images" href="imagesDescription.html" />
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script> -->
+     
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            O3R
+          </a>
+              <div class="version">
+                v1.20.29
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index_technology.html">Technology</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../Hardware/index_hardware.html">Hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../PortsOverview/ports_overview.html">Ports overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../2D/2d.html">2D Cameras</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index_3d.html">3D Cameras</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../modes.html">Modes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../AcquisitionParams/index_acquisition_params.html">Acquisition parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ProcessingParams/index_processing_params.html">Processing parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../triggering.html">Synchronization and triggering</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index_images_description.html">Images description</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="imagesDescription.html">Overview</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Confidence Image</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../IntrinsicCalib/intrinsic_calib_3d.html">Intrinsic calibration models</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../VPU/index_vpu.html">VPU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../SystemVerification/index_system_verification.html">System Verification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../PDS/index_pds.html">PDS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../PLC/index_plc.html">PLC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index_technology.html">Technology</a></li>
+          <li class="breadcrumb-item"><a href="../index_3d.html">3D Camera Configuration</a></li>
+          <li class="breadcrumb-item"><a href="index_images_description.html">Images description</a></li>
+      <li class="breadcrumb-item active">The confidence image</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/Technology/3D/ImagesDescription/confidenceImage.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-confidence-image">
+<h1>The confidence image<a class="headerlink" href="#the-confidence-image" title="Link to this heading"></a></h1>
+<p>The confidence image is accessible as part of the data streamed from the O3R device. This image contains information about the validity of each pixel. If a pixel is invalid, the confidence image explains why is has been marked as invalid. The values are as follows:</p>
+<ul class="simple">
+<li><p>1: <code class="docutils literal notranslate"><span class="pre">CONF_INVALID</span></code> - indicates that the pixel is invalid;</p></li>
+<li><p>2: <code class="docutils literal notranslate"><span class="pre">CONF_SATURATED</span></code> - the pixel is overexposed/saturated;</p></li>
+<li><p>4: <code class="docutils literal notranslate"><span class="pre">CONF_BADAMBSYM</span></code> - the pixel had bad symmetry, probably because of motion (see <a class="reference internal" href="../ProcessingParams/symmetryThreshold.html"><span class="std std-doc">symmetry threshold</span></a>);</p></li>
+<li><p>8: <code class="docutils literal notranslate"><span class="pre">CONF_LOWAMP</span></code> - amplitude lower than the <a class="reference internal" href="../ProcessingParams/minAmplitude.html"><span class="std std-doc">minimum amplitude</span></a>, or <a class="reference internal" href="../ProcessingParams/maxDistNoise.html"><span class="std std-doc">distance noise threshold</span></a> exceeded;</p></li>
+<li><p>(16|32): <code class="docutils literal notranslate"><span class="pre">CONF_EXPINDEX</span></code> - indicates whether the short, medium or long <a class="reference internal" href="../AcquisitionParams/index_acquisition_params.html#exposure-times"><span class="std std-ref">exposure</span></a> is used for this pixel: <code class="docutils literal notranslate"><span class="pre">expIndex</span> <span class="pre">=</span> <span class="pre">(v</span> <span class="pre">&amp;</span> <span class="pre">CONF_EXPINDEX)</span> <span class="pre">&gt;&gt;</span> <span class="pre">4</span></code> indicates the index of the exposure time used by this pixel where low indices indicate shorter exposures;</p></li>
+<li><p>64: <code class="docutils literal notranslate"><span class="pre">CONF_INVALID_RANGE</span></code> - the pixel is outside of the measurement range;</p></li>
+<li><p>128: <code class="docutils literal notranslate"><span class="pre">CONF_SUSPECT_PIXEL</span></code> - this is a bad pixel on the chip;</p></li>
+<li><p>256: <code class="docutils literal notranslate"><span class="pre">RESERVED</span></code></p></li>
+<li><p>512: <code class="docutils literal notranslate"><span class="pre">CONF_EDGEPIXEL</span></code> or <code class="docutils literal notranslate"><span class="pre">CONF_ISOLATED</span></code> - edge pixels refer to the image edges which are sometimes invalidated by lateral filters, an isolated pixel is a pixel with random amplitude in an area where no amplitude is measured;</p></li>
+<li><p>1024: <code class="docutils literal notranslate"><span class="pre">CONF_UNPLAUSIBLE</span></code> - pixels remaining after shifting the <a class="reference internal" href="../AcquisitionParams/index_acquisition_params.html#offset"><span class="std std-ref">offset</span></a>, between the camera and the beginning of the shifted range;</p></li>
+<li><p>2048: <code class="docutils literal notranslate"><span class="pre">CONF_REFLECTIVITY</span></code> - the <a class="reference internal" href="../ProcessingParams/minReflectivity.html"><span class="std std-doc">reflectivity</span></a> is below the threshold;</p></li>
+<li><p>4096: <code class="docutils literal notranslate"><span class="pre">CONF_DYNAMIC_AMPLITUDE</span></code> - the pixel is probably part of the halo around a very bright object (see the <a class="reference internal" href="../ProcessingParams/strayLight.html"><span class="std std-doc">stray-light filter</span></a>);</p></li>
+<li><p>16384: <code class="docutils literal notranslate"><span class="pre">CONF_MIXEDPIXEL</span></code> - the pixel is a <a class="reference internal" href="../ProcessingParams/mixedPixelFilter.html"><span class="std std-doc">mixed pixel</span></a>, part of which is measuring the object and the other part the background;</p></li>
+<li><p>32768: <code class="docutils literal notranslate"><span class="pre">CROSSTALK</span></code>: the pixel is invalidated because of detected interference from other sources.</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="/latest/_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+		
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.efector.object-ident@ifm.com">support.efector.object-ident@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

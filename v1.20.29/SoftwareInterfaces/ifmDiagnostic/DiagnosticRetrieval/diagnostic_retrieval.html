@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to get the diagnostic &mdash; O3R  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5800d392" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../../_static/tabs.js?v=3030b3cb"></script>
+        <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Boot-up sequence" href="diagnostic_bootup_monitoring.html" />
+    <link rel="prev" title="Diagnostic description" href="../diagnostic.html" />
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script> -->
+     
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            O3R
+          </a>
+              <div class="version">
+                v1.20.29
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Technology/index_technology.html">Technology</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../iVA/index_iVA.html">ifm Vision Assistant</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://api.ifm3d.com/stable/">ifm3d/ifm3dpy API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://ros.ifm3d.com/latest/">ROS: ifm3d-ros</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://ros2.ifm3d.com/latest/">ROS2: ifm3d-ros2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Docker/index_docker.html">Docker</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index_diagnostic.html">Diagnostic</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../diagnostic.html">Diagnostic description</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">How to get the diagnostic</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#with-the-ifm-vision-assistant">With the ifm Vision Assistant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#with-ifm3d-or-ifm3dpy">With ifm3d or ifm3dpy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="diagnostic_bootup_monitoring.html">Boot-up sequence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ServiceReport/service_report.html">Service report</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../debugging.html">Debugging with ifm support</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../Toolbox/index_toolbox.html">Toolbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Examples/examples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../PDS/index_pds.html">PDS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../PLC/index_plc.html">PLC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+          <li class="breadcrumb-item"><a href="../index_diagnostic.html">Diagnostic</a></li>
+      <li class="breadcrumb-item active">How to get the diagnostic</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/SoftwareInterfaces/ifmDiagnostic/DiagnosticRetrieval/diagnostic_retrieval.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="how-to-get-the-diagnostic">
+<h1>How to get the diagnostic<a class="headerlink" href="#how-to-get-the-diagnostic" title="Link to this heading"></a></h1>
+<p>The diagnostic information can be simultaneously retrieved using different tools: iVA, ifm3d API, etc.
+It is also useful to monitor <a class="reference internal" href="../../../Technology/VPU/leds.html"><span class="std std-doc">the state of the LEDs</span></a>, as they indicate the potential presence of errors.</p>
+<section id="with-the-ifm-vision-assistant">
+<h2>With the ifm Vision Assistant<a class="headerlink" href="#with-the-ifm-vision-assistant" title="Link to this heading"></a></h2>
+<p>Diagnosis information can be monitored via the ifm Vision Assistant (iVA) since version 2.6.
+For an explanation on how to get this information see <a class="reference internal" href="../../iVA/device_and_diagnosis_data.html"><span class="std std-doc">the iVA documentation</span></a>.</p>
+</section>
+<section id="with-ifm3d-or-ifm3dpy">
+<h2>With ifm3d or ifm3dpy<a class="headerlink" href="#with-ifm3d-or-ifm3dpy" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">ifm3d</span> <span class="pre">/</span> <span class="pre">ifm3dpy</span></code> library provide functions to pull diagnostic data directly from the device.</p>
+<p>Diagnostic information can be monitored via two separate ways inside the API:</p>
+<ol class="arabic simple">
+<li><p>Via polling the complete diagnostic information JSON</p></li>
+<li><p>Via listening asynchronously for diagnostic changes</p></li>
+</ol>
+<p>Option 1 gives the full set of information, or a filtered subset as specified by the user:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-0-Yysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Yysr" name="Yysr" role="tab" tabindex="-1">c++</button><button aria-controls="panel-0-Q0xJ" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Q0xJ" name="Q0xJ" role="tab" tabindex="-1">CLI</button></div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel group-tab" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ifm3dpy.device</span><span class="w"> </span><span class="kn">import</span> <span class="n">O3R</span>
+<span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">()</span>
+<span class="n">o3r</span><span class="o">.</span><span class="n">get_diagnostic</span><span class="p">()</span>
+<span class="n">o3r</span><span class="o">.</span><span class="n">get_diagnostic_filtered</span><span class="p">({</span><span class="s2">&quot;state&quot;</span><span class="p">:</span><span class="s2">&quot;active&quot;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-Yysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Yysr" name="Yysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ifm3d/device/o3r.h&gt;</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">o3r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">O3R</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">diag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o3r</span><span class="o">-&gt;</span><span class="n">GetDiagnostic</span><span class="p">();</span>
+<span class="k">auto</span><span class="w"> </span><span class="n">diag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o3r</span><span class="o">-&gt;</span><span class="n">GetDiagnosticFiltered</span><span class="p">(</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">JSON</span><span class="o">::</span><span class="n">parse</span><span class="p">(</span><span class="s">&quot;{</span><span class="se">\&quot;</span><span class="s">state</span><span class="se">\&quot;</span><span class="s">:</span><span class="se">\&quot;</span><span class="s">active</span><span class="se">\&quot;</span><span class="s">}&quot;</span><span class="p">));</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-Q0xJ" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Q0xJ" name="Q0xJ" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ifm3d<span class="w"> </span>ovp8xx<span class="w"> </span>diagnostic<span class="w"> </span>get
+</pre></div>
+</div>
+</div></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See the <code class="docutils literal notranslate"><span class="pre">O3R</span></code> related methods: <a class="reference external" href="https://api.ifm3d.com/stable/_autosummary/ifm3dpy.device.O3R.html#ifm3dpy.device.O3R.get_diagnostic"><code class="docutils literal notranslate"><span class="pre">get_diagnostic</span></code></a> and <a class="reference external" href="https://api.ifm3d.com/stable/_autosummary/ifm3dpy.device.O3R.html#ifm3dpy.device.O3R.get_diagnostic_filtered"><code class="docutils literal notranslate"><span class="pre">get_diagnostic_filtered</span></code></a>.</p>
+</div>
+<p>Option 2 provides diagnostic updates asynchronously as they occur. For this purpose, a dedicated PCIC port (50009) is available.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-1-Yysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-Yysr" name="Yysr" role="tab" tabindex="-1">c++</button></div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel group-tab" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ifm3dpy.device</span><span class="w"> </span><span class="kn">import</span> <span class="n">O3R</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ifm3dpy.framegrabber</span><span class="w"> </span><span class="kn">import</span> <span class="n">FrameGrabber</span>
+<span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">()</span>
+<span class="n">fg</span> <span class="o">=</span> <span class="n">FrameGrabber</span><span class="p">(</span><span class="n">o3r</span><span class="p">,</span> <span class="mi">50009</span><span class="p">)</span>
+<span class="n">fg</span><span class="o">.</span><span class="n">on_async_error</span><span class="p">(</span><span class="k">lambda</span> <span class="nb">id</span><span class="p">,</span> <span class="n">JSON</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Got error </span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s2"> with content: </span><span class="si">{</span><span class="n">JSON</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">))</span>
+<span class="n">fg</span><span class="o">.</span><span class="n">start</span><span class="p">([])</span>
+
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-Yysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-Yysr" name="Yysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;chrono&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thread&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ifm3d/device/o3r.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ifm3d/fg.h&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">ifm3d</span><span class="o">::</span><span class="nn">literals</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">AsyncDiagCallback</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">message</span><span class="p">){</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Error id: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span>
+<span class="w">              </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Message: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">message</span>
+<span class="w">              </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kt">int</span>
+<span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+
+<span class="w">  </span><span class="c1">// Declare the device object (one object only, corresponding to the VPU)</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">o3r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">O3R</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">fg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">FrameGrabber</span><span class="o">&gt;</span><span class="p">(</span><span class="n">o3r</span><span class="p">,</span><span class="w"> </span><span class="mi">50009</span><span class="p">);</span>
+<span class="w">  </span><span class="n">fg</span><span class="o">-&gt;</span><span class="n">OnAsyncError</span><span class="p">(</span><span class="o">&amp;</span><span class="n">AsyncDiagCallback</span><span class="p">);</span>
+<span class="w">  </span><span class="n">fg</span><span class="o">-&gt;</span><span class="n">Start</span><span class="p">({});</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">10</span><span class="p">));</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See the <code class="docutils literal notranslate"><span class="pre">framegrabber</span></code> related methods: <a class="reference external" href="https://api.ifm3d.com/stable/_autosummary/ifm3dpy.framegrabber.FrameGrabber.html#ifm3dpy.framegrabber.FrameGrabber.on_async_error"><code class="docutils literal notranslate"><span class="pre">on_aync_error</span></code></a> and <a class="reference external" href="https://api.ifm3d.com/stable/_autosummary/ifm3dpy.framegrabber.FrameGrabber.html#ifm3dpy.framegrabber.FrameGrabber.on_async_notification"><code class="docutils literal notranslate"><span class="pre">on_async_notification</span></code></a>.</p>
+</div>
+<p>For a complete example on how to use the diagnostic data, refer to <a class="reference external" href="https://github.com/ifm/ifm3d-examples/blob/main/ovp8xx/python/ovp8xxexamples/core/diagnostic.py">the Python</a> and <a class="reference external" href="https://github.com/ifm/ifm3d-examples/tree/main/ovp8xx/cpp/core/diagnostic">C++ examples</a> using the ifm3d API.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="/latest/_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+		
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.efector.object-ident@ifm.com">support.efector.object-ident@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

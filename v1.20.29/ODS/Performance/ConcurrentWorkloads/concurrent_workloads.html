@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Running workloads concurrent with ODS &mdash; O3R  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5800d392" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Testing ODS" href="../../DeviceVerification/index_device_verification.html" />
+    <link rel="prev" title="Time of flight" href="../TOFArtifacts/ods_tof_artifacts.html" />
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script> -->
+     
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            O3R
+          </a>
+              <div class="version">
+                v1.20.29
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Technology/index_technology.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index_ods.html">ODS</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../index_ods.html">The ODS journey</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Mounting/mounting.html">Mounting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Instantiation/instantiation.html">Instantiation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Configuration/configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Presets/presets.html">Presets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Zones/zones.html">Zones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Presets/presets.html">Presets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../OccupancyGrid/occupancy_grid.html">Occupancy grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Recording/ods_data_recording.html">Recording</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ChangingViews/changing_views.html">Changing views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../OverhangingLoads/overhanging_loads.html">Overhanging loads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../NegativeObstacles/negative_obstacles.html">Negative obstacles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../DustMitigation/dust_mitigation.html">Dust artifact mitigation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Interference/cross-talk.html">Interference mitigation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../ExtrinsicCalibration/index_extrinsic_calibration.html">Extrinsic calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Decalibration/decalibration_feature.html">Decalibration detection</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index_performance.html">Performance</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../PerformanceVerification/ods_performance_verification.html">Performance evaluation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../PerformanceBenchmark/ods_performance_benchmark.html">Performance benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../TOFArtifacts/ods_tof_artifacts.html">Time-of-Flight artifacts</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Concurrent workloads</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#data-streams">Data streams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#resource-availability-for-the-user">Resource Availability for the User</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../DeviceVerification/index_device_verification.html">Device verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../iVA/index_ifmODS_iVA.html">ifmVisionAssistant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Python/index_ifmODS_python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../Cpp/index_ifmODS_cpp.html">C++</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../PDS/index_pds.html">PDS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../PLC/index_plc.html">PLC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index_ods.html">ODS (Obstacle Detection System)</a></li>
+          <li class="breadcrumb-item"><a href="../index_performance.html">ODS performance</a></li>
+      <li class="breadcrumb-item active">Running workloads concurrent with ODS</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/ODS/Performance/ConcurrentWorkloads/concurrent_workloads.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="running-workloads-concurrent-with-ods">
+<h1>Running workloads concurrent with ODS<a class="headerlink" href="#running-workloads-concurrent-with-ods" title="Link to this heading"></a></h1>
+<p>Any ODS application instance is a set of high priority processes on the OVP8x1.
+Additional OEM user processes may see degraded performance, due to high system load based of the ODS application instance.
+Additional OEM user processes may cause degraded performance for ODS, meaning the ODS application throttles if too few CPU or RAM resource is available at runtime.</p>
+<p>It is important to verify that any additional OEM user code only utilizes system resource to an acceptable level of availability depending on the <a class="reference internal" href="../../../SoftwareInterfaces/Docker/resource_management.html#resources-availability-for-user-code"><span class="std std-ref">resource availability</span></a> and that users pin their processes to the available cores as explained in <a class="reference internal" href="../../../SoftwareInterfaces/Docker/resource_management.html#process-pinning"><span class="std std-ref">the process pinning documentation</span></a>.</p>
+<section id="data-streams">
+<h2>Data streams<a class="headerlink" href="#data-streams" title="Link to this heading"></a></h2>
+<p>While ODS is running, connecting to the ifm Vision Assistant (iVA) and streaming point cloud data may noticeably affect performance. This might not pose a problem for basic tasks like data recording or diagnostics in iVA. However, it’s indicative of potential performance issues in other scenarios, such as live streaming from a separate IPC or Docker container. In such cases, ODS may not achieve its full frame rate.</p>
+<p>While running a user code on the VPU that is using the point clouds or the ODS data it is not advisable to use iVA in parallel. iVA per default requests ODS data and point cloud data which does impact performance on the system, especially in case of 3 cameras.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Slow user receivers will throttle the whole system: make sure all connections are running at Gigabit-Ethernet connection speed.</p>
+</div>
+</section>
+<section id="resource-availability-for-the-user">
+<h2>Resource Availability for the User<a class="headerlink" href="#resource-availability-for-the-user" title="Link to this heading"></a></h2>
+<p>When running an ODS application, the available resources for users to run their own software on the VPU, depend on the number of simultaneously active cameras used by ODS. The repartition is as follows:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">maxNumSimultaneousCameras=1</span></code>: 3 ARM A57 cores are available. External streaming of 3D data via PCIC ports should maintain seamless performance even with 6 3D cameras active (1 dedicated to ODS streaming and up to 5 operating normally).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">maxNumSimultaneousCameras=2</span></code>: 2 ARM A57 cores are available. External streaming of 3D data via PCIC ports may encounter frame drops if more than 5 3D cameras are concurrently running (2 dedicated to ODS streaming and up to 3 operating normally).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">maxNumSimultaneousCameras=3</span></code>: 1 ARM A57 core is available. External streaming of 3D data via PCIC ports may suffer from frame drops with more than 3 3D cameras in operation (3 dedicated to ODS streaming).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">maxNumSimultaneousCameras=4</span></code>: no cores are available. External streaming of 3D data via PCIC ports may encounter frame drops with more than 4 3D cameras in operation (4 dedicated to ODS streaming).</p></li>
+</ul>
+<p>For further information on resource availability on the OVP8xx, please refer to the <a class="reference internal" href="../../../Technology/VPU/ResourceManagement/index_resource_management.html#ods-application"><span class="std std-ref">resource management documentation</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>ifm embedded applications (ODS, PDS, etc.) only support the use of O3R225 and O3R222 heads.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="/latest/_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+		
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.efector.object-ident@ifm.com">support.efector.object-ident@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

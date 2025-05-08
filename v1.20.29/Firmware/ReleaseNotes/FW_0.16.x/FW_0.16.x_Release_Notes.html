@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIRMWARE 0.16.23 RELEASE NOTES &mdash; O3R  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=5800d392" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script> -->
+     
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            O3R
+          </a>
+              <div class="version">
+                v1.20.29
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Technology/index_technology.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../PDS/index_pds.html">PDS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../PLC/index_plc.html">PLC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">FIRMWARE 0.16.23 RELEASE NOTES</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/Firmware/ReleaseNotes/FW_0.16.x/FW_0.16.x_Release_Notes.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="firmware-0-16-23-release-notes">
+<h1>FIRMWARE 0.16.23 RELEASE NOTES<a class="headerlink" href="#firmware-0-16-23-release-notes" title="Link to this heading"></a></h1>
+<p>The following release note provides an overview of the features of the Firmware 0.16.23 Version.
+Please refer to the ifm O3Rs website <a class="reference external" href="http://www.ifm3d.com">www.ifm3d.com</a> for further information.</p>
+<section id="previous-releases">
+<h2>Previous Releases<a class="headerlink" href="#previous-releases" title="Link to this heading"></a></h2>
+<p>Previous firmware release is version 0.14.23.</p>
+</section>
+<section id="compatible-software-versions">
+<h2>Compatible software versions<a class="headerlink" href="#compatible-software-versions" title="Link to this heading"></a></h2>
+<p>It is recommended to use this firmware release with the following software package versions.</p>
+<table border="1px solid black">
+<tr>
+  <th>Software</th>
+  <th>Version</th>
+</tr>
+<tr>
+  <th>ifmVisionAssistant</th>
+  <th> >=2.6.7</th>
+</tr>
+<tr>
+  <th>ifm3d-library</th>
+  <th> >=1.1.1</th>
+</tr>
+</table>
+</section>
+<section id="compatible-video-processing-platforms">
+<h2>Compatible Video Processing Platforms<a class="headerlink" href="#compatible-video-processing-platforms" title="Link to this heading"></a></h2>
+<p>This firmware release can be applied to the following ifm video processing platforms:</p>
+<table border="1px solid black">
+  <tr>
+    <th>Article</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <th>OVP800</th>
+    <th>series product (without IMU)</th>
+  </tr>
+  <tr>
+    <th>M04239</th>
+    <th>ODS pre-series sample (with IMU)</th>
+  </tr>
+</table>
+</section>
+<section id="supported-camera-articles">
+<h2>Supported Camera Articles<a class="headerlink" href="#supported-camera-articles" title="Link to this heading"></a></h2>
+<p>This firmware release supports the following ifm camera articles:</p>
+<table border="1px solid black">
+  <tr>
+    <th>Camera Article</th>
+    <th>Description</th>
+    <th>Available Modes</th>
+    <th>Comment  </th>
+  </tr>
+    <tr>
+    <th> O3R222 </th>
+    <th> 3D: 38k 224x172, 60°x45° IP50 <br>  2D: 1280x800, 127°x80° </th>
+    <th> standard_range4m, standard_range2m, cyclic_4m_2m_4m_2m <br> standard_autoexposure2D, standard_manualexposure2D </th>
+    <th>  </th>
+  </tr>
+    <tr>
+    <th> O3R225 AB</th>
+    <th> 3D: 38k 224x172, 105°x78° IP50 <br>  2D: 1280x800, 127°x80° </th>
+    <th> standard_range4m, standard_range2m, cyclic_4m_2m_4m_2m <br> standard_autoexposure2D, standard_manualexposure2D </th>
+    <th>  </th>
+  </tr>
+    <tr>
+    <th> O3R225 AC</th>
+    <th> 3D: 38k 224x172, 105°x78° IP50 <br>  2D: 1280x800, 127°x80° </th>
+    <th> standard_range4m, standard_range2m, cyclic_4m_2m_4m_2m <br> standard_autoexposure2D, standard_manualexposure2D </th>
+    <th> improved fish-eye model </th>
+  </tr>
+</table>
+</section>
+<section id="new-features">
+<h2>New Features<a class="headerlink" href="#new-features" title="Link to this heading"></a></h2>
+<section id="library-ifm3d">
+<h3>Library: ifm3d<a class="headerlink" href="#library-ifm3d" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>complete API-redesign of ifm3d-library:</p>
+<ul>
+<li><p>version &gt;= 1.1.0, refer to the ifm3d <a class="reference external" href="https://github.com/ifm/ifm3d/releases">changelogs</a>. <strong>This is a breaking change, follow the <a class="reference external" href="https://ifm.github.io/ifm3d-docs/html/content/migration_guide/index.html">migration guide</a> for details on migrating existing code</strong></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="connectivity">
+<h3>Connectivity:<a class="headerlink" href="#connectivity" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>USB support</strong></p>
+<ul>
+<li><p>USB flash thumb drive / USB SSD support: <code class="docutils literal notranslate"><span class="pre">fat32</span></code> and <code class="docutils literal notranslate"><span class="pre">ext4</span></code> support. For <code class="docutils literal notranslate"><span class="pre">ext4</span></code> the VPU <code class="docutils literal notranslate"><span class="pre">oem</span></code> user id needs write access</p></li>
+<li><p>auto-mounting of USB devices (may require reformatting)</p></li>
+</ul>
+</li>
+<li><p><strong>CAN</strong></p></li>
+<li><p><strong>ETH</strong></p>
+<ul>
+<li><p>fallback IP if DHCP is selected for ETH0 and ETH1 and no DHCP server is present</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="rgb-camera-features">
+<h3>RGB-Camera Features<a class="headerlink" href="#rgb-camera-features" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Added manual modes: settings available for</p>
+<ul>
+<li><p>Exposure time</p></li>
+<li><p>Framerate</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="synchronization-and-trigger">
+<h3>Synchronization and trigger<a class="headerlink" href="#synchronization-and-trigger" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>SNTP</strong> support added, configurable through JSON</p></li>
+<li><p><strong>Imager synchronization</strong></p>
+<ul>
+<li><p>3D imagers in RUN state having the same <code class="docutils literal notranslate"><span class="pre">acquisition/framerate</span></code> are now hardware synchronized (individual <code class="docutils literal notranslate"><span class="pre">acquisition/delay</span></code> possible)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="intrinsic-calibration">
+<h3>Intrinsic calibration<a class="headerlink" href="#intrinsic-calibration" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Camera heads O3R225AC are calibrated in production with an improved fish-eye model</p>
+<ul>
+<li><p>To use these heads an update to FW &gt;= V0.16.23 and ifm3d-library version &gt;= 1.1.1 is required</p></li>
+</ul>
+</li>
+<li><p>TOF info chunk</p>
+<ul>
+<li><p>2D intrinsic model parameters available</p></li>
+<li><p>2D inverse intrinsic model parameters available</p></li>
+<li><p>3D intrinsic model parameters available</p></li>
+<li><p>3D inverse intrinsic model parameters available</p></li>
+<li><p>Possibility to register 2D and 3D images</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="diagnosis">
+<h3>Diagnosis<a class="headerlink" href="#diagnosis" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Diagnosis data</p>
+<ul>
+<li><p>accessible through <a class="reference external" href="https://www.ifm3d.com">ifm3d library</a></p></li>
+<li><p>Camera specific diagnosis information</p></li>
+<li><p>Application specific diagnose information</p></li>
+<li><p>Example: temperature information for all system components</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="cross-talk-mitigation">
+<h3>Cross-talk mitigation<a class="headerlink" href="#cross-talk-mitigation" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Imager synchronization in combination with channel implementation effectively mitigates crosstalk between heads on the same VPU</p></li>
+</ul>
+</section>
+<section id="application-concept">
+<h3>Application Concept<a class="headerlink" href="#application-concept" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>ODS - Obstacle Detection System (only for article: M04239, refer to specific documentation)</p></li>
+</ul>
+</section>
+<section id="led">
+<h3>LED<a class="headerlink" href="#led" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Port LEDs off, if no camera head is detected</p></li>
+<li><p>Port LEDs will blink, if the port is in error state</p></li>
+<li><p>Status LED: turns red, if any ERROR is present</p></li>
+</ul>
+</section>
+</section>
+<section id="fixes">
+<h2>Fixes<a class="headerlink" href="#fixes" title="Link to this heading"></a></h2>
+<section id="d-camera-features">
+<h3>3D-Camera Features<a class="headerlink" href="#d-camera-features" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>3D specific distance image / point cloud estimation fixes: close proximity distance measurements improved</p></li>
+<li><p>3D timestamps fixed</p></li>
+</ul>
+</section>
+</section>
+<section id="known-issues">
+<h2>Known Issues<a class="headerlink" href="#known-issues" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Connectivity: ports must be connected pairwise with the same head-type: [Port0,Port1]   [Port2,Port3]   [Port4,Port5]</p></li>
+<li><p>For FW version &gt;= 0.16.23 the heads default state is CONF. <strong>Change to RUN mode to receive data.</strong></p></li>
+<li><p>Software trigger:</p>
+<ul>
+<li><p>A IDLE state configuration has to be applied twice to take effect: IDLE -&gt; RUN -&gt; IDLE</p></li>
+<li><p>The first software trigger command may not be accepted by the device: send software trigger commands (via API) multiple times</p></li>
+</ul>
+</li>
+<li><p>Automatic channel selection per imager not yet implemented. It is advised to set all head channel values differently</p>
+<ul>
+<li><p>Channel difference of &gt;=2 digits improves crosstalk mitigation</p></li>
+</ul>
+</li>
+<li><p>If the initial download of the calibration file from the head was corrupted, the head can not be used. Make sure not to interrupt power until all connected port LEDs are active (=green)</p></li>
+<li><p>Downgrading to firmware 0.14.23 is not recommended</p></li>
+<li><p>No backward compatibility: once a camera heads is attached to a VPU running FW 0.16.23 it will be updated and no longer work on a VPU running FW 0.14.23</p></li>
+<li><p>Loss of extrinsic calibration information of all heads, if the head connectivity is changed (any head added or removed)</p></li>
+<li><p>The IPv4 discovery feature for discovering a device on the local network is not working</p></li>
+<li><p>ODS must not be used together with user-defined Docker containers</p></li>
+<li><p>ODS startup time high (~5s)</p></li>
+<li><p>ODS in pre-series state (refer to ODS documentation)</p></li>
+</ul>
+</section>
+<section id="look-forward-to-these-features-in-future-releases">
+<h2>Look forward to these features in future releases<a class="headerlink" href="#look-forward-to-these-features-in-future-releases" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>more user flash memory</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="/latest/_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+		
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.efector.object-ident@ifm.com">support.efector.object-ident@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

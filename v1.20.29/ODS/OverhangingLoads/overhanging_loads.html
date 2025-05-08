@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Overhanging loads &mdash; O3R  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5800d392" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Negative obstacles" href="../NegativeObstacles/negative_obstacles.html" />
+    <link rel="prev" title="How to switch active cameras" href="../ChangingViews/changing_views.html" />
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script> -->
+     
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            O3R
+          </a>
+              <div class="version">
+                v1.20.29
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Technology/index_technology.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index_ods.html">ODS</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index_ods.html">The ODS journey</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Mounting/mounting.html">Mounting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Instantiation/instantiation.html">Instantiation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Configuration/configuration.html">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Presets/presets.html">Presets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Zones/zones.html">Zones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Presets/presets.html">Presets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../OccupancyGrid/occupancy_grid.html">Occupancy grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Recording/ods_data_recording.html">Recording</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ChangingViews/changing_views.html">Changing views</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Overhanging loads</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#use-case">Use case</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#limitations-impact-of-stray-light-artifacts">Limitations: impact of stray light artifacts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#definition">Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-configure">How to configure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#configuration-in-ifm-vision-assistant">Configuration in ifm Vision Assistant</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../NegativeObstacles/negative_obstacles.html">Negative obstacles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DustMitigation/dust_mitigation.html">Dust artifact mitigation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Interference/cross-talk.html">Interference mitigation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ExtrinsicCalibration/index_extrinsic_calibration.html">Extrinsic calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Decalibration/decalibration_feature.html">Decalibration detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Performance/index_performance.html">Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DeviceVerification/index_device_verification.html">Device verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../iVA/index_ifmODS_iVA.html">ifmVisionAssistant</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Python/index_ifmODS_python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Cpp/index_ifmODS_cpp.html">C++</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../PDS/index_pds.html">PDS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../PLC/index_plc.html">PLC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index_ods.html">ODS (Obstacle Detection System)</a></li>
+      <li class="breadcrumb-item active">Overhanging loads</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/ODS/OverhangingLoads/overhanging_loads.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="overhanging-loads">
+<h1>Overhanging loads<a class="headerlink" href="#overhanging-loads" title="Link to this heading"></a></h1>
+<p>This feature introduces the possibility to define a static region in the user coordinate system which will be then excluded from the obstacle detection.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Feature added in firmware version 1.0.14.
+</pre></div>
+</div>
+</div>
+<section id="use-case">
+<h2>Use case<a class="headerlink" href="#use-case" title="Link to this heading"></a></h2>
+<p>For load-carrying AGVs a typical scenario exists where the load intersects with the FOV of the camera causing false positives in the occupancy grid.
+These false positives negatively impact the performance of ODS, as an obstacle will be constantly reported in place of the load.</p>
+<p>To mitigate this effect, the overhanging loads feature was introduced to exclude specific geometric region from the ODS measurements. Only false positives originating from this geometric region can be reliably excluded by the overhanging load feature.</p>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<p>A reasonable accuracy in the <a class="reference internal" href="../ExtrinsicCalibration/index_extrinsic_calibration.html"><span class="std std-doc">extrinsic calibration</span></a> is a pre-requirement for this feature.</p>
+</section>
+<section id="limitations-impact-of-stray-light-artifacts">
+<h2>Limitations: impact of stray light artifacts<a class="headerlink" href="#limitations-impact-of-stray-light-artifacts" title="Link to this heading"></a></h2>
+<p><a class="reference internal" href="../Performance/TOFArtifacts/ods_tof_artifacts.html"><span class="std std-doc">Stray light</span></a> designates light that is reflected on bright surfaces and scattered around the optical system, impacting the TOF measurements. Stray light is typically caused by objects in the close range or very bright objects just on the edges of the field of view. While the O3R has a very robust embedded stray light filter that mitigates most of the stray light artifacts, some disturbances can still be seen, and can occur when using overhanging loads.
+One can think of this as the camera being partially blinded by the light reflecting on the load.</p>
+<p>What this means, in terms of ODS measurements, is that “difficult objects,” that is low reflectivity, small, or far away objects, will be detected with degraded performances compared to a setup with no overhanging load. This is especially true if the load is relatively close to the camera.</p>
+<p>Stay light impacts the whole image, and not exclusively the area where the load is located. To mitigate this, it is recommended to configure the overhanging load shape to be larger than the object itself.
+Considering how variable the impact of stray light can be depending on where the load is located and on the material of the load itself, no generic recommendations can be given as to the size of the load that should be configured. The user is expected to test their specific setup and adjust accordingly.</p>
+</section>
+<section id="definition">
+<h2>Definition<a class="headerlink" href="#definition" title="Link to this heading"></a></h2>
+<p>In the context of ODS, an overhanging load is any object that:</p>
+<ul class="simple">
+<li><p>is visible in one of the camera’s FOV,</p></li>
+<li><p>is static with respect to the robot coordinate system (RCS).</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The overhanging load feature is designed exclusively to exclude static (w.r.t to the RCS) objects from the ODS calculation. Using it for any other use case might significantly reduce performances.</p>
+</div>
+<p>The overhanging load is defined as a 3D shape by a 2D convex hull of 3 to 6 points in the XY plane, in conjunction with a minimum and maximum height parameter for specifying its Z range.
+A pixel is excluded if and only if the corresponding pixel-camera ray intersects with the 3D exclusion region.</p>
+<p><img alt="Zone Configuration" src="../../_images/overhanging_load_config.png" /></p>
+</section>
+<section id="how-to-configure">
+<h2>How to configure<a class="headerlink" href="#how-to-configure" title="Link to this heading"></a></h2>
+<p>The configuration parameters for the overhanging load feature are placed in the grid section of the ODS JSON:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;applications&quot;</span><span class="p">:{</span>
+<span class="w">    </span><span class="nt">&quot;instances&quot;</span><span class="p">:{</span>
+<span class="w">      </span><span class="nt">&quot;app0&quot;</span><span class="p">:{</span>
+<span class="w">        </span><span class="nt">&quot;configuration&quot;</span><span class="p">:{</span>
+<span class="w">          </span><span class="nt">&quot;grid&quot;</span><span class="p">:{</span>
+<span class="w">            </span><span class="nt">&quot;overhangingLoads&quot;</span><span class="p">:[{</span>
+<span class="w">              </span><span class="nt">&quot;active&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;maxLoadHeight&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;minLoadHeight&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">&quot;region&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[[</span><span class="mf">-1.5</span><span class="p">,</span><span class="w"> </span><span class="mf">-2.0</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">1.5</span><span class="p">,</span><span class="w"> </span><span class="mf">-2.0</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">1.5</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">-1.5</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">]]</span>
+<span class="w">          </span><span class="p">}]</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">overhangingLoads</span></code> is an array of up to 16 different loads.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The user is expected to configure all the necessary loads for the application, and to toggle the <code class="docutils literal notranslate"><span class="pre">active</span></code> parameter to <code class="docutils literal notranslate"><span class="pre">true</span></code> for the loads that are present at runtime. This is a more efficient approach than re-configuring load dimensions at runtime to accommodate a new type of load.</p>
+</div>
+<p>For each load, consider the following parameters:</p>
+<ul class="simple">
+<li><p>The feature has to be activated: <code class="docutils literal notranslate"><span class="pre">{&quot;active&quot;:</span> <span class="pre">true}</span></code>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">minLoadHeight</span></code> parameter defines the lowest Z value of the region. This parameter should not be confused with the <code class="docutils literal notranslate"><span class="pre">minObjectHeight</span></code> (see <a class="reference internal" href="../Configuration/configuration.html#minimum-object-height"><span class="std std-ref">here</span></a>) that defines a minimum object height for the floor segmentation.
+Setting <code class="docutils literal notranslate"><span class="pre">minLoadHeight</span></code> to zero will result in some ground pixels being excluded, which in turn might result in detecting no usable floor for the visual odometry if the load is too large. In the example above, the bottom of the overhanging load is configured at 40 cm.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">maxLoadHeight</span></code> defines the maximum Z value of the region. In the example above, the top of the overhanging load is configured at 1 m.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">region</span></code> defines the (x, y) coordinates of the 3 to 6 corners of the convex hull that defines the overhanging load.</p></li>
+</ul>
+<section id="configuration-in-ifm-vision-assistant">
+<h3>Configuration in ifm Vision Assistant<a class="headerlink" href="#configuration-in-ifm-vision-assistant" title="Link to this heading"></a></h3>
+<p><img alt="iVA" src="../../_images/ol_iVA.gif" /></p>
+</section>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<p>In the following test setup, a flat wooden piece, simulating an overhanging load, is intersecting with the FOV of the cameras on the AGV, resulting in a false positive detection, the load being considered an obstacle.</p>
+<p><img alt="Test Setup" src="../../_images/test_setup.jpg" /></p>
+<p>After defining and activating the overhanging load region feature, the load is ignored.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Overhanging load feature: Inactive</p></th>
+<th class="head"><p>Overhanging load feature: Active</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><img alt="Overhanging-load feature inactivated" src="../../_images/inactive_ol.png" /></p></td>
+<td><p><img alt="Overhanging-load feature activated" src="../../_images/active_ol.png" /></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="/latest/_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+		
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.efector.object-ident@ifm.com">support.efector.object-ident@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

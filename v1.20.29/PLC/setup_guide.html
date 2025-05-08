@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Setup Guide &mdash; O3R  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=5800d392" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Configuration of presets for an example AGV" href="driving_scenarios.html" />
+    <link rel="prev" title="PLC application" href="index_plc.html" />
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script> -->
+     
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            O3R
+          </a>
+              <div class="version">
+                v1.20.29
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Technology/index_technology.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PDS/index_pds.html">PDS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index_plc.html">PLC</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Setup guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#compatibility">Compatibility</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#o3r-hardware-requirements">O3R Hardware requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#o3r-software-requirements">O3R Software requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#plc-hardware-and-software-requirements">PLC hardware and software requirements</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#setup-procedure">Setup procedure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#network-topology">Network topology</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#workflow">Workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ods-application-setup">ODS application setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#plc-application-setup">PLC application setup</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#configuration-parameters">Configuration parameters</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#exploring-the-data">Exploring the data</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#saving-applications">Saving applications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#function-blocks">Function blocks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="driving_scenarios.html">Example driving scenarios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tcp_ip_interface.html">TCP/IP communication interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="function_block/index_fb.html">Function block</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index_plc.html">PLC application</a></li>
+      <li class="breadcrumb-item active">Setup Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/PLC/setup_guide.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="setup-guide">
+<h1>Setup Guide<a class="headerlink" href="#setup-guide" title="Link to this heading"></a></h1>
+<section id="compatibility">
+<h2>Compatibility<a class="headerlink" href="#compatibility" title="Link to this heading"></a></h2>
+<section id="o3r-hardware-requirements">
+<h3>O3R Hardware requirements<a class="headerlink" href="#o3r-hardware-requirements" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Article</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>OVP813</p></td>
+<td><p>VPU with pre-installed ODS  and PDS licenses</p></td>
+</tr>
+<tr class="row-odd"><td><p>OVP812</p></td>
+<td><p>VPU with pre-installed PDS license</p></td>
+</tr>
+<tr class="row-even"><td><p>OVP811</p></td>
+<td><p>VPU with pre-installed ODS license</p></td>
+</tr>
+<tr class="row-odd"><td><p>O3R222</p></td>
+<td><p><li>3D: 38k 224x172, 60°x45°</li> <li>2D: 1280x800, 127°x80°</li></p></td>
+</tr>
+<tr class="row-even"><td><p>O3R225</p></td>
+<td><p><li>3D: 38k 224x172, 105°x78°</li><li>2D: 1280x800, 127°x80°</li></p></td>
+</tr>
+</tbody>
+</table>
+<p>Use 1 Gigabit/s rated hardware for all cables and Ethernet switches.</p>
+</section>
+<section id="o3r-software-requirements">
+<h3>O3R Software requirements<a class="headerlink" href="#o3r-software-requirements" title="Link to this heading"></a></h3>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Software</p></th>
+<th class="head"><p>Version</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Firmware</p></td>
+<td><p>1.20.29</p></td>
+</tr>
+<tr class="row-odd"><td><p>ifmVisionAssistant</p></td>
+<td><p>2.10.9</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="plc-hardware-and-software-requirements">
+<h3>PLC hardware and software requirements<a class="headerlink" href="#plc-hardware-and-software-requirements" title="Link to this heading"></a></h3>
+<p>A PLC with TCP/IP client capabilities is required to use the TCP/IP PLC interface.</p>
+</section>
+</section>
+<section id="setup-procedure">
+<h2>Setup procedure<a class="headerlink" href="#setup-procedure" title="Link to this heading"></a></h2>
+<section id="network-topology">
+<h3>Network topology<a class="headerlink" href="#network-topology" title="Link to this heading"></a></h3>
+<p>To estabilish a successful communication between PLC and VPU, both devices must be in same subnet range. Please refer to the <a class="reference external" href="https://ifm3d.com/latest/Technology/VPU/ethernet.html">Ethernet interfaces</a> documentation for setting up the static IP address on VPU.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Please use only <code class="docutils literal notranslate"><span class="pre">eth0</span></code> as a main communication interface between VPU and PLC.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">eth1</span></code> can be used for the debugging purposes using the Vision Assistant or the ifm3d API.</p></li>
+<li><p>Ethernet ring topologies are not supported: <code class="docutils literal notranslate"><span class="pre">eth0</span></code> and <code class="docutils literal notranslate"><span class="pre">eth1</span></code> must not be in same subnet range.</p></li>
+</ul>
+</div>
+</section>
+<section id="workflow">
+<h3>Workflow<a class="headerlink" href="#workflow" title="Link to this heading"></a></h3>
+<p>The expected workflow is represented in the state machine below:</p>
+<p><img alt="State Machine" src="../_images/state_machine.drawio1.svg" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If there are any diagnostics raised during the configuration or operation, please review the <a class="reference internal" href="../SoftwareInterfaces/ifmDiagnostic/index_diagnostic.html"><span class="std std-doc">diagnostic documentation</span></a> to resolve the issues.</p>
+</div>
+</section>
+<section id="ods-application-setup">
+<h3>ODS application setup<a class="headerlink" href="#ods-application-setup" title="Link to this heading"></a></h3>
+<p>To create and configure the ODS application instance please refer to the <a class="reference external" href="https://ifm3d.com/latest/ODS/index_ods.html">ODS section</a>.</p>
+<p>Then, configure presets, following the <a class="reference internal" href="../ODS/Presets/presets.html"><span class="std std-doc">presets documentation</span></a>.
+The PLC application is only able to switch between already existing presets of the ODS application.
+If the requested preset index does not existing, then the system will raise a diagnostic event indicating an invalid configuration.
+Therefore, the presets of the ODS application have to be configured prior to creating the PLC application.</p>
+<p>Example preset configurations for different driving scenarios can be found in <a class="reference internal" href="driving_scenarios.html"><span class="std std-doc">the driving scenarios document</span></a></p>
+</section>
+<section id="plc-application-setup">
+<h3>PLC application setup<a class="headerlink" href="#plc-application-setup" title="Link to this heading"></a></h3>
+<p>In the ifmVisionAssistant, create the PLC application in the <strong>Application</strong> tab by clicking on the <strong>+</strong> icon.</p>
+<section id="configuration-parameters">
+<h4>Configuration parameters<a class="headerlink" href="#configuration-parameters" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parameter</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></td>
+<td><p>Custom name for the application.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">state</span></code></p></td>
+<td><p>The current application state. Per default, the state is set to <code class="docutils literal notranslate"><span class="pre">RUN</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">configuration/odsApp</span></code></p></td>
+<td><p>Identifier of the ODS app instance, for example <code class="docutils literal notranslate"><span class="pre">app0</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">configuration/pdsApp</span></code></p></td>
+<td><p>Identifier of the PDS app instance, for example <code class="docutils literal notranslate"><span class="pre">app0</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<p>The PLC application is per default in <code class="docutils literal notranslate"><span class="pre">RUN</span></code> state. Therefore the ODS application shall be saved to be in <code class="docutils literal notranslate"><span class="pre">RUN</span></code> state at every bootup session.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The PLC embedded application sends data over TCP/IP without waiting for acknowledgement.
+When additional network load is introduced by the user, it may result in network saturations leading to communication delays.</p>
+</div>
+</section>
+<section id="exploring-the-data">
+<h4>Exploring the data<a class="headerlink" href="#exploring-the-data" title="Link to this heading"></a></h4>
+<p>The ifmVisionAssistant supports live interactive data exploration for debugging purposes.
+See the data corresponding to zone occupancy in this example:</p>
+<p><img alt="Example zone occupancy" src="../_images/zones.png" />
+<img alt="Data Frame exploration" src="../_images/data_visualization.png" /></p>
+</section>
+</section>
+<section id="saving-applications">
+<h3>Saving applications<a class="headerlink" href="#saving-applications" title="Link to this heading"></a></h3>
+<p>Configurations can be persisted between reboots of the VPU using the save-init function. In the ifmVisionAssistant, this can be accomplished by pressing the save button  under the applications tab. To remove this, factory reset the VPU.</p>
+<p><img alt="alt text" src="../_images/save.png" /></p>
+</section>
+<section id="function-blocks">
+<h3>Function blocks<a class="headerlink" href="#function-blocks" title="Link to this heading"></a></h3>
+<p>Available function blocks are documented in <a class="reference internal" href="function_block/index_fb.html"><span class="std std-doc">the function blocks documentation</span></a>.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="/latest/_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+		
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.efector.object-ident@ifm.com">support.efector.object-ident@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
