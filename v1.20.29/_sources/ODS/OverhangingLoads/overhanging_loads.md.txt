@@ -51,8 +51,8 @@ The configuration parameters for the overhanging load feature are placed in the 
           "grid":{
             "overhangingLoads":[{
               "active": true,
-              "maxLoadHeight": 0.4,
-              "minLoadHeight": 1.0,
+              "maxLoadHeight": 1.0,
+              "minLoadHeight": 0.4,
               "region": [[-1.5, -2.0], [1.5, -2.0], [1.5, 2.0], [-1.5, 2.0]]
           }]
           }
