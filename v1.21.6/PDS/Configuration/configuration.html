@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configuration &mdash; O3R  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5800d392" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Results" href="../Results/results.html" />
+    <link rel="prev" title="Camera calibration for PDS" href="../Calibration/pds_calibration.html" />
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script> -->
+     
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            O3R
+          </a>
+              <div class="version">
+                v1.21.6
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Technology/index_technology.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index_pds.html">PDS</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../Compatibility/compatibility.html">Compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Mounting/mounting.html">Mounting setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Calibration/pds_calibration.html">Calibration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#general-parameters">General parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#customization-parameters-at-configuration-customization">Customization parameters at <code class="docutils literal notranslate"><span class="pre">configuration/customization</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fine-tuning-parameters-at-configuration-parameter">Fine-tuning parameters at <code class="docutils literal notranslate"><span class="pre">configuration/parameter</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#port-parameters-at-configuration-port">Port parameters at <code class="docutils literal notranslate"><span class="pre">configuration/port</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Results/results.html">Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../GetPallet/getPallet.html">Pallets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../GetRack/getRack.html">Racks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../VolCheck/volCheck.html">Volume check</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Examples/examples.html">Code examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Recording/recordings_iVA.html">Recording</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Integration/index_integration.html">Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../PLC/index_plc.html">PLC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index_pds.html">PDS (Pick and Drop System)</a></li>
+      <li class="breadcrumb-item active">Configuration</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/PDS/Configuration/configuration.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="configuration">
+<h1>Configuration<a class="headerlink" href="#configuration" title="Link to this heading"></a></h1>
+<p>The PDS application is instantiated with a set of JSON parameters.
+A minimal instantiation is as follows, where <code class="docutils literal notranslate"><span class="pre">&quot;app0&quot;</span></code> can be replaced by another app index if required:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;applications&quot;</span><span class="p">:{</span>
+<span class="w">        </span><span class="nt">&quot;instances&quot;</span><span class="p">:{</span>
+<span class="w">            </span><span class="nt">&quot;app0&quot;</span><span class="p">:{</span>
+<span class="w">                </span><span class="nt">&quot;class&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pds&quot;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This is equivalent to creating a PDS app in the Vision Assistant:</p>
+<p><img alt="Instantiating a PDS app in the Vision Assistant" src="../../_images/instantiate_app.png" /></p>
+<p><img alt="Instantiated app with default settings" src="../../_images/default_app.png" /></p>
+<p>The app will be instantiated with all parameters set to their default values.
+The parameters can be further configured and are described below.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using multiple applications on a single device, keep in mind that the maximum number of simultaneous application instances is 20.
+The maximum number of application of each type that can be configured is:</p>
+<ul class="simple">
+<li><p>1 ODS application</p></li>
+<li><p>2 PDS applications</p></li>
+<li><p>1 PLC application</p></li>
+<li><p>8 MCC applications</p></li>
+<li><p>8 SCC applications</p></li>
+</ul>
+<p>Multiple applications using the same camera cannot be active at the same time. Switch all the applications to CONF except the one currently running.</p>
+</div>
+<section id="general-parameters">
+<h2>General parameters<a class="headerlink" href="#general-parameters" title="Link to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Property</p></th>
+<th class="head text-left"><p>Type</p></th>
+<th class="head text-left"><p>Description</p></th>
+<th class="head text-left"><p>Default</p></th>
+<th class="head text-left"><p>Minimum</p></th>
+<th class="head text-left"><p>Maximum</p></th>
+<th class="head text-left"><p>Enumeration</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">class</span></code></p></td>
+<td class="text-left"><p>string</p></td>
+<td class="text-left"><p>Application class</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">['mcc',</span> <span class="pre">'ods',</span> <span class="pre">'pds',</span> <span class="pre">'plc']</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">configuration.version.X</span></code></p></td>
+<td class="text-left"><p>integer</p></td>
+<td class="text-left"><p>Version number for the parameters.</p></td>
+<td class="text-left"><p>0</p></td>
+<td class="text-left"><p>0</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">data.algoDebugConfiguration.version.X</span></code></p></td>
+<td class="text-left"><p>integer</p></td>
+<td class="text-left"><p>Version number for algo-debug.</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>0</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">data.availablePCICOutput</span></code></p></td>
+<td class="text-left"><p>array</p></td>
+<td class="text-left"><p>PCIC outputs that are produced by the application</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">data.pcicTCPPort</span></code></p></td>
+<td class="text-left"><p>integer</p></td>
+<td class="text-left"><p>PCIC output TCP/IP port of the application</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></td>
+<td class="text-left"><p>string</p></td>
+<td class="text-left"><p>User-defined application name</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">ports</span></code></p></td>
+<td class="text-left"><p>array</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>[‘port2’]</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">state</span></code></p></td>
+<td class="text-left"><p>string</p></td>
+<td class="text-left"><p>Application state</p></td>
+<td class="text-left"><p>CONF</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">['CONF',</span> <span class="pre">'IDLE',</span> <span class="pre">'RUN']</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When setting the application state to <code class="docutils literal notranslate"><span class="pre">RUN</span></code>, PDS data will be streamed at 10Hz by default.
+The framerate can be changed at <code class="docutils literal notranslate"><span class="pre">/applications/instances/appX/port/acquisition/framerate</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">RUN</span></code> mode is available for all three commands, <code class="docutils literal notranslate"><span class="pre">getPallet</span></code>, <code class="docutils literal notranslate"><span class="pre">getRack</span></code> and <code class="docutils literal notranslate"><span class="pre">volCheck</span></code>.</p>
+</div>
+</section>
+<section id="customization-parameters-at-configuration-customization">
+<h2>Customization parameters at <code class="docutils literal notranslate"><span class="pre">configuration/customization</span></code><a class="headerlink" href="#customization-parameters-at-configuration-customization" title="Link to this heading"></a></h2>
+<p>These parameters are available at the <code class="docutils literal notranslate"><span class="pre">configuration/customization</span></code> path in the JSON configuration. These parameters allow users to quickly adapt the detection system to their environment with minimal input.</p>
+<p><strong>Recommended for:</strong></p>
+<ul class="simple">
+<li><p>Users who want to set up the system with minimal adjustments.</p></li>
+<li><p>Situations where the detection environment is consistent, and default settings are sufficient.</p></li>
+<li><p>Configuring high-level properties like pallet type, detection order, or defining the Volume of Interest (VOI).</p></li>
+</ul>
+<p><strong>Example:</strong></p>
+<p>For example, to detect a standard pallet in a warehouse when the approximate distance from the camera is known, you would just need to adjust the <code class="docutils literal notranslate"><span class="pre">depthHint</span></code> and select the appropriate <code class="docutils literal notranslate"><span class="pre">palletIndex</span></code>.</p>
+<p><strong>Parameters:</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Property</p></th>
+<th class="head text-left"><p>Type</p></th>
+<th class="head text-left"><p>Description</p></th>
+<th class="head text-left"><p>Default</p></th>
+<th class="head text-left"><p>Minimum</p></th>
+<th class="head text-left"><p>Maximum</p></th>
+<th class="head text-left"><p>Enumeration</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">command</span></code></p></td>
+<td class="text-left"><p>string</p></td>
+<td class="text-left"><p>PDS command to be executed. When the execution has finished, this field will automatically switch back to nop (No Operation)</p></td>
+<td class="text-left"><p>nop</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p>N/A</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">['nop',</span> <span class="pre">'getPallet',</span> <span class="pre">'getRack',</span> <span class="pre">'volCheck']</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">getPallet.PARAMETERS</span></code></p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p>Customization parameters for the <code class="docutils literal notranslate"><span class="pre">getPallet</span></code> command. Refer to <a class="reference internal" href="../GetPallet/getPallet.html"><span class="std std-doc">the <code class="docutils literal notranslate"><span class="pre">getPallet</span></code> documentation</span></a> for more details.</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">getRack.PARAMETERS</span></code></p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p>Customization parameters for the <code class="docutils literal notranslate"><span class="pre">getRack</span></code> command. Refer to <a class="reference internal" href="../GetRack/getRack.html"><span class="std std-doc">the <code class="docutils literal notranslate"><span class="pre">getRack</span></code> documentation</span></a> for more details.</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">volCheck.PARAMETERS</span></code></p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p>Customization parameters for the <code class="docutils literal notranslate"><span class="pre">volCheck</span></code> command. Refer to <a class="reference internal" href="../VolCheck/volCheck.html"><span class="std std-doc">the <code class="docutils literal notranslate"><span class="pre">volCheck</span></code> documentation</span></a> for more details.</p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+<td class="text-left"><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="fine-tuning-parameters-at-configuration-parameter">
+<h2>Fine-tuning parameters at <code class="docutils literal notranslate"><span class="pre">configuration/parameter</span></code><a class="headerlink" href="#fine-tuning-parameters-at-configuration-parameter" title="Link to this heading"></a></h2>
+<p>These parameters are available at the <code class="docutils literal notranslate"><span class="pre">configuration/parameter</span></code> path in the JSON configuration.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The default parameters can detect most commonly used pallets/racks. However, if the pallet/rack is not detected with default set of parameters then please contact the ifm support team at support.efector.object-ident@ifm.com for tuning the parameters.
+</pre></div>
+</div>
+</div>
+<p>These parameters should be used when fine-tuning the detection algorithm for optimal performance in complex or variable environments.</p>
+<p><strong>Recommended usage</strong>:</p>
+<ul class="simple">
+<li><p>Users who need to improve accuracy and speed in challenging detection scenarios.</p></li>
+<li><p>Pallets of varying sizes or material.</p></li>
+<li><p>Racks of non-standard sizes.</p></li>
+<li><p>etc.</p></li>
+</ul>
+<p><strong>Example:</strong> For example, the user can adjust the bounding box dimensions with <code class="docutils literal notranslate"><span class="pre">getPallet/x/orthoProjection/voi/xMax</span></code> and <code class="docutils literal notranslate"><span class="pre">xMin</span></code> to focus the detection on specific areas and therefore increase the detection speed.</p>
+<p><strong>Parameters:</strong>
+<code class="docutils literal notranslate"><span class="pre">getPallet</span></code>, <code class="docutils literal notranslate"><span class="pre">getRack</span></code> and <code class="docutils literal notranslate"><span class="pre">volCheck</span></code> can all be fine tuned in specific ways.
+For more details on each of the parameters, refer to the respective documentation: <a class="reference internal" href="../GetPallet/getPallet.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">getPallet</span></code> parameters</span></a>, <a class="reference internal" href="../GetRack/getRack.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">getRack</span></code> parameters</span></a> and <a class="reference internal" href="../VolCheck/volCheck.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">volCheck</span></code> parameters</span></a>.</p>
+</section>
+<section id="port-parameters-at-configuration-port">
+<h2>Port parameters at <code class="docutils literal notranslate"><span class="pre">configuration/port</span></code><a class="headerlink" href="#port-parameters-at-configuration-port" title="Link to this heading"></a></h2>
+<p>These parameters are available at the <code class="docutils literal notranslate"><span class="pre">configuration/port</span></code> path in the JSON configuration.
+These parameters mirror the port parameters available at the <code class="docutils literal notranslate"><span class="pre">/ports/portX</span></code> path in the JSON configuration.
+They are used to configure acquisition settings and filtering for the port. Typically, these settings do not need to be updated, as the application provides reasonable defaults for most use cases.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="/latest/_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+		
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.efector.object-ident@ifm.com">support.efector.object-ident@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

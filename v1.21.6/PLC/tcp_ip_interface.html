@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Communication interface &mdash; O3R  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=5800d392" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Ethernet/IP" href="ethernet-ip.html" />
+    <link rel="prev" title="Setup Guide" href="setup_guide.html" />
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script> -->
+     
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            O3R
+          </a>
+              <div class="version">
+                v1.21.6
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Technology/index_technology.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../PDS/index_pds.html">PDS</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index_plc.html">PLC</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="setup_guide.html">Setup guide</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">TCP/IP communication interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#data-structure">Data structure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tags">Tags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#content">Content</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#chunk-header-description">Chunk Header Description</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#plc-result-frame-description">PLC Result frame description</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#ods-result-data">ODS result data</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#pds-result-data">PDS result data</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="#get-pallet-result-data">Get pallet result data</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#get-rack-result-data">Get rack result data</a></li>
+<li class="toctree-l7"><a class="reference internal" href="#volume-check-result-data">Volume check result data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#python-example-to-simulate-the-plc">Python example to simulate the PLC</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#command-structure">Command structure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#command-content">Command content</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#parameter-id-and-corresponding-command-value">Parameter ID and corresponding command <code class="docutils literal notranslate"><span class="pre">VALUE</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#example-1-setting-the-maximum-height-ods">Example 1: Setting the maximum height (ODS)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#example-2-select-zone-set-ods">Example 2: Select Zone Set (ODS)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#example-3-get-pallet-pds">Example 3: Get Pallet (PDS)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ethernet-ip.html">Ethernet/IP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="function_block/index_fb.html">Function block</a></li>
+<li class="toctree-l2"><a class="reference internal" href="driving_scenarios.html">Example driving scenarios</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index_plc.html">PLC application</a></li>
+      <li class="breadcrumb-item active">Communication interface</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/PLC/tcp_ip_interface.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="communication-interface">
+<h1>Communication interface<a class="headerlink" href="#communication-interface" title="Link to this heading"></a></h1>
+<p>This document describes the TCP/IP data structure sent from the PLC application to the PLC, as well as the structure of the commands that can be sent from the PLC to the PLC application.</p>
+<section id="data-structure">
+<h2>Data structure<a class="headerlink" href="#data-structure" title="Link to this heading"></a></h2>
+<p>The data stream between the PLC application and the PLC is formatted at follows <code class="docutils literal notranslate"><span class="pre">&lt;ticket&gt;&lt;Length&gt;CR+LF&lt;ticket&gt;&lt;CONTENT&gt;CR</span> <span class="pre">LF</span></code>, where <code class="docutils literal notranslate"><span class="pre">CR</span></code> is the carriage return (<code class="docutils literal notranslate"><span class="pre">\r</span></code>) and <code class="docutils literal notranslate"><span class="pre">LF</span></code> is the line feed (<code class="docutils literal notranslate"><span class="pre">\n</span></code>).</p>
+<section id="tags">
+<h3>Tags<a class="headerlink" href="#tags" title="Link to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;ticket&gt;</span></code> is a character string containing 4 digits [0-9] interpreted as a decimal value. A message to the device is answered with the same ticket. Ticket 0000 is reserved for asynchronous messages (process data).</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;length&gt;</span></code> is a character string starting with an ‘L’ followed by 9 digits interpreted as a decimal value. The number is the length of data that follows.</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;CONTENT&gt;</span></code> is the command sent to the device, or the answer to the previously sent command. The <code class="docutils literal notranslate"><span class="pre">STAR</span></code> and <code class="docutils literal notranslate"><span class="pre">STOP</span></code> are also included in the content.</p>
+</section>
+<section id="content">
+<h3>Content<a class="headerlink" href="#content" title="Link to this heading"></a></h3>
+<p>The PLC application sends the data via a TCP Socket at the rate of 20 Hz (same as ODS framerate).
+If there is no data received from the ODS application, then the PLC application sends the cached data, that is, the previous ODS data.
+In this case, the result age indicator is incremented by 1 for every 50 milliseconds without a new result.
+The PLC application is mapped to a TCP/IP communication port (referred also as PCIC Port) and this is assigned based on application instance indicator (510xx where xx correspond to the application index).</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Size (Bytes)</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">STAR</span></code></p></td>
+<td><p>4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">STAR</span></code> refers to the “start” marker in the data</p></td>
+</tr>
+<tr class="row-odd"><td><p>Chunk header</p></td>
+<td><p>48</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">header</span></code></p></td>
+<td><p>Serialization format of the image (matrix) data with header version 2. All information is stored in little endian format. Refer to the <a class="reference internal" href="#chunk-header"><span class="xref myst">chunk header section</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p>PLC result frame</p></td>
+<td><p>188</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">plc_result_frame</span></code></p></td>
+<td><p>Refer to <a class="reference internal" href="#plc-result-frame-description"><span class="xref myst">the PLC result frame description</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">STOP</span></code></p></td>
+<td><p>4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">STOP</span></code> refers to the “stop” marker in the data.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="chunk-header-description">
+<h4>Chunk Header Description<a class="headerlink" href="#chunk-header-description" title="Link to this heading"></a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Offset</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Size [Byte]</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0x0000</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CHUNK_TYPE</span></code></p></td>
+<td><p>The chunk type is <code class="docutils literal notranslate"><span class="pre">O3R_RESULT_PLC</span></code>.</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x0004</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CHUNK_SIZE</span></code></p></td>
+<td><p>Size of the whole image chunk in bytes. After this count of bytes the next chunk starts.</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>0x0004</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">HEADER_SIZE</span></code></p></td>
+<td><p>Number of bytes starting from 0x0000 until the data.</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x000C</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">HEADER_VERSION</span></code></p></td>
+<td><p>Version number of the header (=2)</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>0x0010</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IMAGE_WIDTH</span></code></p></td>
+<td><p>Size of the binary data in bytes.</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x0014</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">IMAGE_HEIGTH</span></code></p></td>
+<td><p>Always 1.</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>0x0018</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">PIXEL_FORMAT</span></code></p></td>
+<td><p>Pixel format, <code class="docutils literal notranslate"><span class="pre">FORMAT_8U</span></code> in this case.</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x001C</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TIME_STAMP</span></code></p></td>
+<td><p>Timestamp in uS (deprecated)</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>0x0020</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">FRAME_COUNT</span></code></p></td>
+<td><p>Frame count. Increased with every frame enqueued for sending.</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x0024</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">STATUS_CODE</span></code></p></td>
+<td><p>Will always be 0.</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>0x0028</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TIME_STAMP_SEC</span></code></p></td>
+<td><p>Timestamp in seconds</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x002C</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TIME_STAMP_NSEC</span></code></p></td>
+<td><p>Timestamp nanoseconds</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>0x0030</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">PLC_RESULT_FRAME</span></code></p></td>
+<td><p>See <a class="reference internal" href="#plc-result-frame-description"><span class="xref myst">PLC result frame</span></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="plc-result-frame-description">
+<h4>PLC Result frame description<a class="headerlink" href="#plc-result-frame-description" title="Link to this heading"></a></h4>
+<p>From firmware version 1.21.6, the protocol version used for the result frame is v3.1.</p>
+<table border="1" cellspacing="0" cellpadding="5">
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Size (Bytes)</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Protocol Version</td>
+      <td>2</td>
+      <td>uint16</td>
+      <td>High byte: major version (incompatible across versions)  <br> Low byte: minor version (compatible within same major) <br> Actual version is 3.1</td>
+    </tr>
+    <tr>
+      <td>Size</td>
+      <td>2</td>
+      <td>uint16</td>
+      <td> Total size of this frame in bytes <br> Actual size 288 bytes</td>
+    </tr>
+    <tr>
+      <td>ODS result data</td>
+      <td>22 </td>
+      <td>see <a href="#ods-result-data">the ODS result data description</a> </td>
+      <td>For EIP, this data packet is misaligned (MessageCounter) and its internal ordering fixes the alignment.</td>
+    </tr>
+    <tr>
+      <td>PDS result data for first PDS app</td>
+      <td>48</td>
+      <td>see <a href="#pds-result-data">the PDS result data description</a> </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>PDS result data for second PDS app</td>
+      <td>48</td>
+      <td>see <a href="#pds-result-data">the PDS result data description</a> </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Diagnostic Counter</td>
+      <td> 4 </td>
+      <td> uint16[2] </td>
+      <td> 2 bytes: the current diagnostic slice counting from zero. <br> 2 bytes: the total amount of diagnostic slices.</td>
+    </tr>
+    <tr>
+      <td>Diagnostic Data</td>
+      <td>160</td>
+      <td>DiagData data[20]</td>
+      <td>
+        The rolling diagnostic information. If there is no diagnostic information, the Diagnostic slice counter is set to zero and the Diagnostic Data is filled with zeros.
+        An array of 20 diagnostic data structs is available.
+        <br><br>
+        <strong>DiagData Struct Details:</strong><br><br>
+        <table border="1" cellspacing="0" cellpadding="5">
+          <thead>
+            <tr>
+              <th>Field</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Source</td>
+              <td>uint16</td>
+              <td>
+                <ul style="margin: 0; padding-left: 20px;">
+                  <li>0 - 6: port0 ... port6</li>
+                  <li>100 - 119: app0 ... app19</li>
+                  <li>255: other</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>Severity</td>
+              <td>uint8</td>
+              <td>
+                <ul style="margin: 0; padding-left: 20px;">
+                  <li>1: no_incident</li>
+                  <li>2: info</li>
+                  <li>3: minor</li>
+                  <li>4: major</li>
+                  <li>5: critical</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>Diagnostic ID</td>
+              <td>uint32</td>
+              <td>0:no diagnostic event. For Diagnostic event IDs and descriptions please refer <a href="../SoftwareInterfaces/ifmDiagnostic/diagnostic.html#error-codes-and-descriptions">this page</a>. </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td>Severity</td>
+      <td>2</td>
+      <td>uint16</td>
+      <td>
+        Application diagnostic severity state of PLC app, with these possible values:<br><br>
+        <ul style="margin: 0; padding-left: 20px;">
+          <li>1: <code>no_incident</code></li>
+          <li>2: <code>info</code></li>
+          <li>3: <code>minor</code></li>
+          <li>4: <code>major</code></li>
+          <li>5: <code>critical</code></li>
+          <li>6: <code>not available</code> (application instance not existing)</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<section id="ods-result-data">
+<h5>ODS result data<a class="headerlink" href="#ods-result-data" title="Link to this heading"></a></h5>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Size (Bytes)</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Result age indicator</p></td>
+<td><p>2</p></td>
+<td><p>uint16</p></td>
+<td><p>Indicates whether the ODS data was received from the ODS application (0 if received, otherwise incremented). <br> 0 if ODS data was received from the ODS applications, If no new data is present for the next PLC app frame, the value is increased, If the value reaches 255, it will not reset. It will stay at 255 until new data is received, If no previous ODS data is available, it will indicate 255.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Severity</p></td>
+<td><p>2</p></td>
+<td><p>uint16</p></td>
+<td><p>Application diagnotic severity state of corresponding ODS app, with these possible values: <br><br> <li>1: <code class="docutils literal notranslate"><span class="pre">no_incident</span></code></li> <li>2: <code class="docutils literal notranslate"><span class="pre">info</span></code></li><li>3: <code class="docutils literal notranslate"><span class="pre">minor</span></code></li> <li>4: <code class="docutils literal notranslate"><span class="pre">major</span></code></li> <li>5: <code class="docutils literal notranslate"><span class="pre">critical</span></code></li><li>6: <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">available</span></code> (application instance not existing)</li></p></td>
+</tr>
+<tr class="row-even"><td><p>Zone status flags</p></td>
+<td><p>6</p></td>
+<td><p>uint16 status[3]</p></td>
+<td><p>Zone status flags (3 bytes, 0: zone free, 1: zone occupied)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Zone config ID</p></td>
+<td><p>4</p></td>
+<td><p>uint32</p></td>
+<td><p>32-bit integer representing the zone configuration ID.</p></td>
+</tr>
+<tr class="row-even"><td><p>Time Stamp</p></td>
+<td><p>8</p></td>
+<td><p>uint64 for TCP/IP <br>uint32[2] for EIP</p></td>
+<td><p>Time stamp of the ODS algorithm result. VPU time (including NTP if configured).</p></td>
+</tr>
+<tr class="row-odd"><td><p>Polar occupancy grid</p></td>
+<td><p>1350 (TCP/IP) or 0 (EIP)</p></td>
+<td><p>uint16[675] for PLC, skipped for EIP assembly 110</p></td>
+<td><p>Distance to nearest object in mm  Angle resolution ≈ 0.53° (360°/675). For more informations <a class="reference internal" href="../ODS/OccupancyGrid/occupancy_grid.html#polar-occupancy-grid"><span class="std std-ref">see this documentation</span></a></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="pds-result-data">
+<h5>PDS result data<a class="headerlink" href="#pds-result-data" title="Link to this heading"></a></h5>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Size (Bytes)</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Result age indicator</p></td>
+<td><p>2</p></td>
+<td><p>uint16</p></td>
+<td><p>Indicates whether PDS data was received from the PDS application (0 if received, otherwise incremented). <br>0 if PDS data was received from the PDS application, If no new data is present for the next PLC app frame, the value is increased, If the value reaches 255, it will not reset. It will stay at 255 until new data is received, If no previous output of PDS is available, it will indicate 255.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Severity</p></td>
+<td><p>2</p></td>
+<td><p>uint16</p></td>
+<td><p>Application diagnotic severity state of corresponding PDS app, with these possible values: <br><br> <li>1: <code class="docutils literal notranslate"><span class="pre">no_incident</span></code></li> <li>2: <code class="docutils literal notranslate"><span class="pre">info</span></code></li><li>3: <code class="docutils literal notranslate"><span class="pre">minor</span></code></li> <li>4: <code class="docutils literal notranslate"><span class="pre">major</span></code></li> <li>5: <code class="docutils literal notranslate"><span class="pre">critical</span></code></li><li>6: <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">available</span></code> (application instance not existing)</li></p></td>
+</tr>
+<tr class="row-even"><td><p>PDS command ID</p></td>
+<td><p>2</p></td>
+<td><p>uint16</p></td>
+<td><p>The ID of the PDS command of this response data: <br>02200: get pallet, <br> 02201: get item, <br> 02202: get rack, <br> 02203: volume check.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ticket</p></td>
+<td><p>2</p></td>
+<td><p>uint16</p></td>
+<td><p>The unique ID of the command, sent back to the PLC for book keeping: <br>0: default value, the command was not issued py the PLC, <br>nonzero: PCIC ticket id for commands coming via PCIC, or of command data.</p></td>
+</tr>
+<tr class="row-even"><td><p>Timestamp</p></td>
+<td><p>8</p></td>
+<td><p>uint64 for TCP/IP, uint32[2] for EIP</p></td>
+<td><p>Time stamp of the PDS algorithm result. VPU time (including NTP if configured).</p></td>
+</tr>
+<tr class="row-odd"><td><p>Response</p></td>
+<td><p>32</p></td>
+<td><p>uint8[32] for PLC, uint16[16] for EIP</p></td>
+<td><p>The PDS Result for the given command. padded with zeros, this can be one of: <br><a class="reference internal" href="#get-pallet-result-data"><span class="xref myst">Get pallet result data</span></a> <br> <a class="reference internal" href="#get-rack-result-data"><span class="xref myst">Get rack result data</span></a> <br> <a class="reference internal" href="#volume-check-result-data"><span class="xref myst">Volume check result data</span></a>. <br> For EtherNet/IP, the EDS provides a datatype unit16[16] for these values.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="get-pallet-result-data">
+<h6>Get pallet result data<a class="headerlink" href="#get-pallet-result-data" title="Link to this heading"></a></h6>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Size (Bytes)</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DetectionValid</span></code></p></td>
+<td><p>2</p></td>
+<td><p>int16</p></td>
+<td><p>Boolean flag: 0 indicates an invalid detection, 1 indicates valid results. The flag shall be zero if <code class="docutils literal notranslate"><span class="pre">numDetectedPallets</span></code> from the getPallet output is zero, or if an error occurred.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PalletIndex</span></code></p></td>
+<td><p>2</p></td>
+<td><p>int16</p></td>
+<td><p>Index of the parameter set which was used to detect the pallet.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CenterX</span></code></p></td>
+<td><p>2</p></td>
+<td><p>int16</p></td>
+<td><p>X-Coordinate of the Center Block [millimeters].</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CenterY</span></code></p></td>
+<td><p>2</p></td>
+<td><p>int16</p></td>
+<td><p>Y-Coordinate of the Center Block [millimeters].</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CenterZ</span></code></p></td>
+<td><p>2</p></td>
+<td><p>int16</p></td>
+<td><p>Z-Coordinate of the Center Block [millimeters].</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">LeftPocketX</span></code></p></td>
+<td><p>2</p></td>
+<td><p>int16</p></td>
+<td><p>X-Coordinate of the Left Pocket [millimeters].</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">LeftPocketY</span></code></p></td>
+<td><p>2</p></td>
+<td><p>int16</p></td>
+<td><p>Y-Coordinate of the Left Pocket [millimeters].</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">LeftPocketZ</span></code></p></td>
+<td><p>2</p></td>
+<td><p>int16</p></td>
+<td><p>Z-Coordinate of the Left Pocket [millimeters].</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RightPocketX</span></code></p></td>
+<td><p>2</p></td>
+<td><p>int16</p></td>
+<td><p>X-Coordinate of the Right Pocket [millimeters].</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RightPocketY</span></code></p></td>
+<td><p>2</p></td>
+<td><p>int16</p></td>
+<td><p>Y-Coordinate of the Right Pocket [millimeters].</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">RightPocketZ</span></code></p></td>
+<td><p>2</p></td>
+<td><p>int16</p></td>
+<td><p>Z-Coordinate of the Right Pocket [millimeters].</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Roll</span></code></p></td>
+<td><p>2</p></td>
+<td><p>int16</p></td>
+<td><p>Pallet’s rotation about the x-axis [milliradians].</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Pitch</span></code></p></td>
+<td><p>2</p></td>
+<td><p>int16</p></td>
+<td><p>Pallet’s rotation about the y-axis [milliradians].</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Yaw</span></code></p></td>
+<td><p>2</p></td>
+<td><p>int16</p></td>
+<td><p>Pallet’s rotation about the z-axis [milliradians].</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="get-rack-result-data">
+<h6>Get rack result data<a class="headerlink" href="#get-rack-result-data" title="Link to this heading"></a></h6>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Size (Bytes)</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DetectionValid</span></code></p></td>
+<td><p>2</p></td>
+<td><p>int16</p></td>
+<td><p>Boolean flag: 0 indicates an invalid detection, 1 indicates valid results.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PositionX</span></code></p></td>
+<td><p>2</p></td>
+<td><p>int16</p></td>
+<td><p>X-Coordinate of the rack position [millimeters].</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PositionY</span></code></p></td>
+<td><p>2</p></td>
+<td><p>int16</p></td>
+<td><p>Y-Coordinate of the rack position [millimeters].</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PositionZ</span></code></p></td>
+<td><p>2</p></td>
+<td><p>int16</p></td>
+<td><p>Z-Coordinate of the rack position [millimeters].</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Roll</span></code></p></td>
+<td><p>2</p></td>
+<td><p>int16</p></td>
+<td><p>Rotation of the rack about the x-axis [milliradians].</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Pitch</span></code></p></td>
+<td><p>2</p></td>
+<td><p>int16</p></td>
+<td><p>Rotation of the rack about the y-axis [milliradians].</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Yaw</span></code></p></td>
+<td><p>2</p></td>
+<td><p>int16</p></td>
+<td><p>Rotation of the rack about the z-axis [milliradians].</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">NumPixels</span></code></p></td>
+<td><p>4</p></td>
+<td><p>uint32</p></td>
+<td><p>Number of pixels inside the clearing volume.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">AnchoredSide</span></code></p></td>
+<td><p>2</p></td>
+<td><p>int16</p></td>
+<td><p>0 -&gt; left, 1 -&gt; center (should never happen), 2 -&gt; right.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Flags</span></code></p></td>
+<td><p>2</p></td>
+<td><p>int16</p></td>
+<td><p>Bitmask, encoding the detection status bits (O3R-13130).</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="volume-check-result-data">
+<h6>Volume check result data<a class="headerlink" href="#volume-check-result-data" title="Link to this heading"></a></h6>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Field</p></th>
+<th class="head"><p>Size (Bytes)</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">NumPixels</span></code></p></td>
+<td><p>4</p></td>
+<td><p>uint32</p></td>
+<td><p>Number of pixels inside the volume.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">nearestX</span></code></p></td>
+<td><p>4</p></td>
+<td><p>int32</p></td>
+<td><p>Smallest x-coordinate inside the volume (derived from quantile) [millimeters].</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+</section>
+<section id="python-example-to-simulate-the-plc">
+<h3>Python example to simulate the PLC<a class="headerlink" href="#python-example-to-simulate-the-plc" title="Link to this heading"></a></h3>
+<p>To simulate the data exchange between the PLC and the PLC application, we have created two python scripts.</p>
+<p>These scripts can be used as a base to understand the data structure of the commands that can be sent from PLC to the PLC application and unpack the data from the PLC application.</p>
+<p>You can find these scripts in our <a class="reference external" href="https://github.com/ifm/ifm3d-examples/tree/main/ovp8xx/python">ifm3d-examples repository</a>.</p>
+</section>
+</section>
+<section id="command-structure">
+<h2>Command structure<a class="headerlink" href="#command-structure" title="Link to this heading"></a></h2>
+<p>This chapter describes the structure of the PCIC command that can be sent from the PLC to the PLC-Application to change parameters such as changing the active preset.</p>
+<p>Similarly as the data stream between the PLC application and the PLC, the command sent from the PLC to the PLC application is formatted at follows: <code class="docutils literal notranslate"><span class="pre">&lt;ticket&gt;&lt;Length&gt;CR+LF&lt;ticket&gt;&lt;CONTENT&gt;CR</span> <span class="pre">LF</span></code>, where:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;ticket&gt;</span></code> is a character string containing 4 digits [0-9] interpreted as a decimal value. A message to the device is answered with the same ticket. Ticket 0000 is reserved for asynchronous messages (process data).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;length&gt;</span></code> is a character string starting with an ‘L’ followed by 9 digits interpreted as a decimal value. The number is the length of data that follows.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;CONTENT&gt;</span></code> is the command sent to the device. The <code class="docutils literal notranslate"><span class="pre">STAR</span></code> and <code class="docutils literal notranslate"><span class="pre">STOP</span></code> are also included in the content.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CR</span></code> is the carriage return (<code class="docutils literal notranslate"><span class="pre">\r</span></code>) and <code class="docutils literal notranslate"><span class="pre">LF</span></code> is the line feed (<code class="docutils literal notranslate"><span class="pre">\n</span></code>).</p></li>
+</ul>
+<p>The header, consisting of <code class="docutils literal notranslate"><span class="pre">&lt;ticket&gt;&lt;Length&gt;CR+LF</span></code>, could look like:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>1234L000000022<span class="se">\r\n</span>
+</pre></div>
+</div>
+<p>With:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;1234&quot;</span></code>: the ticket, 4 characters</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;L&quot;</span></code>: 1 character</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;000000022&quot;</span></code>: the length, 9 characters,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;\r\n&quot;</span></code>: 2 characters</p></li>
+</ul>
+<p>This brings the total header length to 4 (ticket) + 1 (L) + 9 (length) + 2 (CR/LF), which is 16 characters.</p>
+<section id="command-content">
+<h3>Command content<a class="headerlink" href="#command-content" title="Link to this heading"></a></h3>
+<p>The command content section, <code class="docutils literal notranslate"><span class="pre">&lt;ticket&gt;&lt;CONTENT&gt;CR</span> <span class="pre">LF</span></code>, consists of the following parts:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ticket</span></code>: the ticket identifier, which is the same as in the header. It must be ≥ 1000 (e.g., <code class="docutils literal notranslate"><span class="pre">1234</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CONTENT</span></code>: <code class="docutils literal notranslate"><span class="pre">f&lt;Parameter-ID&gt;&lt;reserved&gt;&lt;version&gt;&lt;VALUE&gt;</span></code></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">f</span></code>: Command type (ASCII).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Parameter-ID</span></code>: A 5-digit parameter ID of the parameter to be set, see <a class="reference internal" href="#parameter-id-list"><span class="xref myst">the available parameter IDs</span></a>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reserved</span></code>: Fixed value <code class="docutils literal notranslate"><span class="pre">&quot;#00000&quot;</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">version</span></code>: the version, 2 bytes with one byte for the major version and one byte for the minor version (hexadecimal).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VALUE</span></code>: the binary data in little endian for the given command. The size depends on the command (hexadecimal).</p></li>
+</ul>
+</li>
+</ul>
+<section id="parameter-id-and-corresponding-command-value">
+<h4>Parameter ID and corresponding command <code class="docutils literal notranslate"><span class="pre">VALUE</span></code><a class="headerlink" href="#parameter-id-and-corresponding-command-value" title="Link to this heading"></a></h4>
+<p>Here is a list of available parameter IDs for setting or reading values via the <code class="docutils literal notranslate"><span class="pre">f</span></code> command. The value of the command itself depends on the parameter ID. The description for the command corresponding to a specific parameter ID is also in the table below.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Command description</p></th>
+<th class="head"><p>Command size</p></th>
+<th class="head"><p>Command type</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ODS overhanging load</p></td>
+<td><p>Bitmask for the overhanging load selection</p></td>
+<td><p>2</p></td>
+<td><p>uint16</p></td>
+</tr>
+<tr class="row-odd"><td><p>ODS Selection of the Zone</p></td>
+<td><p>The index of the preset to select</p></td>
+<td><p>2</p></td>
+<td><p>uint16</p></td>
+</tr>
+<tr class="row-even"><td><p>ODS Setting the maximum height</p></td>
+<td><p>The height in mm</p></td>
+<td><p>2</p></td>
+<td><p>uint16</p></td>
+</tr>
+<tr class="row-odd"><td><p>PDS <code class="docutils literal notranslate"><span class="pre">getPallet</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ApplicationId</span></code>: Position in the PDS application list of the application selected for configuration [0..1]</p></td>
+<td><p>2</p></td>
+<td><p>uint16</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DepthHint</span></code>: 	Estimated distance between pallet and calibrated coordinate system center in [millimeters]. Set to &lt;=0 for automatic detection</p></td>
+<td><p>2</p></td>
+<td><p>int16</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">PalletIndex</span></code>: Index of the pallet parameter set [0..9]</p></td>
+<td><p>2</p></td>
+<td><p>int16</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">PalletOrder</span></code>:	0-&gt;scoreDescending, 1-&gt;zDescending, 2-&gt;zAscending, 3 -&gt;yDescending, 4 -&gt; yAscending</p></td>
+<td><p>2</p></td>
+<td><p>int16</p></td>
+</tr>
+<tr class="row-odd"><td><p>PDS <code class="docutils literal notranslate"><span class="pre">getItem</span></code></p></td>
+<td><p>Available upon request</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>PDS <code class="docutils literal notranslate"><span class="pre">getRack</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ApplicationId</span></code>: 	Position in the PDS application list of the application selected for configuration [0..1]</p></td>
+<td><p>2</p></td>
+<td><p>uint16</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">HorizontalDropPosition</span></code>: 	Selection of the horizontal drop setting: 0-&gt;left, 1-&gt;center, 2-&gt;right</p></td>
+<td><p>2</p></td>
+<td><p>uint16</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VerticalDropPosition</span></code>: 	Selection of the vertical drop setting: 0-&gt;interior, 1-&gt;floor</p></td>
+<td><p>2</p></td>
+<td><p>uint16</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DepthHint</span></code>: 	Estimated distance between rack and coordinate system center in [millimeters]</p></td>
+<td><p>2</p></td>
+<td><p>uint16</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ZHint</span></code>: 	Estimated z-coordinate of the rack shelf in [millimeters]</p></td>
+<td><p>2</p></td>
+<td><p>uint16</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ClearingVolumeXMin</span></code>: 	Minimum x-coordinate in [millimeters] of the volume which will be checked for obstacles</p></td>
+<td><p>2</p></td>
+<td><p>uint16</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ClearingVolumeXMax</span></code>:  	Maximum x-coordinate in [millimeters] of the volume which will be checked for obstacles</p></td>
+<td><p>2</p></td>
+<td><p>uint16</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ClearingVolumeYMin</span></code>:  	Minimum y-coordinate in [millimeters] of the volume which will be checked for obstacles</p></td>
+<td><p>2</p></td>
+<td><p>uint16</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ClearingVolumeYMax</span></code>:  	Maximum y-coordinate in [millimeters] of the volume which will be checked for obstacles</p></td>
+<td><p>2</p></td>
+<td><p>uint16</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ClearingVolumeZMin</span></code>:  	Minimum z-coordinate in [millimeters] of the volume which will be checked for obstacles</p></td>
+<td><p>2</p></td>
+<td><p>uint16</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ClearingVolumeZMax</span></code>:  	Maximum z-coordinate in [millimeters] of the volume which will be checked for obstacles</p></td>
+<td><p>2</p></td>
+<td><p>uint16</p></td>
+</tr>
+<tr class="row-odd"><td><p>PDS <code class="docutils literal notranslate"><span class="pre">volCheck</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ApplicationId</span></code>: Position in the PDS application list of the application selected for configuration [0..1]</p></td>
+<td><p>2</p></td>
+<td><p>uint16</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VolumeXMin</span></code>: 	Minimum x-coordinate in [millimeters] of the volume which will be checked for pixels</p></td>
+<td><p>2</p></td>
+<td><p>uint16</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VolumeXMax</span></code>: 	Maximum x-coordinate in [millimeters] of the volume which will be checked for pixels</p></td>
+<td><p>2</p></td>
+<td><p>uint16</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VolumeYMin</span></code>: 	Minimum y-coordinate in [millimeters] of the volume which will be checked for pixels</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VolumeYMax</span></code>: 	Maximum y-coordinate in [millimeters] of the volume which will be checked for pixels</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VolumeZMin</span></code>: 	Minimum z-coordinate in [millimeters] of the volume which will be checked for pixels</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">VolumeZMax</span></code>: 	Maximum z-coordinate in [millimeters] of the volume which will be checked for pixels</p></td>
+<td><p>2</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="example-1-setting-the-maximum-height-ods">
+<h4>Example 1: Setting the maximum height (ODS)<a class="headerlink" href="#example-1-setting-the-maximum-height-ods" title="Link to this heading"></a></h4>
+<p>To set the maximum height to <code class="docutils literal notranslate"><span class="pre">400</span> <span class="pre">mm</span></code>, the <code class="docutils literal notranslate"><span class="pre">f</span></code> command would be formatted as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f02102</span><span class="c1">#00000\x01\x01\x90\x01\r\n</span>
+</pre></div>
+</div>
+<p>With:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">02102</span></code>: the parameter ID for “Setting the maximum height”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#00000</span></code>: reserved field.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\x01\x01</span></code>: the version number (1.1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\x90\x01</span></code>: Value to set for the maximum height: <code class="docutils literal notranslate"><span class="pre">400</span> <span class="pre">mm</span></code> (little endian format).</p></li>
+</ul>
+</section>
+<section id="example-2-select-zone-set-ods">
+<h4>Example 2: Select Zone Set (ODS)<a class="headerlink" href="#example-2-select-zone-set-ods" title="Link to this heading"></a></h4>
+<p>To select a zone set, the <code class="docutils literal notranslate"><span class="pre">f</span></code> command could look like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f02101</span><span class="c1">#00000\x01\x01\x03\x00\r\n</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">02101</span></code>: Parameter ID for “Selection of the zone set”,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#00000</span></code>: Reserved field,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\x01\x01</span></code>: Version,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\x03\x00</span></code>: Preset identifier for the selected zone set (in little endian format), in this case index 3.</p></li>
+</ul>
+<p>To activate the zone set at index 3, the full command would be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1234</span><span class="n">L000000022</span>\<span class="n">r</span>\<span class="n">n1234f02101</span><span class="c1">#00000\x01\x01\x03\x00\r\n</span>
+</pre></div>
+</div>
+<p>With:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1234</span></code>: ticket,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">L000000022</span></code>: message length,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\r\n</span></code>: carriage return and line feed,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1234</span></code>: ticket,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f</span></code>: command type,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">02101</span></code>: parameter ID corresponding to selecting the zone set,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#00000</span></code>: reserved section,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\x01\x01</span></code>: version number, 1.1,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\x03\x00</span></code>: index 3</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\r\n</span></code>: carriage return and line feed.</p></li>
+</ul>
+<p>In this case, the message length would be:</p>
+<ul class="simple">
+<li><p>Header: 16 characters</p></li>
+<li><p>Data: 4 (ticket) + 1 (f) + 5 (parameter ID) + 6 (reserved) + 2 (version) + 2 (index) + 2  (CR and LF) characters</p></li>
+<li><p>Total Length: 22 characters</p></li>
+</ul>
+</section>
+<section id="example-3-get-pallet-pds">
+<h4>Example 3: Get Pallet (PDS)<a class="headerlink" href="#example-3-get-pallet-pds" title="Link to this heading"></a></h4>
+<p>To retrieve pallet-related information from the PDS system, the <code class="docutils literal notranslate"><span class="pre">f</span></code> command includes multiple values:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1234</span><span class="n">L000000026</span>\<span class="n">r</span>\<span class="n">n1234f02200</span><span class="c1">#00000\x01\x01\x00\x00\xff\xff\x00\x00\x00\x00\r\n</span>
+</pre></div>
+</div>
+<p>with</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1234</span></code>: ticket.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">L000000026</span></code>: message length (26 characters total).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\r\n</span></code>: carriage return and line feed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1234</span></code>: ticket.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f</span></code>: command identifier.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">02200</span></code>: parameter ID for the PDS <code class="docutils literal notranslate"><span class="pre">getPallet</span></code> function.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#00000</span></code>: reserved field.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\x01\x01</span></code>: version 1.1.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\x00\x00</span></code>: <code class="docutils literal notranslate"><span class="pre">app_id</span> <span class="pre">=</span> <span class="pre">0</span></code> (uint16).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\xff\xff</span></code>: <code class="docutils literal notranslate"><span class="pre">depth_hint</span> <span class="pre">=</span> <span class="pre">-1</span></code> (int16, little endian).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\x00\x00</span></code>: <code class="docutils literal notranslate"><span class="pre">pallet_index</span> <span class="pre">=</span> <span class="pre">0</span></code> (int16).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\x00\x00</span></code>: <code class="docutils literal notranslate"><span class="pre">pallet_order</span> <span class="pre">=</span> <span class="pre">0</span></code> (int16).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\r\n</span></code>: carriage return and line feed.</p></li>
+</ul>
+<p><strong>Message length calculation:</strong></p>
+<ul class="simple">
+<li><p>Header: 16 characters</p></li>
+<li><p>Data: 4 (ticket) + 1 (f) + 5 (parameter ID) + 6 (reserved) + 2 (version) + 8 (values) + 2 (CRLF)</p></li>
+<li><p><strong>Total: 26 characters</strong></p></li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="/latest/_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+		
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.efector.object-ident@ifm.com">support.efector.object-ident@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
