@@ -140,8 +140,8 @@ Following are the structure used in this module for storing image, point and poi
 </pre></div>
 </div>
 <p><a class="reference external" href="https://github.com/ifm/ifm3d/blob/master/modules/framegrabber/include/ifm3d/fg/byte_buffer.h">pixel_format</a></p>
-<p>The example in this modules explains how to grab the data from the ifm 3d devices and saved a .ppm image using <a class="reference external" href="https://github.com/thinks/ppm-io">ppm-io</a> module.  To save the images the data is scaled to uint8 format. Amplitude image data is scaled by the minimum and maximum value in the grabbed amplitude data, whereas for Distance image the data is scaled in distance range from 0.0m to 2.5m, which means the data values after 2.5m will be shown as 255.</p>
-<p>simpleimage module is configured in such a way that it can be build outside ifm3d-example repository which can be helpful for build applications  which do not want to add OPenCV or PCL as a dependency.</p>
+<p>The example in this modules explains how to grab the data from the ifm 3d devices and saved a .ppm image using <a class="reference external" href="https://github.com/thinks/ppm-io">ppm-io</a> module. To save the images the data is scaled to uint8 format. Amplitude image data is scaled by the minimum and maximum value in the grabbed amplitude data, whereas for Distance image the data is scaled in distance range from 0.0m to 2.5m, which means the data values after 2.5m will be shown as 255.</p>
+<p>simpleimage module is configured in such a way that it can be build outside ifm3d-example repository which can be helpful for build applications which do not want to add OPenCV or PCL as a dependency.</p>
 <p>If you have questions, feel free to ask on our
 <a class="reference external" href="https://github.com/ifm/ifm3d/issues">issue tracker</a>.</p>
 </section>

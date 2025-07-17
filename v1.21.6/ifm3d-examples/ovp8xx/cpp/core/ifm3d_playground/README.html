@@ -103,14 +103,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="ifm3d-playground-project">
+  <blockquote>
+<div><p>⚠️ <strong>DEPRECATED</strong>: This project is no longer maintained and should not be used for new development.</p>
+</div></blockquote>
+<section id="ifm3d-playground-project">
 <h1>ifm3d playground project<a class="headerlink" href="#ifm3d-playground-project" title="Link to this heading"></a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">ifm3d_playground</span></code> provides the out of ifm3d source example with CMake configurations.
 User can copy ifm3d_playground folder out of the ifm3d source and can use following instructions
 to build the example and develop it further.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>ifm3d_playground
-$<span class="w"> </span>mkdir<span class="w"> </span>build<span class="w"> </span>
-$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build<span class="w"> </span>
+$<span class="w"> </span>mkdir<span class="w"> </span>build
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
 $<span class="w"> </span>cmake<span class="w"> </span>-DCMAKE_PREFIX_PATH<span class="o">=</span>&lt;ifm3d<span class="w"> </span>install<span class="w"> </span>path&gt;<span class="w"> </span>..
 $<span class="w"> </span>cmake<span class="w"> </span>--build<span class="w"> </span>.<span class="w"> </span>--config<span class="w"> </span>Release<span class="w"> </span>--target<span class="w"> </span>ALL_BUILD
 </pre></div>

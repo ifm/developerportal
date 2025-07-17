@@ -105,27 +105,22 @@
              
   <section id="ods-examples">
 <h1>ODS examples<a class="headerlink" href="#ods-examples" title="Link to this heading"></a></h1>
+<p>The example scripts provided are intended to be used as teaching resources and as building block in more complex applications. The user is free to disassemble, extend, or do whatever they please with this code. All the functions needed to work with an ODS applications are part of the ifm3d library. The rest of the code is added to simplify readability, usage and error handling.</p>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
-<p>The example files provided in this mini-library are intended to be used as teaching resources and as building block in more complex applications. The user is free to disassemble, extend, or do whatever they please with this code. All the functions needed to work with an ODS applications are part of the ifm3d library. The rest of the code is added to simplify readability, usage and error handling.</p>
+<p>The ODS scripts all include a callback to monitor diagnostics with a focus on the application status. As soon as a new diagnostic appears, the status of the application is monitored (<code class="docutils literal notranslate"><span class="pre">no_incident</span></code>, <code class="docutils literal notranslate"><span class="pre">info</span></code>, <code class="docutils literal notranslate"><span class="pre">minor</span></code>, <code class="docutils literal notranslate"><span class="pre">major</span></code>, <code class="docutils literal notranslate"><span class="pre">critical</span></code>). The ODS scripts are briefly described below:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">ods_config.h</span></code> and <code class="docutils literal notranslate"><span class="pre">ods_config_main.cpp</span></code> show how to get and set configurations on the O3R platform. The header files can be reused in other applications that need configurations functionalities. This example showcases the use of a JSON validator that provides verbose errors when wrong configurations are provided.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ods_get_data.h</span></code> and <code class="docutils literal notranslate"><span class="pre">ods_get_data_main.cpp</span></code> show how to properly start the data stream, implement a callback that will fill a queue with data, and retrieve data from the queue. Use the header file to make use of the data queue or of the data streamer in your application.</p></li>
-</ul>
-<p>In <code class="docutils literal notranslate"><span class="pre">ods_demo.cpp</span></code>, we show how all these pieces can be used together to form a complete ODS application:</p>
-<ul class="simple">
-<li><p>We configure two applications, one for the “front” view and one for the “back” view,</p></li>
-<li><p>We start streaming data from the front view and display it,</p></li>
-<li><p>After some seconds, we switch view to use the “back” view, and display the data,</p></li>
-<li><p>In parallel, we display the diagnostic messages as they are received from the O3R.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ods_config.cpp</span></code> demonstrates how to set simple ODS JSON configurations on the O3R platform.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ods_config_preset.cpp</span></code> demonstrates how to set advanced ODS JSON configurations, including presets, on the O3R platform.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ods_get_data.hpp</span></code> and <code class="docutils literal notranslate"><span class="pre">ods_get_data_main.cpp</span></code> demonstrates how to receive ODS data from the O3R platform.</p></li>
 </ul>
 <blockquote>
-<div><p>Note: The scripts mentioned above do not take into account all that is necessary for a production application to function long term. We de not handle deployment details, for instance using docker, or specific error handling strategies, like turning off cameras if overheating or restarting the data stream if it was interrupted.</p>
+<div><p>Note: The scripts mentioned above do not take into account all that is necessary for a production application to function long term. We de not handle deployment details, for instance using Docker, or specific error handling strategies, like turning off cameras if overheating or restarting the data stream if it was interrupted.</p>
 </div></blockquote>
 </section>
 <section id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading"></a></h2>
-<p>The examples use example JSON configuration files which contain dummy camera calibration and application parameters. These example files expect specific camera ports (3D cameras in ports 2 and 3). If your setup is different, edit the configuration files in <code class="docutils literal notranslate"><span class="pre">/ods/configs</span></code>. Make sure to recompile the code after changing the configuration files, because they are copied as part of the compilation process.</p>
+<p>The examples use sample JSON configuration files that contain dummy camera calibration and application parameters. These files expect specific camera ports (3D cameras on ports 2 and 3). If your setup differs, edit the configuration files in <code class="docutils literal notranslate"><span class="pre">/configs</span></code>. Make sure to recompile the code after changing the configuration files, because they are copied as part of the compilation process.</p>
 </section>
 </section>
 

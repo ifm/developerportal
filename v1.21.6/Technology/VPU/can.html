@@ -160,81 +160,6 @@
 </li>
 <li><p>Using Python script: see the script below or download it from <a class="reference external" href="https://github.com/ifm/ifm3d-examples/tree/main/ovp8xx/python/ovp8xxexamples/core/can_activate.py">ifm3d-examples</a>.</p></li>
 </ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
-<span class="c1">#############################################</span>
-<span class="c1"># Copyright 2024-present ifm electronic, gmbh</span>
-<span class="c1"># SPDX-License-Identifier: Apache-2.0</span>
-<span class="c1">#############################################</span>
-<span class="c1"># The CAN interface can only be activated with firmware</span>
-<span class="c1"># versions 1.4.X or higher</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">ifm3dpy.device</span><span class="w"> </span><span class="kn">import</span> <span class="n">O3R</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
-
-<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">_check_can_availability</span><span class="p">(</span><span class="n">o3r</span><span class="p">)</span><span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="k">if</span> <span class="s2">&quot;can0&quot;</span> <span class="ow">in</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/network/interfaces&quot;</span><span class="p">])[</span><span class="s2">&quot;device&quot;</span><span class="p">][</span><span class="s2">&quot;network&quot;</span><span class="p">][</span><span class="s2">&quot;interfaces&quot;</span><span class="p">]:</span>
-        <span class="c1"># Get the can0 information: active status and bitrate</span>
-        <span class="n">can_info</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/network/interfaces/can0&quot;</span><span class="p">])[</span><span class="s2">&quot;device&quot;</span><span class="p">][</span><span class="s2">&quot;network&quot;</span><span class="p">][</span><span class="s2">&quot;interfaces&quot;</span><span class="p">][</span><span class="s2">&quot;can0&quot;</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">can_info</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;CAN interface not available in current firmware version.&quot;</span><span class="p">)</span>
-        
-        
-
-<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">ip</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span>
-    <span class="n">can_info</span> <span class="o">=</span> <span class="n">_check_can_availability</span><span class="p">(</span><span class="n">o3r</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">can_info</span><span class="p">[</span><span class="s2">&quot;active&quot;</span><span class="p">]:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;activating can0 interface ...&quot;</span><span class="p">)</span>
-        <span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">({</span>
-            <span class="s2">&quot;device&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;network&quot;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s2">&quot;interfaces&quot;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="s2">&quot;can0&quot;</span><span class="p">:</span> <span class="p">{</span>
-                            <span class="s2">&quot;active&quot;</span><span class="p">:</span> <span class="kc">True</span>
-                            <span class="c1">#&quot;bitrate&quot;: &#39;125K&#39; # here set the bitrate &#39;250K&#39;, &#39;500K&#39; ...</span>
-
-                        <span class="p">}</span>
-                    <span class="p">}</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">})</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Rebooting the device...&quot;</span><span class="p">)</span>
-        <span class="n">o3r</span><span class="o">.</span><span class="n">reboot</span><span class="p">()</span>
-        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">150</span><span class="p">)</span>
-        <span class="c1"># For the sake of simplicity we assume that the boot-up process is not timing out,</span>
-        <span class="c1"># and we simply check that the boot sequence has completed.</span>
-        <span class="c1"># For a fool proof boot-up monitoring, review the bootup_monitor.py example.</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/diagnostic/confInitStages&quot;</span><span class="p">])[</span><span class="s2">&quot;device&quot;</span><span class="p">][</span><span class="s2">&quot;diagnostic&quot;</span><span class="p">][</span><span class="s2">&quot;confInitStages&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="s2">&quot;device&quot;</span><span class="p">,</span> <span class="s2">&quot;ports&quot;</span><span class="p">,</span> <span class="s2">&quot;applications&quot;</span><span class="p">]:</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;VPU not properly booted&quot;</span><span class="p">)</span>
-
-    <span class="n">can_info</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/network/interfaces/can0&quot;</span><span class="p">])[</span><span class="s2">&quot;device&quot;</span><span class="p">][</span><span class="s2">&quot;network&quot;</span><span class="p">][</span><span class="s2">&quot;interfaces&quot;</span><span class="p">][</span><span class="s2">&quot;can0&quot;</span><span class="p">]</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">can_info</span><span class="p">[</span><span class="s2">&quot;active&quot;</span><span class="p">]:</span>
-        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Activating the can0 interface failed.&quot;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The can0 interface is active!&quot;</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="c1"># If the example python package was build, import the configuration</span>
-        <span class="kn">from</span><span class="w"> </span><span class="nn">ovp8xxexamples</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
-
-        <span class="n">IP</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">IP</span>
-    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-        <span class="c1"># Otherwise, use default values</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
-            <span class="s2">&quot;Unable to import the configuration.</span><span class="se">\n</span><span class="s2">Please run &#39;pip install -e .&#39; from the python root directory&quot;</span>
-        <span class="p">)</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Defaulting to the default configuration.&quot;</span><span class="p">)</span>
-        <span class="n">IP</span> <span class="o">=</span> <span class="s2">&quot;192.168.0.69&quot;</span>
-    
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Device IP: </span><span class="si">{</span><span class="n">IP</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">main</span><span class="p">(</span><span class="n">IP</span><span class="p">)</span>
-</pre></div>
-</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>New network settings will only be applied after reboot. The Python script performs a reboot.
@@ -277,12 +202,13 @@ Using the <code class="docutils literal notranslate"><span class="pre">ifm3d</sp
 </div>
 <p>This Dockerfile installs Python and the CANopen library for Python. The example script is then installed into the image and set to automatically execute when the container is run.</p>
 <p><strong>Step 3</strong>: Use the example Python script below (or download the script <a class="reference external" href="https://github.com/ifm/ifm3d-examples/tree/main/ovp8xx/docker/can/can_example.py">here</a>) and download the required <a class="reference external" href="https://www.ifm.com/de/en/product/DTM425?tab=documents">EDS file</a> (filename <code class="docutils literal notranslate"><span class="pre">DTM425.eds</span></code>). Place the files in the same location as the Dockerfile.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#############################################</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#############################################</span>
 <span class="c1"># Copyright 2024-present ifm electronic, gmbh</span>
 <span class="c1"># SPDX-License-Identifier: Apache-2.0</span>
 <span class="c1">#############################################</span>
-<span class="c1">#!/usr/bin/env python3</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
 <span class="kn">import</span><span class="w"> </span><span class="nn">canopen</span>
 
 
@@ -308,14 +234,13 @@ Using the <code class="docutils literal notranslate"><span class="pre">ifm3d</sp
     <span class="n">memory_size</span> <span class="o">=</span> <span class="n">device</span><span class="o">.</span><span class="n">sdo</span><span class="p">[</span><span class="mh">0x2182</span><span class="p">][</span><span class="mh">0x4</span><span class="p">]</span><span class="o">.</span><span class="n">raw</span>
 
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">memory_size</span><span class="p">:</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\x00</span><span class="s1">&#39;</span> <span class="o">*</span> <span class="p">(</span><span class="n">memory_size</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="p">(</span><span class="n">memory_size</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
 
     <span class="k">for</span> <span class="n">offset</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">memory_size</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
-        <span class="n">length</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span> <span class="k">if</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">8</span> <span class="o">&lt;=</span> <span class="n">memory_size</span> <span class="k">else</span>
-                  <span class="n">memory_size</span> <span class="o">-</span> <span class="n">offset</span><span class="p">)</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="mi">8</span> <span class="k">if</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">8</span> <span class="o">&lt;=</span> <span class="n">memory_size</span> <span class="k">else</span> <span class="n">memory_size</span> <span class="o">-</span> <span class="n">offset</span>
         <span class="n">device</span><span class="o">.</span><span class="n">sdo</span><span class="p">[</span><span class="mh">0x2380</span><span class="p">]</span><span class="o">.</span><span class="n">raw</span> <span class="o">=</span> <span class="n">offset</span>
         <span class="n">device</span><span class="o">.</span><span class="n">sdo</span><span class="p">[</span><span class="mh">0x2381</span><span class="p">]</span><span class="o">.</span><span class="n">raw</span> <span class="o">=</span> <span class="n">length</span>
-        <span class="n">device</span><span class="o">.</span><span class="n">sdo</span><span class="p">[</span><span class="mh">0x2382</span><span class="p">]</span><span class="o">.</span><span class="n">raw</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">offset</span><span class="p">:</span><span class="n">offset</span> <span class="o">+</span> <span class="n">length</span><span class="p">]</span>
+        <span class="n">device</span><span class="o">.</span><span class="n">sdo</span><span class="p">[</span><span class="mh">0x2382</span><span class="p">]</span><span class="o">.</span><span class="n">raw</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">offset</span> <span class="p">:</span> <span class="n">offset</span> <span class="o">+</span> <span class="n">length</span><span class="p">]</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">read_tag</span><span class="p">(</span><span class="n">device</span><span class="p">):</span>
@@ -333,11 +258,12 @@ Using the <code class="docutils literal notranslate"><span class="pre">ifm3d</sp
 
 <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
     <span class="n">nw</span><span class="p">,</span> <span class="n">device</span> <span class="o">=</span> <span class="n">connect</span><span class="p">()</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\xDE\xAD\xBE\xEF</span><span class="s1">&#39;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\xDE\xAD\xBE\xEF</span><span class="s2">&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Writing tag:&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
     <span class="n">write_tag</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reading tag:&quot;</span><span class="p">,</span> <span class="n">read_tag</span><span class="p">(</span><span class="n">device</span><span class="p">))</span>
     <span class="n">disconnect</span><span class="p">(</span><span class="n">nw</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
+
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
@@ -373,7 +299,7 @@ With a sample point of 0.5, the measurements will be taken at half the width of 
 <li><p>Create a Dockerfile:</p></li>
 </ol>
 <div class="highlight-docker notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="w"> </span><span class="s">arm64v8/alpine</span>
-<span class="c"># Install required packages </span>
+<span class="c"># Install required packages</span>
 <span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>add<span class="w"> </span>--no-cache<span class="w"> </span>iproute2<span class="w"> </span>can-utils
 <span class="c"># Create a script to change sample-point and bitrate</span>
 <span class="k">RUN</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;#!/bin/ash \</span>

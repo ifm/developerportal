@@ -141,156 +141,169 @@
   <section id="how-to-monitor-the-diagnostic">
 <h1>How to monitor the diagnostic<a class="headerlink" href="#how-to-monitor-the-diagnostic" title="Link to this heading"></a></h1>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
-<span class="cm"> * Copyright 2022-present ifm electronic, gmbh</span>
+<span class="cm"> * Copyright 2025-present ifm electronic, gmbh</span>
 <span class="cm"> * SPDX-License-Identifier: Apache-2.0</span>
+<span class="cm"> * Demonstrates how to retrieve diagnostics using the O3RDiagnostic class</span>
+<span class="cm"> * and handle diagnostics asynchronously using a callback function.</span>
 <span class="cm"> */</span>
-
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;diagnostic.hpp&quot;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ifm3d/device/o3r.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;chrono&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thread&gt;</span>
 
-<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="o">::</span><span class="nn">chrono_literals</span><span class="p">;</span>
-<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">ifm3d</span><span class="o">::</span><span class="nn">literals</span><span class="p">;</span>
-
-<span class="kt">void</span><span class="w"> </span><span class="nf">CustomCallback</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">id_</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">message_</span><span class="p">){</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Custom callback: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">id_</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">message_</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="p">}</span>
-
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="c1">// Get the IP from the environment if defined</span>
-<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">IP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">getenv</span><span class="p">(</span><span class="s">&quot;IFM3D_IP&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">getenv</span><span class="p">(</span><span class="s">&quot;IFM3D_IP&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">ifm3d</span><span class="o">::</span><span class="n">DEFAULT_IP</span><span class="p">.</span><span class="n">c_str</span><span class="p">();</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;IP: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">IP</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">ip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;192.168.0.69&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Replace with your O3R IP address</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">o3r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">O3R</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ip</span><span class="p">);</span>
+<span class="w">  </span><span class="n">O3RDiagnostic</span><span class="w"> </span><span class="n">diagnostic</span><span class="p">(</span><span class="n">o3r</span><span class="p">);</span>
 
-<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">o3r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">O3R</span><span class="o">&gt;</span><span class="p">(</span><span class="n">IP</span><span class="p">);</span>
-<span class="w">  </span>
-<span class="w">  </span><span class="c1">// To log to file, use diagnostic(o3r, true, &quot;file_name&quot;).</span>
-<span class="w">  </span><span class="c1">// Log outputs will be redirected both to the file and</span>
-<span class="w">  </span><span class="c1">// to the console.</span>
-<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">log_to_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
-<span class="w">  </span><span class="n">O3RDiagnostic</span><span class="w"> </span><span class="n">diagnostic</span><span class="p">(</span><span class="n">o3r</span><span class="p">,</span><span class="w"> </span><span class="n">log_to_file</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Retrieve and display active diagnostics</span>
+<span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">active_diagnostics</span><span class="w"> </span><span class="o">=</span>
+<span class="w">        </span><span class="n">diagnostic</span><span class="p">.</span><span class="n">GetDiagnosticFiltered</span><span class="p">({{</span><span class="s">&quot;state&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;active&quot;</span><span class="p">}});</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Current active diagnostics:</span><span class="se">\n</span><span class="s">&quot;</span>
+<span class="w">              </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">active_diagnostics</span><span class="p">.</span><span class="n">dump</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="w">              </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Pretty print with 4 spaces</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">exception</span><span class="w"> </span><span class="o">&amp;</span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Error retrieving active diagnostics: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="c1">////////////////////////////////////////////////</span>
-<span class="w">  </span><span class="c1">// Examples on how to retrieve the diagnostic</span>
-<span class="w">  </span><span class="c1">// active and/or dormant.</span>
-<span class="w">  </span><span class="c1">////////////////////////////////////////////////</span>
-<span class="w">  </span><span class="c1">// Using ifm3d::json::object()</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;All current diagnostics:</span><span class="se">\n</span><span class="s">&quot;</span>
-<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">diagnostic</span><span class="p">.</span><span class="n">GetDiagnosticFiltered</span><span class="p">(</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">object</span><span class="p">()).</span><span class="n">dump</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Loop for 5 seconds, displaying only the relevant groups</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Filtering diagnostics for 5 seconds...</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">start_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">steady_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">steady_clock</span><span class="o">::</span><span class="n">now</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start_time</span><span class="w"> </span><span class="o">&lt;</span>
+<span class="w">         </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">auto</span><span class="w"> </span><span class="n">filtered_diagnostics</span><span class="w"> </span><span class="o">=</span>
+<span class="w">          </span><span class="n">diagnostic</span><span class="p">.</span><span class="n">GetDiagnosticFiltered</span><span class="p">({{</span><span class="s">&quot;state&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;active&quot;</span><span class="p">}});</span>
+<span class="w">      </span><span class="k">auto</span><span class="w"> </span><span class="n">groups</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">filtered_diagnostics</span><span class="p">[</span><span class="s">&quot;groups&quot;</span><span class="p">];</span>
 
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Active diagnostics:</span><span class="se">\n</span><span class="s">&quot;</span>
-<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">diagnostic</span><span class="p">.</span><span class="n">GetDiagnosticFiltered</span><span class="p">(</span>
-<span class="w">                   </span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">parse</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s">{&quot;state&quot;: &quot;active&quot;}</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">)).</span><span class="n">dump</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span>
-<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span>
-<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">      </span><span class="c1">// Display the groups status for existing ports and applications</span>
+<span class="w">      </span><span class="n">json</span><span class="w"> </span><span class="n">filtered_groups</span><span class="p">;</span>
+<span class="w">      </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="p">[</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">]</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">groups</span><span class="p">.</span><span class="n">items</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s">&quot;not_available&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">filtered_groups</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
 
-<span class="w">  </span><span class="c1">////////////////////////////////////////////////</span>
-<span class="w">  </span><span class="c1">// Start the asynchronous diagnostic monitoring</span>
-<span class="w">  </span><span class="c1">// and display errors for &quot;d&quot; seconds.</span>
-<span class="w">  </span><span class="c1">////////////////////////////////////////////////</span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Current active diagnostic groups (filtered):</span><span class="se">\n</span><span class="s">&quot;</span>
+<span class="w">                </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">filtered_groups</span><span class="p">.</span><span class="n">dump</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="w">                </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Pretty print with 4 spaces</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">exception</span><span class="w"> </span><span class="o">&amp;</span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Error retrieving filtered diagnostics: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">()</span>
+<span class="w">                </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">  </span><span class="n">diagnostic</span><span class="p">.</span><span class="n">StartAsyncDiag</span><span class="p">(</span><span class="n">CustomCallback</span><span class="p">);</span>
-<span class="w">  </span><span class="c1">// You can also call the function without a custom </span>
-<span class="w">  </span><span class="c1">// callback, in which case the default callback will</span>
-<span class="w">  </span><span class="c1">// be used:</span>
-<span class="w">  </span><span class="c1">// diagnostic.StartAsyncDiag();</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span><span class="w"> </span><span class="c1">// Wait 1 second before the next iteration</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="mi">20</span><span class="n">s</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Start asynchronous diagnostic monitoring</span>
+<span class="w">  </span><span class="n">diagnostic</span><span class="p">.</span><span class="n">StartAsyncDiagnostics</span><span class="p">();</span>
 
-<span class="w">  </span><span class="n">diagnostic</span><span class="p">.</span><span class="n">StopAsyncDiag</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// Run asynchronous monitoring until interrupted</span>
+<span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Press Ctrl+C to stop diagnostic monitoring.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="mi">100</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(...)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">diagnostic</span><span class="p">.</span><span class="n">StopAsyncDiagnostics</span><span class="p">();</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Stopping diagnostic monitoring.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
-<span class="cm"> * Copyright 2022-present ifm electronic, gmbh</span>
-<span class="cm"> * SPDX-License-Identifier: Apache-2.0</span>
+<span class="cm"> * Shared functionality for O3R diagnostics.</span>
 <span class="cm"> */</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdlib&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;functional&gt;</span>
+<span class="cp">#ifndef DIAGNOSTICS_HPP</span>
+<span class="cp">#define DIAGNOSTICS_HPP</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;chrono&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ifm3d/common/json.hpp&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ifm3d/device/o3r.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ifm3d/fg.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
-<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">ifm3d</span><span class="o">::</span><span class="nn">literals</span><span class="p">;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdexcept&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thread&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="p">;</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">O3RDiagnostic</span><span class="w"> </span><span class="p">{</span>
 <span class="k">public</span><span class="o">:</span>
-<span class="w">  </span><span class="n">O3RDiagnostic</span><span class="p">(</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">O3R</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">o3r</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">log_to_file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span>
-<span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">file_name_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">)</span>
-<span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="n">o3r_</span><span class="p">(</span><span class="n">o3r</span><span class="p">),</span><span class="w"> </span><span class="n">log_to_file_</span><span class="p">(</span><span class="n">log_to_file</span><span class="p">),</span>
-<span class="w">        </span><span class="n">fg_</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">FrameGrabber</span><span class="o">&gt;</span><span class="p">(</span><span class="n">o3r_</span><span class="p">,</span><span class="w"> </span><span class="mi">50009</span><span class="p">)),</span>
-<span class="w">        </span><span class="n">consoleBuffer_</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="p">.</span><span class="n">rdbuf</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">log_to_file_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">log_file_name</span><span class="w"> </span><span class="o">=</span>
-<span class="w">          </span><span class="p">(</span><span class="n">file_name_</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s">&quot;O3R_diagnostic.txt&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">file_name_</span><span class="p">;</span>
-<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">log_to_file_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">logFile_</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">log_file_name</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ios</span><span class="o">::</span><span class="n">app</span><span class="p">);</span><span class="w"> </span><span class="c1">// Open the log file</span>
-<span class="w">        </span><span class="c1">// Check if the file opened successfully</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">logFile_</span><span class="p">.</span><span class="n">is_open</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Failed to open log file: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">log_file_name</span>
-<span class="w">                    </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">          </span><span class="k">return</span><span class="p">;</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">streambuf</span><span class="w"> </span><span class="o">*</span><span class="n">fileBuffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">logFile_</span><span class="p">.</span><span class="n">rdbuf</span><span class="p">();</span>
-<span class="w">        </span><span class="c1">// Redirect std::clog to the log file</span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="p">.</span><span class="n">rdbuf</span><span class="p">(</span><span class="n">fileBuffer</span><span class="p">);</span>
-<span class="w">      </span><span class="p">}</span>
+<span class="w">  </span><span class="n">O3RDiagnostic</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">O3R</span><span class="o">&gt;</span><span class="w"> </span><span class="n">o3r</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">o3r_</span><span class="p">(</span><span class="n">o3r</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">diag_fg_</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">FrameGrabber</span><span class="o">&gt;</span><span class="p">(</span><span class="n">o3r_</span><span class="p">,</span><span class="w"> </span><span class="mi">50009</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">StartAsyncDiagnostics</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">diag_fg_</span><span class="o">-&gt;</span><span class="n">OnAsyncError</span><span class="p">(</span><span class="n">async_diagnostic_callback</span><span class="p">);</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Starting async diagnostic monitoring. Errors and &quot;</span>
+<span class="w">                 </span><span class="s">&quot;descriptions will be logged.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">diag_fg_</span><span class="o">-&gt;</span><span class="n">Start</span><span class="p">({});</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">StopAsyncDiagnostics</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Stopping async diagnostic monitoring.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">diag_fg_</span><span class="o">-&gt;</span><span class="n">Stop</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="n">json</span><span class="w"> </span><span class="n">GetDiagnosticFiltered</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">json</span><span class="w"> </span><span class="o">&amp;</span><span class="n">filter_mask</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{})</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Polling O3R diagnostic data with filter: &quot;</span>
+<span class="w">                </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">filter_mask</span><span class="p">.</span><span class="n">dump</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">o3r_</span><span class="o">-&gt;</span><span class="n">GetDiagnosticFiltered</span><span class="p">(</span><span class="n">filter_mask</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">exception</span><span class="w"> </span><span class="o">&amp;</span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Error when getting diagnostic data: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="k">throw</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="p">.</span><span class="n">rdbuf</span><span class="p">(</span><span class="n">consoleBuffer_</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="w"> </span><span class="n">GetDiagnosticFiltered</span><span class="p">(</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="w"> </span><span class="n">filter_mask_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">o3r_</span><span class="o">-&gt;</span><span class="n">GetDiagnosticFiltered</span><span class="p">(</span><span class="n">filter_mask_</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">async_diagnostic_callback</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">json</span><span class="w"> </span><span class="n">diagnostic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">json</span><span class="o">::</span><span class="n">parse</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
 
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">StartAsyncDiag</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">fg_</span><span class="o">-&gt;</span><span class="n">OnAsyncError</span><span class="p">([</span><span class="k">this</span><span class="p">](</span><span class="kt">int</span><span class="w"> </span><span class="n">id_</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="n">message_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="k">this</span><span class="o">-&gt;</span><span class="n">AsyncDiagCallback_</span><span class="p">(</span><span class="n">id_</span><span class="p">,</span><span class="w"> </span><span class="n">message_</span><span class="p">);</span>
-<span class="w">    </span><span class="p">});</span>
-<span class="w">    </span><span class="n">fg_</span><span class="o">-&gt;</span><span class="n">Start</span><span class="p">({});</span>
-<span class="w">  </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// Extract severity levels</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">severity_levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;critical&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;major&quot;</span><span class="p">,</span>
+<span class="w">                                                      </span><span class="s">&quot;minor&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;info&quot;</span><span class="p">};</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">default_severity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;major&quot;</span><span class="p">;</span>
 
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">StartAsyncDiag</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="p">)</span><span class="o">&gt;</span><span class="w"> </span><span class="n">callback</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">fg_</span><span class="o">-&gt;</span><span class="n">OnAsyncError</span><span class="p">(</span><span class="n">callback</span><span class="p">);</span>
-<span class="w">    </span><span class="n">fg_</span><span class="o">-&gt;</span><span class="n">Start</span><span class="p">({});</span>
-<span class="w">  </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// Check if events exist</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">diagnostic</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="s">&quot;events&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">diagnostic</span><span class="p">[</span><span class="s">&quot;events&quot;</span><span class="p">].</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;No diagnostic events found.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">StopAsyncDiag</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">fg_</span><span class="o">-&gt;</span><span class="n">Stop</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// Extract events and filter by severity</span>
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">events</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">diagnostic</span><span class="p">[</span><span class="s">&quot;events&quot;</span><span class="p">];</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">event</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">events</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">json</span><span class="w"> </span><span class="n">filtered_diag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{{</span><span class="s">&quot;id&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">event</span><span class="p">[</span><span class="s">&quot;id&quot;</span><span class="p">]},</span>
+<span class="w">                            </span><span class="p">{</span><span class="s">&quot;name&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">event</span><span class="p">[</span><span class="s">&quot;name&quot;</span><span class="p">]},</span>
+<span class="w">                            </span><span class="p">{</span><span class="s">&quot;severity&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">event</span><span class="p">[</span><span class="s">&quot;severity&quot;</span><span class="p">]},</span>
+<span class="w">                            </span><span class="p">{</span><span class="s">&quot;description&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">event</span><span class="p">[</span><span class="s">&quot;description&quot;</span><span class="p">]},</span>
+<span class="w">                            </span><span class="p">{</span><span class="s">&quot;source&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">event</span><span class="p">[</span><span class="s">&quot;source&quot;</span><span class="p">]},</span>
+<span class="w">                            </span><span class="p">{</span><span class="s">&quot;state&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">event</span><span class="p">[</span><span class="s">&quot;state&quot;</span><span class="p">]},</span>
+<span class="w">                            </span><span class="p">{</span><span class="s">&quot;timestamp&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">diagnostic</span><span class="p">[</span><span class="s">&quot;timestamp&quot;</span><span class="p">]}};</span>
 
-<span class="w">  </span><span class="o">~</span><span class="n">O3RDiagnostic</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// Stop the frame grabber if it&#39;s still running</span>
-<span class="w">    </span><span class="n">fg_</span><span class="o">-&gt;</span><span class="n">Stop</span><span class="p">();</span>
+<span class="w">      </span><span class="c1">// Check severity and print critical diagnostics</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">filtered_diag</span><span class="p">[</span><span class="s">&quot;severity&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;critical&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;⚠️ Critical diagnostic appeared! Stop the robot and &quot;</span>
+<span class="w">                     </span><span class="s">&quot;follow the handling strategy.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="c1">// here you can add your own handling strategy and stopping the robot</span>
 
-<span class="w">    </span><span class="c1">// Restore the console output stream buffer</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="p">.</span><span class="n">rdbuf</span><span class="p">(</span><span class="n">consoleBuffer_</span><span class="p">);</span>
-
-<span class="w">    </span><span class="c1">// Close the log file if it&#39;s open</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">logFile_</span><span class="p">.</span><span class="n">is_open</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">logFile_</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+<span class="w">      </span><span class="c1">// Print JSON with indentation (pretty print)</span>
+<span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Received diagnostic message:</span><span class="se">\n</span><span class="s">&quot;</span>
+<span class="w">                </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">filtered_diag</span><span class="p">.</span><span class="n">dump</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// &#39;4&#39; is indentation level</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 
 <span class="k">private</span><span class="o">:</span>
-<span class="w">  </span><span class="n">ifm3d</span><span class="o">::</span><span class="n">O3R</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">o3r_</span><span class="p">;</span>
-<span class="w">  </span><span class="n">ifm3d</span><span class="o">::</span><span class="n">FrameGrabber</span><span class="o">::</span><span class="n">Ptr</span><span class="w"> </span><span class="n">fg_</span><span class="p">;</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">streambuf</span><span class="w"> </span><span class="o">*</span><span class="n">consoleBuffer_</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">log_to_file_</span><span class="p">;</span>
-<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">ofstream</span><span class="w"> </span><span class="n">logFile_</span><span class="p">;</span>
-<span class="w">  </span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="w"> </span><span class="n">diagnostic_</span><span class="w"> </span><span class="o">=</span>
-<span class="w">      </span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">parse</span><span class="p">(</span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s">{&quot;id&quot;: &quot;None&quot;, &quot;message&quot;: &quot;None&quot;}</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span>
-<span class="w">  </span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">AsyncDiagCallback_</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">id_</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">message_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">diagnostic_</span><span class="p">[</span><span class="s">&quot;id&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">diagnostic_</span><span class="p">[</span><span class="s">&quot;message&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">message_</span><span class="p">;</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">//////////////////////////////////&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Id: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">diagnostic_</span><span class="p">[</span><span class="s">&quot;id&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">clog</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Message: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">diagnostic_</span><span class="p">[</span><span class="s">&quot;message&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">O3R</span><span class="o">&gt;</span><span class="w"> </span><span class="n">o3r_</span><span class="p">;</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">FrameGrabber</span><span class="o">&gt;</span><span class="w"> </span><span class="n">diag_fg_</span><span class="p">;</span>
 <span class="p">};</span>
+
+<span class="cp">#endif </span><span class="c1">// DIAGNOSTICS_HPP</span>
 </pre></div>
 </div>
 </section>
