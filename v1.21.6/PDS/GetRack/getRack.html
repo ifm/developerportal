@@ -159,7 +159,7 @@
 <h2>Coordinate system<a class="headerlink" href="#coordinate-system" title="Link to this heading"></a></h2>
 <p>The origin of the rack coordinate system is the intersection of the detected upright and the beam, on the plane formed by the beam and the upright’s front faces.
 If the detected upright and beam do not intersect, the origin of the rack coordinate will be placed at the intersection of the horizontal beam and the line which is orthogonal to both the beam and the upright.
-If the left upright is segmented then the Y-axis of the established rack coordinate system points to the right and if the right upright is segmented then the Y-axis will point towards the left.</p>
+If the left upright is segmented then the Y-axis of the established rack coordinate system points to the right (left-handed coordinate system) and if the right upright is segmented then the Y-axis will point towards the left (right-handed coordinate system).</p>
 </section>
 <section id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading"></a></h2>
@@ -275,7 +275,7 @@ These parameters are described in the list below:</p>
 </section>
 <section id="custom-rack-parameters">
 <h3>Custom rack parameters<a class="headerlink" href="#custom-rack-parameters" title="Link to this heading"></a></h3>
-<p>In typical scenarios, using the default parameters at <code class="docutils literal notranslate"><span class="pre">configuration/parameters/getRack</span></code> will be sufficient.
+<p>In typical scenarios, using the default parameters at <code class="docutils literal notranslate"><span class="pre">configuration/parameter/getRack</span></code> will be sufficient.
 However, in some cases they need to be adjusted, for example to handle a custom type of rack. In this case, specific dimensions can be provided for the beam height, the upright width, etc.
 See the list below for the details of the available parameters.</p>
 <table class="docutils align-default">
@@ -447,7 +447,8 @@ See the list below for the details of the available parameters.</p>
 <img alt="" src="../../_images/rack_params_7.png" />
 <img alt="" src="../../_images/rack_params_8.png" />
 <img alt=" parameters" src="../../_images/rack_params_9.png" />
-<img alt=" parameters" src="../../_images/rack_params_10.png" /></p>
+<img alt=" parameters" src="../../_images/rack_params_10.png" />
+Note that the VOI for for the upright beam search starts at y=0 and extends to ymin or ymax depending on the <code class="docutils literal notranslate"><span class="pre">horizontalDropPosition</span></code> parameter.</p>
 </section>
 </section>
 <section id="results">

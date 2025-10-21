@@ -12,7 +12,7 @@ In the above picture, the vertical blue line represents the estimated inner edge
 
 The origin of the rack coordinate system is the intersection of the detected upright and the beam, on the plane formed by the beam and the upright's front faces.
 If the detected upright and beam do not intersect, the origin of the rack coordinate will be placed at the intersection of the horizontal beam and the line which is orthogonal to both the beam and the upright.
-If the left upright is segmented then the Y-axis of the established rack coordinate system points to the right and if the right upright is segmented then the Y-axis will point towards the left.
+If the left upright is segmented then the Y-axis of the established rack coordinate system points to the right (left-handed coordinate system) and if the right upright is segmented then the Y-axis will point towards the left (right-handed coordinate system).
 
 ## Configuration
 
@@ -25,7 +25,7 @@ These parameters are described in the list below:
 
 ### Custom rack parameters
 
-In typical scenarios, using the default parameters at `configuration/parameters/getRack` will be sufficient. 
+In typical scenarios, using the default parameters at `configuration/parameter/getRack` will be sufficient. 
 However, in some cases they need to be adjusted, for example to handle a custom type of rack. In this case, specific dimensions can be provided for the beam height, the upright width, etc. 
 See the list below for the details of the available parameters.
 
@@ -44,6 +44,7 @@ For a visual representation of the available parameters, refer to the images bel
 ![`transform`](./resources/rack_params_8.png)
 ![`upright` parameters](./resources/rack_params_9.png)
 ![`upright` parameters](./resources/rack_params_10.png)
+Note that the VOI for for the upright beam search starts at y=0 and extends to ymin or ymax depending on the `horizontalDropPosition` parameter.
 
 
 ## Results
