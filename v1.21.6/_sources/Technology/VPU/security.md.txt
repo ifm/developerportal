@@ -91,7 +91,7 @@ A password must be set before configurations can be sealed. Passwords are used t
 There are no guidelines to select the the passwords but please chose the strong passwords as there is no current brute-force lockout. A proper password management is essential.
 
 :::{note}
-    Support for managing passwords via the CLI was introduced in ifm3d API version 1.6.12 and later. Ensure you are using this version or newer to access this functionality.
+    Support for managing passwords via the CLI was introduced in ifm3d API version >= 1.6.12. Ensure you are using this version or newer to access this functionality.
 :::
 
 :::::{tabs}

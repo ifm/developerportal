@@ -190,7 +190,7 @@ $$ -->
 </section>
 <section id="ods-application-outputs">
 <h2>ODS application outputs<a class="headerlink" href="#ods-application-outputs" title="Link to this heading"></a></h2>
-<p>From the ifm3d API versions &gt;= 1.6.6, the user is able to retrieve both standard occupancy grid and polar occupancy grid information from the application interface.</p>
+<p>From ifm3d API version &gt;= 1.6.6, the user is able to retrieve both standard occupancy grid and polar occupancy grid information from the application interface.</p>
 <p>To retrieve the standard occupancy grid, please use <code class="docutils literal notranslate"><span class="pre">ODSOccupancyGridV1</span></code> class in ifm3d API. For more information please visit <a class="reference external" href="https://api.ifm3d.com">ifm3d API documentation</a>.</p>
 <table class="docutils align-default">
 <thead>
@@ -258,6 +258,35 @@ $$ -->
 <p>The user can retrieve this information by deserializing the buffer received from buffer_id <code class="docutils literal notranslate"><span class="pre">O3R_ODS_OCCUPANCY_GRID</span></code>. The transformation can be achieved by multiplying the <code class="docutils literal notranslate"><span class="pre">transformCellCenterToUser</span></code> and <code class="docutils literal notranslate"><span class="pre">grid</span> <span class="pre">based</span> <span class="pre">cell</span> <span class="pre">coordinates</span></code></p>
 <p><img alt="transformCellCenterToUser" src="../../_images/transformCellCenterToUser.png" /></p>
 <p>For more details on the mathematical relation, that is transformation chains, please see the example code below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># %%##########################################</span>
+<span class="c1"># Copyright 2023-present ifm electronic, gmbh</span>
+<span class="c1"># SPDX-License-Identifier: Apache-2.0</span>
+<span class="c1">#############################################</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">transform_cell_to_user</span><span class="p">(</span><span class="n">cells</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">transform_matrix</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;transform the cell coordinates to cartesian map coordinates:</span>
+<span class="sd">    transform[0, 0] * zone_0_x + transform[0, 1] * zone_0_y + transform[0, 2]</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        cells (np.ndarray): occupancy grid image (occupancy_grid.image)</span>
+<span class="sd">        transform_matrix (np.ndarray): matrix containing the transformation parameters (occupancy_grid.transform_cell_center_to_user)</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple: cartesian map coordinates corresponding to the coordinates</span>
+<span class="sd">                of the edge of the cell in X and Y directions.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">gy</span><span class="p">,</span> <span class="n">gx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">indices</span><span class="p">(</span><span class="n">cells</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="n">ux</span> <span class="o">=</span> <span class="n">transform_matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">gx</span> <span class="o">+</span> <span class="n">transform_matrix</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">gy</span> <span class="o">+</span> <span class="n">transform_matrix</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">uy</span> <span class="o">=</span> <span class="n">transform_matrix</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">*</span> <span class="n">gx</span> <span class="o">+</span> <span class="n">transform_matrix</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">*</span> <span class="n">gy</span> <span class="o">+</span> <span class="n">transform_matrix</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">ux</span><span class="p">,</span> <span class="n">uy</span>
+</pre></div>
+</div>
 </section>
 </section>
 </section>

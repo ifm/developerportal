@@ -16,8 +16,8 @@ This firmware release works with the following software package versions.
 
 | Software           | Version   |
 | ------------------ | --------- |
-| ifmVisionAssistant | >=2.10.12 |
-| ifm3d API          | >=1.6.12  |
+| ifmVisionAssistant | >= 2.10.12 |
+| ifm3d API          | >= 1.6.12  |
 
 ### Compatible processing platforms
 

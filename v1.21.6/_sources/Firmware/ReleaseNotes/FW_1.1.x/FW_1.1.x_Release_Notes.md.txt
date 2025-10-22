@@ -36,9 +36,8 @@ This firmware release can be applied to the following ifm video processing platf
 This firmware release supports the following ifm camera articles:
 | Camera Article | Description | Available Modes | Comment |
 | -------------- | ----------- | --------------- | ------- |
-| O3R222 | 3D: 38k 224x172, 60°x45° IP50 <br>  2D: 1280x800, 127°x80° | `standard_range4m`, `standard_range2m`, `cyclic_4m_2m_4m_2m`, `extrinsic_calib`, <br> `standard_autoexposure2D`, `standard_manualexposure2D` | |
-| O3R225 AB | 3D: 38k 224x172, 105°x78° IP50 <br>  2D: 1280x800, 127°x80° | `standard_range4m`, `standard_range2m`, `cyclic_4m_2m_4m_2m`, `extrinsic_calib`, <br> `standard_autoexposure2D`, `standard_manualexposure2D` | |
-| O3R225 AC | 3D: 38k 224x172, 105°x78° IP50 <br>  2D: 1280x800, 127°x80° | `standard_range4m`, `standard_range2m`, `cyclic_4m_2m_4m_2m`, `extrinsic_calib`, <br> `standard_autoexposure2D`, `standard_manualexposure2D` | Improved fish-eye model |
+| O3R222 | 3D: 38k 224x172, 60°x45° IP54 <br>  2D: 1280x800, 127°x80° | `standard_range4m`, `standard_range2m`, `cyclic_4m_2m_4m_2m`, `extrinsic_calib`, <br> `standard_autoexposure2D`, `standard_manualexposure2D` | |
+| O3R225  | 3D: 38k 224x172, 105°x78° IP54 <br>  2D: 1280x800, 127°x80° | `standard_range4m`, `standard_range2m`, `cyclic_4m_2m_4m_2m`, `extrinsic_calib`, <br> `standard_autoexposure2D`, `standard_manualexposure2D` | |
 
 ## Changes
 - The JSON configuration structure was updated to accommodate new parameters. Refer to [the migration guide](FW_1.1.x_migration_guide.md) for a full list.

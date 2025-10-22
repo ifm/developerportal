@@ -50,11 +50,8 @@ This firmware release can be applied to the following ifm video processing platf
 This firmware release supports the following ifm camera articles:
 | Camera Article | Description                                                 |
 | -------------- | ----------------------------------------------------------- |
-| O3R222 AB      | 3D: 38k 224x172, 60°x45° IP50 <br>  2D: 1280x800, 127°x80°  |
-| O3R222 AC      | 3D: 38k 224x172, 60°x45° IP50 <br>  2D: 1280x800, 127°x80°  |
-| O3R225 AB      | 3D: 38k 224x172, 105°x78° IP50 <br>  2D: 1280x800, 127°x80° |
-| O3R225 AC      | 3D: 38k 224x172, 105°x78° IP50 <br>  2D: 1280x800, 127°x80° |
-| O3R225 AD      | 3D: 38k 224x172, 105°x78° IP50 <br>  2D: 1280x800, 127°x80° |
+| O3R222       | 3D: 38k 224x172, 60°x45° IP54 <br>  2D: 1280x800, 127°x80°  |
+| O3R225       | 3D: 38k 224x172, 105°x78° IP54 <br>  2D: 1280x800, 127°x80° |
 
 ## Base device
 The changes listed below compare firmware version 1.1.30 with firmware version 1.1.41.

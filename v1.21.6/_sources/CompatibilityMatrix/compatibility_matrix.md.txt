@@ -4,13 +4,13 @@
 
  | Supported VPU Hardware                     | Supported Camera Head Hardware | FW version             | ifm3d-library | ifmVisionAssistant |
  | ------------------------------------------ | ------------------------------ | ---------------------- | ------------- | ------------------ |
- | OVP810 <br> OVP811 <br> OVP812 <br> OVP813 | O3R222 <br> O3R225 <br> O3R252 | FW 1.21.6              | 1.6.12        | 2.10.12            |
- | OVP810 <br> OVP811 <br> OVP812 <br> OVP813 | O3R222 <br> O3R225 <br> O3R252 | FW 1.20.29             | 1.6.8         | 2.10.9             |
- | OVP810 <br> OVP811 <br> OVP812 <br> OVP813 | O3R222 <br> O3R225             | FW 1.10.13             | 1.5.3         | 2.9.9              |
- | OVP810 <br> OVP811                         | O3R222 <br> O3R225             | FW 1.4.30 or FW 1.1.41 | 1.4.3, 1.5.3  | 2.8.7              |
- | OVP800 <br> OVP801 <br> M04239             | O3R222 <br> 03R225             | FW 1.4.32              | 1.4.3, 1.5.3  | 2.8.7              |
- | OVP800 <br> OVP801 <br> M04239             | O3R222 <br> 03R225             | FW 1.1.30              | 1.4.3         | 2.6.24, 2.7.6      |
- | OVP800 <br> M04239                         | O3R222 <br> 03R225             | FW 1.0.14              | 1.2.6         | 2.6.14             |
+ | OVP810 <br> OVP811 <br> OVP812 <br> OVP813 | O3R222 <br> O3R225 <br> O3R252 | FW 1.21.6              | >= 1.6.12     | 2.10.12            |
+ | OVP810 <br> OVP811 <br> OVP812 <br> OVP813 | O3R222 <br> O3R225 <br> O3R252 | FW 1.20.29             | >= 1.6.8      | 2.10.9             |
+ | OVP810 <br> OVP811 <br> OVP812 <br> OVP813 | O3R222 <br> O3R225             | FW 1.10.13             | >= 1.5.3      | 2.9.9              |
+ | OVP810 <br> OVP811                         | O3R222 <br> O3R225             | FW 1.4.30 or FW 1.1.41 | >= 1.4.3      | 2.8.7              |
+ | OVP800 <br> OVP801 <br> M04239             | O3R222 <br> 03R225             | FW 1.4.32              | >= 1.4.3      | 2.8.7              |
+ | OVP800 <br> OVP801 <br> M04239             | O3R222 <br> 03R225             | FW 1.1.30              | >= 1.4.3      | 2.6.24, 2.7.6      |
+ | OVP800 <br> M04239                         | O3R222 <br> 03R225             | FW 1.0.14              | >= 1.2.6      | 2.6.14             |
 
 :::{note}
 

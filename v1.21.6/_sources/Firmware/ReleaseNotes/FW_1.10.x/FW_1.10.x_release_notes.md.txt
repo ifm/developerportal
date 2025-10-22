@@ -13,7 +13,7 @@ This firmware release works with the following software package versions.
 | Software                 | Version  |
 | ------------------------ | -------- |
 | ifmVisionAssistant       | >= 2.9.9 |
-| ifm3d library            | 1.5.3    |
+| ifm3d library            | >= 1.5.3 |
 | ifm3d-ros ROS(1) wrapper | >= 1.1.2 |
 | ifm3d-ros2 ROS2 wrapper  | >= 1.2.0 |
 
@@ -37,8 +37,8 @@ This firmware release supports the following ifm camera articles:
 
 | Camera Article | Description                                                 |
 | -------------- | ----------------------------------------------------------- |
-| O3R222         | 3D: 38k 224x172, 60°x45° IP50 <br> 2D: 1280x800, 127°x80° |
-| O3R225         | 3D: 38k 224x172, 105°x78° IP50 <br> 2D: 1280x800, 127°x80° |
+| O3R222         | 3D: 38k 224x172, 60°x45° IP54 <br> 2D: 1280x800, 127°x80° |
+| O3R225         | 3D: 38k 224x172, 105°x78° IP54 <br> 2D: 1280x800, 127°x80° |
 
 ## Base device
 ### Changed

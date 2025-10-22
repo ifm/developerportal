@@ -50,7 +50,7 @@ If `rangeOfInterest` is **7**, then the resultant occupancy grid shape is (280,2
 
 ## ODS application outputs
 
-From the ifm3d API versions >= 1.6.6, the user is able to retrieve both standard occupancy grid and polar occupancy grid information from the application interface.
+From ifm3d API version >= 1.6.6, the user is able to retrieve both standard occupancy grid and polar occupancy grid information from the application interface.
 
 To retrieve the standard occupancy grid, please use `ODSOccupancyGridV1` class in ifm3d API. For more information please visit [ifm3d API documentation](https://api.ifm3d.com).
 
@@ -85,6 +85,6 @@ The user can retrieve this information by deserializing the buffer received from
 
 For more details on the mathematical relation, that is transformation chains, please see the example code below:
 
-```{literalinclude} /ifm3d-examples/ovp8xx/python/ovp8xxexamples/ods/transform_cell_to_user.py
+```{literalinclude} /ifm3d-examples/ovp8xx/python/ods/helper/transform_cell_to_user.py
     :language: python
 ```

@@ -3,7 +3,7 @@
 The VPU includes a built-in Inertial Measurement Unit (IMU) which is always mapped to the port `port 6`.
 The IMU measures the rotation rates - gyroscope `[rad/sec]` and acceleration - accelerometer `[m/sec²]` in three-dimensional space. 
 The IMU is IIM-42652, and [the full datasheet can be found on the official TDK website](https://invensense.tdk.com/download-pdf/iim-42652-datasheet/). 
-Users can access the IMU data in firmware versions 1.4.30 and higher.
+Users can access the IMU data in firmware versions 1.4.30 and higher and ifm3d API version 1.5.3.
 
 ## Configuration
 
@@ -65,9 +65,9 @@ Additionally, the IMU data is not impacted by the extrinsic calibration set for 
 
 ## Example
 
-Accessing the IMU data is possible with the ifm3d API version 1.5.3 and above. As of ifm3d API 1.5.3, a custom deserializer has to be implemented and only a Python example is available.
+Accessing the IMU data is possible with ifm3d API version >= 1.5.3. As of ifm3d API 1.5.3, a custom deserializer has to be implemented and only a Python example is available.
 
-Please find the Python example code that accesses and prints the IMU data at [ifm3d-examples](https://github.com/ifm/ifm3d-examples/blob/main/ovp8xx/python/ovp8xxexamples/core/imu_data.py)
+Please find the Python example code that accesses and prints the IMU data at [ifm3d-examples](https://github.com/ifm/ifm3d-examples/blob/main/ovp8xx/python/core/imu_data.py)
 
 The output looks like:
 

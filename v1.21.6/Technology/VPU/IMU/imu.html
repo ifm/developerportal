@@ -142,7 +142,7 @@
 <p>The VPU includes a built-in Inertial Measurement Unit (IMU) which is always mapped to the port <code class="docutils literal notranslate"><span class="pre">port</span> <span class="pre">6</span></code>.
 The IMU measures the rotation rates - gyroscope <code class="docutils literal notranslate"><span class="pre">[rad/sec]</span></code> and acceleration - accelerometer <code class="docutils literal notranslate"><span class="pre">[m/sec²]</span></code> in three-dimensional space.
 The IMU is IIM-42652, and <a class="reference external" href="https://invensense.tdk.com/download-pdf/iim-42652-datasheet/">the full datasheet can be found on the official TDK website</a>.
-Users can access the IMU data in firmware versions 1.4.30 and higher.</p>
+Users can access the IMU data in firmware versions 1.4.30 and higher and ifm3d API version 1.5.3.</p>
 <section id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Link to this heading"></a></h2>
 <p>A few of the IMU parameters can be configured in the JSON configuration:</p>
@@ -279,8 +279,8 @@ Additionally, the IMU data is not impacted by the extrinsic calibration set for 
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
-<p>Accessing the IMU data is possible with the ifm3d API version 1.5.3 and above. As of ifm3d API 1.5.3, a custom deserializer has to be implemented and only a Python example is available.</p>
-<p>Please find the Python example code that accesses and prints the IMU data at <a class="reference external" href="https://github.com/ifm/ifm3d-examples/blob/main/ovp8xx/python/ovp8xxexamples/core/imu_data.py">ifm3d-examples</a></p>
+<p>Accessing the IMU data is possible with ifm3d API version &gt;= 1.5.3. As of ifm3d API 1.5.3, a custom deserializer has to be implemented and only a Python example is available.</p>
+<p>Please find the Python example code that accesses and prints the IMU data at <a class="reference external" href="https://github.com/ifm/ifm3d-examples/blob/main/ovp8xx/python/core/imu_data.py">ifm3d-examples</a></p>
 <p>The output looks like:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>python3<span class="w"> </span>imu_data.py<span class="w"> </span>
 IMU<span class="w"> </span>version:<span class="w"> </span><span class="m">1</span>
