@@ -1,29 +1,34 @@
 # Heat dissipation guidelines
 :::{admonition} Highlights
-- The bracket connecting the O3R camera to the vehicle chassis should be at least 120cm²(10cm x 12cm) and 2mm thick.
-- The expected maximum thermal energy output of a VPU under full load is about `15 W`. A typical thermal energy output of the system is between `7.5 W to 15 W`.
-- Each O3R camera head has a thermal energy power output of about `8 W` under full load, that is, at maximum framerate.
+- The bracket connecting the O3R camera to the vehicle chassis should be at least 120 cm² (10 cm x 12 cm) and 2 mm thick.
+- The expected maximum thermal energy output of a VPU under full load is about 15 W.
+- The expected maximum thermal energy output of an O3R camera head under full load, that is, at maximum framerate, is about 9.36 W.
 :::
 
 ## Power consumption
 
-The datasheets for both the OVP8xx and O3R22x cameras can be found on [ifm.com](https://www.ifm.com/) in the respective product pages, and gather the power consumption specifications.
+The datasheets for both the OVP8xx VPU and O3R22x cameras can be found on [ifm.com](https://www.ifm.com/) in the respective product pages, and gather the power consumption specifications.
 
-The power consumption is dependent on the processing load and the number of connected cameras. It can be calculated with the following formula: 
-`Power consumption [W] = 7,4 + n x ((FPS x 0,32) + 2,2); n = number of cameras; FPS = camera frame rate`
+The power consumption is dependent on the processing load and the number of connected cameras. It can be calculated with the following formulas: 
 
-Typical load cases are presented below:
+- $OVP81x [W] = 15.4 + (n * ((0.32)*FPS + 2.2)$
 
-| Load                                   | Power consumption                  | 
-| -------------------------------------- | ---------------------------------- | 
-| VPU only - no cameras                  | 7.4 W            | 
-| VPU only - one camera connected but IDLE  | ~10 W  |
-| VPU with one camera running at 20 fps  | ~16 W | 
-| VPU with six cameras running at 20 fps | ~60 W |
+Where $n = number\ of\ cameras$ and $FPS = camera\ framerate$
+
+Typical load cases for an OVP811 are presented below:
+
+| Load                                     | Power consumption [W] |
+| ---------------------------------------- | --------------------- |
+| VPU only - no cameras                    | 15.4                  |
+| VPU only - one camera connected but IDLE | 15.4                  |
+| VPU with one camera running at 20 fps    | ~ 25                  |
+| VPU with six cameras running at 20 fps   | ~ 67                  |
 
 This power consumption is shared between the VPU and the O3R camera heads:
-- For the VPU, the maximum expected thermal energy output under full load is about `60 W`. A typical thermal energy output of the system is between `16 W and 60 W`.
-- Each ifm O3R camera head has a thermal energy power output of about `8 W` under full load, that is at maximum framerate.
+
+- For the whole system, the maximum expected thermal energy output under full load is about 67 W. 
+- The power consumption of the VPU is typically between approximately 15-16 W.
+- Each ifm O3R camera head has a thermal energy power output between 8.6 and 9.36 W under full load, that is at maximum framerate.
 
 ## VPU mounting for heat dissipation
 
@@ -45,9 +50,9 @@ The results of internal tests and simulations of heat sink designs are presented
 | Simulation boundary values                            | value                              |
 | ----------------------------------------------------- | ---------------------------------- |
 | Maximum internal temperature (measured during tests)  | 80 °C                              |
-| Maximum internal temperature (used during simulation) | 85 °C          |
-| Maximum Ambient temperature                           | 40 °C​                              |
-| Heat sink materials tested                            | Aluminum AW 5754 and Steel 1.4301​  |
+| Maximum internal temperature (used during simulation) | 85 °C                              |
+| Maximum Ambient temperature                           | 40 °C​                             |
+| Heat sink materials tested                            | Aluminum AW 5754 and Steel 1.4301​ |
 | Thermal energy output by the O3R camera head          | 8W                                 |
 
 + The camera heads are connected to a bracket of different sizes and material using the mounting threads with screws at the back of the housing.

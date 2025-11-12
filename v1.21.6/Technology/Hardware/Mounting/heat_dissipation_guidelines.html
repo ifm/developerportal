@@ -160,42 +160,46 @@
 <div class="admonition-highlights admonition">
 <p class="admonition-title">Highlights</p>
 <ul class="simple">
-<li><p>The bracket connecting the O3R camera to the vehicle chassis should be at least 120cm²(10cm x 12cm) and 2mm thick.</p></li>
-<li><p>The expected maximum thermal energy output of a VPU under full load is about <code class="docutils literal notranslate"><span class="pre">15</span> <span class="pre">W</span></code>. A typical thermal energy output of the system is between <code class="docutils literal notranslate"><span class="pre">7.5</span> <span class="pre">W</span> <span class="pre">to</span> <span class="pre">15</span> <span class="pre">W</span></code>.</p></li>
-<li><p>Each O3R camera head has a thermal energy power output of about <code class="docutils literal notranslate"><span class="pre">8</span> <span class="pre">W</span></code> under full load, that is, at maximum framerate.</p></li>
+<li><p>The bracket connecting the O3R camera to the vehicle chassis should be at least 120 cm² (10 cm x 12 cm) and 2 mm thick.</p></li>
+<li><p>The expected maximum thermal energy output of a VPU under full load is about 15 W.</p></li>
+<li><p>The expected maximum thermal energy output of an O3R camera head under full load, that is, at maximum framerate, is about 9.36 W.</p></li>
 </ul>
 </div>
 <section id="power-consumption">
 <h2>Power consumption<a class="headerlink" href="#power-consumption" title="Link to this heading"></a></h2>
-<p>The datasheets for both the OVP8xx and O3R22x cameras can be found on <a class="reference external" href="https://www.ifm.com/">ifm.com</a> in the respective product pages, and gather the power consumption specifications.</p>
-<p>The power consumption is dependent on the processing load and the number of connected cameras. It can be calculated with the following formula:
-<code class="docutils literal notranslate"><span class="pre">Power</span> <span class="pre">consumption</span> <span class="pre">[W]</span> <span class="pre">=</span> <span class="pre">7,4</span> <span class="pre">+</span> <span class="pre">n</span> <span class="pre">x</span> <span class="pre">((FPS</span> <span class="pre">x</span> <span class="pre">0,32)</span> <span class="pre">+</span> <span class="pre">2,2);</span> <span class="pre">n</span> <span class="pre">=</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">cameras;</span> <span class="pre">FPS</span> <span class="pre">=</span> <span class="pre">camera</span> <span class="pre">frame</span> <span class="pre">rate</span></code></p>
-<p>Typical load cases are presented below:</p>
+<p>The datasheets for both the OVP8xx VPU and O3R22x cameras can be found on <a class="reference external" href="https://www.ifm.com/">ifm.com</a> in the respective product pages, and gather the power consumption specifications.</p>
+<p>The power consumption is dependent on the processing load and the number of connected cameras. It can be calculated with the following formulas:</p>
+<ul class="simple">
+<li><p><img class="math" src="../../../_images/math/f5a19ddabe0cc6b2d41ec29b1e4b5aa3915ad6d7.svg" alt="OVP81x [W] = 15.4 + (n * ((0.32)*FPS + 2.2)"/></p></li>
+</ul>
+<p>Where <img class="math" src="../../../_images/math/0f3c2cd21ebf472aae9839d58788d10eebc2ab01.svg" alt="n = number\ of\ cameras"/> and <img class="math" src="../../../_images/math/787e6f8b611acfd2d6aacb1855c4d02d4009536a.svg" alt="FPS = camera\ framerate"/></p>
+<p>Typical load cases for an OVP811 are presented below:</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Load</p></th>
-<th class="head"><p>Power consumption</p></th>
+<th class="head"><p>Power consumption [W]</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>VPU only - no cameras</p></td>
-<td><p>7.4 W</p></td>
+<td><p>15.4</p></td>
 </tr>
 <tr class="row-odd"><td><p>VPU only - one camera connected but IDLE</p></td>
-<td><p>~10 W</p></td>
+<td><p>15.4</p></td>
 </tr>
 <tr class="row-even"><td><p>VPU with one camera running at 20 fps</p></td>
-<td><p>~16 W</p></td>
+<td><p>~ 25</p></td>
 </tr>
 <tr class="row-odd"><td><p>VPU with six cameras running at 20 fps</p></td>
-<td><p>~60 W</p></td>
+<td><p>~ 67</p></td>
 </tr>
 </tbody>
 </table>
 <p>This power consumption is shared between the VPU and the O3R camera heads:</p>
 <ul class="simple">
-<li><p>For the VPU, the maximum expected thermal energy output under full load is about <code class="docutils literal notranslate"><span class="pre">60</span> <span class="pre">W</span></code>. A typical thermal energy output of the system is between <code class="docutils literal notranslate"><span class="pre">16</span> <span class="pre">W</span> <span class="pre">and</span> <span class="pre">60</span> <span class="pre">W</span></code>.</p></li>
-<li><p>Each ifm O3R camera head has a thermal energy power output of about <code class="docutils literal notranslate"><span class="pre">8</span> <span class="pre">W</span></code> under full load, that is at maximum framerate.</p></li>
+<li><p>For the whole system, the maximum expected thermal energy output under full load is about 67 W.</p></li>
+<li><p>The power consumption of the VPU is typically between approximately 15-16 W.</p></li>
+<li><p>Each ifm O3R camera head has a thermal energy power output between 8.6 and 9.36 W under full load, that is at maximum framerate.</p></li>
 </ul>
 </section>
 <section id="vpu-mounting-for-heat-dissipation">
