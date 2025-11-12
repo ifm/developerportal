@@ -6,31 +6,29 @@ The OVP8xx VPU devices have two separate USB interfaces:
 
 Only the USB-A interface is available to the user. The USB-B interface is only used for debugging by ifm users.
 
-## USB-A interface use cases
-### USB mass storage devices
-
+## USB mass storage devices
 The USB Typ A interface can be used by the developer or end user to connect USB mass storage devices such as USB sticks and external USB SSD devices.
 
-**USB Mass Storage Supported File System Formats**
-
 The following file system formats are supported for the external storage devices mentioned above:
-+ FAT32
-+ EXT4
++ FAT32 - For FAT32 formatted devices no additional steps are required. It can be directly mounted via the auto-mount daemon to the VPU.
++ EXT4  - For EXT4 formatted devices the user needs to perform additional steps to match the OEM users UID and GID on the VPU’s embedded OS. Otherwise only read permissions are granted when mounting the USB storage device.
 
-See the limitations imposed by the [use of EXT4 below](#ext4)
+See options about [format to EXT4 ](#format-usb-mounting-preparation-ext4-only)
 
-**Other USB mass storage devices**
+Other USB mass storage devices that require additional drivers may function if the drivers are installed within the respective Docker containers. ifm does not provide official support for these devices, and they may be used in development or production at the user's own risk. Compatibility limitations could arise from updates to the embedded firmware of the VPU, which may require driver updates in the user’s software containers. Continuous compatibility across embedded firmware versions is not guaranteed.
 
-Other USB mass storage devices that require the installation of additional drivers may be functional if the drivers are installed within the respective Docker software containers. ifm does not provide official support for these devices - the user may use them in development / production use cases at his own risk. Possible compatibility limitations due to updates of the embedded firmware may require updates of the device drivers in the user's software containers. No continuous compatibility over embedded FW versions is assured.
+It is possible to increase the VPU memory size by utilizing USB thumb drives or USB SSDs on the USB-A interface. To use any USB storage device, it is necessary to mount the drive first.
 
-### USB Cameras
+:::{note}
+The USB auto mount service mounts your USB mass storage device to `/run/media/system/<USB_name>/`. See the details [here](#plug-in-and-mounting)
+:::
 
-From the firmware version 1.4.30 and above, the USB cameras will be assigned to `/dev/video0` node by the VPU. USB cameras like webcams are only tested which uses the default `v4l2` framework on linux kernel. It should be noted that user cannot access the **V4L** devices or `/dev/video0` node directly on the VPU without Docker container. To make use of the nodes, please pass the respective video device node to the Docker container using the flag `--device`.
+## USB Cameras
 
-If the USB camera device needs any special drivers, they should be installed in a Docker container and should be tested.
+Starting with firmware version 1.4.30, USB cameras will be assigned to the `/dev/video0` node by the VPU. Only USB cameras using the default `v4l2` framework on the Linux kernel, such as webcams, have been tested. Note that users cannot directly access **V4L** devices or the `/dev/video0` node on the VPU without using a Docker container. To access these nodes, pass the respective video device node to the Docker container with the `--device` flag. If the USB camera requires special drivers, installation and testing in a Docker container is recommended.
 
 **Example: How to use USB web camera on VPU using Docker container**
-- Install `ffmpeg` and `v4l-utils` in the Docker container by copying the following lines in your Dockerfile.
+- Install `ffmpeg` and `v4l-utils` in the Docker container by copying the following lines in your Dockerfile:
 
 ```docker
 RUN apt-get update && \
@@ -43,36 +41,23 @@ RUN apt-get update && \
 $ docker run -ti -v $(pwd):/home/ifm/ --device=/dev/video0:/dev/video0:rwm <docker-image-name>
 ```
 
-- Capture a frame using `ffmpeg` tool inside Docker container
+- Capture a frame using `ffmpeg` tool inside Docker container that will create an image **out.png** in the home folder
 
 ```shell
 root@<docker_id>$ ffmpeg -f v4l2 -video_size 1280x720 -i /dev/video0 -frames 1 out.jpg
 ```
 
-- A image **out.png** will be created in the home folder.
+## USB hubs
 
-### USB hubs
-The use of USB hubs is at the user's own risk.
-
-There is no guarantee of compatibility or support for hubs. They may be functional for standard low power devices.
-Devices with higher power consumption may overload the power available via the USB-A interface and damage the OVP8xx VPU device.
+Compatibility and support for USB hubs are not guaranteed, and their use is at your own risk. Standard low-power devices may function properly; however, devices with higher power consumption could exceed the power limits of the USB-A interface, potentially causing damage to the OVP8xx VPU device.
 
 Advanced "USB network topologies" may not be supported by the OVP8xx VPU devices. The USB interface is defined to be used by a single USB client device.
 
-### Other USB devices: USB HID, USB network adapters, ...
+## Other USB devices: USB HID, USB network adapters, ...
 
-Other USB devices such as:
-+ USB mice
-+ USB keyboards,
-+ Generic USB input devices such as controllers,
-+ USB-to-Ethernet network devices
-+ USB sensors
-are not supported by the OVP8xx VPU device.
+Devices like mice, keyboards and generic USB input devices such as controllers, may function (fully or partially) if their respective drivers are either included by default in the embedded Linux OS or installed within an appropriate Docker container. However, compatibility and support for external hardware devices are not guaranteed.
 
-These devices may be (partially) functional if their respective drivers are included by default in the embedded Linux OS or are installed in an appropriate Docker software container.
-There is no guarantee of compatibility or support for such external hardware devices.
-
-Access to external HID USB devices such as USB mice, keyboards, controllers, etc. may be restricted based on OEM `oem user groups`.
+However, access to external HID USB devices such as USB mice, keyboards, controllers, etc. may be restricted based on OEM `oem user groups`.
 The OEM user is not part of the `dialout` group and is therefore restricted on its interactions with such HID and further USB devices. Adding the OEM user to other groups is not possible.
 If such access is required, please get in contact with the ifm robotics support team.
 
@@ -81,44 +66,18 @@ The OEM users groups are:
 $ groups oem
 oem docker systemd-journal
 ```
+Not supported device are:
 
-Additional Ethernet interfaces via USB-to-Ethernet adapters are not supported by the OVP8xx VPU devices.
++ USB-to-Ethernet adapters
++ Generic USB sensors
 
-Additional sensor devices, such as generic USB sensors are not supported by the OVP8x VPU devices.
-
-## Using a USB drive with the VPU
-It is possible to increase the VPU memory size by utilizing USB thumb drives or USB SSDs on the USB-A interface. To use any USB storage device, it is necessary to mount the drive first.
-
-
-:::{note}
-The USB auto mount service mounts your USB mass storage device to `/run/media/system/<USB_name>/`. See the details below.
-:::
-
-### Preparing the USB drive
-
-The VPU's operating system supports two file formats:
-+ FAT32
-+ EXT4
-
-These can be auto-mounted via the `mount` command and its respective daemon.
-
-#### FAT32
-
-For FAT32 formatted devices no additional steps are required. It can be directly mounted via the auto-mount daemon to the VPU.
-
-#### EXT4
-
-For EXT4 formatted devices the user needs to perform additional steps to match the OEM users `uid` and `gid` on the VPU's embedded OS.
-Otherwise only read permissions are granted when mounting the USB storage device. This is a design that is introduced by the handling of access rights to EXT4 formatted devices on Linux systems.
-If you are an experience EXT4 user feel free to skip the following instructions steps:
-
-##### Format USB mounting preparation (EXT4 only)
+## Format USB mounting preparation (EXT4 only)
 
 **Option 1:**
 
-"The crude way"
+"Access for all users, potentially insecure approach"
 
-The easiest option is to mount the EXT4 formatted device to your Linux laptop of choice and relax the write and read permissions to be accessible by any user:
+The simplest approach is to mount the EXT4-formatted device on your Linux laptop and adjust the read and write permissions to allow access for any user:
 1. Mount the SSD to your laptop
 2. Change the mount point to be accessible by all users:
 ```bash
@@ -131,10 +90,9 @@ Please be aware that the `chmod` command only affects the existing files within 
 
 "Setting the VPU's OEM user UID and GID specifically"
 
-Please be aware that setting user specific GID and UID has to be done **PER** user.
-This means, that is has to be done for the OEM user on the VPU to write to the device, as well as any specific users created inside your own Docker container.
+Please note that setting user-specific GID and UID must be done **per** user. This means you’ll need to configure it for the OEM user on the VPU to write to the device, as well as for any specific users created inside your Docker container.
 
-Below an exemplary workflow is shown for setting the VPU's OEM users UID and GID.
+An example workflow for setting the UID and GID of the VPU's OEM user is shown below.
 
 1. On the VPU: Find out the requested users UID and GID on the VPU or inside the Docker container
     ```bash
@@ -144,13 +102,13 @@ Below an exemplary workflow is shown for setting the VPU's OEM users UID and GID
     987
     ```
 
-2. On your Linux laptop of choice: Change the USB mount point on your **Linux Laptop** via `chown`
+2. On your Linux laptop: Change the USB mount point on your **Linux Laptop** via `chown`
     ```bash
     user@laptop:~$ sudo chown 989:987 -R /media/<mount_point>
     ```
 
 :::{note}
-Please be aware that changing the GID and UID mount points may result in missing read access on your laptop. To restore read access on your laptop to the USB storage device, change the GID and UID back to match your personal user accounts ones.
+Please note that changing the GID and UID for mount points may result in read access issues for the USB storage device on your laptop. To restore read access, reset the GID and UID to match the values of your personal user account.
 :::
 
 ### Plug in and mounting
