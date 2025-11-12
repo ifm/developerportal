@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guidelines for embedded software development and deployment &mdash; O3R  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5800d392" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Getting started with Docker" href="docker.html" />
+    <link rel="prev" title="Docker on O3R" href="index_docker.html" />
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script> -->
+     
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            O3R
+          </a>
+              <div class="version">
+                v1.21.6
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Firmware/index.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Technology/index_technology.html">Technology</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index_software_interfaces.html">Software Interfaces</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../iVA/index_iVA.html">ifm Vision Assistant</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://api.ifm3d.com/stable/">ifm3d/ifm3dpy API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://ros.ifm3d.com/latest/">ROS: ifm3d-ros</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://ros2.ifm3d.com/latest/">ROS2: ifm3d-ros2</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index_docker.html">Docker</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Guidelines for embedded software development and deployment</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#software-code-encapsulation-via-docker-containers">Software (code) encapsulation via Docker containers</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#direct-deployment-on-the-ovp-vpu-os">Direct deployment on the OVP (VPU) OS</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#importing-os-based-runtime-environments-libraries-tensorrt">Importing OS based runtime environments libraries: TensorRT</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#access-and-user-rights">Access and user rights</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#concurrently-running-processes-and-system-load">Concurrently running processes and system load</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="docker.html">Getting started with Docker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deployVPU.html">Deployment on board</a></li>
+<li class="toctree-l3"><a class="reference internal" href="logging.html">Docker logging configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autostart.html">Autostarting the container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="resource_management.html">Resource Management on the VPU</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gpu.html">Enabling GPU usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tensorRT/TensorRT_on_a_VPU_hardware.html">TensortRT: DL / ML model deployment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ifmDiagnostic/index_diagnostic.html">Diagnostic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Toolbox/index_toolbox.html">Toolbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Examples/examples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../PDS/index_pds.html">PDS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../PLC/index_plc.html">PLC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index_software_interfaces.html">Software Interfaces</a></li>
+          <li class="breadcrumb-item"><a href="index_docker.html">Docker on O3R</a></li>
+      <li class="breadcrumb-item active">Guidelines for embedded software development and deployment</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/SoftwareInterfaces/Docker/embedded_resource_access.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="guidelines-for-embedded-software-development-and-deployment">
+<h1>Guidelines for embedded software development and deployment<a class="headerlink" href="#guidelines-for-embedded-software-development-and-deployment" title="Link to this heading"></a></h1>
+<p>The O3R ecosystem is designed as a multi user and shared resource system.</p>
+<p>There are multiple guidelines that we suggest to follow to ensure that this system can function as designed:</p>
+<ol class="arabic simple">
+<li><p>Software (code) encapsulation</p></li>
+<li><p>Access and user rights</p></li>
+<li><p>Concurrently running processes and system load</p></li>
+</ol>
+<section id="software-code-encapsulation-via-docker-containers">
+<h2>Software (code) encapsulation via Docker containers<a class="headerlink" href="#software-code-encapsulation-via-docker-containers" title="Link to this heading"></a></h2>
+<p>To allow multiple different software stacks to coexist and run on the VPU, the O3R ecosystem is designed to accept OEM software code via Docker containers.</p>
+<p>This confirms to the advantages of software container technology, namely:</p>
+<p><strong>1. Consistency Across Environments</strong>
+Containers encapsulate all dependencies and configurations necessary to run an application, ensuring that it behaves the same way across different environments. This eliminates the classic “it works on my machine” problem, enhancing reliability and reducing bugs related to environmental differences.</p>
+<p><strong>2. Portability</strong>
+Containers are designed to run consistently across different platforms and cloud environments. This makes it easier to move applications between on-premises infrastructure and various cloud providers, facilitating multi-cloud and hybrid cloud strategies.</p>
+<p><strong>3. Rapid Deployment and Rollback</strong>
+Containers allow for rapid deployment and easy rollback of applications. If an update fails, it’s straightforward to roll back to a previous container version, minimizing downtime and disruptions.</p>
+<p><strong>4. Isolation</strong>
+Containers provide a high level of isolation for applications. Each container runs in its own isolated environment, which enhances security and prevents conflicts between applications running on the same host.</p>
+<p><strong>5. Simplified Dependency Management</strong>
+By bundling applications with their dependencies, containers simplify the management of software dependencies. This ensures that the correct versions of libraries and tools are used, preventing issues related to dependency conflicts.</p>
+<p><strong>6. Improved CI/CD Pipelines</strong>
+Containers integrate seamlessly with continuous integration and continuous deployment (CI/CD) pipelines. They enable faster and more reliable build, test, and deployment cycles, which enhances the overall development workflow and reduces time to market.</p>
+<p><strong>7. Enhanced Security</strong>
+Containers can enhance security by isolating applications and their dependencies from the host system and each other. Additionally, tools and practices for container security, such as image scanning and runtime protection, help mitigate security risks.</p>
+<p>And more …</p>
+<section id="direct-deployment-on-the-ovp-vpu-os">
+<h3>Direct deployment on the OVP (VPU) OS<a class="headerlink" href="#direct-deployment-on-the-ovp-vpu-os" title="Link to this heading"></a></h3>
+<p>A direct software deployment is <strong>not</strong> suggested, even though technically possible based on the pre-installed interpreters and libraries.
+If one chooses to proceed with a native deployment, without the intermediate software container, they may do this by their own risk.</p>
+<p>Respective Python versions are indicated via the release notes, but may be up to change depending on the underlying Yocto build.</p>
+</section>
+<section id="importing-os-based-runtime-environments-libraries-tensorrt">
+<h3>Importing OS based runtime environments libraries: TensorRT<a class="headerlink" href="#importing-os-based-runtime-environments-libraries-tensorrt" title="Link to this heading"></a></h3>
+<p>There are a few exception to the concepts stated above.
+In the case of Tensor Real Time libraries, these are (typically) shared between the host OS and Docker containers, to save flash space and ensure hardware compatibility.</p>
+<p>These shall be imported inside the Docker container from the host via a respective NVIDIA runtime. See the <a class="reference internal" href="tensorRT/TensorRT_on_a_VPU_hardware.html"><span class="std std-doc">TensorRT documentation</span></a> for further details.</p>
+</section>
+</section>
+<section id="access-and-user-rights">
+<h2>Access and user rights<a class="headerlink" href="#access-and-user-rights" title="Link to this heading"></a></h2>
+<p>There are two user (groups) on each O3R FW:</p>
+<ol class="arabic simple">
+<li><p>OEM: to be used by a software developer / end user</p></li>
+<li><p>root: Not accessible by the oem developer or end customer</p></li>
+</ol>
+<p>Please double check the <code class="docutils literal notranslate"><span class="pre">oem</span></code> user group access rights per FW version yourself.
+For further details also see the <a class="reference internal" href="deployVPU.html"><span class="std std-doc">deploy Docker documentation</span></a> and information available for the <code class="docutils literal notranslate"><span class="pre">Technology/VPU</span></code> section.</p>
+<p>Elevated access right via the root user can not be granted.
+If missing access right hold you back from developing your application based on the concepts outlined in this document, please let us know - so specific right may be granted.</p>
+</section>
+<section id="concurrently-running-processes-and-system-load">
+<h2>Concurrently running processes and system load<a class="headerlink" href="#concurrently-running-processes-and-system-load" title="Link to this heading"></a></h2>
+<p>Since the system is designed as a shared resource unit, the OEM software developer shall keep the resource constraints of the total system in mind.
+For this reason a indication of how resource is required for operation of the ifm software stacks per use case - see the <a class="reference internal" href="#TODO-add-link"><span class="xref myst">documentation here</span></a>.</p>
+<p>There are currently not quotas set for the Docker daemon.
+Meaning if it allocates more resource than what can be shared to allow “normal” operation, the system may become unresponsive and run with reduced 3D and 2D data processing, and ifm embedded application performance.</p>
+<p>We therefore ask the OEM software developer to monitor their system load per iteration of their software stack and ifm hardware and software (FW version) for:</p>
+<ul class="simple">
+<li><p>RAM usage: i.e. memory leaks</p></li>
+<li><p>CPU time and CPU core pinning</p></li>
+<li><p>GPU time</p></li>
+<li><p>General IO and load on flash memory</p></li>
+<li><p>Number of write cycles on the flash memory</p></li>
+<li><p>Ethernet traffic bandwidth</p></li>
+</ul>
+<p>We suggest tools such as <a class="reference external" href="https://github.com/prometheus/node_exporter">Prometheus</a> for tracking and visualization over time, instead of snapshots in time via tools such as <code class="docutils literal notranslate"><span class="pre">top</span></code> / <code class="docutils literal notranslate"><span class="pre">htop</span></code>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="/latest/_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+		
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.efector.object-ident@ifm.com">support.efector.object-ident@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

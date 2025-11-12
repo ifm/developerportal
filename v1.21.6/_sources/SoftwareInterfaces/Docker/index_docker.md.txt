@@ -1,5 +1,6 @@
 # Docker on O3R
 :::{toctree}
+Guidelines for embedded software development and deployment <embedded_resource_access>
 Getting started with Docker <docker>
 Deployment on board <deployVPU>
 Docker logging configuration <logging>

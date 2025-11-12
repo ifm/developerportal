@@ -30,7 +30,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Getting started with Docker" href="docker.html" />
+    <link rel="next" title="Guidelines for embedded software development and deployment" href="embedded_resource_access.html" />
     <link rel="prev" title="Software Interfaces" href="../../index_software_interfaces.html" />
     <!-- Google tag (gtag.js) -->
     <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
@@ -78,6 +78,7 @@
 <li class="toctree-l2"><a class="reference external" href="https://ros.ifm3d.com/latest/">ROS: ifm3d-ros</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://ros2.ifm3d.com/latest/">ROS2: ifm3d-ros2</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Docker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="embedded_resource_access.html">Guidelines for embedded software development and deployment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="docker.html">Getting started with Docker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="deployVPU.html">Deployment on board</a></li>
 <li class="toctree-l3"><a class="reference internal" href="logging.html">Docker logging configuration</a></li>
@@ -129,6 +130,16 @@
 <h1>Docker on O3R<a class="headerlink" href="#docker-on-o3r" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="embedded_resource_access.html">Guidelines for embedded software development and deployment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="embedded_resource_access.html#software-code-encapsulation-via-docker-containers">Software (code) encapsulation via Docker containers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="embedded_resource_access.html#direct-deployment-on-the-ovp-vpu-os">Direct deployment on the OVP (VPU) OS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="embedded_resource_access.html#importing-os-based-runtime-environments-libraries-tensorrt">Importing OS based runtime environments libraries: TensorRT</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_resource_access.html#access-and-user-rights">Access and user rights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded_resource_access.html#concurrently-running-processes-and-system-load">Concurrently running processes and system load</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="docker.html">Getting started with Docker</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="docker.html#build-and-run-a-docker-container-for-the-o3r-platform">Build and run a Docker container for the O3R platform</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="docker.html#a-basic-container">A basic container</a><ul>
