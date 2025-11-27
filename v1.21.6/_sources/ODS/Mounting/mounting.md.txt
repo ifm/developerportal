@@ -64,19 +64,18 @@ These images are intended as examples only and do not represent an actual at-sca
 ## Visual odometry
 
 Visual odometry is used in ODS along with IMU data to calculate the ego motion (linear and angular velocity) of the vehicle.
-It is required that the visual odometry is available for one active camera at all times.
 
 The visual odometry algorithm requires that a sufficient portion of the floor is visible in the camera's field of view. The diagram below illustrates this requirement:
 
 ![vo](img/vo.drawio.svg)
 
-The two distances shown define the intersection of the FoV with the floor:
-- d_max must be greater than 1.5m.
-- d_min should be approximately less than 1m.
+Note that the size of a pixel on the floor depends on the geometric configuration. Visual odometry requires at least 15 percent of all pixels to have a suitable size (that is less than 0.02 meters). Moreover, the maximum radial distance to the floor (d_max) must be at least 1.5 meters.
 
 If the camera head which is responsible for visual odometry is not calibrated or doesn't see enough floor pixels then a diagnostic `ERROR_ODSAPP_VO_EXTR_DI_CALIB_IMPLAUSIBLE` will be raised.
 
 This may require angling the camera in a way to have more floor pixels in the FoV.
+
+It is required that the visual odometry is available for one active camera at all times.
 
 ## Clearance area
 
