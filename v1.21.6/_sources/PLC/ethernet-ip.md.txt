@@ -57,7 +57,7 @@ Only one command can be set at a time within the command word field. The availab
 | 10      | ODS – Selection of the Zone Set             |
 | 11      | ODS – Setting maximum Height                |
 | 12      | PDS – GetPallet                             |
-| 13      | PDS – GetItem                               |
+| 13      | PDS – Reserved                              |
 | 14      | PDS – GetRack                               |
 | 15      | PDS – VolCheck                              |
 
@@ -76,7 +76,6 @@ The content of the command data section depends on the command word and is defin
 |                                | `DepthHint`:  Estimated distance between pallet and calibrated coordinate system center in [millimeters]. Set to <=0 for automatic detection | 2            | int16        |
 |                                | `PalletIndex`: Index of the pallet parameter set [0..9]                                                                                      | 2            | int16        |
 |                                | `PalletOrder`: 0->scoreDescending, 1->zDescending, 2->zAscending, 3 ->yDescending, 4 -> yAscending                                           | 2            | int16        |
-| PDS `getItem`                  | Available upon request                                                                                                                       |              |              |
 | PDS `getRack`                  | `ApplicationId`:  Position in the PDS application list of the application selected for configuration [0..1]                                  | 2            | uint16       |
 |                                | `HorizontalDropPosition`:  Selection of the horizontal drop setting: 0->left, 1->center, 2->right                                            | 2            | uint16       |
 |                                | `VerticalDropPosition`:  Selection of the vertical drop setting: 0->interior, 1->floor                                                       | 2            | uint16       |
@@ -113,23 +112,24 @@ The device uses Assembly 101 as a back channel to the PLC. It is used to confirm
 | `EIP_ERROR_CMD_FAILED`    | 2         | Command processing was unsuccessful           |
 | `EIP_ERROR_CMD_DATA_INVALID` | 3      | Invalid data given for the command            |
 | `EIP_ERROR_TOO_MANY_CMDS` | 4         | Too many commands executed                    |
+
 ### General Reply to an Implemented Command
 
-If the command is implemented, the data in the data section is valid, and no error occurs during execution, the producing assembly must be updated as follows:
+If the command is completed succesfully, the assembly content is updated as follows:
 
-- Increment the message counter by 1  
-- Mirror the command bits from the consuming assembly  
-- Set the command error codes to `0`  
-- Fill the command response if applicable, otherwise set it to `0`
+- Message counter is incremented by 1  
+- The command bits are mirrored  
+- The command error code is set to `0`  
+- The command response is set if applicable, otherwise set it to `0`
 
 ### Reply to an Implemented Command That Fails
 
-If execution of the command results in an error, the producing assembly must contain:
+If an error occured during command execution, the assembly content is updated as follows:
 
-- Message counter incremented by 1  
-- Command bits mirrored from the consuming assembly  
-- Command error code set accordingly  
-- Command response section set to `0`
+- Message counter is incremented by 1  
+- The command bits are mirrored  
+- The command error code is set accordingly  
+- The command response is set to `0`
 
 ## Command Execution via Assemblies 100 and 101
 
@@ -260,7 +260,7 @@ Starting from firmware version 1.21.6, the protocol version used for the result 
             </tr>
             <tr>
               <td>Severity</td>
-              <td>uint8</td>
+              <td>uint16</td>
               <td>
                 <ul style="margin: 0; padding-left: 20px;">
                   <li>1: no_incident</li>
@@ -274,7 +274,7 @@ Starting from firmware version 1.21.6, the protocol version used for the result 
             <tr>
               <td>Diagnostic ID</td>
               <td>uint32</td>
-              <td>0:no diagnostic event. For Diagnostic event IDs and descriptions please refer <a href="../SoftwareInterfaces/ifmDiagnostic/diagnostic.html#error-codes-and-descriptions">this page</a>. </td>
+              <td>0:no diagnostic event. For Diagnostic event IDs and descriptions please refer <a href="../SoftwareInterfaces/ifmDiagnostic/diagnostic.html#error-codes-and-descriptions">this page</a>. Each DiagData struct is 8 bytes total (2+2+4 = Source+Severity+ID).</td>
             </tr>
           </tbody>
         </table>
@@ -305,7 +305,7 @@ Starting from firmware version 1.21.6, the protocol version used for the result 
 | -------------------- | ------------------------ | ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Result age indicator | 2                        | uint16                                            | Indicates whether the ODS data was received from the ODS application (0 if received, otherwise incremented). <br> 0 if ODS data was received from the ODS applications, If no new data is present for the next PLC app frame, the value is increased, If the value reaches 255, it will not reset. It will stay at 255 until new data is received, If no previous ODS data is available, it will indicate 255.                           |
 | Severity             | 2                        | uint16                                            | Application diagnotic severity state of corresponding ODS app, with these possible values: <br><br> <li>1: `no_incident`</li> <li>2: `info`</li><li>3: `minor`</li> <li>4: `major`</li> <li>5: `critical`</li><li>6: `not available` (application instance not existing)</li>                                                                                                                                                                                     |
-| Zone status flags    | 6                        | uint16 [3]                                  | Zone status flags (3 UINT, 0: zone free, 1: zone occupied)                                                                                                                                                                                                                                                                                                                                                                              |
+| Zone status flags    | 6                        | uint16 [3]                                  | Zone status flags (array of 3 uint16 values = 6 bytes total, 0: zone free, 1: zone occupied)                                                                                                                                                                                                                                                                                                                                            |
 | Zone config ID       | 4                        | uint32                                            | 32-bit integer representing the zone configuration ID.                                                                                                                                                                                                                                                                                                                                                                                   |
 | Time Stamp           | 8                        | uint32[2]           | Time stamp of the ODS algorithm result. VPU time (including NTP if configured).                                                                                                                                                                                                                                                                                                                                                          |
 
@@ -315,7 +315,7 @@ Starting from firmware version 1.21.6, the protocol version used for the result 
 | -------------------- | ------------ | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Result age indicator | 2            | uint16                                | Indicates whether PDS data was received from the PDS application (0 if received, otherwise incremented). <br>0 if PDS data was received from the PDS application, If no new data is present for the next PLC app frame, the value is increased, If the value reaches 255, it will not reset. It will stay at 255 until new data is received, If no previous output of PDS is available, it will indicate 255. |
 | Severity             | 2            | uint16                                | Application diagnotic severity state of corresponding PDS app, with these possible values: <br><br> <li>1: `no_incident`</li> <li>2: `info`</li><li>3: `minor`</li> <li>4: `major`</li> <li>5: `critical`</li><li>6: `not available` (application instance not existing)</li>                                                                                                                                                          |
-| PDS command ID       | 2            | uint16                                | The ID of the PDS command of this response data: <br>02200: get pallet, <br> 02201: get item, <br> 02202: get rack, <br> 02203: volume check.                                                                                                                                                                                                                                                                 |
+| PDS command ID       | 2            | uint16                                | The ID of the PDS command of this response data: <br>02200: get pallet, <br> 02202: get rack, <br> 02203: volume check.                                                                                                                                                                                                                                                                 |
 | Ticket               | 2            | uint16                                | The unique ID of the command, sent back to the PLC for book keeping: <br>0: default value, the command was not issued py the PLC, <br>nonzero: PCIC ticket id for commands coming via PCIC, or of command data.                                                                                                                                                                                               |
 | Timestamp            | 8            | uint64 for TCP/IP, uint32[2] for EIP  | Time stamp of the PDS algorithm result. VPU time (including NTP if configured).                                                                                                                                                                                                                                                                                                                               |
 | Response             | 32           | uint8[32] for PLC, uint16[16] for EIP | The PDS Result for the given command. padded with zeros, this can be one of: <br>[Get pallet result data](#get-pallet-result-data) <br> [Get rack result data](#get-rack-result-data) <br> [Volume check result data](#volume-check-result-data). <br> For EtherNet/IP, the EDS provides a datatype unit16[16] for these values.                                                                              |

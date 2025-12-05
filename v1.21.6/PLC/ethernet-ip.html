@@ -241,7 +241,7 @@ Only one command can be set at a time within the command word field. The availab
 <td><p>PDS – GetPallet</p></td>
 </tr>
 <tr class="row-odd"><td class="text-right"><p>13</p></td>
-<td><p>PDS – GetItem</p></td>
+<td><p>PDS – Reserved</p></td>
 </tr>
 <tr class="row-even"><td class="text-right"><p>14</p></td>
 <td><p>PDS – GetRack</p></td>
@@ -299,97 +299,92 @@ The content of the command data section depends on the command word and is defin
 <td><p>2</p></td>
 <td><p>int16</p></td>
 </tr>
-<tr class="row-odd"><td><p>PDS <code class="docutils literal notranslate"><span class="pre">getItem</span></code></p></td>
-<td><p>Available upon request</p></td>
-<td><p></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p>PDS <code class="docutils literal notranslate"><span class="pre">getRack</span></code></p></td>
+<tr class="row-odd"><td><p>PDS <code class="docutils literal notranslate"><span class="pre">getRack</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">ApplicationId</span></code>:  Position in the PDS application list of the application selected for configuration [0..1]</p></td>
 <td><p>2</p></td>
 <td><p>uint16</p></td>
 </tr>
-<tr class="row-odd"><td><p></p></td>
+<tr class="row-even"><td><p></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">HorizontalDropPosition</span></code>:  Selection of the horizontal drop setting: 0-&gt;left, 1-&gt;center, 2-&gt;right</p></td>
 <td><p>2</p></td>
 <td><p>uint16</p></td>
 </tr>
-<tr class="row-even"><td><p></p></td>
+<tr class="row-odd"><td><p></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VerticalDropPosition</span></code>:  Selection of the vertical drop setting: 0-&gt;interior, 1-&gt;floor</p></td>
 <td><p>2</p></td>
 <td><p>uint16</p></td>
 </tr>
-<tr class="row-odd"><td><p></p></td>
+<tr class="row-even"><td><p></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">DepthHint</span></code>:  Estimated distance between rack and coordinate system center in [millimeters]</p></td>
 <td><p>2</p></td>
 <td><p>uint16</p></td>
 </tr>
-<tr class="row-even"><td><p></p></td>
+<tr class="row-odd"><td><p></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">ZHint</span></code>:  Estimated z-coordinate of the rack shelf in [millimeters]</p></td>
 <td><p>2</p></td>
 <td><p>uint16</p></td>
 </tr>
-<tr class="row-odd"><td><p></p></td>
+<tr class="row-even"><td><p></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">ClearingVolumeXMin</span></code>:  Minimum x-coordinate in [millimeters] of the volume which will be checked for obstacles</p></td>
 <td><p>2</p></td>
 <td><p>uint16</p></td>
 </tr>
-<tr class="row-even"><td><p></p></td>
+<tr class="row-odd"><td><p></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">ClearingVolumeXMax</span></code>:   Maximum x-coordinate in [millimeters] of the volume which will be checked for obstacles</p></td>
 <td><p>2</p></td>
 <td><p>uint16</p></td>
 </tr>
-<tr class="row-odd"><td><p></p></td>
+<tr class="row-even"><td><p></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">ClearingVolumeYMin</span></code>:   Minimum y-coordinate in [millimeters] of the volume which will be checked for obstacles</p></td>
 <td><p>2</p></td>
 <td><p>uint16</p></td>
 </tr>
-<tr class="row-even"><td><p></p></td>
+<tr class="row-odd"><td><p></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">ClearingVolumeYMax</span></code>:   Maximum y-coordinate in [millimeters] of the volume which will be checked for obstacles</p></td>
 <td><p>2</p></td>
 <td><p>uint16</p></td>
 </tr>
-<tr class="row-odd"><td><p></p></td>
+<tr class="row-even"><td><p></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">ClearingVolumeZMin</span></code>:   Minimum z-coordinate in [millimeters] of the volume which will be checked for obstacles</p></td>
 <td><p>2</p></td>
 <td><p>uint16</p></td>
 </tr>
-<tr class="row-even"><td><p></p></td>
+<tr class="row-odd"><td><p></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">ClearingVolumeZMax</span></code>:   Maximum z-coordinate in [millimeters] of the volume which will be checked for obstacles</p></td>
 <td><p>2</p></td>
 <td><p>uint16</p></td>
 </tr>
-<tr class="row-odd"><td><p>PDS <code class="docutils literal notranslate"><span class="pre">volCheck</span></code></p></td>
+<tr class="row-even"><td><p>PDS <code class="docutils literal notranslate"><span class="pre">volCheck</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">ApplicationId</span></code>: Position in the PDS application list of the application selected for configuration [0..1]</p></td>
 <td><p>2</p></td>
 <td><p>uint16</p></td>
 </tr>
-<tr class="row-even"><td><p></p></td>
+<tr class="row-odd"><td><p></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VolumeXMin</span></code>:  Minimum x-coordinate in [millimeters] of the volume which will be checked for pixels</p></td>
 <td><p>2</p></td>
 <td><p>uint16</p></td>
 </tr>
-<tr class="row-odd"><td><p></p></td>
+<tr class="row-even"><td><p></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VolumeXMax</span></code>:  Maximum x-coordinate in [millimeters] of the volume which will be checked for pixels</p></td>
 <td><p>2</p></td>
 <td><p>uint16</p></td>
 </tr>
-<tr class="row-even"><td><p></p></td>
+<tr class="row-odd"><td><p></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VolumeYMin</span></code>:  Minimum y-coordinate in [millimeters] of the volume which will be checked for pixels</p></td>
 <td><p>2</p></td>
 <td><p>uint16</p></td>
 </tr>
-<tr class="row-odd"><td><p></p></td>
+<tr class="row-even"><td><p></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VolumeYMax</span></code>:  Maximum y-coordinate in [millimeters] of the volume which will be checked for pixels</p></td>
 <td><p>2</p></td>
 <td><p>uint16</p></td>
 </tr>
-<tr class="row-even"><td><p></p></td>
+<tr class="row-odd"><td><p></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VolumeZMin</span></code>:  Minimum z-coordinate in [millimeters] of the volume which will be checked for pixels</p></td>
 <td><p>2</p></td>
 <td><p>uint16</p></td>
 </tr>
-<tr class="row-odd"><td><p></p></td>
+<tr class="row-even"><td><p></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">VolumeZMax</span></code>:  Maximum z-coordinate in [millimeters] of the volume which will be checked for pixels</p></td>
 <td><p>2</p></td>
 <td><p>uint16</p></td>
@@ -453,22 +448,22 @@ The content of the command data section depends on the command word and is defin
 </section>
 <section id="general-reply-to-an-implemented-command">
 <h3>General Reply to an Implemented Command<a class="headerlink" href="#general-reply-to-an-implemented-command" title="Link to this heading"></a></h3>
-<p>If the command is implemented, the data in the data section is valid, and no error occurs during execution, the producing assembly must be updated as follows:</p>
+<p>If the command is completed succesfully, the assembly content is updated as follows:</p>
 <ul class="simple">
-<li><p>Increment the message counter by 1</p></li>
-<li><p>Mirror the command bits from the consuming assembly</p></li>
-<li><p>Set the command error codes to <code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
-<li><p>Fill the command response if applicable, otherwise set it to <code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
+<li><p>Message counter is incremented by 1</p></li>
+<li><p>The command bits are mirrored</p></li>
+<li><p>The command error code is set to <code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
+<li><p>The command response is set if applicable, otherwise set it to <code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
 </ul>
 </section>
 <section id="reply-to-an-implemented-command-that-fails">
 <h3>Reply to an Implemented Command That Fails<a class="headerlink" href="#reply-to-an-implemented-command-that-fails" title="Link to this heading"></a></h3>
-<p>If execution of the command results in an error, the producing assembly must contain:</p>
+<p>If an error occured during command execution, the assembly content is updated as follows:</p>
 <ul class="simple">
-<li><p>Message counter incremented by 1</p></li>
-<li><p>Command bits mirrored from the consuming assembly</p></li>
-<li><p>Command error code set accordingly</p></li>
-<li><p>Command response section set to <code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
+<li><p>Message counter is incremented by 1</p></li>
+<li><p>The command bits are mirrored</p></li>
+<li><p>The command error code is set accordingly</p></li>
+<li><p>The command response is set to <code class="docutils literal notranslate"><span class="pre">0</span></code></p></li>
 </ul>
 </section>
 </section>
@@ -625,7 +620,7 @@ The content of the command data section depends on the command word and is defin
             </tr>
             <tr>
               <td>Severity</td>
-              <td>uint8</td>
+              <td>uint16</td>
               <td>
                 <ul style="margin: 0; padding-left: 20px;">
                   <li>1: no_incident</li>
@@ -639,7 +634,7 @@ The content of the command data section depends on the command word and is defin
             <tr>
               <td>Diagnostic ID</td>
               <td>uint32</td>
-              <td>0:no diagnostic event. For Diagnostic event IDs and descriptions please refer <a href="../SoftwareInterfaces/ifmDiagnostic/diagnostic.html#error-codes-and-descriptions">this page</a>. </td>
+              <td>0:no diagnostic event. For Diagnostic event IDs and descriptions please refer <a href="../SoftwareInterfaces/ifmDiagnostic/diagnostic.html#error-codes-and-descriptions">this page</a>. Each DiagData struct is 8 bytes total (2+2+4 = Source+Severity+ID).</td>
             </tr>
           </tbody>
         </table>
@@ -687,7 +682,7 @@ The content of the command data section depends on the command word and is defin
 <tr class="row-even"><td><p>Zone status flags</p></td>
 <td><p>6</p></td>
 <td><p>uint16 [3]</p></td>
-<td><p>Zone status flags (3 UINT, 0: zone free, 1: zone occupied)</p></td>
+<td><p>Zone status flags (array of 3 uint16 values = 6 bytes total, 0: zone free, 1: zone occupied)</p></td>
 </tr>
 <tr class="row-odd"><td><p>Zone config ID</p></td>
 <td><p>4</p></td>
@@ -726,7 +721,7 @@ The content of the command data section depends on the command word and is defin
 <tr class="row-even"><td><p>PDS command ID</p></td>
 <td><p>2</p></td>
 <td><p>uint16</p></td>
-<td><p>The ID of the PDS command of this response data: <br>02200: get pallet, <br> 02201: get item, <br> 02202: get rack, <br> 02203: volume check.</p></td>
+<td><p>The ID of the PDS command of this response data: <br>02200: get pallet, <br> 02202: get rack, <br> 02203: volume check.</p></td>
 </tr>
 <tr class="row-odd"><td><p>Ticket</p></td>
 <td><p>2</p></td>
