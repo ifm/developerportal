@@ -215,6 +215,14 @@ It is always streamed on a dedicated virtual port, port 9, and is structured in 
 </tr>
 </tbody>
 </table>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Operational guidance for event severity:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">major</span></code>: the condition may heal automatically without human intervention, but data received in this state is not reliable. The affected robot or machine should be brought to a safe stop until the diagnostic is cleared.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">critical</span></code>: the condition does not recover automatically and data received in this state is not reliable. The affected robot or machine must be brought to a safe stop. User intervention is required before resuming operation, for example by resolving the root cause and rebooting the device if needed.</p></li>
+</ul>
+</div>
 <section id="sources">
 <h4>Sources<a class="headerlink" href="#sources" title="Link to this heading"></a></h4>
 <p>The diagnostic sources can be mapped to system components as follows:</p>
@@ -230,6 +238,14 @@ It is always streamed on a dedicated virtual port, port 9, and is structured in 
 <section id="groups">
 <h3>Groups<a class="headerlink" href="#groups" title="Link to this heading"></a></h3>
 <p>From the firmware versions 1.20.29 and above, a new feature to monitor the port’s/application’s health by the group severity. It is recommended to  handle the vehicle behavior by monitoring the group severity.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>If a group severity becomes <code class="docutils literal notranslate"><span class="pre">major</span></code> or <code class="docutils literal notranslate"><span class="pre">critical</span></code>, the corresponding data must be considered unreliable and the affected robot or machine should be brought to a safe stop.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">major</span></code>: the condition may heal automatically without human intervention.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">critical</span></code>: user intervention is required before resuming operation, for example by resolving the root cause and rebooting the device if needed.</p></li>
+</ul>
+</div>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Key</p></th>

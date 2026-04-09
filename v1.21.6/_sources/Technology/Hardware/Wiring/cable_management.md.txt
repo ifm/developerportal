@@ -3,6 +3,10 @@
 
 Cable management is essential to improved safety, reliability, efficiency, and maintenance. Therefore we recommend the following tips for cable management.
 
+:::{note}
+Use `1 Gigabit/s` rated hardware for all Ethernet cables and Ethernet switches connected to the O3R platform.
+:::
+
 ## Cable type and size
 
 Using the right length and type of cable is an effective way to keep the cables organized.

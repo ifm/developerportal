@@ -1,60 +1,125 @@
 # Autostart a container on the VPU
 
-Once the container has been transferred to the VPU, you can set up an autostart service to automatically run the containers as start-up.
-For auto-starting a container, `Docker compose` is used. The VPU already provides a service `.config/systemd/user/oem-dc@.service` which can be used for auto-starting a service: this is what we will use.
+This document explains how to automatically start your container automatically after a VPU reboot.
 
-## Docker compose
+## What you need before you begin
 
-Generate a sample directory and a `docker-compose.yml` file at following destination: `/usr/share/oem/docker/compose/`. for example `/usr/share/oem/docker/compose/jupyter/docker-compose.yml`
+- The container image is already available on the VPU (either pulled from a registry or loaded locally).
+- You have a folder on the VPU where you can store your `docker-compose.yml` file.
 
-This file should contain the information for starting the container you need.
+The VPU already provides a systemd user service at `.config/systemd/user/oem-dc-autostart.service`. We will enable this service to start your Docker Compose project automatically.
 
-### Sample docker-compose.yml
+## Docker Compose (beginner-friendly overview)
 
-The following `docker-compose.yml` file would create a service called `jupyter`, based on the image `jupyter` and bind the container ports 8888 to the host port 8888 on start.
+Docker Compose lets you define how to run one or more containers in a single file named `docker-compose.yml`. The file describes:
+
+- **Which image to run** (your container image)
+- **How to restart** the container if it stops
+- **Which ports to expose** (if the app has a web UI)
+- **Where to store data** (volumes)
+
+Create a folder and place a `docker-compose.yml` file in it, for example:
+
+```sh
+mkdir -p /home/oem/my_docker
+```
+
+:::{important}
+        This directory does not persist across firmware updates or factory resets.
+:::
+
+Save your Compose file at:
+
+```sh
+nano /home/oem/my_docker/docker-compose.yml
+```
+
+### Sample `docker-compose.yml`
+
+The following file creates a service called `jupyter`, based on the image `jupyter`, and exposes port 8888 so you can access it from the VPU.
 
 ```yaml
-version: "3.3"
 services:
     jupyter:
         image: jupyter
+        restart: unless-stopped
         ports:
-            - 8888:8888
+            - "8888:8888"
+
 ```
 
-> Note: The Docker version on the VPU expects the `docker-compose.yml` to be either version 2.2 or 3.3. For further information refer to [Docker compose](<https://docs.docker.com/compose/gettingstarted/>).
+## Start / stop the container (manual)
 
-## Start the container
+A `docker-compose.yml` can be started from its directory using `docker-compose up`.  
 
-A `docker-compose.yml` can be started via `docker-compose up` within the `docker-compose.yml` directory.  
-<!-- **TODOOO: add example of `docker compose-up`**   -->
-It is also possible to start the service with `systemctl`:
+```sh
+cd /home/oem/my_docker
+docker-compose up -d
+```
+
+:::{note}
+- `-d` runs the containers in detached mode (in the background). For more detailed explanation, refer to [Docker CLI documentation](https://docs.docker.com/reference/cli/docker/compose/up/)
+:::
+
+Check if it is running:
+
+```sh
+docker-compose ps
+```
+
+To stop the container, navigate to the directory where docker-compose file is located and execute
+
+```sh
+docker-compose down
+```
+
+To view logs (helpful for troubleshooting):
+
+```sh
+docker-compose logs -f
+```
+
+## Auto-start the container after a VPU reboot
+
+To restart the container automatically, enable the following user service:
 
 ```bash
-systemctl --user start oem-dc@jupyter
+systemctl --user enable oem-dc-autostart.service
 ```
 
-After a few seconds, the service should have started and it is possible to get the status of this service:
+To start it right away without rebooting:
 
 ```bash
-systemctl --user status oem-dc@jupyter
+systemctl --user start oem-dc-autostart.service
 ```
-<!-- TODO: add the result of this cmd -->
 
-Another way of seeing all running container is `docker ps`.
-
-## Auto start the container after a reboot of the VPU
-
-To restart the container automatically, simply `enable` the service:
+To check the status of the user service:
 
 ```bash
-systemctl --user enable oem-dc@jupyter
+systemctl --user status oem-dc-autostart.service
 ```
 
-See [Start the container](#autostart-a-container-on-the-vpu) on how to start the container with a `docker-compose.yml file`
+To disable the automatic Docker start again:
 
-## Consistently save data on the VPU within a container
+```bash
+systemctl --user disable oem-dc-autostart.service
+```
 
-Data that is created and stored within a container is exclusive to the current running instance of that container. 
-If the container is restarted, any data previously saved will be lost. 
-To prevent this, consider using Docker `volumes`.
+> Hint: `oem-dc-autostart.service` only makes sure that Docker itself is started after boot. It does not report the status of your container and does not by itself guarantee that a container will start. Make sure your container uses a suitable restart policy such as `always` or `unless-stopped`. For details, see the official Docker documentation on [start containers automatically](https://docs.docker.com/engine/containers/start-containers-automatically/).
+
+## Persist data on the VPU (volumes)
+
+Data stored inside a container is lost when the container is removed. To keep data between restarts, use a volume or a host folder.
+
+Example using a host folder:
+
+```yaml
+services:
+    app:
+        image: your-image
+        restart: unless-stopped
+        volumes:
+            - /home/oem/data:/app/data
+```
+
+For more details, see [Docker volumes](https://docs.docker.com/engine/storage/volumes/).

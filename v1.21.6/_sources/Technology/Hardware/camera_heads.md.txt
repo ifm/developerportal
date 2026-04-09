@@ -14,13 +14,21 @@ Mixed indoor - outdoor conditions are understood by ifm to be conditions that ar
 It is important to clean the camera heads regularly because any dirt, dust, or fingerprints on the lens or front of the camera housing can interfere with the accuracy of the camera's measurements. The camera heads work by emitting a light signal and measuring the time it takes for the signal to reflect back to the sensor. If there is dirt or dust on the lens or illumination module, it can scatter the light signal and cause inaccuracies in the measurements. This can impact the performance of any systems that rely on that data, such as ODS.
 
 Regular cleaning can help to ensure that they are operating at their best performance and producing accurate and reliable data. The best practices to clean the cameras are as follows:
+
 - Use a clean, lint-free cloth: When cleaning the camera, it is important to use a clean, lint-free cloth that will not scratch or damage the lens or sensor. Microfiber cloth is a good choice.
 - Use compressed air or a blower brush to gently blow away any debris from the lens and sensor.
 - Avoid using water or harsh chemicals as this can damage the lens or sensor.
 - Clean regularly: To maintain optimal performance, it is recommended to clean the camera heads regularly. It is advised to clean the cameras heads at least once per week. Depending on the environment shorter cleaning intervals may be required. We recommend to implement a weekly cleaning maintenance for non-dusty environments. For dusty environments a daily cleaning maintenance schedule is advised.
 
 ## Use-cases
+
 Different camera heads are available for the O3R platform and they are best suited for different use cases:
+
 - The O3R222 has a narrow field of view which is ideal for applications focussing on detecting smaller objects, edges and objects at longer ranges.
 - The O3R225 camera head has a wider field of view which is ideal for the applications focussing on perceiving the larger areas and minimizing dead zones.
 - The O3R252 camera head has more resolution compared to other camera heads and this is ideal for applications focusing on objects dimensioning.
+
+## Temperature influence on 3D performance
+
+The 3D performance of the `O3R222` camera heads can vary  with ambient temperature. At low temperatures, the sensing range may be slightly reduced.
+

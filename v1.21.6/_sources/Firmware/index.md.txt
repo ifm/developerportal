@@ -1,4 +1,4 @@
-# O3R firmware 
+# O3R firmware
 
 :::{toctree}
     :maxdepth: 2

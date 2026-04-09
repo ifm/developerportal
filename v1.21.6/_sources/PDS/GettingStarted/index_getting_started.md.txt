@@ -11,8 +11,10 @@ A typical procedure for getting started would be as follows:
 - Start the ifmVisionAssistant (iVA) GUI,
 - Verify that live images are being received.
 
-
 Before reading this section, make sure you are familiar with [how to get started with the iVA](../../SoftwareInterfaces/iVA/index_iVA.md).
+
+```{include} ../../notices/multi-app.md
+```
 
 ## Calibrate the camera
 

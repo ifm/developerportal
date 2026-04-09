@@ -2,6 +2,10 @@
 
 The O3R has two Ethernet ports, `eth0` and `eth1`. These ports can both be used to communicate with the platform or with external devices (other sensors or computing platforms, displays, etc).
 
+:::{note}
+Use `1 Gigabit/s` rated hardware for all Ethernet cables and Ethernet switches connected to the O3R platform.
+:::
+
 By default, both `eth0` and `eth1` are configured to a static IP, respectively `192.168.0.69`, and `192.168.42.69`.
 
 With the current network setup, we expect `eth0` to be used for communication to and fro a complex network. `eth1` is expected to be used for bringing in external devices and other sensors. You might encounter networking issues if using `eth1` as your primary communication interface, due to the underlying network setting in the O3R VPU linux-based OS.

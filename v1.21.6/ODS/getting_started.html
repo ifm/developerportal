@@ -102,8 +102,6 @@
 <li class="toctree-l2"><a class="reference internal" href="Performance/index_performance.html">Performance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="DeviceVerification/index_device_verification.html">Device verification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iVA/index_ifmODS_iVA.html">ifmVisionAssistant</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Python/index_ifmODS_python.html">Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Cpp/index_ifmODS_cpp.html">C++</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../PDS/index_pds.html">PDS</a></li>
@@ -146,10 +144,10 @@
 <section id="prerequisites">
 <h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>An OVP801 or OVP811 device (this comes with the required ODS app pre-installed),</p></li>
+<li><p>An OVP801 or OVP811 or OVP813 device (this comes with the required ODS app pre-installed),</p></li>
 <li><p>One or more cameras, O3R222 or O3R225,</p></li>
 <li><p>An Ethernet cable, FAKRA cable and power supply as specified in <a class="reference internal" href="../GettingStarted/Unboxing/hw_unboxing.html"><span class="std std-doc">the wiring instructions</span></a>,</p></li>
-<li><p>The ifm Vision Assistant, which is the standard GUI from ifm used to interface with all 3D cameras (download the latest version on <a class="reference external" href="https://www.ifm.com">ifm.com</a>),</p></li>
+<li><p>The ifm Vision Assistant, which is the standard GUI from ifm used to interface with all 3D cameras (download the latest version on <a class="reference external" href="https://www.ifm.com">ifm.com</a>).</p></li>
 </ul>
 </section>
 <section id="step-0-setup">
@@ -164,6 +162,11 @@
 <!-- ![Open the Vision Assistant calibration wizard](img/open_iVA_calib_wizard.png) -->
 <!-- ![Calibrate the 3D camera like a vehicle from camera](img/calibrate_3D_cam.png) -->
 <a class="reference internal image-reference" href="../_images/calibrate_3D_cam.drawio.svg"><img alt="Calibrate the 3D camera like a vehicle from camera" class="align-center" src="../_images/calibrate_3D_cam.drawio.svg" width="1080px" /></a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is crucial to calibrate the VPU(IMU inside VPU) which is attached to virtual port - <code class="docutils literal notranslate"><span class="pre">PORT6</span></code>. The VPU origin can be found at <a class="reference internal" href="../Technology/Hardware/Mounting/coordinate_systems.html"><span class="std std-doc">coordinate systems page</span></a></p>
+</div>
+<a class="reference internal image-reference" href="../_images/calibrate_vpu.drawio.svg"><img alt="Calibrate the VPU" class="align-center" src="../_images/calibrate_vpu.drawio.svg" width="1080px" /></a>
 <p>The calibration steps shown assume that the camera is positioned horizontally, facing forward, at a height of 50 cm from the floor. If your setup is different, adjust the rotation and translation values.</p>
 </section>
 <section id="step-2-create-an-ods-application">
@@ -197,7 +200,13 @@ The maximum number of application of each type that can be configured is:</p>
 <h2>Step 3: Start ODS<a class="headerlink" href="#step-3-start-ods" title="Link to this heading"></a></h2>
 <p>To start ODS, you can simply set the <code class="docutils literal notranslate"><span class="pre">state</span></code> parameter to <code class="docutils literal notranslate"><span class="pre">&quot;RUN&quot;</span></code>:</p>
 <!-- ![Start the ODS applications. The occupancy grid appears.](img/start_ods.png) -->
-<a class="reference internal image-reference" href="ODS/img/start_ods.svg"><img alt="Start the ODS applications" class="align-center" src="ODS/img/start_ods.svg" width="1080px" /></a>
+<!--
+```{image} img/start_ods.svg
+:alt: Start the ODS applications
+:width: 1080px
+:align: center
+```
+-->
 <p>Once the application is running, objects identified as obstacles will appear in the occupancy grid.</p>
 <p>You can also activate the default zones, by clicking on the “Set Example Zones” button:</p>
 <!-- ![Activate three example zones](img/zones.png) -->

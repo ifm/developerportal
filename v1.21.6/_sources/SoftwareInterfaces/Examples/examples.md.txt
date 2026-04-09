@@ -1,17 +1,25 @@
-# Examples 
+# Code Examples and ifm3d API usage guides
 
-We provide a set of examples in Python and c++, using the ifm3d library, that show how to use the OVP8XX with the O3R2XX cameras in a variety of situations.
+To help you get started quickly and understand real-world usage of `ifm3d` API, we maintain a dedicated [**ifm3d-examples Repository**](https://github.com/ifm/ifm3d-examples/) on GitHub.
 
-For convenience, all the examples are available as a standalone repository on GitHub. You can clone it with:
+This repository contains a collection of practical examples demonstrating how to integrate with our APIs across various environments and use cases.
 
-```bash
-$ git clone --branch v1.0.0 https://github.com/ifm/ifm3d-examples.git
-```
+## What's Included
+
+- End-to-end example projects
+- Language-specific integrations (e.g., Python, C++)
+- Structured directories with clear, self-contained `README.md` guides
+- Recommended best practices and usage patterns
+
+Each example directory includes its own `README.md` with step-by-step instructions, making it easy to understand the context and start experimenting right away.
 
 :::{note}
-The examples are versioned along with the supported versions of the API and the firmware. 
-Refer to [the compatibility matrix](https://github.com/ifm/ifm3d-examples?tab=readme-ov-file#compatibility) to find which tag is the one you should use.
+ We recommend starting with the root [README](https://github.com/ifm/ifm3d-examples/blob/main/ovp8xx/README.md) to get an overview of the available examples and how to navigate the repository.
 :::
 
-Follow the instructions in the example repository to build and run the examples.
+## Useful Links
 
+- 🔍 [Browse All Examples](https://github.com/ifm/ifm3d-examples/)
+- 🚀 [ifm3d API Client](https://api.ifm3d.com/stable/)
+
+If you have any questions or need support, feel free to contact us at [support.efector.object-ident@ifm.com](support.efector.object-ident@ifm.com) or open an issue in the repository.

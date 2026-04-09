@@ -186,8 +186,18 @@ The received occupancy grid frame contains a timestamp based on the OVP8xx time.
 </div>
 <p>A <code class="docutils literal notranslate"><span class="pre">NTP</span></code> address is not provided by default - <code class="docutils literal notranslate"><span class="pre">&quot;systemClockSynchronized&quot;:</span> <span class="pre">false</span></code></p>
 <p><strong>via ifmVIsionAssistant</strong></p>
-<p>.. warning::
-It is not yet possible to provide the NTP server address to the O3R via the ifmVisionAssistant.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Please always use the latest ifmVisionAssistant version available at [OVP810 downloads section](https://www.ifm.com/de/en/product/OVP810#documents)
+</pre></div>
+</div>
+</div>
+<ol class="arabic simple">
+<li><p>Navigate to <code class="docutils literal notranslate"><span class="pre">VPU</span> <span class="pre">Settings</span></code> window.</p></li>
+<li><p>Activate (S)NTP server.</p></li>
+<li><p>Click on <strong>+</strong> button to add available servers.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../_images/ntp.svg"><img alt="Diagram showing on how to activate SNTP server on iVA" class="align-center" src="../../_images/ntp.svg" width="800px" /></a>
 <p><strong>via ifm3d API</strong></p>
 <p>Receive the currently provided NTP server addresses and the currently used NTP address:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="kn">from</span><span class="w"> </span><span class="nn">ifm3dpy.device</span><span class="w"> </span><span class="kn">import</span> <span class="n">O3R</span>

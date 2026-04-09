@@ -126,13 +126,74 @@ You need the following hardware from ifm:</p>
 </ul>
 <p>You also need:</p>
 <ul class="simple">
-<li><p>A strong enough power source: 3.5A and 24V minimum,</p></li>
-<li><p>An Ethernet cable.</p></li>
+<li><p>A reliable power supply capable of providing at least 24 V / 3.5 A</p></li>
+<li><p>An Ethernet cable rated for 1 Gbit/s (Gigabit) communication.</p></li>
 </ul>
 <p>Then, follow the instructions below:</p>
 <ol class="arabic simple">
 <li><p>First, connect the heads to the VPU; the only requirement is to connect pairs of same imager types together, for instance as shown below:<br />
 <img alt="CONNECTION-OVERVIEW" src="../../_images/connection_overview.png" /></p></li>
+</ol>
+<p><strong>Some example scenarios</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Connection</p></th>
+<th class="head"><p>Port 0</p></th>
+<th class="head"><p>Port 1</p></th>
+<th class="head"><p>Port 2</p></th>
+<th class="head"><p>Port 3</p></th>
+<th class="head"><p>Port 4</p></th>
+<th class="head"><p>Port 5</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>example 1</strong></p></td>
+<td><p>camera 1 (3D)</p></td>
+<td><p>camera 2 (3D)</p></td>
+<td><p>camera 1 (2D)</p></td>
+<td><p>camera 2 (2D)</p></td>
+<td><p>camera 3 (3D)</p></td>
+<td><p>camera 4 (3D)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>example 2</strong></p></td>
+<td><p>camera 1 (2D)</p></td>
+<td><p>camera 2 (2D)</p></td>
+<td><p>camera 1 (3D)</p></td>
+<td><p>camera 2 (3D)</p></td>
+<td><p>camera 3 (2D)</p></td>
+<td><p>camera 4 (2D)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>example 3</strong></p></td>
+<td><p>camera 1 (3D)</p></td>
+<td><p>camera 2 (3D)</p></td>
+<td><p>camera 3 (3D)</p></td>
+<td><p>camera 4 (3D)</p></td>
+<td><p>camera 5 (3D)</p></td>
+<td><p>camera 6 (3D)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>example 4</strong></p></td>
+<td><p>camera 1 (3D-VGA)</p></td>
+<td><p>camera 2 (3D-VGA)</p></td>
+<td><p>camera 3 (3D)</p></td>
+<td><p>camera 4 (3D)</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>example 5</strong></p></td>
+<td><p>camera 1 (3D-VGA)</p></td>
+<td><p>camera 2 (3D-VGA)</p></td>
+<td><p>camera 3 (3D-VGA)</p></td>
+<td><p>camera 4 (3D-VGA)</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please note that <strong>38k(O3R222 / O3R225)</strong> and <strong>VGA(O3R252)</strong> are different 3D image sensor types and should not be connected to same port pair.</p>
+</div>
+<ol class="arabic simple" start="2">
 <li><p>Connect power to the VPU, the pins are defined as follows:</p>
 <ul class="simple">
 <li><p>1 screen</p></li>

@@ -81,7 +81,10 @@
 <li class="toctree-l3"><a class="reference internal" href="ResourceManagement/index_resource_management.html">Resources management</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">CAN</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#hardware">Hardware</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#software">Software</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#software">Software</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#available-bitrates">Available bitrates</a></li>
+</ul>
+</li>
 <li class="toctree-l4"><a class="reference internal" href="#example-interfacing-with-the-dtm425-rfid-antenna-using-docker">Example: Interfacing with the DTM425 RFID antenna using Docker</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#sample-point">Sample point</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#changing-the-sample-point">Changing the sample point</a></li>
@@ -145,12 +148,12 @@
 </section>
 <section id="software">
 <h2>Software<a class="headerlink" href="#software" title="Link to this heading"></a></h2>
-<p>The CAN interface is supported starting from firmware version 0.14.1. Configuring the CAN interface through the JSON configuration is only possible for firmware version 1.4.30 and above.</p>
+<p>CAN support requires a firmware version 1.4.30 and above.</p>
 <p>Please note that the CAN interface is only accessible within Docker when using the <code class="docutils literal notranslate"><span class="pre">--network</span> <span class="pre">host</span></code> option.</p>
 <p>Before utilizing the CAN interface, it needs to be set up. To verify whether the CAN interface is active and with which bitrate it operates, there are two possible methods: using the <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> CLI or Python scripts.</p>
 <ol class="arabic">
 <li><p>Using the  <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> CLI:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.device.network.interfaces.can0
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>ovp8xx<span class="w"> </span>config<span class="w"> </span>get<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.device.network.interfaces.can0
 <span class="o">{</span>
 <span class="s2">&quot;active&quot;</span>:<span class="w"> </span>false,
 <span class="s2">&quot;bitrate&quot;</span>:<span class="w"> </span><span class="s2">&quot;125K&quot;</span>
@@ -166,13 +169,23 @@
 Using the <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> CLI a reboot can be performed by <code class="docutils literal notranslate"><span class="pre">ifm3d</span> <span class="pre">reboot</span></code>.</p>
 </div>
 <p>After activating the CAN interface and rebooting the VPU, we can verify the status of the CAN interface again using the <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> CLI as follows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.device.network.interfaces.can0
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>ovp8xx<span class="w"> </span>config<span class="w"> </span>get<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.device.network.interfaces.can0
 <span class="o">{</span>
 <span class="w">  </span><span class="s2">&quot;active&quot;</span>:<span class="w"> </span>true,
 <span class="w">  </span><span class="s2">&quot;bitrate&quot;</span>:<span class="w"> </span><span class="s2">&quot;125K&quot;</span>
 <span class="o">}</span>
 </pre></div>
 </div>
+<section id="available-bitrates">
+<h3>Available bitrates<a class="headerlink" href="#available-bitrates" title="Link to this heading"></a></h3>
+<p>Set the <code class="docutils literal notranslate"><span class="pre">bitrate</span></code> to one of these <strong>string</strong> values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;1M&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;500K&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;250K&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;125K&quot;</span></code></p></li>
+</ul>
+</section>
 </section>
 <section id="example-interfacing-with-the-dtm425-rfid-antenna-using-docker">
 <h2>Example: Interfacing with the <a class="reference external" href="https://www.ifm.com/de/en/product/DTM425">DTM425</a> RFID antenna using Docker<a class="headerlink" href="#example-interfacing-with-the-dtm425-rfid-antenna-using-docker" title="Link to this heading"></a></h2>
@@ -294,57 +307,10 @@ With a sample point of 0.5, the measurements will be taken at half the width of 
 <p>Typically, a default sample point of 0.875 (or 87.5 % of the bit time) works well for most signals. However, if the signal is noisy, meaning the rising and falling edges are not clean, or other signal degradations are visible on the signal scope, adjusting the sample point might be necessary to ensure accurate data reception.</p>
 <section id="changing-the-sample-point">
 <h3>Changing the sample point<a class="headerlink" href="#changing-the-sample-point" title="Link to this heading"></a></h3>
-<p>To demonstrate how to change the CAN sample point on the VPU using a Docker container, we will provide an example of a simple Docker container. This example will show how to modify the bitrate and sample point, run the container on the VPU, and check if the modified parameter are correctly set from within the Docker container. The steps are outlined below.</p>
-<ol class="arabic simple">
-<li><p>Create a Dockerfile:</p></li>
-</ol>
-<div class="highlight-docker notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="w"> </span><span class="s">arm64v8/alpine</span>
-<span class="c"># Install required packages</span>
-<span class="k">RUN</span><span class="w"> </span>apk<span class="w"> </span>add<span class="w"> </span>--no-cache<span class="w"> </span>iproute2<span class="w"> </span>can-utils
-<span class="c"># Create a script to change sample-point and bitrate</span>
-<span class="k">RUN</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;#!/bin/ash \</span>
-<span class="s2">    ip link set can0 down \</span>
-<span class="s2">    ip link set can0 type can bitrate 250000 sample-point 0.5 \</span>
-<span class="s2">    ip link set can0 up&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/usr/local/bin/setup_can0.sh
-<span class="c"># Make the script executable</span>
-<span class="k">RUN</span><span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>/usr/local/bin/setup_can0.sh
-<span class="c"># Run the script when the container starts</span>
-<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/usr/local/bin/setup_can0.sh&quot;</span><span class="p">]</span>
-</pre></div>
-</div>
-<ol class="arabic simple" start="2">
-<li><p>Build, and copy the Docker image into the VPU:</p></li>
-</ol>
-<div class="highlight-Shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>can0_setup<span class="w"> </span>.
-docker<span class="w"> </span>save<span class="w"> </span>can0_setup<span class="w"> </span><span class="p">|</span><span class="w"> </span>ssh<span class="w"> </span>-C<span class="w"> </span>oem@192.168.0.69<span class="w"> </span>docker<span class="w"> </span>load
-</pre></div>
-</div>
-<p>For more information’s on how to create a Docker container, please follow the <a class="reference internal" href="../../SoftwareInterfaces/Docker/docker.html"><span class="std std-doc">Docker getting started documentation</span></a></p>
-<ol class="arabic simple" start="3">
-<li><p>SSH to the VPU and run the Docker image:</p></li>
-</ol>
-<div class="highlight-Shell notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>oem@192.168.0.69<span class="w"> </span>
-docker<span class="w"> </span>run<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span>--cap-add<span class="w"> </span>NET_ADMIN<span class="w"> </span>-it<span class="w"> </span>can0_setup<span class="w"> </span>sh
-</pre></div>
-</div>
+<p>If CAN communication is unstable, adjusting the sample point may help improve signal robustness.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Note that <code class="docutils literal notranslate"><span class="pre">--network</span> <span class="pre">host</span></code> <em>is required</em> to access the CAN interface, and <code class="docutils literal notranslate"><span class="pre">--cap-add</span> <span class="pre">NET_ADMIN</span></code> <em>is required</em> to interact with the network stack, allowing for changes to the bitrate and sample-point.</p>
-</div>
-<ol class="arabic simple" start="4">
-<li><p>In the Docker container check if the sample point is set correctly:</p></li>
-</ol>
-<div class="highlight-Shell notranslate"><div class="highlight"><pre><span></span>./usr/local/bin/setup_can0.sh
-ip<span class="w"> </span>-details<span class="w"> </span>-statistics<span class="w"> </span>link<span class="w"> </span>show<span class="w"> </span>can0
-</pre></div>
-</div>
-<p>The expected output should look like this:</p>
-<div class="highlight-Shell notranslate"><div class="highlight"><pre><span></span><span class="m">5</span>:<span class="w"> </span>can0:<span class="w"> </span>&lt;NOARP,UP,LOWER_UP,ECHO&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">72</span><span class="w"> </span>qdisc<span class="w"> </span>pfifo_fast<span class="w"> </span>state<span class="w"> </span>UNKNOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">10</span>
-<span class="w">    </span>link/can<span class="w">  </span>promiscuity<span class="w"> </span><span class="m">0</span><span class="w"> </span>
-<span class="w">    </span>can<span class="w"> </span>state<span class="w"> </span>ERROR-ACTIVE<span class="w"> </span><span class="o">(</span>berr-counter<span class="w"> </span>tx<span class="w"> </span><span class="m">0</span><span class="w"> </span>rx<span class="w"> </span><span class="m">0</span><span class="o">)</span><span class="w"> </span>restart-ms<span class="w"> </span><span class="m">100</span><span class="w"> </span>
-<span class="w">    </span>bitrate<span class="w"> </span><span class="m">250000</span><span class="w"> </span>sample-point<span class="w"> </span><span class="m">0</span>.5<span class="w"> </span>
-<span class="w">    </span>tq<span class="w"> </span><span class="m">125</span><span class="w"> </span>prop-seg<span class="w"> </span><span class="m">6</span><span class="w"> </span>phase-seg1<span class="w"> </span><span class="m">7</span><span class="w"> </span>phase-seg2<span class="w"> </span><span class="m">2</span><span class="w"> </span>sjw<span class="w"> </span><span class="m">1</span>
-</pre></div>
+<p>Sample-point tuning is an advanced troubleshooting step. If you suspect a CAN timing issue, please contact us for guidance.</p>
 </div>
 </section>
 </section>

@@ -62,6 +62,8 @@ Example preset configurations for different driving scenarios can be found in [t
 
 In the ifmVisionAssistant, create the PLC application in the **Application** tab by clicking on the **+** icon.
 
+![Creating PLC application](plc_resources/setup_app.png)
+
 #### Configuration parameters
 
 | **Parameter**               | **Description**                                                              |

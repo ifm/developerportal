@@ -42,7 +42,7 @@ For reference, below is the application number to PCIC port correspondence.
    
 For more information on instantiating ODS applications, refer to the [ODS getting started documentation](../../ODS/getting_started.md).
 
-![Reference image for the hardware/application port correspondence to PCIC port](resources/ports.png) 
+![Reference image for the hardware/application port correspondence to PCIC port](resources/port.drawio.svg)
 
 ## How to: retrieve the PCIC port number
 

@@ -2,7 +2,7 @@
 
 ## Structure
 
-The diagnostic provides important information about the health of the system and its parts. 
+The diagnostic provides important information about the health of the system and its parts.
 It is always streamed on a dedicated virtual port, port 9, and is structured in JSON.
 
 ### Diagnostic
@@ -28,6 +28,13 @@ It is always streamed on a dedicated virtual port, port 9, and is structured in 
 | `"state"`       | `["active", "dormant"]`                  | The state of the error. If the error is healed within the same boot session, its state will become dormant.                                                                                                                                                                                                                                                          |
 | `"stats"`       | Dict                                     | Statistics regarding this event: how many times it was activated, timestamp of the last activation and deactivation, etc.                                                                                                                                                                                                                                            |
 
+:::{important}
+Operational guidance for event severity:
+
+- `major`: the condition may heal automatically without human intervention, but data received in this state is not reliable. The affected robot or machine should be brought to a safe stop until the diagnostic is cleared.
+- `critical`: the condition does not recover automatically and data received in this state is not reliable. The affected robot or machine must be brought to a safe stop. User intervention is required before resuming operation, for example by resolving the root cause and rebooting the device if needed.
+:::
+
 #### Sources
 
 The diagnostic sources can be mapped to system components as follows:
@@ -41,6 +48,13 @@ The diagnostic sources can be mapped to system components as follows:
 ### Groups
 
 From the firmware versions 1.20.29 and above, a new feature to monitor the port's/application's health by the group severity. It is recommended to  handle the vehicle behavior by monitoring the group severity.
+
+:::{important}
+If a group severity becomes `major` or `critical`, the corresponding data must be considered unreliable and the affected robot or machine should be brought to a safe stop.
+
+- `major`: the condition may heal automatically without human intervention.
+- `critical`: user intervention is required before resuming operation, for example by resolving the root cause and rebooting the device if needed.
+:::
 
 | Key        | Value                                                                    | Description                                                                                                                                                                                                                                                                                           |
 | ---------- | ------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

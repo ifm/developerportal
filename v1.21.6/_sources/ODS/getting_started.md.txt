@@ -8,10 +8,10 @@ Alternatively, you can read through the steps below.
 
 ## Prerequisites
 
-- An OVP801 or OVP811 device (this comes with the required ODS app pre-installed),
+- An OVP801 or OVP811 or OVP813 device (this comes with the required ODS app pre-installed),
 - One or more cameras, O3R222 or O3R225,
 - An Ethernet cable, FAKRA cable and power supply as specified in [the wiring instructions](../GettingStarted/Unboxing/hw_unboxing.md),
-- The ifm Vision Assistant, which is the standard GUI from ifm used to interface with all 3D cameras (download the latest version on [ifm.com](https://www.ifm.com)),
+- The ifm Vision Assistant, which is the standard GUI from ifm used to interface with all 3D cameras (download the latest version on [ifm.com](https://www.ifm.com)).
 
 ## Step 0: Setup
 
@@ -34,6 +34,16 @@ Use the calibration wizard in the ifm Vision Assistant to calibrate each camera.
 
 ```{image} img/calibrate_3D_cam.drawio.svg
 :alt: Calibrate the 3D camera like a vehicle from camera
+:width: 1080px
+:align: center
+```
+
+:::{note}
+  It is crucial to calibrate the VPU(IMU inside VPU) which is attached to virtual port - `PORT6`. The VPU origin can be found at [coordinate systems page](../Technology/Hardware/Mounting/coordinate_systems.md)
+:::
+
+```{image} img/calibrate_vpu.drawio.svg
+:alt: Calibrate the VPU
 :width: 1080px
 :align: center
 ```
@@ -74,12 +84,13 @@ The ODS application performs some checks related to the motion of the vehicle, w
 
 To start ODS, you can simply set the `state` parameter to `"RUN"`:
 <!-- ![Start the ODS applications. The occupancy grid appears.](img/start_ods.png) -->
+<!--
 ```{image} img/start_ods.svg
 :alt: Start the ODS applications
 :width: 1080px
 :align: center
 ```
-
+-->
 Once the application is running, objects identified as obstacles will appear in the occupancy grid.
 
 You can also activate the default zones, by clicking on the "Set Example Zones" button:

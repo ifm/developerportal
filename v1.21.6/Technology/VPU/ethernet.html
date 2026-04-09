@@ -134,6 +134,10 @@
   <section id="ethernet-interfaces">
 <h1>Ethernet interfaces<a class="headerlink" href="#ethernet-interfaces" title="Link to this heading"></a></h1>
 <p>The O3R has two Ethernet ports, <code class="docutils literal notranslate"><span class="pre">eth0</span></code> and <code class="docutils literal notranslate"><span class="pre">eth1</span></code>. These ports can both be used to communicate with the platform or with external devices (other sensors or computing platforms, displays, etc).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">Gigabit/s</span></code> rated hardware for all Ethernet cables and Ethernet switches connected to the O3R platform.</p>
+</div>
 <p>By default, both <code class="docutils literal notranslate"><span class="pre">eth0</span></code> and <code class="docutils literal notranslate"><span class="pre">eth1</span></code> are configured to a static IP, respectively <code class="docutils literal notranslate"><span class="pre">192.168.0.69</span></code>, and <code class="docutils literal notranslate"><span class="pre">192.168.42.69</span></code>.</p>
 <p>With the current network setup, we expect <code class="docutils literal notranslate"><span class="pre">eth0</span></code> to be used for communication to and fro a complex network. <code class="docutils literal notranslate"><span class="pre">eth1</span></code> is expected to be used for bringing in external devices and other sensors. You might encounter networking issues if using <code class="docutils literal notranslate"><span class="pre">eth1</span></code> as your primary communication interface, due to the underlying network setting in the O3R VPU linux-based OS.</p>
 <section id="set-a-static-ip">

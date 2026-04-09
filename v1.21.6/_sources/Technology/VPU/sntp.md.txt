@@ -61,8 +61,18 @@ A `NTP` address is not provided by default - `"systemClockSynchronized": false`
 
 **via ifmVIsionAssistant**
 
-.. warning::
-    It is not yet possible to provide the NTP server address to the O3R via the ifmVisionAssistant.
+```{include} ../../notices/iva-notice.md
+```
+
+1. Navigate to `VPU Settings` window.
+2. Activate (S)NTP server.
+3. Click on **+** button to add available servers.
+
+```{image} img/ntp.svg
+:alt: Diagram showing on how to activate SNTP server on iVA
+:width: 800px
+:align: center
+```
 
 **via ifm3d API**
 

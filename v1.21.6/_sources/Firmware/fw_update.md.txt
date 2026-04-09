@@ -194,4 +194,4 @@ When the device is in recovery mode, it opens the Software update webinterface a
 
 #### The full example script
 
-We provide a full Python script to help you update the firmware using the API. You can find this script [in the `ifm3d-examples` repository](https://github.com/ifm/ifm3d-examples/blob/main/ovp8xx/python/ovp8xxexamples/core/fw_update_utils.py).
+We provide a full Python script to help you update the firmware using the API. You can find this script [in the `ifm3d-examples` repository](https://github.com/ifm/ifm3d-examples/blob/main/ovp8xx/python/core/fw_update.py).

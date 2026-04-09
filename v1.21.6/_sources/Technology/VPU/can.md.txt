@@ -4,9 +4,11 @@
 
 The O3R has a built-in CAN-bus interface, with the CAN-High and CAN-Low lines on pin 4 and 5 respectively (cf. [hardware diagram](../../GettingStarted/Unboxing/hw_unboxing.md)). Note that cables will need a terminating resistor like the [E11589](https://www.ifm.com/de/en/product/E11589).
 
+
+
 ## Software
 
-The CAN interface is supported starting from firmware version 0.14.1. Configuring the CAN interface through the JSON configuration is only possible for firmware version 1.4.30 and above.
+CAN support requires a firmware version 1.4.30 and above.
 
 Please note that the CAN interface is only accessible within Docker when using the `--network host` option.
 
@@ -14,7 +16,7 @@ Before utilizing the CAN interface, it needs to be set up. To verify whether the
 
 1. Using the  `ifm3d` CLI:
     ```bash
-    $ ifm3d dump | jq .device.network.interfaces.can0
+    $ ifm3d ovp8xx config get | jq .device.network.interfaces.can0
     {
     "active": false,
     "bitrate": "125K"
@@ -35,12 +37,20 @@ Using the `ifm3d` CLI a reboot can be performed by `ifm3d reboot`.
 After activating the CAN interface and rebooting the VPU, we can verify the status of the CAN interface again using the `ifm3d` CLI as follows:
 
 ```bash
-$ ifm3d dump | jq .device.network.interfaces.can0
+$ ifm3d ovp8xx config get | jq .device.network.interfaces.can0
 {
   "active": true,
   "bitrate": "125K"
 }
 ```
+
+### Available bitrates
+
+Set the `bitrate` to one of these **string** values:
+- `"1M"`
+- `"500K"`
+- `"250K"`
+- `"125K"`
 
 ## Example: Interfacing with the [DTM425](https://www.ifm.com/de/en/product/DTM425) RFID antenna using Docker
 
@@ -96,43 +106,8 @@ Typically, a default sample point of 0.875 (or 87.5 % of the bit time) works wel
 
 ### Changing the sample point
 
-To demonstrate how to change the CAN sample point on the VPU using a Docker container, we will provide an example of a simple Docker container. This example will show how to modify the bitrate and sample point, run the container on the VPU, and check if the modified parameter are correctly set from within the Docker container. The steps are outlined below.
+If CAN communication is unstable, adjusting the sample point may help improve signal robustness.
 
-1. Create a Dockerfile:
-:::{literalinclude} /ifm3d-examples/ovp8xx/docker/can/sample-point/Dockerfile
-:language: docker
-:::
-
-
-2. Build, and copy the Docker image into the VPU: 
-```Shell
-docker build -t can0_setup .
-docker save can0_setup | ssh -C oem@192.168.0.69 docker load
-```
-  For more information's on how to create a Docker container, please follow the [Docker getting started documentation](../../SoftwareInterfaces/Docker/docker.md)
-
-3. SSH to the VPU and run the Docker image:
-
-```Shell
-ssh oem@192.168.0.69 
-docker run --network host --cap-add NET_ADMIN -it can0_setup sh
-```
 :::{note}
-Note that `--network host` *is required* to access the CAN interface, and `--cap-add NET_ADMIN` *is required* to interact with the network stack, allowing for changes to the bitrate and sample-point.
+Sample-point tuning is an advanced troubleshooting step. If you suspect a CAN timing issue, please contact us for guidance.
 :::
-
-4. In the Docker container check if the sample point is set correctly:
-  
-```Shell
-./usr/local/bin/setup_can0.sh
-ip -details -statistics link show can0
-```
-The expected output should look like this:
-
-```Shell
-5: can0: <NOARP,UP,LOWER_UP,ECHO> mtu 72 qdisc pfifo_fast state UNKNOWN mode DEFAULT group default qlen 10
-    link/can  promiscuity 0 
-    can state ERROR-ACTIVE (berr-counter tx 0 rx 0) restart-ms 100 
-    bitrate 250000 sample-point 0.5 
-    tq 125 prop-seg 6 phase-seg1 7 phase-seg2 2 sjw 1
-```

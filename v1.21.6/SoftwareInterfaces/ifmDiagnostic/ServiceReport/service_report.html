@@ -83,7 +83,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../DiagnosticRetrieval/diagnostic_retrieval.html">How to get the diagnostic</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../DiagnosticRetrieval/diagnostic_bootup_monitoring.html">Boot-up sequence</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Service report</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#download-from-ifmvisionassistant">Download from ifmVisionAssistant</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#download-from-a-browser">Download from a browser</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#download-using-ifm3d-cli">Download using ifm3d CLI</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#download-using-curl">Download using curl</a></li>
 </ul>
 </li>
@@ -132,10 +134,28 @@
 <h1>Service report<a class="headerlink" href="#service-report" title="Link to this heading"></a></h1>
 <p>The service report contains all the logs necessary for troubleshooting issues with the O3R platform: the JSON configuration of the device and JSON schema, the diagnostic messages and some additional internal logs.</p>
 <p>Make sure to share the downloaded service report archive to the ifm support team when working together to resolve an issue.</p>
+<section id="download-from-ifmvisionassistant">
+<h2>Download from ifmVisionAssistant<a class="headerlink" href="#download-from-ifmvisionassistant" title="Link to this heading"></a></h2>
+<blockquote>
+<div><p>Note: Please always use the latest ifmVisionAssistant available at <a class="reference external" href="https://www.ifm.com/de/en/product/OVP810#documents">product download page</a></p>
+</div></blockquote>
+<p>To download the service report from ifmVisionAssistant tool</p>
+<ol class="arabic simple">
+<li><p>Navigate to ‘Device Status’ on top rightside of the main window</p></li>
+<li><p>Click on ‘Service Report’ to download the service report and select the path to download the ZIP file.</p></li>
+</ol>
+<p><img alt="An image of the service report in iVA" src="../../../_images/service_report_iva.png" /></p>
+</section>
 <section id="download-from-a-browser">
 <h2>Download from a browser<a class="headerlink" href="#download-from-a-browser" title="Link to this heading"></a></h2>
-<p>To download the service report, connect to the current IP address of the device in a browser and click on the download link:
-<img alt="An image of the service report window in a browser" src="../../../_images/service_report_browser.png" /></p>
+<p>To download the service report, connect to the current IP address of the device in a browser and click on the download link</p>
+<p><img alt="An image of the service report window in a browser" src="../../../_images/service_report_browser.png" /></p>
+</section>
+<section id="download-using-ifm3d-cli">
+<h2>Download using ifm3d CLI<a class="headerlink" href="#download-using-ifm3d-cli" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ifm3d<span class="w"> </span>ovp8xx<span class="w"> </span>--ip<span class="o">=</span>&lt;IP_ADDRESS_OF_VPU&gt;<span class="w"> </span>getServiceReport
+</pre></div>
+</div>
 </section>
 <section id="download-using-curl">
 <h2>Download using curl<a class="headerlink" href="#download-using-curl" title="Link to this heading"></a></h2>
