@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Changelog &mdash; O3R  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=a5c4661c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=5800d392" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+        <script src="../../_static/copybutton.js?v=d9f55abb"></script>
+        <script src="../../_static/js/versionwarning.js?v=d4224a34"></script>
+        <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="How to update the firmware" href="../fw_update.html" />
+    <link rel="prev" title="Migration guide: FW update process from FW version 0.16.23 to FW version 1.0.x" href="FW_1.0.x/FW_1.0.x_migration_guide.html" />
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZZ08KXKV1G"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ZZ08KXKV1G');
+    </script> -->
+     
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            O3R
+          </a>
+              <div class="version">
+                v1.21.16
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Home</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Firmware</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Release notes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="FW_1.21.x/FW_1.21.16_release_note.html">OVP81x: version 1.21.16</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FW_1.21.x/FW_1.21.x_release_note.html">OVP81x: version 1.21.6</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FW_1.20.x/FW_1.20.x_release_notes.html">OVP81x: version 1.20.29</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FW_1.10.x/FW_1.10.x_release_notes.html">OVP81x: version 1.10.13</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FW_1.4.x/index.html">OVP81x: version 1.4.30</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FW_1.1.41/FW_1.1.41_Release_Notes.html">OVP81x: version 1.1.41</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FW_1.4.32/FW_1.4.32_release_notes.html">OVP80x: version 1.4.32</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FW_1.1.x/index.html">OVP80x: version 1.1.30</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FW_1.0.x/index.html">OVP80x: version 1.0.14</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#compact-version">compact version</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Changelog for OVP81x</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#v1-21-16">v1.21.16</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#added">Added</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#fixed">Fixed</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#v1-21-6">v1.21.6</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#id1">Added</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#known-issues">Known Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#v1-20-29">v1.20.29</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#id2">Added</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#changed">Changed</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#id3">Fixed</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#id4">Known Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#v1-10-13">v1.10.13</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#id5">Added</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#id6">Changed</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#id7">Known Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#v1-4-30">v1.4.30</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#id8">Added</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#id9">Changed</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#id10">Fixed</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#id11">Known Issues</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../fw_update.html">How to update</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../CompatibilityMatrix/compatibility_matrix.html">Compatibility Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Technology/index_technology.html">Technology</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../index_software_interfaces.html">Software Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CalibrationRoutines/index_calibrations.html">Calibration Routines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ODS/index_ods.html">ODS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../PDS/index_pds.html">PDS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../PLC/index_plc.html">PLC</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../FAQ/FAQ.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../downloadable/index.html">History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">O3R</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">O3R firmware</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Release notes</a></li>
+      <li class="breadcrumb-item active">Changelog</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/Firmware/ReleaseNotes/changelog_ovp81x.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="changelog">
+<h1>Changelog<a class="headerlink" href="#changelog" title="Link to this heading"></a></h1>
+<section id="v1-21-16">
+<h2>v1.21.16<a class="headerlink" href="#v1-21-16" title="Link to this heading"></a></h2>
+<section id="added">
+<h3>Added<a class="headerlink" href="#added" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>[Base Device] Added support for the CAN bitrate of <strong>800 kBaud</strong>.</p></li>
+</ul>
+</section>
+<section id="fixed">
+<h3>Fixed<a class="headerlink" href="#fixed" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>[Base Device] Stabilized the communication between camera and VPU.</p></li>
+<li><p>[Base Device] Fixed an issue where the <strong>O3R222</strong> camera could stop working at low temperatures.</p></li>
+<li><p>[Base Device] Fixed the 2D timestamp calculation.</p></li>
+<li><p>[SCC Application] Fixed an issue with calibrating <strong>O3R225</strong> camera heads using the SCC application.</p></li>
+<li><p>[PDS Application] The sanity check now uses the camera-frame distance, allowing PDS to continue detecting pallets when the origin is moved to the fork tips.</p></li>
+<li><p>[ODS Application] Relaxed VO pixel selection by using the true 3D distance instead of the ground-projected distance, allowing VO to continue running when the camera is far from the user-frame origin.</p></li>
+</ul>
+</section>
+</section>
+<section id="v1-21-6">
+<h2>v1.21.6<a class="headerlink" href="#v1-21-6" title="Link to this heading"></a></h2>
+<section id="id1">
+<h3>Added<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>[Base Device] Enhanced device security by introducing <strong>password protection</strong> feature, allowing users to restrict unauthorized access to critical configurations.<br />
+For details, refer to the <a class="reference internal" href="../../Technology/VPU/security.html"><span class="std std-doc">Security Overview</span></a> document.</p></li>
+<li><p>[Base Device] A built-in firewall has been added to control inbound traffic. When enabled, the firewall <strong>blocks all inbound traffic</strong>, allowing only explicitly defined ports necessary for communication.</p>
+<ul>
+<li><p><strong>Default behavior:</strong> The firewall is disabled by default.</p></li>
+<li><p>To enable it, set the parameter <code class="docutils literal notranslate"><span class="pre">/device/network/firewall/active</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code> and reboot the device.</p></li>
+<li><p><strong>Outbound traffic</strong> remains unrestricted for both Ethernet interfaces. For more details, please refer to the <a class="reference internal" href="../../Technology/VPU/security.html#default-firewall-rules"><span class="std std-ref">default firewall rules</span></a> section.</p></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<div><p><strong>ℹ️ Important</strong></p>
+<ul class="simple">
+<li><p>Password protection is persisted across firmware upgrades and downgrades starting from firmware version 1.21.6 and above.</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>[PLC Application] Added support for the <strong>EtherNet/IP interface</strong> in the PLC application. For setup and integration, refer to the <a class="reference internal" href="../../PLC/ethernet-ip.html"><span class="std std-doc">EtherNet/IP Documentation</span></a>.</p></li>
+</ul>
+</section>
+<section id="known-issues">
+<h3>Known Issues<a class="headerlink" href="#known-issues" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>VGA camera heads</strong> are currently not supported by any embedded applications.</p></li>
+</ul>
+</section>
+</section>
+<section id="v1-20-29">
+<h2>v1.20.29<a class="headerlink" href="#v1-20-29" title="Link to this heading"></a></h2>
+<section id="id2">
+<h3>Added<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>[Base Device] Added the capability to support VGA camera heads(<strong>O3R252</strong>).</p></li>
+<li><p>[Base Device] The following features are added to the diagnostic system:</p>
+<ul>
+<li><p>A severity field [“info”, “minor”, “major”, “critical”]. Refer to the <a class="reference internal" href="../../SoftwareInterfaces/ifmDiagnostic/diagnostic.html#events"><span class="std std-ref">the diagnostic documentation</span></a>.</p></li>
+<li><p>Group status that reports the general health status of an application or a port,</p></li>
+<li><p>The JSON structure of the diagnostic message was updated to include the new fields (severity, target, etc). Refer to <a class="reference internal" href="../../SoftwareInterfaces/ifmDiagnostic/index_diagnostic.html"><span class="std std-doc">the diagnostic documentation</span></a> for more details.</p></li>
+</ul>
+</li>
+<li><p>[Base Device] Added the diagnostic <code class="docutils literal notranslate"><span class="pre">ERROR_DI_GLOBAL_REFLECTOR_HEURISTICS_ACTIVE</span></code> to the port when high amplitude object detected and invalidate the corresponding pixels.</p></li>
+<li><p>[Base Device] Added the diagnostic <code class="docutils literal notranslate"><span class="pre">ERROR_PORT_UNSTABLE_FRAMERATE</span></code> when framedrops detected.</p></li>
+<li><p>[ODS Application] Added possibility to run ODS application with 4 cameras simultaneously.</p></li>
+<li><p>[ODS Application] Added possibility to determine the application health based on the group severity [“info”, “minor”, “major”, “critical”]. It is recommended to handle the vehicle behavior for example stopping the vehicle if the severity is <code class="docutils literal notranslate"><span class="pre">critical</span></code>, <code class="docutils literal notranslate"><span class="pre">major</span></code> or <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">available</span></code>.</p></li>
+<li><p>[ODS Application] Addition of the polar occupancy grid data stream: a compressed version of the occupancy grid using polar coordinates.</p></li>
+<li><p>[ODS Application] Decalibration warning added: The system now issues a diagnostic message (<code class="docutils literal notranslate"><span class="pre">ERROR_ODSAPP_CAMERA_DECALIBRATED</span></code>) when it detects that a camera’s actual position differs from the expected one. For more details, please refer to the <a class="reference internal" href="../../ODS/Decalibration/decalibration_feature.html"><span class="std std-doc">decalibration documentation</span></a>.</p></li>
+<li><p>[ODS Application] New driving direction parameter: Added a configurable parameter for the predominant driving direction <code class="docutils literal notranslate"><span class="pre">predominantMotionDirection</span></code> under <code class="docutils literal notranslate"><span class="pre">applications/instances/app&lt;x&gt;/configuration</span></code>. This is used to enhance visual odometry accuracy and detect the decalibration of camera heads.</p></li>
+<li><p>[PDS Application] PDS supports a RUN mode for all the commands running per default at a framerate of 10 Hz.</p></li>
+<li><p>[PDS Application] Added support for single pocket pallets.</p></li>
+<li><p>[PDS Application] The results can be sorted left to right or right to left, in addition to the existing sorting parameters.</p></li>
+<li><p>[PLC Application] Added support for the PLC application, enabling data exchange between a PLC and ODS and/or PDS applications over TCP/IP.</p></li>
+</ul>
+<blockquote>
+<div><p><strong>ℹ️ Important</strong>
+This is a beta release and will be followed by an official release soon. In case of any issues, please contact ifm support team at support.efector.object-ident&#64;ifm.com</p>
+</div></blockquote>
+</section>
+<section id="changed">
+<h3>Changed<a class="headerlink" href="#changed" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>[Base Device] Updated diagnostic descriptions and reaction strategies.</p></li>
+<li><p>[Base Device] Configuration of ports under <code class="docutils literal notranslate"><span class="pre">/ports/portX</span></code> used by active applications (ODS, PDS, SCC, MCC) is prohibited.</p></li>
+<li><p>[Base Device] The L4T kernel version is updated to r32.7.6.</p></li>
+<li><p>[SCC Application] The Static Camera Calibration (SCC) for extrinsic calibration of cameras is introduced as an embedded application. A wizard is available in the Vision Assistant to simplify its usage.</p></li>
+<li><p>[ODS Application] If the <code class="docutils literal notranslate"><span class="pre">activePorts</span></code> list is empty then <code class="docutils literal notranslate"><span class="pre">ERROR_ODSAPP_IDLE_MODE</span></code> diagnostic will be raised.</p></li>
+<li><p>[ODS Application] When the activePorts list changes, it needs some time for the occupancy grid to build up correct probabilities. During this time <code class="docutils literal notranslate"><span class="pre">ERROR_ODSAPP_PORT_SWITCHING_TRANSIENT</span></code> diagnostic message will be raised.</p></li>
+<li><p>[ODS Application] If the framerate of at least one sub-component of the ODS application is unstable for a unusually long time then <code class="docutils literal notranslate"><span class="pre">ERROR_ODSAPP_UNSTABLE_FRAMERATES_LONGTERM</span></code> will be raised.</p></li>
+<li><p>[ODS Application] Improvements to the crosstalk mitigation: a framerate jitter feature was added, which reduces the probability of crosstalk between vehicles. This feature can be enabled in the application parameters.</p></li>
+</ul>
+</section>
+<section id="id3">
+<h3>Fixed<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Changing the ports used by an application under the parameter path <code class="docutils literal notranslate"><span class="pre">/applications/instances/appX/ports</span></code> will reset the presets located at <code class="docutils literal notranslate"><span class="pre">/applications/instances/appX/presets</span></code>.</p></li>
+<li><p>The configuration data mirrored to the PLC application from an ODS application (zones, zoneConfigID ..) is sourced from <code class="docutils literal notranslate"><span class="pre">/applications/instances/appX/configuration</span></code>. After loading a preset, do not modify the ODS application’s configuration to ensure it remains consistent with the loaded parameters.</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>Known Issues<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>VGA camera heads</strong> are currently not supported by any embedded applications.</p></li>
+</ul>
+</section>
+</section>
+<section id="v1-10-13">
+<h2>v1.10.13<a class="headerlink" href="#v1-10-13" title="Link to this heading"></a></h2>
+<section id="id5">
+<h3>Added<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>[Base Device] The default <code class="docutils literal notranslate"><span class="pre">channelValue</span></code> for 3D port number X [0..5] is changed to 2*X.</p></li>
+<li><p>[Base Device] The L4T kernel version is updated to r32.7.5.</p></li>
+<li><p>[ODS Application] <strong>Diagnostics for decalibrated camera ports:</strong> A new error, <code class="docutils literal notranslate"><span class="pre">ERROR_ODSAPP_CAMERA_DECALIBRATED</span></code>, is raised if any active camera port is likely to be decalibrated. In this case, the camera calibration should be verified.</p></li>
+<li><p>[ODS Application] A new parameter, <code class="docutils literal notranslate"><span class="pre">rangeOfInterest</span></code>, allows users to define the maximum range of vision in meters (in robot coordinates). This setting directly impacts the grid shape, which is always square with each dimension containing (<code class="docutils literal notranslate"><span class="pre">rangeOfInterest</span></code>/0.05) × 2 cells at the default resolution of 5 cm.</p></li>
+<li><p>[ODS Application] ODS supports polygons on the zone interface, allowing for the definition of both convex and concave shapes.</p></li>
+<li><p>[ODS Application] A preset feature is implemented where the user can load a predefined zone configuration.</p></li>
+<li><p>[PDS Application] A new Pick and Drop System (PDS) application is added. This is a new feature with firmware 1.10.13. Refer to <a class="reference internal" href="../../PDS/index_pds.html"><span class="std std-doc">the PDS documentation</span></a> for an overview of the available features.</p></li>
+</ul>
+</section>
+<section id="id6">
+<h3>Changed<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>[ODS Application ]The maximum number of points to define a zone is increased from 6 to 16.</p></li>
+<li><p>[ODS Application ]The ODS diagnosis sources are now attached to the specific camera port rather than the overall ODS application, for the following diagnostic messages:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">ERROR_ODSAPP_FOV_INSUFFICIENT_FOR_NEGATIVE_OBSTACLES</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ERROR_ODSAPP_CAMERA_DECALIBRATED</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ERROR_ODSAPP_EXTR_DI_CALIB_IMPLAUSIBLE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ERROR_ODSAPP_VO_EXTR_DI_CALIB_IMPLAUSIBLE</span></code></p></li>
+</ul>
+</li>
+<li><p>[ODS Application ]A maximum of one ODS instance is allowed. It is expected to use a single ODS application, which is always in <code class="docutils literal notranslate"><span class="pre">RUN</span></code> mode, and to switch the <code class="docutils literal notranslate"><span class="pre">activePorts</span></code> to change which cameras are used.</p></li>
+<li><p>[ODS Application ]The conditions for raising the <code class="docutils literal notranslate"><span class="pre">ERROR_ODSAPP_VO_EXTR_DI_CALIB_IMPLAUSIBLE</span></code> diagnostic message were relaxed.</p></li>
+</ul>
+</section>
+<section id="id7">
+<h3>Known Issues<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>The diagnostics activated by the ODS application during the <code class="docutils literal notranslate"><span class="pre">RUN</span></code> state will not be deactivated when the application is set to the <code class="docutils literal notranslate"><span class="pre">CONF</span></code> or <code class="docutils literal notranslate"><span class="pre">IDLE</span></code> state.</p></li>
+<li><p>If the negative obstacle feature is enabled, it may happen that the diagnostic message <code class="docutils literal notranslate"><span class="pre">ERROR_ODSAPP_FOV_INSUFFICIENT_FOR_NEGATIVE_OBSTACLES</span></code> is raised even thought the field of view conditions are fulfilled. In this case, negative obstacles will not be properly detected. To fix this, the application should be set to <code class="docutils literal notranslate"><span class="pre">CONF</span></code>, and then to <code class="docutils literal notranslate"><span class="pre">RUN</span></code> again.</p></li>
+</ul>
+</section>
+</section>
+<section id="v1-4-30">
+<h2>v1.4.30<a class="headerlink" href="#v1-4-30" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>This is the first firmware release for the OVP81x series. The release notes below details the changes between firmware 1.1.30 (for OVP80x series) and firmware 1.4.30 (for OVP81x series).</p></li>
+</ul>
+<blockquote>
+<div><p><strong>⚠️ Warning</strong></p>
+<ul class="simple">
+<li><p>FW 1.4.30 does not support the OVP80x family at the moment. A respective FW release is in preparation.</p></li>
+<li><p><strong>Do not update an OVP80x with this firmware. Such a FW update will fail. The device will reboot to the previous FW version installed.</strong></p></li>
+</ul>
+</div></blockquote>
+<section id="id8">
+<h3>Added<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>[Base Device] The IMU data can be accessed at port 6. See <a class="reference internal" href="../../Technology/VPU/IMU/imu.html"><span class="std std-doc">the IMU documentation</span></a> for further details.</p></li>
+<li><p>[Base Device] Processing the 3D data using CUDA can be enabled or disabled with the JSON parameter <code class="docutils literal notranslate"><span class="pre">/ports/portX/processing/diParam/useCuda</span></code>. CUDA processing is enabled by default. See <a class="reference internal" href="../../Technology/3D/ProcessingParams/processing_params.html"><span class="std std-doc">the CUDA documentation</span></a> for further details.</p></li>
+<li><p>[Base Device] The CAN interface was added to the network configuration in <code class="docutils literal notranslate"><span class="pre">/device/network/interfaces/can0</span></code>. The interface can be activated or deactivated, and the bitrate can be set. A reboot is necessary when enabling or disabling the interface.</p></li>
+<li><p>[Base Device] Diagnostic messages inform the user when configured NTP servers are unavailable.</p></li>
+<li><p>[Base Device] Some parameters are persistent over a firmware update. This is the case for: <code class="docutils literal notranslate"><span class="pre">/device/clock/sntp</span></code>, <code class="docutils literal notranslate"><span class="pre">/device/docker</span></code>, <code class="docutils literal notranslate"><span class="pre">/device/log/storage/</span></code>,  all of the <code class="docutils literal notranslate"><span class="pre">/device/network/interfaces/</span></code> parameters</p></li>
+<li><p>[Base Device] Experimental feature: the service report can be downloaded by connecting to the IP address of the device in a browser. Read more in <a class="reference internal" href="#../../../SoftwareInterfaces/ifmDiagnostic/ServiceReport/service_report.md"><span class="xref myst">the service report documentation</span></a>.</p></li>
+<li><p>[ODS Application] It is possible to run additional data stream along with ODS, thanks to the usage of the GPU. The maximum is of three 38k cameras used in ODS, plus an additional two RGB cameras at 20 Hz, or an additional three 38k cameras at 20 Hz. Refer to the updated <a class="reference internal" href="#./FW_1.4.x_migration_guide.md#resources-availability-for-user-code"><span class="xref myst">resource availability in the migration guide</span></a>.</p></li>
+<li></li>
+</ul>
+</section>
+<section id="id9">
+<h3>Changed<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>[Base Device] The available resources (CPU, GPU and RAM) available for running OEM applications are different: see <a class="reference internal" href="FW_1.4.x/FW_1.4.x_migration_guide.html"><span class="std std-doc">the migration guide</span></a> for details.</p></li>
+<li><p>[Base Device] The OEM password was removed. Login with SSH keys is required.</p></li>
+<li><p>[Base Device] The gateway for the Ethernet interface <code class="docutils literal notranslate"><span class="pre">eth1</span></code> is now read-only. The default IPv4 address is 192.168.42.69, the netmask is 255.255.255.0 and the gateway 0.0.0.0.</p></li>
+<li><p>[Base Device] The timestamps format was changed from int to string. This is done to palliate limitations of the JSON format which lead to some parsers being unable to handle long numbers.</p></li>
+<li><p>[Base Device] Algo-debug read-only parameters are now removed from the JSON configuration to improve readability.</p></li>
+<li><p>[Base Device] The base OS shipped with the NVIDIA Jetson TX2 NX was updated to Yocto 4.0 (kirkstone). This version comes with updated versions of Docker and Python:</p>
+<ul>
+<li><p>The Docker daemon version was updated from v19.03.8 to v20.10.25.</p></li>
+<li><p>Embedded Python version updated from 3.8.2 to 3.10.9</p></li>
+</ul>
+</li>
+<li><p>[Base Device] JetPack was updated which led to updates of L4T-based containers, CUDA and TensorRT:</p>
+<ul>
+<li><p>JetPack was updated from version 4.4.0 to version 4.6.3.</p></li>
+<li><p>CUDA and TensorRT-based Docker images were updated to use L4T 32.7.3 (previously L4T 32.4.3). Corresponding CUDA version is 10.2.300 (previously 10.2.89) and TensorRT is 8.2.1 (previously 7.1.3).</p></li>
+</ul>
+</li>
+<li><p>[Base Device] SNTP is disabled by default. It needs to be activated in <code class="docutils literal notranslate"><span class="pre">device/clock/sntp/active</span></code>. This is done to avoid triggering the new diagnostic message warning the user of unavailable SNTP server when no server is configured.</p></li>
+<li><p>[Base Device] Additional 16GB of flash memory is available. It is mounted to <code class="docutils literal notranslate"><span class="pre">/var/lib/docker</span></code> and can be used to store custom Docker containers.</p></li>
+<li><p>[Base Device] The time necessary to switch a camera to “RUN” or “CONF” was reduced from multiple seconds to below one second.</p></li>
+<li><p>[Base Device] The bootup time has increased.</p></li>
+<li><p>[ODS Application] The filtering pipeline for highly reflective surfaces was updated:</p>
+<ul>
+<li><p>the detection range in the presence of reflective surfaces is increased. For example, the detection of the fork tines of a fork truck covered with large metal surfaces, directly facing the camera is improved.</p></li>
+</ul>
+</li>
+<li><p>[MCC Application] The diagnostic messages were updated to be flexible regarding the direction of motion: “backward calibration failed” is now “motion no in straight line.”</p></li>
+</ul>
+</section>
+<section id="id10">
+<h3>Fixed<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>[Base Device] Fixed an issue where the <code class="docutils literal notranslate"><span class="pre">eth0</span></code> interface was not available if the device boot up with only <code class="docutils literal notranslate"><span class="pre">eth1</span></code> active.</p></li>
+<li><p>[Base Device] The framerate of the RGB camera correctly displays the fixed 20fps. The framerate is not adjustable.</p></li>
+<li><p>[ODS Application] It is now possible to configure more than one ODS application. Only one active application is allowed at a time. We still recommend that only one ODS application will be used and using the <code class="docutils literal notranslate"><span class="pre">activePorts</span></code> parameter to switch between cameras.</p></li>
+<li><p>[ODS Application] The dynamic amplitude filter has been tuned to not invalidate large areas of the scene when highly reflective surfaces are present.</p></li>
+<li><p>[ODS Application] Fix sporadic occurring of <code class="docutils literal notranslate"><span class="pre">ERROR_ODSAPP_ALGO_INTERNAL</span></code>.</p></li>
+<li><p>[ODS Application] Continual improvement on false positive mitigation: reduced number of false positives due to floor types (shiny, bright, etc).</p></li>
+<li><p>[MCC Application] Activating MCC leads to <code class="docutils literal notranslate"><span class="pre">ERROR_ODSAPP_ALGO_INTERNAL</span></code>.</p></li>
+</ul>
+</section>
+<section id="id11">
+<h3>Known Issues<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>The CAN interface is limited to 5V.</p></li>
+<li><p>Performing five or more software reboots (for example with <code class="docutils literal notranslate"><span class="pre">ifm3d</span> <span class="pre">reboot</span></code>) of the OVP8xx without power cycle in between will result in a device unreachable on the network. This is fixed by power cycling.</p></li>
+<li><p>When deleting an application while in RUN state, re-creating an application of the same class will set it in RUN state instead of CONF.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+<html>
+<head>
+ 
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="footer, address, phone, icons" />
+ 
+	<title>Footer With Address And Phones</title>
+	
+	
+ 
+</head>
+ 
+	<body>
+		
+		<footer class="footer-distributed">
+ 
+		<div class="footer-left">
+ 
+		<p class="footer-links">
+		<a href="index.html">Home</a>
+	·
+		<a href="http://www.o3r.ifm" target="_blank">Learn more</a>
+	·
+		<a href="/latest/_static/privacy-policy.html" target="_blank">Privacy Policy</a>
+
+		</p>
+ 
+		<p class="footer-company-name">ifm robotics &copy; 2023</p>
+		</div>
+		
+		<div class="footer-center">
+ 
+		<div>
+		<i class="fa fa-envelope"></i>
+		<p><a href="mailto:support.efector.object-ident@ifm.com">support.efector.object-ident@ifm.com</a></p>
+		</div>
+ 
+		</div>
+ 
+		<div class="footer-right">
+ 
+		<div class="footer-icons">
+ 
+		<a href="https://www.facebook.com/ifmefector" target="_blank"><i class="fa fa-facebook"></i></a>
+		<a href="https://twitter.com/ifm_USA" target="_blank"><i class="fa fa-twitter"></i></a>
+		<a href="https://www.linkedin.com/showcase/ifm-efector" target="_blank"><i class="fa fa-linkedin"></i></a>
+		<a href="https://github.com/ifm" target="_blank"><i class="fa fa-github"></i></a>
+ 
+		</div>
+ 
+		</div>
+ 
+		</footer>
+ 
+	</body>
+ 
+</html>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

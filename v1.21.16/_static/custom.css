@@ -1,0 +1,319 @@
+.wy-side-nav-search {
+    background-color: #ff6e00;
+}
+/* override table width restrictions */
+.wy-table-responsive table td, .wy-table-responsive table th {
+    white-space: normal;
+}
+
+.wy-table-responsive {
+    margin-bottom: 24px;
+    max-width: 100%;
+    overflow: scroll;
+}
+/* Adjust width of content */
+.wy-nav-content {
+    max-width: none;
+    overflow: scroll;
+}
+
+
+body {
+	margin: 0;
+	padding: 0;
+}
+.main {
+	max-height: 550px;;
+	background-color: #282a2d;
+	color: white;
+	font-size: 38pt;
+	text-align: center;
+	line-height: 550px;
+}
+footer{
+    position: relative;
+    bottom: 0;
+}
+
+#footerlogo {
+    width: 86px;
+    height: auto;
+    -webkit-filter: opacity(30%);
+}
+
+.footer-distributed{
+	/* background-color: #282a2d; */
+	/* box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12); */
+	/* box-sizing: border-box; */
+	width: 100%;
+	text-align: left;
+	font: bold 16px sans-serif;
+ 
+	padding: 55px 50px;
+	margin-top: 0px;
+}
+
+
+ 
+.footer-distributed .footer-left,
+.footer-distributed .footer-center,
+.footer-distributed .footer-right{
+	display: inline-block;
+	vertical-align: top;
+}
+ 
+.footer-distributed .footer-left{
+	width: 40%;
+}
+ 
+.footer-distributed h3{
+	font: normal 36px 'Cookie', cursive;
+	margin: 0;
+}
+ 
+.footer-distributed h3 span{
+	color:  #5383d3;
+}
+ 
+ 
+.footer-distributed .footer-links{
+	margin: 20px 0 12px;
+	padding: 0;
+}
+ 
+.footer-distributed .footer-links a{
+	display:inline-block;
+	line-height: 1.8;
+	text-decoration: none;
+	color:  inherit;
+}
+
+.footer-distributed .footer-links a:hover {
+	color:  #ff6300;
+	text-decoration: none;
+}
+ 
+.footer-distributed .footer-company-name{
+	color:  #535557;
+	font-size: 15px;
+	font-weight: normal;
+	margin: 0;
+}
+ 
+ 
+.footer-distributed .footer-center{
+	width: 35%;
+}
+ 
+.footer-distributed .footer-center i{
+	-webkit-filter: opacity(30%);
+	font-size: 40px;
+	width: 40px;
+	height: 40px;
+
+	text-align: center;
+	line-height: 42px;
+	margin: 10px 15px;
+	vertical-align: middle;
+}
+ 
+.footer-distributed .footer-center i.fa-envelope{
+    color: #282a2d;
+	font-size: 17px;
+	line-height: 38px;
+}
+ 
+.footer-distributed .footer-center p{
+	display: inline-block;
+	vertical-align: middle;
+	margin:0;
+}
+ 
+.footer-distributed .footer-center p span{
+	display:block;
+	font-weight: normal;
+	font-size:14px;
+	line-height:2;
+}
+ 
+.footer-distributed .footer-center p a{
+	text-decoration: none;
+}
+
+.footer-distributed .footer-center p a:hover{
+	color:  #ff6300;
+	text-decoration: none;
+}
+ 
+.footer-distributed .footer-right{
+	width: 20%;
+}
+ 
+.footer-distributed .footer-company-about{
+	line-height: 20px;
+	color:  #8d8e90;
+	font-size: 13px;
+	font-weight: normal;
+	margin: 0;
+}
+ 
+.footer-distributed .footer-company-about span{
+	display: block;
+	font-size: 2em;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+ 
+.footer-distributed .footer-icons{
+	margin-top: 25px;
+}
+ 
+.footer-distributed .footer-icons a{
+	display: inline-block;
+	width: 40px;
+	cursor: pointer;
+ 
+	font-size: 30px;
+	color: #8d8e90;
+	text-align: center;
+	line-height: 35px;
+ 
+	margin-right: 3px;
+	margin-bottom: 5px;
+}
+ 
+ 
+@media (max-width: 880px) {
+ 
+	.footer-distributed{
+		font: bold 14px sans-serif;
+	
+	}
+ 
+	.footer-distributed .footer-left,
+	.footer-distributed .footer-center,
+	.footer-distributed .footer-right{
+		display: block;
+		width: 100%;
+		margin-bottom: 40px;
+		text-align: center;
+	}
+ 
+	.footer-distributed .footer-center i{
+		margin-left: 0;
+	}
+	.main {
+		line-height: normal;
+		font-size: auto;
+	}
+ 
+}
+
+.sd-card {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	text-align: center;
+}
+
+.jump-to-cards {
+    flex: 1 1 auto; /* Grow and shrink as needed */
+    min-height: 240px; /* Set the minimum height */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.homepage-icons img{
+	max-width: 100px;
+	max-height: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;	
+}
+
+/* To change the border of only specific cards for example
+the class :class-card: programming-icons-cards should be
+applied to the item in the markdown base document*/
+.programming-icons-cards {
+	border-radius: 150px;
+}
+
+.programming-icons img{
+	max-height: 100px;
+	max-width: 200px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 40px;
+}
+
+.programming-icons.sd-card {
+	display: flex;
+	align-items: center;
+	text-align: center;
+	height: 100%;	
+}
+
+/**********************************************/
+/* Styling for the SVG clickable diagram      */
+
+/* Define the initial style of the element */
+svg a rect {
+    stroke: black;
+	stroke-width: 2px;
+    color: black;
+	fill: #ff6f0050;
+    transition: all 0.1s ease; /* Smooth transition for the hover effect */
+}
+
+/* Define the hover effect */
+svg a:hover rect {
+    stroke: #ff6e00; /* Change border thickness and color */
+	stroke-width: 4px ;
+    color: #ff6f00; /* Change text color */
+}
+
+svg a:hover text, 
+svg a:hover foreignObject div {
+	font-style: italic;
+}
+/**********************************************/
+
+
+/**********************************************/
+/* Section added by Mike for the banner style */
+
+.sd-col.sd-d-flex-column.homepage-icons.docutils {
+    position: relative;
+    background-image: url(../_static/banner.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 120px;
+    font-weight: bold;
+    padding-left: 123px;
+    overflow: hidden;
+}
+
+
+.sd-col.sd-d-flex-column.homepage-icons.docutils p{
+    position: absolute;
+    top: 65%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    padding-left: 40px;
+}
+
+
+.sd-col.sd-d-flex-column.homepage-icons.docutils p img{
+    display: none;
+}
+
+
+.sd-col.sd-d-flex-column.homepage-icons.docutils a {
+    color: #ff6e00;
+}
+
+
+.sd-col.sd-d-flex-column.homepage-icons.docutils a:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+/**********************************************/
