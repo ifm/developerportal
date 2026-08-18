@@ -165,8 +165,8 @@
 <span class="k">RUN</span><span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/usr/local/bin
 <span class="k">COPY</span><span class="w"> </span>--from<span class="o">=</span>buildstage<span class="w"> </span>/tmp/Samples/deviceQuery/deviceQuery<span class="w"> </span>/usr/local/bin
 
-<span class="c"># Execute the deviceQuery and check for CUDA support. Don&#39;t forget the runtime with the docker run command</span>
-<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/usr/local/bin/deviceQuery&quot;</span><span class="p">]</span>
+<span class="c"># Execute the deviceQuery and check for CUDA support. Don't forget the runtime with the docker run command</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">"/usr/local/bin/deviceQuery"</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>Building the container:</p>
@@ -198,7 +198,7 @@
 
 <span class="go">Detected 1 CUDA Capable device(s)</span>
 
-<span class="go">Device 0: &quot;NVIDIA Tegra X2&quot;</span>
+<span class="go">Device 0: "NVIDIA Tegra X2"</span>
 <span class="go">  CUDA Driver Version / Runtime Version          10.2 / 10.2</span>
 <span class="go">  CUDA Capability Major/Minor version number:    6.2</span>
 <span class="go">  Total amount of global memory:                 3829 MBytes (4014751744 bytes)</span>
@@ -253,7 +253,7 @@
 <section id="use-docker-compose-to-specify-the-runtime">
 <h4>Use <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> to specify the runtime<a class="headerlink" href="#use-docker-compose-to-specify-the-runtime" title="Link to this heading"></a></h4>
 <p>Specifying the runtime in <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> is possible for versions above <code class="docutils literal notranslate"><span class="pre">version:</span> <span class="pre">&quot;2.3&quot;</span></code> to get the runtime argument.</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2.3&quot;</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">"2.3"</span>
 <span class="nt">services</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">cuda</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cuda</span>
@@ -262,7 +262,7 @@
 </div>
 <p>Start the container using <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">up</span></code>:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">o3r-vpu-c0:~$ </span>docker-compose<span class="w"> </span>up
-<span class="go">Creating network &quot;oem_default&quot; with the default driver</span>
+<span class="go">Creating network "oem_default" with the default driver</span>
 <span class="go">Creating oem_cuda_1 ... done</span>
 <span class="go">Attaching to oem_cuda_1</span>
 <span class="go">cuda_1  | /usr/local/bin/deviceQuery Starting...</span>
@@ -271,7 +271,7 @@
 <span class="go">cuda_1  |</span>
 <span class="go">cuda_1  | Detected 1 CUDA Capable device(s)</span>
 <span class="go">cuda_1  |</span>
-<span class="go">cuda_1  | Device 0: &quot;NVIDIA Tegra X2&quot;</span>
+<span class="go">cuda_1  | Device 0: "NVIDIA Tegra X2"</span>
 <span class="go">cuda_1  |   CUDA Driver Version / Runtime Version          10.2 / 10.2</span>
 <span class="go">cuda_1  |   CUDA Capability Major/Minor version number:    6.2</span>
 <span class="go">cuda_1  |   Total amount of global memory:                 3829 MBytes (4014751744 bytes)</span>

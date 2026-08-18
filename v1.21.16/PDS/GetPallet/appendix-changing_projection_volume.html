@@ -114,19 +114,19 @@
 <p><img alt="shifted" src="../../_images/shifted.svg" /></p>
 <p>To change the coordinates of the projection volume, the following parameter needs to be added to the configuration (change the <code class="docutils literal notranslate"><span class="pre">APP_PORT</span></code> with your app, for example <code class="docutils literal notranslate"><span class="pre">app0</span></code>):</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;applications&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;instances&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"applications"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"instances"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="err">APP_PORT</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="nt">&quot;parameter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                        </span><span class="nt">&quot;getPallet&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                            </span><span class="nt">&quot;0&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                                </span><span class="nt">&quot;orthoProjection&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                                    </span><span class="nt">&quot;voi&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                                        </span><span class="nt">&quot;yMin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w"> </span><span class="err">+</span><span class="w"> </span><span class="err">y_shi</span><span class="kc">ft</span><span class="p">,</span>
-<span class="w">                                        </span><span class="nt">&quot;yMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">+</span><span class="w"> </span><span class="err">y_shi</span><span class="kc">ft</span><span class="p">,</span>
-<span class="w">                                        </span><span class="nt">&quot;zMin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.6</span><span class="w"> </span><span class="err">+</span><span class="w"> </span><span class="err">z_shi</span><span class="kc">ft</span><span class="p">,</span>
-<span class="w">                                        </span><span class="nt">&quot;zMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.6</span><span class="w"> </span><span class="err">+</span><span class="w"> </span><span class="err">z_shi</span><span class="kc">ft</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"configuration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">"parameter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nt">"getPallet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                            </span><span class="nt">"0"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                </span><span class="nt">"orthoProjection"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                    </span><span class="nt">"voi"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                        </span><span class="nt">"yMin"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w"> </span><span class="err">+</span><span class="w"> </span><span class="err">y_shi</span><span class="kc">ft</span><span class="p">,</span>
+<span class="w">                                        </span><span class="nt">"yMax"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="err">+</span><span class="w"> </span><span class="err">y_shi</span><span class="kc">ft</span><span class="p">,</span>
+<span class="w">                                        </span><span class="nt">"zMin"</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.6</span><span class="w"> </span><span class="err">+</span><span class="w"> </span><span class="err">z_shi</span><span class="kc">ft</span><span class="p">,</span>
+<span class="w">                                        </span><span class="nt">"zMax"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.6</span><span class="w"> </span><span class="err">+</span><span class="w"> </span><span class="err">z_shi</span><span class="kc">ft</span><span class="p">,</span>
 <span class="w">                                    </span><span class="p">}</span>
 <span class="w">                                </span><span class="p">}</span>
 <span class="w">                            </span><span class="p">}</span>
@@ -144,23 +144,23 @@
 <div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-0-Qysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button></div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel group-tab" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
     <span class="p">{</span>
-        <span class="s2">&quot;applications&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;instances&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"applications"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"instances"</span><span class="p">:</span> <span class="p">{</span>
                 <span class="n">APP_PORT</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s2">&quot;configuration&quot;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="s2">&quot;customization&quot;</span><span class="p">:</span> <span class="p">{</span>
-                            <span class="s2">&quot;command&quot;</span><span class="p">:</span> <span class="s2">&quot;getPallet&quot;</span><span class="p">,</span>
-                            <span class="s2">&quot;getPallet&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;depthHint&quot;</span><span class="p">:</span> <span class="mf">1.2</span><span class="p">},</span>
+                    <span class="s2">"configuration"</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">"customization"</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s2">"command"</span><span class="p">:</span> <span class="s2">"getPallet"</span><span class="p">,</span>
+                            <span class="s2">"getPallet"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"depthHint"</span><span class="p">:</span> <span class="mf">1.2</span><span class="p">},</span>
                         <span class="p">},</span>
-                        <span class="s2">&quot;parameter&quot;</span><span class="p">:</span> <span class="p">{</span>
-                            <span class="s2">&quot;getPallet&quot;</span><span class="p">:</span> <span class="p">{</span>
-                                <span class="s2">&quot;0&quot;</span><span class="p">:</span> <span class="p">{</span>
-                                    <span class="s2">&quot;orthoProjection&quot;</span><span class="p">:</span> <span class="p">{</span>
-                                        <span class="s2">&quot;voi&quot;</span><span class="p">:</span> <span class="p">{</span>
-                                            <span class="s2">&quot;yMin&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.8</span> <span class="o">+</span> <span class="n">y_shift</span><span class="p">,</span>
-                                            <span class="s2">&quot;yMax&quot;</span><span class="p">:</span> <span class="mf">0.8</span> <span class="o">+</span> <span class="n">y_shift</span><span class="p">,</span>
-                                            <span class="s2">&quot;zMin&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.4</span> <span class="o">+</span> <span class="n">z_shift</span><span class="p">,</span>
-                                            <span class="s2">&quot;zMax&quot;</span><span class="p">:</span> <span class="mf">0.4</span> <span class="o">+</span> <span class="n">z_shift</span><span class="p">,</span>
+                        <span class="s2">"parameter"</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s2">"getPallet"</span><span class="p">:</span> <span class="p">{</span>
+                                <span class="s2">"0"</span><span class="p">:</span> <span class="p">{</span>
+                                    <span class="s2">"orthoProjection"</span><span class="p">:</span> <span class="p">{</span>
+                                        <span class="s2">"voi"</span><span class="p">:</span> <span class="p">{</span>
+                                            <span class="s2">"yMin"</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.8</span> <span class="o">+</span> <span class="n">y_shift</span><span class="p">,</span>
+                                            <span class="s2">"yMax"</span><span class="p">:</span> <span class="mf">0.8</span> <span class="o">+</span> <span class="n">y_shift</span><span class="p">,</span>
+                                            <span class="s2">"zMin"</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.4</span> <span class="o">+</span> <span class="n">z_shift</span><span class="p">,</span>
+                                            <span class="s2">"zMax"</span><span class="p">:</span> <span class="mf">0.4</span> <span class="o">+</span> <span class="n">z_shift</span><span class="p">,</span>
                                         <span class="p">}</span>
                                     <span class="p">}</span>
                                 <span class="p">}</span>
@@ -177,25 +177,25 @@
 </div>
 </div><div aria-labelledby="tab-0-Qysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Note that the imports are omitted in this snippet of code.</span>
 <span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="w"> </span><span class="n">getPallet_command</span><span class="w"> </span><span class="o">=</span><span class="p">{</span>
-<span class="w">    </span><span class="p">{</span><span class="s">&quot;applications&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="p">{</span><span class="s">&quot;instances&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">{</span><span class="s">"applications"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">{</span><span class="s">"instances"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="p">{</span><span class="n">APP_PORT</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="p">{</span><span class="s">&quot;configuration&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="p">{</span><span class="s">&quot;customization&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                        </span><span class="p">{</span><span class="s">&quot;command&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;getPallet&quot;</span><span class="p">},</span>
-<span class="w">                        </span><span class="p">{</span><span class="s">&quot;getPallet&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                            </span><span class="p">{</span><span class="s">&quot;depthHint&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">1.2</span><span class="p">}</span>
+<span class="w">                </span><span class="p">{</span><span class="s">"configuration"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="p">{</span><span class="s">"customization"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="p">{</span><span class="s">"command"</span><span class="p">,</span><span class="w"> </span><span class="s">"getPallet"</span><span class="p">},</span>
+<span class="w">                        </span><span class="p">{</span><span class="s">"getPallet"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                            </span><span class="p">{</span><span class="s">"depthHint"</span><span class="p">,</span><span class="w"> </span><span class="mf">1.2</span><span class="p">}</span>
 <span class="w">                        </span><span class="p">}},</span>
 <span class="w">                    </span><span class="p">}},</span>
-<span class="w">                    </span><span class="p">{</span><span class="s">&quot;parameter&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                        </span><span class="p">{</span><span class="s">&quot;getPallet&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                            </span><span class="p">{</span><span class="s">&quot;0&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                                </span><span class="p">{</span><span class="s">&quot;orthoProjection&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                                    </span><span class="p">{</span><span class="s">&quot;voi&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                                        </span><span class="p">{</span><span class="s">&quot;yMin&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">-0.8</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y_shift</span><span class="p">},</span>
-<span class="w">                                        </span><span class="p">{</span><span class="s">&quot;yMax&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y_shift</span><span class="p">},</span>
-<span class="w">                                        </span><span class="p">{</span><span class="s">&quot;zMin&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">-0.4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">z_shift</span><span class="p">},</span>
-<span class="w">                                        </span><span class="p">{</span><span class="s">&quot;zMax&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">0.4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">z_shift</span><span class="p">},</span>
+<span class="w">                    </span><span class="p">{</span><span class="s">"parameter"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="p">{</span><span class="s">"getPallet"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                            </span><span class="p">{</span><span class="s">"0"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                </span><span class="p">{</span><span class="s">"orthoProjection"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                    </span><span class="p">{</span><span class="s">"voi"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                        </span><span class="p">{</span><span class="s">"yMin"</span><span class="p">,</span><span class="w"> </span><span class="mf">-0.8</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y_shift</span><span class="p">},</span>
+<span class="w">                                        </span><span class="p">{</span><span class="s">"yMax"</span><span class="p">,</span><span class="w"> </span><span class="mf">0.8</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y_shift</span><span class="p">},</span>
+<span class="w">                                        </span><span class="p">{</span><span class="s">"zMin"</span><span class="p">,</span><span class="w"> </span><span class="mf">-0.4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">z_shift</span><span class="p">},</span>
+<span class="w">                                        </span><span class="p">{</span><span class="s">"zMax"</span><span class="p">,</span><span class="w"> </span><span class="mf">0.4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">z_shift</span><span class="p">},</span>
 <span class="w">                                    </span><span class="p">}}</span>
 <span class="w">                                </span><span class="p">}}</span>
 <span class="w">                            </span><span class="p">}}</span>
@@ -230,16 +230,16 @@ changing these parameter may have unintended detection robustness and detection 
 <p>If the pallet is more than 2 meters away from the camera and is not detected, you may need to reduce the sanity check thresholds, which is the minimum number of pixels required to validate the pallet.</p>
 <p>To change the thresholds, the following parameter needs to be added to the configuration (change the <code class="docutils literal notranslate"><span class="pre">APP_PORT</span></code> with your app, for example <code class="docutils literal notranslate"><span class="pre">app0</span></code>):</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;applications&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;instances&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"applications"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"instances"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="err">APP_PORT</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="nt">&quot;parameter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                        </span><span class="nt">&quot;getPallet&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                            </span><span class="nt">&quot;0&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                                </span><span class="nt">&quot;localizePallets&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                                    </span><span class="nt">&quot;faceMinPts&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span>
-<span class="w">                                    </span><span class="nt">&quot;stringerMinPts&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span>
+<span class="w">                </span><span class="nt">"configuration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">"parameter"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nt">"getPallet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                            </span><span class="nt">"0"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                </span><span class="nt">"localizePallets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                    </span><span class="nt">"faceMinPts"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span>
+<span class="w">                                    </span><span class="nt">"stringerMinPts"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span>
 <span class="w">                                </span><span class="p">}</span>
 <span class="w">                            </span><span class="p">}</span>
 <span class="w">                        </span><span class="p">}</span>

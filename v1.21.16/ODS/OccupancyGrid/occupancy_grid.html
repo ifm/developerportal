@@ -266,7 +266,7 @@ $$ -->
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">transform_cell_to_user</span><span class="p">(</span><span class="n">cells</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">transform_matrix</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;transform the cell coordinates to cartesian map coordinates:</span>
+<span class="w">    </span><span class="sd">"""transform the cell coordinates to cartesian map coordinates:</span>
 <span class="sd">    transform[0, 0] * zone_0_x + transform[0, 1] * zone_0_y + transform[0, 2]</span>
 
 <span class="sd">    Args:</span>
@@ -276,7 +276,7 @@ $$ -->
 <span class="sd">    Returns:</span>
 <span class="sd">        tuple: cartesian map coordinates corresponding to the coordinates</span>
 <span class="sd">                of the edge of the cell in X and Y directions.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="n">gy</span><span class="p">,</span> <span class="n">gx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">indices</span><span class="p">(</span><span class="n">cells</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
     <span class="n">ux</span> <span class="o">=</span> <span class="n">transform_matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">gx</span> <span class="o">+</span> <span class="n">transform_matrix</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">gy</span> <span class="o">+</span> <span class="n">transform_matrix</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>

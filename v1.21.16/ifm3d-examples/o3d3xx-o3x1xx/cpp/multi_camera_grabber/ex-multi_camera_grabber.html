@@ -143,12 +143,12 @@ Save the file.</p>
 <p><strong>Using jq</strong></p>
 <p>If you prefer to use jq, a single step command can be used to set IP address of the camera,
 Connect the first camera to the network and execute the following command:</p>
-<div class="highlight-commands notranslate"><div class="highlight"><pre><span></span>ifm3d --ip=192.168.0.69 dump | jq &quot;.ifm3d.Net.StaticIPv4Address=\&quot;192.168.0.70\&quot;&quot; | ifm3d --ip=192.168.0.69 config
+<div class="highlight-commands notranslate"><div class="highlight"><pre><span></span>ifm3d --ip=192.168.0.69 dump | jq ".ifm3d.Net.StaticIPv4Address=\"192.168.0.70\"" | ifm3d --ip=192.168.0.69 config
 </pre></div>
 </div>
 <p>this will set the IP of first camera to 192.168.0.70.</p>
 <p>After this add the second camera to the network, set the next IP with the below command and so on:</p>
-<div class="highlight-commands notranslate"><div class="highlight"><pre><span></span>ifm3d --ip=192.168.0.69 dump | jq &quot;.ifm3d.Net.StaticIPv4Address=\&quot;192.168.0.71\&quot;&quot; | ifm3d --ip=192.168.0.69 config
+<div class="highlight-commands notranslate"><div class="highlight"><pre><span></span>ifm3d --ip=192.168.0.69 dump | jq ".ifm3d.Net.StaticIPv4Address=\"192.168.0.71\"" | ifm3d --ip=192.168.0.69 config
 </pre></div>
 </div>
 </section>

@@ -321,21 +321,21 @@
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-UHl0aG9u" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="0">Python</button><button aria-controls="panel-0-Yysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Yysr" name="Yysr" role="tab" tabindex="-1">c++</button><button aria-controls="panel-0-Q0xJ" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-Q0xJ" name="Q0xJ" role="tab" tabindex="-1">CLI</button></div><div aria-labelledby="tab-0-UHl0aG9u" class="sphinx-tabs-panel group-tab" id="panel-0-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">ifm3dpy.device</span><span class="w"> </span><span class="kn">import</span> <span class="n">O3R</span>
 
-<span class="n">IP_ADDRESS</span> <span class="o">=</span> <span class="s2">&quot;192.168.0.69&quot;</span>
+<span class="n">IP_ADDRESS</span> <span class="o">=</span> <span class="s2">"192.168.0.69"</span>
 <span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">(</span><span class="n">ip</span><span class="o">=</span><span class="n">IP_ADDRESS</span><span class="p">)</span>
 <span class="n">sealed_box</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">sealed_box</span><span class="p">()</span>
 
 <span class="c1">## Setting a new password</span>
-<span class="n">sealed_box</span><span class="o">.</span><span class="n">set_password</span><span class="p">(</span><span class="n">new_password</span><span class="o">=</span><span class="s2">&quot;Colloportus&quot;</span><span class="p">,</span> <span class="n">old_password</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Password set successfully&quot;</span><span class="p">)</span>
+<span class="n">sealed_box</span><span class="o">.</span><span class="n">set_password</span><span class="p">(</span><span class="n">new_password</span><span class="o">=</span><span class="s2">"Colloportus"</span><span class="p">,</span> <span class="n">old_password</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Password set successfully"</span><span class="p">)</span>
 
 <span class="c1">## Changing the password</span>
-<span class="n">sealed_box</span><span class="o">.</span><span class="n">set_password</span><span class="p">(</span><span class="n">new_password</span><span class="o">=</span><span class="s2">&quot;ProtegoMaxima2025&quot;</span><span class="p">,</span> <span class="n">old_password</span><span class="o">=</span><span class="s2">&quot;Colloportus&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Password changed successfully&quot;</span><span class="p">)</span>
+<span class="n">sealed_box</span><span class="o">.</span><span class="n">set_password</span><span class="p">(</span><span class="n">new_password</span><span class="o">=</span><span class="s2">"ProtegoMaxima2025"</span><span class="p">,</span> <span class="n">old_password</span><span class="o">=</span><span class="s2">"Colloportus"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Password changed successfully"</span><span class="p">)</span>
 
 <span class="c1">## Remove the password</span>
-<span class="n">sealed_box</span><span class="o">.</span><span class="n">remove_password</span><span class="p">(</span><span class="n">password</span><span class="o">=</span><span class="s2">&quot;ProtegoMaxima2025&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Password removed successfully&quot;</span><span class="p">)</span>
+<span class="n">sealed_box</span><span class="o">.</span><span class="n">remove_password</span><span class="p">(</span><span class="n">password</span><span class="o">=</span><span class="s2">"ProtegoMaxima2025"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Password removed successfully"</span><span class="p">)</span>
 
 </pre></div>
 </div>
@@ -351,29 +351,29 @@
 <span class="p">{</span>
 <span class="w">    </span><span class="k">try</span>
 <span class="w">    </span><span class="p">{</span><span class="w">   </span>
-<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">IP_ADDRESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;192.168.0.69&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">IP_ADDRESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"192.168.0.69"</span><span class="p">;</span>
 <span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">o3r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">O3R</span><span class="o">&gt;</span><span class="p">(</span><span class="n">IP_ADDRESS</span><span class="p">);</span>
 <span class="w">        </span><span class="c1">// Access the SealedBox API</span>
 <span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">sealed_box</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o3r</span><span class="o">-&gt;</span><span class="n">SealedBox</span><span class="p">();</span>
 
 <span class="w">        </span><span class="c1">// Set new password</span>
-<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Colloportus&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Example password</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Colloportus"</span><span class="p">;</span><span class="w"> </span><span class="c1">// Example password</span>
 <span class="w">        </span><span class="n">sealed_box</span><span class="o">-&gt;</span><span class="n">SetPassword</span><span class="p">(</span><span class="n">password</span><span class="p">);</span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Password set successfully&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Password set successfully"</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
 <span class="w">        </span><span class="c1">// Change the password</span>
-<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">new_password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;ProtegoMaxima2025&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Example password</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">new_password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"ProtegoMaxima2025"</span><span class="p">;</span><span class="w"> </span><span class="c1">// Example password</span>
 <span class="w">        </span><span class="n">sealed_box</span><span class="o">-&gt;</span><span class="n">SetPassword</span><span class="p">(</span><span class="n">new_password</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">);</span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Password changed successfully&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Password changed successfully"</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
 <span class="w">        </span><span class="c1">// Remove the password</span>
 
 <span class="w">        </span><span class="n">sealed_box</span><span class="o">-&gt;</span><span class="n">RemovePassword</span><span class="p">(</span><span class="n">new_password</span><span class="p">);</span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Password removed successfully&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Password removed successfully"</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">ifm3d</span><span class="o">::</span><span class="n">Error</span><span class="o">&amp;</span><span class="w"> </span><span class="n">err</span><span class="p">)</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Error setting password: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">err</span><span class="p">.</span><span class="n">what</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Error setting password: "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">err</span><span class="p">.</span><span class="n">what</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
@@ -418,26 +418,26 @@ Old<span class="w"> </span>Password:
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">ifm3dpy.device</span><span class="w"> </span><span class="kn">import</span> <span class="n">O3R</span>
 
-<span class="n">IP_ADDRESS</span> <span class="o">=</span> <span class="s2">&quot;192.168.0.69&quot;</span>
+<span class="n">IP_ADDRESS</span> <span class="o">=</span> <span class="s2">"192.168.0.69"</span>
 <span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">(</span><span class="n">ip</span><span class="o">=</span><span class="n">IP_ADDRESS</span><span class="p">)</span>
 <span class="n">sealed_box</span> <span class="o">=</span> <span class="n">o3r</span><span class="o">.</span><span class="n">sealed_box</span><span class="p">()</span>
 
 <span class="c1">## SSH Key</span>
-<span class="n">key_path</span> <span class="o">=</span> <span class="s2">&quot;/home/xyz/.ssh/id_o3r.pub&quot;</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">key_path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="n">key_path</span> <span class="o">=</span> <span class="s2">"/home/xyz/.ssh/id_o3r.pub"</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">key_path</span><span class="p">,</span> <span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">ssh_pub_key</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
 
 <span class="c1">## Seal/Protect the configurations</span>
 <span class="n">configuration</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;device&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s2">&quot;network&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;authorized_keys&quot;</span><span class="p">:</span> <span class="n">ssh_pub_key</span>
+    <span class="s2">"device"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"network"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"authorized_keys"</span><span class="p">:</span> <span class="n">ssh_pub_key</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="n">sealed_box</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">password</span><span class="o">=</span><span class="s2">&quot;ProtegoMaxima2025&quot;</span><span class="p">,</span> <span class="n">configuration</span><span class="o">=</span><span class="n">configuration</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Configuration sealed successfully&quot;</span><span class="p">)</span>
+<span class="n">sealed_box</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">password</span><span class="o">=</span><span class="s2">"ProtegoMaxima2025"</span><span class="p">,</span> <span class="n">configuration</span><span class="o">=</span><span class="n">configuration</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Configuration sealed successfully"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-1-Yysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-Yysr" name="Yysr" role="tabpanel" tabindex="0"><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ifm3d/device/o3r.h&gt;</span>
@@ -452,18 +452,18 @@ Old<span class="w"> </span>Password:
 <span class="p">{</span>
 <span class="w">    </span><span class="k">try</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">IP_ADDRESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;192.168.0.69&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">IP_ADDRESS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"192.168.0.69"</span><span class="p">;</span>
 <span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">o3r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">O3R</span><span class="o">&gt;</span><span class="p">(</span><span class="n">IP_ADDRESS</span><span class="p">);</span>
 
 <span class="w">        </span><span class="c1">// Access the SealedBox API</span>
 <span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">sealed_box</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">o3r</span><span class="o">-&gt;</span><span class="n">SealedBox</span><span class="p">();</span>
 
 <span class="w">        </span><span class="c1">// Read SSH public key from file</span>
-<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">key_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;/home/xyz/.ssh/id_o3r.pub&quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">key_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"/home/xyz/.ssh/id_o3r.pub"</span><span class="p">;</span>
 <span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">ifstream</span><span class="w"> </span><span class="n">key_file</span><span class="p">(</span><span class="n">key_path</span><span class="p">);</span>
 <span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">key_file</span><span class="p">.</span><span class="n">is_open</span><span class="p">())</span>
 <span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Failed to open SSH public key file: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">key_path</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Failed to open SSH public key file: "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">key_path</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">stringstream</span><span class="w"> </span><span class="n">buffer</span><span class="p">;</span>
@@ -471,21 +471,21 @@ Old<span class="w"> </span>Password:
 <span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">ssh_pub_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buffer</span><span class="p">.</span><span class="n">str</span><span class="p">();</span>
 <span class="w">        </span><span class="n">key_file</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
 
-<span class="w">        </span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="w"> </span><span class="n">configuration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{{</span><span class="s">&quot;device&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                                            </span><span class="p">{</span><span class="s">&quot;network&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                                                </span><span class="p">{</span><span class="s">&quot;authorized_keys&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ssh_pub_key</span><span class="p">}</span>
+<span class="w">        </span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="w"> </span><span class="n">configuration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{{</span><span class="s">"device"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                            </span><span class="p">{</span><span class="s">"network"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                                </span><span class="p">{</span><span class="s">"authorized_keys"</span><span class="p">,</span><span class="w"> </span><span class="n">ssh_pub_key</span><span class="p">}</span>
 <span class="w">                                            </span><span class="p">}}</span>
 <span class="w">                                        </span><span class="p">}}</span>
 <span class="w">                                    </span><span class="p">};</span>
 <span class="w">        </span><span class="c1">// Seal the configuration</span>
-<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Colloportus&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// Input password here</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Colloportus"</span><span class="p">;</span><span class="w"> </span><span class="c1">// Input password here</span>
 <span class="w">        </span><span class="n">sealed_box</span><span class="o">-&gt;</span><span class="n">Set</span><span class="p">(</span><span class="n">password</span><span class="p">,</span><span class="w"> </span><span class="n">configuration</span><span class="p">);</span>
 
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Configuration sealed successfully&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Configuration sealed successfully"</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">ifm3d</span><span class="o">::</span><span class="n">Error</span><span class="o">&amp;</span><span class="w"> </span><span class="n">err</span><span class="p">)</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Error setting password: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">err</span><span class="p">.</span><span class="n">what</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Error setting password: "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">err</span><span class="p">.</span><span class="n">what</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>

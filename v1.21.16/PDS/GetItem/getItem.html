@@ -115,16 +115,16 @@ Please note that these templates typically allow for an angular deviation of up 
 <p>The input to the <code class="docutils literal notranslate"><span class="pre">getItem</span></code> command should be provided in JSON.
 Below is an example, assuming an instantiated PDS app <code class="docutils literal notranslate"><span class="pre">app0</span></code>:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;applications&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;instances&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;app0&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="nt">&quot;customization&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                        </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;getItem&quot;</span><span class="p">,</span>
-<span class="w">                        </span><span class="nt">&quot;getItem&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                            </span><span class="nt">&quot;depthHint&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;itemIndex&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;itemOrder&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;zAscending&quot;</span>
+<span class="w">    </span><span class="nt">"applications"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"instances"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"app0"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"configuration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">"customization"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"getItem"</span><span class="p">,</span>
+<span class="w">                        </span><span class="nt">"getItem"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                            </span><span class="nt">"depthHint"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">"itemIndex"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">"itemOrder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"zAscending"</span>
 <span class="w">                        </span><span class="p">}</span>
 <span class="w">                    </span><span class="p">}</span>
 <span class="w">                </span><span class="p">}</span>
@@ -186,37 +186,37 @@ Below is an example, assuming an instantiated PDS app <code class="docutils lite
 <h2>Output<a class="headerlink" href="#output" title="Link to this heading"></a></h2>
 <p>The output of a <code class="docutils literal notranslate"><span class="pre">getItem</span></code> command is formatted in JSON.
 An example JSON result, where the position of one item was identified, is shown below:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;getItem&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;depthEstimationVoi&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;xMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;xMin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;yMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;yMin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;zMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;zMin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"getItem"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"depthEstimationVoi"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"xMax"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"xMin"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"yMax"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"yMin"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"zMax"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"zMin"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;item&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="nt">"item"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;angles&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;rotX&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;rotY&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;rotZ&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05009809136390686</span>
+<span class="w">        </span><span class="nt">"angles"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"rotX"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"rotY"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"rotZ"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.05009809136390686</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;position&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5020731687545776</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.010188048705458641</span><span class="p">,</span>
-<span class="w">            </span><span class="nt">&quot;z&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1468670815229416</span>
+<span class="w">        </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"x"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5020731687545776</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"y"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.010188048705458641</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">"z"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1468670815229416</span>
 <span class="w">        </span><span class="p">},</span>
-<span class="w">        </span><span class="nt">&quot;score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9384191036224365</span>
+<span class="w">        </span><span class="nt">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9384191036224365</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">],</span>
-<span class="w">    </span><span class="nt">&quot;projectionVoi&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;xMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;xMin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;yMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;yMin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;zMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;zMin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">    </span><span class="nt">"projectionVoi"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"xMax"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"xMin"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"yMax"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"yMin"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"zMax"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"zMin"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -275,11 +275,11 @@ For each item, the following information is provided:</p>
 <span class="c1">###SPDX-License-Identifier: Apache-2.0</span>
 <span class="c1">###########################################</span>
 
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 <span class="sd">Setup:  * Camera: O3R222, 3D on port2</span>
 <span class="sd">            * orientation: camera horizontally (FAKRA cable to the left)</span>
 <span class="sd">        * Item: item in FoV @ 1.5m distance</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">"""</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
@@ -292,38 +292,38 @@ For each item, the following information is provided:</p>
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 <span class="c1"># Device specific configuration</span>
-<span class="n">IP</span> <span class="o">=</span> <span class="s2">&quot;192.168.0.69&quot;</span>
-<span class="n">CAMERA_PORT</span> <span class="o">=</span> <span class="s2">&quot;port2&quot;</span>
-<span class="n">APP_PORT</span> <span class="o">=</span> <span class="s2">&quot;app0&quot;</span>
+<span class="n">IP</span> <span class="o">=</span> <span class="s2">"192.168.0.69"</span>
+<span class="n">CAMERA_PORT</span> <span class="o">=</span> <span class="s2">"port2"</span>
+<span class="n">APP_PORT</span> <span class="o">=</span> <span class="s2">"app0"</span>
 <span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">(</span><span class="n">IP</span><span class="p">)</span>
 
 <span class="c1">############################################</span>
 <span class="c1"># Setup the application</span>
 <span class="c1">############################################</span>
 <span class="k">try</span><span class="p">:</span>
-    <span class="n">o3r</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">&quot;/applications/instances&quot;</span><span class="p">)</span>
+    <span class="n">o3r</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s2">"/applications/instances"</span><span class="p">)</span>
 <span class="k">except</span> <span class="n">Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reset failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Reset failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 <span class="c1"># Set the correct extrinsic calibration of the camera.</span>
 <span class="n">calibration</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;transX&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
-    <span class="s2">&quot;transY&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
-    <span class="s2">&quot;transZ&quot;</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
-    <span class="s2">&quot;rotX&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
-    <span class="s2">&quot;rotY&quot;</span><span class="p">:</span> <span class="mf">1.57</span><span class="p">,</span>
-    <span class="s2">&quot;rotZ&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">1.57</span><span class="p">,</span>
+    <span class="s2">"transX"</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="s2">"transY"</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="s2">"transZ"</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">,</span>
+    <span class="s2">"rotX"</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="s2">"rotY"</span><span class="p">:</span> <span class="mf">1.57</span><span class="p">,</span>
+    <span class="s2">"rotZ"</span><span class="p">:</span> <span class="o">-</span><span class="mf">1.57</span><span class="p">,</span>
 <span class="p">}</span>
-<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Setting the extrinsic calibration for camera in </span><span class="si">{</span><span class="n">CAMERA_PORT</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">({</span><span class="s2">&quot;ports&quot;</span><span class="p">:</span> <span class="p">{</span><span class="n">CAMERA_PORT</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;processing&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;extrinsicHeadToUser&quot;</span><span class="p">:</span> <span class="n">calibration</span><span class="p">}}}})</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Setting the extrinsic calibration for camera in </span><span class="si">{</span><span class="n">CAMERA_PORT</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">({</span><span class="s2">"ports"</span><span class="p">:</span> <span class="p">{</span><span class="n">CAMERA_PORT</span><span class="p">:</span> <span class="p">{</span><span class="s2">"processing"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"extrinsicHeadToUser"</span><span class="p">:</span> <span class="n">calibration</span><span class="p">}}}})</span>
 
 <span class="c1"># Create the application instance and set to IDLE (ready to be triggered)</span>
-<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Create a PDS instance using camera in </span><span class="si">{</span><span class="n">CAMERA_PORT</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Create a PDS instance using camera in </span><span class="si">{</span><span class="n">CAMERA_PORT</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
     <span class="p">{</span>
-        <span class="s2">&quot;applications&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;instances&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="n">APP_PORT</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;pds&quot;</span><span class="p">,</span> <span class="s2">&quot;ports&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">CAMERA_PORT</span><span class="p">],</span> <span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;IDLE&quot;</span><span class="p">}</span>
+        <span class="s2">"applications"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"instances"</span><span class="p">:</span> <span class="p">{</span>
+                <span class="n">APP_PORT</span><span class="p">:</span> <span class="p">{</span><span class="s2">"class"</span><span class="p">:</span> <span class="s2">"pds"</span><span class="p">,</span> <span class="s2">"ports"</span><span class="p">:</span> <span class="p">[</span><span class="n">CAMERA_PORT</span><span class="p">],</span> <span class="s2">"state"</span><span class="p">:</span> <span class="s2">"IDLE"</span><span class="p">}</span>
             <span class="p">}</span>
         <span class="p">}</span>
     <span class="p">}</span>
@@ -339,18 +339,18 @@ For each item, the following information is provided:</p>
 
 <span class="c1"># Define a callback function to be executed every time a frame is received</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">item_callback</span><span class="p">(</span><span class="n">frame</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Callback function executed every time a frame is received.</span>
+<span class="w">    </span><span class="sd">"""Callback function executed every time a frame is received.</span>
 <span class="sd">    The data is decoded and the result printed.</span>
 
 <span class="sd">    :param frame: A frame containing the data for all the buffer ids</span>
 <span class="sd">    requested in the start function of the framegrabber.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="n">frame</span><span class="o">.</span><span class="n">has_buffer</span><span class="p">(</span><span class="n">buffer_id</span><span class="o">.</span><span class="n">O3R_RESULT_JSON</span><span class="p">):</span>
         <span class="n">json_chunk</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">get_buffer</span><span class="p">(</span><span class="n">buffer_id</span><span class="o">.</span><span class="n">O3R_RESULT_JSON</span><span class="p">)</span>
         <span class="n">json_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="n">json_chunk</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
         <span class="n">json_array</span> <span class="o">=</span> <span class="n">json_array</span><span class="o">.</span><span class="n">tobytes</span><span class="p">()</span>
         <span class="n">parsed_json_array</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_array</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
-        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Detected item: </span><span class="si">{</span><span class="n">parsed_json_array</span><span class="p">[</span><span class="s1">&#39;getItem&#39;</span><span class="p">][</span><span class="s1">&#39;item&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Detected item: </span><span class="si">{</span><span class="n">parsed_json_array</span><span class="p">[</span><span class="s1">'getItem'</span><span class="p">][</span><span class="s1">'item'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 
 <span class="n">fg</span><span class="o">.</span><span class="n">on_new_frame</span><span class="p">(</span><span class="n">item_callback</span><span class="p">)</span>
@@ -361,20 +361,20 @@ For each item, the following information is provided:</p>
 <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Grace period after the framegrabber starts</span>
 
 <span class="n">GET_ITEM_PARAMETERS</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;depthHint&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># Estimated position of the item (-1 for automatic detection)</span>
-    <span class="s2">&quot;itemIndex&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1"># Type of item</span>
+    <span class="s2">"depthHint"</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># Estimated position of the item (-1 for automatic detection)</span>
+    <span class="s2">"itemIndex"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1"># Type of item</span>
 <span class="p">}</span>
 
-<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Triggering the getItem command&quot;</span><span class="p">)</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Triggering the getItem command"</span><span class="p">)</span>
 <span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
     <span class="p">{</span>
-        <span class="s2">&quot;applications&quot;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">&quot;instances&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">"applications"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">"instances"</span><span class="p">:</span> <span class="p">{</span>
                 <span class="n">APP_PORT</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s2">&quot;configuration&quot;</span><span class="p">:</span> <span class="p">{</span>
-                        <span class="s2">&quot;customization&quot;</span><span class="p">:</span> <span class="p">{</span>
-                            <span class="s2">&quot;command&quot;</span><span class="p">:</span> <span class="s2">&quot;getItem&quot;</span><span class="p">,</span>
-                            <span class="s2">&quot;getItem&quot;</span><span class="p">:</span> <span class="n">GET_ITEM_PARAMETERS</span><span class="p">,</span>
+                    <span class="s2">"configuration"</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">"customization"</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s2">"command"</span><span class="p">:</span> <span class="s2">"getItem"</span><span class="p">,</span>
+                            <span class="s2">"getItem"</span><span class="p">:</span> <span class="n">GET_ITEM_PARAMETERS</span><span class="p">,</span>
                         <span class="p">}</span>
                     <span class="p">}</span>
                 <span class="p">}</span>

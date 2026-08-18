@@ -173,11 +173,11 @@ For more details on mounting recommendations, refer to the <a class="reference i
 <p>Negative obstacle detection must be enabled for each individual port where floor is in the field of view. This feature is disabled by default.</p>
 <p>The JSON below shows the <code class="docutils literal notranslate"><span class="pre">enableNegativeObstacles</span></code> parameter to consider to enable this feature for port0 (change the port number to fit your configuration):</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;applications&quot;</span><span class="p">:{</span>
-<span class="w">        </span><span class="nt">&quot;instances&quot;</span><span class="p">:{</span>
-<span class="w">            </span><span class="nt">&quot;port0&quot;</span><span class="p">:{</span>
-<span class="w">                </span><span class="nt">&quot;negObst&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">&quot;enableNegativeObstacles&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="nt">"applications"</span><span class="p">:{</span>
+<span class="w">        </span><span class="nt">"instances"</span><span class="p">:{</span>
+<span class="w">            </span><span class="nt">"port0"</span><span class="p">:{</span>
+<span class="w">                </span><span class="nt">"negObst"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                  </span><span class="nt">"enableNegativeObstacles"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
 <span class="w">                </span><span class="p">}</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
@@ -187,14 +187,14 @@ For more details on mounting recommendations, refer to the <a class="reference i
 </div>
 <p>The negative obstacle detection is a feature that <a class="reference internal" href="../../Technology/configuration.html#conf-only-parameters"><span class="std std-ref">requires a switch to “CONF” state</span></a> to be enabled, so it is not recommended to switch that function on and off dynamically but to use a static setting during robot operation.</p>
 <p>In Python, for example, the feature can be enabled with the code below. Note that this code assumes the existence of an <code class="docutils literal notranslate"><span class="pre">app0</span></code> instance using a camera connected to <code class="docutils literal notranslate"><span class="pre">port0</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Set the application to &quot;CONF&quot; state</span>
-<span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">({</span><span class="s2">&quot;applications&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;instances&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;app0&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;CONF&quot;</span><span class="p">}}}})</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Set the application to "CONF" state</span>
+<span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">({</span><span class="s2">"applications"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"instances"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"app0"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"state"</span><span class="p">:</span> <span class="s2">"CONF"</span><span class="p">}}}})</span>
 
 <span class="c1"># 2. Enable the negative obstacle feature</span>
-<span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">({</span><span class="s2">&quot;applications&quot;</span><span class="p">:{</span><span class="s2">&quot;instances&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;app0&quot;</span><span class="p">:{</span><span class="s2">&quot;port0&quot;</span><span class="p">:{</span><span class="s2">&quot;negObst&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;enableNegativeObstacles&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}}}}}})</span>
+<span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">({</span><span class="s2">"applications"</span><span class="p">:{</span><span class="s2">"instances"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"app0"</span><span class="p">:{</span><span class="s2">"port0"</span><span class="p">:{</span><span class="s2">"negObst"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"enableNegativeObstacles"</span><span class="p">:</span> <span class="kc">True</span><span class="p">}}}}}})</span>
 
 <span class="c1"># 3. Set the application instance back to RUN state</span>
-<span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">({</span><span class="s2">&quot;applications&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;instances&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;app0&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;state&quot;</span><span class="p">:</span> <span class="s2">&quot;RUN&quot;</span><span class="p">}}}})</span>
+<span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">({</span><span class="s2">"applications"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"instances"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"app0"</span><span class="p">:</span> <span class="p">{</span><span class="s2">"state"</span><span class="p">:</span> <span class="s2">"RUN"</span><span class="p">}}}})</span>
 </pre></div>
 </div>
 </section>

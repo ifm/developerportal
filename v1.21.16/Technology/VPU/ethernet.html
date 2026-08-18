@@ -143,21 +143,21 @@
 <section id="set-a-static-ip">
 <h2>Set a static IP<a class="headerlink" href="#set-a-static-ip" title="Link to this heading"></a></h2>
 <p>If DHCP is activated (only an option for <code class="docutils literal notranslate"><span class="pre">eth0</span></code>), to set a static IP to a port, you first need to switch the use of DHCP to false. This can be done for example using the <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> CLI (or with a similar process in the Vision Assistant or ifm3dpy):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.device.network.interfaces.eth0.useDHCP=false&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>ifm3d<span class="w"> </span>config
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">'.device.network.interfaces.eth0.useDHCP=false'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>ifm3d<span class="w"> </span>config
 </pre></div>
 </div>
 <p>An IP address will be automatically assigned to the port:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.device.network.interfaces.eth0
 <span class="o">{</span>
-<span class="w">  </span><span class="s2">&quot;ipv4&quot;</span>:<span class="w"> </span><span class="o">{</span>
-<span class="w">    </span><span class="s2">&quot;address&quot;</span>:<span class="w"> </span><span class="s2">&quot;192.168.0.69&quot;</span>,
-<span class="w">    </span><span class="s2">&quot;dns&quot;</span>:<span class="w"> </span><span class="s2">&quot;0.0.0.0&quot;</span>,
-<span class="w">    </span><span class="s2">&quot;gateway&quot;</span>:<span class="w"> </span><span class="s2">&quot;192.168.0.201&quot;</span>,
-<span class="w">    </span><span class="s2">&quot;mask&quot;</span>:<span class="w"> </span><span class="m">24</span>
+<span class="w">  </span><span class="s2">"ipv4"</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">    </span><span class="s2">"address"</span>:<span class="w"> </span><span class="s2">"192.168.0.69"</span>,
+<span class="w">    </span><span class="s2">"dns"</span>:<span class="w"> </span><span class="s2">"0.0.0.0"</span>,
+<span class="w">    </span><span class="s2">"gateway"</span>:<span class="w"> </span><span class="s2">"192.168.0.201"</span>,
+<span class="w">    </span><span class="s2">"mask"</span>:<span class="w"> </span><span class="m">24</span>
 <span class="w">  </span><span class="o">}</span>,
-<span class="w">  </span><span class="s2">&quot;mac&quot;</span>:<span class="w"> </span><span class="s2">&quot;48:B0:2D:54:F9:46&quot;</span>,
-<span class="w">  </span><span class="s2">&quot;networkSpeed&quot;</span>:<span class="w"> </span><span class="m">1000</span>,
-<span class="w">  </span><span class="s2">&quot;useDHCP&quot;</span>:<span class="w"> </span><span class="nb">false</span>
+<span class="w">  </span><span class="s2">"mac"</span>:<span class="w"> </span><span class="s2">"48:B0:2D:54:F9:46"</span>,
+<span class="w">  </span><span class="s2">"networkSpeed"</span>:<span class="w"> </span><span class="m">1000</span>,
+<span class="w">  </span><span class="s2">"useDHCP"</span>:<span class="w"> </span><span class="nb">false</span>
 <span class="o">}</span>
 </pre></div>
 </div>
@@ -166,7 +166,7 @@
 <p>New network settings will only be applied after reboot. Use for instance <code class="docutils literal notranslate"><span class="pre">ifm3d</span> <span class="pre">reboot</span></code>.</p>
 </div>
 <p>To change the IP address manually once DHCP is disabled, you can for instance do the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">&#39;.device.network.interfaces.eth0.ipv4.address=&quot;192.254.2.69&quot;|.device.network.interfaces.eth0.ipv4.gateway=&quot;192.254.2.201&quot;|.device.network.interfaces.eth0.ipv4.mask=24&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>ifm3d<span class="w"> </span>config
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="o">{}</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span><span class="s1">'.device.network.interfaces.eth0.ipv4.address="192.254.2.69"|.device.network.interfaces.eth0.ipv4.gateway="192.254.2.201"|.device.network.interfaces.eth0.ipv4.mask=24'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>ifm3d<span class="w"> </span>config
 </pre></div>
 </div>
 <div class="admonition warning">

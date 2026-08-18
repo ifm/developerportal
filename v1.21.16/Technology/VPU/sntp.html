@@ -169,15 +169,15 @@ The received occupancy grid frame contains a timestamp based on the OVP8xx time.
 <p>The <code class="docutils literal notranslate"><span class="pre">NTP</span></code> configuration is located within the clock parameter of the device configuration (JSON).</p>
 <p>The JSON configuration can be retrieved by ifm3d/ifm3dpy CLI.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;device&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;clock&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;currentTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1581091007595569376</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;sntp&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="nt">&quot;active&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">&quot;activeServerAddress&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">&quot;activeServerName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;time1.google.com&quot;</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">&quot;availableServers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
-<span class="w">                    </span><span class="nt">&quot;systemClockSynchronized&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">        </span><span class="nt">"device"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"clock"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"currentTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1581091007595569376</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"sntp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">"activeServerAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">"activeServerName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"time1.google.com"</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">"availableServers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">                    </span><span class="nt">"systemClockSynchronized"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
 <span class="w">                </span><span class="p">}</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
@@ -202,33 +202,33 @@ The received occupancy grid frame contains a timestamp based on the OVP8xx time.
 <p>Receive the currently provided NTP server addresses and the currently used NTP address:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="kn">from</span><span class="w"> </span><span class="nn">ifm3dpy.device</span><span class="w"> </span><span class="kn">import</span> <span class="n">O3R</span>
     <span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/clock&quot;</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">"/device/clock"</span><span class="p">]))</span>
 </pre></div>
 </div>
 <p>To connect the O3R to an <code class="docutils literal notranslate"><span class="pre">NTP</span></code> server, provide the server address - <code class="docutils literal notranslate"><span class="pre">availableServers</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># Output available servers --&gt; No Servers</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/clock/sntp/availableServers&quot;</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">"/device/clock/sntp/availableServers"</span><span class="p">]))</span>
 
     <span class="c1">#set your local IP as an available server</span>
-    <span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">({</span><span class="s1">&#39;device&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;clock&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;sntp&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;availableServers&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;192.168.0.110&quot;</span><span class="p">]}}}})</span>
+    <span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">({</span><span class="s1">'device'</span><span class="p">:</span> <span class="p">{</span><span class="s1">'clock'</span><span class="p">:</span> <span class="p">{</span><span class="s1">'sntp'</span><span class="p">:</span> <span class="p">{</span><span class="s1">'availableServers'</span><span class="p">:</span> <span class="p">[</span><span class="s2">"192.168.0.110"</span><span class="p">]}}}})</span>
 
-    <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/clock/sntp/availableServers&quot;</span><span class="p">])</span>
-    <span class="c1"># Output: {&#39;device&#39;: {&#39;clock&#39;: {&#39;sntp&#39;: {&#39;availableServers&#39;: [&#39;192.168.0.110&#39;]}}}}</span>
+    <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">"/device/clock/sntp/availableServers"</span><span class="p">])</span>
+    <span class="c1"># Output: {'device': {'clock': {'sntp': {'availableServers': ['192.168.0.110']}}}}</span>
 </pre></div>
 </div>
 <p>After providing a valid <code class="docutils literal notranslate"><span class="pre">NTP</span></code> address:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;device&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;clock&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;currentTime&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1676038117923030927</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;sntp&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="nt">&quot;active&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">&quot;activeServerAddress&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.0.110&quot;</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">&quot;activeServerName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;192.168.0.110&quot;</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">&quot;availableServers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                        </span><span class="s2">&quot;192.168.0.110&quot;</span>
+<span class="w">        </span><span class="nt">"device"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"clock"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"currentTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1676038117923030927</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"sntp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">"activeServerAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"192.168.0.110"</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">"activeServerName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"192.168.0.110"</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">"availableServers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                        </span><span class="s2">"192.168.0.110"</span>
 <span class="w">                    </span><span class="p">],</span>
-<span class="w">                    </span><span class="nt">&quot;systemClockSynchronized&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">                    </span><span class="nt">"systemClockSynchronized"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
 <span class="w">                </span><span class="p">}</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
@@ -240,21 +240,21 @@ The received occupancy grid frame contains a timestamp based on the OVP8xx time.
 <h2>Evaluating NTP configuration<a class="headerlink" href="#evaluating-ntp-configuration" title="Link to this heading"></a></h2>
 <p>After the NTP synchronization, the <code class="docutils literal notranslate"><span class="pre">current</span> <span class="pre">time</span></code> on the OVP8xx should reflect the NTP time.</p>
 <p>Without an NTP connection:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/clock/currentTime&quot;</span><span class="p">])</span>
-    <span class="c1"># Output of above line:  {&#39;device&#39;: {&#39;clock&#39;: {&quot;currentTime&quot;: 1581091007595569376}}}</span>
-    <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcfromtimestamp</span><span class="p">(</span><span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/clock/currentTime&quot;</span><span class="p">])[</span><span class="s2">&quot;device&quot;</span><span class="p">][</span><span class="s2">&quot;clock&quot;</span><span class="p">][</span><span class="s2">&quot;currentTime&quot;</span><span class="p">]</span> <span class="o">//</span> <span class="mi">1000000000</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">"/device/clock/currentTime"</span><span class="p">])</span>
+    <span class="c1"># Output of above line:  {'device': {'clock': {"currentTime": 1581091007595569376}}}</span>
+    <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcfromtimestamp</span><span class="p">(</span><span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">"/device/clock/currentTime"</span><span class="p">])[</span><span class="s2">"device"</span><span class="p">][</span><span class="s2">"clock"</span><span class="p">][</span><span class="s2">"currentTime"</span><span class="p">]</span> <span class="o">//</span> <span class="mi">1000000000</span><span class="p">)</span>
     <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2020</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">47</span><span class="p">)</span> <span class="c1"># System time without NTP connection</span>
 </pre></div>
 </div>
 <p>With NTP connection:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/clock/sntp/availableServers&quot;</span><span class="p">])</span>
-    <span class="c1"># Output of above line: {&#39;device&#39;: {&#39;clock&#39;: {&#39;sntp&#39;: {&#39;availableServers&#39;: []}}}}</span>
-    <span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">({</span><span class="s1">&#39;device&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;clock&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;sntp&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;availableServers&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;192.168.0.110&quot;</span><span class="p">]}}}})</span>
-    <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/clock/sntp/availableServers&quot;</span><span class="p">])</span>
-    <span class="c1"># Output of above line: {&#39;device&#39;: {&#39;clock&#39;: {&#39;sntp&#39;: {&#39;availableServers&#39;: [&#39;192.168.0.110&#39;]}}}}</span>
-    <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/clock/currentTime&quot;</span><span class="p">])</span>
-    <span class="c1"># Output of above line: {&#39;device&#39;: {&#39;clock&#39;: {&#39;currentTime&#39;: 1676037142019902053}}}</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcfromtimestamp</span><span class="p">(</span><span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/clock/currentTime&quot;</span><span class="p">])[</span><span class="s2">&quot;device&quot;</span><span class="p">][</span><span class="s2">&quot;clock&quot;</span><span class="p">][</span><span class="s2">&quot;currentTime&quot;</span><span class="p">]</span> <span class="o">//</span> <span class="mi">1000000000</span><span class="p">))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">"/device/clock/sntp/availableServers"</span><span class="p">])</span>
+    <span class="c1"># Output of above line: {'device': {'clock': {'sntp': {'availableServers': []}}}}</span>
+    <span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">({</span><span class="s1">'device'</span><span class="p">:</span> <span class="p">{</span><span class="s1">'clock'</span><span class="p">:</span> <span class="p">{</span><span class="s1">'sntp'</span><span class="p">:</span> <span class="p">{</span><span class="s1">'availableServers'</span><span class="p">:</span> <span class="p">[</span><span class="s2">"192.168.0.110"</span><span class="p">]}}}})</span>
+    <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">"/device/clock/sntp/availableServers"</span><span class="p">])</span>
+    <span class="c1"># Output of above line: {'device': {'clock': {'sntp': {'availableServers': ['192.168.0.110']}}}}</span>
+    <span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">"/device/clock/currentTime"</span><span class="p">])</span>
+    <span class="c1"># Output of above line: {'device': {'clock': {'currentTime': 1676037142019902053}}}</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcfromtimestamp</span><span class="p">(</span><span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">"/device/clock/currentTime"</span><span class="p">])[</span><span class="s2">"device"</span><span class="p">][</span><span class="s2">"clock"</span><span class="p">][</span><span class="s2">"currentTime"</span><span class="p">]</span> <span class="o">//</span> <span class="mi">1000000000</span><span class="p">))</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2023</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span> <span class="c1"># System time with NTP connection)</span>
 </pre></div>
 </div>

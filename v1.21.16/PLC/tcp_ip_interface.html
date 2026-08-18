@@ -163,17 +163,17 @@
 │           PCIC Protocol Wrapper (TCP/IP)            │
 ├─────────────────────────────────────────────────────┤
 │ Ticket (request):                4 bytes (ASCII)    │
-│ &#39;L&#39; + Length (9 digits):        10 bytes (ASCII)    │
+│ 'L' + Length (9 digits):        10 bytes (ASCII)    │
 │ &lt;CR+LF&gt;:                          2 bytes (ASCII)   │ ← PCIC Header: 16 bytes (ASCII) 
 ├─────────────────────────────────────────────────────┤
 │ Ticket (response):               4 bytes (ASCII)    │ ← Length field STARTS here
 ├─────────────────────────────────────────────────────┤
 │              CONTENT (1694 bytes)                   │
 │ ┌─────────────────────────────────────────────────┐ │
-│ │ &quot;star&quot;:                      4 bytes (ASCII)    │ │
+│ │ "star":                      4 bytes (ASCII)    │ │
 │ │ Chunk Header:               48 bytes (binary)   │ │
 │ │ PLC Frame:                1638 bytes (binary)   │ │
-│ │ &quot;stop&quot;:                      4 bytes (ASCII)    │ │
+│ │ "stop":                      4 bytes (ASCII)    │ │
 │ └─────────────────────────────────────────────────┘ │
 ├─────────────────────────────────────────────────────┤
 │ &lt;CR+LF&gt;:                          2 bytes (ASCII)   │ ← Length field ENDS here

@@ -161,7 +161,7 @@ Therefore, if possible, avoid scheduling tasks on core 0 exclusively.</p>
 If user processes deployed via Docker containers use high resource loads, the system might become unresponsive.</p>
 <p>In the case of memory leaks or other issues, the Docker containers are <strong>not</strong> automatically stopped.
 We recommend to implement safe guards, for example via Docker compose files:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;2.4&quot;</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">"2.4"</span>
 
 <span class="nt">services</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">redis</span><span class="p">:</span>
@@ -174,26 +174,26 @@ We recommend to implement safe guards, for example via Docker compose files:</p>
 <span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
 
 <span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;6666:6379&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"6666:6379"</span>
 
 <span class="w">    </span><span class="c1"># appendonly -&gt; not using AOF persistence</span>
 <span class="w">    </span><span class="c1"># maxmemory -&gt; max memory used by redis</span>
 <span class="w">    </span><span class="c1"># maxmemory-policy -&gt; policy to use when maxmemory is reached (allkeys-lru -&gt; Keeps most recently used keys; removes least recently used (LRU) keys)</span>
 <span class="w">    </span><span class="nt">command</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">[</span>
-<span class="w">        </span><span class="s">&quot;redis-server&quot;</span><span class="p p-Indicator">,</span>
-<span class="w">        </span><span class="s">&quot;--appendonly&quot;</span><span class="p p-Indicator">,</span>
-<span class="w">        </span><span class="s">&quot;no&quot;</span><span class="p p-Indicator">,</span>
-<span class="w">        </span><span class="s">&quot;--maxmemory&quot;</span><span class="p p-Indicator">,</span>
-<span class="w">        </span><span class="s">&quot;1300mb&quot;</span><span class="p p-Indicator">,</span>
-<span class="w">        </span><span class="s">&quot;--maxmemory-policy&quot;</span><span class="p p-Indicator">,</span>
-<span class="w">        </span><span class="s">&quot;allkeys-lru&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">        </span><span class="s">"redis-server"</span><span class="p p-Indicator">,</span>
+<span class="w">        </span><span class="s">"--appendonly"</span><span class="p p-Indicator">,</span>
+<span class="w">        </span><span class="s">"no"</span><span class="p p-Indicator">,</span>
+<span class="w">        </span><span class="s">"--maxmemory"</span><span class="p p-Indicator">,</span>
+<span class="w">        </span><span class="s">"1300mb"</span><span class="p p-Indicator">,</span>
+<span class="w">        </span><span class="s">"--maxmemory-policy"</span><span class="p p-Indicator">,</span>
+<span class="w">        </span><span class="s">"allkeys-lru"</span><span class="p p-Indicator">,</span>
 <span class="w">      </span><span class="p p-Indicator">]</span>
 
 <span class="w">    </span><span class="nt">logging</span><span class="p">:</span>
 <span class="w">      </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">journald</span>
 <span class="w">      </span><span class="nt">options</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{.ImageName}}&quot;</span>
+<span class="w">        </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="s">"{{.ImageName}}"</span>
 
 <span class="w">    </span><span class="nt">cpuset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1,2</span>
 <span class="w">    </span><span class="nt">mem_limit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1500000000</span>

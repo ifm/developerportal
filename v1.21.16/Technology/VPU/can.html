@@ -155,8 +155,8 @@
 <li><p>Using the  <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> CLI:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>ovp8xx<span class="w"> </span>config<span class="w"> </span>get<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.device.network.interfaces.can0
 <span class="o">{</span>
-<span class="s2">&quot;active&quot;</span>:<span class="w"> </span>false,
-<span class="s2">&quot;bitrate&quot;</span>:<span class="w"> </span><span class="s2">&quot;125K&quot;</span>
+<span class="s2">"active"</span>:<span class="w"> </span>false,
+<span class="s2">"bitrate"</span>:<span class="w"> </span><span class="s2">"125K"</span>
 <span class="o">}</span>
 </pre></div>
 </div>
@@ -171,8 +171,8 @@ Using the <code class="docutils literal notranslate"><span class="pre">ifm3d</sp
 <p>After activating the CAN interface and rebooting the VPU, we can verify the status of the CAN interface again using the <code class="docutils literal notranslate"><span class="pre">ifm3d</span></code> CLI as follows:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>ovp8xx<span class="w"> </span>config<span class="w"> </span>get<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.device.network.interfaces.can0
 <span class="o">{</span>
-<span class="w">  </span><span class="s2">&quot;active&quot;</span>:<span class="w"> </span>true,
-<span class="w">  </span><span class="s2">&quot;bitrate&quot;</span>:<span class="w"> </span><span class="s2">&quot;125K&quot;</span>
+<span class="w">  </span><span class="s2">"active"</span>:<span class="w"> </span>true,
+<span class="w">  </span><span class="s2">"bitrate"</span>:<span class="w"> </span><span class="s2">"125K"</span>
 <span class="o">}</span>
 </pre></div>
 </div>
@@ -210,7 +210,7 @@ Using the <code class="docutils literal notranslate"><span class="pre">ifm3d</sp
 <span class="k">RUN</span><span class="w"> </span>chmod<span class="w"> </span>+x<span class="w"> </span>/home/ifm/can_example.py
 
 <span class="c"># Activate virtual environment and run the script</span>
-<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;/home/ifm/venv/bin/python&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/home/ifm/can_example.py&quot;</span><span class="p">]</span>
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">"/home/ifm/venv/bin/python"</span><span class="p">,</span><span class="w"> </span><span class="s2">"/home/ifm/can_example.py"</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>This Dockerfile installs Python and the CANopen library for Python. The example script is then installed into the image and set to automatically execute when the container is run.</p>
@@ -227,19 +227,19 @@ Using the <code class="docutils literal notranslate"><span class="pre">ifm3d</sp
 
 <span class="k">def</span><span class="w"> </span><span class="nf">connect</span><span class="p">():</span>
     <span class="n">nw</span> <span class="o">=</span> <span class="n">canopen</span><span class="o">.</span><span class="n">Network</span><span class="p">()</span>
-    <span class="n">nw</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s2">&quot;can0&quot;</span><span class="p">,</span> <span class="n">bustype</span><span class="o">=</span><span class="s2">&quot;socketcan&quot;</span><span class="p">)</span>
+    <span class="n">nw</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="s2">"can0"</span><span class="p">,</span> <span class="n">bustype</span><span class="o">=</span><span class="s2">"socketcan"</span><span class="p">)</span>
     <span class="n">nw</span><span class="o">.</span><span class="n">scanner</span><span class="o">.</span><span class="n">search</span><span class="p">()</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
 
-    <span class="n">device</span> <span class="o">=</span> <span class="n">nw</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">nw</span><span class="o">.</span><span class="n">scanner</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;/usr/local/share/DTM425.eds&quot;</span><span class="p">)</span>
-    <span class="n">device</span><span class="o">.</span><span class="n">nmt</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;OPERATIONAL&quot;</span>
+    <span class="n">device</span> <span class="o">=</span> <span class="n">nw</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">nw</span><span class="o">.</span><span class="n">scanner</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">"/usr/local/share/DTM425.eds"</span><span class="p">)</span>
+    <span class="n">device</span><span class="o">.</span><span class="n">nmt</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s2">"OPERATIONAL"</span>
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.05</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="p">(</span><span class="n">nw</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">disconnect</span><span class="p">(</span><span class="n">nw</span><span class="p">,</span> <span class="n">device</span><span class="p">):</span>
-    <span class="n">device</span><span class="o">.</span><span class="n">nmt</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;PRE-OPERATIONAL&quot;</span>
+    <span class="n">device</span><span class="o">.</span><span class="n">nmt</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s2">"PRE-OPERATIONAL"</span>
     <span class="n">nw</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
 
 
@@ -247,7 +247,7 @@ Using the <code class="docutils literal notranslate"><span class="pre">ifm3d</sp
     <span class="n">memory_size</span> <span class="o">=</span> <span class="n">device</span><span class="o">.</span><span class="n">sdo</span><span class="p">[</span><span class="mh">0x2182</span><span class="p">][</span><span class="mh">0x4</span><span class="p">]</span><span class="o">.</span><span class="n">raw</span>
 
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">memory_size</span><span class="p">:</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\x00</span><span class="s2">&quot;</span> <span class="o">*</span> <span class="p">(</span><span class="n">memory_size</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">"</span><span class="se">\x00</span><span class="s2">"</span> <span class="o">*</span> <span class="p">(</span><span class="n">memory_size</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
 
     <span class="k">for</span> <span class="n">offset</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">memory_size</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
         <span class="n">length</span> <span class="o">=</span> <span class="mi">8</span> <span class="k">if</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">8</span> <span class="o">&lt;=</span> <span class="n">memory_size</span> <span class="k">else</span> <span class="n">memory_size</span> <span class="o">-</span> <span class="n">offset</span>
@@ -258,7 +258,7 @@ Using the <code class="docutils literal notranslate"><span class="pre">ifm3d</sp
 
 <span class="k">def</span><span class="w"> </span><span class="nf">read_tag</span><span class="p">(</span><span class="n">device</span><span class="p">):</span>
     <span class="n">memory_size</span> <span class="o">=</span> <span class="n">device</span><span class="o">.</span><span class="n">sdo</span><span class="p">[</span><span class="mh">0x2182</span><span class="p">][</span><span class="mh">0x4</span><span class="p">]</span><span class="o">.</span><span class="n">raw</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">""</span>
 
     <span class="k">for</span> <span class="n">offset</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">memory_size</span><span class="p">,</span> <span class="mi">8</span><span class="p">):</span>
         <span class="n">length</span> <span class="o">=</span> <span class="mi">8</span> <span class="k">if</span> <span class="n">offset</span> <span class="o">+</span> <span class="mi">8</span> <span class="o">&lt;=</span> <span class="n">memory_size</span> <span class="k">else</span> <span class="n">memory_size</span> <span class="o">-</span> <span class="n">offset</span>
@@ -271,14 +271,14 @@ Using the <code class="docutils literal notranslate"><span class="pre">ifm3d</sp
 
 <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
     <span class="n">nw</span><span class="p">,</span> <span class="n">device</span> <span class="o">=</span> <span class="n">connect</span><span class="p">()</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;</span><span class="se">\xDE\xAD\xBE\xEF</span><span class="s2">&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Writing tag:&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">"</span><span class="se">\xDE\xAD\xBE\xEF</span><span class="s2">"</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Writing tag:"</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
     <span class="n">write_tag</span><span class="p">(</span><span class="n">device</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reading tag:&quot;</span><span class="p">,</span> <span class="n">read_tag</span><span class="p">(</span><span class="n">device</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Reading tag:"</span><span class="p">,</span> <span class="n">read_tag</span><span class="p">(</span><span class="n">device</span><span class="p">))</span>
     <span class="n">disconnect</span><span class="p">(</span><span class="n">nw</span><span class="p">,</span> <span class="n">device</span><span class="p">)</span>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -291,8 +291,8 @@ ssh<span class="w"> </span>oem@192.168.0.69<span class="w"> </span>docker<span c
 </div>
 <p>Note that <code class="docutils literal notranslate"><span class="pre">--network</span> <span class="pre">host</span></code> <em>is required</em> to access the CAN interface.</p>
 <p>The output of the last command should look like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Writing</span> <span class="n">tag</span><span class="p">:</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\xde\xad\xbe\xef</span><span class="s1">&#39;</span>
-<span class="n">Reading</span> <span class="n">tag</span><span class="p">:</span> <span class="sa">b</span><span class="s1">&#39;</span><span class="se">\xde\xad\xbe\xef\x00\x00\x00</span><span class="s1">[...]</span><span class="se">\x00\x00\x00</span><span class="s1">&#39;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Writing</span> <span class="n">tag</span><span class="p">:</span> <span class="sa">b</span><span class="s1">'</span><span class="se">\xde\xad\xbe\xef</span><span class="s1">'</span>
+<span class="n">Reading</span> <span class="n">tag</span><span class="p">:</span> <span class="sa">b</span><span class="s1">'</span><span class="se">\xde\xad\xbe\xef\x00\x00\x00</span><span class="s1">[...]</span><span class="se">\x00\x00\x00</span><span class="s1">'</span>
 </pre></div>
 </div>
 <p>For more information on necessary setup steps for <a class="reference internal" href="../../SoftwareInterfaces/Docker/docker.html#build-and-run-a-docker-container-for-the-o3r-platform"><span class="std std-ref">building</span></a> and <a class="reference internal" href="../../SoftwareInterfaces/Docker/deployVPU.html"><span class="std std-doc">deployment</span></a>, please see the linked pages.</p>

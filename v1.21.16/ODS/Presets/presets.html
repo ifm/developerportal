@@ -185,27 +185,27 @@ This is especially useful in dynamic environments requiring frequent zone setup 
 <p>Within the ODS application parameters, the presets follow the structure below.
 All presets are contained under the <code class="docutils literal notranslate"><span class="pre">presets/definitions</span></code> parameter.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;applications&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;instances&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;app0&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;class&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ods&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;presets&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;definitions&quot;</span><span class="p">:{</span>
-<span class="w">            </span><span class="nt">&quot;0&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;description of the preset&quot;</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">&quot;preset&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;activePorts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;port2&quot;</span><span class="p">,</span><span class="s2">&quot;port3&quot;</span><span class="p">],</span><span class="w"> </span><span class="cm">/* List of active camera ports */</span>
-<span class="w">                </span><span class="nt">&quot;zones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">&quot;zoneConfigID&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="cm">/* Unique identifier for zone configuration */</span>
-<span class="w">                  </span><span class="nt">&quot;zoneType&quot;</span><span class="p">:</span><span class="s2">&quot;convexHull&quot;</span><span class="p">,</span><span class="w"> </span><span class="cm">/* Type of zone (e.g., convexHull, Polygon) */</span>
-<span class="w">                  </span><span class="nt">&quot;zoneCoordinates&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">-0.3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">2.5</span><span class="p">,</span><span class="w"> </span><span class="mf">-0.3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">2.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">]]</span><span class="w"> </span><span class="cm">/* Coordinates defining the zone */</span>
+<span class="w">  </span><span class="nt">"applications"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"instances"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"app0"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ods"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"presets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"definitions"</span><span class="p">:{</span>
+<span class="w">            </span><span class="nt">"0"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"description of the preset"</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">"preset"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"activePorts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"port2"</span><span class="p">,</span><span class="s2">"port3"</span><span class="p">],</span><span class="w"> </span><span class="cm">/* List of active camera ports */</span>
+<span class="w">                </span><span class="nt">"zones"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                  </span><span class="nt">"zoneConfigID"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="cm">/* Unique identifier for zone configuration */</span>
+<span class="w">                  </span><span class="nt">"zoneType"</span><span class="p">:</span><span class="s2">"convexHull"</span><span class="p">,</span><span class="w"> </span><span class="cm">/* Type of zone (e.g., convexHull, Polygon) */</span>
+<span class="w">                  </span><span class="nt">"zoneCoordinates"</span><span class="p">:</span><span class="w"> </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">-0.3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">2.5</span><span class="p">,</span><span class="w"> </span><span class="mf">-0.3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">2.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">]]</span><span class="w"> </span><span class="cm">/* Coordinates defining the zone */</span>
 <span class="w">                </span><span class="p">}</span>
 <span class="w">              </span><span class="p">}</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">          </span><span class="p">},</span>
-<span class="w">          </span><span class="nt">&quot;load&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;identifier&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span>
-<span class="w">          </span><span class="nt">&quot;location&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/applications/instances/app0/configuration&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nop&quot;</span>
+<span class="w">          </span><span class="nt">"load"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"identifier"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">},</span>
+<span class="w">          </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/applications/instances/app0/configuration"</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nop"</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
@@ -318,28 +318,28 @@ This configuration includes three presets:</p>
 </ol>
 <p>These presets are provided as examples and can be customized or extended based on the specific needs of the customer.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;applications&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;instances&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;app0&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;class&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ods&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;ports&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">          </span><span class="s2">&quot;port2&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="s2">&quot;port3&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="s2">&quot;port6&quot;</span>
+<span class="w">  </span><span class="nt">"applications"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"instances"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"app0"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ods"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"ports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="s2">"port2"</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">"port3"</span><span class="p">,</span>
+<span class="w">          </span><span class="s2">"port6"</span>
 <span class="w">        </span><span class="p">],</span>
-<span class="w">        </span><span class="nt">&quot;state&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CONF&quot;</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;presets&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;definitions&quot;</span><span class="p">:{</span>
-<span class="w">            </span><span class="nt">&quot;0&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Forward preset with three zones and one active camera&quot;</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">&quot;preset&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;activePorts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                  </span><span class="s2">&quot;port2&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONF"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"presets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"definitions"</span><span class="p">:{</span>
+<span class="w">            </span><span class="nt">"0"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Forward preset with three zones and one active camera"</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">"preset"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"activePorts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                  </span><span class="s2">"port2"</span><span class="p">,</span>
 <span class="w">                </span><span class="p">],</span>
-<span class="w">                </span><span class="nt">&quot;zones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">&quot;zoneConfigID&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;zoneType&quot;</span><span class="p">:</span><span class="s2">&quot;convexHull&quot;</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;zoneCoordinates&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="nt">"zones"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                  </span><span class="nt">"zoneConfigID"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">"zoneType"</span><span class="p">:</span><span class="s2">"convexHull"</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">"zoneCoordinates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                    </span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">-0.3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">2.5</span><span class="p">,</span><span class="w"> </span><span class="mf">-0.3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">2.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">]],</span>
 <span class="w">                    </span><span class="p">[[</span><span class="mf">2.5</span><span class="p">,</span><span class="w"> </span><span class="mf">-0.3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">3.5</span><span class="p">,</span><span class="w"> </span><span class="mf">-0.3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">3.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">2.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">]],</span>
 <span class="w">                    </span><span class="p">[[</span><span class="mf">3.5</span><span class="p">,</span><span class="w"> </span><span class="mf">-0.3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">4.5</span><span class="p">,</span><span class="w"> </span><span class="mf">-0.3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">4.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">3.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">]]</span>
@@ -347,33 +347,33 @@ This configuration includes three presets:</p>
 <span class="w">                </span><span class="p">}</span>
 <span class="w">              </span><span class="p">}</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Backward preset with two zones and one active camera&quot;</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">&quot;preset&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;activePorts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                  </span><span class="s2">&quot;port3&quot;</span>
+<span class="w">            </span><span class="nt">"1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Backward preset with two zones and one active camera"</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">"preset"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"activePorts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                  </span><span class="s2">"port3"</span>
 <span class="w">                </span><span class="p">],</span>
-<span class="w">                </span><span class="nt">&quot;zones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">&quot;zoneConfigID&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;zoneType&quot;</span><span class="p">:</span><span class="s2">&quot;polygon&quot;</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;zoneCoordinates&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="nt">"zones"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                  </span><span class="nt">"zoneConfigID"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">"zoneType"</span><span class="p">:</span><span class="s2">"polygon"</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">"zoneCoordinates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                    </span><span class="p">[[</span><span class="mf">-0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">-0.3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">-3.0</span><span class="p">,</span><span class="w"> </span><span class="mf">-0.3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">-3.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">-0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">]]</span>
 <span class="w">                    </span><span class="p">[[</span><span class="mf">-3.0</span><span class="p">,</span><span class="w"> </span><span class="mf">-0.3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">-4.0</span><span class="p">,</span><span class="w"> </span><span class="mf">-0.3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">-4.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">-3.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">]]</span>
 <span class="w">                  </span><span class="p">]</span>
 <span class="w">                </span><span class="p">}</span>
 <span class="w">              </span><span class="p">}</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;2&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Left turn preset with three zones and two active cameras&quot;</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">&quot;preset&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;activePorts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<span class="w">                  </span><span class="s2">&quot;port2&quot;</span><span class="p">,</span>
-<span class="w">                  </span><span class="s2">&quot;port4&quot;</span>
+<span class="w">            </span><span class="nt">"2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Left turn preset with three zones and two active cameras"</span><span class="p">,</span>
+<span class="w">              </span><span class="nt">"preset"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"activePorts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                  </span><span class="s2">"port2"</span><span class="p">,</span>
+<span class="w">                  </span><span class="s2">"port4"</span>
 <span class="w">                </span><span class="p">],</span>
-<span class="w">                </span><span class="nt">&quot;zones&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                  </span><span class="nt">&quot;zoneConfigID&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;zoneType&quot;</span><span class="p">:</span><span class="s2">&quot;polygon&quot;</span><span class="p">,</span>
-<span class="w">                  </span><span class="nt">&quot;zoneCoordinates&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">                </span><span class="nt">"zones"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                  </span><span class="nt">"zoneConfigID"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">"zoneType"</span><span class="p">:</span><span class="s2">"polygon"</span><span class="p">,</span>
+<span class="w">                  </span><span class="nt">"zoneCoordinates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">                    </span><span class="p">[[</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">1.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">1.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.9</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.9</span><span class="p">]],</span>
 <span class="w">                    </span><span class="p">[[</span><span class="mf">1.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">2.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">2.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.9</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">1.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.9</span><span class="p">]],</span>
 <span class="w">                    </span><span class="p">[[</span><span class="mf">2.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">3.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">3.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.9</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">2.5</span><span class="p">,</span><span class="w"> </span><span class="mf">0.9</span><span class="p">]]</span>

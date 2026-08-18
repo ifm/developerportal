@@ -203,16 +203,16 @@ Additionally, extra parameters can be provided such as the estimated distance to
 An example is provided below in JSON, assuming an instantiated PDS application <code class="docutils literal notranslate"><span class="pre">app0</span></code>.
 Note that when using the ifm Vision Assistant, the same structure is reflected in the application parameters.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;applications&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;instances&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;app0&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="nt">&quot;configuration&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                        </span><span class="nt">&quot;customization&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                            </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;getPallet&quot;</span><span class="p">,</span>
-<span class="w">                            </span><span class="nt">&quot;getPallet&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                                </span><span class="nt">&quot;depthHint&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="p">,</span><span class="w"> </span>
-<span class="w">                                </span><span class="nt">&quot;palletIndex&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span>
-<span class="w">                                </span><span class="nt">&quot;palletOrder&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;scoreDescending&quot;</span>
+<span class="w">        </span><span class="nt">"applications"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">"instances"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"app0"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">"configuration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nt">"customization"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                            </span><span class="nt">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"getPallet"</span><span class="p">,</span>
+<span class="w">                            </span><span class="nt">"getPallet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                                </span><span class="nt">"depthHint"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                </span><span class="nt">"palletIndex"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                                </span><span class="nt">"palletOrder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"scoreDescending"</span>
 <span class="w">                            </span><span class="p">},</span>
 <span class="w">                        </span><span class="p">}</span>
 <span class="w">                    </span><span class="p">}</span>
@@ -582,58 +582,58 @@ However, to achieve optimal processing speed, it is recommended to tighten</p>
 <h2>Results<a class="headerlink" href="#results" title="Link to this heading"></a></h2>
 <p>The output of a <code class="docutils literal notranslate"><span class="pre">getPallet</span></code> command is formatted in JSON.
 An example JSON result, where the position of one pallet was identified, is shown below:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">&quot;getPallet&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;pallet&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="nt">"getPallet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"pallet"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="p">{</span>
-<span class="w">            </span><span class="nt">&quot;angles&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;rotX&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.0016640322282910347</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;rotY&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;rotZ&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.02186517044901848</span>
+<span class="w">            </span><span class="nt">"angles"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"rotX"</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.0016640322282910347</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"rotY"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"rotZ"</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.02186517044901848</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;center&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.10177253931760788</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;position&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.405822515487671</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.08359906077384949</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">&quot;z&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.07647071033716202</span>
+<span class="w">            </span><span class="nt">"center"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"height"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.10177253931760788</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">"x"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.405822515487671</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">"y"</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.08359906077384949</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">"z"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.07647071033716202</span>
 <span class="w">                </span><span class="p">},</span>
-<span class="w">                </span><span class="nt">&quot;width&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.12625007331371307</span>
+<span class="w">                </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.12625007331371307</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;left&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.10320165008306503</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;position&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.4106969833374023</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.13937455415725708</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">&quot;z&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.07622720301151276</span>
+<span class="w">            </span><span class="nt">"left"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"height"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.10320165008306503</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">"x"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.4106969833374023</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">"y"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.13937455415725708</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">"z"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.07622720301151276</span>
 <span class="w">                </span><span class="p">},</span>
-<span class="w">                </span><span class="nt">&quot;width&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.320925772190094</span>
+<span class="w">                </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.320925772190094</span>
 <span class="w">            </span><span class="p">},</span>
-<span class="w">            </span><span class="nt">&quot;right&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                </span><span class="nt">&quot;height&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.10034343600273132</span><span class="p">,</span>
-<span class="w">                </span><span class="nt">&quot;position&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">                    </span><span class="nt">&quot;x&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.4009480476379395</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">&quot;y&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.30657267570495605</span><span class="p">,</span>
-<span class="w">                    </span><span class="nt">&quot;z&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.07671421766281128</span>
+<span class="w">            </span><span class="nt">"right"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nt">"height"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.10034343600273132</span><span class="p">,</span>
+<span class="w">                </span><span class="nt">"position"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nt">"x"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.4009480476379395</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">"y"</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.30657267570495605</span><span class="p">,</span>
+<span class="w">                    </span><span class="nt">"z"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.07671421766281128</span>
 <span class="w">                </span><span class="p">},</span>
-<span class="w">                </span><span class="nt">&quot;width&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3186997175216675</span>
+<span class="w">                </span><span class="nt">"width"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3186997175216675</span>
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">    </span><span class="p">],</span>
-<span class="w">    </span><span class="nt">&quot;depthEstimationVoi&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;xMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;xMin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;yMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4000000059604645</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;yMin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.4000000059604645</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;zMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4000000059604645</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;zMin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.10000000149011612</span>
+<span class="w">    </span><span class="nt">"depthEstimationVoi"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"xMax"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"xMin"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"yMax"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4000000059604645</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"yMin"</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.4000000059604645</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"zMax"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.4000000059604645</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"zMin"</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.10000000149011612</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;projectionVoi&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;xMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.600000023841858</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;xMin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.1999999284744263</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;yMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;yMin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;zMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.6000000238418579</span><span class="p">,</span>
-<span class="w">        </span><span class="nt">&quot;zMin&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.6000000238418579</span>
+<span class="w">    </span><span class="nt">"projectionVoi"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"xMax"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.600000023841858</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"xMin"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.1999999284744263</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"yMax"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"yMin"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"zMax"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.6000000238418579</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"zMin"</span><span class="p">:</span><span class="w"> </span><span class="mf">-0.6000000238418579</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">},</span>
 </pre></div>

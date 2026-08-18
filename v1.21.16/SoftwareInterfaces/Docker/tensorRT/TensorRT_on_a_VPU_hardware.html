@@ -253,7 +253,7 @@ JupterLab<span class="w"> </span>logging<span class="w"> </span>location:<span c
 root@89e52a1dfd4c:/#<span class="w"> </span>python3
 Python<span class="w"> </span><span class="m">3</span>.6.9<span class="w"> </span><span class="o">(</span>default,<span class="w"> </span>Dec<span class="w">  </span><span class="m">8</span><span class="w"> </span><span class="m">2021</span>,<span class="w"> </span><span class="m">21</span>:08:43<span class="o">)</span><span class="w"> </span>
 <span class="o">[</span>GCC<span class="w"> </span><span class="m">8</span>.4.0<span class="o">]</span><span class="w"> </span>on<span class="w"> </span>linux
-Type<span class="w"> </span><span class="s2">&quot;help&quot;</span>,<span class="w"> </span><span class="s2">&quot;copyright&quot;</span>,<span class="w"> </span><span class="s2">&quot;credits&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="s2">&quot;license&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>more<span class="w"> </span>information.
+Type<span class="w"> </span><span class="s2">"help"</span>,<span class="w"> </span><span class="s2">"copyright"</span>,<span class="w"> </span><span class="s2">"credits"</span><span class="w"> </span>or<span class="w"> </span><span class="s2">"license"</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>more<span class="w"> </span>information.
 &gt;&gt;&gt;<span class="w"> </span>import<span class="w"> </span>torch
 &gt;&gt;&gt;<span class="w"> </span>torch.cuda.is_available<span class="o">()</span>
 True
@@ -262,7 +262,7 @@ True
 &gt;&gt;&gt;<span class="w"> </span>torch.cuda.current_device<span class="o">()</span>
 <span class="m">0</span>
 &gt;&gt;&gt;<span class="w"> </span>torch.cuda.get_device_name<span class="o">(</span><span class="m">0</span><span class="o">)</span>
-<span class="s1">&#39;NVIDIA Tegra X2&#39;</span>
+<span class="s1">'NVIDIA Tegra X2'</span>
 &gt;&gt;&gt;<span class="w"> </span>
 </pre></div>
 </div>
@@ -312,9 +312,9 @@ Refer to the <a class="reference external" href="https://docs.nvidia.com/deeplea
 </ol>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="kn">from</span><span class="w"> </span><span class="nn">ultralytics</span><span class="w"> </span><span class="kn">import</span> <span class="n">YOLO</span>
   
-  <span class="n">model</span> <span class="o">=</span> <span class="n">YOLO</span><span class="p">(</span><span class="s2">&quot;yolo11n.pt&quot;</span><span class="p">)</span> <span class="c1"># Load a pretrained YOLO model (recommended for training)</span>
+  <span class="n">model</span> <span class="o">=</span> <span class="n">YOLO</span><span class="p">(</span><span class="s2">"yolo11n.pt"</span><span class="p">)</span> <span class="c1"># Load a pretrained YOLO model (recommended for training)</span>
   
-  <span class="n">model</span><span class="o">.</span><span class="n">export</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s2">&quot;onnx&quot;</span><span class="p">,</span> <span class="n">imgsz</span><span class="o">=</span><span class="p">[</span><span class="mi">480</span><span class="p">,</span><span class="mi">640</span><span class="p">])</span> <span class="c1"># Export the model to ONNX format</span>
+  <span class="n">model</span><span class="o">.</span><span class="n">export</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s2">"onnx"</span><span class="p">,</span> <span class="n">imgsz</span><span class="o">=</span><span class="p">[</span><span class="mi">480</span><span class="p">,</span><span class="mi">640</span><span class="p">])</span> <span class="c1"># Export the model to ONNX format</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="3">

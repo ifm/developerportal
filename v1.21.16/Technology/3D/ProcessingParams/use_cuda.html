@@ -163,11 +163,11 @@
 <p>When <code class="docutils literal notranslate"><span class="pre">useCuda</span></code> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, the distance data is computed on the GPU. This enables more camera streams and applications to be processed simultaneously on the total system - including CPU and GPU. We typically recommend to leave CUDA processing enabled.</p>
 <p>Processing the 3D data using CUDA can be enabled or disabled within the system JSON configuration, by changing the <code class="docutils literal notranslate"><span class="pre">&lt;value&gt;</span></code> placeholder accordingly:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;ports&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;portX&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;processing&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;diParam&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;useCuda&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;value&gt;</span>
+<span class="w">  </span><span class="nt">"ports"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"portX"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"processing"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"diParam"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"useCuda"</span><span class="p">:</span><span class="w"> </span><span class="err">&lt;value&gt;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
@@ -190,11 +190,11 @@
 <li><p>Set the <code class="docutils literal notranslate"><span class="pre">useCuda</span></code> parameter to <code class="docutils literal notranslate"><span class="pre">false</span></code> for all the desired ports. A mix and match is possible.</p></li>
 </ol>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;ports&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;portX&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;processing&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;diParam&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;useCuda&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">  </span><span class="nt">"ports"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"portX"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"processing"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"diParam"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"useCuda"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
@@ -203,20 +203,20 @@
 </pre></div>
 </div>
 <p>For example in Python with:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">({</span><span class="s2">&quot;ports&quot;</span><span class="p">:{</span><span class="s2">&quot;portX&quot;</span><span class="p">:{</span><span class="s2">&quot;processing&quot;</span><span class="p">:{</span><span class="s2">&quot;diParam&quot;</span><span class="p">:{</span><span class="s2">&quot;useCuda&quot;</span><span class="p">:</span><span class="kc">False</span><span class="p">}}}}})</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">({</span><span class="s2">"ports"</span><span class="p">:{</span><span class="s2">"portX"</span><span class="p">:{</span><span class="s2">"processing"</span><span class="p">:{</span><span class="s2">"diParam"</span><span class="p">:{</span><span class="s2">"useCuda"</span><span class="p">:</span><span class="kc">False</span><span class="p">}}}}})</span>
 </pre></div>
 </div>
 <p>Replace the placeholder value <code class="docutils literal notranslate"><span class="pre">portX</span></code> accordingly.</p>
 <ol class="arabic simple" start="2">
 <li><p>Perform a <code class="docutils literal notranslate"><span class="pre">save_init</span></code> for these specific parameters, for example in Python with:</p></li>
 </ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">o3r</span><span class="o">.</span><span class="n">save_init</span><span class="p">([</span><span class="s2">&quot;/ports/portX/processing/diParam/useCuda&quot;</span><span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">o3r</span><span class="o">.</span><span class="n">save_init</span><span class="p">([</span><span class="s2">"/ports/portX/processing/diParam/useCuda"</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>where <code class="docutils literal notranslate"><span class="pre">portX</span></code> is the relevant port.</p>
 <p>If multiple camera streams need to be persistently configured to run on the CPU, all the streams and their respective parameters must be set in a single <code class="docutils literal notranslate"><span class="pre">save_init</span></code> command. Setting multiple <code class="docutils literal notranslate"><span class="pre">save_init</span></code> commands consecutively will only apply the last one.</p>
 <p>You can simply use the <code class="docutils literal notranslate"><span class="pre">save_init</span></code> method on the list of parameters, for example in Python with:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">o3r</span><span class="o">.</span><span class="n">save_init</span><span class="p">([</span><span class="s2">&quot;/ports/portX/processing/diParam/useCuda&quot;</span><span class="p">,</span> <span class="s2">&quot;/ports/portY/processing/diParam/useCuda&quot;</span><span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">o3r</span><span class="o">.</span><span class="n">save_init</span><span class="p">([</span><span class="s2">"/ports/portX/processing/diParam/useCuda"</span><span class="p">,</span> <span class="s2">"/ports/portY/processing/diParam/useCuda"</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>where <code class="docutils literal notranslate"><span class="pre">portX</span></code> and <code class="docutils literal notranslate"><span class="pre">PortY</span></code> are the relevant ports.</p>
@@ -238,7 +238,7 @@ This means that exchanging cameras, for example, will raise an error.</p>
 Therefore one must change the <code class="docutils literal notranslate"><span class="pre">useCuda</span></code> parameter always when changing the selected camera mode, for example <code class="docutils literal notranslate"><span class="pre">standard_range2m</span></code> to <code class="docutils literal notranslate"><span class="pre">standard_range4m</span></code> and vice versa.</p>
 <p>For example, when changing the mode of <code class="docutils literal notranslate"><span class="pre">portX</span></code> to <code class="docutils literal notranslate"><span class="pre">standard_range2m</span></code>, change the value of <code class="docutils literal notranslate"><span class="pre">useCuda</span></code> in the same call.
 In Python, you can do this with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">({</span><span class="s2">&quot;ports&quot;</span><span class="p">:{</span><span class="s2">&quot;portX&quot;</span><span class="p">:{</span><span class="s2">&quot;mode&quot;</span><span class="p">:</span><span class="s2">&quot;standard_range2m&quot;</span><span class="p">,</span> <span class="s2">&quot;processing&quot;</span><span class="p">:{</span><span class="s2">&quot;diParam&quot;</span><span class="p">:{</span><span class="s2">&quot;useCuda&quot;</span><span class="p">:</span><span class="kc">False</span><span class="p">}}}}})</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">o3r</span><span class="o">.</span><span class="n">set</span><span class="p">({</span><span class="s2">"ports"</span><span class="p">:{</span><span class="s2">"portX"</span><span class="p">:{</span><span class="s2">"mode"</span><span class="p">:</span><span class="s2">"standard_range2m"</span><span class="p">,</span> <span class="s2">"processing"</span><span class="p">:{</span><span class="s2">"diParam"</span><span class="p">:{</span><span class="s2">"useCuda"</span><span class="p">:</span><span class="kc">False</span><span class="p">}}}}})</span>
 </pre></div>
 </div>
 <p>where <code class="docutils literal notranslate"><span class="pre">portX</span></code> is the relevant port.</p>

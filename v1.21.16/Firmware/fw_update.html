@@ -193,9 +193,9 @@ $<span class="w"> </span>ifm3d<span class="w"> </span>ovp8xx<span class="w"> </s
 <span class="p">...</span>
 <span class="k">auto</span><span class="w"> </span><span class="n">o3r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">O3R</span><span class="o">&gt;</span><span class="p">();</span>
 <span class="k">auto</span><span class="w"> </span><span class="n">sw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">SWUpdater</span><span class="o">&gt;</span><span class="p">(</span><span class="n">o3r</span><span class="p">);</span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sw</span><span class="o">-&gt;</span><span class="n">FlashFirmware</span><span class="p">(</span><span class="s">&quot;&lt;path/to/firmware_image.swu&gt;&quot;</span><span class="p">)){</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sw</span><span class="o">-&gt;</span><span class="n">FlashFirmware</span><span class="p">(</span><span class="s">"&lt;path/to/firmware_image.swu&gt;"</span><span class="p">)){</span>
 <span class="w">    </span><span class="n">sw</span><span class="o">-&gt;</span><span class="n">WaitForProductive</span><span class="p">();</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;System ready!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"System ready!"</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -203,9 +203,9 @@ $<span class="w"> </span>ifm3d<span class="w"> </span>ovp8xx<span class="w"> </s
 <span class="kn">from</span><span class="w"> </span><span class="nn">ifm3dpy.device</span><span class="w"> </span><span class="kn">import</span> <span class="n">O3R</span>
 <span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">()</span>
 <span class="n">sw</span> <span class="o">=</span> <span class="n">SWUpdater</span><span class="p">(</span><span class="n">o3r</span><span class="p">)</span>
-<span class="k">if</span> <span class="n">sw</span><span class="o">.</span><span class="n">flash_firmware</span><span class="p">(</span><span class="s1">&#39;&lt;path/to/firmware_image.swu&gt;&#39;</span><span class="p">):</span>
+<span class="k">if</span> <span class="n">sw</span><span class="o">.</span><span class="n">flash_firmware</span><span class="p">(</span><span class="s1">'&lt;path/to/firmware_image.swu&gt;'</span><span class="p">):</span>
     <span class="n">sw</span><span class="o">.</span><span class="n">wait_for_productive</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;System ready!&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"System ready!"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></div>
@@ -219,10 +219,10 @@ Please refer to the API documentation for details on the potential exceptions th
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-Q0xJ" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-Q0xJ" name="Q0xJ" role="tab" tabindex="0">CLI</button><button aria-controls="panel-1-Qysr" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-Qysr" name="Qysr" role="tab" tabindex="-1">C++</button><button aria-controls="panel-1-UHl0aG9u" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-UHl0aG9u" name="UHl0aG9u" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-1-Q0xJ" class="sphinx-tabs-panel group-tab" id="panel-1-Q0xJ" name="Q0xJ" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifm3d<span class="w"> </span>ovp8xx<span class="w"> </span>config<span class="w"> </span>get<span class="w"> </span>--path<span class="w"> </span>/device/swVersion/firmware
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-1-Qysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dev</span><span class="o">-&gt;</span><span class="n">Get</span><span class="p">({</span><span class="s">&quot;/device/swVersion/firmware&quot;</span><span class="p">});</span>
+</div><div aria-labelledby="tab-1-Qysr" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-Qysr" name="Qysr" role="tabpanel" tabindex="0"><div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ifm3d</span><span class="o">::</span><span class="n">json</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dev</span><span class="o">-&gt;</span><span class="n">Get</span><span class="p">({</span><span class="s">"/device/swVersion/firmware"</span><span class="p">});</span>
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">&quot;/device/swVersion/firmware&quot;</span><span class="p">])</span>
+</div><div aria-labelledby="tab-1-UHl0aG9u" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-UHl0aG9u" name="UHl0aG9u" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">o3r</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="s2">"/device/swVersion/firmware"</span><span class="p">])</span>
 </pre></div>
 </div>
 </div></div>
@@ -252,7 +252,7 @@ Please refer to the API documentation for details on the potential exceptions th
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">IP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;192.168.0.69&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">IP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"192.168.0.69"</span><span class="p">;</span>
 <span class="w">    </span>
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">o3r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">O3R</span><span class="o">&gt;</span><span class="p">(</span><span class="n">IP</span><span class="p">);</span>
 <span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">swu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">ifm3d</span><span class="o">::</span><span class="n">SWUpdater</span><span class="o">&gt;</span><span class="p">(</span><span class="n">o3r</span><span class="p">);</span>
@@ -278,7 +278,7 @@ Please refer to the API documentation for details on the potential exceptions th
 <span class="c1"># Configure the IP and the path to</span>
 <span class="c1"># the firmware file on your system</span>
 <span class="c1">###################################</span>
-<span class="n">IP</span> <span class="o">=</span> <span class="s2">&quot;192.168.0.69&quot;</span>
+<span class="n">IP</span> <span class="o">=</span> <span class="s2">"192.168.0.69"</span>
 <span class="n">TIMEOUT</span> <span class="o">=</span> <span class="mi">120000</span> <span class="c1"># milliseconds</span>
 <span class="n">o3r</span> <span class="o">=</span> <span class="n">O3R</span><span class="p">(</span><span class="n">IP</span><span class="p">)</span>
 <span class="n">swu</span> <span class="o">=</span> <span class="n">SWUpdater</span><span class="p">(</span><span class="n">o3r</span><span class="p">)</span>
@@ -288,9 +288,9 @@ Please refer to the API documentation for details on the potential exceptions th
 <span class="n">swu</span><span class="o">.</span><span class="n">reboot_to_productive</span><span class="p">()</span>
 
 <span class="k">if</span> <span class="n">swu</span><span class="o">.</span><span class="n">wait_for_productive</span><span class="p">(</span><span class="n">TIMEOUT</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;System is booted to productive state&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"System is booted to productive state"</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;System failed to boot to productive state in </span><span class="si">{</span><span class="n">TIMEOUT</span><span class="si">}</span><span class="s2"> milliseconds&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"System failed to boot to productive state in </span><span class="si">{</span><span class="n">TIMEOUT</span><span class="si">}</span><span class="s2"> milliseconds"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></div>
