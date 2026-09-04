@@ -114,7 +114,7 @@ Once decoded, the image can be displayed using tools such as OpenCV. The example
 </section>
 <section id="bootup-monitor-py">
 <h2><code class="docutils literal notranslate"><span class="pre">bootup_monitor.py</span></code><a class="headerlink" href="#bootup-monitor-py" title="Link to this heading"></a></h2>
-<p>The script <code class="docutils literal notranslate"><span class="pre">bootup_monitor.py</span></code> checks that the VPU completes it’s boot sequence before attempting to initialize an application.</p>
+<p>The script <code class="docutils literal notranslate"><span class="pre">bootup_monitor.py</span></code> checks that the VPU completes its boot sequence before attempting to initialize an application. Readiness is detected by polling <code class="docutils literal notranslate"><span class="pre">/device/status</span></code> until it reaches <code class="docutils literal notranslate"><span class="pre">OPERATE</span></code>.</p>
 </section>
 <section id="can-activate-py">
 <h2><code class="docutils literal notranslate"><span class="pre">can_activate.py</span></code><a class="headerlink" href="#can-activate-py" title="Link to this heading"></a></h2>
@@ -141,9 +141,17 @@ For more information on the data structures of each buffer please refer to the <
 <h2><code class="docutils literal notranslate"><span class="pre">diagnostic.py</span></code><a class="headerlink" href="#diagnostic-py" title="Link to this heading"></a></h2>
 <p>The script <code class="docutils literal notranslate"><span class="pre">diagnostic.py</span></code> contains helper functions for retrieving diagnostics when requested or asynchronously.</p>
 </section>
-<section id="fw-update-utils-py">
-<h2><code class="docutils literal notranslate"><span class="pre">fw_update_utils.py</span></code><a class="headerlink" href="#fw-update-utils-py" title="Link to this heading"></a></h2>
-<p>The script <code class="docutils literal notranslate"><span class="pre">fw_update_utils.py</span></code> demonstrates how to perform a firmware update for your O3R system. Additionally, the script includes several utility functions that provide information, such as determining the current firmware version.</p>
+<section id="fw-update-py">
+<h2><code class="docutils literal notranslate"><span class="pre">fw_update.py</span></code><a class="headerlink" href="#fw-update-py" title="Link to this heading"></a></h2>
+<p>This script delivers a complete firmware update workflow for OVP8xx devices: configuration values appear at the top of the file, the O3R object is created once, and the main logic is contained in clearly named helper methods. Key capabilities include automatic hardware detection (OVP80x and OVP81x), coverage of legacy upgrade paths such as 0.16.x ↔ 1.x.x transitions, detailed logging, configuration backup and restore, recovery-mode handling, and boot monitoring. Although it covers a wide range of edge cases, users should validate the procedure by testing on non-production systems first before rolling into production. Firmware update is a critical operation, and care should be taken to ensure that the process completes successfully. Do not interrupt the update once it has started.</p>
+<p>Usage example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>fw_update.py<span class="w"> </span>--firmware-file<span class="w"> </span>/path/to/firmware.swu<span class="w"> </span>--ip<span class="w"> </span><span class="m">192</span>.168.0.69
+</pre></div>
+</div>
+</section>
+<section id="fw-update-simple-py">
+<h2><code class="docutils literal notranslate"><span class="pre">fw_update_simple.py</span></code><a class="headerlink" href="#fw-update-simple-py" title="Link to this heading"></a></h2>
+<p>This condensed firmware update example mirrors the basic structure of the other introductory scripts and is intended for educational purposes only. It omits hardware detection, advanced error handling, configuration backup, and other safeguards. Use it to understand the essential API calls, then rely on <code class="docutils literal notranslate"><span class="pre">fw_update.py</span></code> when you need broader coverage of real-world scenarios. Test the complete script in your environment before deploying it on production systems.</p>
 </section>
 <section id="getting-data-py">
 <h2><code class="docutils literal notranslate"><span class="pre">getting_data*.py</span></code><a class="headerlink" href="#getting-data-py" title="Link to this heading"></a></h2>
