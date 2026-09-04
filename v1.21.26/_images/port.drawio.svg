@@ -1,0 +1,108 @@
+<mxfile host="65bd71144e" compressed="false">
+    <diagram id="ovp8x1-port-layout" name="Page-1">
+        <mxGraphModel dx="877" dy="657" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;" parent="1" vertex="1">
+                    <mxGeometry width="1000" height="300" as="geometry"/>
+                </mxCell>
+                <mxCell id="header" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#3a3636;strokeColor=#e6e6e6;" parent="1" vertex="1">
+                    <mxGeometry x="30" y="15" width="950" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="title" value="M04239 / OVP801 / OVP81X" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontColor=#ffffff;fontSize=22;fontStyle=0;" parent="1" vertex="1">
+                    <mxGeometry x="260" y="22" width="490" height="35" as="geometry"/>
+                </mxCell>
+                <mxCell id="default" value="Default function" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#d9d9d9;fontColor=#ffffff;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="150" y="52" width="155" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="app0" value="App0" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#d9d9d9;fontColor=#ffffff;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="575" y="56" width="85" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="app1" value="App1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#d9d9d9;fontColor=#ffffff;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="720" y="56" width="85" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="appx" value="AppX" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#d9d9d9;fontColor=#ffffff;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="865" y="56" width="85" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="port0" value="Port0" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#5b5656;strokeColor=#d9d9d9;fontColor=#ffffff;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="48" y="140" width="68" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="port1" value="Port1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#5b5656;strokeColor=#d9d9d9;fontColor=#ffffff;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="192" y="140" width="68" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="portx" value="PortX" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#5b5656;strokeColor=#d9d9d9;fontColor=#ffffff;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="326" y="140" width="68" height="34" as="geometry"/>
+                </mxCell>
+                <mxCell id="port50010" value="Port 50010" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#d9d9d9;fontColor=#ffffff;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="30" y="202" width="105" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="port50011" value="Port 50011" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#d9d9d9;fontColor=#ffffff;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="173.5" y="202" width="105" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="port5001x" value="Port 5001X" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#d9d9d9;fontColor=#ffffff;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="307.5" y="202" width="105" height="36" as="geometry"/>
+                </mxCell>
+                <mxCell id="port51010" value="Port 51010" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#d9d9d9;fontColor=#ffffff;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="562.5" y="200" width="110" height="38" as="geometry"/>
+                </mxCell>
+                <mxCell id="port51011" value="Port 51011" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#d9d9d9;fontColor=#ffffff;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="707.5" y="200" width="110" height="38" as="geometry"/>
+                </mxCell>
+                <mxCell id="port5101x" value="Port 5101X" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#d9d9d9;fontColor=#ffffff;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="852.5" y="200" width="110" height="38" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge-port0-50010" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#d9d9d9;" parent="1" source="port0" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="82" y="200" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge-port1-50011" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#d9d9d9;" parent="1" source="port1" target="port50011" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge-portx-5001x" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#d9d9d9;" parent="1" source="portx" target="port5001x" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge-app0-51010" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#d9d9d9;" parent="1" source="app0" target="port51010" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge-app1-51011" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#d9d9d9;" parent="1" source="app1" target="port51011" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge-appx-5101x" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#d9d9d9;" parent="1" source="appx" target="port5101x" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="" style="endArrow=classic;html=1;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="120" y="220" as="sourcePoint"/>
+                        <mxPoint x="170" y="170" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="3" value="" style="endArrow=classic;html=1;" edge="1" parent="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="100" y="300" as="sourcePoint"/>
+                        <mxPoint x="150" y="250" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#d9d9d9;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="port1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="225.93" y="125" as="sourcePoint"/>
+                        <mxPoint x="225.93" y="153" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#d9d9d9;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="82.4" y="125" as="sourcePoint"/>
+                        <mxPoint x="82.47" y="140" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#d9d9d9;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="359.9" y="125" as="sourcePoint"/>
+                        <mxPoint x="359.97" y="140" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

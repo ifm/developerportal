@@ -1,0 +1,12 @@
+| Property                 | Type   | Description                                                            | Default   | Minimum   | Maximum   | Enum                          | Attributes   |
+|:-------------------------|:-------|:-----------------------------------------------------------------------|:----------|:----------|:----------|:------------------------------|:-------------|
+| `horizontalDropPosition` | string | Selection of the horizontal drop setting                               | left      | N/A       | N/A       | `['left', 'center', 'right']` | N/A          |
+| `verticalDropPosition`   | string | Selection of the vertical drop setting                                 | interior  | N/A       | N/A       | `['interior', 'floor']`       | N/A          |
+| `depthHint`              | number | Estimated distance between rack and coordinate system center in meters | 1.8       | 0         | N/A       | `N/A`                         | N/A          |
+| `zHint`                  | number | Estimated z-coordinate of the rack shelf in meters                     | -0.4      | N/A       | N/A       | `N/A`                         | N/A          |
+| `clearingVolume.xMin`    | number | Bounding box dimension of VOI along X-axis - Minimum                   | 1.0       | N/A       | N/A       | `N/A`                         | N/A          |
+| `clearingVolume.xMax`    | number | Bounding box dimension of VOI along X-axis - Maximum                   | 3.0       | N/A       | N/A       | `N/A`                         | N/A          |
+| `clearingVolume.yMin`    | number | Bounding box dimension of VOI along Y-axis - Minimum                   | -0.4      | N/A       | N/A       | `N/A`                         | N/A          |
+| `clearingVolume.yMax`    | number | Bounding box dimension of VOI along Y-axis - Maximum                   | 0.4       | N/A       | N/A       | `N/A`                         | N/A          |
+| `clearingVolume.zMin`    | number | Bounding box dimension of VOI along Z-axis - Minimum                   | -0.1      | N/A       | N/A       | `N/A`                         | N/A          |
+| `clearingVolume.zMax`    | number | Bounding box dimension of VOI along Z-axis - Maximum                   | 0.4       | N/A       | N/A       | `N/A`                         | N/A          |
