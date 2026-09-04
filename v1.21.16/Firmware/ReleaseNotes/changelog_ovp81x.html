@@ -71,6 +71,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../GettingStarted/index_getting_started.html">Getting started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Firmware</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">Release notes</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="FW_1.21.x/FW_1.21.26_release_note.html">OVP81x: version 1.21.26</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FW_1.21.x/FW_1.21.16_release_note.html">OVP81x: version 1.21.16</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FW_1.21.x/FW_1.21.x_release_note.html">OVP81x: version 1.21.6</a></li>
 <li class="toctree-l3"><a class="reference internal" href="FW_1.20.x/FW_1.20.x_release_notes.html">OVP81x: version 1.20.29</a></li>
@@ -82,34 +83,38 @@
 <li class="toctree-l3"><a class="reference internal" href="FW_1.0.x/index.html">OVP80x: version 1.0.14</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="index.html#compact-version">compact version</a><ul class="current">
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Changelog for OVP81x</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#v1-21-16">v1.21.16</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#added">Added</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#v1-21-26">v1.21.26</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#fixed">Fixed</a></li>
 </ul>
 </li>
+<li class="toctree-l5"><a class="reference internal" href="#v1-21-16">v1.21.16</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#added">Added</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#id1">Fixed</a></li>
+</ul>
+</li>
 <li class="toctree-l5"><a class="reference internal" href="#v1-21-6">v1.21.6</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#id1">Added</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#id2">Added</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#known-issues">Known Issues</a></li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#v1-20-29">v1.20.29</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#id2">Added</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#id3">Added</a></li>
 <li class="toctree-l6"><a class="reference internal" href="#changed">Changed</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#id3">Fixed</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#id4">Known Issues</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#id4">Fixed</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#id5">Known Issues</a></li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#v1-10-13">v1.10.13</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#id5">Added</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#id6">Changed</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#id7">Known Issues</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#id6">Added</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#id7">Changed</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#id8">Known Issues</a></li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#v1-4-30">v1.4.30</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#id8">Added</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#id9">Changed</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#id10">Fixed</a></li>
-<li class="toctree-l6"><a class="reference internal" href="#id11">Known Issues</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#id9">Added</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#id10">Changed</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#id11">Fixed</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#id12">Known Issues</a></li>
 </ul>
 </li>
 </ul>
@@ -160,6 +165,16 @@
              
   <section id="changelog">
 <h1>Changelog<a class="headerlink" href="#changelog" title="Link to this heading"></a></h1>
+<section id="v1-21-26">
+<h2>v1.21.26<a class="headerlink" href="#v1-21-26" title="Link to this heading"></a></h2>
+<section id="fixed">
+<h3>Fixed<a class="headerlink" href="#fixed" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>[Base Device] Fixed communication stability between camera head and processing unit over longer cables.</p></li>
+<li><p>[Base Device] Fixed duplicate algo instances during reload.</p></li>
+</ul>
+</section>
+</section>
 <section id="v1-21-16">
 <h2>v1.21.16<a class="headerlink" href="#v1-21-16" title="Link to this heading"></a></h2>
 <section id="added">
@@ -168,8 +183,8 @@
 <li><p>[Base Device] Added support for the CAN bitrate of <strong>800 kBaud</strong>.</p></li>
 </ul>
 </section>
-<section id="fixed">
-<h3>Fixed<a class="headerlink" href="#fixed" title="Link to this heading"></a></h3>
+<section id="id1">
+<h3>Fixed<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>[Base Device] Stabilized the communication between camera and VPU.</p></li>
 <li><p>[Base Device] Fixed an issue where the <strong>O3R222</strong> camera could stop working at low temperatures.</p></li>
@@ -182,8 +197,8 @@
 </section>
 <section id="v1-21-6">
 <h2>v1.21.6<a class="headerlink" href="#v1-21-6" title="Link to this heading"></a></h2>
-<section id="id1">
-<h3>Added<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<section id="id2">
+<h3>Added<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>[Base Device] Enhanced device security by introducing <strong>password protection</strong> feature, allowing users to restrict unauthorized access to critical configurations.<br />
 For details, refer to the <a class="reference internal" href="../../Technology/VPU/security.html"><span class="std std-doc">Security Overview</span></a> document.</p></li>
@@ -214,8 +229,8 @@ For details, refer to the <a class="reference internal" href="../../Technology/V
 </section>
 <section id="v1-20-29">
 <h2>v1.20.29<a class="headerlink" href="#v1-20-29" title="Link to this heading"></a></h2>
-<section id="id2">
-<h3>Added<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<section id="id3">
+<h3>Added<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>[Base Device] Added the capability to support VGA camera heads(<strong>O3R252</strong>).</p></li>
 <li><p>[Base Device] The following features are added to the diagnostic system:</p>
@@ -255,15 +270,15 @@ This is a beta release and will be followed by an official release soon. In case
 <li><p>[ODS Application] Improvements to the crosstalk mitigation: a framerate jitter feature was added, which reduces the probability of crosstalk between vehicles. This feature can be enabled in the application parameters.</p></li>
 </ul>
 </section>
-<section id="id3">
-<h3>Fixed<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<section id="id4">
+<h3>Fixed<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>Changing the ports used by an application under the parameter path <code class="docutils literal notranslate"><span class="pre">/applications/instances/appX/ports</span></code> will reset the presets located at <code class="docutils literal notranslate"><span class="pre">/applications/instances/appX/presets</span></code>.</p></li>
 <li><p>The configuration data mirrored to the PLC application from an ODS application (zones, zoneConfigID ..) is sourced from <code class="docutils literal notranslate"><span class="pre">/applications/instances/appX/configuration</span></code>. After loading a preset, do not modify the ODS application’s configuration to ensure it remains consistent with the loaded parameters.</p></li>
 </ul>
 </section>
-<section id="id4">
-<h3>Known Issues<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<section id="id5">
+<h3>Known Issues<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p><strong>VGA camera heads</strong> are currently not supported by any embedded applications.</p></li>
 </ul>
@@ -271,8 +286,8 @@ This is a beta release and will be followed by an official release soon. In case
 </section>
 <section id="v1-10-13">
 <h2>v1.10.13<a class="headerlink" href="#v1-10-13" title="Link to this heading"></a></h2>
-<section id="id5">
-<h3>Added<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<section id="id6">
+<h3>Added<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>[Base Device] The default <code class="docutils literal notranslate"><span class="pre">channelValue</span></code> for 3D port number X [0..5] is changed to 2*X.</p></li>
 <li><p>[Base Device] The L4T kernel version is updated to r32.7.5.</p></li>
@@ -283,8 +298,8 @@ This is a beta release and will be followed by an official release soon. In case
 <li><p>[PDS Application] A new Pick and Drop System (PDS) application is added. This is a new feature with firmware 1.10.13. Refer to <a class="reference internal" href="../../PDS/index_pds.html"><span class="std std-doc">the PDS documentation</span></a> for an overview of the available features.</p></li>
 </ul>
 </section>
-<section id="id6">
-<h3>Changed<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<section id="id7">
+<h3>Changed<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>[ODS Application ]The maximum number of points to define a zone is increased from 6 to 16.</p></li>
 <li><p>[ODS Application ]The ODS diagnosis sources are now attached to the specific camera port rather than the overall ODS application, for the following diagnostic messages:</p>
@@ -299,8 +314,8 @@ This is a beta release and will be followed by an official release soon. In case
 <li><p>[ODS Application ]The conditions for raising the <code class="docutils literal notranslate"><span class="pre">ERROR_ODSAPP_VO_EXTR_DI_CALIB_IMPLAUSIBLE</span></code> diagnostic message were relaxed.</p></li>
 </ul>
 </section>
-<section id="id7">
-<h3>Known Issues<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<section id="id8">
+<h3>Known Issues<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>The diagnostics activated by the ODS application during the <code class="docutils literal notranslate"><span class="pre">RUN</span></code> state will not be deactivated when the application is set to the <code class="docutils literal notranslate"><span class="pre">CONF</span></code> or <code class="docutils literal notranslate"><span class="pre">IDLE</span></code> state.</p></li>
 <li><p>If the negative obstacle feature is enabled, it may happen that the diagnostic message <code class="docutils literal notranslate"><span class="pre">ERROR_ODSAPP_FOV_INSUFFICIENT_FOR_NEGATIVE_OBSTACLES</span></code> is raised even thought the field of view conditions are fulfilled. In this case, negative obstacles will not be properly detected. To fix this, the application should be set to <code class="docutils literal notranslate"><span class="pre">CONF</span></code>, and then to <code class="docutils literal notranslate"><span class="pre">RUN</span></code> again.</p></li>
@@ -319,8 +334,8 @@ This is a beta release and will be followed by an official release soon. In case
 <li><p><strong>Do not update an OVP80x with this firmware. Such a FW update will fail. The device will reboot to the previous FW version installed.</strong></p></li>
 </ul>
 </div></blockquote>
-<section id="id8">
-<h3>Added<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<section id="id9">
+<h3>Added<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>[Base Device] The IMU data can be accessed at port 6. See <a class="reference internal" href="../../Technology/VPU/IMU/imu.html"><span class="std std-doc">the IMU documentation</span></a> for further details.</p></li>
 <li><p>[Base Device] Processing the 3D data using CUDA can be enabled or disabled with the JSON parameter <code class="docutils literal notranslate"><span class="pre">/ports/portX/processing/diParam/useCuda</span></code>. CUDA processing is enabled by default. See <a class="reference internal" href="../../Technology/3D/ProcessingParams/processing_params.html"><span class="std std-doc">the CUDA documentation</span></a> for further details.</p></li>
@@ -332,8 +347,8 @@ This is a beta release and will be followed by an official release soon. In case
 <li></li>
 </ul>
 </section>
-<section id="id9">
-<h3>Changed<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<section id="id10">
+<h3>Changed<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>[Base Device] The available resources (CPU, GPU and RAM) available for running OEM applications are different: see <a class="reference internal" href="FW_1.4.x/FW_1.4.x_migration_guide.html"><span class="std std-doc">the migration guide</span></a> for details.</p></li>
 <li><p>[Base Device] The OEM password was removed. Login with SSH keys is required.</p></li>
@@ -364,8 +379,8 @@ This is a beta release and will be followed by an official release soon. In case
 <li><p>[MCC Application] The diagnostic messages were updated to be flexible regarding the direction of motion: “backward calibration failed” is now “motion no in straight line.”</p></li>
 </ul>
 </section>
-<section id="id10">
-<h3>Fixed<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
+<section id="id11">
+<h3>Fixed<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>[Base Device] Fixed an issue where the <code class="docutils literal notranslate"><span class="pre">eth0</span></code> interface was not available if the device boot up with only <code class="docutils literal notranslate"><span class="pre">eth1</span></code> active.</p></li>
 <li><p>[Base Device] The framerate of the RGB camera correctly displays the fixed 20fps. The framerate is not adjustable.</p></li>
@@ -376,8 +391,8 @@ This is a beta release and will be followed by an official release soon. In case
 <li><p>[MCC Application] Activating MCC leads to <code class="docutils literal notranslate"><span class="pre">ERROR_ODSAPP_ALGO_INTERNAL</span></code>.</p></li>
 </ul>
 </section>
-<section id="id11">
-<h3>Known Issues<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
+<section id="id12">
+<h3>Known Issues<a class="headerlink" href="#id12" title="Link to this heading"></a></h3>
 <ul class="simple">
 <li><p>The CAN interface is limited to 5V.</p></li>
 <li><p>Performing five or more software reboots (for example with <code class="docutils literal notranslate"><span class="pre">ifm3d</span> <span class="pre">reboot</span></code>) of the OVP8xx without power cycle in between will result in a device unreachable on the network. This is fixed by power cycling.</p></li>

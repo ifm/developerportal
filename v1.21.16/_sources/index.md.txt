@@ -24,7 +24,7 @@ This website contains all the documentation for the O3R platform. Find the datas
     :class: homepage-icons
 ![News icon](./resources/ifm3d_landing_news.svg) 
 A new firmware version is available for the O3R platform.
-Find it here: [FW 1.21.16](https://www.ifm.com/de/en/product/OVP810#documents)
+Find it here: [FW 1.21.26](https://www.ifm.com/de/en/product/OVP810#documents)
 ::::
 :::::
 

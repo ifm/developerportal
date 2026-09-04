@@ -1,5 +1,13 @@
 # Changelog
 
+
+## v1.21.26
+
+### Fixed
+
+- [Base Device] Fixed communication stability between camera head and processing unit over longer cables.
+- [Base Device] Fixed duplicate algo instances during reload.
+
 ## v1.21.16
 
 ### Added

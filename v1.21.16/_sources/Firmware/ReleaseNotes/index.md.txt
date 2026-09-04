@@ -3,6 +3,7 @@
 
 :::{toctree}
     :maxdepth: 1
+OVP81x: version 1.21.26 <FW_1.21.x/FW_1.21.26_release_note>
 OVP81x: version 1.21.16 <FW_1.21.x/FW_1.21.16_release_note>
 OVP81x: version 1.21.6 <FW_1.21.x/FW_1.21.x_release_note>
 OVP81x: version 1.20.29 <FW_1.20.x/FW_1.20.x_release_notes>
