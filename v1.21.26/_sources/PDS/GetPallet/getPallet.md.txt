@@ -3,6 +3,7 @@
 The `getPallet` functionality of PDS is designed to detect the position and orientation of up to 10 pallets in the vicinity of autonomous and semi-autonomous pallet handling vehicles. 
 Typically, such a system has a priori knowledge from warehouse management, such as the approximate distance to the pallet and the type of pallet.
 
+
 `getPallet` supports the picking operation by determining the exact location and orientation of the pallet.
 
 ## Usage guidelines
@@ -12,11 +13,11 @@ By default, PDS is able to detect pallets with the following characteristics:
 
 | Pallet name                                     | Dimensions                                                                                                                                                           | Image                                                 |
 | ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| Block pallet (`palletIndex=0`)                  | The pockets width should be between 0.24 and 0.44 m <br> The pockets height should be between 0.05 and 0.15 m <br> The blocks should be between 0.05 and 0.40 m.     | ![Block pallet](./resources/block_pallet.png)         |
-| EPAL side pallet (`palletIndex = 2`)            | A fixed pocket width of 0.23 m and height 0.1 m <br> The left/right blocks should be between 0.10 and 0.16 m.                                                        | ![EPAL side pallet](./resources/EPAL_side_pallet.png) |
-| Stringer pallet<sup>*</sup> (`palletIndex = 1`) | The pockets width should be between 0.40 and 0.55 m <br> The pockets height should be between 0.0.5 and 0.15 m <br> The stringers should be between 0.02 and 0.08 m. | ![Stringer pallet](./resources/stringer_pallet.png)   |
-| Wire cage pallet, front (`palletIndex = 3`)     | A fixed pocket width of 0.76 m and height 0.09 m. <br> The left/right blocks should be at least 0.15 m                                                               | ![Wire cage front](./resources/wire_cage_front.png)   |
-| Wire cage pallet, side (`palletIndex = 4`)      | A fixed pocket width of 0.59 m and height 0.09 m. <br> The left/right blocks should be at least 0.1 m                                                                | ![Wire cage side](./resources/wire_cage_side.png)     |
+| Block pallet (`palletIndex=0`)                  | The pockets width should be between 0.24 and 0.44 m <br> The pockets height should be between 0.05 and 0.15 m <br> The blocks should be between 0.05 and 0.40 m.     | <div style="width: 600px;">![Block pallet](resources/block_pallet_wide.png)</div>         |
+| EPAL side pallet (`palletIndex = 2`)            | A fixed pocket width of 0.23 m and height 0.1 m <br> The left/right blocks should be between 0.10 and 0.16 m.                                                        | <div style="width: 600px;">![EPAL side pallet](./resources/block_pallet_eside.png)</div> |
+| Stringer pallet<sup>*</sup> (`palletIndex = 1`) | These have thin center support stringers of between 0.02 and 0.08 m. <br> The pockets width should be between 0.40 and 0.55 m <br> The pockets height should be between 0.05 and 0.15 m | <div style="width: 600px;">![Stringer pallet](./resources/stringer_pallet.png)</div>   |
+| Wire cage pallet, front (`palletIndex = 3`)     | A fixed pocket width of 0.76 m and height 0.09 m. <br> The left/right blocks should be at least 0.15 m                                                               | <div style="width: 600px;">![Wire cage front](./resources/wire_pallet_narrow.png)</div>   |
+| Wire cage pallet, side (`palletIndex = 4`)      | A fixed pocket width of 0.59 m and height 0.09 m. <br> The left/right blocks should be at least 0.1 m                                                                | <div style="width: 600px;">![Wire cage side](./resources/wire_pallet_wide.png)</div>     |
 
 <sup>*</sup> Stringer pallets generally have thin vertical structures and wider pockets.
 
@@ -133,7 +134,9 @@ However, to achieve optimal processing speed, it is recommended to tighten
 
 The `getPallet` command expects the pallet to be in front of the forks and in the field of view of the camera, as illustrated below. 
 
-![expected](resources/expected.drawio.svg)
+![expected](resources/expected.png)
+
+PDS works best with a camera between 1.5 and 2 meters from the pallet. The system can detect pallets closer to the camera as long as the pockets are visible (with a minimum of about 1 cm of the outside of the pocket visible), and some pallets up to 3 meters with the right settings.
 
 The `getPallet` command works as follows:
 1. If the `depthHint` is set to a positive value (this is the recommended option), the user is expected to have a priori knowledge about where the pallet is with respect to the forks coordinate system. In this case, the pallet's pose estimation is performed inside the ortho-projection volume.

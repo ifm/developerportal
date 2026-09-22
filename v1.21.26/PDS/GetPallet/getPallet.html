@@ -164,23 +164,23 @@ Typically, such a system has a priori knowledge from warehouse management, such 
 <tbody>
 <tr class="row-even"><td><p>Block pallet (<code class="docutils literal notranslate"><span class="pre">palletIndex=0</span></code>)</p></td>
 <td><p>The pockets width should be between 0.24 and 0.44 m <br> The pockets height should be between 0.05 and 0.15 m <br> The blocks should be between 0.05 and 0.40 m.</p></td>
-<td><p><img alt="Block pallet" src="../../_images/block_pallet.png" /></p></td>
+<td><p><div style="width: 600px;"><img alt="Block pallet" src="../../_images/block_pallet_wide.png" /></div></p></td>
 </tr>
 <tr class="row-odd"><td><p>EPAL side pallet (<code class="docutils literal notranslate"><span class="pre">palletIndex</span> <span class="pre">=</span> <span class="pre">2</span></code>)</p></td>
 <td><p>A fixed pocket width of 0.23 m and height 0.1 m <br> The left/right blocks should be between 0.10 and 0.16 m.</p></td>
-<td><p><img alt="EPAL side pallet" src="../../_images/EPAL_side_pallet.png" /></p></td>
+<td><p><div style="width: 600px;"><img alt="EPAL side pallet" src="../../_images/block_pallet_eside.png" /></div></p></td>
 </tr>
 <tr class="row-even"><td><p>Stringer pallet<sup>*</sup> (<code class="docutils literal notranslate"><span class="pre">palletIndex</span> <span class="pre">=</span> <span class="pre">1</span></code>)</p></td>
-<td><p>The pockets width should be between 0.40 and 0.55 m <br> The pockets height should be between 0.0.5 and 0.15 m <br> The stringers should be between 0.02 and 0.08 m.</p></td>
-<td><p><img alt="Stringer pallet" src="../../_images/stringer_pallet.png" /></p></td>
+<td><p>These have thin center support stringers of between 0.02 and 0.08 m. <br> The pockets width should be between 0.40 and 0.55 m <br> The pockets height should be between 0.05 and 0.15 m</p></td>
+<td><p><div style="width: 600px;"><img alt="Stringer pallet" src="../../_images/stringer_pallet.png" /></div></p></td>
 </tr>
 <tr class="row-odd"><td><p>Wire cage pallet, front (<code class="docutils literal notranslate"><span class="pre">palletIndex</span> <span class="pre">=</span> <span class="pre">3</span></code>)</p></td>
 <td><p>A fixed pocket width of 0.76 m and height 0.09 m. <br> The left/right blocks should be at least 0.15 m</p></td>
-<td><p><img alt="Wire cage front" src="../../_images/wire_cage_front.png" /></p></td>
+<td><p><div style="width: 600px;"><img alt="Wire cage front" src="../../_images/wire_pallet_narrow.png" /></div></p></td>
 </tr>
 <tr class="row-even"><td><p>Wire cage pallet, side (<code class="docutils literal notranslate"><span class="pre">palletIndex</span> <span class="pre">=</span> <span class="pre">4</span></code>)</p></td>
 <td><p>A fixed pocket width of 0.59 m and height 0.09 m. <br> The left/right blocks should be at least 0.1 m</p></td>
-<td><p><img alt="Wire cage side" src="../../_images/wire_cage_side.png" /></p></td>
+<td><p><div style="width: 600px;"><img alt="Wire cage side" src="../../_images/wire_pallet_wide.png" /></div></p></td>
 </tr>
 </tbody>
 </table>
@@ -568,7 +568,8 @@ However, to achieve optimal processing speed, it is recommended to tighten</p>
 <section id="workflow">
 <h2>Workflow<a class="headerlink" href="#workflow" title="Link to this heading"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">getPallet</span></code> command expects the pallet to be in front of the forks and in the field of view of the camera, as illustrated below.</p>
-<p><img alt="expected" src="../../_images/expected.drawio.svg" /></p>
+<p><img alt="expected" src="../../_images/expected.png" /></p>
+<p>PDS works best with a camera between 1.5 and 2 meters from the pallet. The system can detect pallets closer to the camera as long as the pockets are visible (with a minimum of about 1 cm of the outside of the pocket visible), and some pallets up to 3 meters with the right settings.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">getPallet</span></code> command works as follows:</p>
 <ol class="arabic simple">
 <li><p>If the <code class="docutils literal notranslate"><span class="pre">depthHint</span></code> is set to a positive value (this is the recommended option), the user is expected to have a priori knowledge about where the pallet is with respect to the forks coordinate system. In this case, the pallet’s pose estimation is performed inside the ortho-projection volume.</p></li>
