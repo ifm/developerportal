@@ -1,0 +1,18 @@
+| Property                            | Type    | Description                                                                                 |   Default | Minimum   | Maximum   | Enum   | Attributes   |
+|:------------------------------------|:--------|:--------------------------------------------------------------------------------------------|----------:|:----------|:----------|:-------|:-------------|
+| `beam.histWidthThresh`              | number  | Width threshold in meters along y-axis for histogram to be considered as beam candidates    |      1    | N/A       | N/A       | `N/A`  | N/A          |
+| `beam.freeSpaceBelow`               | number  | Minimum free space required for a valid beam below the bottom edge in meters                |      0.05 | 0.0       | N/A       | `N/A`  | N/A          |
+| `beam.minHeight`                    | number  | Minimum height for beam validation in meters                                                |      0.06 | N/A       | N/A       | `N/A`  | N/A          |
+| `beam.maxHeight`                    | number  | Maximum height for beam validation in meters                                                |      0.15 | N/A       | N/A       | `N/A`  | N/A          |
+| `upright.histHeightThresh`          | number  | Height threshold in meters along z-axis for histogram to be considred as upright candidates |      0.7  | N/A       | N/A       | `N/A`  | N/A          |
+| `upright.minWidth`                  | number  | Minimum width for upright validation in meters                                              |      0.03 | N/A       | N/A       | `N/A`  | N/A          |
+| `upright.maxWidth`                  | number  | Maximum width for upright validation in meters                                              |      0.12 | N/A       | N/A       | `N/A`  | N/A          |
+| `upright.protrusionAboveBeamThresh` | number  | Threshold for Protrusion above beam edge in meters to be considered for upright candidates  |      0.05 | N/A       | N/A       | `N/A`  | N/A          |
+| `transform.beamOnlyObstThresh`      | integer | Number of obstacle pixels threshold during beam-only localization sweep                     |      5    | 1         | N/A       | `N/A`  | N/A          |
+| `transform.yRackOriginLeft`         | number  | Expected y_val of the rack origin for the HPOS = left drop                                  |      0.61 | N/A       | N/A       | `N/A`  | N/A          |
+| `transform.yRackOriginRight`        | number  | Expected y_val of the rack origin for the HPOS = right drop                                 |     -0.61 | N/A       | N/A       | `N/A`  | N/A          |
+| `transform.yRackOriginTol`          | number  | Tolerance for difference in expected and computed rack origin                               |      0.3  | N/A       | N/A       | `N/A`  | N/A          |
+| `rackVolCheck.obstThresh`           | integer | Threshold for number of pixels in the rack shelf to be considered for obstacle flag         |     10    | N/A       | N/A       | `N/A`  | N/A          |
+| `floorDrop.yRackOriginLeft`         | number  | Expected y_val of the rack origin for the HPOS = left drop                                  |      0.61 | N/A       | N/A       | `N/A`  | N/A          |
+| `floorDrop.yRackOriginRight`        | number  | Expected y_val of the rack origin for the HPOS = right drop                                 |     -0.61 | N/A       | N/A       | `N/A`  | N/A          |
+| `floorDrop.yRackOriginTol`          | number  | Tolerance for difference in expected and computed rack origin                               |      0.3  | N/A       | N/A       | `N/A`  | N/A          |

@@ -1,0 +1,32 @@
+# O3R OVP Platform
+
+:::{toctree}
+    :hidden:
+O3R OVP Platform <self>
+:::
+
+::::{grid} 2
+:::{grid-item-card}  O3R OVP8xx Platform
+    :class-item: homepage-icons
+    :width: 100%
+    :img-top: ./resources/ovpxxx.png
+    :img-alt: OVPxxx
+    :link: documentation/index.html
+    :link-type: url
+    :link-alt: Learn more about OVP O3R platform
++++
+Learn more about the O3R OVP8xx TX2NX Platform
+:::
+
+:::{grid-item-card}  O3R OVP9xx Platform
+    :class-item: homepage-icons
+    :width: 100%
+    :img-top: ./resources/ovpxxx.png
+    :img-alt: OVPxxx
+    :link: https://ovp9.ifm3d.com/latest/
+    :link-type: url
+    :link-alt: Learn more about O3R OVP9xx ORIN platform
++++
+Learn more about the O3R OVP9xx ORIN Platform
+:::
+::::

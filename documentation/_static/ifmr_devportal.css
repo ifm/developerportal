@@ -1,0 +1,531 @@
+.md_image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+    line-height: 1.2;
+    font-weight: 400;
+    font-style: normal;
+    font-family: Helvetica,sans-serif;
+    color: #3f4245;
+    background: #f2f3f4;
+}
+
+
+#orangebar{
+    background-color: #ff6e00;
+    height: 50px;
+
+}
+
+#mastheadlogo{
+    width: 156px;
+    height: auto;
+}
+
+#robotchar{
+    float: left;
+    padding-right: 40px;
+    margin-left: 10%;"
+}
+
+#githublogo{
+    float: right;
+    padding-top: 60px;
+    padding-left: 40px;
+    padding-right: 15%;
+}
+
+div.solid {
+  border-top: 2px solid #f9f9f9;
+  width: 55%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+
+.container {
+    background-color: #fff;
+    margin: 0 auto 100px;
+    max-width: 1800px;
+    -webkit-box-shadow: 0 0 120px 0 rgba(0,0,0,.06);
+    box-shadow: 0 0 120px 0 rgba(0,0,0,.06);
+    position: relative;
+}
+
+.ifmdevportal-banner-responsive-bg-image {
+    position: relative;
+    z-index: 0;
+    padding: 4% 4% 4% 6%;
+    background-image: url(assets/Banner-o3r-1800x813.jpg);
+    background-repeat: no-repeat;
+}
+
+.section{
+    background-color: #fff;
+    overflow: auto;
+    overflow-x: hidden;
+    padding: 80px;
+}
+
+.ad{
+    background-color: #f9f9f9;
+    padding: 10px 40px 10px 30px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+
+.masthead{
+    width: 40%;
+    font-size: 4em;
+    font-weight: 550;
+    line-height: .95em;
+    color: #fff;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: Helvetica,sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 2.5em;
+    color: #282a2d;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    line-height: 1.2em;
+    letter-spacing: -1px;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    margin-top: 0;
+    display: block;
+}
+
+h2.center {
+    text-align: center;
+}
+
+h2.left {
+    text-align: left;
+    margin: 0;
+}
+
+a {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-family: Helvetica,sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    color: #43beeb;
+}
+
+a.button {
+    display:inline-block;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-family: Helvetica,sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.25rem;
+    text-decoration:none;
+    color: #fff;
+    background-color: #ff6300;
+    margin: 18px 0.3em 0.3em 0;
+    border-radius: 0.12em;
+    padding: 0.75em 1.2em;
+    text-align: center;
+    transition: all 0.2s;
+
+}
+
+a.button:hover {
+    color:#000000;
+    background-color:#FFFFFF;
+}
+
+.ospicker a {
+    padding-right: 20px;
+}
+
+
+
+.softwarelinks {
+    max-width: fit-content;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.iconholder{
+    width: 200px;
+    padding: 0 50px;
+    text-align: center;
+}
+
+a.icon{
+    width: 200px;
+    height: 180px;
+    line-height: 300px;
+    float: left;
+    display:inline-block;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-family: Helvetica,sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.25rem;
+    text-decoration:none;
+    color: #43beeb;
+    background-size: 200px 600px;
+    background-image: url(assets/OS-logos.svg);
+    background-repeat: no-repeat;
+}
+
+a.icon.linuxlogo{
+    background-position: 0 -40px;
+}
+
+a.icon.roslogo{
+    background-position: 0 -240px;
+}
+
+a.icon.windowslogo{
+    background-position: 0 -440px;
+}
+
+.settings{
+    background-position: 0px -135px;
+}
+
+
+.home-bullets {
+    list-style: none;
+    padding-left: 0;
+}
+.home-bullets li {
+    position: relative;
+    padding-left: 160px;
+    margin-bottom: 100px;
+    margin-left: 15%;
+}
+
+.home-bullets li:before {
+    content: '';
+    height: 135px;
+    width: 125px;
+    position: absolute;
+    background-image: url(assets/circle-icons.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0 0%;
+    padding-left: 15px;
+    left: 0;
+    top: 50%;
+    transform: translateY(-48%);
+}
+
+.home-bullets li.settings:before {
+    background-position: 0 33.3%;
+}
+
+.home-bullets li.tools:before {
+    background-position: 0 66.6%;
+}
+
+.home-bullets li.docs:before {
+    background-position: 0 100%;
+}
+
+nav {
+    width: 100%;
+    height: 100%;
+}
+
+.pagemenu {
+    margin-left: 0px;
+    padding: 0;
+}
+
+.pagemenu li {
+    list-style: none;
+    display: inline-block;
+    line-height: 40px;
+}
+
+.pagemenu li a {
+    display: block;
+    text-decoration: none;
+    font-size: 21px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #FFFFFF;
+    padding: 0 20px 0 0;
+}
+
+.pagemenu li a:hover {
+    color: #ff6e00;
+}
+
+
+
+/* Media Queries for Responsive Design */
+
+
+@media screen and (max-width: 2000px) {
+.container {margin-bottom: 0!important;}
+}
+
+
+
+@media screen and (max-width: 1440px) {
+.ifmdevportal-banner-responsive-bg-image {
+    background-image: url(assets/Banner-o3r-1440x650.jpg);
+    }
+
+    .ad{
+        margin-left: -20px;
+    }
+}
+
+@media screen and (max-width: 1285px) {
+    .ifmdevportal-banner-responsive-bg-image {
+        padding: 2% 0% 3% 4%;
+        }
+
+        .masthead {
+            width: 50%;
+            font-size: 2.5em;
+        }
+
+        #mastheadlogo {
+            width: 125px;
+        }
+
+        a.button {
+            font-size: 1rem;
+        }
+
+        .home-bullets li {
+            margin-left: 8%;
+            margin-bottom: 50px;
+            padding-left: 140px;
+        }
+
+        .home-bullets li:before {
+            width: 100px;
+            height: 112px;
+        }
+
+        .section {
+            padding-top: 5%;
+        }
+
+        .ad {
+            padding: 2%;
+        }
+
+    }
+
+
+
+@media screen and (max-width: 1024px){
+    .ifmdevportal-banner-responsive-bg-image {
+    background-image: url(assets/Banner-o3r-1024x462.jpg);
+    padding: 4% 0% 4% 8%;
+    }
+
+    .section {
+        padding: 4%;
+    }
+
+    h2 {
+        font-size: 2.2em;
+        letter-spacing: -.5px;
+        }
+
+    .iconholder{
+        padding: 0 20px;
+    }
+
+    #orangebar{ height: 40px;}
+
+    #robotchar{
+        margin-left: 0%;"
+    }
+
+    .home-bullets li {
+        margin-left: 4%;
+    }
+
+    #githublogo{
+        padding-right: 5%;
+    }
+
+    nav {
+        width: 40%;
+    }
+}
+
+
+
+@media screen and (max-width: 813px){
+
+    .iconholder{
+        padding: 0 5px 0px 5px;
+    }
+
+    #orangebar{ height: 35px;}
+
+
+    .home-bullets li {
+        margin-left: 2%;
+    }
+
+    .ad {
+        padding: 0%;
+    }
+}
+
+
+
+
+@media screen and (max-width: 681px){
+
+    .ifmdevportal-banner-responsive-bg-image {
+        background-image:none;
+        background-color: #342c37;
+        padding: 5% 5% 5% 10%;
+    }
+
+    .masthead {
+        width: 50%;
+        font-size: 2.5em;
+        }
+
+    h2 {
+        font-size: 1.7em;
+        letter-spacing: -.25px;
+        }
+
+    #mastheadlogo {
+        width: 125px;
+        }
+
+    #orangebar{ height: 25px;}
+
+    a.button{
+        font-size: 1rem;
+        }
+
+    .iconholder{
+        padding: unset;
+        margin-top: 40px;
+    }
+
+    .softwarelinks {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .section {
+        padding: 40px 60px 40px 60px;
+        overflow-y: hidden;
+    }
+
+    .ad {
+        display: block;
+    }
+
+    #githublogo {
+        padding: 0%;
+        float: left;
+    }
+
+}
+
+
+/* iphone X in portrait mode */
+
+@media only screen
+and (max-device-width : 414px)
+and (orientation : portrait)
+and (-webkit-device-pixel-ratio : 3) {
+
+    .ifmdevportal-banner-responsive-bg-image {
+        background-image:none;
+        background-color: #342c37;
+        padding-bottom: 50px;
+        padding-top: 40px;
+    }
+
+    #robotchar {
+        margin-left: -20px;
+    }
+
+    #githublogo {
+        float: left;
+        padding-top: 10px;
+        padding-left: 0;
+    }
+
+    a.icon.roslogo {
+        margin-top: -25%;
+        background-position: 0 -210px;
+    }
+
+    .softwarelinks {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .section {
+        padding: 20px 60px 0px 60px;
+        overflow-y: hidden;
+    }
+
+    .ad {
+        display: block;
+        padding-top: 5%;
+        padding-bottom: 5%;
+    }
+
+    .iconholder {
+        margin-bottom: 15%;
+    }
+
+    .home-bullets li {
+        margin-left: -12%;
+        padding-left: 43%;
+    }
+
+    .home-bullets li:before {
+        width: 80px;
+        height: 92px;
+    }
+
+}
+
+
+/* iphone X in portrait mode */
+@media only screen
+and (min-device-width : 375px)
+and (max-device-width : 812px)
+and (-webkit-device-pixel-ratio : 3)
+and (orientation : landscape) {
+
+    .ifmdevportal-banner-responsive-bg-image {
+        background-image: url(assets/Banner-o3r-1024x462.jpg);
+        background-color: #342c37;
+        padding: 4%;
+    }
+
+}

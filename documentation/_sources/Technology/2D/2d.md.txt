@@ -1,0 +1,29 @@
+# 2D camera head configuration
+
+| Article | Image resolution 2D [pix] | Angle of aperture [°] | Framerate [Hz] |
+| ------- | ------------------------- | --------------------- | -------------- |
+| O3R222  | 1280x800                  | 128x80                | 20             |
+| O3R225  | 1280x800                  | 128x80                | 20             |
+| O3R252  | 1280x800                  | 128x80                | 20             |
+
+## Mode
+
+The user can configure the 2D imager from the following modes
+
+- `standard_autoexposure2D`
+- `standard_manualexposure2D`
+
+:::{note}
+ In `standard_autoexposure2D` mode the parameters are chosen automatically and are not configurable.
+:::
+
+:::::{tabs}
+::::{group-tab} standard_manualexposure2D
+:::{include} ../../generated_docs/camera_2d_manual.md
+:::
+::::
+:::::
+
+## Gain
+
+The gain is particularly useful in low light situations, used in combination with the exposure time: increasing the exposure time as well as the gain will result in a brighter image.

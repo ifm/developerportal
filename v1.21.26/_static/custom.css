@@ -257,10 +257,10 @@ applied to the item in the markdown base document*/
 
 /* Define the initial style of the element */
 svg a rect {
-    stroke: black;
-	stroke-width: 2px;
+    /*stroke: black;*/
+	/*stroke-width: 2px;*/
     color: black;
-	fill: #ff6f0050;
+	/*fill: #ff6f0050;*/
     transition: all 0.1s ease; /* Smooth transition for the hover effect */
 }
 

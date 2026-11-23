@@ -1,0 +1,32 @@
+# Welcome to O3R and O3C Documentation
+
+:::{toctree}
+    :hidden:
+Home <self>
+index_ovpxxx
+:::
+
+::::{grid} 2
+:::{grid-item-card}  O3R OVP Platform
+    :class-item: homepage-icons
+    :width: 100%
+    :img-top: ./resources/ovpxxx.png
+    :img-alt: OVPxxx
+    :link: index_ovpxxx
+    :link-type: doc
+    :link-alt: Learn more about OVP O3R platform
++++
+Learn more about the OVP-O3R Platform
+:::
+
+:::{grid-item-card}  O3C Platform
+    :class-item: homepage-icons
+    :width: 100%
+    :img-top: ./resources/ifm3d_landing_O3C.svg
+    :link: https://o3c.ifm3d.com/latest/
+    :link-type: url
+    :link-alt: Link to the O3C documentation
++++
+Learn more about O3C platform
+:::
+::::
