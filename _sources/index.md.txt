@@ -10,7 +10,7 @@ index_ovpxxx
 :::{grid-item-card}  O3R OVP Platform
     :class-item: homepage-icons
     :width: 100%
-    :img-top: ./resources/ovpxxx.png
+    :img-top: ./resources/ifm3d_landing_ovpxxx.svg
     :img-alt: OVPxxx
     :link: index_ovpxxx
     :link-type: doc

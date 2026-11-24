@@ -10,7 +10,7 @@ O3R OVP Platform <self>
     :class-item: homepage-icons
     :width: 100%
     :img-top: ./resources/ovpxxx.png
-    :img-alt: OVPxxx
+    :img-alt: OVP8xx
     :link: documentation/index.html
     :link-type: url
     :link-alt: Learn more about OVP O3R platform
@@ -21,8 +21,8 @@ Learn more about the O3R OVP8xx TX2NX Platform
 :::{grid-item-card}  O3R OVP9xx Platform
     :class-item: homepage-icons
     :width: 100%
-    :img-top: ./resources/ovpxxx.png
-    :img-alt: OVPxxx
+    :img-top: ./resources/ifm3d_landing_ovpxxx.svg
+    :img-alt: OVP9xx
     :link: https://ovp9.ifm3d.com/latest/
     :link-type: url
     :link-alt: Learn more about O3R OVP9xx ORIN platform
